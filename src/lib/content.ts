@@ -67,7 +67,7 @@ export const siteConfig: SiteConfig = {
   name: "Pooja Kiran",
   role: "AI Security Researcher",
   tagline: "Engineering the guardrails that keep autonomous AI systems from turning adversarial.",
-  email: "poojakiranbhardwaj@gmail.com",
+  email: "pkiran1@asu.edu",
   linkedin: "https://linkedin.com/in/poojakira",
   github: "https://github.com/poojakira",
   location: "Tempe, AZ",

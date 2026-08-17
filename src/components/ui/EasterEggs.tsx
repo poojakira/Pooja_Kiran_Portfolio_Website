@@ -22,7 +22,7 @@ export default function EasterEggs() {
       'color: #06B6D4; font-size: 12px;'
     );
     console.log(
-      `%c\nLooking at the source? Good instinct.\nThat's exactly the kind of curiosity I bring to security.\n\n🔒 poojakiranbhardwaj@gmail.com`,
+      `%c\nLooking at the source? Good instinct.\nThat's exactly the kind of curiosity I bring to security.\n\n🔒 pkiran1@asu.edu`,
       'color: #94A3B8; font-size: 11px;'
     );
   }, []);
