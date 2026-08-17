@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Font Imports ===== */
+@import url("https://api.fontshare.com/v2/css?f=satoshi");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+/* ===== CSS Custom Properties ===== */
+:root {
+  /* Colors */
+  --color-deep-space: #0A0A0F;
+  --color-obsidian: #12121A;
+  --color-graphite: #1E1E2E;
+  --color-sentinel-violet: #8B5CF6;
+  --color-plasma-cyan: #06B6D4;
+  --color-secure-green: #10B981;
+  --color-amber-alert: #F59E0B;
+  --color-pure-light: #FAFAFA;
+  --color-silver-haze: #94A3B8;
+  --color-whisper: #475569;
+
+  /* Easings */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+  --duration-slowest: 1000ms;
+}
+
+/* ===== Base Styles ===== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-deep-space text-pure-light font-satoshi;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Main content sits above the 3D canvas */
+  #main-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-deep-space);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-sentinel-violet);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a78bfa;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-sentinel-violet) var(--color-deep-space);
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(139, 92, 246, 0.3);
+    color: var(--color-pure-light);
+  }
+
+  ::-moz-selection {
+    background-color: rgba(139, 92, 246, 0.3);
+    color: var(--color-pure-light);
+  }
+
+  /* Focus Visible */
+  :focus-visible {
+    outline: 2px solid var(--color-sentinel-violet);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* ===== Component Utilities ===== */
+@layer components {
+  /* Glass Morphism */
+  .glass {
+    background: rgba(18, 18, 26, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .glass-light {
+    background: rgba(30, 30, 46, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 92, 246, 0.08);
+  }
+
+  .glass-heavy {
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+  }
+
+  .glass-cyan {
+    background: rgba(18, 18, 26, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(6, 182, 212, 0.15);
+  }
+
+  /* Typography Utilities */
+  .text-gradient-violet {
+    @apply bg-gradient-to-r from-sentinel-violet to-plasma-cyan bg-clip-text text-transparent;
+  }
+
+  .text-gradient-cyan {
+    @apply bg-gradient-to-r from-plasma-cyan to-secure-green bg-clip-text text-transparent;
+  }
+
+  .heading-xl {
+    @apply text-fluid-5xl font-satoshi font-bold tracking-tight leading-tight;
+  }
+
+  .heading-lg {
+    @apply text-fluid-4xl font-satoshi font-bold tracking-tight leading-tight;
+  }
+
+  .heading-md {
+    @apply text-fluid-3xl font-satoshi font-semibold tracking-tight leading-snug;
+  }
+
+  .heading-sm {
+    @apply text-fluid-2xl font-satoshi font-semibold leading-snug;
+  }
+
+  .body-lg {
+    @apply text-fluid-lg font-inter leading-relaxed;
+  }
+
+  .body-base {
+    @apply text-fluid-base font-inter leading-relaxed;
+  }
+
+  .body-sm {
+    @apply text-fluid-sm font-inter leading-normal;
+  }
+
+  .caption {
+    @apply text-fluid-xs font-mono uppercase tracking-widest;
+  }
+}
+
+/* ===== Custom Cursor ===== */
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+.focus-visible-ring:focus-visible {
+  outline: 2px solid #8B5CF6;
+  outline-offset: 4px;
+}
