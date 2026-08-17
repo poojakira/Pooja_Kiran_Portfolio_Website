@@ -32,7 +32,7 @@ export default function Footer() {
               LinkedIn
             </a>
             <a
-              href="mailto:pooja@poojakiran.dev"
+              href="mailto:poojakiranbhardwaj@gmail.com"
               className="text-sm text-silver-haze hover:text-pure-light transition-colors duration-200"
             >
               Email
