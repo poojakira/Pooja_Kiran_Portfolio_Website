@@ -1,0 +1,212 @@
+%-------------------------
+% Resume in Latex
+% Based on: Jake Gutierrez's Resume Template
+% Template: https://github.com/jakegut/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Pooja Kiran Bharadwaj} \\ \vspace{1pt}
+    \small Greater Phoenix Area, AZ $|$ (480) 776-7745 $|$ \href{mailto:poojakiranbhardwaj@gmail.com}{\underline{poojakiranbhardwaj@gmail.com}} \\
+    \href{https://linkedin.com/in/poojakiran}{\underline{linkedin.com/in/poojakiran}} $|$
+    \href{https://github.com/poojakira}{\underline{github.com/poojakira}} $|$
+    \href{https://pooja-kiran-portfolio-website.vercel.app}{\underline{Portfolio}} $|$
+    Work Authorization: F-1 OPT EAD
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Arizona State University}{Tempe, AZ}
+      {Master of Science in Information Technology}{Aug. 2024 -- May 2026}
+      \resumeItemListStart
+        \resumeItem{Coursework: Machine Learning Security, Cloud Security Architecture, Information Assurance, Network Defense, Secure Systems}
+      \resumeItemListEnd
+    \resumeSubheading
+      {M. S. Ramaiah University of Applied Sciences}{Bengaluru, India}
+      {Bachelor of Technology in Computer Science and Engineering}{Aug. 2019 -- Aug. 2023}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {AI Security Researcher \& Engineer}{Aug. 2024 -- Present}
+      {Independent Security Research (Concurrent with M.S. program)}{Tempe, AZ}
+      \resumeItemListStart
+        \resumeItem{Engineered an inline MCP security gateway with a 5-layer decision pipeline and 50+ prompt-injection detection rules by implementing JSON-RPC parsing, Unicode/homoglyph normalization, and real-time policy enforcement in Python/FastAPI, achieving 0.015ms average inspection latency per tool call across 50,000 benchmarked iterations}
+        \resumeItem{Developed a static IAM policy analyzer for AI agent roles on AWS by implementing 25 deterministic rules covering wildcard permissions, privilege escalation, audit-trail tampering, and credential-harvest chains with SARIF output, enabling automated least-privilege enforcement as a CI merge gate with zero runtime dependencies}
+        \resumeItem{Built a model supply-chain scanner with a taint engine and symbolic resolver covering 17 file formats by implementing deep opcode analysis for pickle Protocol 0--5, SafeTensors header inspection, GGUF structural parsing, and typosquat detection, achieving 100\% detection on 12 attack fixtures (2 CVEs) in 116ms with 0\% false positive rate}
+        \resumeItem{Created adversarial prompt-generation and model-extraction attack harnesses (FGSM, PGD, C\&W) mapped to MITRE ATLAS by implementing multi-category red-team generation and detector evaluation with structured SARIF evidence output, producing reproducible security assessments for guardrail validation and input/output filtering decisions}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Business Compliance Lead \& Market/Cost Analyst}{Aug. 2025 -- Dec. 2025}
+      {AEROSEC -- ASU Technology Innovation Lab (Honeywell Aerospace)}{Tempe, AZ}
+      \resumeItemListStart
+        \resumeItem{Led regulatory compliance analysis for Honeywell Aerospace's security product by mapping requirements and conducting competitive cost modeling across aerospace frameworks, delivering a compliance framework supporting the go-to-market strategy}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Graduate Teaching Assistant / IT Grader}{Jan. 2025 -- Oct. 2025}
+      {Ira A. Fulton Schools of Engineering, Arizona State University}{Tempe, AZ}
+      \resumeItemListStart
+        \resumeItem{Evaluated technical assignments for 100+ students per semester by assessing cloud security architectures, network defense configurations, and IAM access control implementations, maintaining consistent grading standards across multiple course sections}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}} $|$ \emph{Python, FastAPI, Docker, Kubernetes, GitHub Actions}}{}
+          \resumeItemListStart
+            \resumeItem{Architected an inline stdio proxy intercepting MCP tools/call JSON-RPC requests through a 5-layer pipeline (server trust, tool-call policy, process-spawn evaluation, semantic intent, network egress) by implementing allow/block/redact/quarantine decisions, preventing unauthorized tool execution before requests reach downstream servers}
+            \resumeItem{Implemented 50+ prompt-injection detection rules with Unicode and homoglyph normalization by building PII detection for 9 data types and exfiltration-pattern matching, achieving comprehensive coverage across instruction override, role manipulation, delimiter injection, and encoded payload attacks}
+            \resumeItem{Engineered production-grade operational controls by integrating SHA-256 hash-chained audit logging, circuit breakers, rate limiting, shadow mode, and write-ahead logging with Kubernetes deployment manifests, providing tamper-evident observability with full traceability across all security decisions}
+            \resumeItem{Validated security controls with 529 automated tests at 77\% coverage across Python 3.10/3.11/3.12 by integrating Bandit, CodeQL, Trivy, Grype, and pip-audit into the CI pipeline, achieving p50 latency of 0.0123ms and p99 of 0.04ms with near-zero performance overhead}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}} $|$ \emph{Python, AWS IAM, Terraform, SARIF}}{}
+          \resumeItemListStart
+            \resumeItem{Developed 25 deterministic IAM rules targeting AI agent roles by detecting wildcard service prefixes, iam:PassRole without conditions, privilege-management actions, audit-trail tampering, and credential-harvest plus lateral-movement chains, covering the full agent identity attack surface for Bedrock, SageMaker, and Lambda workloads}
+            \resumeItem{Implemented credential-harvest chain detection by analyzing combined permission patterns across sts:AssumeRole, cross-account trust without ExternalId, and network egress modifications, identifying multi-step privilege escalation paths in a single policy scan}
+            \resumeItem{Built a CI merge gate by outputting findings in Text, JSON, and SARIF formats with exit code 1 on critical/high severity, integrating with GitHub Code Scanning for inline PR annotations that block deployment of over-permissioned agent roles}
+            \resumeItem{Achieved zero runtime dependencies for local policy scanning by implementing pure-Python static analysis with optional boto3 live-account mode, Terraform infrastructure examples, and documented threat model with security audit}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{\href{https://github.com/poojakira/hf-model-provenance-scanner}{HF Model Provenance Scanner}} $|$ \emph{Python, Hugging Face API, Docker, SARIF}}{}
+          \resumeItemListStart
+            \resumeItem{Engineered a taint engine and symbolic resolver for pickle opcode analysis (Protocol 0--5) by implementing deep REDUCE/GLOBAL/STACK\_GLOBAL walks with gadget-chain matching, detecting memoized-global exec and importlib bypass techniques that industry competitor ModelScan 0.8.8 missed}
+            \resumeItem{Built temporal baseline diffing for rug-pull detection by implementing SafeTensors header inspection, GGUF structural parsing, typosquat detection via Levenshtein distance, and multi-layer obfuscation decode (base64, chr(), string concat), covering 9 distinct attack vectors across the model supply chain}
+            \resumeItem{Reduced model scan bandwidth by 99.9\% by using HTTP Range requests to fetch only first 512KB of opcodes and metadata headers up to 16MB, scanning the full GPT-2 repository in 0.5MB instead of downloading 500MB of tensor weights}
+            \resumeItem{Detected 12/12 attack fixtures (CVE-2026-4372, CVE-2026-46432) in 116ms total with 0/5 false positives by supporting 17 file formats, CycloneDX 1.5 SBOM generation, MITRE ATT\&CK v19 mapping, and CI templates across 5 platforms}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{\href{https://github.com/poojakira/llm-redteam-framework}{LLM Red-Team Framework}} $|$ \emph{Python}}{}
+          \resumeItemListStart
+            \resumeItem{Built an adversarial prompt-generation and detector-evaluation framework by implementing multi-category attack generation following OWASP LLM Top 10, producing per-category detection-rate reports with structured JSON evidence for guardrail validation}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------PUBLICATION-----------
+\section{Publication}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{A Personalized E-Learning System Using Reinforcement Learning Through Satellite} \\ IEEE INDICON 2023 $|$ \href{https://ieeexplore.ieee.org/document/10440852}{IEEE Xplore: 10440852}
+    }}
+ \end{itemize}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{AI/ML Security}{: Agentic AI Security, LLM/RAG Security, Prompt Injection \& Jailbreak Testing, MCP/Tool Security, Model Supply-Chain Security, Adversarial ML (FGSM, PGD, C\&W), Data Poisoning, Membership Inference, Model Extraction, Differential Privacy} \\
+     \textbf{Standards}{: MITRE ATT\&CK/ATLAS, OWASP Top 10 for LLM Applications, NIST AI RMF, CycloneDX SBOM} \\
+     \textbf{Cloud \& IAM}{: AWS IAM, Least-Privilege Enforcement, Trust Relationships, Agent Role Security, Cloud Security, Terraform} \\
+     \textbf{Languages \& Tools}{: Python, FastAPI, PyTorch, scikit-learn, Docker, Kubernetes, GitHub Actions, CI/CD, SARIF} \\
+     \textbf{Security Eng.}{: Threat Modeling, Red Teaming, Guardrails Design, Input/Output Filtering, Access Controls, Audit Logging, Circuit Breakers}
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications \& Recognition}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{AWS Academy Graduate}{: Cloud Security Foundations} $|$
+     \textbf{Technology Innovation Lab}{: Honeywell Aerospace \& ASU} $|$
+     \textbf{KSCST}{: Research Grant}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}
