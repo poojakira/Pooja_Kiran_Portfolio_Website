@@ -38,10 +38,10 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen w-full overflow-hidden flex items-end"
     >
-      {/* Fullscreen Video Background */}
+      {/* Fullscreen Video Background — positioned to show face on right */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
         src="/hero.mp4"
         autoPlay
         loop
@@ -50,13 +50,13 @@ export default function Hero() {
         preload="auto"
       />
 
-      {/* Cinematic Gradient Overlay — narrow strip on left only, rest clear */}
+      {/* Cinematic Gradient Overlay — covers left text area only, right is clear for face */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            linear-gradient(to right, rgba(10,10,15,0.75) 0%, rgba(10,10,15,0.5) 20%, rgba(10,10,15,0.15) 35%, transparent 45%),
-            linear-gradient(to top, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.1) 15%, transparent 35%)
+            linear-gradient(to right, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.6) 25%, rgba(10,10,15,0.2) 40%, transparent 50%),
+            linear-gradient(to top, rgba(10,10,15,0.6) 0%, transparent 20%)
           `,
         }}
         aria-hidden="true"
