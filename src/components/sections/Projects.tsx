@@ -70,7 +70,7 @@ export default function Projects() {
         {/* Section header */}
         <div className="mb-14">
           <p className="text-cyan-400 font-mono text-xs tracking-[0.3em] uppercase mb-3">
-            // PROJECTS
+            {"// PROJECTS"}
           </p>
           <h2
             className="font-bold text-white mb-4"
