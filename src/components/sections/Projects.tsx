@@ -7,12 +7,11 @@ const showcaseProjects = [
     subtitle: "Inline MCP Security Proxy + Control Plane",
     description:
       "Real stdio MCP proxy with 5-layer decision pipeline: server trust, tool-call policy, process-spawn detection, semantic intent analysis, and network egress control. Includes SHA-256 hash-chained audit logging, write-ahead log, circuit breakers, shadow mode, rate limiting, and Kubernetes deployment templates.",
-    metrics: ["0.015ms latency", "50K iterations", "529 tests", "77% coverage", "14 stars"],
+    metrics: ["0.015ms latency", "50K iterations", "529 tests", "77% coverage"],
     highlights: ["Beats regex-only approaches with Unicode/homoglyph normalization", "50+ prompt-injection rules across 10 attack categories", "Docker + K8s ready", "CI: CodeQL, Trivy, Grype, Bandit, pip-audit"],
     domain: "mcp-tool",
     tags: ["Python", "FastAPI", "Docker", "K8s", "SARIF"],
     github: "https://github.com/poojakira/mcp-agent-security-gateway",
-    commits: 89,
   },
   {
     id: "hf-model-provenance-scanner",
@@ -20,12 +19,11 @@ const showcaseProjects = [
     subtitle: "Model Supply Chain Scanner (Beats Protect AI ModelScan)",
     description:
       "Taint engine + symbolic resolver covering 17 file formats. Deep opcode analysis for pickle Protocol 0-5, SafeTensors header injection, GGUF metadata overflow, typosquat detection. Head-to-head benchmarked against Protect AI ModelScan 0.8.8 - catches 2 bypass classes ModelScan misses.",
-    metrics: ["2 CVEs detected", "12/12 fixtures", "0 false positives", "116ms total", "126 commits"],
+    metrics: ["2 CVEs detected", "12/12 fixtures", "0 false positives", "116ms total"],
     highlights: ["Catches timeit + importlib gadget chains that ModelScan misses", "CVE-2026-4372 + CVE-2026-46432", "SARIF output for GitHub Security tab", "CI gate: blocks merges on HIGH findings"],
     domain: "supply-chain",
     tags: ["Python", "SARIF", "Docker", "MITRE ATLAS"],
     github: "https://github.com/poojakira/hf-model-provenance-scanner",
-    commits: 126,
   },
   {
     id: "llm-redteam-framework",
@@ -38,7 +36,6 @@ const showcaseProjects = [
     domain: "llm-rag",
     tags: ["Python", "FastAPI", "SARIF"],
     github: "https://github.com/poojakira/llm-redteam-framework",
-    commits: 0,
   },
   {
     id: "aws-agent-identity-guard",
@@ -51,7 +48,6 @@ const showcaseProjects = [
     domain: "iam",
     tags: ["Python", "AWS", "SARIF"],
     github: "https://github.com/poojakira/aws-agent-identity-guard",
-    commits: 0,
   },
 ];
 
@@ -129,9 +125,6 @@ export default function Projects() {
                     </h3>
                   </div>
                   <div className="flex items-center gap-3">
-                    {project.commits > 0 && (
-                      <span className="text-[10px] font-mono text-white/30">{project.commits} commits</span>
-                    )}
                     <svg
                       className="w-4 h-4 text-white/20 group-hover:text-violet-400 transition-colors"
                       fill="none"
