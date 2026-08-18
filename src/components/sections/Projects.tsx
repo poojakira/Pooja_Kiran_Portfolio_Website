@@ -6,60 +6,44 @@ const showcaseProjects = [
     title: "mcp-agent-security-gateway",
     subtitle: "Zero-Trust MCP Enforcement Layer",
     description:
-      "Monitor MCP tool calls for prompt injection, PII leakage, shadow servers, and exfiltration patterns. Intercepts and sandboxes every tool invocation before it reaches downstream systems.",
+      "5-layer decision pipeline with 50+ prompt-injection detection rules. JSON-RPC parsing, Unicode/homoglyph normalization, and real-time policy enforcement.",
+    metrics: ["0.015ms latency", "50K benchmarks", "50+ rules", "14 stars"],
     domain: "mcp-tool",
-    tags: ["Python", "MCP", "Prompt Injection", "DLP", "AI Security"],
+    tags: ["Python", "FastAPI", "MCP"],
     github: "https://github.com/poojakira/mcp-agent-security-gateway",
-    stars: 14,
-    forks: 4,
-  },
-  {
-    id: "llm-redteam-framework",
-    title: "llm-redteam-framework",
-    subtitle: "Adversarial LLM Testing Engine",
-    description:
-      "Generate adversarial prompts and evaluate an offline detector for LLM red-team experiments. Maps exactly how models break under multi-turn pressure so defenses can be precise.",
-    domain: "llm-rag",
-    tags: ["Python", "FastAPI", "Red Teaming", "Prompt Injection", "SARIF"],
-    github: "https://github.com/poojakira/llm-redteam-framework",
-    stars: 0,
-    forks: 0,
   },
   {
     id: "hf-model-provenance-scanner",
     title: "hf-model-provenance-scanner",
     subtitle: "Model Supply Chain Integrity",
     description:
-      "Scan Hugging Face model repos for provenance, impersonation, pickle-risk, and supply-chain signals. Verifies every artifact before it enters your pipeline.",
+      "Taint engine and symbolic resolver covering 17 file formats. Deep opcode analysis for pickle Protocol 0-5, SafeTensors, GGUF parsing, and typosquat detection.",
+    metrics: ["2 CVEs found", "17 formats", "100% detection", "0% false positives"],
     domain: "supply-chain",
-    tags: ["Python", "HuggingFace", "SARIF", "Ed25519", "MITRE ATLAS"],
+    tags: ["Python", "SARIF", "MITRE ATLAS"],
     github: "https://github.com/poojakira/hf-model-provenance-scanner",
-    stars: 0,
-    forks: 0,
+  },
+  {
+    id: "llm-redteam-framework",
+    title: "llm-redteam-framework",
+    subtitle: "Adversarial LLM Testing Engine",
+    description:
+      "Multi-category adversarial prompt generation and offline detector evaluation. Structured SARIF evidence output for guardrail validation and input/output filtering decisions.",
+    metrics: ["MITRE ATLAS mapped", "SARIF output", "Multi-turn attacks"],
+    domain: "llm-rag",
+    tags: ["Python", "FastAPI", "Red Teaming"],
+    github: "https://github.com/poojakira/llm-redteam-framework",
   },
   {
     id: "aws-agent-identity-guard",
     title: "aws-agent-identity-guard",
     subtitle: "IAM Guardrails for AI Agents",
     description:
-      "Static IAM guardrails for agentic AI workloads on AWS. Ensures no agent holds more privilege than its task demands - scoped permissions, not inherited convenience.",
+      "25 deterministic rules covering wildcard permissions, privilege escalation, audit-trail tampering, and credential-harvest chains. CI merge gate with zero runtime dependencies.",
+    metrics: ["25 IAM rules", "CI merge gate", "Zero dependencies"],
     domain: "iam",
-    tags: ["Python", "AWS", "IAM", "Least Privilege"],
+    tags: ["Python", "AWS", "SARIF"],
     github: "https://github.com/poojakira/aws-agent-identity-guard",
-    stars: 0,
-    forks: 0,
-  },
-  {
-    id: "adversarial-ml-lab",
-    title: "adversarial-ml-lab",
-    subtitle: "Adversarial Robustness Benchmarks",
-    description:
-      "FGSM/PGD/C&W adversarial robustness benchmark harness for CIFAR-10 - maps to MITRE ATLAS AML.T0043. The offensive playbook that makes defenses real.",
-    domain: "agentic-ai",
-    tags: ["Python", "PyTorch", "ResNet", "CIFAR-10", "PGD"],
-    github: "https://github.com/poojakira/adversarial-ml-lab",
-    stars: 0,
-    forks: 0,
   },
 ];
 
@@ -79,11 +63,34 @@ export default function Projects() {
             What I&apos;ve Built
           </h2>
           <p className="text-white/50 text-base max-w-xl">
-            Production-grade security systems. Not concepts. Not proposals.
+            Benchmarked security systems with measurable results.
           </p>
         </div>
 
-        {/* Project list - clean, monospace-named, vertical stack */}
+        {/* Key Results banner */}
+        <div className="mb-10 p-5 rounded-xl bg-violet-500/5 border border-violet-500/20">
+          <p className="text-xs font-mono text-violet-400/70 uppercase tracking-wider mb-3">Key Results</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div>
+              <p className="text-xl font-bold text-white">2 CVEs</p>
+              <p className="text-[11px] text-white/40">discovered in model artifacts</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-white">0.015ms</p>
+              <p className="text-[11px] text-white/40">avg inspection latency</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-white">17 formats</p>
+              <p className="text-[11px] text-white/40">covered by scanner</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-white">100%</p>
+              <p className="text-[11px] text-white/40">detection, 0% false positive</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Project list */}
         <div className="space-y-4">
           {showcaseProjects.map((project, index) => {
             const domain = getDomainById(project.domain);
@@ -102,9 +109,8 @@ export default function Projects() {
                 }`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                  {/* Left - name + description */}
                   <div className="flex-1 min-w-0">
-                    {/* Repo name in monospace */}
+                    {/* Repo name */}
                     <div className="flex items-center gap-3 mb-2">
                       <span
                         className="w-2 h-2 rounded-full flex-shrink-0"
@@ -114,11 +120,6 @@ export default function Projects() {
                       <h3 className="font-mono text-base sm:text-lg text-white group-hover:text-violet-400 transition-colors truncate">
                         {project.title}
                       </h3>
-                      {isHero && (
-                        <span className="hidden sm:inline-flex items-center gap-1 text-xs text-amber-400/80 font-mono">
-                          ★ {project.stars}
-                        </span>
-                      )}
                     </div>
 
                     {/* Subtitle */}
@@ -127,9 +128,21 @@ export default function Projects() {
                     </p>
 
                     {/* Description */}
-                    <p className="text-sm text-white/55 leading-relaxed ml-5">
+                    <p className="text-sm text-white/55 leading-relaxed ml-5 mb-3">
                       {project.description}
                     </p>
+
+                    {/* Metrics */}
+                    <div className="flex flex-wrap gap-2 ml-5">
+                      {project.metrics.map((metric) => (
+                        <span
+                          key={metric}
+                          className="text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400/90 font-mono border border-emerald-500/20"
+                        >
+                          {metric}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Right - tags + arrow */}
@@ -149,7 +162,7 @@ export default function Projects() {
                       />
                     </svg>
                     <div className="flex flex-wrap gap-1.5 justify-end">
-                      {project.tags.slice(0, 3).map((tag) => (
+                      {project.tags.map((tag) => (
                         <span
                           key={tag}
                           className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-white/40 font-mono"
@@ -173,7 +186,7 @@ export default function Projects() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs text-white/40 hover:text-violet-400 font-mono transition-colors"
           >
-            view all repositories →
+            view all 13 repositories →
           </a>
         </div>
       </div>

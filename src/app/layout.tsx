@@ -78,8 +78,8 @@ const jsonLd = {
     "Cloud Security",
   ],
   sameAs: [
-    "https://linkedin.com/in/poojakiranbharadwaj",
-    "https://github.com/poojakiranbharadwaj",
+    "https://linkedin.com/in/poojakiran",
+    "https://github.com/poojakira",
   ],
   url: "https://poojakiran.dev",
 };

@@ -13,8 +13,8 @@ export default function Contact() {
             Let&apos;s Collaborate
           </h2>
           <p className="text-silver-haze text-fluid-base leading-relaxed mb-12">
-            I&apos;m open to security research collaborations, adversarial ML
-            consulting, and full-time AI security engineering roles. If
+            I&apos;m open to full-time AI security engineering roles, security
+            research collaborations, and adversarial ML projects. If
             you&apos;re building systems that need to be trusted - let&apos;s
             talk.
           </p>

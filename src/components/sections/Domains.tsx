@@ -22,7 +22,7 @@ export default function Domains() {
           </h2>
           <p className="text-silver-haze text-fluid-base max-w-2xl mx-auto">
             Five critical attack surfaces in the AI ecosystem. Each domain
-            represents a class of threats I actively research, exploit, and
+            represents a class of threats I actively research and build defenses
             defend against.
           </p>
         </div>
