@@ -137,7 +137,7 @@ export default function Contact() {
 
           {/* Bottom note */}
           <p className="mt-8 text-xs text-whisper font-mono">
-            Based in {siteConfig.location} • MS candidate @ ASU (graduating 2026)
+            Based in {siteConfig.location} • M.S. Information Technology, ASU 2026
           </p>
         </div>
       </div>

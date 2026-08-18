@@ -18,8 +18,8 @@ export default function About() {
           {/* Bio */}
           <div className="lg:col-span-3 space-y-6">
             <p className="text-fluid-base text-silver-haze leading-relaxed">
-              I&apos;m an AI Security Researcher based in {siteConfig.location},
-              pursuing my Master&apos;s in Information Technology at Arizona State
+              I&apos;m an AI Security Engineer based in {siteConfig.location},
+              with a Master&apos;s in Information Technology from Arizona State
               University. My work sits at the intersection of machine learning and
               adversarial security - where I build the tools and frameworks that
               keep autonomous AI systems from being weaponized against their
