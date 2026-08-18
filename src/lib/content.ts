@@ -250,33 +250,33 @@ export const experience: Experience[] = [
   },
   {
     id: "aerosec-honeywell",
-    role: "Research Associate — AEROSEC / Honeywell",
-    organization: "ASU Tech Innovation Lab",
+    role: "Business Compliance Lead & Market/Cost Analyst",
+    organization: "AEROSEC, Arizona State University Technology Innovation Lab",
     location: "Tempe, AZ",
     period: "Aug 2025 – Dec 2025",
     startDate: "2025-08",
     endDate: "2025-12",
     description: [
-      "Conducted adversarial security analysis of aerospace ML systems in collaboration with Honeywell's advanced research division.",
-      "Developed attack simulations targeting autonomous navigation models and contributed to hardening guidelines for safety-critical deployments.",
-      "Bridged academic research and industry requirements to deliver actionable threat models for next-generation avionics.",
+      "Led business compliance strategy and market/cost analysis for aerospace security initiatives at ASU's Technology Innovation Lab.",
+      "Collaborated with Honeywell Aerospace on compliance frameworks and security cost modeling for autonomous systems.",
+      "Bridged technical security requirements with business operations and regulatory compliance standards.",
     ],
-    tags: ["Aerospace Security", "Adversarial ML", "Honeywell", "Safety-Critical Systems"],
+    tags: ["Business Compliance", "Market Analysis", "Honeywell Aerospace", "Cost Analysis"],
   },
   {
     id: "graduate-ta",
-    role: "Graduate Teaching Assistant",
-    organization: "ASU Fulton School of Engineering",
+    role: "Graduate Teaching Assistant / IT Grader",
+    organization: "Ira A. Fulton Schools of Engineering, Arizona State University",
     location: "Tempe, AZ",
     period: "Jan 2025 – Oct 2025",
     startDate: "2025-01",
     endDate: "2025-10",
     description: [
-      "Led instruction for graduate-level courses in software security and machine learning fundamentals.",
-      "Designed lab exercises on adversarial attacks, secure ML pipelines, and vulnerability assessment methodologies.",
-      "Mentored 50+ graduate students on capstone projects integrating security principles into AI system design.",
+      "Supported graduate-level coursework in information technology and security at ASU's Fulton School of Engineering.",
+      "Graded assignments, provided student feedback, and assisted with lab sessions on IT security fundamentals.",
+      "Mentored students on capstone projects integrating security principles into system design.",
     ],
-    tags: ["Teaching", "Software Security", "Machine Learning", "Mentorship"],
+    tags: ["Teaching", "IT Security", "Grading", "Mentorship"],
   },
 ];
 
@@ -295,7 +295,7 @@ export const education: Education[] = [
   {
     id: "btech-ramaiah",
     degree: "Bachelor of Technology in Computer Science & Engineering",
-    institution: "M.S. Ramaiah Institute of Technology",
+    institution: "M.S. Ramaiah University of Applied Sciences",
     location: "Bangalore, India",
     period: "2019 – 2023",
     startDate: "2019",
@@ -308,9 +308,10 @@ export const education: Education[] = [
 export const publications: Publication[] = [
   {
     id: "ieee-indicon-2023",
-    title: "PulseNet: Deep Learning Framework for Remaining Useful Life Forecasting in Industrial Systems",
+    title: "A Personalized E-Learning System Using Reinforcement Learning Through Satellite",
     venue: "IEEE INDICON 2023",
     year: 2023,
+    url: "https://ieeexplore.ieee.org/document/10440852",
   },
 ];
 
