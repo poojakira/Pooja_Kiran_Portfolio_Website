@@ -36,13 +36,12 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full overflow-hidden flex flex-col justify-end"
+      className="relative min-h-screen w-full overflow-hidden"
     >
-      {/* Fullscreen Video — shifted up so face shows in top half */}
+      {/* Fullscreen Video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: "center 30%" }}
+        className="absolute inset-0 w-full h-full object-cover object-center"
         src="/hero.mp4"
         autoPlay
         loop
@@ -51,18 +50,16 @@ export default function Hero() {
         preload="auto"
       />
 
-      {/* Gradient — ONLY at the bottom where text sits. Top/center is CLEAR for face */}
+      {/* Thin gradient ONLY at very bottom for text readability */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `
-            linear-gradient(to top, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.7) 25%, rgba(10,10,15,0.2) 45%, transparent 55%)
-          `,
+          background: `linear-gradient(to top, rgba(10,10,15,0.9) 0%, rgba(10,10,15,0.4) 12%, transparent 22%)`,
         }}
         aria-hidden="true"
       />
 
-      {/* Video Controls — Glassmorphism top-right */}
+      {/* Video Controls — top right */}
       <div className="absolute top-6 right-6 z-30 flex items-center gap-3">
         <button
           onClick={togglePlay}
@@ -79,7 +76,6 @@ export default function Hero() {
             </svg>
           )}
         </button>
-
         <button
           onClick={toggleMute}
           className="w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300"
@@ -98,7 +94,7 @@ export default function Hero() {
         </button>
       </div>
 
-      {/* "Tap for sound" badge */}
+      {/* Tap for sound */}
       {showSoundBadge && (
         <button
           onClick={toggleMute}
@@ -111,68 +107,39 @@ export default function Hero() {
         </button>
       )}
 
-      {/* Hero Content — at the BOTTOM, your face stays visible in center */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-12">
-        {/* Name and info */}
-        <div className="flex flex-col items-start gap-4">
-          {/* Status badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/5 border border-white/10">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-            </span>
-            <span className="text-xs font-medium tracking-wide text-white/70 font-mono">
-              AVAILABLE NOW
-            </span>
+      {/* MINIMAL text — just name + role at very bottom, single line */}
+      <div className="absolute bottom-6 left-0 right-0 z-20 px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
+              Pooja Kiran Bharadwaj
+            </h1>
+            <p className="text-sm font-mono text-cyan-400 tracking-wider">
+              AI Security Engineer
+            </p>
           </div>
-
-          {/* Main heading */}
-          <h1 className="font-bold leading-[0.85] tracking-tight" style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}>
-            <span className="block text-white">POOJA KIRAN</span>
-            <span className="block bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
-              BHARADWAJ
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <p className="font-mono text-sm uppercase tracking-[0.2em] text-cyan-400">
-            AI Security Engineer
-          </p>
-
-          {/* Tagline */}
-          <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-lg">
-            I secure the boundaries where AI agents meet the real world.
-          </p>
-
-          {/* Stats + CTA row */}
-          <div className="flex flex-wrap items-center gap-4 mt-1">
+          <div className="flex items-center gap-3">
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/25"
+              className="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium transition-all duration-300"
             >
-              Explore My Work
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              Explore Work
             </a>
             <a
               href="/Pooja_Kiran_AI_Security_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg backdrop-blur-md bg-white/5 border border-white/20 text-white/80 text-sm font-medium hover:bg-white/10 transition-all duration-300"
+              className="px-4 py-2 rounded-lg backdrop-blur-md bg-white/5 border border-white/20 text-white/80 text-sm font-medium hover:bg-white/10 transition-all duration-300"
             >
               Resume
             </a>
-            <span className="text-xs text-white/40 font-mono hidden sm:inline">
-              13 Projects • 5 Domains
-            </span>
           </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20">
-        <div className="w-px h-6 bg-gradient-to-b from-white/30 to-transparent animate-pulse" />
+      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 z-20">
+        <div className="w-px h-4 bg-gradient-to-b from-white/20 to-transparent" />
       </div>
     </section>
   );
