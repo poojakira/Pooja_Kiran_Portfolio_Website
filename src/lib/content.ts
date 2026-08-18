@@ -233,50 +233,50 @@ export const projects: Project[] = [
 // --- Experience ---
 
 export const experience: Experience[] = [
+export const experience: Experience[] = [
   {
     id: "independent-researcher",
-    role: "Independent AI Security Researcher & Engineer",
-    organization: "Self-Directed Research",
+    role: "AI Security Researcher & Engineer",
+    organization: "Independent Security Research (Concurrent with M.S. program)",
     location: "Tempe, AZ",
-    period: "Aug 2024 – Present",
+    period: "Aug 2024 - Present",
     startDate: "2024-08",
     endDate: "present",
     description: [
-      "Building and evaluating open-source security tooling across agentic AI, MCP/tool access, IAM, model supply-chain, adversarial ML, and model privacy.",
-      "Developed 13 public repositories demonstrating reproducible AI security research and engineering.",
-      "Focus areas: MCP protocol hardening, LLM adversarial testing, model provenance verification, and least-privilege IAM for AI agents.",
+      "Engineered an inline MCP security gateway with a 5-layer decision pipeline and 50+ prompt-injection detection rules, implementing JSON-RPC parsing, Unicode/homoglyph normalization, and real-time policy enforcement in Python/FastAPI, achieving 0.015ms average inspection latency per tool call across 50,000 benchmarked iterations.",
+      "Developed a static IAM policy analyzer for AI agent roles on AWS with 25 deterministic rules covering wildcard permissions, privilege escalation, audit-trail tampering, and credential-harvest chains with SARIF output, enabling automated least-privilege enforcement as a CI merge gate.",
+      "Built a model supply-chain scanner with a taint engine and symbolic resolver covering 17 file formats, implementing deep opcode analysis for pickle Protocol 0-5, SafeTensors header inspection, GGUF structural parsing, and typosquat detection, achieving 100% detection on 12 attack fixtures (2 CVEs) in 116ms with 0% false positive rate.",
+      "Created adversarial prompt-generation and model-extraction attack harnesses (FGSM, PGD, C&W) mapped to MITRE ATLAS with structured SARIF evidence output for guardrail validation.",
     ],
-    tags: ["AI Security", "MCP", "LLM Red Teaming", "Supply Chain", "Open Source"],
+    tags: ["Python", "FastAPI", "AWS IAM", "MCP", "SARIF", "MITRE ATLAS"],
   },
   {
     id: "aerosec-honeywell",
     role: "Business Compliance Lead & Market/Cost Analyst",
-    organization: "AEROSEC, Arizona State University Technology Innovation Lab",
+    organization: "AEROSEC - ASU Technology Innovation Lab (Honeywell Aerospace)",
     location: "Tempe, AZ",
-    period: "Aug 2025 – Dec 2025",
+    period: "Aug 2025 - Dec 2025",
     startDate: "2025-08",
     endDate: "2025-12",
     description: [
-      "Led business compliance strategy and market/cost analysis for aerospace security initiatives at ASU's Technology Innovation Lab.",
-      "Collaborated with Honeywell Aerospace on compliance frameworks and security cost modeling for autonomous systems.",
-      "Bridged technical security requirements with business operations and regulatory compliance standards.",
+      "Led regulatory compliance analysis for Honeywell Aerospace's security product by mapping requirements and conducting competitive cost modeling across aerospace frameworks.",
+      "Delivered a compliance framework supporting the go-to-market strategy for Honeywell's aerospace security initiative.",
     ],
-    tags: ["Business Compliance", "Market Analysis", "Honeywell Aerospace", "Cost Analysis"],
+    tags: ["Regulatory Compliance", "Honeywell Aerospace", "Cost Modeling", "Go-to-Market"],
   },
   {
     id: "graduate-ta",
     role: "Graduate Teaching Assistant / IT Grader",
     organization: "Ira A. Fulton Schools of Engineering, Arizona State University",
     location: "Tempe, AZ",
-    period: "Jan 2025 – Oct 2025",
+    period: "Jan 2025 - Oct 2025",
     startDate: "2025-01",
     endDate: "2025-10",
     description: [
-      "Supported graduate-level coursework in information technology and security at ASU's Fulton School of Engineering.",
-      "Graded assignments, provided student feedback, and assisted with lab sessions on IT security fundamentals.",
-      "Mentored students on capstone projects integrating security principles into system design.",
+      "Evaluated technical assignments for 100+ students per semester, assessing cloud security architectures, network defense configurations, and IAM access control implementations.",
+      "Maintained consistent grading standards across multiple course sections in IT security curriculum.",
     ],
-    tags: ["Teaching", "IT Security", "Grading", "Mentorship"],
+    tags: ["Cloud Security", "Network Defense", "IAM", "Teaching"],
   },
 ];
 
