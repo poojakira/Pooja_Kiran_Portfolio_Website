@@ -233,7 +233,6 @@ export const projects: Project[] = [
 // --- Experience ---
 
 export const experience: Experience[] = [
-export const experience: Experience[] = [
   {
     id: "independent-researcher",
     role: "AI Security Researcher & Engineer",
