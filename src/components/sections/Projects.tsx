@@ -4,46 +4,54 @@ const showcaseProjects = [
   {
     id: "mcp-agent-security-gateway",
     title: "mcp-agent-security-gateway",
-    subtitle: "Zero-Trust MCP Enforcement Layer",
+    subtitle: "Inline MCP Security Proxy + Control Plane",
     description:
-      "5-layer decision pipeline with 50+ prompt-injection detection rules. JSON-RPC parsing, Unicode/homoglyph normalization, and real-time policy enforcement.",
-    metrics: ["0.015ms latency", "50K benchmarks", "50+ rules", "14 stars"],
+      "Real stdio MCP proxy with 5-layer decision pipeline: server trust, tool-call policy, process-spawn detection, semantic intent analysis, and network egress control. Includes SHA-256 hash-chained audit logging, write-ahead log, circuit breakers, shadow mode, rate limiting, and Kubernetes deployment templates.",
+    metrics: ["0.015ms latency", "50K iterations", "529 tests", "77% coverage", "14 stars"],
+    highlights: ["Beats regex-only approaches with Unicode/homoglyph normalization", "50+ prompt-injection rules across 10 attack categories", "Docker + K8s ready", "CI: CodeQL, Trivy, Grype, Bandit, pip-audit"],
     domain: "mcp-tool",
-    tags: ["Python", "FastAPI", "MCP"],
+    tags: ["Python", "FastAPI", "Docker", "K8s", "SARIF"],
     github: "https://github.com/poojakira/mcp-agent-security-gateway",
+    commits: 89,
   },
   {
     id: "hf-model-provenance-scanner",
     title: "hf-model-provenance-scanner",
-    subtitle: "Model Supply Chain Integrity",
+    subtitle: "Model Supply Chain Scanner (Beats Protect AI ModelScan)",
     description:
-      "Taint engine and symbolic resolver covering 17 file formats. Deep opcode analysis for pickle Protocol 0-5, SafeTensors, GGUF parsing, and typosquat detection.",
-    metrics: ["2 CVEs found", "17 formats", "100% detection", "0% false positives"],
+      "Taint engine + symbolic resolver covering 17 file formats. Deep opcode analysis for pickle Protocol 0-5, SafeTensors header injection, GGUF metadata overflow, typosquat detection. Head-to-head benchmarked against Protect AI ModelScan 0.8.8 - catches 2 bypass classes ModelScan misses.",
+    metrics: ["2 CVEs detected", "12/12 fixtures", "0 false positives", "116ms total", "126 commits"],
+    highlights: ["Catches timeit + importlib gadget chains that ModelScan misses", "CVE-2026-4372 + CVE-2026-46432", "SARIF output for GitHub Security tab", "CI gate: blocks merges on HIGH findings"],
     domain: "supply-chain",
-    tags: ["Python", "SARIF", "MITRE ATLAS"],
+    tags: ["Python", "SARIF", "Docker", "MITRE ATLAS"],
     github: "https://github.com/poojakira/hf-model-provenance-scanner",
+    commits: 126,
   },
   {
     id: "llm-redteam-framework",
     title: "llm-redteam-framework",
     subtitle: "Adversarial LLM Testing Engine",
     description:
-      "Multi-category adversarial prompt generation and offline detector evaluation. Structured SARIF evidence output for guardrail validation and input/output filtering decisions.",
-    metrics: ["MITRE ATLAS mapped", "SARIF output", "Multi-turn attacks"],
+      "Multi-category adversarial prompt generation mapped to MITRE ATLAS. Offline detector evaluation with structured SARIF evidence output. Produces reproducible security assessments for guardrail validation and input/output filtering decisions.",
+    metrics: ["MITRE ATLAS mapped", "SARIF evidence", "Multi-turn chains"],
+    highlights: ["Automated red-team generation across jailbreak categories", "Detector evaluation with precision/recall metrics", "FastAPI service for CI integration"],
     domain: "llm-rag",
-    tags: ["Python", "FastAPI", "Red Teaming"],
+    tags: ["Python", "FastAPI", "SARIF"],
     github: "https://github.com/poojakira/llm-redteam-framework",
+    commits: 0,
   },
   {
     id: "aws-agent-identity-guard",
     title: "aws-agent-identity-guard",
-    subtitle: "IAM Guardrails for AI Agents",
+    subtitle: "Static IAM Analyzer for AI Agent Roles",
     description:
-      "25 deterministic rules covering wildcard permissions, privilege escalation, audit-trail tampering, and credential-harvest chains. CI merge gate with zero runtime dependencies.",
-    metrics: ["25 IAM rules", "CI merge gate", "Zero dependencies"],
+      "25 deterministic rules covering wildcard permissions, privilege escalation paths, audit-trail tampering, and credential-harvest chains. Outputs SARIF for automated enforcement as a CI merge gate with zero runtime dependencies.",
+    metrics: ["25 IAM rules", "CI merge gate", "Zero runtime deps", "SARIF output"],
+    highlights: ["Catches overprivileged agent roles before deployment", "Detects trust relationship abuse paths", "Works as pre-merge check in any CI pipeline"],
     domain: "iam",
     tags: ["Python", "AWS", "SARIF"],
     github: "https://github.com/poojakira/aws-agent-identity-guard",
+    commits: 0,
   },
 ];
 
@@ -63,25 +71,25 @@ export default function Projects() {
             What I&apos;ve Built
           </h2>
           <p className="text-white/50 text-base max-w-xl">
-            Benchmarked security systems with measurable results.
+            Benchmarked, tested, CI-verified security systems with reproducible evidence.
           </p>
         </div>
 
         {/* Key Results banner */}
         <div className="mb-10 p-5 rounded-xl bg-violet-500/5 border border-violet-500/20">
-          <p className="text-xs font-mono text-violet-400/70 uppercase tracking-wider mb-3">Key Results</p>
+          <p className="text-xs font-mono text-violet-400/70 uppercase tracking-wider mb-3">Verified Results</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
               <p className="text-xl font-bold text-white">2 CVEs</p>
-              <p className="text-[11px] text-white/40">discovered in model artifacts</p>
+              <p className="text-[11px] text-white/40">detected in model artifacts</p>
             </div>
             <div>
               <p className="text-xl font-bold text-white">0.015ms</p>
-              <p className="text-[11px] text-white/40">avg inspection latency</p>
+              <p className="text-[11px] text-white/40">inspection latency (p50)</p>
             </div>
             <div>
-              <p className="text-xl font-bold text-white">17 formats</p>
-              <p className="text-[11px] text-white/40">covered by scanner</p>
+              <p className="text-xl font-bold text-white">529</p>
+              <p className="text-[11px] text-white/40">automated tests passing</p>
             </div>
             <div>
               <p className="text-xl font-bold text-white">100%</p>
@@ -91,10 +99,10 @@ export default function Projects() {
         </div>
 
         {/* Project list */}
-        <div className="space-y-4">
+        <div className="space-y-5">
           {showcaseProjects.map((project, index) => {
             const domain = getDomainById(project.domain);
-            const isHero = index === 0;
+            const isHero = index <= 1;
 
             return (
               <a
@@ -108,70 +116,80 @@ export default function Projects() {
                     : "bg-white/[0.02] border-white/[0.06] hover:border-white/15"
                 }`}
               >
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    {/* Repo name */}
-                    <div className="flex items-center gap-3 mb-2">
-                      <span
-                        className="w-2 h-2 rounded-full flex-shrink-0"
-                        style={{ backgroundColor: domain?.color }}
-                        aria-hidden="true"
-                      />
-                      <h3 className="font-mono text-base sm:text-lg text-white group-hover:text-violet-400 transition-colors truncate">
-                        {project.title}
-                      </h3>
-                    </div>
-
-                    {/* Subtitle */}
-                    <p className="text-xs font-mono text-white/30 uppercase tracking-wider mb-3 ml-5">
-                      {project.subtitle}
-                    </p>
-
-                    {/* Description */}
-                    <p className="text-sm text-white/55 leading-relaxed ml-5 mb-3">
-                      {project.description}
-                    </p>
-
-                    {/* Metrics */}
-                    <div className="flex flex-wrap gap-2 ml-5">
-                      {project.metrics.map((metric) => (
-                        <span
-                          key={metric}
-                          className="text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400/90 font-mono border border-emerald-500/20"
-                        >
-                          {metric}
-                        </span>
-                      ))}
-                    </div>
+                {/* Header row */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="w-2 h-2 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: domain?.color }}
+                      aria-hidden="true"
+                    />
+                    <h3 className="font-mono text-base sm:text-lg text-white group-hover:text-violet-400 transition-colors">
+                      {project.title}
+                    </h3>
                   </div>
-
-                  {/* Right - tags + arrow */}
-                  <div className="flex flex-col items-end gap-3 flex-shrink-0 ml-5">
+                  <div className="flex items-center gap-3">
+                    {project.commits > 0 && (
+                      <span className="text-[10px] font-mono text-white/30">{project.commits} commits</span>
+                    )}
                     <svg
-                      className="w-4 h-4 text-white/20 group-hover:text-violet-400 transition-colors hidden sm:block"
+                      className="w-4 h-4 text-white/20 group-hover:text-violet-400 transition-colors"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                    <div className="flex flex-wrap gap-1.5 justify-end">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-white/40 font-mono"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
                   </div>
+                </div>
+
+                {/* Subtitle */}
+                <p className="text-xs font-mono text-white/30 uppercase tracking-wider mb-3 ml-5">
+                  {project.subtitle}
+                </p>
+
+                {/* Description */}
+                <p className="text-sm text-white/55 leading-relaxed ml-5 mb-4">
+                  {project.description}
+                </p>
+
+                {/* Metrics */}
+                <div className="flex flex-wrap gap-2 ml-5 mb-3">
+                  {project.metrics.map((metric) => (
+                    <span
+                      key={metric}
+                      className="text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400/90 font-mono border border-emerald-500/20"
+                    >
+                      {metric}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Highlights - what makes this exceptional */}
+                {isHero && (
+                  <div className="ml-5 mt-3 pt-3 border-t border-white/5">
+                    <ul className="space-y-1">
+                      {project.highlights.map((h) => (
+                        <li key={h} className="text-[12px] text-white/35 flex items-start gap-2">
+                          <span className="text-violet-400/60 mt-0.5">+</span>
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 ml-5 mt-3">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-white/30 font-mono"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </a>
             );
