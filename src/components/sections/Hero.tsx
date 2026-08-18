@@ -36,7 +36,7 @@ export default function Hero() {
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden bg-[#08080C]">
       
-      {/* VIDEO — takes full screen as background */}
+      {/* VIDEO - takes full screen as background */}
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover object-center"
@@ -48,7 +48,7 @@ export default function Hero() {
         preload="auto"
       />
 
-      {/* Left panel overlay — dark glass panel on left 38% for text */}
+      {/* Left panel overlay - dark glass panel on left 38% for text */}
       <div
         className="absolute inset-y-0 left-0 w-full lg:w-[38%] z-10 flex flex-col justify-center px-8 sm:px-12 lg:px-14"
         style={{
@@ -79,10 +79,10 @@ export default function Hero() {
 
         {/* One-liner */}
         <p className="text-[14px] text-white/45 leading-relaxed max-w-xs mb-8">
-          I engineer security infrastructure for autonomous AI systems — from MCP gateways to model supply chain verification.
+          I engineer security infrastructure for autonomous AI systems - from MCP gateways to model supply chain verification.
         </p>
 
-        {/* Stats — horizontal, tiny */}
+        {/* Stats - horizontal, tiny */}
         <div className="flex items-center gap-5 mb-8 text-[11px] font-mono text-white/25">
           <span><span className="text-white/70 text-sm font-bold">13</span> projects</span>
           <span><span className="text-white/70 text-sm font-bold">5</span> domains</span>
@@ -107,7 +107,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Video controls — top right corner */}
+      {/* Video controls - top right corner */}
       <div className="absolute top-5 right-5 z-20 flex items-center gap-2">
         <button
           onClick={togglePlay}
@@ -133,7 +133,7 @@ export default function Hero() {
         </button>
       </div>
 
-      {/* "Hear me speak" prompt — bottom center of video area */}
+      {/* "Hear me speak" prompt - bottom center of video area */}
       {showSoundBadge ? (
         <button
           onClick={toggleMute}
@@ -153,7 +153,7 @@ export default function Hero() {
         </button>
       )}
 
-      {/* Scroll indicator — bottom left */}
+      {/* Scroll indicator - bottom left */}
       <div className="absolute bottom-6 left-14 z-20 hidden lg:flex flex-col items-center gap-1">
         <span className="text-[9px] text-white/25 font-mono uppercase tracking-widest" style={{ writingMode: "vertical-rl" }}>
           Scroll

@@ -1,5 +1,5 @@
 // ============================================================================
-// Guardian Protocol — Animation & Layout Constants
+// Guardian Protocol - Animation & Layout Constants
 // ============================================================================
 
 // --- Easing Curves ---

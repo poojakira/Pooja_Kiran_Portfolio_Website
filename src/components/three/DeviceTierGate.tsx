@@ -24,7 +24,7 @@ export default function DeviceTierGate() {
     setDeviceTier(tier);
   }, [tier, setDeviceTier]);
 
-  // Low tier: render nothing — CSS gradient background handles visuals
+  // Low tier: render nothing - CSS gradient background handles visuals
   if (tier === 'low') {
     return null;
   }

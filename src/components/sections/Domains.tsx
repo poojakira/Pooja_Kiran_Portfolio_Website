@@ -80,7 +80,7 @@ export default function Domains() {
         {/* Interconnection note */}
         <div className="mt-12 text-center">
           <p className="text-sm text-whisper font-inter max-w-xl mx-auto">
-            These domains are not isolated — a compromised model supply chain
+            These domains are not isolated - a compromised model supply chain
             feeds poisoned outputs into RAG pipelines, which agents then execute
             through MCP channels with over-permissioned IAM roles. My work
             addresses the full chain.

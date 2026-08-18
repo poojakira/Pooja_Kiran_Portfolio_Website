@@ -21,21 +21,21 @@ export default function About() {
               I&apos;m an AI Security Researcher based in {siteConfig.location},
               pursuing my Master&apos;s in Information Technology at Arizona State
               University. My work sits at the intersection of machine learning and
-              adversarial security — where I build the tools and frameworks that
+              adversarial security - where I build the tools and frameworks that
               keep autonomous AI systems from being weaponized against their
               operators.
             </p>
             <p className="text-fluid-base text-silver-haze leading-relaxed">
               The rise of agentic AI has created attack surfaces that traditional
               security frameworks cannot address. Models that can reason, plan, and
-              execute actions in the real world need a new class of guardrails —
+              execute actions in the real world need a new class of guardrails -
               ones that understand intent, enforce boundaries, and fail safely
               under adversarial pressure.
             </p>
             <p className="text-fluid-base text-silver-haze leading-relaxed">
               That&apos;s what I build. From MCP protocol hardening to LLM red
               teaming, from model supply chain verification to least-privilege IAM
-              for AI agents — every project in my portfolio addresses a specific
+              for AI agents - every project in my portfolio addresses a specific
               trust boundary in the agentic AI stack.
             </p>
 

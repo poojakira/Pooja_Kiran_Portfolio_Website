@@ -13,7 +13,7 @@ export default function Experience() {
             Experience
           </h2>
           <p className="text-silver-haze text-fluid-base max-w-2xl">
-            From independent research to industry collaboration — the path that
+            From independent research to industry collaboration - the path that
             shaped my understanding of real-world AI security threats.
           </p>
         </div>

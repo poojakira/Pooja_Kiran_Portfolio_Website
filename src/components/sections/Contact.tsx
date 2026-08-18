@@ -15,7 +15,7 @@ export default function Contact() {
           <p className="text-silver-haze text-fluid-base leading-relaxed mb-12">
             I&apos;m open to security research collaborations, adversarial ML
             consulting, and full-time AI security engineering roles. If
-            you&apos;re building systems that need to be trusted — let&apos;s
+            you&apos;re building systems that need to be trusted - let&apos;s
             talk.
           </p>
 

@@ -1,5 +1,5 @@
 // ============================================================================
-// Guardian Protocol — Utility Functions
+// Guardian Protocol - Utility Functions
 // ============================================================================
 
 import { type ClassValue, clsx } from "clsx";

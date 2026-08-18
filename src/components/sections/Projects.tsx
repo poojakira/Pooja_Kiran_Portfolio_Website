@@ -42,7 +42,7 @@ const showcaseProjects = [
     title: "aws-agent-identity-guard",
     subtitle: "IAM Guardrails for AI Agents",
     description:
-      "Static IAM guardrails for agentic AI workloads on AWS. Ensures no agent holds more privilege than its task demands — scoped permissions, not inherited convenience.",
+      "Static IAM guardrails for agentic AI workloads on AWS. Ensures no agent holds more privilege than its task demands - scoped permissions, not inherited convenience.",
     domain: "iam",
     tags: ["Python", "AWS", "IAM", "Least Privilege"],
     github: "https://github.com/poojakira/aws-agent-identity-guard",
@@ -54,7 +54,7 @@ const showcaseProjects = [
     title: "adversarial-ml-lab",
     subtitle: "Adversarial Robustness Benchmarks",
     description:
-      "FGSM/PGD/C&W adversarial robustness benchmark harness for CIFAR-10 — maps to MITRE ATLAS AML.T0043. The offensive playbook that makes defenses real.",
+      "FGSM/PGD/C&W adversarial robustness benchmark harness for CIFAR-10 - maps to MITRE ATLAS AML.T0043. The offensive playbook that makes defenses real.",
     domain: "agentic-ai",
     tags: ["Python", "PyTorch", "ResNet", "CIFAR-10", "PGD"],
     github: "https://github.com/poojakira/adversarial-ml-lab",
@@ -83,7 +83,7 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Project list — clean, monospace-named, vertical stack */}
+        {/* Project list - clean, monospace-named, vertical stack */}
         <div className="space-y-4">
           {showcaseProjects.map((project, index) => {
             const domain = getDomainById(project.domain);
@@ -102,7 +102,7 @@ export default function Projects() {
                 }`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                  {/* Left — name + description */}
+                  {/* Left - name + description */}
                   <div className="flex-1 min-w-0">
                     {/* Repo name in monospace */}
                     <div className="flex items-center gap-3 mb-2">
@@ -132,7 +132,7 @@ export default function Projects() {
                     </p>
                   </div>
 
-                  {/* Right — tags + arrow */}
+                  {/* Right - tags + arrow */}
                   <div className="flex flex-col items-end gap-3 flex-shrink-0 ml-5">
                     <svg
                       className="w-4 h-4 text-white/20 group-hover:text-violet-400 transition-colors hidden sm:block"
