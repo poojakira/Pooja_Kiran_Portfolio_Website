@@ -35,8 +35,8 @@ export default function About() {
             <p className="text-fluid-base text-silver-haze leading-relaxed">
               That&apos;s what I build. From MCP protocol hardening to LLM red
               teaming, from model supply chain verification to least-privilege IAM
-              for AI agents — every project in my portfolio is a response to a real
-              threat vector I&apos;ve studied and exploited.
+              for AI agents — every project in my portfolio addresses a specific
+              trust boundary in the agentic AI stack.
             </p>
 
             {/* Philosophy callout */}
@@ -151,11 +151,15 @@ export default function About() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-secure-green">▸</span>
-                  IEEE published researcher
+                  IEEE INDICON 2023 published
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-secure-green">▸</span>
-                  Honeywell research collaborator
+                  AWS Cloud Security certified
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-secure-green">▸</span>
+                  ASU Technology Innovation Lab
                 </li>
               </ul>
             </div>

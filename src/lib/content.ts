@@ -65,10 +65,10 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "Pooja Kiran",
-  role: "AI Security Researcher",
+  role: "AI Security Engineer",
   tagline: "Engineering the guardrails that keep autonomous AI systems from turning adversarial.",
   email: "pkiran1@asu.edu",
-  linkedin: "https://linkedin.com/in/poojakira",
+  linkedin: "https://linkedin.com/in/poojakiran",
   github: "https://github.com/poojakira",
   location: "Tempe, AZ",
 };
@@ -235,16 +235,16 @@ export const projects: Project[] = [
 export const experience: Experience[] = [
   {
     id: "independent-researcher",
-    role: "Independent AI Security Researcher",
-    organization: "Self-directed Research",
+    role: "Independent AI Security Researcher & Engineer",
+    organization: "Self-Directed Research",
     location: "Tempe, AZ",
     period: "Aug 2024 – Present",
     startDate: "2024-08",
     endDate: "present",
     description: [
-      "Architecting open-source security tooling for agentic AI systems, MCP protocol hardening, and LLM adversarial defense.",
-      "Published research on model supply chain attacks and developed automated red-teaming frameworks adopted by the security community.",
-      "Building the Guardian Protocol — a comprehensive security research portfolio spanning 13 projects across 5 critical AI security domains.",
+      "Building and evaluating open-source security tooling across agentic AI, MCP/tool access, IAM, model supply-chain, adversarial ML, and model privacy.",
+      "Developed 13 public repositories demonstrating reproducible AI security research and engineering.",
+      "Focus areas: MCP protocol hardening, LLM adversarial testing, model provenance verification, and least-privilege IAM for AI agents.",
     ],
     tags: ["AI Security", "MCP", "LLM Red Teaming", "Supply Chain", "Open Source"],
   },

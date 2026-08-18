@@ -16,7 +16,7 @@ export default function Footer() {
           {/* Links */}
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com/poojakiranbharadwaj"
+              href="https://github.com/poojakira"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-silver-haze hover:text-pure-light transition-colors duration-200"
@@ -24,7 +24,7 @@ export default function Footer() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/poojakiranbharadwaj"
+              href="https://linkedin.com/in/poojakiran"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-silver-haze hover:text-pure-light transition-colors duration-200"
