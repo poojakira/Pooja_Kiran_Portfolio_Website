@@ -50,13 +50,13 @@ export default function Hero() {
         preload="auto"
       />
 
-      {/* Cinematic Gradient Overlay — light on left for text, clear on right to show face */}
+      {/* Cinematic Gradient Overlay — narrow strip on left only, rest clear */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            linear-gradient(to right, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.4) 30%, rgba(10,10,15,0.1) 50%, transparent 60%),
-            linear-gradient(to top, rgba(10,10,15,0.8) 0%, rgba(10,10,15,0.2) 20%, transparent 50%)
+            linear-gradient(to right, rgba(10,10,15,0.75) 0%, rgba(10,10,15,0.5) 20%, rgba(10,10,15,0.15) 35%, transparent 45%),
+            linear-gradient(to top, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.1) 15%, transparent 35%)
           `,
         }}
         aria-hidden="true"
@@ -133,7 +133,7 @@ export default function Hero() {
 
       {/* Hero Content — Left-aligned over video */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-24 pt-40">
-        <div className="flex flex-col items-start text-left gap-5 max-w-2xl">
+        <div className="flex flex-col items-start text-left gap-5 max-w-md">
           {/* Status badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-white/5 border border-white/10">
             <span className="relative flex h-2.5 w-2.5">
