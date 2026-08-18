@@ -38,10 +38,11 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen w-full overflow-hidden flex flex-col justify-end"
     >
-      {/* Fullscreen Video — face is centered, no offset */}
+      {/* Fullscreen Video — shifted up so face shows in top half */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: "center 30%" }}
         src="/hero.mp4"
         autoPlay
         loop
