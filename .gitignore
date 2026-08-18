@@ -35,5 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Large video file - deploy separately
-public/hero.mp4
+
+
