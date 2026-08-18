@@ -50,14 +50,13 @@ export default function Hero() {
         preload="auto"
       />
 
-      {/* Cinematic Gradient Overlay — left-weighted for text readability */}
+      {/* Cinematic Gradient Overlay — light on left for text, clear on right to show face */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            linear-gradient(to right, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.6) 40%, rgba(10,10,15,0.2) 70%, transparent 100%),
-            linear-gradient(to top, rgba(10,10,15,0.9) 0%, rgba(10,10,15,0.4) 30%, transparent 60%),
-            linear-gradient(135deg, rgba(139,92,246,0.08) 0%, transparent 50%)
+            linear-gradient(to right, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.4) 30%, rgba(10,10,15,0.1) 50%, transparent 60%),
+            linear-gradient(to top, rgba(10,10,15,0.8) 0%, rgba(10,10,15,0.2) 20%, transparent 50%)
           `,
         }}
         aria-hidden="true"
