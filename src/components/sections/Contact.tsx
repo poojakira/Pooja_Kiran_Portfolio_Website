@@ -112,7 +112,7 @@ export default function Contact() {
               Start a Conversation
             </a>
             <a
-              href="/Pooja_Kiran_AI_Security_Resume.pdf"
+              href="/Pooja_Kiran_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"

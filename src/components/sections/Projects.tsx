@@ -4,50 +4,67 @@ const showcaseProjects = [
   {
     id: "mcp-agent-security-gateway",
     title: "mcp-agent-security-gateway",
-    subtitle: "Inline MCP Security Proxy + Control Plane",
+    subtitle: "Inline MCP Security Proxy + Detection Lab",
     description:
-      "Real stdio MCP proxy with 5-layer decision pipeline: server trust, tool-call policy, process-spawn detection, semantic intent analysis, and network egress control. Includes SHA-256 hash-chained audit logging, write-ahead log, circuit breakers, shadow mode, rate limiting, and Kubernetes deployment templates.",
-    metrics: ["0.015ms latency", "50K iterations", "529 tests", "77% coverage"],
-    highlights: ["Beats regex-only approaches with Unicode/homoglyph normalization", "50+ prompt-injection rules across 10 attack categories", "Docker + K8s ready", "CI: CodeQL, Trivy, Grype, Bandit, pip-audit"],
+      "Inline stdio proxy that inspects MCP agent-to-tool calls through a 5-layer decision pipeline (server trust, tool-call policy, process-spawn analysis, semantic intent, network egress) and returns allow/block/redact/quarantine decisions. Includes SHA-256 hash-chained audit logging, circuit breakers, rate limiting, shadow mode, and a detection-engineering lab that ships events to Elasticsearch (ECS) with correlation rules.",
+    metrics: ["569 tests", "75% coverage", "50+ injection rules", "Elastic SIEM + correlation"],
+    highlights: [
+      "Unicode/homoglyph normalization and Base64/ROT13 decode before matching",
+      "6 correlation rules + 9 Elastic detection rules mapped to MITRE ATT&CK",
+      "6 Atomic Red Team style attack simulations; validated against a docker-compose ELK stack",
+      "CI: CodeQL, Trivy, Grype, Bandit, pip-audit, Syft SBOM",
+    ],
     domain: "mcp-tool",
-    tags: ["Python", "FastAPI", "Docker", "K8s", "SARIF"],
+    tags: ["Python", "FastAPI", "Kubernetes", "Elastic SIEM", "SARIF"],
     github: "https://github.com/poojakira/mcp-agent-security-gateway",
-  },
-  {
-    id: "hf-model-provenance-scanner",
-    title: "hf-model-provenance-scanner",
-    subtitle: "Model Supply Chain Scanner (Beats Protect AI ModelScan)",
-    description:
-      "Taint engine + symbolic resolver covering 17 file formats. Deep opcode analysis for pickle Protocol 0-5, SafeTensors header injection, GGUF metadata overflow, typosquat detection. Head-to-head benchmarked against Protect AI ModelScan 0.8.8 - catches 2 bypass classes ModelScan misses.",
-    metrics: ["2 CVEs detected", "12/12 fixtures", "0 false positives", "116ms total"],
-    highlights: ["Catches timeit + importlib gadget chains that ModelScan misses", "CVE-2026-4372 + CVE-2026-46432", "SARIF output for GitHub Security tab", "CI gate: blocks merges on HIGH findings"],
-    domain: "supply-chain",
-    tags: ["Python", "SARIF", "Docker", "MITRE ATLAS"],
-    github: "https://github.com/poojakira/hf-model-provenance-scanner",
-  },
-  {
-    id: "llm-redteam-framework",
-    title: "llm-redteam-framework",
-    subtitle: "Adversarial LLM Testing Engine",
-    description:
-      "Multi-category adversarial prompt generation mapped to MITRE ATLAS. Offline detector evaluation with structured SARIF evidence output. Produces reproducible security assessments for guardrail validation and input/output filtering decisions.",
-    metrics: ["MITRE ATLAS mapped", "SARIF evidence", "Multi-turn chains"],
-    highlights: ["Automated red-team generation across jailbreak categories", "Detector evaluation with precision/recall metrics", "FastAPI service for CI integration"],
-    domain: "llm-rag",
-    tags: ["Python", "FastAPI", "SARIF"],
-    github: "https://github.com/poojakira/llm-redteam-framework",
   },
   {
     id: "aws-agent-identity-guard",
     title: "aws-agent-identity-guard",
     subtitle: "Static IAM Analyzer for AI Agent Roles",
     description:
-      "25 deterministic rules covering wildcard permissions, privilege escalation paths, audit-trail tampering, and credential-harvest chains. Outputs SARIF for automated enforcement as a CI merge gate with zero runtime dependencies.",
-    metrics: ["25 IAM rules", "CI merge gate", "Zero runtime deps", "SARIF output"],
-    highlights: ["Catches overprivileged agent roles before deployment", "Detects trust relationship abuse paths", "Works as pre-merge check in any CI pipeline"],
+      "Detects dangerous IAM permission patterns in AI agent roles: wildcard grants, iam:PassRole misuse, privilege-management actions, audit-trail tampering, and multi-step credential-harvest and lateral-movement chains. Outputs Text, JSON, and SARIF, and gates CI on critical/high findings via GitHub Code Scanning.",
+    metrics: ["25 rules", "166 tests", "SARIF + CI gate", "Attack-path analysis"],
+    highlights: [
+      "Multi-step attack-path detection catches escalation single-rule scanners miss",
+      "Optional read-only live-account scan via boto3",
+      "Zero runtime dependencies for local policy scanning",
+    ],
     domain: "iam",
-    tags: ["Python", "AWS", "SARIF"],
+    tags: ["Python", "AWS IAM", "SARIF", "Terraform"],
     github: "https://github.com/poojakira/aws-agent-identity-guard",
+  },
+  {
+    id: "hf-model-provenance-scanner",
+    title: "hf-model-provenance-scanner",
+    subtitle: "Model Supply-Chain Scanner",
+    description:
+      "Analyzes pickle opcodes, SafeTensors headers, GGUF structures, ONNX, and Keras files without downloading full model weights. Detects malicious deserialization, typosquatting, and obfuscated code, and generates CycloneDX 1.6 SBOMs. All findings mapped to MITRE ATT&CK v19.",
+    metrics: ["Header-only scanning", "CycloneDX 1.6 SBOM", "MITRE ATT&CK v19"],
+    highlights: [
+      "Temporal baseline diffing for rug-pull detection",
+      "Levenshtein-based typosquat detection and multi-layer obfuscation decode",
+      "Documented evidence boundaries: no universal detection-rate claims",
+    ],
+    domain: "supply-chain",
+    tags: ["Python", "SARIF", "SBOM", "MITRE ATT&CK"],
+    github: "https://github.com/poojakira/hf-model-provenance-scanner",
+  },
+  {
+    id: "llm-redteam-framework",
+    title: "llm-redteam-framework",
+    subtitle: "Adversarial Detector Evaluation Harness",
+    description:
+      "Offline harness that generates prompt-injection attack corpora across 6 categories mapped to the OWASP LLM Top 10 and measures detector performance with grouped template splits that prevent data leakage. Reports F1 = 0.97 on held-out templates alongside honest degradation on novel phrasings.",
+    metrics: ["84 tests", "94% coverage", "6 OWASP LLM categories", "F1 = 0.97 (held-out)"],
+    highlights: [
+      "Grouped splitting prevents template leakage for honest evaluation",
+      "FastAPI /scan endpoint with rate limiting and API-key auth",
+      "SARIF output integrates with GitHub Code Scanning",
+    ],
+    domain: "llm-rag",
+    tags: ["Python", "scikit-learn", "FastAPI", "SARIF"],
+    github: "https://github.com/poojakira/llm-redteam-framework",
   },
 ];
 
@@ -57,41 +74,18 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section header */}
         <div className="mb-14">
-          <p className="text-cyan-400 font-mono text-xs tracking-[0.3em] uppercase mb-3">
+          <p className="text-plasma-cyan font-mono text-xs tracking-[0.3em] uppercase mb-3">
             {"// PROJECTS"}
           </p>
           <h2
-            className="font-bold text-white mb-4"
+            className="font-bold text-pure-light mb-4"
             style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}
           >
             What I&apos;ve Built
           </h2>
-          <p className="text-white/50 text-base max-w-xl">
-            Benchmarked, tested, CI-verified security systems with reproducible evidence.
+          <p className="text-silver-haze text-base max-w-xl">
+            Tested, CI-verified security systems with reproducible evidence and documented limitations.
           </p>
-        </div>
-
-        {/* Key Results banner */}
-        <div className="mb-10 p-5 rounded-xl bg-violet-500/5 border border-violet-500/20">
-          <p className="text-xs font-mono text-violet-400/70 uppercase tracking-wider mb-3">Verified Results</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div>
-              <p className="text-xl font-bold text-white">2 CVEs</p>
-              <p className="text-[11px] text-white/40">detected in model artifacts</p>
-            </div>
-            <div>
-              <p className="text-xl font-bold text-white">0.015ms</p>
-              <p className="text-[11px] text-white/40">inspection latency (p50)</p>
-            </div>
-            <div>
-              <p className="text-xl font-bold text-white">529</p>
-              <p className="text-[11px] text-white/40">automated tests passing</p>
-            </div>
-            <div>
-              <p className="text-xl font-bold text-white">100%</p>
-              <p className="text-[11px] text-white/40">detection, 0% false positive</p>
-            </div>
-          </div>
         </div>
 
         {/* Project list */}
@@ -108,7 +102,7 @@ export default function Projects() {
                 rel="noopener noreferrer"
                 className={`group block p-6 sm:p-8 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 ${
                   isHero
-                    ? "bg-white/[0.04] border-violet-500/30 hover:border-violet-500/50"
+                    ? "bg-white/[0.04] border-sentinel-violet/30 hover:border-sentinel-violet/50"
                     : "bg-white/[0.02] border-white/[0.06] hover:border-white/15"
                 }`}
               >
@@ -120,21 +114,19 @@ export default function Projects() {
                       style={{ backgroundColor: domain?.color }}
                       aria-hidden="true"
                     />
-                    <h3 className="font-mono text-base sm:text-lg text-white group-hover:text-violet-400 transition-colors">
+                    <h3 className="font-mono text-base sm:text-lg text-pure-light group-hover:text-sentinel-violet transition-colors">
                       {project.title}
                     </h3>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <svg
-                      className="w-4 h-4 text-white/20 group-hover:text-violet-400 transition-colors"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </div>
+                  <svg
+                    className="w-4 h-4 text-white/20 group-hover:text-sentinel-violet transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                 </div>
 
                 {/* Subtitle */}
@@ -143,7 +135,7 @@ export default function Projects() {
                 </p>
 
                 {/* Description */}
-                <p className="text-sm text-white/55 leading-relaxed ml-5 mb-4">
+                <p className="text-sm text-silver-haze leading-relaxed ml-5 mb-4">
                   {project.description}
                 </p>
 
@@ -152,20 +144,20 @@ export default function Projects() {
                   {project.metrics.map((metric) => (
                     <span
                       key={metric}
-                      className="text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400/90 font-mono border border-emerald-500/20"
+                      className="text-[11px] px-2.5 py-1 rounded-full bg-secure-green/10 text-secure-green/90 font-mono border border-secure-green/20"
                     >
                       {metric}
                     </span>
                   ))}
                 </div>
 
-                {/* Highlights - what makes this exceptional */}
+                {/* Highlights */}
                 {isHero && (
                   <div className="ml-5 mt-3 pt-3 border-t border-white/5">
                     <ul className="space-y-1">
                       {project.highlights.map((h) => (
                         <li key={h} className="text-[12px] text-white/35 flex items-start gap-2">
-                          <span className="text-violet-400/60 mt-0.5">+</span>
+                          <span className="text-sentinel-violet/60 mt-0.5">+</span>
                           {h}
                         </li>
                       ))}
@@ -195,9 +187,9 @@ export default function Projects() {
             href="https://github.com/poojakira?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs text-white/40 hover:text-violet-400 font-mono transition-colors"
+            className="inline-flex items-center gap-2 text-xs text-white/40 hover:text-sentinel-violet font-mono transition-colors"
           >
-            view all 13 repositories →
+            view all 16 repositories &rarr;
           </a>
         </div>
       </div>

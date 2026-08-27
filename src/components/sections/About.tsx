@@ -18,36 +18,36 @@ export default function About() {
           {/* Bio */}
           <div className="lg:col-span-3 space-y-6">
             <p className="text-fluid-base text-silver-haze leading-relaxed">
-              I&apos;m an AI Security Engineer based in {siteConfig.location},
-              with a Master&apos;s in Information Technology from Arizona State
-              University. My work sits at the intersection of machine learning and
-              adversarial security - where I build the tools and frameworks that
-              keep autonomous AI systems from being weaponized against their
-              operators.
+              I&apos;m a Security Engineer based in {siteConfig.location}, finishing
+              a Master&apos;s in Information Technology at Arizona State University.
+              I focus on detection engineering, security automation, and cloud/IAM
+              security, with a specialization in the newer attack surfaces that AI
+              agents introduce.
             </p>
             <p className="text-fluid-base text-silver-haze leading-relaxed">
-              The rise of agentic AI has created attack surfaces that traditional
-              security frameworks cannot address. Models that can reason, plan, and
-              execute actions in the real world need a new class of guardrails -
-              ones that understand intent, enforce boundaries, and fail safely
-              under adversarial pressure.
+              Most of my work starts from a concrete problem: an AI agent can be
+              tricked into exfiltrating data through a tool call, an IAM policy can
+              grant an escalation path nobody reviewed, or a model artifact can run
+              arbitrary code on load. I build systems that inspect that behavior,
+              make an explicit security decision, and produce evidence I can audit
+              later.
             </p>
             <p className="text-fluid-base text-silver-haze leading-relaxed">
-              That&apos;s what I build. From MCP protocol hardening to LLM red
-              teaming, from model supply chain verification to least-privilege IAM
-              for AI agents - every project in my portfolio addresses a specific
-              trust boundary in the agentic AI stack.
+              These are research and portfolio projects, not deployed production
+              systems. They are functional, tested, and open-source, with
+              measurable results and documented limitations. I care more about
+              honest evidence than impressive-sounding numbers.
             </p>
 
             {/* Philosophy callout */}
             <div className="mt-8 p-6 rounded-2xl border border-sentinel-violet/20 bg-sentinel-violet/5">
               <p className="text-sm font-mono text-sentinel-violet mb-2">
-                {"//"} philosophy
+                {"//"} how I work
               </p>
               <p className="text-pure-light font-inter italic leading-relaxed">
-                &ldquo;Security is not a feature you bolt on after deployment.
-                It&apos;s an architectural decision you make before the first line
-                of code.&rdquo;
+                &ldquo;A security claim is only as good as the test that proves it.
+                Every control I build ships with the fixture, the enforcement
+                decision, and the regression test behind it.&rdquo;
               </p>
             </div>
           </div>
@@ -143,11 +143,11 @@ export default function About() {
               <ul className="space-y-2 text-sm text-silver-haze">
                 <li className="flex items-center gap-2">
                   <span className="text-secure-green">▸</span>
-                  13 open-source security projects
+                  16 open-source security repositories
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-secure-green">▸</span>
-                  5 AI security domains covered
+                  800+ automated tests across projects
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-secure-green">▸</span>
@@ -155,7 +155,7 @@ export default function About() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-secure-green">▸</span>
-                  AWS Cloud Security certified
+                  AWS Academy: Cloud Security Foundations
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-secure-green">▸</span>
