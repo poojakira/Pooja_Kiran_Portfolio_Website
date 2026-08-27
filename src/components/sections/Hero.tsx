@@ -62,7 +62,7 @@ export default function Hero() {
             View Work
           </a>
           <a
-            href="/Pooja_Kiran_Resume.pdf"
+            href="/Pooja_Kiran_Detection_Response_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2.5 text-sm font-medium text-pure-light border border-white/15 rounded-md hover:border-sentinel-violet/60 hover:text-sentinel-violet transition-colors"

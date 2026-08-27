@@ -38,7 +38,7 @@ export default function Footer() {
               Email
             </a>
             <a
-              href="/Pooja_Kiran_Resume.pdf"
+              href="/Pooja_Kiran_Detection_Response_Resume.pdf"
               download
               className="text-sm text-sentinel-violet hover:text-pure-light transition-colors duration-200 flex items-center gap-1"
             >
