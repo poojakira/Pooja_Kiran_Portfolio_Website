@@ -12,7 +12,7 @@
     "links": {
       "github": "https://github.com/poojakira",
       "linkedin": "https://www.linkedin.com/in/poojakiran/",
-      "resume": "Pooja_Kiran.pdf"
+      "resume": "Pooja_Kiran_Detection_Response_Resume.pdf"
     },
     "positioning": "I build the security controls for the moment AI stops generating text and starts taking actions.",
     "summary": "My work sits on the boundary between an AI system's decision and a real-world action: inspecting agent tool calls, constraining cloud identity for agent workloads, and checking model artifacts before they are trusted. Each project states its problem, threat model, controls, evidence, and limits before asking anyone to trust it.",
