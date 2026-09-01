@@ -15,7 +15,7 @@
       "resume": "Pooja_Kiran_Detection_Response_Resume.pdf"
     },
     "positioning": "I build the security controls for the moment AI stops generating text and starts taking actions.",
-    "summary": "My work sits on the boundary between an AI system's decision and a real-world action: inspecting agent tool calls, constraining cloud identity for agent workloads, and checking model artifacts before they are trusted. Each project states its problem, threat model, controls, evidence, and limits before asking anyone to trust it.",
+    "summary": "My work sits on the boundary between an AI system's decision and a real-world action: inspecting agent tool calls, constraining cloud identity for agent workloads, and checking model artifacts before they are trusted. It leans on detection engineering — normalizing security events, correlating multi-stage attack activity, mapping findings to MITRE ATT&CK / ATLAS, and exporting SARIF for CI. Each project states its problem, threat model, controls, evidence, and limits before asking anyone to trust it.",
     "provenance": ["src-profile", "src-mcp-readme", "src-aig-readme"]
   },
 
@@ -43,7 +43,8 @@
     { "id": "src-pulse-archive", "type": "repo", "label": "PulseNet RUL Forecasting — Archive decision record", "repo": "poojakira/PulseNet-RUL-Forecasting", "url": "https://github.com/poojakira/PulseNet-RUL-Forecasting/blob/main/ARCHIVE.md", "path": "ARCHIVE.md" },
 
     { "id": "src-pub-ieee", "type": "publication", "label": "IEEE Xplore 2024 — Personalized E-learning via RL through Satellite", "url": "https://ieeexplore.ieee.org/document/10440852" },
-    { "id": "src-pub-iosr", "type": "publication", "label": "IOSR-JCE 2023 — Smart Charge Pro (EV charging infrastructure)", "url": "https://www.iosrjournals.org/iosr-jce/pages/25(4)Series-1.html" }
+    { "id": "src-pub-iosr", "type": "publication", "label": "IOSR-JCE 2023 — Smart Charge Pro (EV charging infrastructure)", "url": "https://www.iosrjournals.org/iosr-jce/pages/25(4)Series-1.html" },
+    { "id": "src-resume", "type": "resume", "label": "Résumé (PDF) — Pooja Kiran Bharadwaj", "url": "Pooja_Kiran_Detection_Response_Resume.pdf" }
   ],
 
   "themes": [
@@ -112,7 +113,7 @@
         "Real inline MCP stdio proxy (python -m mcp_monitor.proxy.stdio_proxy) that sits between client and downstream server",
         "JSON-RPC 2.0 parsing; identifies tools/call; passes through normal protocol messages (initialize, tools/list)",
         "Inline allow/block: a blocking decision returns a JSON-RPC security error and the request is never forwarded",
-        "Prompt-injection detection with Unicode and encoded-payload normalization",
+        "Prompt-injection detection: 50+ rule patterns with Unicode normalization, zero-width stripping, homoglyph and encoded-payload (Base64/ROT13) handling",
         "MCP server trust and capability checks; PII/sensitive-data signals; exfiltration indicators; tool-output inspection",
         "Multi-layer (5-layer) policy evaluation; process-event evaluation; network-egress policy decisions",
         "SHA-256 hash-chained audit logging and write-ahead logging; tracing and metrics",
@@ -120,8 +121,11 @@
         "Docker and Kubernetes deployment templates; adversarial and regression testing"
       ],
       "controls": ["Inline allow/block enforcement", "Hash-chained audit logging", "Rate limiting", "Circuit breakers", "Shadow mode", "Egress policy"],
-      "testing": ["Repository tests cover visible payload behavior", "Adversarial and regression tests", "Latency benchmark script (benchmark/tool_call_latency.py) and locustfile present"],
-      "results": ["Adoption signal: 17 stars and 5 forks on the public repository (verified on the GitHub profile)"],
+      "testing": ["569 tests, 75% coverage across Python 3.10-3.12 (verified at commit cafad51, 2026-08-27)", "Adversarial and regression tests; documented failure semantics with fail-closed circuit breakers", "CI: CodeQL, Bandit, Trivy, Grype, Syft SBOM, pip-audit, Docker image build; Windows control-plane validation"],
+      "results": [
+        "Adoption signal: 17 stars and 5 forks on the public repository (verified on the GitHub profile)",
+        "Detection-engineering lab: exports decisions in Elastic Common Schema, ships to Elasticsearch/Kibana, and runs an in-memory correlation engine (6 multi-event rules, 9 Elastic rules, 6 Atomic Red Team style simulations), all mapped to MITRE ATT&CK"
+      ],
       "tradeoffs": ["Inline enforcement adds latency to the tool-call path", "Signal-based detection favors coverage of known patterns over guarantees"],
       "limitations": [
         "Controls only traffic routed through the monitor/proxy; not a substitute for network or kernel-level enforcement",
@@ -135,7 +139,9 @@
         { "claim": "Three runtime surfaces: stdio proxy, control plane :8000, HTTP inspection :8080", "sourceId": "src-mcp-readme", "note": "README architecture diagram", "confidence": "high" },
         { "claim": "SHA-256 hash-chained audit logging", "sourceId": "src-mcp-readme", "note": "README 'What I Built'", "confidence": "high" },
         { "claim": "17 stars, 5 forks", "sourceId": "src-github", "note": "Pinned repo metadata on live profile", "confidence": "high" },
-        { "claim": "Controls only traffic routed through the monitor/proxy", "sourceId": "src-mcp-readme", "note": "README limitations", "confidence": "high" }
+        { "claim": "Controls only traffic routed through the monitor/proxy", "sourceId": "src-mcp-readme", "note": "README limitations", "confidence": "high" },
+        { "claim": "569 tests, 75% coverage (commit cafad51, verified 2026-08-27); CodeQL/Bandit/Trivy/Grype/Syft/pip-audit CI", "sourceId": "src-mcp-readme", "note": "README 'Verified Engineering Evidence' + 'Verification' table", "confidence": "high" },
+        { "claim": "Detection-engineering lab (ECS/Elastic, 6 correlation rules, 9 Elastic rules, 6 Atomic Red Team simulations)", "sourceId": "src-mcp-readme", "note": "README 'Detection Engineering Lab'", "confidence": "high" }
       ]
     },
 
@@ -321,19 +327,25 @@
         ]
       },
       "implementation": [
-        "Adversarial prompt generation and template grouping",
-        "Offline detector using TF-IDF features with Logistic Regression",
-        "Grouped / out-of-distribution evaluation to expose generalization gaps",
-        "SARIF-oriented reporting; MITRE ATT&CK v19 and OWASP LLM mappings"
+        "Generates adversarial prompt corpora across 6 attack categories mapped to OWASP LLM01/06/07",
+        "Baseline detector: character n-gram TF-IDF features + Logistic Regression (transparent, GPU-free)",
+        "Grouped (by template family) train/test splitting to prevent template leakage; random split available for comparison",
+        "FastAPI /scan service with per-IP rate limiting and optional API-key auth; SARIF output for GitHub Code Scanning",
+        "Findings mapped to OWASP LLM Top 10 and MITRE ATT&CK v19"
       ],
-      "controls": ["Grouped / OOD evaluation split", "Failure-mode documentation"],
-      "testing": ["Evaluation scripts under tests/redteam/", "Coverage gate configured in the repo"],
-      "results": ["Honest operational number: F1 around 0.70 on out-of-distribution transfer evaluation"],
+      "controls": ["Grouped / OOD evaluation split", "Rate limiting (60 req/min) and 32K char input cap", "Model pickle SHA-256 integrity check", "Failure-mode documentation"],
+      "testing": ["162 tests, 96% coverage across generators, detectors, eval harness, and output", "External-benchmark validation (InjectionBench / JailbreakBench style fixtures)", "CI: lint, test, build, Bandit + pip-audit security audit"],
+      "results": [
+        "F1 = 0.97 on held-out grouped templates (the honest generalization estimate)",
+        "F1 = 1.00 on a random (in-distribution) split — deliberately shown as optimistic",
+        "Target F1 >= 0.85 against external novel-phrasing benchmarks; the gap is the point of the project"
+      ],
       "tradeoffs": ["A simple TF-IDF/LogReg detector is transparent and fast but is not a semantic defense"],
       "limitations": [
-        "TF-IDF + Logistic Regression are not semantic defenses; this is a research baseline, not a production prompt-injection defense",
-        "The project does not test actual LLMs",
-        "The README's in-distribution metric table (e.g., higher jailbreak/injection numbers) is tied to eval scripts and is not treated here as an independently reproduced benchmark; the out-of-distribution F1 ~0.70 is the number presented as honest"
+        "TF-IDF + Logistic Regression capture lexical patterns, not semantic intent; paraphrased attacks bypass it",
+        "This is a research/methodology baseline, not a production prompt-injection defense",
+        "The project does not test actual LLMs — it evaluates the detector offline",
+        "OWASP coverage is partial (LLM01/06/07); LLM02/08/09/10 not yet implemented"
       ],
       "lessons": ["Evaluation is part of the security system: without grouped/OOD testing a metric can look better than the detector's real generalization"],
       "mappings": {
@@ -341,9 +353,10 @@
         "atlas": [], "nist": []
       },
       "evidence": [
-        { "claim": "Offline TF-IDF + Logistic Regression detector with grouped/OOD evaluation", "sourceId": "src-llm-readme", "note": "README; existing site evidence policy", "confidence": "high" },
-        { "claim": "Honest headline: F1 ~0.70 out-of-distribution transfer", "sourceId": "src-provenance", "note": "Evidence policy: OOD limitation is the number to present, not in-distribution table values", "confidence": "high" },
-        { "claim": "Does not test actual LLMs; research baseline only", "sourceId": "src-llm-readme", "note": "README framing + provenance registry limitations", "confidence": "high" }
+        { "claim": "Offline TF-IDF + Logistic Regression detector with grouped/OOD evaluation", "sourceId": "src-llm-readme", "note": "README architecture + methodology", "confidence": "high" },
+        { "claim": "F1 = 0.97 on held-out grouped templates; 1.00 on random split; >=0.85 target on external benchmarks", "sourceId": "src-llm-readme", "note": "README 'Results' table (seed=42), verified on live repo", "confidence": "high" },
+        { "claim": "162 tests, 96% coverage; FastAPI /scan with rate limiting and API-key auth", "sourceId": "src-llm-readme", "note": "README 'Production Readiness Assessment'", "confidence": "high" },
+        { "claim": "Does not test actual LLMs; research/methodology baseline only", "sourceId": "src-llm-readme", "note": "README 'Limitations'", "confidence": "high" }
       ]
     },
 
@@ -585,32 +598,44 @@
   "resume": {
     "roles": [
       {
-        "title": "Cybersecurity Innovation Researcher",
-        "org": "TEM 598 Technology Innovation Lab — Arizona State University x Honeywell Aerospace Innovation Hub",
-        "summary": "Graduate research practicum exploring AI and cybersecurity challenges for aerospace systems.",
-        "evidence": ["src-profile"],
+        "title": "Independent AI Security Researcher & Engineer",
+        "org": "Self-directed security research (concurrent with M.S. program) — Tempe, AZ",
+        "summary": "Aug 2024 – Present. Design and maintain open-source security repositories spanning detection engineering, security enforcement, cloud IAM, AI agent security, model supply-chain security, and adversarial testing; build detection pipelines that map findings to MITRE ATT&CK / ATLAS and export SARIF for CI.",
+        "evidence": ["src-resume", "src-github"],
+        "kind": "research"
+      },
+      {
+        "title": "Business Compliance Lead & Market/Cost Analyst",
+        "org": "ASU Technology Innovation Lab (Honeywell Aerospace partnership) — Tempe, AZ",
+        "summary": "Aug 2025 – Dec 2025. Evaluated cybersecurity product requirements against aerospace compliance frameworks and translated security risks into system-level architecture constraints; conducted competitive and market analysis of security requirements and tradeoffs.",
+        "evidence": ["src-resume"],
         "kind": "research"
       },
       {
         "title": "Graduate Teaching Assistant / IT Grader",
-        "org": "Arizona State University",
-        "summary": "Teaching and grading support in an information-technology context.",
-        "evidence": ["src-profile"],
+        "org": "Ira A. Fulton Schools of Engineering, Arizona State University — Mesa, AZ",
+        "summary": "Jan 2025 – Oct 2025. Assessed cloud security architectures, network-defense configurations, and IAM implementations for 100+ students per semester; gave structured feedback on security architecture and defensive controls.",
+        "evidence": ["src-resume"],
         "kind": "teaching"
       }
     ],
     "education": [
       {
-        "credential": "Graduate study — Arizona State University",
-        "note": "Details beyond the public profile are not asserted here; verified education content is added through the professional ingestion layer when supplied.",
-        "evidence": ["src-profile"]
+        "credential": "M.S. Information Technology — Arizona State University (Aug 2024 – May 2026)",
+        "note": "Relevant coursework: Machine Learning Security, Cloud Security Architecture, Information Assurance, Network Defense.",
+        "evidence": ["src-resume"]
+      },
+      {
+        "credential": "B.Tech Computer Science & Engineering — M. S. Ramaiah University of Applied Sciences, Bengaluru (Aug 2019 – Aug 2023)",
+        "note": "KSCST research grant (funded undergraduate research project).",
+        "evidence": ["src-resume"]
       }
     ],
     "publications": [
-      { "title": "Personalized E-learning System Using Reinforcement Learning Through Satellite", "venue": "IEEE Xplore", "year": 2024, "url": "https://ieeexplore.ieee.org/document/10440852", "evidence": ["src-pub-ieee"] },
+      { "title": "A Personalized E-Learning System Using Reinforcement Learning Through Satellite", "venue": "IEEE INDICON (IEEE Xplore)", "year": 2023, "url": "https://ieeexplore.ieee.org/document/10440852", "evidence": ["src-pub-ieee", "src-resume"] },
       { "title": "Smart Charge Pro: Empowering Future Mobility With Advanced Safety And Efficiency In Electric Vehicle Charging Infrastructure", "venue": "IOSR Journal of Computer Engineering", "year": 2023, "url": "https://www.iosrjournals.org/iosr-jce/pages/25(4)Series-1.html", "evidence": ["src-pub-iosr"] }
     ],
-    "provenance": ["src-profile", "src-pub-ieee", "src-pub-iosr"]
+    "provenance": ["src-resume", "src-profile", "src-pub-ieee", "src-pub-iosr"]
   },
 
   "skills": [
@@ -640,7 +665,7 @@
     { "q": "What about model supply-chain security?", "a": "HF Model Provenance Scanner treats model files as software crossing a trust boundary: it checks pickle-derived, SafeTensors, GGUF, ONNX, and Keras files plus provenance markers, and maps findings to MITRE ATT&CK v19. Its strongest evidence is a 12/12 core-incident fixture suite — labeled as fixture evidence, not a real-world detection rate.", "evidence": ["src-hf-readme", "src-hf-proof"], "tags": ["supply chain", "provenance", "hugging face", "pickle", "model"] },
     { "q": "Can I see the evidence / prove it?", "a": "Yes. Every substantive claim on this site links to its source repository, file, or section. Use the 'Prove it' action on any answer, or open a project to see problem, threat model, controls, testing, results, and limitations with links.", "evidence": ["src-github", "src-provenance"], "tags": ["evidence", "prove", "source", "verify"] },
     { "q": "What are you exploring or currently learning?", "a": "The through-line I'm extending is action-aware AI security: connecting the agent tool boundary (MCP gateway) with cloud identity constraints (IAM guard) and detection mappings to MITRE ATT&CK / ATLAS. I present these as active engineering, not finished products.", "evidence": ["src-mcp-readme", "src-aig-readme"], "tags": ["exploring", "learning", "future", "next"] },
-    { "q": "What is your experience and education?", "a": "Cybersecurity Innovation Researcher in ASU's TEM 598 Technology Innovation Lab (with Honeywell Aerospace Innovation Hub), and a Graduate Teaching Assistant / IT Grader at Arizona State University. Two peer-reviewed publications (IEEE 2024, IOSR-JCE 2023). Location: Greater Phoenix Area, AZ.", "evidence": ["src-profile", "src-pub-ieee", "src-pub-iosr"], "tags": ["experience", "education", "resume", "research", "publications", "background"] },
+    { "q": "What is your experience and education?", "a": "Independent AI Security Researcher & Engineer (Aug 2024–present, self-directed, concurrent with the M.S.); Business Compliance Lead & Market/Cost Analyst at ASU's Technology Innovation Lab in partnership with Honeywell Aerospace (Aug–Dec 2025); and Graduate Teaching Assistant / IT Grader at Arizona State University (Jan–Oct 2025). Education: M.S. Information Technology, ASU (2024–2026) and B.Tech CSE, M. S. Ramaiah University (2019–2023). Two publications (IEEE INDICON; IOSR-JCE). Greater Phoenix Area, AZ.", "evidence": ["src-resume", "src-pub-ieee"], "tags": ["experience", "education", "resume", "research", "publications", "background"] },
     { "q": "Are you available for work / what roles?", "a": "Open to AI Security Engineer, ML Security Engineer, and Applied AI/ML Security roles. Based in the Greater Phoenix Area, AZ; F-1 OPT.", "evidence": ["src-profile"], "tags": ["hire", "available", "roles", "job", "contact"] },
     { "q": "Are these production systems with customers?", "a": "No — and the site never claims that. These are research and prototype security tools with explicit limitations. MCP Agent Security Gateway controls only traffic routed through it; the HF scanner's numbers are fixture-scoped; the dataset-poisoning detector is near random on its benchmark and is labeled a research baseline.", "evidence": ["src-provenance", "src-mcp-readme", "src-ds-readme"], "tags": ["production", "customers", "deployed", "real"] }
   ],
