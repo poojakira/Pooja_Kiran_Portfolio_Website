@@ -1,0 +1,667 @@
+{
+  "schema_version": "1.0.0",
+  "generated": "2026-08-31",
+  "identity": {
+    "name": "Pooja Kiran",
+    "full_name": "Pooja Kiran Bharadwaj",
+    "headline": "AI Security Engineer",
+    "headline_full": "AI Security Engineer | Agentic AI & LLM Security | MCP & Tool Security | IAM & Least Privilege | Model Supply-Chain Security",
+    "location": "Greater Phoenix Area, AZ",
+    "email": "poojakiranbhardwaj@gmail.com",
+    "work_authorization": "F-1 OPT; open to roles requiring future H-1B sponsorship",
+    "links": {
+      "github": "https://github.com/poojakira",
+      "linkedin": "https://www.linkedin.com/in/poojakiran/",
+      "resume": "Pooja_Kiran.pdf"
+    },
+    "positioning": "I build the security controls for the moment AI stops generating text and starts taking actions.",
+    "summary": "My work sits on the boundary between an AI system's decision and a real-world action: inspecting agent tool calls, constraining cloud identity for agent workloads, and checking model artifacts before they are trusted. Each project states its problem, threat model, controls, evidence, and limits before asking anyone to trust it.",
+    "provenance": ["src-profile", "src-mcp-readme", "src-aig-readme"]
+  },
+
+  "sources": [
+    { "id": "src-github", "type": "profile", "label": "GitHub profile @poojakira", "repo": "poojakira", "url": "https://github.com/poojakira" },
+    { "id": "src-profile", "type": "repo", "label": "Profile repository README", "repo": "poojakira/poojakira", "url": "https://github.com/poojakira/poojakira", "path": "README.md" },
+    { "id": "src-provenance", "type": "repo", "label": "Profile provenance / claims registry", "repo": "poojakira/poojakira", "url": "https://github.com/poojakira/poojakira/blob/main/claims/registry.json", "path": "claims/registry.json" },
+
+    { "id": "src-mcp-readme", "type": "repo", "label": "MCP Agent Security Gateway — README", "repo": "poojakira/mcp-agent-security-gateway", "url": "https://github.com/poojakira/mcp-agent-security-gateway", "path": "README.md" },
+    { "id": "src-mcp-research", "type": "repo", "label": "MCP Agent Security Gateway — Research report", "repo": "poojakira/mcp-agent-security-gateway", "url": "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/RESEARCH_REPORT.md", "path": "RESEARCH_REPORT.md" },
+    { "id": "src-mcp-audit", "type": "repo", "label": "MCP Agent Security Gateway — Security audit", "repo": "poojakira/mcp-agent-security-gateway", "url": "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/SECURITY_AUDIT.md", "path": "SECURITY_AUDIT.md" },
+
+    { "id": "src-aig-readme", "type": "repo", "label": "AWS Agent Identity Guard — README", "repo": "poojakira/aws-agent-identity-guard", "url": "https://github.com/poojakira/aws-agent-identity-guard", "path": "README.md" },
+    { "id": "src-aig-threat", "type": "repo", "label": "AWS Agent Identity Guard — STRIDE threat model", "repo": "poojakira/aws-agent-identity-guard", "url": "https://github.com/poojakira/aws-agent-identity-guard/blob/main/THREAT_MODEL.md", "path": "THREAT_MODEL.md" },
+
+    { "id": "src-hf-readme", "type": "repo", "label": "HF Model Provenance Scanner — README", "repo": "poojakira/hf-model-provenance-scanner", "url": "https://github.com/poojakira/hf-model-provenance-scanner", "path": "README.md" },
+    { "id": "src-hf-limits", "type": "repo", "label": "HF Model Provenance Scanner — Limitations", "repo": "poojakira/hf-model-provenance-scanner", "url": "https://github.com/poojakira/hf-model-provenance-scanner/blob/main/LIMITATIONS.md", "path": "LIMITATIONS.md" },
+    { "id": "src-hf-proof", "type": "repo", "label": "HF Model Provenance Scanner — Detection proof (fixtures)", "repo": "poojakira/hf-model-provenance-scanner", "url": "https://github.com/poojakira/hf-model-provenance-scanner/blob/main/evidence/DETECTION_PROOF.md", "path": "evidence/DETECTION_PROOF.md" },
+
+    { "id": "src-llm-readme", "type": "repo", "label": "LLM Red-Team Framework — README", "repo": "poojakira/llm-redteam-framework", "url": "https://github.com/poojakira/llm-redteam-framework", "path": "README.md" },
+    { "id": "src-priv-readme", "type": "repo", "label": "Model Privacy Attacks — README", "repo": "poojakira/model-privacy-attacks", "url": "https://github.com/poojakira/model-privacy-attacks", "path": "README.md" },
+    { "id": "src-adv-readme", "type": "repo", "label": "Adversarial ML Lab — README", "repo": "poojakira/adversarial-ml-lab", "url": "https://github.com/poojakira/adversarial-ml-lab", "path": "README.md" },
+    { "id": "src-adv-threat", "type": "repo", "label": "Adversarial ML Lab — Threat model", "repo": "poojakira/adversarial-ml-lab", "url": "https://github.com/poojakira/adversarial-ml-lab/blob/main/THREAT_MODEL.md", "path": "THREAT_MODEL.md" },
+    { "id": "src-ds-readme", "type": "repo", "label": "Dataset Poisoning Detector — README", "repo": "poojakira/dataset-poisoning-detector", "url": "https://github.com/poojakira/dataset-poisoning-detector", "path": "README.md" },
+    { "id": "src-pulse-archive", "type": "repo", "label": "PulseNet RUL Forecasting — Archive decision record", "repo": "poojakira/PulseNet-RUL-Forecasting", "url": "https://github.com/poojakira/PulseNet-RUL-Forecasting/blob/main/ARCHIVE.md", "path": "ARCHIVE.md" },
+
+    { "id": "src-pub-ieee", "type": "publication", "label": "IEEE Xplore 2024 — Personalized E-learning via RL through Satellite", "url": "https://ieeexplore.ieee.org/document/10440852" },
+    { "id": "src-pub-iosr", "type": "publication", "label": "IOSR-JCE 2023 — Smart Charge Pro (EV charging infrastructure)", "url": "https://www.iosrjournals.org/iosr-jce/pages/25(4)Series-1.html" }
+  ],
+
+  "themes": [
+    { "id": "theme-agent", "name": "Agentic AI & Tool Security", "blurb": "Inspecting and constraining the moment an AI agent turns a decision into a tool call.", "projects": ["mcp-agent-security-gateway", "aws-agent-identity-guard"], "provenance": ["src-mcp-readme", "src-aig-readme"] },
+    { "id": "theme-iam", "name": "IAM & Least Privilege", "blurb": "Static, deterministic checks that stop over-broad cloud permissions before agent workloads deploy.", "projects": ["aws-agent-identity-guard"], "provenance": ["src-aig-readme", "src-aig-threat"] },
+    { "id": "theme-supply", "name": "Model Supply-Chain Security", "blurb": "Treating model artifacts as software crossing a trust boundary: provenance, unsafe formats, impersonation.", "projects": ["hf-model-provenance-scanner"], "provenance": ["src-hf-readme"] },
+    { "id": "theme-llm", "name": "LLM Security & Evaluation", "blurb": "Honest, distribution-aware evaluation of prompt-injection and jailbreak detection.", "projects": ["llm-redteam-framework"], "provenance": ["src-llm-readme"] },
+    { "id": "theme-ml", "name": "Adversarial & Privacy ML", "blurb": "Robustness and privacy attacks used as measurement, mapped to MITRE ATLAS and NIST AI RMF.", "projects": ["adversarial-ml-lab", "model-privacy-attacks", "dataset-poisoning-detector"], "provenance": ["src-adv-readme", "src-priv-readme", "src-ds-readme"] },
+    { "id": "theme-detection", "name": "Detection Engineering & Mapping", "blurb": "Findings mapped to MITRE ATT&CK v19 / ATLAS with a shared mapping layer and Navigator export.", "projects": ["hf-model-provenance-scanner", "llm-redteam-framework", "model-privacy-attacks"], "provenance": ["src-hf-readme", "src-llm-readme"] }
+  ],
+
+  "trajectory": [
+    { "stage": 1, "label": "Model artifact provenance", "detail": "Check where a model came from and whether its files are safe before it is trusted.", "projects": ["hf-model-provenance-scanner"] },
+    { "stage": 2, "label": "LLM behavior evaluation", "detail": "Measure detector generalization honestly, in and out of distribution.", "projects": ["llm-redteam-framework"] },
+    { "stage": 3, "label": "Agent tool-call boundary", "detail": "Inspect and gate the handoff from agent intent to executed tool action.", "projects": ["mcp-agent-security-gateway"] },
+    { "stage": 4, "label": "Cloud identity & least privilege", "detail": "Constrain what an agent's cloud role can actually do before deployment.", "projects": ["aws-agent-identity-guard"] }
+  ],
+
+  "projects": [
+    {
+      "id": "mcp-agent-security-gateway",
+      "name": "MCP Agent Security Gateway",
+      "repo": "poojakira/mcp-agent-security-gateway",
+      "url": "https://github.com/poojakira/mcp-agent-security-gateway",
+      "tagline": "Security controls for MCP tool calls, agent-to-tool interactions, and AI-agent execution boundaries.",
+      "role": "built",
+      "prominence": "flagship",
+      "themes": ["theme-agent", "theme-llm", "theme-detection"],
+      "stars": 17, "forks": 5, "language": "Python", "status": "Active prototype / security-boundary work",
+      "problem": "When an AI agent can invoke MCP tools, read files, call APIs, reach databases, or touch cloud and internal services, prompt filtering is no longer the whole security boundary. The risky moment is between the agent deciding to use a tool and that action actually executing.",
+      "context": "MCP (Model Context Protocol) lets agents call tools. This project places explicit inspection, policy, and observability around that agent-to-tool boundary rather than only inspecting prompts.",
+      "threat_model": {
+        "assets": ["Private data", "Credentials", "Outbound network access", "Audit-log integrity", "Downstream MCP servers"],
+        "actors": ["A compromised or manipulated agent", "An attacker who can influence prompt text, tool metadata, tool arguments, or tool output"],
+        "surfaces": ["MCP tools/call requests", "Tool arguments", "Tool output returned to the agent", "MCP server identity/capability", "Network egress destinations"],
+        "boundaries": ["Agent/MCP client to gateway", "Gateway to downstream MCP server", "Process and network egress boundary"],
+        "threats": [
+          { "t": "Prompt injection carried in tool arguments", "mitigation": "Argument inspection with Unicode/encoded-payload normalization and injection indicators", "residual": "Detection is signal-based; novel obfuscation can evade" },
+          { "t": "Sensitive-data / PII exfiltration via tool calls or outputs", "mitigation": "PII and sensitive-data signals, exfiltration indicators, tool-output inspection", "residual": "No guarantee of catching all encodings" },
+          { "t": "Shadow / unregistered MCP server use", "mitigation": "MCP server trust and capability checks", "residual": "Depends on configured expectations" },
+          { "t": "Disallowed network egress", "mitigation": "Network-egress policy decisions", "residual": "Only for traffic observed by the gateway" },
+          { "t": "Repudiation of a security decision", "mitigation": "SHA-256 hash-chained audit logging and write-ahead logging", "residual": "Log storage integrity is the operator's responsibility" }
+        ]
+      },
+      "architecture": {
+        "summary": "Three runtime surfaces share security components: an inline MCP stdio proxy, a real-time control plane (port 8000), and a separate HTTP inspection service (port 8080). tools/call requests are parsed, normalized, inspected, and allowed or blocked before reaching the downstream server.",
+        "nodes": [
+          { "id": "client", "label": "AI Agent / MCP Client", "kind": "actor" },
+          { "id": "proxy", "label": "Inline MCP stdio Proxy", "kind": "control" },
+          { "id": "plane", "label": "Real-Time Control Plane :8000", "kind": "control" },
+          { "id": "http", "label": "HTTP Inspection Service :8080", "kind": "control" },
+          { "id": "pipeline", "label": "5-Layer Decision Pipeline", "kind": "process" },
+          { "id": "audit", "label": "Hash-chained Audit Log", "kind": "store" },
+          { "id": "server", "label": "Downstream MCP Server", "kind": "sink" }
+        ],
+        "edges": [
+          { "from": "client", "to": "proxy", "label": "JSON-RPC over stdio" },
+          { "from": "client", "to": "plane", "label": "telemetry / decisions" },
+          { "from": "client", "to": "http", "label": "inspection requests" },
+          { "from": "proxy", "to": "pipeline", "label": "parse + normalize + inspect" },
+          { "from": "pipeline", "to": "audit", "label": "record decision" },
+          { "from": "proxy", "to": "server", "label": "allowed request only" }
+        ]
+      },
+      "implementation": [
+        "Real inline MCP stdio proxy (python -m mcp_monitor.proxy.stdio_proxy) that sits between client and downstream server",
+        "JSON-RPC 2.0 parsing; identifies tools/call; passes through normal protocol messages (initialize, tools/list)",
+        "Inline allow/block: a blocking decision returns a JSON-RPC security error and the request is never forwarded",
+        "Prompt-injection detection with Unicode and encoded-payload normalization",
+        "MCP server trust and capability checks; PII/sensitive-data signals; exfiltration indicators; tool-output inspection",
+        "Multi-layer (5-layer) policy evaluation; process-event evaluation; network-egress policy decisions",
+        "SHA-256 hash-chained audit logging and write-ahead logging; tracing and metrics",
+        "Rate limiting, circuit breakers, and a shadow mode",
+        "Docker and Kubernetes deployment templates; adversarial and regression testing"
+      ],
+      "controls": ["Inline allow/block enforcement", "Hash-chained audit logging", "Rate limiting", "Circuit breakers", "Shadow mode", "Egress policy"],
+      "testing": ["Repository tests cover visible payload behavior", "Adversarial and regression tests", "Latency benchmark script (benchmark/tool_call_latency.py) and locustfile present"],
+      "results": ["Adoption signal: 17 stars and 5 forks on the public repository (verified on the GitHub profile)"],
+      "tradeoffs": ["Inline enforcement adds latency to the tool-call path", "Signal-based detection favors coverage of known patterns over guarantees"],
+      "limitations": [
+        "Controls only traffic routed through the monitor/proxy; not a substitute for network or kernel-level enforcement",
+        "No production-traffic claim; public claims are treated as prototype/security-boundary evidence",
+        "The stdio path focuses on JSON-RPC parsing and prompt-injection-oriented tool-argument inspection"
+      ],
+      "lessons": ["Agent security must move beyond prompt inspection toward action-aware controls at the tool boundary"],
+      "mappings": { "attack": ["Prompt-injection and exfiltration indicators are the detection focus"], "atlas": [], "nist": [] },
+      "evidence": [
+        { "claim": "Inline MCP stdio proxy with inline allow/block", "sourceId": "src-mcp-readme", "note": "README: 'Inline MCP stdio Proxy' section", "confidence": "high" },
+        { "claim": "Three runtime surfaces: stdio proxy, control plane :8000, HTTP inspection :8080", "sourceId": "src-mcp-readme", "note": "README architecture diagram", "confidence": "high" },
+        { "claim": "SHA-256 hash-chained audit logging", "sourceId": "src-mcp-readme", "note": "README 'What I Built'", "confidence": "high" },
+        { "claim": "17 stars, 5 forks", "sourceId": "src-github", "note": "Pinned repo metadata on live profile", "confidence": "high" },
+        { "claim": "Controls only traffic routed through the monitor/proxy", "sourceId": "src-mcp-readme", "note": "README limitations", "confidence": "high" }
+      ]
+    },
+
+    {
+      "id": "aws-agent-identity-guard",
+      "name": "AWS Agent Identity Guard",
+      "repo": "poojakira/aws-agent-identity-guard",
+      "url": "https://github.com/poojakira/aws-agent-identity-guard",
+      "tagline": "Static IAM policy checks for AWS roles used by AI agents and tool executors.",
+      "role": "built",
+      "prominence": "flagship",
+      "themes": ["theme-iam", "theme-agent"],
+      "stars": 0, "forks": 1, "language": "Python", "status": "Static linter (0.1.0) with STRIDE threat model",
+      "problem": "AI agents and tool executors can turn over-broad cloud permissions into real actions: invoking Lambda, assuming roles, changing Bedrock/SageMaker control-plane resources, reading secrets, or disabling audit trails.",
+      "context": "The tool checks IAM policy JSON for agent-specific risk patterns before deployment. It is intentionally narrower than account-wide posture tools and focuses on pre-deploy review of agent roles.",
+      "threat_model": {
+        "assets": ["IAM policy documents", "AWS account ID and role/user names", "AWS credentials (live mode) — never stored by the tool", "SARIF output file"],
+        "actors": ["An operator running the linter", "An attacker who could supply a crafted policy or tamper with output"],
+        "surfaces": ["Input policy JSON file", "AWS IAM read-only APIs (live mode)", "CI pipeline invocation"],
+        "boundaries": ["File system (read one JSON file)", "AWS IAM API (read-only, no mutate)", "CI pipeline", "Operator"],
+        "threats": [
+          { "t": "Crafted policy JSON misreports severity", "mitigation": "Parsing via stdlib json.loads; no eval/exec; malformed JSON exits 2", "residual": "Partial — best-effort linter, not a full IAM semantics engine" },
+          { "t": "Supply-chain compromise of GitHub Actions", "mitigation": "All actions pinned to commit SHAs; pip-audit in CI", "residual": "Mitigated" },
+          { "t": "Live scanner mutates IAM resources", "mitigation": "No write IAM APIs; read-only permissions only (iam:List*, iam:Get*, sts:GetCallerIdentity)", "residual": "Mitigated" },
+          { "t": "Excessive role enumeration / API throttling", "mitigation": "max_roles=500 cap; boto3 exponential backoff; ClientError caught", "residual": "Handled" }
+        ]
+      },
+      "architecture": {
+        "summary": "A CLI reads local IAM policy JSON (or enumerates roles/users read-only in live mode) and runs a deterministic rule engine, emitting text, JSON, or SARIF. Exit code 1 on any high/critical finding lets CI use it as a merge gate.",
+        "nodes": [
+          { "id": "policy", "label": "IAM policy JSON", "kind": "actor" },
+          { "id": "cli", "label": "CLI (argparse + json.loads)", "kind": "control" },
+          { "id": "engine", "label": "Rule engine (25 rules)", "kind": "process" },
+          { "id": "live", "label": "Live boto3 scan (read-only)", "kind": "control" },
+          { "id": "out", "label": "Text / JSON / SARIF", "kind": "sink" }
+        ],
+        "edges": [
+          { "from": "policy", "to": "cli", "label": "read file" },
+          { "from": "cli", "to": "engine", "label": "scan_policy_document / scan_trust_policy" },
+          { "from": "live", "to": "engine", "label": "collected policies (read-only IAM APIs)" },
+          { "from": "engine", "to": "out", "label": "findings + remediation" }
+        ]
+      },
+      "implementation": [
+        "25 deterministic rules across identity policies, trust policies, and permission-boundary presence",
+        "Rule IDs AIG001–AIG021 (identity), AIG-TP001–AIG-TP003 (trust policies), AIG-PB001 (permission boundary)",
+        "Text, JSON, and SARIF output; SARIF uploads to GitHub Code Scanning for inline PR findings",
+        "Zero runtime dependencies for static local-file scanning; optional boto3 live-account scan",
+        "Exit code 1 on high/critical findings so a CI workflow can gate merges"
+      ],
+      "controls": [
+        "AIG002 CRITICAL: wildcard service prefix (bedrock:*, s3:*)",
+        "AIG004 CRITICAL: iam:PassRole without iam:PassedToService condition",
+        "AIG005 CRITICAL: privilege-management actions (iam:AttachRolePolicy, etc.)",
+        "AIG011 CRITICAL: audit-trail tampering (cloudtrail:StopLogging, GuardDuty, Config)",
+        "AIG019/020/021: credential-harvest + metadata + lateral-movement combinations",
+        "AIG-TP001 CRITICAL: wildcard principal in trust policy",
+        "AIG014 HIGH: S3 write/delete without key-prefix scoping"
+      ],
+      "testing": ["Deterministic rule tests in tests/ (run isolated with PYTEST_DISABLE_PLUGIN_AUTOLOAD=1)", "pip-audit in CI; GitHub Actions pinned to commit SHAs"],
+      "results": ["Produces reviewable, remediation-oriented findings with exit codes suitable for CI gating"],
+      "tradeoffs": ["Intentionally narrow: pre-deploy agent-role review, not account-wide posture"],
+      "limitations": [
+        "Static linter: does not call AWS in default mode and does not prove an agent is safe",
+        "Not a replacement for IAM Access Analyzer, Prowler, Parliament, CloudTrail, Security Hub, or threat modeling",
+        "False negatives are an accepted residual risk; use IAM Access Analyzer for complete analysis"
+      ],
+      "lessons": ["A small set of deterministic, agent-specific rules with SARIF output can act as a practical pre-deploy gate without cloud access"],
+      "mappings": { "attack": [], "atlas": [], "nist": [] },
+      "evidence": [
+        { "claim": "25 deterministic IAM rules with the listed rule IDs", "sourceId": "src-aig-readme", "note": "README 'What It Catches: 25 rules' table", "confidence": "high" },
+        { "claim": "Text, JSON, and SARIF output; SARIF to GitHub Code Scanning", "sourceId": "src-aig-readme", "note": "README 'Output Formats' and 'CI Integration'", "confidence": "high" },
+        { "claim": "STRIDE threat model; live mode uses read-only IAM APIs only", "sourceId": "src-aig-threat", "note": "THREAT_MODEL.md sections 1 and 3 (Elevation of Privilege)", "confidence": "high" },
+        { "claim": "Static linter, not a replacement for Access Analyzer/Prowler/Parliament", "sourceId": "src-aig-readme", "note": "README intro + 'Relationship to Other IAM Tools'", "confidence": "high" }
+      ]
+    },
+
+    {
+      "id": "hf-model-provenance-scanner",
+      "name": "HF Model Provenance Scanner",
+      "repo": "poojakira/hf-model-provenance-scanner",
+      "url": "https://github.com/poojakira/hf-model-provenance-scanner",
+      "tagline": "Scan Hugging Face model repos for provenance, impersonation, pickle-risk, and supply-chain signals.",
+      "role": "built",
+      "prominence": "flagship",
+      "themes": ["theme-supply", "theme-detection"],
+      "stars": 0, "forks": 0, "language": "Python", "status": "Research scanner with committed regression fixtures",
+      "problem": "ML model artifacts can become an attack surface before inference: unsafe serialization, repository impersonation, suspicious metadata, and missing provenance signals.",
+      "context": "The scanner treats model artifacts like software entering a security boundary and emits findings mapped to MITRE ATT&CK v19 for local review or CI.",
+      "threat_model": {
+        "assets": ["Model weight files", "Tokenizer / loader code", "Model card metadata", "Hugging Face tokens"],
+        "actors": ["An attacker who can publish or modify files in a model repository", "An impersonator of a trusted organization"],
+        "surfaces": ["Pickle-derived files", "SafeTensors / GGUF / ONNX / Keras files", "Python/config/dependency files", "Model card text", "Repository naming"],
+        "boundaries": ["Untrusted model repository to local/CI review boundary"],
+        "threats": [
+          { "t": "Unsafe deserialization (pickle) leading to code execution", "mitigation": "Pickle-risk detection across pickle-derived formats", "residual": "Format support does not imply complete attack coverage" },
+          { "t": "Typosquatted / impersonating model repositories", "mitigation": "Impersonation and naming signals", "residual": "Signal-based" },
+          { "t": "Missing provenance / signature / SBOM", "mitigation": "Flags missing markers as a risk signal", "residual": "Missing evidence is a risk signal, not proof of compromise" },
+          { "t": "Token exposure", "mitigation": "HF token exposure detection", "residual": "Signal-based" }
+        ]
+      },
+      "architecture": {
+        "summary": "The scanner reviews repository files, produces findings with MITRE ATT&CK v19 mappings, and can export an ATT&CK Navigator layer. It integrates as a GitHub Action and a pre-commit hook.",
+        "nodes": [
+          { "id": "repo", "label": "Model Repository", "kind": "actor" },
+          { "id": "scan", "label": "Format + provenance scanners", "kind": "process" },
+          { "id": "map", "label": "ATT&CK v19 mapping", "kind": "process" },
+          { "id": "findings", "label": "Findings + Navigator layer", "kind": "sink" },
+          { "id": "ci", "label": "CI / pre-commit / local review", "kind": "sink" }
+        ],
+        "edges": [
+          { "from": "repo", "to": "scan", "label": "files" },
+          { "from": "scan", "to": "map", "label": "raw findings" },
+          { "from": "map", "to": "findings", "label": "mapped findings" },
+          { "from": "findings", "to": "ci", "label": "review / gate" }
+        ]
+      },
+      "implementation": [
+        "Format coverage implemented in code: Python, shell/config/dependency files, pickle-derived files, SafeTensors, GGUF, ONNX, and Keras paths",
+        "Provenance checks: missing signature, SBOM, and provenance markers can be flagged",
+        "Findings mapped to MITRE ATT&CK v19 with 10 HF-specific finding→technique mappings",
+        "ATT&CK Navigator layer export (python -m attack_mapping.reporter)",
+        "GitHub Action and pre-commit hook integrations"
+      ],
+      "controls": ["Pickle-risk detection", "Provenance-marker checks", "Impersonation/typosquat signals", "Token-exposure detection", "ATT&CK v19 finding schema"],
+      "testing": ["tests/redteam/ contains fixture scripts and reports", "evidence/DETECTION_PROOF.md records fixture reproductions"],
+      "results": ["Fixture suite reports 12 of 12 core incident reproductions detected — fixture evidence only"],
+      "tradeoffs": ["Broad format coverage vs. depth of any single format's attack surface"],
+      "limitations": [
+        "Fixture pass rates must not be generalized to real-world detection rates",
+        "No P99 latency artifact is committed; do not claim latency numbers",
+        "No broad clean-model false-positive benchmark; do not claim 0% false positives",
+        "Missing evidence is a risk signal, not proof of compromise"
+      ],
+      "lessons": ["Supply-chain risk is best expressed as reviewable signals with explicit evidence boundaries, not as certainty"],
+      "mappings": {
+        "attack": ["T1195.001 Supply Chain: Software Dependencies", "T1059.006 Python", "T1036.005 Masquerading", "T1552.001 Credentials in Files", "T1041 Exfiltration Over C2"],
+        "atlas": [], "nist": []
+      },
+      "evidence": [
+        { "claim": "Formats implemented: pickle-derived, SafeTensors, GGUF, ONNX, Keras, plus Python/config/dependency", "sourceId": "src-hf-readme", "note": "README 'Current Evidence Boundaries' table", "confidence": "high" },
+        { "claim": "Findings mapped to MITRE ATT&CK v19; Navigator layer export", "sourceId": "src-hf-readme", "note": "README 'MITRE ATT&CK v19 Coverage' and mappings table", "confidence": "high" },
+        { "claim": "12/12 core incident fixture reproductions (fixture evidence only)", "sourceId": "src-hf-proof", "note": "evidence/DETECTION_PROOF.md; scoped as fixtures in LIMITATIONS.md", "confidence": "high" },
+        { "claim": "No 0% false-positive or latency claim", "sourceId": "src-hf-limits", "note": "README boundaries + LIMITATIONS.md", "confidence": "high" }
+      ]
+    },
+
+    {
+      "id": "llm-redteam-framework",
+      "name": "LLM Red-Team Framework",
+      "repo": "poojakira/llm-redteam-framework",
+      "url": "https://github.com/poojakira/llm-redteam-framework",
+      "tagline": "Generate adversarial prompts and evaluate an offline detector for LLM red-team experiments.",
+      "role": "built",
+      "prominence": "supporting",
+      "themes": ["theme-llm", "theme-detection"],
+      "stars": 0, "forks": 0, "language": "Python", "status": "Offline research baseline",
+      "problem": "A detector that performs well on familiar examples may fail against unseen attack styles. The responsible question is not only 'what is the score?' but 'what distribution produced it?'",
+      "context": "The framework generates adversarial prompts, groups related templates, evaluates an offline detector, and exports SARIF-oriented findings mapped to MITRE ATT&CK v19 and OWASP LLM risks.",
+      "threat_model": {
+        "assets": ["Prompt-injection detector quality claims"],
+        "actors": ["An attacker who rephrases, obfuscates, manipulates context boundaries, or escalates across turns"],
+        "surfaces": ["Prompt text", "Context boundaries", "Multi-turn conversations"],
+        "boundaries": ["In-distribution vs out-of-distribution evaluation split"],
+        "threats": [
+          { "t": "Detector memorizes generator templates and overstates generalization", "mitigation": "Grouped / out-of-distribution evaluation split", "residual": "The offline detector remains a first-pass baseline" }
+        ]
+      },
+      "architecture": {
+        "summary": "Generate prompts → group related templates → evaluate an offline detector → measure → analyze failures, with SARIF export and ATT&CK/OWASP mapping.",
+        "nodes": [
+          { "id": "gen", "label": "Prompt generation", "kind": "process" },
+          { "id": "group", "label": "Template grouping", "kind": "process" },
+          { "id": "detector", "label": "Offline detector (TF-IDF + LogReg)", "kind": "control" },
+          { "id": "measure", "label": "Grouped / OOD evaluation", "kind": "process" },
+          { "id": "report", "label": "SARIF findings + failure analysis", "kind": "sink" }
+        ],
+        "edges": [
+          { "from": "gen", "to": "group", "label": "templates" },
+          { "from": "group", "to": "detector", "label": "prompts" },
+          { "from": "detector", "to": "measure", "label": "predictions" },
+          { "from": "measure", "to": "report", "label": "metrics + failures" }
+        ]
+      },
+      "implementation": [
+        "Adversarial prompt generation and template grouping",
+        "Offline detector using TF-IDF features with Logistic Regression",
+        "Grouped / out-of-distribution evaluation to expose generalization gaps",
+        "SARIF-oriented reporting; MITRE ATT&CK v19 and OWASP LLM mappings"
+      ],
+      "controls": ["Grouped / OOD evaluation split", "Failure-mode documentation"],
+      "testing": ["Evaluation scripts under tests/redteam/", "Coverage gate configured in the repo"],
+      "results": ["Honest operational number: F1 around 0.70 on out-of-distribution transfer evaluation"],
+      "tradeoffs": ["A simple TF-IDF/LogReg detector is transparent and fast but is not a semantic defense"],
+      "limitations": [
+        "TF-IDF + Logistic Regression are not semantic defenses; this is a research baseline, not a production prompt-injection defense",
+        "The project does not test actual LLMs",
+        "The README's in-distribution metric table (e.g., higher jailbreak/injection numbers) is tied to eval scripts and is not treated here as an independently reproduced benchmark; the out-of-distribution F1 ~0.70 is the number presented as honest"
+      ],
+      "lessons": ["Evaluation is part of the security system: without grouped/OOD testing a metric can look better than the detector's real generalization"],
+      "mappings": {
+        "attack": ["T1685 (jailbreak / refusal bypass)", "T1683 Generate Content", "T1682 Query Public AI Services", "T1684/001 Impersonation"],
+        "atlas": [], "nist": []
+      },
+      "evidence": [
+        { "claim": "Offline TF-IDF + Logistic Regression detector with grouped/OOD evaluation", "sourceId": "src-llm-readme", "note": "README; existing site evidence policy", "confidence": "high" },
+        { "claim": "Honest headline: F1 ~0.70 out-of-distribution transfer", "sourceId": "src-provenance", "note": "Evidence policy: OOD limitation is the number to present, not in-distribution table values", "confidence": "high" },
+        { "claim": "Does not test actual LLMs; research baseline only", "sourceId": "src-llm-readme", "note": "README framing + provenance registry limitations", "confidence": "high" }
+      ]
+    },
+
+    {
+      "id": "model-privacy-attacks",
+      "name": "Model Privacy Attacks",
+      "repo": "poojakira/model-privacy-attacks",
+      "url": "https://github.com/poojakira/model-privacy-attacks",
+      "tagline": "Measure membership-inference and model-privacy attack risk on ML classifiers.",
+      "role": "researched",
+      "prominence": "supporting",
+      "themes": ["theme-ml", "theme-detection"],
+      "stars": 0, "forks": 0, "language": "Python", "status": "Research library",
+      "problem": "Trained models can leak whether a record was in their training set or expose sensitive attributes.",
+      "context": "A research library that evaluates membership-inference, model-stealing, and attribute-inference risk on ML classifiers, with findings mapped to MITRE ATT&CK v19.",
+      "threat_model": {
+        "assets": ["Training-set membership", "Sensitive attributes", "Model behavior"],
+        "actors": ["An attacker with query access to a model"],
+        "surfaces": ["Model outputs / confidence scores"],
+        "boundaries": ["Query-access boundary to a trained model"],
+        "threats": [
+          { "t": "Membership inference reveals training-set records", "mitigation": "Risk measurement + epsilon verification script", "residual": "No DP or advantage metric claimed without benchmark-suite evidence" }
+        ]
+      },
+      "architecture": {
+        "summary": "Runs privacy attacks against ML classifiers and reports risk, with an epsilon-verification script and ATT&CK v19 mappings.",
+        "nodes": [
+          { "id": "model", "label": "Target classifier", "kind": "actor" },
+          { "id": "attack", "label": "MIA / stealing / attribute inference", "kind": "process" },
+          { "id": "verify", "label": "Epsilon verification", "kind": "process" },
+          { "id": "out", "label": "Risk findings", "kind": "sink" }
+        ],
+        "edges": [
+          { "from": "model", "to": "attack", "label": "queries" },
+          { "from": "attack", "to": "verify", "label": "measurements" },
+          { "from": "verify", "to": "out", "label": "findings" }
+        ]
+      },
+      "implementation": [
+        "Membership-inference, model-stealing, and attribute-inference evaluation on ML classifiers",
+        "Epsilon verification script (scripts/verify_epsilon.py) with a results artifact",
+        "MITRE ATT&CK v19 finding→technique mappings"
+      ],
+      "controls": ["Risk measurement", "Epsilon verification"],
+      "testing": ["tests/test_assess.py", "benchmark/run_sklearn_benchmark.py"],
+      "results": ["Provides a measurement harness; no privacy-advantage / AUROC metric is claimed on the site without current raw-evidence review"],
+      "tradeoffs": ["Focuses on classic classifiers rather than large models"],
+      "limitations": ["No privacy attack advantage, AUROC, DP, or uncertainty metric is claimed without benchmark-suite evidence"],
+      "lessons": ["Privacy risk should be measured, then bounded — measurement precedes any guarantee"],
+      "mappings": { "attack": ["T1005 Data from Local System", "T1213.002 Data from Information Repositories"], "atlas": [], "nist": [] },
+      "evidence": [
+        { "claim": "Membership-inference / model-stealing / attribute-inference evaluation", "sourceId": "src-priv-readme", "note": "README 'Model Privacy Attacks Specific Mappings'", "confidence": "high" },
+        { "claim": "No metric claimed without benchmark-suite evidence", "sourceId": "src-provenance", "note": "claims/registry.json limitations", "confidence": "high" }
+      ]
+    },
+
+    {
+      "id": "adversarial-ml-lab",
+      "name": "Adversarial ML Lab",
+      "repo": "poojakira/adversarial-ml-lab",
+      "url": "https://github.com/poojakira/adversarial-ml-lab",
+      "tagline": "FGSM / PGD / C&W adversarial robustness benchmark harness — maps to MITRE ATLAS.",
+      "role": "built",
+      "prominence": "supporting",
+      "themes": ["theme-ml"],
+      "stars": 0, "forks": 0, "language": "Python", "status": "Prototype research library",
+      "problem": "Models deployed in adversarial environments (fraud, moderation, biometric auth) can be evaded by small, crafted perturbations.",
+      "context": "A reproducible adversarial-robustness benchmarking harness that implements classic attacks and produces structured output for security design review. Maps to MITRE ATLAS AML.T0015 (Evade ML Model) and NIST AI RMF MANAGE 2.4.",
+      "threat_model": {
+        "assets": ["Model prediction integrity"],
+        "actors": ["An attacker crafting adversarial examples"],
+        "surfaces": ["Model inputs"],
+        "boundaries": ["Clean vs adversarial input evaluation"],
+        "threats": [
+          { "t": "Evasion via FGSM/PGD/C&W perturbations", "mitigation": "Benchmark runner quantifies vulnerability; CI gate confirms attacks work on a dummy model", "residual": "Defenses are not implemented in this repo" }
+        ]
+      },
+      "architecture": {
+        "summary": "Unified attack implementations (FGSM, PGD, C&W) feed a benchmark runner that emits structured JSON reports for security design review.",
+        "nodes": [
+          { "id": "model", "label": "Target model", "kind": "actor" },
+          { "id": "attacks", "label": "FGSM / PGD / C&W", "kind": "process" },
+          { "id": "runner", "label": "Benchmark runner", "kind": "process" },
+          { "id": "report", "label": "Structured JSON report", "kind": "sink" }
+        ],
+        "edges": [
+          { "from": "model", "to": "attacks", "label": "inputs" },
+          { "from": "attacks", "to": "runner", "label": "adversarial results" },
+          { "from": "runner", "to": "report", "label": "JSON for review" }
+        ]
+      },
+      "implementation": [
+        "FGSM (Goodfellow 2014, L∞), PGD (Madry 2018, iterative L∞), and C&W (Carlini 2017, L2) implemented and unit-tested",
+        "Benchmark runner producing structured JSON + CLI output",
+        "Maps to MITRE ATLAS AML.T0015 and NIST AI RMF MANAGE 2.4"
+      ],
+      "controls": ["CI gate enforcing PGD robust accuracy < 30% on a dummy model (confirms attacks work)"],
+      "testing": ["Attacks are unit-tested for their math properties"],
+      "results": ["Attack implementations are unit-tested; benchmark output is structured for design-review attachment"],
+      "tradeoffs": ["Classic, well-understood attacks over novelty; transparency over breadth"],
+      "limitations": [
+        "CIFAR-10 benchmark artifacts are NOT committed (runs against a dummy CNN; no pretrained weights)",
+        "Adversarial-training and randomized-smoothing defenses are NOT implemented",
+        "Defense ROI table values are drawn from the literature, not measured in this repo",
+        "Not published on PyPI"
+      ],
+      "lessons": ["A robustness number is only meaningful with its model and threat scope attached"],
+      "mappings": { "attack": [], "atlas": ["AML.T0015 Evade ML Model", "AML.T0043"], "nist": ["MANAGE 2.4"] },
+      "evidence": [
+        { "claim": "FGSM/PGD/C&W implemented and unit-tested", "sourceId": "src-adv-readme", "note": "README 'Current Status' table", "confidence": "high" },
+        { "claim": "Benchmark artifacts not committed; defenses not implemented; ROI values from literature", "sourceId": "src-adv-readme", "note": "README 'Honest framing' and status table", "confidence": "high" },
+        { "claim": "Maps to MITRE ATLAS AML.T0015 and NIST AI RMF MANAGE 2.4", "sourceId": "src-adv-readme", "note": "README 'Purpose'", "confidence": "high" }
+      ]
+    },
+
+    {
+      "id": "dataset-poisoning-detector",
+      "name": "Dataset Poisoning Detector",
+      "repo": "poojakira/dataset-poisoning-detector",
+      "url": "https://github.com/poojakira/dataset-poisoning-detector",
+      "tagline": "Flag suspicious samples in ML training data — a screening tool, not a silver bullet.",
+      "role": "researched",
+      "prominence": "supporting",
+      "themes": ["theme-ml"],
+      "stars": 0, "forks": 0, "language": "Python", "status": "Research baseline (near-random on benchmark)",
+      "problem": "Poisoned training samples can degrade or backdoor a model, but many poisoning attacks leave input features unchanged.",
+      "context": "A toolkit that runs statistical and density-based anomaly detectors over a feature matrix to surface candidates for human review, wrapped in streaming infrastructure.",
+      "threat_model": {
+        "assets": ["Training-data integrity"],
+        "actors": ["An attacker who injects or relabels training samples"],
+        "surfaces": ["Feature matrix", "Labels"],
+        "boundaries": ["Feature-space anomaly detection boundary"],
+        "threats": [
+          { "t": "Label-flip poisoning that does not change features", "mitigation": "None effective — documented as a fundamental limitation of feature-space detection", "residual": "High: recommend confident-learning / spectral-signature approaches instead" }
+        ]
+      },
+      "architecture": {
+        "summary": "Three detectors (z-score, IQR fencing, Isolation Forest) vote in an ensemble; a Kafka/Redis/FastAPI layer explores what a streaming pipeline would look like.",
+        "nodes": [
+          { "id": "data", "label": "Training feature matrix", "kind": "actor" },
+          { "id": "z", "label": "Z-score", "kind": "process" },
+          { "id": "iqr", "label": "IQR fencing", "kind": "process" },
+          { "id": "iso", "label": "Isolation Forest", "kind": "process" },
+          { "id": "vote", "label": "Majority vote (2 of 3)", "kind": "process" },
+          { "id": "review", "label": "Human review candidates", "kind": "sink" }
+        ],
+        "edges": [
+          { "from": "data", "to": "z", "label": "features" },
+          { "from": "data", "to": "iqr", "label": "features" },
+          { "from": "data", "to": "iso", "label": "features" },
+          { "from": "z", "to": "vote", "label": "flags" },
+          { "from": "iqr", "to": "vote", "label": "flags" },
+          { "from": "iso", "to": "vote", "label": "flags" },
+          { "from": "vote", "to": "review", "label": "candidates" }
+        ]
+      },
+      "implementation": [
+        "Three detection methods: z-score, IQR fencing, Isolation Forest",
+        "Ensemble majority vote (2 of 3 must agree) to reduce false positives",
+        "Kafka / Redis / FastAPI streaming infrastructure around the detector"
+      ],
+      "controls": ["Ensemble voting", "Configurable contamination target"],
+      "testing": ["tests/test_cleanlabel.py", "scripts/eval_detector.py reproduces the benchmark", "results/spectral_benchmark.json"],
+      "results": ["ROC-AUC ~0.53–0.56 on a CIFAR-10 label-flip benchmark — only modestly above random chance"],
+      "tradeoffs": ["Well-engineered streaming pipeline wrapping an algorithm that needs fundamental replacement"],
+      "limitations": [
+        "ROC-AUC ~0.53–0.56 on CIFAR-10 label-flip: near random; positioned as a research baseline, not production detection",
+        "Feature-space anomaly detection cannot catch label-flip attacks that don't change features",
+        "About 5% actual false-positive rate at a 5% target; any 'zero false positives' claim would be a reporting error",
+        "For production use, prefer confident-learning (CleanLab) or spectral signatures"
+      ],
+      "lessons": ["Sound infrastructure cannot rescue a detection approach that is blind to the attack class it faces"],
+      "mappings": { "attack": [], "atlas": [], "nist": [] },
+      "evidence": [
+        { "claim": "ROC-AUC ~0.53–0.56 on CIFAR-10 label-flip (near random)", "sourceId": "src-ds-readme", "note": "README Status + Limitations", "confidence": "high" },
+        { "claim": "Cannot catch feature-preserving label-flip attacks; ~5% FPR", "sourceId": "src-ds-readme", "note": "README Limitations", "confidence": "high" }
+      ]
+    },
+
+    {
+      "id": "PulseNet-RUL-Forecasting",
+      "name": "PulseNet RUL Forecasting",
+      "repo": "poojakira/PulseNet-RUL-Forecasting",
+      "url": "https://github.com/poojakira/PulseNet-RUL-Forecasting",
+      "tagline": "NASA C-MAPSS remaining-useful-life research prototype — archived.",
+      "role": "researched",
+      "prominence": "archived",
+      "themes": ["theme-ml"],
+      "stars": 0, "forks": 0, "language": "Python", "status": "Archived 2026-08-11",
+      "problem": "Predicting remaining useful life of equipment from sensor time series.",
+      "context": "A joint research prototype on the NASA C-MAPSS simulated dataset, retained only as a secure-ML-systems reference.",
+      "threat_model": { "assets": [], "actors": [], "surfaces": [], "boundaries": [], "threats": [] },
+      "architecture": { "summary": "Archived; deployment and portfolio claims withdrawn.", "nodes": [], "edges": [] },
+      "implementation": ["Model and test code retained as a historical experimental reference"],
+      "controls": [],
+      "testing": ["Unit coverage exists; API/collection execution failed during a fresh audit"],
+      "results": ["Archived: no validated deployment, security controls, or field evidence"],
+      "tradeoffs": [],
+      "limitations": [
+        "Archived 2026-08-11; not production-ready",
+        "C-MAPSS is simulated engine-degradation data, not telemetry from a deployed fleet",
+        "A public simulator benchmark does not establish safe maintenance utility on physical equipment"
+      ],
+      "lessons": ["When evidence does not support the claim, the honest move is to archive and say so"],
+      "mappings": { "attack": [], "atlas": [], "nist": [] },
+      "evidence": [
+        { "claim": "Archived 2026-08-11; not production-ready; C-MAPSS is simulated", "sourceId": "src-pulse-archive", "note": "ARCHIVE.md decision + evidence ledger", "confidence": "high" }
+      ]
+    }
+  ],
+
+  "demos": [
+    {
+      "id": "demo-mcp-inspect",
+      "projectId": "mcp-agent-security-gateway",
+      "kind": "tool-call-inspector",
+      "title": "MCP tool-call inspector",
+      "description": "Paste or pick a sample MCP tools/call JSON payload. A deterministic client-side inspector flags prompt-injection indicators, PII/secret signals, encoded payloads, and disallowed egress, then shows an allow/block decision — mirroring the kinds of checks the gateway performs.",
+      "safety_note": "Runs entirely in your browser on sample data. It never executes the payload, calls a network, or contacts any MCP server."
+    },
+    {
+      "id": "demo-iam-analyzer",
+      "projectId": "aws-agent-identity-guard",
+      "kind": "iam-policy-analyzer",
+      "title": "IAM policy analyzer",
+      "description": "Paste an IAM policy JSON (or load a sample). A deterministic client-side rule subset flags over-broad patterns such as wildcard service prefixes, iam:PassRole without a PassedToService condition, audit-tampering actions, and Resource:\"*\" — echoing rules from AWS Agent Identity Guard.",
+      "safety_note": "Static analysis in your browser only. It makes no AWS API calls, uses no credentials, and performs no cloud actions."
+    },
+    {
+      "id": "demo-injection",
+      "projectId": "llm-redteam-framework",
+      "kind": "prompt-injection-detector",
+      "title": "Prompt-injection signal check",
+      "description": "Type a prompt and see which injection-style signals a simple detector would flag (instruction-override phrases, role confusion, exfiltration asks). Illustrates why a transparent baseline needs out-of-distribution evaluation.",
+      "safety_note": "Illustrative, deterministic, and local. This is a teaching aid, not a production defense."
+    }
+  ],
+
+  "resume": {
+    "roles": [
+      {
+        "title": "Cybersecurity Innovation Researcher",
+        "org": "TEM 598 Technology Innovation Lab — Arizona State University x Honeywell Aerospace Innovation Hub",
+        "summary": "Graduate research practicum exploring AI and cybersecurity challenges for aerospace systems.",
+        "evidence": ["src-profile"],
+        "kind": "research"
+      },
+      {
+        "title": "Graduate Teaching Assistant / IT Grader",
+        "org": "Arizona State University",
+        "summary": "Teaching and grading support in an information-technology context.",
+        "evidence": ["src-profile"],
+        "kind": "teaching"
+      }
+    ],
+    "education": [
+      {
+        "credential": "Graduate study — Arizona State University",
+        "note": "Details beyond the public profile are not asserted here; verified education content is added through the professional ingestion layer when supplied.",
+        "evidence": ["src-profile"]
+      }
+    ],
+    "publications": [
+      { "title": "Personalized E-learning System Using Reinforcement Learning Through Satellite", "venue": "IEEE Xplore", "year": 2024, "url": "https://ieeexplore.ieee.org/document/10440852", "evidence": ["src-pub-ieee"] },
+      { "title": "Smart Charge Pro: Empowering Future Mobility With Advanced Safety And Efficiency In Electric Vehicle Charging Infrastructure", "venue": "IOSR Journal of Computer Engineering", "year": 2023, "url": "https://www.iosrjournals.org/iosr-jce/pages/25(4)Series-1.html", "evidence": ["src-pub-iosr"] }
+    ],
+    "provenance": ["src-profile", "src-pub-ieee", "src-pub-iosr"]
+  },
+
+  "skills": [
+    { "name": "Agent / MCP tool-call security", "evidence": ["src-mcp-readme"], "note": "Inline MCP proxy, tools/call inspection, egress and audit controls." },
+    { "name": "IAM & least privilege (AWS)", "evidence": ["src-aig-readme", "src-aig-threat"], "note": "25-rule static linter, SARIF, CI merge gate, STRIDE threat model." },
+    { "name": "Model supply-chain security", "evidence": ["src-hf-readme"], "note": "Pickle/SafeTensors/GGUF/ONNX/Keras scanning, provenance signals." },
+    { "name": "LLM security evaluation", "evidence": ["src-llm-readme"], "note": "Grouped/OOD evaluation of prompt-injection detection." },
+    { "name": "Adversarial ML", "evidence": ["src-adv-readme"], "note": "FGSM/PGD/C&W implemented and unit-tested." },
+    { "name": "ML privacy attacks", "evidence": ["src-priv-readme"], "note": "Membership-inference / model-stealing / attribute-inference evaluation." },
+    { "name": "Detection engineering & MITRE mapping", "evidence": ["src-hf-readme", "src-llm-readme"], "note": "ATT&CK v19 / ATLAS mappings, Navigator export, SARIF." },
+    { "name": "Secure engineering practice", "evidence": ["src-aig-threat", "src-mcp-audit"], "note": "Threat modeling, pinned CI actions, pip-audit, hash-chained audit logs, explicit limitations." },
+    { "name": "Python", "evidence": ["src-github"], "note": "Primary language across all pinned repositories." }
+  ],
+
+  "philosophy": [
+    { "id": "phil-action", "principle": "Secure the action, not just the prompt.", "detail": "The dangerous moment in an agentic system is the handoff from a generated decision to an executed action. Controls belong at that boundary.", "derived_from": ["mcp-agent-security-gateway", "aws-agent-identity-guard"] },
+    { "id": "phil-measure", "principle": "A metric is meaningful only with its scope attached.", "detail": "In-distribution scores, dummy models, and fixtures each have limits. State the distribution and the model before stating the number.", "derived_from": ["llm-redteam-framework", "adversarial-ml-lab", "hf-model-provenance-scanner"] },
+    { "id": "phil-limits", "principle": "A documented weakness beats an undocumented promise.", "detail": "Every project names what it does not do. Archiving PulseNet was the honest outcome of that discipline.", "derived_from": ["dataset-poisoning-detector", "PulseNet-RUL-Forecasting"] },
+    { "id": "phil-least", "principle": "Least privilege is a pre-deploy decision.", "detail": "Over-broad IAM permissions become real actions once an agent holds them; catch them before they ship.", "derived_from": ["aws-agent-identity-guard"] }
+  ],
+
+  "faq": [
+    { "q": "What do you do / what is your focus?", "a": "I build security controls for the moment AI stops generating text and starts taking actions — inspecting agent tool calls, constraining cloud identity for agent workloads, and checking model artifacts before they are trusted.", "evidence": ["src-profile", "src-mcp-readme", "src-aig-readme"], "tags": ["identity", "focus", "about", "who"] },
+    { "q": "What is your strongest or most notable project?", "a": "MCP Agent Security Gateway is the flagship: it inspects and gates MCP tool calls at the agent-to-tool boundary and is the most-adopted repo (17 stars, 5 forks). AWS Agent Identity Guard is the strongest IAM piece: a 25-rule static linter with SARIF output and a STRIDE threat model.", "evidence": ["src-mcp-readme", "src-github", "src-aig-readme"], "tags": ["best", "flagship", "notable", "strongest", "project"] },
+    { "q": "How do you handle prompt injection?", "a": "Two ways. In MCP Agent Security Gateway I inspect tool-call arguments with Unicode/encoded-payload normalization and injection indicators, and can block before forwarding. In LLM Red-Team Framework I evaluate a detector with grouped/out-of-distribution splits so its generalization isn't overstated.", "evidence": ["src-mcp-readme", "src-llm-readme"], "tags": ["prompt injection", "injection", "llm", "mcp"] },
+    { "q": "What is your IAM / least-privilege work?", "a": "AWS Agent Identity Guard is a static IAM linter with 25 deterministic rules for agent roles — wildcard prefixes, iam:PassRole without conditions, audit-tampering, credential-harvest chains — with text/JSON/SARIF output and a CI merge gate. It runs with no AWS credentials by default.", "evidence": ["src-aig-readme", "src-aig-threat"], "tags": ["iam", "least privilege", "aws", "policy"] },
+    { "q": "What about model supply-chain security?", "a": "HF Model Provenance Scanner treats model files as software crossing a trust boundary: it checks pickle-derived, SafeTensors, GGUF, ONNX, and Keras files plus provenance markers, and maps findings to MITRE ATT&CK v19. Its strongest evidence is a 12/12 core-incident fixture suite — labeled as fixture evidence, not a real-world detection rate.", "evidence": ["src-hf-readme", "src-hf-proof"], "tags": ["supply chain", "provenance", "hugging face", "pickle", "model"] },
+    { "q": "Can I see the evidence / prove it?", "a": "Yes. Every substantive claim on this site links to its source repository, file, or section. Use the 'Prove it' action on any answer, or open a project to see problem, threat model, controls, testing, results, and limitations with links.", "evidence": ["src-github", "src-provenance"], "tags": ["evidence", "prove", "source", "verify"] },
+    { "q": "What are you exploring or currently learning?", "a": "The through-line I'm extending is action-aware AI security: connecting the agent tool boundary (MCP gateway) with cloud identity constraints (IAM guard) and detection mappings to MITRE ATT&CK / ATLAS. I present these as active engineering, not finished products.", "evidence": ["src-mcp-readme", "src-aig-readme"], "tags": ["exploring", "learning", "future", "next"] },
+    { "q": "What is your experience and education?", "a": "Cybersecurity Innovation Researcher in ASU's TEM 598 Technology Innovation Lab (with Honeywell Aerospace Innovation Hub), and a Graduate Teaching Assistant / IT Grader at Arizona State University. Two peer-reviewed publications (IEEE 2024, IOSR-JCE 2023). Location: Greater Phoenix Area, AZ.", "evidence": ["src-profile", "src-pub-ieee", "src-pub-iosr"], "tags": ["experience", "education", "resume", "research", "publications", "background"] },
+    { "q": "Are you available for work / what roles?", "a": "Open to AI Security Engineer, ML Security Engineer, and Applied AI/ML Security roles. Based in the Greater Phoenix Area, AZ; F-1 OPT.", "evidence": ["src-profile"], "tags": ["hire", "available", "roles", "job", "contact"] },
+    { "q": "Are these production systems with customers?", "a": "No — and the site never claims that. These are research and prototype security tools with explicit limitations. MCP Agent Security Gateway controls only traffic routed through it; the HF scanner's numbers are fixture-scoped; the dataset-poisoning detector is near random on its benchmark and is labeled a research baseline.", "evidence": ["src-provenance", "src-mcp-readme", "src-ds-readme"], "tags": ["production", "customers", "deployed", "real"] }
+  ],
+
+  "audience_modes": {
+    "explore": { "label": "Explore", "order": ["hero", "atlas", "projects", "demos", "philosophy", "resume"], "emphasis": "balanced" },
+    "founder": { "label": "Founder / CTO", "order": ["hero", "projects", "atlas", "philosophy", "demos", "resume"], "emphasis": "problem, product thinking, architecture, risk and tradeoffs" },
+    "security": { "label": "Security Engineer", "order": ["hero", "projects", "demos", "atlas", "philosophy", "resume"], "emphasis": "threat models, controls, implementation, source evidence" },
+    "researcher": { "label": "Researcher", "order": ["hero", "projects", "atlas", "resume", "philosophy", "demos"], "emphasis": "technical depth, experiments, mappings, limitations" },
+    "recruiter": { "label": "Recruiter", "order": ["hero", "resume", "projects", "atlas", "philosophy", "demos"], "emphasis": "verified experience, strongest evidence, role relevance" }
+  },
+
+  "professional_ingestion": {
+    "status": "empty",
+    "note": "Verified professional context (e.g., LinkedIn) is added here when supplied. LinkedIn is not scraped and nothing here is invented. Items added later flow into the resume and assistant automatically.",
+    "items": []
+  },
+
+  "disclaimers": {
+    "evidence_policy": "This site avoids unsupported production, customer, deployment, certification, benchmark, and impact claims. Every substantive statement links to a verifiable source.",
+    "linkedin": "LinkedIn content is treated as professional context only when supplied. It is never assumed, scraped, or invented.",
+    "metrics": "Metrics are shown with their scope. Fixture results are labeled as fixtures; out-of-distribution numbers are labeled as such; literature values are attributed to their papers."
+  }
+}

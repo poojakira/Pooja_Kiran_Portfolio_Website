@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Permissions-Policy" content="microphone=(self), camera=(), geolocation=(), payment=(), usb=(), interest-cohort=()">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#f6f3ea">
+  <meta name="description" content="Pooja Kiran — AI Security Engineer. Security controls for the moment AI stops generating text and starts taking actions: agent tool-call security, IAM least privilege, and model supply-chain provenance. Evidence-linked.">
+  <meta name="author" content="Pooja Kiran Bharadwaj">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Pooja Kiran — AI Security Engineer">
+  <meta property="og:description" content="Security controls for the moment AI stops generating text and starts taking actions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pooja Kiran — AI Security Engineer">
+  <meta name="twitter:description" content="Agent tool-call security, IAM least privilege, and model supply-chain provenance — with linked evidence.">
+  <link rel="canonical" href="https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Pooja Kiran — AI Security Engineer</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Person", "name": "Pooja Kiran", "alternateName": "Pooja Kiran Bharadwaj",
+        "jobTitle": "AI Security Engineer",
+        "url": "https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/",
+        "email": "mailto:poojakiranbhardwaj@gmail.com",
+        "sameAs": ["https://github.com/poojakira", "https://www.linkedin.com/in/poojakiran/"],
+        "knowsAbout": ["AI Security","Agentic AI Security","LLM Security","MCP Tool Security","IAM Least Privilege","Model Supply-Chain Security","Adversarial Machine Learning","Detection Engineering"] },
+      { "@type": "WebSite", "name": "Pooja Kiran — AI Security Engineer", "url": "https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/" }
+    ]
+  }
+  </script>
+</head>
+<body data-audience="explore">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="Pooja Kiran home">
+      <span>Pooja Kiran</span>
+      <small>AI Security Engineer</small>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span class="menu-label">Menu</span>
+      <span class="menu-icon" aria-hidden="true"></span>
+    </button>
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+      <a href="#atlas">Atlas</a>
+      <a href="#work">Work</a>
+      <a href="#demos">Demos</a>
+      <a href="#philosophy">Approach</a>
+      <a href="#resume">Résumé</a>
+      <a href="#contact">Contact</a>
+      <button class="nav-cta" type="button" data-open="ask">Ask my AI</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="top" class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">AI Security Engineer · Greater Phoenix, AZ</p>
+        <h1 id="hero-title">Security for the moment AI stops talking and starts acting.</h1>
+        <p class="hero-statement">I build the controls that sit between an AI agent's decision and a real-world action — inspecting tool calls, constraining cloud identity, and checking model artifacts before they are trusted.</p>
+        <p class="hero-support">Agentic AI &amp; LLM security · MCP &amp; tool security · IAM &amp; least privilege · model supply-chain security. Every claim here links to its source.</p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <button class="button button-primary" type="button" data-open="ask">
+            <span class="btn-title">Ask my AI</span><span class="btn-sub">Grounded Q&amp;A with evidence</span>
+          </button>
+          <button class="button button-voice" type="button" data-open="voice">
+            <span class="btn-title">Talk to me</span><span class="btn-sub">Voice, with captions</span>
+          </button>
+          <a class="button" href="#work">
+            <span class="btn-title">Explore my work</span><span class="btn-sub">Flagship security systems</span>
+          </a>
+        </div>
+        <p class="hero-assist-note" data-assistant-status="loading" aria-live="polite">
+          The assistant is grounded strictly in verified repository evidence and will say when it cannot verify something.
+        </p>
+      </div>
+
+      <figure class="trust-diagram" aria-labelledby="trust-title trust-caption">
+        <figcaption>
+          <span id="trust-title">The AI trust boundary</span>
+          <span>Where trust changes hands</span>
+        </figcaption>
+        <ol class="trust-chain">
+          <li data-hot="hf"><span>Artifact</span><small>provenance</small></li>
+          <li data-hot="llm"><span>Model</span><small>behavior</small></li>
+          <li data-hot="mcp"><span>Agent</span><small>tool call</small></li>
+          <li data-hot="aig"><span>Cloud</span><small>identity</small></li>
+          <li><span>Action</span><small>auditability</small></li>
+        </ol>
+        <p id="trust-caption">My projects place a control at each of these hand-offs.</p>
+      </figure>
+    </section>
+
+    <!-- AUDIENCE MODES -->
+    <div class="mode-bar" role="region" aria-label="Choose how much depth to show">
+      <span class="mode-label">View as</span>
+      <div class="mode-buttons" role="group" aria-label="Audience mode">
+        <button type="button" data-mode="explore" aria-pressed="true">Explore</button>
+        <button type="button" data-mode="founder" aria-pressed="false">Founder / CTO</button>
+        <button type="button" data-mode="security" aria-pressed="false">Security Engineer</button>
+        <button type="button" data-mode="researcher" aria-pressed="false">Researcher</button>
+        <button type="button" data-mode="recruiter" aria-pressed="false">Recruiter</button>
+      </div>
+      <span id="mode-emphasis" class="mode-emphasis" aria-live="polite">Balanced view of everything.</span>
+    </div>
+
+    <p id="kb-status" class="kb-status" role="status" hidden></p>
+
+    <!-- ENGINEERING ATLAS -->
+    <section id="atlas" class="section-shell atlas" aria-labelledby="atlas-title">
+      <div class="section-heading">
+        <p class="eyebrow">Engineering Atlas</p>
+        <h2 id="atlas-title">Not a list of repositories — one trajectory across the AI trust boundary.</h2>
+        <p>Each stage hands trust to the next. The projects below are the controls I built at each hand-off.</p>
+      </div>
+      <div id="atlas-map" class="atlas-map"><p class="loading-note">Loading the atlas…</p></div>
+    </section>
+
+    <!-- PROJECT EXPLORER -->
+    <section id="work" class="section-shell selected-work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <p class="eyebrow">Flagship Systems</p>
+        <h2 id="work-title">Each system states its problem, threat model, controls, evidence — and its limits.</h2>
+        <p>Flagships appear first. Open any project for architecture, threat model, testing, results, tradeoffs, limitations, and source evidence.</p>
+      </div>
+      <div id="projects-list" class="projects-list"><p class="loading-note">Loading projects…</p></div>
+    </section>
+
+    <!-- SAFE DEMOS -->
+    <section id="demos" class="section-shell demos" aria-labelledby="demos-title">
+      <div class="section-heading">
+        <p class="eyebrow">Try It — Safe Local Demos</p>
+        <h2 id="demos-title">Deterministic demonstrations that run entirely in your browser.</h2>
+        <p>No code is executed, no network is called, and no credentials are used. These mirror the checks the real tools perform.</p>
+      </div>
+
+      <div class="demo-grid">
+        <article class="demo-card" id="demo-mcp" aria-labelledby="demo-mcp-title">
+          <h3 id="demo-mcp-title">MCP tool-call inspector</h3>
+          <p class="demo-desc">Load a sample MCP <code>tools/call</code> payload, or paste your own. See the injection, secret, PII, and egress signals — and the allow / block decision.</p>
+          <div class="demo-samples">
+            <button type="button" data-sample="clean">Load clean sample</button>
+            <button type="button" data-sample="malicious">Load risky sample</button>
+          </div>
+          <label class="demo-label" for="demo-mcp-input">tools/call JSON</label>
+          <textarea id="demo-mcp-input" rows="8" spellcheck="false" aria-describedby="demo-mcp-safety"></textarea>
+          <div class="demo-controls"><button type="button" data-run class="button-small">Inspect</button><button type="button" data-clear class="button-small ghost">Clear</button></div>
+          <div data-demo-output class="demo-output" aria-live="polite"></div>
+          <p class="demo-safety" id="demo-mcp-safety" data-demo-safety="demo-mcp-inspect"></p>
+        </article>
+
+        <article class="demo-card" id="demo-iam" aria-labelledby="demo-iam-title">
+          <h3 id="demo-iam-title">IAM policy analyzer</h3>
+          <p class="demo-desc">Paste an IAM policy JSON, or load a sample. A subset of the AWS Agent Identity Guard rules flags over-broad, agent-dangerous permissions.</p>
+          <div class="demo-samples">
+            <button type="button" data-sample="risky">Load risky policy</button>
+            <button type="button" data-sample="scoped">Load scoped policy</button>
+          </div>
+          <label class="demo-label" for="demo-iam-input">IAM policy JSON</label>
+          <textarea id="demo-iam-input" rows="8" spellcheck="false" aria-describedby="demo-iam-safety"></textarea>
+          <div class="demo-controls"><button type="button" data-run class="button-small">Analyze</button><button type="button" data-clear class="button-small ghost">Clear</button></div>
+          <div data-demo-output class="demo-output" aria-live="polite"></div>
+          <p class="demo-safety" id="demo-iam-safety" data-demo-safety="demo-iam-analyzer"></p>
+        </article>
+
+        <article class="demo-card" id="demo-injection" aria-labelledby="demo-inj-title">
+          <h3 id="demo-inj-title">Prompt-injection signal check</h3>
+          <p class="demo-desc">Type a prompt and see which injection-style signals a transparent baseline detector flags — and why out-of-distribution evaluation matters.</p>
+          <div class="demo-samples"><button type="button" data-sample>Load example</button></div>
+          <label class="demo-label" for="demo-inj-input">Prompt text</label>
+          <textarea id="demo-inj-input" rows="5" spellcheck="false" aria-describedby="demo-inj-safety"></textarea>
+          <div class="demo-controls"><button type="button" data-run class="button-small">Check</button><button type="button" data-clear class="button-small ghost">Clear</button></div>
+          <div data-demo-output class="demo-output" aria-live="polite"></div>
+          <p class="demo-safety" id="demo-inj-safety" data-demo-safety="demo-injection"></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section id="philosophy" class="section-shell philosophy" aria-labelledby="phil-title">
+      <div class="section-heading">
+        <p class="eyebrow">How I Engineer Security</p>
+        <h2 id="phil-title">Principles I can point to in the work — not slogans.</h2>
+      </div>
+      <div id="philosophy-list" class="principle-grid"><p class="loading-note">Loading…</p></div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume" class="section-shell resume" aria-labelledby="resume-title">
+      <div class="section-heading">
+        <p class="eyebrow">Résumé &amp; Verified Background</p>
+        <h2 id="resume-title">Experience, education, and publications — verified, with links.</h2>
+        <p>Only material I can point to is shown. Verified professional history (e.g. LinkedIn) slots in when supplied.</p>
+      </div>
+      <div class="resume-grid">
+        <div class="resume-col">
+          <h3>Experience &amp; research</h3>
+          <ul id="resume-roles" class="timeline"></ul>
+        </div>
+        <div class="resume-col">
+          <h3>Education</h3>
+          <ul id="resume-education" class="plain-list"></ul>
+          <h3>Publications</h3>
+          <ul id="resume-publications" class="plain-list"></ul>
+          <h3>Professional history</h3>
+          <ul id="resume-professional" class="plain-list"></ul>
+        </div>
+        <div class="resume-col">
+          <h3>Technical stack (demonstrated)</h3>
+          <ul id="skills-list" class="skills"></ul>
+          <div class="resume-actions">
+            <a class="button button-primary" href="Pooja_Kiran.pdf" target="_blank" rel="noopener noreferrer" type="application/pdf">Download résumé (PDF)</a>
+            <a class="button" href="https://github.com/poojakira" target="_blank" rel="noopener noreferrer">GitHub profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section-shell contact" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Open to AI / ML security engineering roles.</h2>
+        <p>Greater Phoenix Area, AZ · F-1 OPT. The strongest artifact is the ability to inspect the work.</p>
+      </div>
+      <div class="repro-links">
+        <a href="mailto:poojakiranbhardwaj@gmail.com"><span>Email</span><small>poojakiranbhardwaj@gmail.com</small></a>
+        <a href="https://github.com/poojakira" target="_blank" rel="noopener noreferrer"><span>GitHub</span><small>All public repositories</small></a>
+        <a href="https://www.linkedin.com/in/poojakiran/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><small>in/poojakiran</small></a>
+        <button type="button" data-open="ask"><span>Ask my AI</span><small>Grounded, evidence-linked answers</small></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built as a static, keyless, evidence-linked experience. No trackers, no third-party scripts. Claims are limited to public, inspectable work.</p>
+    <p><a href="https://github.com/poojakira" target="_blank" rel="noopener noreferrer">github.com/poojakira</a></p>
+  </footer>
+
+  <!-- ASK MY AI DIALOG -->
+  <dialog id="ask-dialog" class="assistant-dialog" aria-labelledby="ask-heading">
+    <div class="dialog-head">
+      <h2 id="ask-heading">Ask my AI</h2>
+      <button type="button" class="dialog-close" data-close aria-label="Close">×</button>
+    </div>
+    <p class="dialog-note">Grounded retrieval over verified evidence. It links sources with every substantive answer and says when it can't verify something. It is not an instruction-following agent.</p>
+    <div id="ask-log" class="ask-log" role="log" aria-live="polite" aria-label="Conversation"></div>
+    <div id="ask-suggestions" class="ask-suggestions" aria-label="Suggested questions">
+      <button type="button" data-q="What is your strongest project?">Strongest project?</button>
+      <button type="button" data-q="How do you handle prompt injection?">Prompt injection?</button>
+      <button type="button" data-q="What is your IAM least-privilege work?">IAM &amp; least privilege?</button>
+      <button type="button" data-q="What are you exploring next?">Exploring next?</button>
+      <button type="button" data-q="What is your experience and education?">Experience?</button>
+    </div>
+    <form id="ask-form" class="ask-form" autocomplete="off">
+      <label class="visually-hidden" for="ask-input">Type your question</label>
+      <input id="ask-input" type="text" maxlength="400" placeholder="Ask about my projects, decisions, or evidence…" required>
+      <button type="submit" class="button-small">Ask</button>
+    </form>
+  </dialog>
+
+  <!-- TALK TO ME DIALOG -->
+  <dialog id="voice-dialog" class="assistant-dialog voice-dialog" data-state="idle" aria-labelledby="voice-heading">
+    <div class="dialog-head">
+      <h2 id="voice-heading">Talk to me</h2>
+      <button type="button" class="dialog-close" data-close aria-label="Close">×</button>
+    </div>
+    <p class="dialog-note">Tap the microphone, allow access once, and ask naturally. Answers are spoken and captioned, grounded in the same evidence. Audio never plays on its own.</p>
+    <div class="voice-stage">
+      <button id="voice-mic" type="button" class="voice-mic" aria-describedby="voice-state">
+        <span class="mic-ring" aria-hidden="true"></span>
+        <span class="mic-glyph" aria-hidden="true">🎙</span>
+        <span class="visually-hidden">Start or stop listening</span>
+      </button>
+      <p id="voice-state" class="voice-state" role="status" aria-live="assertive">Tap the microphone and ask a question.</p>
+      <div class="voice-controls">
+        <button id="voice-mute" type="button" class="button-small ghost" aria-pressed="false">Mute</button>
+        <button id="voice-retry" type="button" class="button-small ghost">Retry</button>
+        <button type="button" class="button-small ghost" data-open="ask">Type instead</button>
+      </div>
+    </div>
+    <p id="voice-transcript" class="voice-transcript" aria-live="polite"></p>
+    <div id="voice-caption" class="voice-caption" aria-live="polite"></div>
+    <p id="voice-fallback" class="voice-fallback" hidden>Voice needs microphone access or a supporting browser. You can always use <button type="button" class="linklike" data-open="ask">Ask my AI</button> to type.</p>
+  </dialog>
+
+  <script type="module" src="assistant.js"></script>
+  <script type="module" src="demos.js"></script>
+  <script src="main.js" defer></script>
+</body>
+</html>

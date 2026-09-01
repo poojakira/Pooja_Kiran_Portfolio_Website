@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/sitemap.xml
