@@ -1,88 +1,83 @@
 import type { Config } from "tailwindcss";
 
+// ============================================================================
+// DESIGN SYSTEM — "Interactive AI Security Research Lab"
+// Near-black graphite, soft white type, ONE restrained technical accent.
+// No neon. No hacker clichés. Editorial spacing, precision geometry.
+// ============================================================================
+
 const config: Config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        "deep-space": "#0A0A0F",
-        obsidian: "#12121A",
-        graphite: "#1E1E2E",
-        "sentinel-violet": "#8B5CF6",
-        "plasma-cyan": "#06B6D4",
-        "secure-green": "#10B981",
-        "amber-alert": "#F59E0B",
-        "pure-light": "#FAFAFA",
-        "silver-haze": "#94A3B8",
-        whisper: "#475569",
+        // Graphite depth scale (background -> surface)
+        void: "#050506",
+        ink: "#0A0B0D",
+        graphite: "#121316",
+        slate: "#1A1C20",
+        steel: "#25282E",
+        // Typography
+        chalk: "#F4F5F7",
+        mist: "#A8ACB4",
+        ash: "#6B7078",
+        faint: "#3A3D44",
+        // Single restrained accent — a cold signal cyan, used sparingly
+        signal: "#5BC8D6",
+        "signal-dim": "#2E6E77",
+        // Semantic states (muted, not neon)
+        allow: "#5FB98A",
+        block: "#D6685B",
+        warn: "#D6A85B",
       },
       fontFamily: {
-        satoshi: ["Satoshi", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
       },
       fontSize: {
-        "fluid-xs": "clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)",
-        "fluid-sm": "clamp(0.875rem, 0.8rem + 0.375vw, 1rem)",
-        "fluid-base": "clamp(1rem, 0.9rem + 0.5vw, 1.125rem)",
-        "fluid-lg": "clamp(1.125rem, 1rem + 0.625vw, 1.25rem)",
-        "fluid-xl": "clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)",
-        "fluid-2xl": "clamp(1.5rem, 1.2rem + 1.5vw, 2rem)",
-        "fluid-3xl": "clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem)",
-        "fluid-4xl": "clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem)",
-        "fluid-5xl": "clamp(3rem, 2rem + 4vw, 5rem)",
+        "fluid-xs": "clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem)",
+        "fluid-sm": "clamp(0.85rem, 0.8rem + 0.3vw, 0.95rem)",
+        "fluid-base": "clamp(1rem, 0.92rem + 0.4vw, 1.1rem)",
+        "fluid-lg": "clamp(1.15rem, 1rem + 0.6vw, 1.35rem)",
+        "fluid-xl": "clamp(1.35rem, 1.1rem + 1vw, 1.75rem)",
+        "fluid-2xl": "clamp(1.7rem, 1.3rem + 1.8vw, 2.4rem)",
+        "fluid-3xl": "clamp(2.1rem, 1.5rem + 3vw, 3.4rem)",
+        "fluid-4xl": "clamp(2.6rem, 1.7rem + 4.5vw, 4.8rem)",
+        "fluid-5xl": "clamp(3rem, 1.8rem + 6vw, 6.5rem)",
+        "fluid-6xl": "clamp(3.4rem, 2rem + 8vw, 8.5rem)",
+      },
+      letterSpacing: {
+        tightest: "-0.045em",
+        wider: "0.08em",
+        widest: "0.22em",
+      },
+      maxWidth: {
+        editorial: "72rem",
+        prose: "44rem",
       },
       animation: {
-        float: "float 6s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "scan-line": "scan-line 3s linear infinite",
-        "fade-up": "fade-up 0.6s ease-out forwards",
-        "slide-in": "slide-in 0.5s ease-out forwards",
-        "matrix-fade": "matrix-fade 3s ease-in-out forwards",
+        "fade-up": "fade-up 0.8s cubic-bezier(0.16,1,0.3,1) forwards",
+        "fade-in": "fade-in 1s ease forwards",
+        "pulse-soft": "pulse-soft 3.5s ease-in-out infinite",
+        drift: "drift 9s ease-in-out infinite",
       },
       keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "1", boxShadow: "0 0 20px rgba(139, 92, 246, 0.3)" },
-          "50%": { opacity: "0.8", boxShadow: "0 0 40px rgba(139, 92, 246, 0.6)" },
-        },
-        "scan-line": {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100%)" },
-        },
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "0%": { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "slide-in": {
-          "0%": { opacity: "0", transform: "translateX(-20px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
+        "fade-in": { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
+        "pulse-soft": {
+          "0%,100%": { opacity: "0.5" },
+          "50%": { opacity: "1" },
         },
-        "matrix-fade": {
-          "0%": { opacity: "0" },
-          "10%": { opacity: "1" },
-          "80%": { opacity: "1" },
-          "100%": { opacity: "0" },
+        drift: {
+          "0%,100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
-      backdropBlur: {
-        xs: "2px",
-        sm: "4px",
-        md: "8px",
-        lg: "16px",
-        xl: "24px",
-        "2xl": "40px",
-        "3xl": "64px",
-      },
-      borderRadius: {
-        "4xl": "2rem",
-        "5xl": "2.5rem",
-        "6xl": "3rem",
+      transitionTimingFunction: {
+        expo: "cubic-bezier(0.16,1,0.3,1)",
       },
     },
   },

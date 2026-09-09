@@ -1,64 +1,32 @@
+import { PROFILE } from "@/data/content";
+
 export default function Footer() {
   return (
-    <footer className="border-t border-graphite bg-deep-space">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Tagline */}
-          <div className="text-center md:text-left">
-            <p className="text-sm font-mono text-sentinel-violet tracking-wide">
-              Engineering Trust in Intelligent Systems
+    <footer className="border-t border-white/[0.06] bg-ink">
+      <div className="mx-auto max-w-editorial px-6 py-14 sm:px-10 lg:px-16">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="font-mono text-fluid-xs uppercase tracking-widest text-signal">
+              {PROFILE.role}
             </p>
-            <p className="text-xs text-silver-haze mt-2">
-              &copy; 2026 Pooja Kiran Bharadwaj. All rights reserved.
-            </p>
+            <p className="mt-2 text-fluid-xl text-chalk">{PROFILE.name}</p>
+            <p className="mt-1 body-base max-w-prose">{PROFILE.focus}</p>
           </div>
-
-          {/* Links */}
-          <div className="flex items-center gap-6">
-            <a
-              href="https://github.com/poojakira"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-silver-haze hover:text-pure-light transition-colors duration-200"
-            >
-              GitHub
+          <div className="flex flex-col gap-2 font-mono text-fluid-xs uppercase tracking-wider text-mist">
+            <a href={PROFILE.github} target="_blank" rel="noreferrer" className="hover:text-signal">
+              GitHub ↗
             </a>
-            <a
-              href="https://linkedin.com/in/poojakiran"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-silver-haze hover:text-pure-light transition-colors duration-200"
-            >
-              LinkedIn
+            <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="hover:text-signal">
+              LinkedIn ↗
             </a>
-            <a
-              href="mailto:pkiran1@asu.edu"
-              className="text-sm text-silver-haze hover:text-pure-light transition-colors duration-200"
-            >
-              Email
-            </a>
-            <a
-              href="/Pooja_Kiran_Detection_Response_Resume.pdf"
-              download
-              className="text-sm text-sentinel-violet hover:text-pure-light transition-colors duration-200 flex items-center gap-1"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              Resume
+            <a href={`mailto:${PROFILE.email}`} className="hover:text-signal">
+              {PROFILE.email}
             </a>
           </div>
+        </div>
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/[0.06] pt-6 font-mono text-fluid-xs text-ash sm:flex-row sm:items-center sm:justify-between">
+          <span>{PROFILE.location} · {PROFILE.availability}</span>
+          <span>© {new Date().getFullYear()} {PROFILE.name}. Built with Next.js + React Three Fiber.</span>
         </div>
       </div>
     </footer>
