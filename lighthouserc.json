@@ -2,7 +2,7 @@
   "ci": {
     "collect": {
       "startServerCommand": "npx serve out -p 3000",
-      "startServerReadyPattern": "serving on",
+      "startServerReadyPattern": "Serving!",
       "url": ["http://localhost:3000"],
       "numberOfRuns": 3
     },
