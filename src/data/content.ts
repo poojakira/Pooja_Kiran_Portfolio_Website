@@ -87,7 +87,7 @@ export const SYSTEM_CATEGORIES: CategoryInfo[] = [
 
 export const ABOUT = {
   summary:
-    "Security Engineer with 2+ years of hands-on experience in AI security, detection engineering, and cloud security. Focused on designing security controls and validation frameworks for agentic AI, MCP toolchains, AWS IAM, LLM applications, and model supply-chain risks, with emphasis on secure system design, access control, data-flow constraints, and adversarial testing. Developed and validated deterministic security harnesses including 50+ MCP detection rules, 25 AWS IAM security rules, and hundreds of automated security tests.",
+    "Security Engineer with 2+ years of hands-on experience in AI security, detection engineering, and cloud security. Focused on designing security controls and validation frameworks for agentic AI, MCP toolchains, AWS IAM, LLM applications, and model supply-chain risks, with emphasis on secure system design, access control, data-flow constraints, and adversarial testing. Developed and validated deterministic security harnesses including 50+ MCP detection rules, 25 AWS IAM security rules, 622 MCP tests, 230 AWS IAM tests, and 168 LLM security tests.",
   narrative: [
     "I design and ship open-source security tooling that guards the boundaries where AI agents, tools, identities, data, and model artifacts meet. Not slideware — working, tested, reproducible tools.",
     "These are research and portfolio projects: functional, tested, and open-source, but not hardened for enterprise scale. I'm deliberate about stating what each one does and does not do — the honest limitations are written into every repository.",
