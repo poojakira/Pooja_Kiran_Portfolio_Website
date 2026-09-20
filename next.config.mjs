@@ -12,4 +12,8 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default (phase) => ({
+  ...nextConfig,
+  // Keep the running development preview separate from production build artifacts.
+  ...(phase === 'phase-development-server' ? { distDir: '.next-dev' } : {}),
+});

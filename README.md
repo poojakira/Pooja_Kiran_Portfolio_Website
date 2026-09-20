@@ -1,79 +1,46 @@
-# Pooja Kiran Bharadwaj — AI Security Engineering Portfolio
+# Pooja Kiran | Security Engineer Portfolio
 
-A cinematic, 3D portfolio built around a hard-audited set of open-source AI-security
-projects. It presents the work as an **interactive AI security research lab**, not a
-generic developer portfolio.
+Photo-led, recruiter-focused portfolio built with the existing Next.js 14 / React / TypeScript stack and exported to GitHub Pages.
 
-Built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**,
-**React Three Fiber / three.js**, **GSAP**, and **Lenis** smooth scroll.
+## Current website
 
----
+https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/
 
-## The idea
+The homepage includes profile, experience, three flagship projects with expandable controls / validation / limitations, technical skills, education, credentials, publication, research grant, and contact.
 
-> AI stops being a prediction problem and becomes a security problem the moment it can act.
+## Content and evidence
 
-The site is organized around the boundary where an AI system stops predicting and
-starts acting on real infrastructure — calling tools over MCP, assuming IAM roles,
-and loading model weights. Three principles run through the flagship work:
+- Canonical rendered content: `src/data/portfolio.ts` and `src/app/page.tsx`.
+- Content source: user-supplied September 2026 résumé, `Pooja_Kiran_Security_Engineer_Resume(2).pdf`.
+- Snapshot test counts: MCP 622, IAM 230, model scanner 195; total 1,047. These are documented résumé figures, not live CI counters or test results run by this website.
+- AEROSEC $120K and approximately 12% savings are modeled scenarios, not secured funding or realized savings.
+- The model-scanner false-positive result applies only to four documented benign samples.
+- Source photo is used unchanged; CSS controls its presentation.
+- Legacy 3D sections remain in the repository but are not imported into the rendered website. Existing dependencies and lockfile are preserved.
 
-- **Capability ≠ Permission** → MCP Agent Security Gateway
-- **Permission ≠ Provenance** → HF Model Provenance Scanner
-- **Identity ≠ Authorization** → AWS Agent Identity Guard
+## Assets and URLs
 
-Every claim on the site is grounded in the actual repositories at
-[github.com/poojakira](https://github.com/poojakira). The data model lives in
-`src/data/projects.ts` (the "Portfolio Truth Table") and `src/data/content.ts`.
+- New résumé: `public/Pooja_Kiran_Security_Engineer_Resume.pdf`
+- Portrait: `public/pooja-kiran.png`
+- Favicon: `public/favicon.svg`
+- `SITE_PATH` in `src/data/portfolio.ts` matches the Next.js basePath.
+- All public asset URLs include the GitHub Pages project path explicitly. This works with or without a trailing slash in the initial URL.
+- The original root PDF is retained for history and is no longer linked.
 
-## Structure
-
-```
-Hero        → SecurityCore 3D object + positioning (who builds the system?)
-Systems     → four verified system categories (what is inside it?)
-Flagships   → Tier-S project worlds with per-project architecture flow + threat model
-Lab         → "Capability ≠ Permission" interactive least-privilege demo
-Research    → Tier-A red-team / ML-security work + Tier-B engineering archive
-About       → verified background timeline + engineering philosophy
-Contact     → roles open to
-```
-
-### Curation (why only some projects appear)
-
-Projects are tiered by an internal editorial ranking. Only the strongest,
-fully-verifiable work receives prominence:
-
-- **Tier S (flagship):** `mcp-agent-security-gateway`, `aws-agent-identity-guard`, `hf-model-provenance-scanner`
-- **Tier A (supporting):** `llm-redteam-framework`, `model-privacy-attacks`, `dataset-poisoning-detector`, `adversarial-ml-lab`
-- **Tier B (archive):** `attack-v19-core`, `PulseNet-RUL-Forecasting`
-
-Aggregation/dashboard workspaces are intentionally omitted to keep the portfolio focused.
-
-## 3D system
-
-Custom, meaningful geometry — not decorative particles:
-
-- `SecurityCore` — inner faceted core (the intelligent system) inside a wireframe
-  boundary shell, with data pulses inspected as they cross the perimeter.
-- `CameraRig` — scroll- and pointer-driven narrative camera.
-- `ArchitectureFlow` — per-project animated control-flow diagram with the security
-  boundary drawn explicitly.
-
-Performance & accessibility: DPR is adaptive by device tier, 3D is a lazy
-`next/dynamic` import (kept out of the initial bundle), and everything degrades
-gracefully under `prefers-reduced-motion` and on low-end devices. The site is fully
-understandable without any 3D.
-
-## Develop
+## Development
 
 ```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run build      # production build
-npm run type-check # tsc --noEmit
+npm ci
+npm run dev
+npm run type-check
+npm run lint
+npm run build
 ```
 
-## Honesty
+Open the project path shown above on your local server, not the server root.
+The dev wrapper accepts the preview host/port flags and forwards them to Next.js. Development output is isolated in `.next-dev/` so it does not conflict with production builds.
+The existing GitHub Actions workflow exports to `out/` and deploys GitHub Pages on a push to main.
 
-These are research and portfolio projects — functional, tested, and open-source, but
-not hardened for enterprise scale. Each project's own documented limitations are
-surfaced on the site rather than hidden.
+## Design and accessibility
+
+Self-hosted Geist fonts, native scrolling, a responsive mobile menu with Escape dismissal, keyboard focus styles, skip navigation, native expandable project details, reduced-motion support, and semantic headings. No 3D or animation libraries are imported by the new homepage.

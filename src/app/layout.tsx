@@ -1,107 +1,38 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import SmoothScroll from "@/components/layout/SmoothScroll";
-import SkipLink from "@/components/ui/SkipLink";
+import localFont from "next/font/local";
+import "./portfolio.css";
+import PortfolioHeader from "@/components/layout/PortfolioHeader";
+import { profile, SITE_PATH } from "@/data/portfolio";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
-
+const geist = localFont({ src: "./fonts/GeistVF.woff", variable: "--font-geist", display: "swap", weight: "100 900" });
+const geistMono = localFont({ src: "./fonts/GeistMonoVF.woff", variable: "--font-geist-mono", display: "swap", weight: "100 900" });
+const description = "Pooja Kiran, Security Engineer. Open-source engineering across AI agents, AWS IAM, model supply chains, and detection workflows.";
 export const metadata: Metadata = {
-  title: "Pooja Kiran · Security Engineer | AI Security | Security Architecture",
-  description:
-    "Security Engineer with 2+ years of experience in AI security, detection engineering, and cloud security. Building open-source controls for agentic AI, MCP toolchains, AWS IAM, and model supply-chain risks.",
-  keywords: [
-    "Security Engineer",
-    "AI Security",
-    "Security Architecture",
-    "Agentic AI Security",
-    "MCP Security",
-    "Detection Engineering",
-    "AWS IAM",
-    "Model Supply-Chain Security",
-    "LLM Security",
-    "Adversarial ML",
-    "MITRE ATT&CK",
-    "MITRE ATLAS",
-    "Pooja Kiran",
-  ],
-  authors: [{ name: "Pooja Kiran" }],
-  creator: "Pooja Kiran",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    title: "Pooja Kiran · Security Engineer | AI Security | Security Architecture",
-    description:
-      "Open-source security tooling for the boundary where AI agents, tools, identities, and model artifacts meet.",
-    siteName: "Pooja Kiran",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pooja Kiran · Security Engineer | AI Security | Security Architecture",
-    description:
-      "Security Engineer building controls for agentic AI: MCP, AWS IAM, and model supply-chain.",
-  },
+  metadataBase: new URL("https://poojakira.github.io"),
+  title: "Pooja Kiran | Security Engineer",
+  description,
+  authors: [{ name: profile.name }],
+  alternates: { canonical: SITE_PATH + "/" },
+  icons: { icon: SITE_PATH + "/favicon.svg" },
+  openGraph: { type: "website", locale: "en_US", title: "Pooja Kiran | Security Engineer", description, siteName: "Pooja Kiran", url: SITE_PATH + "/" },
+  twitter: { card: "summary", title: "Pooja Kiran | Security Engineer", description },
   robots: { index: true, follow: true },
 };
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Pooja Kiran",
-  jobTitle: "Security Engineer",
-  description:
-    "Security Engineer with 2+ years of experience in AI security, detection engineering, and cloud security. Building open-source controls for agentic AI, MCP toolchains, AWS IAM, and model supply-chain risks.",
-  knowsAbout: [
-    "AI Security",
-    "Security Architecture",
-    "Agentic AI Security",
-    "MCP / Tool Security",
-    "Detection Engineering",
-    "AWS IAM & Least Privilege",
-    "Model Supply-Chain Security",
-    "Adversarial ML",
-    "LLM Red-Teaming",
-    "MITRE ATT&CK",
-    "MITRE ATLAS",
-  ],
-  sameAs: [
-    "https://github.com/poojakira",
-    "https://www.linkedin.com/in/poojakiran/",
-  ],
+const personSchema = {
+  "@context": "https://schema.org", "@type": "Person", name: profile.name,
+  jobTitle: profile.title, url: "https://poojakira.github.io" + SITE_PATH + "/",
+  sameAs: [profile.github, profile.linkedin],
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Arizona State University" },
 };
-
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body className="bg-void text-chalk font-sans antialiased">
-        <SkipLink />
-        <SmoothScroll>
-          <Header />
-          <main id="main-content" className="relative">
-            {children}
-          </main>
-          <Footer />
-        </SmoothScroll>
+    <html lang="en" className={geist.variable + " " + geistMono.variable}>
+      <head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} /></head>
+      <body>
+        <a href="#main-content" className="skip-link">Skip to content</a>
+        <PortfolioHeader />
+        <main id="main-content" tabIndex={-1}>{children}</main>
+        <footer className="site-footer"><div className="container footer-inner"><p>© 2026 Pooja Kiran · Security Engineer</p><a href={SITE_PATH + "/#main-content"}>Back to top ↑</a></div></footer>
       </body>
     </html>
   );
