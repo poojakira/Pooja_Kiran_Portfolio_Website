@@ -108,7 +108,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
       "Hash-chained audit log + WAL for reconstructable decisions",
     ],
     evidence: [
-      "622 automated tests at 78% coverage (verified at tagged commit)",
+      "629 automated tests at 78.47% coverage (verified by main CI)",
       "Integrated 9 Elastic detection rules, 6 Atomic Red Team-style attack simulations, and 21 SIEM tests for detection and security-event validation",
       "CI across Python 3.10/3.11/3.12 with Ruff, Pyright, Bandit, pip-audit, CodeQL, Trivy, Grype, SBOM",
       "Docker multi-stage build + Kubernetes deployment templates",
@@ -263,7 +263,7 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "Rate limiting, API-key auth, model integrity checksum",
     ],
     evidence: [
-      "168 tests, 96% coverage",
+      "Committed evaluation artifacts: grouped-split F1 0.97; novel-phrasing OOD F1 0.8302",
       "F1 = 0.97 on grouped held-out templates; F1 = 0.83 on novel-phrasing out-of-distribution evaluation — quantifying the generalization gap",
       "Throughput gate (~1,400 prompts/sec)",
     ],
