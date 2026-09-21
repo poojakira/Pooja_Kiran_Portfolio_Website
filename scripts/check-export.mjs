@@ -18,6 +18,7 @@ assert.equal((html.match(/<h1\b/g) || []).length, 1, "Expected one page h1");
 assert.equal((html.match(/<details\b/g) || []).length, 3, "Expected three expandable projects");
 assert(html.includes(`${base}/Pooja_Kiran_Security_Engineer_Resume.pdf`), "New résumé missing");
 assert(!html.includes("Pooja_KIRAN_Security_Engineer.pdf"), "Legacy résumé link remains");
+assert(!fs.existsSync("Pooja_KIRAN_Security_Engineer.pdf"), "Legacy root-level résumé remains in repository");
 assert(!fs.existsSync("out/qa-responsive.html"), "Temporary QA page must not ship");
 assert(fs.readFileSync("out/Pooja_Kiran_Security_Engineer_Resume.pdf").subarray(0,5).toString() === "%PDF-", "Résumé is not a PDF");
 assert(fs.existsSync("out/pooja-kiran.png"), "Portrait missing");
