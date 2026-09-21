@@ -86,7 +86,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
     controls: [
       "50+ prompt-injection rule patterns with Unicode / homoglyph / Base64 / ROT13 normalization",
       "Server trust + capability boundary checks",
-      "Circuit breakers that fail closed to DENY",
+      "Circuit-breaker and policy components; enforcement depends on the integration path",
       "Rate limiting, shadow mode, API-key auth",
       "Hash-chained audit log + WAL for reconstructable decisions",
     ],
@@ -132,7 +132,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
     ],
     controls: [
       "25 deterministic rules incl. trust-policy and permission-boundary checks",
-      "SARIF output for GitHub Code Scanning + PR merge gate",
+      "SARIF output for GitHub Code Scanning and CI gating",
       "Deterministic exit codes (0 clean / 1 findings / 2 input error)",
       "Runs offline — no credentials, no cloud calls",
     ],
@@ -225,9 +225,9 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "Rate limiting, API-key auth, model integrity checksum",
     ],
     evidence: [
-      "Committed evaluation artifacts: grouped-split F1 0.97; novel-phrasing OOD F1 0.8302",
-      "F1 = 0.97 on grouped held-out templates; F1 = 0.83 on novel-phrasing out-of-distribution evaluation — quantifying the generalization gap",
-      "Throughput gate (~1,400 prompts/sec)",
+      "Committed evaluation artifacts: novel-phrasing OOD F1 0.8302; grouped-template F1 0.97",
+      "F1 = 0.83 on novel-phrasing out-of-distribution evaluation versus 0.97 on grouped held-out templates — the generalization gap is the main result",
+      "Performance baseline is environment-scoped and documented separately; no production throughput claim",
     ],
     limitations: [
       "TF-IDF captures lexical patterns, not semantic intent",
@@ -305,7 +305,7 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "Quarantine-first architecture, Bloom-filter dedup",
     ],
     evidence: [
-      "~12,400 samples/sec streaming throughput (p99 0.31ms)",
+      "Local benchmark: ~12,400 samples/sec and p99 0.31ms on the documented 20-feature/M2 setup, excluding IsolationForest refit cost",
       "Honest 0.53–0.56 AUC on CIFAR-10 label-flip — stated as near chance",
       "MITRE ATLAS AML.T0020 mapping",
     ],
@@ -339,12 +339,12 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "Perturbation within an Lp norm budget",
     ],
     controls: [
-      "CI robustness gate (PGD robust acc ≥ 30% at eps=8/255)",
+      "Configurable CI robustness threshold; benchmark results remain model-, attack-, and epsilon-specific",
       "RobustBench baseline comparison",
       "Adversarial-training reference script",
     ],
     evidence: [
-      "73 tests (~29% coverage; 15% CI floor)",
+      "Repository test suite and CI cover attack, defense, evaluation, input-validation, and RobustBench integration paths",
       "Per-epsilon degradation curves in JSON",
       "MITRE ATLAS AML.T0043 mapping",
     ],
@@ -384,7 +384,7 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "CI merge gate on regression failures",
     ],
     evidence: [
-      "67 test functions across 8 test modules",
+      "Committed regression tests cover the four current security-tool adapters and shared result contracts",
       "HF-scanner run over 3 known-bad and 2 known-good committed fixtures: precision=1.0, recall=1.0, F1=1.0 (scoped strictly to that fixture set)",
     ],
     limitations: [
