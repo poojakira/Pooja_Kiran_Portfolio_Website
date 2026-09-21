@@ -87,7 +87,7 @@ export const SYSTEM_CATEGORIES: CategoryInfo[] = [
 
 export const ABOUT = {
   summary:
-    "Security Engineer with 2+ years of hands-on experience in AI security, detection engineering, and cloud security. Focused on designing security controls and validation frameworks for agentic AI, MCP toolchains, AWS IAM, LLM applications, and model supply-chain risks, with emphasis on secure system design, access control, data-flow constraints, and adversarial testing. Developed and validated deterministic security harnesses including 50+ MCP detection rules, 25 AWS IAM security rules, 622 MCP tests, 230 AWS IAM tests, and 168 LLM security tests.",
+    "Security Engineer with 2+ years of hands-on experience in AI security, detection engineering, and cloud security. Focused on designing security controls and validation frameworks for agentic AI, MCP toolchains, AWS IAM, LLM applications, and model supply-chain risks, with emphasis on secure system design, access control, data-flow constraints, and adversarial testing. Developed and validated security harnesses including 55 MCP prompt-injection patterns, 25 AWS IAM rule IDs, 629 MCP tests, and 230 AWS IAM tests; LLM evaluation artifacts report F1 0.97 on grouped held-out templates and 0.8302 on novel-phrasing OOD evaluation.",
   narrative: [
     "I design and ship open-source security tooling that guards the boundaries where AI agents, tools, identities, data, and model artifacts meet. Not slideware — working, tested, reproducible tools.",
     "These are research and portfolio projects: functional, tested, and open-source, but not hardened for enterprise scale. I'm deliberate about stating what each one does and does not do — the honest limitations are written into every repository.",
@@ -183,8 +183,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Aug 2024 – Present",
     bullets: [
       "Architected and developed AI security tooling across MCP, AWS IAM, and LLM red teaming, translating attack paths into deterministic security controls and automated validation workflows.",
-      "Engineered 50+ MCP prompt-injection rules and 25 AWS IAM security rules covering AI-agent tool-call and cloud-identity attack surfaces.",
-      "Validated security tooling with 622 MCP tests and 168 LLM security tests through automated regression testing and coverage-driven validation.",
+      "Engineered 55 MCP prompt-injection patterns and 25 AWS IAM rule IDs covering AI-agent tool-call and cloud-identity attack surfaces.",
+      "Validated the MCP gateway with 629 passing tests at 78.47% coverage and documented LLM generalization with grouped F1 0.97 versus novel-phrasing OOD F1 0.8302.",
     ],
   },
   {
