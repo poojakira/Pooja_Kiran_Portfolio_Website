@@ -8,8 +8,6 @@
 // visual hierarchy of the site. They are NOT presented as external metrics.
 // ============================================================================
 
-export type Tier = "S" | "A" | "B";
-
 export type SystemCategory =
   | "Agent & Tool Security"
   | "AI Supply-Chain Security"
@@ -28,17 +26,9 @@ export type PortfolioProject = {
   url: string;
   title: string;
   category: SystemCategory;
-  tier: Tier;
   status: string; // as described by the repo itself
   language: string;
 
-  // Internal editorial ranking (0-10). Drives layout weight only.
-  technicalDepth: number;
-  securityRelevance: number;
-  aiRelevance: number;
-  originality: number;
-  implementationQuality: number;
-  portfolioValue: number;
 
   /** One-line positioning. */
   tagline: string;
@@ -75,17 +65,10 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/mcp-agent-security-gateway",
     title: "MCP Agent Security Gateway",
     category: "Agent & Tool Security",
-    tier: "S",
     status: "Oct 2025 – Sep 2026 · Active · open source",
     language: "Python · MCP · JSON-RPC 2.0 · FastAPI · Docker · Kubernetes · Elastic/SIEM",
     stars: 17,
     forks: 5,
-    technicalDepth: 9,
-    securityRelevance: 10,
-    aiRelevance: 10,
-    originality: 9,
-    implementationQuality: 9,
-    portfolioValue: 10,
     tagline: "Security controls for the moment an AI agent stops talking and starts acting.",
     problem:
       "A traditional LLM turns a prompt into text. An agentic system turns a decision into an action: it calls MCP tools, reads files, hits APIs, touches databases and cloud services. Once an agent can act, prompt filtering is no longer the whole security boundary.",
@@ -103,7 +86,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
     controls: [
       "50+ prompt-injection rule patterns with Unicode / homoglyph / Base64 / ROT13 normalization",
       "Server trust + capability boundary checks",
-      "Circuit breakers that fail closed to DENY",
+      "Circuit-breaker and policy components; enforcement depends on the integration path",
       "Rate limiting, shadow mode, API-key auth",
       "Hash-chained audit log + WAL for reconstructable decisions",
     ],
@@ -130,16 +113,9 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/aws-agent-identity-guard",
     title: "AWS Agent Identity Guard",
     category: "Cloud & Identity Security",
-    tier: "S",
-    status: "Apr 2025 – Sep 2025 · Active · open source",
+    status: "Active · open source",
     language: "Python · AWS IAM · SARIF 2.1.0 · GitHub Code Scanning · Hypothesis",
     forks: 1,
-    technicalDepth: 8,
-    securityRelevance: 9,
-    aiRelevance: 8,
-    originality: 9,
-    implementationQuality: 9,
-    portfolioValue: 9,
     tagline: "A valid identity can still hide an attack path. Static IAM guardrails for agent roles.",
     problem:
       "AI agents and tool executors turn overbroad cloud permissions into real actions: invoking Lambdas, assuming roles, changing Bedrock/SageMaker control planes, reading secrets, disabling audit trails. Most IAM tooling is not agent-aware and runs too late.",
@@ -156,7 +132,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
     ],
     controls: [
       "25 deterministic rules incl. trust-policy and permission-boundary checks",
-      "SARIF output for GitHub Code Scanning + PR merge gate",
+      "SARIF output for GitHub Code Scanning and CI gating",
       "Deterministic exit codes (0 clean / 1 findings / 2 input error)",
       "Runs offline — no credentials, no cloud calls",
     ],
@@ -182,15 +158,8 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/hf-model-provenance-scanner",
     title: "HF Model Provenance Scanner",
     category: "AI Supply-Chain Security",
-    tier: "S",
-    status: "Nov 2024 – Mar 2025 · Active · open source",
+    status: "Active · open source",
     language: "Python · Pickle · SafeTensors · GGUF · ONNX · MITRE ATT&CK v19",
-    technicalDepth: 8,
-    securityRelevance: 9,
-    aiRelevance: 9,
-    originality: 8,
-    implementationQuality: 8,
-    portfolioValue: 9,
     tagline: "We approved the model — but can we prove it is the trusted one?",
     problem:
       "Teams load model weights from public hubs without verifying where they came from. Pickle exploits, typosquatted repos, obfuscated payloads, and modified model cards can execute code or smuggle in a compromised artifact before a single inference runs.",
@@ -236,15 +205,8 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/llm-redteam-framework",
     title: "LLM Red-Team Framework",
     category: "ML Security & Red-Teaming",
-    tier: "A",
-    status: "Jul 2024 – Oct 2024 · Active · open source",
+    status: "Active · open source",
     language: "Python · TF-IDF · Logistic Regression · FastAPI · SARIF · GitHub Actions",
-    technicalDepth: 8,
-    securityRelevance: 8,
-    aiRelevance: 9,
-    originality: 8,
-    implementationQuality: 9,
-    portfolioValue: 8,
     tagline: "Measure a prompt-injection detector honestly — against inputs it has never seen.",
     problem:
       "Teams ship prompt-injection detectors they have never stress-tested. Random train/test splits leak template structure and produce dishonest F1 scores.",
@@ -263,9 +225,9 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "Rate limiting, API-key auth, model integrity checksum",
     ],
     evidence: [
-      "Committed evaluation artifacts: grouped-split F1 0.97; novel-phrasing OOD F1 0.8302",
-      "F1 = 0.97 on grouped held-out templates; F1 = 0.83 on novel-phrasing out-of-distribution evaluation — quantifying the generalization gap",
-      "Throughput gate (~1,400 prompts/sec)",
+      "Committed evaluation artifacts: novel-phrasing OOD F1 0.8302; grouped-template F1 0.97",
+      "F1 = 0.83 on novel-phrasing out-of-distribution evaluation versus 0.97 on grouped held-out templates — the generalization gap is the main result",
+      "Performance baseline is environment-scoped and documented separately; no production throughput claim",
     ],
     limitations: [
       "TF-IDF captures lexical patterns, not semantic intent",
@@ -283,15 +245,8 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/model-privacy-attacks",
     title: "Model Privacy Attacks",
     category: "ML Security & Red-Teaming",
-    tier: "A",
-    status: "Active · open source",
+    status: "Private research repository",
     language: "Python",
-    technicalDepth: 8,
-    securityRelevance: 8,
-    aiRelevance: 8,
-    originality: 7,
-    implementationQuality: 8,
-    portfolioValue: 8,
     tagline: "How much does your model reveal about its training data — and does the defense actually work?",
     problem:
       "Teams deploy models trained on sensitive data without measuring whether an attacker can tell if a record was in the training set.",
@@ -330,15 +285,8 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/dataset-poisoning-detector",
     title: "Dataset Poisoning Detector",
     category: "ML Security & Red-Teaming",
-    tier: "A",
     status: "Active · open source",
     language: "Python",
-    technicalDepth: 7,
-    securityRelevance: 7,
-    aiRelevance: 7,
-    originality: 6,
-    implementationQuality: 8,
-    portfolioValue: 7,
     tagline: "A first-pass filter at the training-data ingestion boundary — with honest benchmarks.",
     problem:
       "Slow data corruption — drifting vendor feeds, bad features in shared tables — quietly degrades models across retraining cycles because the pipeline never errors out.",
@@ -357,7 +305,7 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "Quarantine-first architecture, Bloom-filter dedup",
     ],
     evidence: [
-      "~12,400 samples/sec streaming throughput (p99 0.31ms)",
+      "Local benchmark: ~12,400 samples/sec and p99 0.31ms on the documented 20-feature/M2 setup, excluding IsolationForest refit cost",
       "Honest 0.53–0.56 AUC on CIFAR-10 label-flip — stated as near chance",
       "MITRE ATLAS AML.T0020 mapping",
     ],
@@ -377,15 +325,8 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/adversarial-ml-lab",
     title: "Adversarial ML Lab",
     category: "ML Security & Red-Teaming",
-    tier: "A",
     status: "Active · open source",
     language: "Python",
-    technicalDepth: 7,
-    securityRelevance: 7,
-    aiRelevance: 8,
-    originality: 6,
-    implementationQuality: 7,
-    portfolioValue: 7,
     tagline: "Turn 'the model is 93% accurate' into a robustness number you can gate CI on.",
     problem:
       "Clean test accuracy is a peacetime metric. An imperceptible perturbation can drop a ResNet from 93% to single digits while the dashboard stays green.",
@@ -398,12 +339,12 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "Perturbation within an Lp norm budget",
     ],
     controls: [
-      "CI robustness gate (PGD robust acc ≥ 30% at eps=8/255)",
+      "Configurable CI robustness threshold; benchmark results remain model-, attack-, and epsilon-specific",
       "RobustBench baseline comparison",
       "Adversarial-training reference script",
     ],
     evidence: [
-      "73 tests (~29% coverage; 15% CI floor)",
+      "Repository test suite and CI cover attack, defense, evaluation, input-validation, and RobustBench integration paths",
       "Per-epsilon degradation curves in JSON",
       "MITRE ATLAS AML.T0043 mapping",
     ],
@@ -423,15 +364,8 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/mlsec-benchmark-suite",
     title: "ML Security Benchmark Suite",
     category: "ML Security & Red-Teaming",
-    tier: "A",
-    status: "Jan 2024 – Mar 2024 · Active · open source",
+    status: "Active · open source",
     language: "Python · Pytest · JSON Schema · GitHub Actions",
-    technicalDepth: 7,
-    securityRelevance: 7,
-    aiRelevance: 7,
-    originality: 7,
-    implementationQuality: 8,
-    portfolioValue: 7,
     tagline: "Cross-project regression harness that detects interface and behavioral regressions across security tools.",
     problem:
       "Security tooling built across separate repos drifts: interfaces change, behavioral contracts break silently, and there is no shared baseline to detect regressions early.",
@@ -450,7 +384,7 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "CI merge gate on regression failures",
     ],
     evidence: [
-      "67 test functions across 8 test modules",
+      "Committed regression tests cover the four current security-tool adapters and shared result contracts",
       "HF-scanner run over 3 known-bad and 2 known-good committed fixtures: precision=1.0, recall=1.0, F1=1.0 (scoped strictly to that fixture set)",
     ],
     limitations: [
@@ -465,7 +399,7 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
   },
 ];
 
-// TIER B — Engineering archive. Real work, secondary prominence.
+// Engineering archive. Real work, secondary prominence.
 export type ArchiveProject = {
   repository: string;
   url: string;
@@ -486,16 +420,6 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
     category: "Foundations",
     language: "Python",
     status: "Active",
-  },
-  {
-    repository: "PulseNet-RUL-Forecasting",
-    url: "https://github.com/poojakira/PulseNet-RUL-Forecasting",
-    title: "PulseNet RUL Forecasting",
-    description:
-      "NASA C-MAPSS remaining-useful-life forecasting with adversarial sensor-input checks, STRIDE threat model, RBAC, SARIF, and secure MLOps controls.",
-    category: "ML Security & Red-Teaming",
-    language: "Python",
-    status: "Archived",
   },
 ];
 
