@@ -10,7 +10,8 @@
     "type-check": "tsc --noEmit",
     "lint:fix": "next lint --fix",
     "analyze": "ANALYZE=true next build",
-    "serve:static": "npx serve out -p 3000"
+    "serve:static": "npx serve out -p 3000",
+    "test": "node scripts/verify-content.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.88.17",
