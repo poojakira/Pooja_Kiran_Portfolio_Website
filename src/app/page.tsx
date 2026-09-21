@@ -46,11 +46,11 @@ export default function Home() {
               <p>My work focuses on three questions: should an agent execute this tool call, should it hold these permissions, and should we trust this model artifact? I turn those questions into open-source Python systems with documented tests and clear limitations.</p>
             </div>
             <dl className="metric-grid">
-              <div><dt>1,047</dt><dd>Documented passing tests</dd></div>
+              <div><dt>1,058</dt><dd>Documented passing tests</dd></div>
               <div><dt>55</dt><dd>Prompt-injection patterns</dd></div>
               <div><dt>25</dt><dd>Deterministic IAM rules</dd></div>
             </dl>
-            <p className="evidence-note">Documented September 2026 snapshot: 622 MCP + 230 IAM + 195 model-scanner tests.</p>
+            <p className="evidence-note">Verified September 2026 repository snapshot: 629 MCP + 230 IAM + 199 model-scanner tests.</p>
           </div>
         </div>
       </section>
