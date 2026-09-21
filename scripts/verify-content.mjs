@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import crypto from "node:crypto";
 
 const files = [
   "src/data/portfolio.ts",
@@ -57,3 +58,17 @@ for (const repo of repositoryNames) {
 }
 
 console.log("portfolio evidence consistency checks passed");
+
+const resumePath = "public/Pooja_Kiran_Security_Engineer_Resume.pdf";
+const expectedResumeSha256 = "408cbe449622aeed864758a382ba781845fd26cf32911edeebb95ad278b8918c";
+if (!fs.existsSync(resumePath)) {
+  throw new Error("Canonical résumé PDF is missing");
+}
+const resumeSha256 = crypto.createHash("sha256").update(fs.readFileSync(resumePath)).digest("hex");
+if (resumeSha256 !== expectedResumeSha256) {
+  throw new Error(`Canonical résumé hash mismatch: ${resumeSha256}`);
+}
+if (fs.existsSync("Pooja_KIRAN_Security_Engineer.pdf")) {
+  throw new Error("Legacy root-level résumé must not exist");
+}
+console.log(`canonical résumé SHA-256 verified: ${resumeSha256}`);
