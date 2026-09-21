@@ -11,7 +11,7 @@ The homepage includes profile, experience, three flagship projects with expandab
 ## Content and evidence
 
 - Canonical rendered content: `src/data/portfolio.ts` and `src/app/page.tsx`.
-- Content source: user-supplied September 2026 résumé, `Pooja_Kiran_Security_Engineer_Resume(2).pdf`.
+- Content source: user-supplied September 2026 résumé, `Pooja_Kiran_Security_Engineer_Resume(3).pdf`.
 - Verified flagship test snapshot: MCP 629, IAM 230, model scanner 199; total 1,058. These values are reconciled to the committed `VERIFIED_METRICS.md` evidence in the three flagship repositories; the website does not independently execute those suites.
 - AEROSEC $120K and approximately 12% savings are modeled scenarios, not secured funding or realized savings.
 - The model-scanner false-positive result applies only to four documented benign samples.
@@ -20,12 +20,14 @@ The homepage includes profile, experience, three flagship projects with expandab
 
 ## Assets and URLs
 
-- New résumé: `public/Pooja_Kiran_Security_Engineer_Resume.pdf`
+- Canonical résumé asset: `public/Pooja_Kiran_Security_Engineer_Resume.pdf`
+- Canonical source file: `Pooja_Kiran_Security_Engineer_Resume(3).pdf`
+- SHA-256: `408cbe449622aeed864758a382ba781845fd26cf32911edeebb95ad278b8918c`
 - Portrait: `public/pooja-kiran.png`
 - Favicon: `public/favicon.svg`
 - `SITE_PATH` in `src/data/portfolio.ts` matches the Next.js basePath.
 - All public asset URLs include the GitHub Pages project path explicitly. This works with or without a trailing slash in the initial URL.
-- The original root PDF is retained for history and is no longer linked.
+- The legacy root-level résumé PDF was removed to prevent ambiguity; only the canonical public résumé remains.
 
 ## Development
 
