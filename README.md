@@ -1,6 +1,6 @@
 # Pooja Kiran | Security Engineer Portfolio
 
-**Repository owner & maintainer:** Pooja Kiran ([@poojakira](https://github.com/poojakira)) — I review changes, verify public claims, and maintain the repository record.
+**Repository owner & maintainer:** Pooja Kiran ([@poojakira](https://github.com/poojakira)) — I lead the design, implementation, validation, documentation, and maintenance of this repository, and I verify public claims against repository evidence.
 
 Photo-led, recruiter-focused portfolio built with the existing Next.js 14 / React / TypeScript stack and exported to GitHub Pages.
 
