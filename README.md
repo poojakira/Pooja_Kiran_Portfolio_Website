@@ -12,7 +12,7 @@ The homepage includes profile, experience, three flagship projects with expandab
 
 - Canonical rendered content: `src/data/portfolio.ts` and `src/app/page.tsx`.
 - Content source: user-supplied September 2026 résumé, `Pooja_Kiran_Security_Engineer_Resume(2).pdf`.
-- Snapshot test counts: MCP 622, IAM 230, model scanner 195; total 1,047. These are documented résumé figures, not live CI counters or test results run by this website.
+- Verified flagship test snapshot: MCP 629, IAM 230, model scanner 199; total 1,058. These values are reconciled to the committed `VERIFIED_METRICS.md` evidence in the three flagship repositories; the website does not independently execute those suites.
 - AEROSEC $120K and approximately 12% savings are modeled scenarios, not secured funding or realized savings.
 - The model-scanner false-positive result applies only to four documented benign samples.
 - Source photo is used unchanged; CSS controls its presentation.
