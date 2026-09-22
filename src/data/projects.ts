@@ -225,8 +225,8 @@ export const SUPPORTING_PROJECTS: PortfolioProject[] = [
       "Rate limiting, API-key auth, model integrity checksum",
     ],
     evidence: [
-      "Committed evaluation artifacts: novel-phrasing OOD F1 0.8302; grouped-template F1 0.97",
-      "F1 = 0.83 on novel-phrasing out-of-distribution evaluation versus 0.97 on grouped held-out templates — the generalization gap is the main result",
+      "Current CI evaluation: novel-phrasing OOD F1 0.7188; grouped-reference F1 0.9714",
+      "F1 = 0.7188 on the current same-detector novel-phrasing out-of-distribution evaluation versus 0.9714 on grouped held-out templates — the generalization gap is the main result",
       "Performance baseline is environment-scoped and documented separately; no production throughput claim",
     ],
     limitations: [
