@@ -124,6 +124,21 @@ export default function CinematicSecurityPortfolio() {
       currentY += (targetY - currentY) * 0.08;
       root.style.setProperty("--cursor-x", currentX.toFixed(4));
       root.style.setProperty("--cursor-y", currentY.toFixed(4));
+      root.style.setProperty("--stage-ry", `${(currentX * 3.2).toFixed(3)}deg`);
+      root.style.setProperty("--stage-rx", `${(currentY * -2).toFixed(3)}deg`);
+      root.style.setProperty("--grid-x", `${(currentX * 10).toFixed(2)}px`);
+      root.style.setProperty("--grid-y", `${(currentY * 7).toFixed(2)}px`);
+      root.style.setProperty("--map-x", `${(currentX * 14).toFixed(2)}px`);
+      root.style.setProperty("--map-y", `${(currentY * 9).toFixed(2)}px`);
+      root.style.setProperty("--console-left-x", `${(currentX * -9).toFixed(2)}px`);
+      root.style.setProperty("--console-left-y", `${(currentY * -5).toFixed(2)}px`);
+      root.style.setProperty("--console-right-x", `${(currentX * 8).toFixed(2)}px`);
+      root.style.setProperty("--console-right-y", `${(currentY * 4).toFixed(2)}px`);
+      root.style.setProperty("--desk-x", `${(currentX * 7).toFixed(2)}px`);
+      root.style.setProperty("--desk-y", `${(currentY * 4).toFixed(2)}px`);
+      root.style.setProperty("--portrait-x", `${(currentX * -12).toFixed(2)}px`);
+      root.style.setProperty("--portrait-y", `${(currentY * -7).toFixed(2)}px`);
+      root.style.setProperty("--portrait-ry", `${(currentX * -1.8).toFixed(3)}deg`);
       frame = requestAnimationFrame(renderPointer);
     };
 
