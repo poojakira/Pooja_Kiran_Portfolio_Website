@@ -340,20 +340,23 @@ def build_body(rig):
     hair_back = uv_sphere("HairBack", (0,0.070,1.485), (0.118,0.065,0.155), HAIR, 42, 28)
     parent_bone(hair_back, rig, "head"); parts.append(hair_back)
 
-    # Subtle geometric facial landmarks; portrait decal supplies identity cues.
-    eye_z = 1.525
-    for side, x in (("L", 0.036), ("R", -0.036)):
-        ew = uv_sphere(f"EyeWhite.{side}", (x,-0.087,eye_z), (0.019,0.006,0.010), EYE_WHITE, 24, 14)
-        parent_bone(ew, rig, "head"); parts.append(ew)
-        iris = uv_sphere(f"Iris.{side}", (x,-0.093,eye_z), (0.0065,0.003,0.0065), IRIS, 18, 10)
-        parent_bone(iris, rig, "head"); parts.append(iris)
-
-    nose = uv_sphere("Nose", (0,-0.094,1.495), (0.014,0.013,0.022), SKIN, 24, 14)
-    parent_bone(nose, rig, "head"); parts.append(nose)
-    lips = rounded_box("Lips", (0,-0.095,1.462), (0.025,0.005,0.006), LIP, 0.006)
-    parent_bone(lips, rig, "head"); parts.append(lips)
-
-    add_face_decal(rig)
+    # Prefer the portrait-derived 468-point surface. Use geometric features only
+    # when face reconstruction was unavailable.
+    reconstructed = add_reconstructed_face(rig)
+    if reconstructed is not None:
+        parts.append(reconstructed)
+    else:
+        eye_z = 1.525
+        for side, x in (("L", 0.036), ("R", -0.036)):
+            ew = uv_sphere(f"EyeWhite.{side}", (x,-0.087,eye_z), (0.019,0.006,0.010), EYE_WHITE, 24, 14)
+            parent_bone(ew, rig, "head"); parts.append(ew)
+            iris = uv_sphere(f"Iris.{side}", (x,-0.093,eye_z), (0.0065,0.003,0.0065), IRIS, 18, 10)
+            parent_bone(iris, rig, "head"); parts.append(iris)
+        nose = uv_sphere("Nose", (0,-0.094,1.495), (0.014,0.013,0.022), SKIN, 24, 14)
+        parent_bone(nose, rig, "head"); parts.append(nose)
+        lips = rounded_box("Lips", (0,-0.095,1.462), (0.025,0.005,0.006), LIP, 0.006)
+        parent_bone(lips, rig, "head"); parts.append(lips)
+        add_face_decal(rig)
 
     # Arms with natural taper.
     for side, sign in (("L", 1), ("R", -1)):
