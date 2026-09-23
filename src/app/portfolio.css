@@ -3404,3 +3404,184 @@ body{overflow:hidden}
   .world-map-node,
   .universe-actions button{transition:none}
 }
+
+
+/* ==========================================================================
+   EXPLORE — REAL-WORLD ARCHITECTURAL PRESENTATION
+   Environment first. Interface second.
+   ========================================================================== */
+
+.trust-universe-viewport::after{display:none}
+
+.world-location{
+  top:88px;
+  min-width:auto;
+  padding:8px 10px;
+  border:0;
+  border-left:1px solid rgba(240,243,239,.33);
+  border-radius:0;
+  background:linear-gradient(90deg,rgba(8,11,12,.42),transparent);
+  backdrop-filter:none;
+}
+.world-location>span{
+  width:25px;
+  height:25px;
+  border-radius:0;
+  background:transparent;
+  color:#c6cece;
+  font-size:.56rem;
+}
+.world-location strong{
+  font-size:.62rem;
+  letter-spacing:.085em;
+}
+.world-location small{
+  color:#8e999b;
+  font-size:.42rem;
+}
+
+.world-thesis{
+  bottom:28px;
+  width:min(470px,48vw);
+}
+.world-thesis p{
+  max-width:440px;
+  font-size:clamp(.9rem,1.25vw,1.18rem);
+  line-height:1.32;
+  letter-spacing:-.02em;
+  font-weight:460;
+  color:rgba(242,244,240,.92);
+  text-shadow:0 2px 18px rgba(0,0,0,.22);
+}
+.world-thesis span{
+  margin-top:7px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#a3abad;
+  backdrop-filter:none;
+  font-size:.42rem;
+  letter-spacing:.08em;
+}
+
+.explore-utility{
+  position:absolute;
+  z-index:10;
+  right:clamp(18px,3vw,42px);
+  bottom:24px;
+  display:flex;
+  align-items:center;
+  gap:2px;
+  padding:3px;
+  border:1px solid rgba(239,243,240,.1);
+  border-radius:7px;
+  background:rgba(8,11,12,.34);
+  backdrop-filter:blur(9px);
+  opacity:.72;
+  transition:opacity .18s ease,background .18s ease;
+}
+.explore-utility:hover,
+.explore-utility:focus-within{
+  opacity:1;
+  background:rgba(8,11,12,.58);
+}
+.explore-utility button{
+  min-height:28px;
+  border:0;
+  border-radius:5px;
+  background:transparent;
+  color:#aeb8b8;
+  padding:5px 8px;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.43rem;
+  letter-spacing:.05em;
+}
+.explore-utility button:hover{
+  background:rgba(238,241,237,.09);
+  color:#eef2ef;
+}
+
+.campus-session-state{
+  position:absolute;
+  z-index:7;
+  right:clamp(18px,3vw,42px);
+  top:88px;
+  color:rgba(226,232,230,.44);
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.4rem;
+  letter-spacing:.08em;
+  pointer-events:none;
+}
+
+.physical-building-sign{
+  min-width:145px;
+  display:grid;
+  gap:2px;
+  padding:7px 9px;
+  border-left:3px solid #5f6d71;
+  background:rgba(226,225,216,.93);
+  color:#1c2224;
+  box-shadow:0 8px 24px rgba(0,0,0,.1);
+}
+.physical-building-sign>span{
+  color:#697477;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:5px;
+  letter-spacing:.095em;
+}
+.physical-building-sign>strong{
+  font-size:8px;
+  line-height:1.2;
+  letter-spacing:.015em;
+}
+.physical-building-sign>small{
+  color:#677174;
+  font-size:5px;
+}
+.physical-building-sign.light{
+  background:rgba(245,244,237,.95);
+  border-left-color:#9aa5a4;
+}
+
+.universe-header{
+  background:linear-gradient(180deg,rgba(8,11,12,.58),rgba(8,11,12,.12));
+  border-bottom-color:rgba(236,241,239,.075);
+}
+.universe-header nav{
+  opacity:.7;
+  transition:opacity .18s ease;
+}
+.universe-header nav:hover,
+.universe-header nav:focus-within{opacity:1}
+.quick-access-button{
+  background:rgba(9,12,13,.26);
+}
+
+.graybox-world-label{display:none}
+.graybox-vehicle-label{
+  border:1px solid rgba(238,242,238,.13);
+  background:rgba(11,14,15,.64);
+  backdrop-filter:blur(6px);
+  box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+
+@media(max-width:650px){
+  .world-location{top:98px}
+  .world-thesis{
+    left:14px;
+    right:14px;
+    bottom:20px;
+    width:auto;
+  }
+  .world-thesis p{font-size:.88rem;max-width:72%}
+  .explore-utility{
+    right:12px;
+    bottom:18px;
+  }
+  .explore-utility button{
+    font-size:.4rem;
+    padding-inline:6px;
+  }
+  .campus-session-state{display:none}
+}
