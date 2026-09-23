@@ -8462,3 +8462,178 @@ body:has(.sketch-site){
 @media(prefers-reduced-motion:reduce){
   .cyber-command-loading span{animation:none}
 }
+
+
+/* ==========================================================================
+   LIVE EXACT-SKETCH FIX — approved realistic reference, not flat reconstruction
+   ========================================================================== */
+
+.sketch-command-real{
+  background:#061019;
+}
+.sketch-command-real::before{
+  z-index:4;
+  background:
+    linear-gradient(90deg,rgba(3,7,10,.48),transparent 17%),
+    linear-gradient(180deg,rgba(0,0,0,.02),transparent 72%,rgba(0,0,0,.18));
+}
+.sketch-command-photo{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  filter:saturate(1.035) contrast(1.025) brightness(.98);
+}
+.sketch-command-fade{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(3,7,10,.56) 0%,rgba(3,7,10,.16) 10%,transparent 23%),
+    linear-gradient(180deg,transparent 74%,rgba(2,5,7,.12));
+}
+.sketch-command-loading{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:grid;
+  place-content:center;
+  justify-items:center;
+  gap:8px;
+  background:
+    radial-gradient(circle at 55% 35%,rgba(50,169,221,.14),transparent 34%),
+    #061019;
+  color:#7393a0;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.4rem;
+  letter-spacing:.12em;
+}
+.sketch-command-loading span{
+  width:25px;
+  height:25px;
+  border:1px solid rgba(87,191,235,.25);
+  border-top-color:#6ed2fb;
+  border-radius:50%;
+  animation:sketchHeroSpin .85s linear infinite;
+}
+@keyframes sketchHeroSpin{to{transform:rotate(360deg)}}
+
+/* Cover the decorative mockup metrics with verified portfolio evidence. */
+.sketch-real-metrics{
+  position:absolute;
+  z-index:12;
+  right:1.4%;
+  top:2.2%;
+  width:137px;
+  padding:8px 9px;
+  border:1px solid rgba(77,181,224,.22);
+  background:rgba(4,14,20,.94);
+  box-shadow:0 10px 28px rgba(0,0,0,.2);
+  backdrop-filter:blur(4px);
+}
+.sketch-real-metrics>div{
+  display:grid;
+  gap:1px;
+  padding:7px 0;
+  border-bottom:1px solid rgba(83,171,209,.12);
+}
+.sketch-real-metrics>div:last-child{border-bottom:0}
+.sketch-real-metrics small{
+  color:#69a3bc;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.32rem;
+  letter-spacing:.07em;
+}
+.sketch-real-metrics strong{
+  color:#e1edf0;
+  font-size:.68rem;
+}
+
+/* Eyes calibrated to the approved 716x422 cinematic image. */
+.sketch-command-real .sketch-eye{
+  z-index:14;
+  top:25.05%;
+  width:7px;
+  height:6px;
+}
+.sketch-command-real .sketch-eye-left{left:26.35%}
+.sketch-command-real .sketch-eye-right{left:30.45%}
+.sketch-command-real .sketch-eye i{
+  width:4px;
+  height:4px;
+  opacity:.82;
+  background:
+    radial-gradient(circle at 35% 30%,rgba(255,255,255,.55) 0 7%,transparent 9%),
+    radial-gradient(circle,#0d0d0e 0 47%,#35251d 49% 70%,transparent 73%);
+  mix-blend-mode:multiply;
+  box-shadow:none;
+}
+
+/* The reference cards use realistic blue/gold imagery, not abstract wireframes. */
+.sketch-card{
+  background:
+    linear-gradient(90deg,rgba(5,9,12,.97) 0%,rgba(5,9,12,.9) 40%,rgba(5,9,12,.34) 72%,rgba(5,9,12,.2) 100%),
+    linear-gradient(180deg,transparent 35%,rgba(5,9,12,.92) 100%),
+    var(--sketch-card-image) var(--sketch-card-position,center)/220% auto no-repeat,
+    #081017;
+}
+.sketch-card-visual{
+  display:none;
+}
+.sketch-card h3{
+  max-width:76%;
+  text-shadow:0 2px 15px rgba(0,0,0,.72);
+}
+.sketch-card p{
+  max-width:72%;
+  color:#d0d1cc;
+  text-shadow:0 2px 12px rgba(0,0,0,.7);
+}
+.sketch-card-icon{
+  background:rgba(6,10,12,.72);
+  backdrop-filter:blur(5px);
+}
+.sketch-card:hover{
+  border-color:rgba(236,190,105,.62);
+  box-shadow:0 15px 38px -28px rgba(222,171,85,.42);
+}
+
+/* Keep the top fold visually dense like the supplied reference. */
+@media(min-width:1101px){
+  .sketch-command-real{
+    transform:translate3d(var(--panel-x,0px),0,0);
+  }
+}
+@media(max-width:1100px) and (min-width:821px){
+  .sketch-command-real .sketch-eye{display:none}
+  .sketch-real-metrics{right:8px;width:122px}
+}
+@media(max-width:820px){
+  .sketch-command-real{
+    aspect-ratio:716 / 422;
+    height:auto;
+  }
+  .sketch-command-real .sketch-eye{display:none}
+  .sketch-real-metrics{
+    right:8px;
+    top:8px;
+    width:116px;
+  }
+}
+@media(max-width:540px){
+  .sketch-real-metrics{
+    width:104px;
+    padding:5px 7px;
+  }
+  .sketch-real-metrics>div{padding:4px 0}
+  .sketch-real-metrics small{font-size:.28rem}
+  .sketch-real-metrics strong{font-size:.58rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .sketch-command-loading span{animation:none}
+}
