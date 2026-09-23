@@ -30,7 +30,6 @@ const CONTROL_EVENT = "trust-universe-control";
 const concrete = "#b5afa2";
 const paleConcrete = "#d4d0c5";
 const darkMetal = "#202629";
-const graphite = "#30383b";
 const glass = "#42545b";
 const stone = "#c1b39d";
 const asphalt = "#343638";
