@@ -10,7 +10,7 @@ const focusCards = [
     icon: "◉",
     title: "Agent Security",
     copy: "Secure autonomous and agentic systems with guardrails, tool controls, prompt-injection detection, runtime protection, and auditability.",
-    metric: "629 passing tests",
+    metric: "Learn more",
     visual: "agent",
   },
   {
@@ -18,7 +18,7 @@ const focusCards = [
     icon: "◇",
     title: "Identity & Authorization",
     copy: "Design and validate identity systems across cloud and AI with fine-grained authorization, least privilege, trust relationships, and policy analysis.",
-    metric: "25 IAM rule IDs · 230 tests",
+    metric: "Learn more",
     visual: "identity",
   },
   {
@@ -26,7 +26,7 @@ const focusCards = [
     icon: "⌬",
     title: "Model Assurance",
     copy: "Establish provenance, integrity, and supply-chain evidence for modern AI models before artifacts are trusted or executed.",
-    metric: "199 passing tests",
+    metric: "Learn more",
     visual: "model",
   },
   {
@@ -34,7 +34,7 @@ const focusCards = [
     icon: "▣",
     title: "Engineering Evidence",
     copy: "Turn security into measurable outcomes with automated testing, CI validation, SIEM detections, SARIF findings, and explicit limitations.",
-    metric: "1,058 documented passing tests",
+    metric: "Learn more",
     visual: "evidence",
   },
 ] as const;
@@ -221,7 +221,7 @@ export default function ExactSketchPortfolio() {
                 <div className="sketch-card-icon">{card.icon}</div>
                 <h3>{card.title}</h3>
                 <p>{card.copy}</p>
-                <strong>{card.metric} <b>→</b></strong>
+                <a className="sketch-card-link" href="#work">{card.metric} <b>→</b></a>
               </article>
             ))}
           </div>
