@@ -2,305 +2,415 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { Html, Line, useTexture } from "@react-three/drei";
-import { ThreeEvent, useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { PORTRAIT_URL } from "@/data/portfolio";
 
 type SecurityWorldProps = {
-  isRotating: boolean;
-  setIsRotating: (value: boolean) => void;
-  setStage: (value: number) => void;
+  progress: number;
 };
 
-function CloudPuff({ position, scale = 1 }: { position: [number, number, number]; scale?: number }) {
+function ServerRack({
+  position,
+  rotation = [0, 0, 0],
+}: {
+  position: [number, number, number];
+  rotation?: [number, number, number];
+}) {
+  const servers = Array.from({ length: 10 });
+
   return (
-    <group position={position} scale={scale}>
-      {[
-        [-0.72, 0, 0],
-        [-0.2, 0.22, 0.08],
-        [0.34, 0.1, -0.02],
-        [0.82, -0.02, 0.08],
-        [0.05, -0.12, 0.2],
-      ].map((p, index) => (
-        <mesh key={index} position={p as [number, number, number]}>
-          <sphereGeometry args={[0.62, 20, 20]} />
-          <meshStandardMaterial color="#ffffff" roughness={0.9} metalness={0} />
+    <group position={position} rotation={rotation}>
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={[1.15, 2.85, 0.92]} />
+        <meshStandardMaterial color="#11171b" roughness={0.42} metalness={0.62} />
+      </mesh>
+
+      <mesh position={[0, 0, 0.475]}>
+        <boxGeometry args={[0.98, 2.58, 0.035]} />
+        <meshPhysicalMaterial
+          color="#0b1014"
+          roughness={0.16}
+          metalness={0.28}
+          transmission={0.12}
+          transparent
+          opacity={0.9}
+        />
+      </mesh>
+
+      {servers.map((_, index) => {
+        const y = 1.08 - index * 0.235;
+        return (
+          <group key={index} position={[0, y, 0.505]}>
+            <mesh>
+              <boxGeometry args={[0.82, 0.145, 0.035]} />
+              <meshStandardMaterial color={index % 3 === 0 ? "#26323b" : "#1b252c"} metalness={0.5} roughness={0.38} />
+            </mesh>
+            <mesh position={[-0.31, 0, 0.026]}>
+              <boxGeometry args={[0.028, 0.028, 0.012]} />
+              <meshBasicMaterial color={index % 4 === 0 ? "#f0ad4e" : "#40c982"} />
+            </mesh>
+            <mesh position={[-0.25, 0, 0.026]}>
+              <boxGeometry args={[0.018, 0.018, 0.012]} />
+              <meshBasicMaterial color="#4aa8ff" />
+            </mesh>
+          </group>
+        );
+      })}
+
+      <mesh position={[0, -1.48, 0]}>
+        <boxGeometry args={[1.28, 0.12, 1.03]} />
+        <meshStandardMaterial color="#232c31" roughness={0.56} metalness={0.52} />
+      </mesh>
+    </group>
+  );
+}
+
+function CeilingLight({ z }: { z: number }) {
+  return (
+    <group position={[0, 3.55, z]}>
+      <mesh>
+        <boxGeometry args={[3.9, 0.08, 0.28]} />
+        <meshStandardMaterial color="#dde3e6" emissive="#dfefff" emissiveIntensity={2.2} />
+      </mesh>
+      <pointLight position={[0, -0.5, 0]} intensity={1.2} distance={8} color="#d9ecff" />
+    </group>
+  );
+}
+
+function AccessGate({ z, label }: { z: number; label: string }) {
+  return (
+    <group position={[0, 0, z]}>
+      <mesh position={[-2.7, 1.45, 0]} castShadow>
+        <boxGeometry args={[0.34, 2.9, 0.55]} />
+        <meshStandardMaterial color="#222a30" roughness={0.36} metalness={0.65} />
+      </mesh>
+      <mesh position={[2.7, 1.45, 0]} castShadow>
+        <boxGeometry args={[0.34, 2.9, 0.55]} />
+        <meshStandardMaterial color="#222a30" roughness={0.36} metalness={0.65} />
+      </mesh>
+      <mesh position={[0, 2.82, 0]} castShadow>
+        <boxGeometry args={[5.7, 0.22, 0.55]} />
+        <meshStandardMaterial color="#242d33" roughness={0.34} metalness={0.62} />
+      </mesh>
+
+      <mesh position={[-2.35, 1.12, 0.32]}>
+        <boxGeometry args={[0.18, 0.32, 0.06]} />
+        <meshStandardMaterial color="#10161a" roughness={0.32} metalness={0.35} />
+      </mesh>
+      <mesh position={[-2.35, 1.18, 0.356]}>
+        <boxGeometry args={[0.07, 0.07, 0.01]} />
+        <meshBasicMaterial color="#48d891" />
+      </mesh>
+
+      <Html position={[0, 2.78, 0.35]} center transform distanceFactor={7}>
+        <div className="facility-sign">{label}</div>
+      </Html>
+    </group>
+  );
+}
+
+function WallDisplay({
+  position,
+  rotation,
+  title,
+  lines,
+  accent,
+}: {
+  position: [number, number, number];
+  rotation: [number, number, number];
+  title: string;
+  lines: string[];
+  accent: string;
+}) {
+  return (
+    <group position={position} rotation={rotation}>
+      <mesh castShadow>
+        <boxGeometry args={[2.35, 1.35, 0.1]} />
+        <meshStandardMaterial color="#11181e" roughness={0.26} metalness={0.34} />
+      </mesh>
+      <mesh position={[0, 0, 0.057]}>
+        <planeGeometry args={[2.14, 1.14]} />
+        <meshBasicMaterial color="#0d1419" />
+      </mesh>
+      <Html position={[0, 0, 0.075]} center transform distanceFactor={5.4}>
+        <div className="facility-screen" style={{ "--screen-accent": accent } as React.CSSProperties}>
+          <strong>{title}</strong>
+          {lines.map((line) => <span key={line}>{line}</span>)}
+        </div>
+      </Html>
+    </group>
+  );
+}
+
+function PortraitLobby() {
+  const texture = useTexture(PORTRAIT_URL);
+  texture.colorSpace = THREE.SRGBColorSpace;
+
+  return (
+    <group position={[0, 1.55, 3.4]}>
+      <mesh position={[0, 0, -0.035]} castShadow>
+        <boxGeometry args={[2.15, 2.15, 0.12]} />
+        <meshStandardMaterial color="#1e262b" roughness={0.36} metalness={0.46} />
+      </mesh>
+      <mesh position={[0, 0, 0.035]}>
+        <planeGeometry args={[1.92, 1.92]} />
+        <meshBasicMaterial map={texture} toneMapped={false} />
+      </mesh>
+      <Html position={[0, -1.28, 0.06]} center transform distanceFactor={5.2}>
+        <div className="facility-nameplate">
+          <strong>POOJA KIRAN</strong>
+          <span>SECURITY ENGINEER</span>
+        </div>
+      </Html>
+    </group>
+  );
+}
+
+function GlassPartition({ z }: { z: number }) {
+  return (
+    <group position={[0, 1.6, z]}>
+      <mesh position={[-4.15, 0, 0]}>
+        <boxGeometry args={[0.12, 3.2, 5.8]} />
+        <meshPhysicalMaterial
+          color="#91a6b2"
+          roughness={0.08}
+          metalness={0.08}
+          transmission={0.45}
+          transparent
+          opacity={0.28}
+        />
+      </mesh>
+      <mesh position={[4.15, 0, 0]}>
+        <boxGeometry args={[0.12, 3.2, 5.8]} />
+        <meshPhysicalMaterial
+          color="#91a6b2"
+          roughness={0.08}
+          metalness={0.08}
+          transmission={0.45}
+          transparent
+          opacity={0.28}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function ModelVault({ z }: { z: number }) {
+  const cabinets = [-2.7, -1.35, 0, 1.35, 2.7];
+  return (
+    <group position={[0, 0, z]}>
+      {cabinets.map((x, index) => (
+        <group key={x} position={[x, 1.15, 0]}>
+          <mesh castShadow>
+            <boxGeometry args={[1.02, 2.3, 1.25]} />
+            <meshStandardMaterial color="#c9d0d4" roughness={0.28} metalness={0.58} />
+          </mesh>
+          <mesh position={[0, 0, 0.64]}>
+            <boxGeometry args={[0.72, 1.65, 0.035]} />
+            <meshStandardMaterial color="#192126" roughness={0.3} metalness={0.34} />
+          </mesh>
+          <mesh position={[0.28, 0.68, 0.67]}>
+            <boxGeometry args={[0.09, 0.09, 0.02]} />
+            <meshBasicMaterial color={index % 2 === 0 ? "#52d990" : "#4aa8ff"} />
+          </mesh>
+        </group>
+      ))}
+      <Html position={[0, 2.8, 0.2]} center transform distanceFactor={7}>
+        <div className="facility-zone-label">MODEL ARTIFACT VAULT</div>
+      </Html>
+    </group>
+  );
+}
+
+function SOCDesk({ position }: { position: [number, number, number] }) {
+  return (
+    <group position={position}>
+      <mesh position={[0, 0.72, 0]} castShadow>
+        <boxGeometry args={[3.3, 0.12, 1.1]} />
+        <meshStandardMaterial color="#30383d" roughness={0.48} metalness={0.44} />
+      </mesh>
+      {[-1.25, 1.25].map((x) => (
+        <mesh key={x} position={[x, 0.34, 0]}>
+          <boxGeometry args={[0.14, 0.7, 0.14]} />
+          <meshStandardMaterial color="#20282c" metalness={0.55} roughness={0.45} />
         </mesh>
+      ))}
+      {[-0.88, 0, 0.88].map((x, index) => (
+        <group key={x} position={[x, 1.45, -0.2]} rotation={[-0.08, 0, 0]}>
+          <mesh>
+            <boxGeometry args={[0.82, 0.52, 0.06]} />
+            <meshStandardMaterial color="#11171b" roughness={0.25} metalness={0.36} />
+          </mesh>
+          <mesh position={[0, 0, 0.036]}>
+            <planeGeometry args={[0.72, 0.42]} />
+            <meshBasicMaterial color={index === 1 ? "#12304b" : "#10251f"} />
+          </mesh>
+        </group>
       ))}
     </group>
   );
 }
 
-function PacketDrone() {
-  const ref = useRef<THREE.Group>(null);
+export default function SecurityWorld({ progress }: SecurityWorldProps) {
+  const { camera } = useThree();
+  const progressRef = useRef(progress);
 
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.elapsedTime * 0.36;
-    ref.current.position.set(Math.cos(t) * 5.5, 1.7 + Math.sin(t * 2) * 0.18, Math.sin(t) * 5.5);
-    ref.current.rotation.y = -t + Math.PI / 2;
-    ref.current.rotation.z = Math.sin(t * 2) * 0.08;
-  });
+  useEffect(() => {
+    progressRef.current = progress;
+  }, [progress]);
 
-  return (
-    <group ref={ref}>
-      <mesh rotation={[0, 0, Math.PI / 4]}>
-        <boxGeometry args={[0.5, 0.08, 0.5]} />
-        <meshStandardMaterial color="#172334" roughness={0.45} metalness={0.35} />
-      </mesh>
-      <mesh position={[0.32, 0, 0]}>
-        <sphereGeometry args={[0.05, 12, 12]} />
-        <meshBasicMaterial color="#4aa8ff" />
-      </mesh>
-      <mesh position={[-0.32, 0, 0]}>
-        <sphereGeometry args={[0.05, 12, 12]} />
-        <meshBasicMaterial color="#4aa8ff" />
-      </mesh>
-    </group>
-  );
-}
-
-function SecurityNode({
-  position,
-  color,
-  height = 0.78,
-}: {
-  position: [number, number, number];
-  color: string;
-  height?: number;
-}) {
-  return (
-    <group position={position}>
-      <mesh position={[0, -0.1, 0]} receiveShadow>
-        <cylinderGeometry args={[0.72, 0.8, 0.26, 32]} />
-        <meshStandardMaterial color="#e8eef4" roughness={0.82} />
-      </mesh>
-      <mesh position={[0, height / 2 + 0.03, 0]} castShadow>
-        <boxGeometry args={[0.86, height, 0.86]} />
-        <meshStandardMaterial color="#ffffff" roughness={0.42} metalness={0.06} />
-      </mesh>
-      <mesh position={[0, height + 0.48, 0]} castShadow>
-        <octahedronGeometry args={[0.34, 0]} />
-        <meshStandardMaterial color={color} roughness={0.3} metalness={0.18} emissive={color} emissiveIntensity={0.1} />
-      </mesh>
-    </group>
-  );
-}
-
-function PortraitMonolith() {
-  const texture = useTexture(PORTRAIT_URL);
-  texture.colorSpace = THREE.SRGBColorSpace;
-
-  return (
-    <group position={[0, -0.08, 0.45]}>
-      <mesh position={[0, 0.54, 0]} castShadow>
-        <boxGeometry args={[1.45, 1.55, 0.28]} />
-        <meshStandardMaterial color="#f6f8fb" roughness={0.36} metalness={0.08} />
-      </mesh>
-      <mesh position={[0, 0.56, 0.151]}>
-        <planeGeometry args={[1.22, 1.22]} />
-        <meshBasicMaterial map={texture} toneMapped={false} />
-      </mesh>
-      <mesh position={[0, -0.42, 0]}>
-        <cylinderGeometry args={[0.92, 1.08, 0.28, 32]} />
-        <meshStandardMaterial color="#dfe7ef" roughness={0.72} />
-      </mesh>
-    </group>
-  );
-}
-
-export default function SecurityWorld({ isRotating, setIsRotating, setStage }: SecurityWorldProps) {
-  const world = useRef<THREE.Group>(null);
-  const lastX = useRef(0);
-  const speed = useRef(0);
-  const dragging = useRef(false);
-  const stageRef = useRef(1);
-
-  const links = useMemo(
+  const cameraStops = useMemo(
     () => [
-      [[0, -0.2, 0], [-2.15, -0.2, 0.9]],
-      [[0, -0.2, 0], [2.05, -0.2, 1.0]],
-      [[0, -0.2, 0], [0.2, -0.2, -2.35]],
-    ] as [[number, number, number], [number, number, number]][],
+      { p: 0, pos: new THREE.Vector3(0, 1.68, 8.4), look: new THREE.Vector3(0, 1.55, 2.9) },
+      { p: 0.22, pos: new THREE.Vector3(0, 1.68, -5.2), look: new THREE.Vector3(0, 1.55, -11) },
+      { p: 0.46, pos: new THREE.Vector3(-0.45, 1.72, -20.2), look: new THREE.Vector3(0.35, 1.5, -27.5) },
+      { p: 0.70, pos: new THREE.Vector3(0.45, 1.72, -36.5), look: new THREE.Vector3(-0.2, 1.45, -44) },
+      { p: 1, pos: new THREE.Vector3(0, 1.7, -54.5), look: new THREE.Vector3(0, 1.45, -62) },
+    ],
     [],
   );
 
-  const updateStage = () => {
-    if (!world.current) return;
-    const twoPi = Math.PI * 2;
-    const rotation = ((world.current.rotation.y % twoPi) + twoPi) % twoPi;
+  useFrame(() => {
+    const p = THREE.MathUtils.clamp(progressRef.current, 0, 1);
 
-    let next = 1;
-    if (rotation >= 0.65 && rotation < 2.15) next = 2;
-    else if (rotation >= 2.15 && rotation < 3.75) next = 3;
-    else if (rotation >= 3.75 && rotation < 5.45) next = 4;
-
-    if (next !== stageRef.current) {
-      stageRef.current = next;
-      setStage(next);
-    }
-  };
-
-  useEffect(() => {
-    const keyDown = (event: KeyboardEvent) => {
-      if (!world.current) return;
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-        setIsRotating(true);
-        const direction = event.key === "ArrowLeft" ? 1 : -1;
-        speed.current = direction * 0.035;
+    let a = cameraStops[0];
+    let b = cameraStops[cameraStops.length - 1];
+    for (let i = 0; i < cameraStops.length - 1; i += 1) {
+      if (p >= cameraStops[i].p && p <= cameraStops[i + 1].p) {
+        a = cameraStops[i];
+        b = cameraStops[i + 1];
+        break;
       }
-    };
-
-    const keyUp = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-        setIsRotating(false);
-      }
-    };
-
-    window.addEventListener("keydown", keyDown);
-    window.addEventListener("keyup", keyUp);
-    return () => {
-      window.removeEventListener("keydown", keyDown);
-      window.removeEventListener("keyup", keyUp);
-    };
-  }, [setIsRotating]);
-
-  useFrame((_, delta) => {
-    if (!world.current) return;
-
-    if (!dragging.current) {
-      speed.current *= Math.pow(0.91, delta * 60);
-      if (Math.abs(speed.current) < 0.00015) speed.current = 0;
-      world.current.rotation.y += speed.current;
     }
 
-    world.current.position.y = Math.sin(performance.now() * 0.00055) * 0.06 - 0.35;
-    updateStage();
+    const local = THREE.MathUtils.smoothstep(p, a.p, b.p);
+    const targetPos = a.pos.clone().lerp(b.pos, local);
+    const targetLook = a.look.clone().lerp(b.look, local);
+
+    camera.position.lerp(targetPos, 0.075);
+    const currentDirection = new THREE.Vector3();
+    camera.getWorldDirection(currentDirection);
+    const currentLook = camera.position.clone().add(currentDirection.multiplyScalar(6));
+    currentLook.lerp(targetLook, 0.08);
+    camera.lookAt(currentLook);
   });
 
-  const pointerDown = (event: ThreeEvent<PointerEvent>) => {
-    event.stopPropagation();
-    dragging.current = true;
-    setIsRotating(true);
-    lastX.current = event.clientX;
-    (event.target as Element).setPointerCapture?.(event.pointerId);
-  };
-
-  const pointerMove = (event: ThreeEvent<PointerEvent>) => {
-    if (!dragging.current || !world.current) return;
-    event.stopPropagation();
-    const deltaX = event.clientX - lastX.current;
-    const deltaRotation = deltaX * 0.0075;
-    world.current.rotation.y += deltaRotation;
-    speed.current = deltaRotation * 0.32;
-    lastX.current = event.clientX;
-  };
-
-  const pointerUp = (event: ThreeEvent<PointerEvent>) => {
-    event.stopPropagation();
-    dragging.current = false;
-    setIsRotating(false);
-    try {
-      (event.target as Element).releasePointerCapture?.(event.pointerId);
-    } catch {
-      // Pointer may already be released by the browser.
-    }
-  };
+  const rackRows = [
+    [-3.25, -10], [-1.95, -10], [1.95, -10], [3.25, -10],
+    [-3.25, -14], [-1.95, -14], [1.95, -14], [3.25, -14],
+    [-3.25, -27], [-1.95, -27], [1.95, -27], [3.25, -27],
+    [-3.25, -31], [-1.95, -31], [1.95, -31], [3.25, -31],
+  ] as [number, number][];
 
   return (
     <>
-      <group ref={world} rotation={[0.04, 0, 0]} position={[0, -0.35, 0]}>
-        <mesh
-          position={[0, -0.92, 0]}
-          castShadow
-          receiveShadow
-          onPointerDown={pointerDown}
-          onPointerMove={pointerMove}
-          onPointerUp={pointerUp}
-          onPointerLeave={pointerUp}
-        >
-          <cylinderGeometry args={[3.35, 3.15, 0.72, 64]} />
-          <meshStandardMaterial color="#dce9df" roughness={0.78} metalness={0.02} />
-        </mesh>
+      <color attach="background" args={["#10161a"]} />
 
-        <mesh position={[0, -1.72, 0]} rotation={[Math.PI, 0, 0]} castShadow>
-          <coneGeometry args={[3.02, 1.35, 32]} />
-          <meshStandardMaterial color="#9fb6a8" roughness={0.92} />
-        </mesh>
+      <mesh position={[0, -0.05, -28]} receiveShadow>
+        <boxGeometry args={[9.6, 0.18, 76]} />
+        <meshStandardMaterial color="#3b4144" roughness={0.94} metalness={0.04} />
+      </mesh>
 
-        <mesh position={[0, -0.51, 0]} receiveShadow>
-          <cylinderGeometry args={[3.2, 3.2, 0.08, 64]} />
-          <meshStandardMaterial color="#f4f7f2" roughness={0.85} />
-        </mesh>
+      <mesh position={[-4.75, 1.8, -28]} receiveShadow>
+        <boxGeometry args={[0.16, 3.7, 76]} />
+        <meshStandardMaterial color="#262d31" roughness={0.84} metalness={0.18} />
+      </mesh>
+      <mesh position={[4.75, 1.8, -28]} receiveShadow>
+        <boxGeometry args={[0.16, 3.7, 76]} />
+        <meshStandardMaterial color="#262d31" roughness={0.84} metalness={0.18} />
+      </mesh>
+      <mesh position={[0, 3.72, -28]} receiveShadow>
+        <boxGeometry args={[9.6, 0.18, 76]} />
+        <meshStandardMaterial color="#1e2529" roughness={0.7} metalness={0.34} />
+      </mesh>
 
-        {links.map((points, index) => (
-          <Line
-            key={index}
-            points={points}
-            color={index === 0 ? "#2d7ff9" : index === 1 ? "#8857e8" : "#ef8e3d"}
-            lineWidth={1.3}
-            transparent
-            opacity={0.55}
-          />
-        ))}
+      {Array.from({ length: 20 }, (_, i) => 5 - i * 3.5).map((z) => (
+        <CeilingLight key={z} z={z} />
+      ))}
 
-        <PortraitMonolith />
-        <SecurityNode position={[-2.15, -0.38, 0.9]} color="#2d7ff9" height={0.9} />
-        <SecurityNode position={[2.05, -0.38, 1.0]} color="#8857e8" height={1.05} />
-        <SecurityNode position={[0.2, -0.38, -2.35]} color="#ef8e3d" height={0.82} />
+      <PortraitLobby />
 
-        <mesh position={[-1.25, -0.42, -1.65]} castShadow>
-          <boxGeometry args={[0.56, 0.56, 0.56]} />
-          <meshStandardMaterial color="#ffffff" roughness={0.35} />
-        </mesh>
-        <mesh position={[-1.25, -0.07, -1.65]} castShadow>
-          <boxGeometry args={[0.42, 0.12, 0.42]} />
-          <meshStandardMaterial color="#2d7ff9" roughness={0.28} emissive="#2d7ff9" emissiveIntensity={0.08} />
-        </mesh>
+      <AccessGate z={-4.5} label="AUTHORIZED PERSONNEL · AI SECURITY LAB" />
 
-        <mesh position={[1.4, -0.3, -1.35]} castShadow>
-          <cylinderGeometry args={[0.38, 0.46, 0.64, 24]} />
-          <meshStandardMaterial color="#ffffff" roughness={0.42} />
-        </mesh>
-        <mesh position={[1.4, 0.08, -1.35]} castShadow>
-          <sphereGeometry args={[0.18, 20, 20]} />
-          <meshStandardMaterial color="#8857e8" emissive="#8857e8" emissiveIntensity={0.1} />
-        </mesh>
+      <Line
+        points={[[-0.9, 0.08, 4], [-0.9, 0.08, -61]]}
+        color="#286fb4"
+        lineWidth={2}
+        transparent
+        opacity={0.48}
+      />
+      <Line
+        points={[[0.9, 0.08, 4], [0.9, 0.08, -61]]}
+        color="#694fa6"
+        lineWidth={2}
+        transparent
+        opacity={0.4}
+      />
 
-        <mesh position={[2.25, -0.43, -0.78]} rotation={[0, 0.45, 0]} castShadow>
-          <boxGeometry args={[0.48, 0.38, 0.72]} />
-          <meshStandardMaterial color="#f7f9fb" roughness={0.46} />
-        </mesh>
-        <mesh position={[-2.25, -0.43, -0.72]} rotation={[0, -0.45, 0]} castShadow>
-          <boxGeometry args={[0.48, 0.38, 0.72]} />
-          <meshStandardMaterial color="#f7f9fb" roughness={0.46} />
-        </mesh>
+      {rackRows.map(([x, z], index) => (
+        <ServerRack
+          key={`${x}-${z}`}
+          position={[x, 1.42, z]}
+          rotation={[0, x < 0 ? Math.PI / 2 : -Math.PI / 2, 0]}
+        />
+      ))}
 
-        <mesh
-          position={[0, 0.25, 0]}
-          visible={false}
-          onPointerDown={pointerDown}
-          onPointerMove={pointerMove}
-          onPointerUp={pointerUp}
-          onPointerLeave={pointerUp}
-        >
-          <sphereGeometry args={[4.1, 18, 18]} />
-          <meshBasicMaterial transparent opacity={0} depthWrite={false} />
-        </mesh>
-      </group>
+      <GlassPartition z={-12} />
 
-      <PacketDrone />
+      <WallDisplay
+        position={[-4.56, 1.78, -17]}
+        rotation={[0, Math.PI / 2, 0]}
+        title="AGENT EXECUTION CONTROL"
+        lines={["MCP / JSON-RPC policy", "capability checks", "prompt-injection signals", "audit + SIEM validation"]}
+        accent="#4aa8ff"
+      />
+      <WallDisplay
+        position={[4.56, 1.78, -25]}
+        rotation={[0, -Math.PI / 2, 0]}
+        title="IDENTITY CONTROL"
+        lines={["AWS IAM analysis", "AssumeRole / PassRole", "wildcard risk", "authorization paths"]}
+        accent="#9b7ceb"
+      />
 
-      <CloudPuff position={[-6.2, 2.7, -5]} scale={1.25} />
-      <CloudPuff position={[6.6, 1.9, -6]} scale={1.05} />
-      <CloudPuff position={[-4.8, -1.1, -7]} scale={0.8} />
-      <CloudPuff position={[5.2, -1.35, -7.5]} scale={0.9} />
+      <AccessGate z={-22} label="IDENTITY & AUTHORIZATION ZONE" />
 
-      {isRotating && (
-        <Html position={[0, -3.25, 0]} center style={{ pointerEvents: "none" }}>
-          <span className="three-rotate-live">exploring</span>
-        </Html>
-      )}
+      <mesh position={[0, 0.07, -24.5]} receiveShadow>
+        <boxGeometry args={[4.4, 0.035, 6.2]} />
+        <meshStandardMaterial color="#252d31" roughness={0.7} metalness={0.2} />
+      </mesh>
+
+      <Line
+        points={[[-1.8, 0.11, -24], [-1.1, 0.11, -28], [0, 0.11, -29.5], [1.1, 0.11, -28], [1.8, 0.11, -24]]}
+        color="#6f5fd0"
+        lineWidth={2.1}
+        transparent
+        opacity={0.7}
+      />
+
+      <AccessGate z={-38} label="MODEL SUPPLY-CHAIN ZONE" />
+      <ModelVault z={-45.5} />
+
+      <WallDisplay
+        position={[-4.56, 1.78, -46]}
+        rotation={[0, Math.PI / 2, 0]}
+        title="MODEL PROVENANCE"
+        lines={["artifact metadata", "serialization risk", "loader behavior", "supply-chain evidence"]}
+        accent="#d98a49"
+      />
+
+      <SOCDesk position={[0, 0, -58]} />
+      <WallDisplay
+        position={[0, 2.35, -61.6]}
+        rotation={[0, 0, 0]}
+        title="DETECTION & VALIDATION"
+        lines={["telemetry", "security testing", "evidence", "operational visibility"]}
+        accent="#4bc98a"
+      />
+
+      <Html position={[0, 3.28, -58.8]} center transform distanceFactor={7}>
+        <div className="facility-zone-label">SECURITY OPERATIONS & VALIDATION</div>
+      </Html>
     </>
   );
 }
