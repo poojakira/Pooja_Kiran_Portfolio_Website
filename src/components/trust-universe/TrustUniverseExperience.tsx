@@ -9,7 +9,6 @@ import {
   universeWorlds,
 } from "@/data/trustUniverse";
 import { experience, profile, projects, RESUME_URL, skillGroups } from "@/data/portfolio";
-import { CONTROL_EVENT } from "@/components/trust-universe/TrustUniverseCanvas";
 
 const TrustUniverseCanvas = dynamic(
   () => import("@/components/trust-universe/TrustUniverseCanvas"),
@@ -216,10 +215,6 @@ export default function TrustUniverseExperience() {
     const nextIndex = Math.max(0, guidedIndex - 1);
     setGuidedIndex(nextIndex);
     travelTo(guidedRoute[nextIndex], true);
-  };
-
-  const dispatchControl = (key: string) => {
-    window.dispatchEvent(new CustomEvent(CONTROL_EVENT, { detail: { key } }));
   };
 
   const visitedCount = visited.size;
