@@ -43,6 +43,8 @@ const focusCards = [
   },
 ] as const;
 
+const HERO_PARTS = ["00", "01", "02", "03", "04", "05", "06", "07", "08a", "08b"] as const;
+
 export default function ExactSketchPortfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [universeOpen, setUniverseOpen] = useState(false);
