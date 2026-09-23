@@ -4,10 +4,6 @@ import { type CSSProperties, useEffect, useRef } from "react";
 import { Html, Line, Sparkles } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { SITE_PATH } from "@/data/portfolio";
-
-const POOJA_AVATAR_URL = `${SITE_PATH}/models/pooja-avatar.glb`;
-
 type SecurityWorldProps = {
   progress: number;
 };
