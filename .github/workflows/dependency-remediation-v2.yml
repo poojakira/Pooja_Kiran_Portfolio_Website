@@ -23,7 +23,7 @@ jobs:
           cache: npm
       - name: Update supported dependency lines
         run: |
-          npm install --save-exact next@15.5.25
+          npm install --save-exact next@15.5.26
           npm install --save-dev --save-exact eslint@9.39.5 eslint-config-next@15.5.25 postcss@8.5.28 autoprefixer@10.6.1
           npm audit fix
       - name: Verify security and application
