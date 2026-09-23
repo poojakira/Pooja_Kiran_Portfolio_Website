@@ -415,6 +415,23 @@ function PatchPanel({ position, rotation = [0, 0, 0] }: {
   );
 }
 
+
+function ZoneLight({ z, color, x = 0 }: { z: number; color: string; x?: number }) {
+  return (
+    <spotLight
+      position={[x, 3.15, z + 1.8]}
+      target-position={[0, 0.9, z - 2]}
+      color={color}
+      intensity={5.2}
+      distance={12}
+      angle={0.72}
+      penumbra={0.92}
+      decay={2}
+      castShadow={false}
+    />
+  );
+}
+
 function FloorSeams() {
   return (
     <group position={[0, 0.055, -28]}>
@@ -781,6 +798,10 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
       <PatchPanel position={[4.55, 1.7, -49]} rotation={[0, -Math.PI / 2, 0]} />
       <EmergencyExit position={[-4.55, 2.9, -7]} rotation={[0, Math.PI / 2, 0]} />
       <EmergencyExit position={[4.55, 2.9, -52]} rotation={[0, -Math.PI / 2, 0]} />
+      <ZoneLight z={-11} color="#8dbbd4" x={-1.2} />
+      <ZoneLight z={-27} color="#9d90c2" x={1.3} />
+      <ZoneLight z={-44} color="#c3a07d" x={-1.0} />
+      <ZoneLight z={-58} color="#86b39b" x={1.1} />
 
       <mesh position={[0, -0.05, -28]} receiveShadow>
         <boxGeometry args={[9.6, 0.18, 76]} />
