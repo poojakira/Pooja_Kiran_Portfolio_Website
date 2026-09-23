@@ -4548,8 +4548,8 @@ body:has(.cyber-universe-layer){
   min-height:575px;
   transform:
     perspective(1300px)
-    rotateY(calc(var(--cursor-x) * 3.2deg))
-    rotateX(calc(var(--cursor-y) * -2deg));
+    rotateY(var(--stage-ry,0deg))
+    rotateX(var(--stage-rx,0deg));
   transform-style:preserve-3d;
   transition:transform .12s linear;
 }
@@ -4574,7 +4574,7 @@ body:has(.cyber-universe-layer){
     linear-gradient(90deg,rgba(82,174,218,.035) 1px,transparent 1px);
   background-size:38px 38px;
   opacity:.7;
-  transform:translate3d(calc(var(--cursor-x) * 10px),calc(var(--cursor-y) * 7px),0);
+  transform:translate3d(var(--grid-x,0px),var(--grid-y,0px),0);
 }
 .cyber-stage-radial{
   position:absolute;
@@ -4593,7 +4593,7 @@ body:has(.cyber-universe-layer){
   right:7%;
   top:2%;
   height:48%;
-  transform:translate3d(calc(var(--cursor-x) * 14px),calc(var(--cursor-y) * 9px),0);
+  transform:translate3d(var(--map-x,0px),var(--map-y,0px),0);
   transition:transform .12s linear;
 }
 .cyber-world-map{
@@ -4650,7 +4650,7 @@ body:has(.cyber-universe-layer){
   width:165px;
   display:grid;
   gap:6px;
-  transform:translate3d(calc(var(--cursor-x) * -9px),calc(var(--cursor-y) * -5px),18px);
+  transform:translate3d(var(--console-left-x,0px),var(--console-left-y,0px),18px);
 }
 .cyber-left-console>div{
   display:grid;
@@ -4693,7 +4693,7 @@ body:has(.cyber-universe-layer){
   padding:9px 10px;
   border:1px solid rgba(93,176,214,.15);
   background:rgba(6,16,23,.68);
-  transform:translate3d(calc(var(--cursor-x) * 8px),calc(var(--cursor-y) * 4px),25px);
+  transform:translate3d(var(--console-right-x,0px),var(--console-right-y,0px),25px);
 }
 .cyber-right-console>div{
   display:grid;
@@ -4719,7 +4719,7 @@ body:has(.cyber-universe-layer){
   right:5%;
   bottom:6%;
   height:32%;
-  transform:translate3d(calc(var(--cursor-x) * 7px),calc(var(--cursor-y) * 4px),10px);
+  transform:translate3d(var(--desk-x,0px),var(--desk-y,0px),10px);
 }
 .monitor{
   position:absolute;
@@ -4777,8 +4777,8 @@ body:has(.cyber-universe-layer){
   width:min(35%,285px);
   margin:0;
   transform:
-    translate3d(calc(var(--cursor-x) * -12px),calc(var(--cursor-y) * -7px),50px)
-    rotateY(calc(var(--cursor-x) * -1.8deg));
+    translate3d(var(--portrait-x,0px),var(--portrait-y,0px),50px)
+    rotateY(var(--portrait-ry,0deg));
   transition:transform .12s linear;
 }
 .cyber-portrait-halo{
