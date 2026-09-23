@@ -33,7 +33,7 @@ function readVisited() {
 
 function writeVisited(visited: Set<UniverseWorldId>) {
   if (typeof window === "undefined") return;
-  sessionStorage.setItem(SESSION_KEY, JSON.stringify([...visited]));
+  sessionStorage.setItem(SESSION_KEY, JSON.stringify(Array.from(visited)));
 }
 
 export default function TrustUniverseExperience() {
