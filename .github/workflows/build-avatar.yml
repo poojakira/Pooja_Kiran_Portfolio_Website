@@ -1,0 +1,74 @@
+name: Build Blender Avatar
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/blender/**"
+      - ".github/workflows/build-avatar.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-avatar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Blender 5.2.2 LTS
+        run: |
+          curl -L --fail --retry 3 \
+            https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz \
+            -o /tmp/blender.tar.xz
+          mkdir -p /tmp/blender
+          tar -xJf /tmp/blender.tar.xz -C /tmp/blender --strip-components=1
+          /tmp/blender/blender --version
+
+      - name: Build Pooja avatar in Blender
+        run: |
+          mkdir -p build/avatar
+          /tmp/blender/blender --background \
+            --python tools/blender/build_pooja_avatar.py \
+            -- --output-dir "$GITHUB_WORKSPACE/build/avatar"
+
+      - name: Verify outputs
+        run: |
+          test -s build/avatar/pooja-avatar.blend
+          test -s build/avatar/pooja-avatar.glb
+          test -s build/avatar/pooja-avatar-preview.png
+          test -s build/avatar/pooja-avatar-manifest.json
+          ls -lh build/avatar
+
+      - name: Upload Blender artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pooja-blender-avatar
+          path: build/avatar/*
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish web avatar asset
+        run: |
+          mkdir -p public/models
+          cp build/avatar/pooja-avatar.glb public/models/pooja-avatar.glb
+          cp build/avatar/pooja-avatar-manifest.json public/models/pooja-avatar-manifest.json
+          cp build/avatar/pooja-avatar-preview.png public/models/pooja-avatar-preview.png
+
+      - name: Commit generated avatar
+        run: |
+          git config user.name "Pooja Avatar Builder"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/models/pooja-avatar.glb \
+                  public/models/pooja-avatar-manifest.json \
+                  public/models/pooja-avatar-preview.png
+          if git diff --cached --quiet; then
+            echo "No generated asset changes."
+            exit 0
+          fi
+          git commit -m "build: generate Blender Pooja avatar asset"
+          git push
