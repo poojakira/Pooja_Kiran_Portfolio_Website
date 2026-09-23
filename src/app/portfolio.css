@@ -5503,3 +5503,335 @@ body:has(.cyber-universe-layer){
     transition:none!important;
   }
 }
+
+
+/* ==========================================================================
+   CINEMATIC TARGET MATCH — full-bleed command-center composition
+   ========================================================================== */
+
+.cyber-header{
+  height:62px;
+  padding-inline:clamp(22px,4vw,66px);
+  background:linear-gradient(180deg,rgba(3,6,9,.84),rgba(3,6,9,.5));
+}
+.cyber-brand strong{
+  font-size:1.08rem;
+  letter-spacing:.22em;
+}
+.cyber-nav{gap:31px}
+.cyber-nav a{font-size:.54rem;color:#aeb5b5}
+.cyber-universe-button{
+  min-height:32px;
+  padding:6px 15px;
+  border-radius:10px;
+  color:#e9bf76;
+}
+
+.cyber-hero{
+  min-height:100svh;
+  padding-top:62px;
+  background:
+    radial-gradient(circle at 83% 25%,rgba(25,144,205,.2),transparent 30%),
+    radial-gradient(circle at 58% 52%,rgba(14,77,111,.12),transparent 36%),
+    linear-gradient(90deg,#05080b 0%,#05080b 35%,rgba(5,8,11,.76) 47%,rgba(4,7,10,.18) 72%,rgba(3,6,8,.06) 100%),
+    #05080b;
+}
+.cyber-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 74% 9%,rgba(41,172,235,.32) 0 1px,transparent 2px),
+    radial-gradient(circle at 86% 21%,rgba(223,172,92,.3) 0 1px,transparent 2px),
+    radial-gradient(circle at 67% 34%,rgba(55,185,240,.2) 0 1px,transparent 2px),
+    radial-gradient(circle at 93% 42%,rgba(229,176,86,.18) 0 1px,transparent 2px),
+    radial-gradient(circle at 55% 15%,rgba(66,180,226,.18) 0 1px,transparent 2px);
+  background-size:97px 83px,121px 107px,89px 109px,133px 117px,73px 91px;
+  opacity:.9;
+}
+.cyber-hero-grid{
+  min-height:calc(100svh - 62px);
+  grid-template-columns:minmax(410px,.72fr) minmax(650px,1.28fr);
+  gap:0;
+  padding:42px 0 76px clamp(42px,4vw,76px);
+}
+.cyber-hero-copy{
+  z-index:10;
+  max-width:600px;
+  padding-right:26px;
+}
+.cyber-kicker{
+  color:#d0aa6b;
+  font-size:.47rem;
+  letter-spacing:.2em;
+}
+.cyber-hero-copy h1{
+  margin-top:20px;
+  max-width:610px;
+  font-size:clamp(4.6rem,6.1vw,6.9rem);
+  line-height:.88;
+}
+.cyber-hero-summary{
+  max-width:500px;
+  margin-top:24px;
+  color:#b2b9bb;
+  font-size:.79rem;
+  line-height:1.68;
+}
+.cyber-hero-actions{margin-top:25px}
+.cyber-primary,
+.cyber-secondary{
+  min-height:42px;
+  padding-inline:18px;
+  border-radius:8px;
+}
+.cyber-hero-principles{
+  margin-top:18px;
+  gap:15px;
+  color:#8f999b;
+}
+.cyber-explore-cue{
+  margin-top:28px;
+  padding-top:19px;
+  border-top:1px solid rgba(204,220,226,.09);
+}
+
+.cyber-hero-stage{
+  height:calc(100svh - 96px);
+  min-height:640px;
+  align-self:stretch;
+}
+.cyber-stage-frame{
+  inset:-42px 0 -4px 0;
+  border:0;
+  border-radius:0;
+  background:
+    linear-gradient(90deg,rgba(5,8,11,.96) 0%,rgba(5,8,11,.4) 9%,rgba(4,8,12,.04) 31%,rgba(3,7,10,.04) 100%),
+    linear-gradient(180deg,rgba(4,8,12,.05),rgba(2,6,9,.25) 73%,rgba(2,5,8,.86)),
+    radial-gradient(circle at 58% 33%,rgba(21,129,181,.18),transparent 32%),
+    #071019;
+  box-shadow:none;
+}
+.cyber-stage-frame::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 0 82%,rgba(5,8,10,.22)),
+    radial-gradient(circle at 88% 62%,rgba(218,162,74,.11),transparent 20%);
+  z-index:9;
+}
+.cyber-stage-grid{
+  opacity:.48;
+  background-size:44px 44px;
+}
+.cyber-map-wrap{
+  left:6%;
+  right:1%;
+  top:0;
+  height:48%;
+}
+.world-contours{
+  stroke-opacity:.72;
+  stroke-width:1.45;
+}
+.arc{
+  stroke-width:1.35;
+  stroke-dasharray:5 6;
+}
+.cyber-left-console{
+  left:1.5%;
+  top:16%;
+  width:158px;
+}
+.cyber-right-console{
+  right:1.5%;
+  top:3.5%;
+  width:156px;
+  background:rgba(5,16,22,.76);
+}
+.cyber-desk-monitors{
+  left:18%;
+  right:1.5%;
+  bottom:4%;
+  height:37%;
+}
+.monitor{
+  border-color:#0a1116;
+  box-shadow:0 14px 35px rgba(0,0,0,.48),0 0 24px rgba(49,149,194,.07);
+}
+.cyber-portrait{
+  width:min(43%,370px);
+  right:24%;
+  bottom:2.5%;
+}
+.cyber-portrait img{
+  aspect-ratio:.92;
+  object-position:center 22%;
+  border-radius:14px;
+  border-color:rgba(221,230,230,.12);
+  box-shadow:0 38px 80px rgba(0,0,0,.45),0 0 45px rgba(41,145,190,.11);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 83%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 83%,transparent 100%);
+}
+.cyber-portrait figcaption{
+  bottom:18px;
+  background:rgba(3,7,9,.68);
+}
+.cyber-portrait-halo{
+  inset:-30%;
+  background:
+    radial-gradient(circle,rgba(58,185,235,.23),rgba(49,136,177,.1) 38%,transparent 68%);
+}
+.cyber-stage-quote{
+  right:2.5%;
+  bottom:4%;
+  max-width:230px;
+}
+.cyber-stage-quote span{
+  color:#d6dde0;
+  font-size:.72rem;
+}
+.cyber-stage-quote strong{color:#d3aa6b}
+
+.cyber-hero-status{
+  min-height:43px;
+  background:rgba(2,5,7,.9);
+}
+.cyber-hero-status span{
+  min-height:43px;
+  color:#718087;
+}
+
+.cyber-focus-section{
+  padding-top:44px;
+  background:
+    linear-gradient(180deg,rgba(12,17,21,.96),#070a0d),
+    #070a0d;
+}
+.cyber-section-head{
+  grid-template-columns:minmax(0,1.5fr) minmax(340px,.5fr);
+  gap:4vw;
+}
+.cyber-section-head h2{
+  font-size:clamp(3.2rem,5vw,5.7rem);
+}
+.cyber-focus-grid{
+  gap:10px;
+  margin-top:30px;
+}
+.cyber-focus-card{
+  min-height:300px;
+  padding:17px;
+  background:
+    linear-gradient(180deg,rgba(5,10,14,.08),rgba(5,10,14,.86)),
+    radial-gradient(circle at 84% 14%,rgba(42,160,210,.18),transparent 29%),
+    #0a1117;
+}
+.cyber-focus-card::before{
+  content:"";
+  position:absolute;
+  right:-10%;
+  bottom:-8%;
+  width:65%;
+  aspect-ratio:1;
+  opacity:.8;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,transparent 0 24%,rgba(87,177,216,.12) 25% 26%,transparent 27% 36%,rgba(216,169,86,.1) 37% 38%,transparent 39%),
+    radial-gradient(circle,rgba(65,159,201,.08),transparent 62%);
+}
+.cyber-focus-card:nth-child(1)::before{
+  border-radius:40% 55% 44% 60%;
+  background:
+    radial-gradient(circle at 38% 36%,rgba(226,179,97,.22) 0 2%,transparent 3%),
+    radial-gradient(circle at 50% 50%,rgba(61,164,209,.18),transparent 54%);
+}
+.cyber-focus-card:nth-child(2)::before{
+  background:
+    linear-gradient(90deg,transparent 20%,rgba(75,169,210,.12) 21% 22%,transparent 23% 45%,rgba(75,169,210,.1) 46% 47%,transparent 48%),
+    linear-gradient(rgba(75,169,210,.09) 1px,transparent 1px);
+  background-size:auto,100% 22px;
+  border-radius:0;
+}
+.cyber-focus-card:nth-child(3)::before{
+  background:
+    radial-gradient(circle at 50% 50%,transparent 0 22%,rgba(224,177,95,.18) 23% 24%,transparent 25% 35%,rgba(67,162,205,.13) 36% 37%,transparent 38%),
+    radial-gradient(circle,rgba(62,151,191,.13),transparent 60%);
+}
+.cyber-focus-card:nth-child(4)::before{
+  border-radius:10%;
+  background:
+    linear-gradient(30deg,transparent 0 44%,rgba(218,169,88,.15) 45% 46%,transparent 47%),
+    linear-gradient(-30deg,transparent 0 44%,rgba(72,158,199,.12) 45% 46%,transparent 47%);
+  background-size:36px 36px;
+}
+.cyber-focus-card h3{
+  margin-top:35px;
+  font-size:1.5rem;
+}
+.cyber-focus-card>p{font-size:.64rem}
+.cyber-focus-signal{font-size:.42rem}
+
+.cyber-evidence-strip{
+  background:#070a0d;
+  border-top-color:rgba(215,170,94,.18);
+}
+.cyber-evidence-strip article{
+  min-height:112px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:14px;
+  padding-block:18px;
+}
+.cyber-evidence-strip strong{
+  font-size:clamp(2.3rem,3.4vw,3.8rem);
+  color:#f3efe6;
+}
+.cyber-evidence-strip span{
+  margin-top:0;
+  color:#90999a;
+  font-size:.57rem;
+}
+
+@media(max-width:1150px){
+  .cyber-hero-grid{
+    grid-template-columns:minmax(360px,.8fr) minmax(520px,1.2fr);
+  }
+  .cyber-hero-copy h1{font-size:clamp(4.1rem,6.3vw,6.2rem)}
+  .cyber-portrait{right:18%;width:min(42%,330px)}
+}
+@media(max-width:900px){
+  .cyber-hero-grid{
+    grid-template-columns:1fr;
+    padding-right:0;
+  }
+  .cyber-hero-copy{
+    padding-right:24px;
+    max-width:760px;
+  }
+  .cyber-hero-stage{
+    min-height:540px;
+    height:62vh;
+  }
+  .cyber-stage-frame{inset:0}
+  .cyber-section-head{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  .cyber-header{height:58px}
+  .cyber-brand strong{letter-spacing:.14em}
+  .cyber-hero{padding-top:58px}
+  .cyber-hero-grid{padding-left:15px}
+  .cyber-hero-copy h1{font-size:clamp(3.5rem,15vw,4.8rem)}
+  .cyber-hero-stage{min-height:485px}
+  .cyber-left-console{width:112px}
+  .cyber-right-console{width:112px}
+  .cyber-portrait{right:8%;width:45%}
+  .cyber-evidence-strip article{
+    grid-template-columns:70px 1fr;
+  }
+}
