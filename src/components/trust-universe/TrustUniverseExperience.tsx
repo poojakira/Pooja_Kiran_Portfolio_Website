@@ -539,6 +539,6 @@ export default function TrustUniverseExperience() {
           </section>
         )}
       </section>
-    </main>
+    </div>
   );
 }
