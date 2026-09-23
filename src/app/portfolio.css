@@ -901,3 +901,160 @@
 @media(prefers-reduced-motion:reduce){
   .facility-mission,.sentinel-dialogue blockquote{animation:none!important}
 }
+
+
+/* Realistic environment details and grounded ORION Q&A */
+.facility-exit-sign{
+  min-width:64px;
+  text-align:center;
+  color:#eaffef;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-shadow:0 0 8px rgba(66,215,121,.4);
+}
+.mission-takeaway{
+  margin-top:13px;
+  padding:10px 11px;
+  border-left:2px solid rgba(100,176,213,.72);
+  background:rgba(91,151,181,.07);
+}
+.mission-takeaway span{
+  color:#75aeca;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.49rem;
+  letter-spacing:.12em;
+}
+.mission-takeaway p{
+  margin-top:5px;
+  color:#c0cdd3;
+  font-size:.69rem;
+  line-height:1.55;
+}
+.orion-ask-toggle{
+  width:100%;
+  margin-top:13px;
+  padding:9px 11px;
+  border:1px solid rgba(180,204,215,.16);
+  border-radius:6px;
+  background:rgba(255,255,255,.035);
+  color:#d7e3e8;
+  text-align:left;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.58rem;
+  letter-spacing:.055em;
+  transition:background .18s ease,border-color .18s ease;
+}
+.orion-ask-toggle:hover{
+  background:rgba(95,160,194,.09);
+  border-color:rgba(112,185,222,.34);
+}
+.orion-qa{
+  margin-top:11px;
+  padding-top:11px;
+  border-top:1px solid rgba(190,211,221,.11);
+}
+.orion-suggestions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.orion-suggestions button{
+  padding:6px 7px;
+  border:1px solid rgba(182,202,211,.13);
+  border-radius:999px;
+  background:rgba(255,255,255,.025);
+  color:#91a8b3;
+  font-size:.56rem;
+  line-height:1.25;
+  transition:color .18s ease,border-color .18s ease,background .18s ease;
+}
+.orion-suggestions button:hover{
+  color:#e6f1f6;
+  border-color:rgba(112,185,222,.32);
+  background:rgba(82,154,192,.08);
+}
+.orion-question-form{
+  margin-top:10px;
+}
+.orion-question-form label{
+  display:block;
+  margin-bottom:5px;
+  color:#738b97;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.5rem;
+  letter-spacing:.075em;
+  text-transform:uppercase;
+}
+.orion-question-form>div{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:6px;
+}
+.orion-question-form input{
+  min-width:0;
+  height:34px;
+  border:1px solid rgba(190,211,221,.15);
+  border-radius:5px;
+  outline:none;
+  background:rgba(5,10,12,.45);
+  color:#e8eff2;
+  padding:0 9px;
+  font-size:.68rem;
+}
+.orion-question-form input::placeholder{color:#647984}
+.orion-question-form input:focus{
+  border-color:rgba(105,183,222,.48);
+  box-shadow:0 0 0 2px rgba(73,151,191,.08);
+}
+.orion-question-form button{
+  height:34px;
+  border:1px solid rgba(159,193,210,.22);
+  border-radius:5px;
+  background:#dbe8ee;
+  color:#162127;
+  padding:0 10px;
+  font-size:.62rem;
+  font-weight:650;
+}
+.orion-answer{
+  margin-top:9px;
+  padding:9px 10px;
+  border:1px solid rgba(182,204,214,.11);
+  border-radius:5px;
+  background:rgba(7,12,15,.46);
+}
+.orion-answer span{
+  color:#6fb1d3;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.49rem;
+  letter-spacing:.11em;
+}
+.orion-answer p{
+  margin-top:5px;
+  max-height:110px;
+  overflow:auto;
+  color:#b5c5cc;
+  font-size:.66rem;
+  line-height:1.55;
+}
+.sentinel-dialogue.qa-open{
+  max-height:min(76vh,660px);
+  overflow:auto;
+}
+.sentinel-dialogue.qa-open::-webkit-scrollbar{width:5px}
+.sentinel-dialogue.qa-open::-webkit-scrollbar-thumb{
+  background:rgba(129,164,181,.24);
+  border-radius:999px;
+}
+
+@media(max-width:780px){
+  .mission-takeaway p{font-size:.62rem}
+  .orion-qa{max-height:210px;overflow:auto}
+  .orion-suggestions{display:none}
+}
+@media(max-width:520px){
+  .mission-takeaway{display:none}
+  .orion-answer p{max-height:82px}
+}
