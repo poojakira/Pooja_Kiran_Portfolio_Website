@@ -1,10 +1,9 @@
 "use client";
 
 import { type CSSProperties, useEffect, useMemo, useRef } from "react";
-import { Html, Line, useTexture } from "@react-three/drei";
+import { Html, Line } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { PORTRAIT_URL } from "@/data/portfolio";
 
 type SecurityWorldProps = {
   progress: number;
@@ -78,7 +77,20 @@ function CeilingLight({ z }: { z: number }) {
   );
 }
 
-function AccessGate({ z, label }: { z: number; label: string }) {
+function AccessGate({
+  z,
+  label,
+  open,
+  hook,
+}: {
+  z: number;
+  label: string;
+  open: number;
+  hook: string;
+}) {
+  const eased = THREE.MathUtils.smoothstep(open, 0, 1);
+  const slide = eased * 1.82;
+
   return (
     <group position={[0, 0, z]}>
       <mesh position={[-2.7, 1.45, 0]} castShadow>
@@ -94,17 +106,33 @@ function AccessGate({ z, label }: { z: number; label: string }) {
         <meshStandardMaterial color="#242d33" roughness={0.34} metalness={0.62} />
       </mesh>
 
+      <mesh position={[-1.34 - slide, 1.42, 0.04]} castShadow>
+        <boxGeometry args={[2.56, 2.58, 0.16]} />
+        <meshStandardMaterial color="#151c20" roughness={0.3} metalness={0.72} />
+      </mesh>
+      <mesh position={[1.34 + slide, 1.42, 0.04]} castShadow>
+        <boxGeometry args={[2.56, 2.58, 0.16]} />
+        <meshStandardMaterial color="#151c20" roughness={0.3} metalness={0.72} />
+      </mesh>
+
       <mesh position={[-2.35, 1.12, 0.32]}>
         <boxGeometry args={[0.18, 0.32, 0.06]} />
         <meshStandardMaterial color="#10161a" roughness={0.32} metalness={0.35} />
       </mesh>
       <mesh position={[-2.35, 1.18, 0.356]}>
         <boxGeometry args={[0.07, 0.07, 0.01]} />
-        <meshBasicMaterial color="#48d891" />
+        <meshBasicMaterial color={open > 0.18 ? "#48d891" : "#d99347"} />
       </mesh>
 
       <Html position={[0, 2.78, 0.35]} center transform distanceFactor={7}>
         <div className="facility-sign">{label}</div>
+      </Html>
+
+      <Html position={[0, 1.72, -1.45]} center transform distanceFactor={6.3}>
+        <div className={open > 0.5 ? "door-hook visible" : "door-hook"}>
+          <span>MY RULE</span>
+          <strong>{hook}</strong>
+        </div>
       </Html>
     </group>
   );
@@ -143,29 +171,6 @@ function WallDisplay({
   );
 }
 
-function PortraitLobby() {
-  const texture = useTexture(PORTRAIT_URL);
-  texture.colorSpace = THREE.SRGBColorSpace;
-
-  return (
-    <group position={[0, 1.55, 3.4]}>
-      <mesh position={[0, 0, -0.035]} castShadow>
-        <boxGeometry args={[2.15, 2.15, 0.12]} />
-        <meshStandardMaterial color="#1e262b" roughness={0.36} metalness={0.46} />
-      </mesh>
-      <mesh position={[0, 0, 0.035]}>
-        <planeGeometry args={[1.92, 1.92]} />
-        <meshBasicMaterial map={texture} toneMapped={false} />
-      </mesh>
-      <Html position={[0, -1.28, 0.06]} center transform distanceFactor={5.2}>
-        <div className="facility-nameplate">
-          <strong>POOJA KIRAN</strong>
-          <span>SECURITY ENGINEER</span>
-        </div>
-      </Html>
-    </group>
-  );
-}
 
 function GlassPartition({ z }: { z: number }) {
   return (
@@ -252,6 +257,128 @@ function SOCDesk({ position }: { position: [number, number, number] }) {
   );
 }
 
+
+
+function getPathPosition(progress: number) {
+  const p = THREE.MathUtils.clamp(progress, 0, 1);
+  const z = THREE.MathUtils.lerp(4.8, -57.2, p);
+  let x = 0;
+
+  if (p >= 0.22 && p < 0.46) x = THREE.MathUtils.lerp(0, 0.34, (p - 0.22) / 0.24);
+  else if (p >= 0.46 && p < 0.7) x = THREE.MathUtils.lerp(0.34, -0.28, (p - 0.46) / 0.24);
+  else if (p >= 0.7) x = THREE.MathUtils.lerp(-0.28, 0, (p - 0.7) / 0.3);
+
+  return new THREE.Vector3(x, 0, z);
+}
+
+function PoojaWalker({ progress }: { progress: number }) {
+  const root = useRef<THREE.Group>(null);
+  const leftArm = useRef<THREE.Group>(null);
+  const rightArm = useRef<THREE.Group>(null);
+  const leftLeg = useRef<THREE.Group>(null);
+  const rightLeg = useRef<THREE.Group>(null);
+  const previous = useRef(progress);
+  const walkEnergy = useRef(0);
+
+  useFrame(({ clock }) => {
+    if (!root.current) return;
+
+    const delta = Math.abs(progress - previous.current);
+    previous.current = progress;
+    walkEnergy.current = Math.max(walkEnergy.current * 0.9, Math.min(1, delta * 190));
+
+    const target = getPathPosition(progress);
+    root.current.position.lerp(target, 0.12);
+
+    const energy = walkEnergy.current;
+    const cycle = clock.elapsedTime * 7.6;
+    const armSwing = Math.sin(cycle) * 0.4 * energy;
+    const legSwing = Math.sin(cycle) * 0.47 * energy;
+
+    if (leftArm.current) leftArm.current.rotation.x = armSwing;
+    if (rightArm.current) rightArm.current.rotation.x = -armSwing;
+    if (leftLeg.current) leftLeg.current.rotation.x = -legSwing;
+    if (rightLeg.current) rightLeg.current.rotation.x = legSwing;
+
+    root.current.position.y = Math.abs(Math.sin(cycle)) * 0.012 * energy;
+  });
+
+  return (
+    <group ref={root} position={[0, 0, 4.8]}>
+      <group position={[0, 1.0, 0]}>
+        <mesh castShadow position={[0, 0.18, 0]}>
+          <capsuleGeometry args={[0.30, 0.74, 10, 18]} />
+          <meshStandardMaterial color="#20272d" roughness={0.5} metalness={0.05} />
+        </mesh>
+
+        <mesh castShadow position={[0, 0.64, 0]}>
+          <sphereGeometry args={[0.245, 28, 28]} />
+          <meshStandardMaterial color="#b98c72" roughness={0.62} />
+        </mesh>
+        <mesh castShadow position={[0, 0.72, -0.04]}>
+          <sphereGeometry args={[0.27, 24, 24]} />
+          <meshStandardMaterial color="#231d1b" roughness={0.9} />
+        </mesh>
+
+        <group ref={leftArm} position={[-0.37, 0.29, 0]}>
+          <mesh castShadow position={[0, -0.30, 0]}>
+            <capsuleGeometry args={[0.09, 0.5, 8, 14]} />
+            <meshStandardMaterial color="#20272d" roughness={0.55} />
+          </mesh>
+          <mesh castShadow position={[0, -0.62, 0]}>
+            <sphereGeometry args={[0.095, 18, 18]} />
+            <meshStandardMaterial color="#b98c72" roughness={0.62} />
+          </mesh>
+        </group>
+
+        <group ref={rightArm} position={[0.37, 0.29, 0]}>
+          <mesh castShadow position={[0, -0.30, 0]}>
+            <capsuleGeometry args={[0.09, 0.5, 8, 14]} />
+            <meshStandardMaterial color="#20272d" roughness={0.55} />
+          </mesh>
+          <mesh castShadow position={[0, -0.62, 0]}>
+            <sphereGeometry args={[0.095, 18, 18]} />
+            <meshStandardMaterial color="#b98c72" roughness={0.62} />
+          </mesh>
+        </group>
+
+        <group ref={leftLeg} position={[-0.16, -0.37, 0]}>
+          <mesh castShadow position={[0, -0.49, 0]}>
+            <capsuleGeometry args={[0.12, 0.74, 8, 14]} />
+            <meshStandardMaterial color="#161b1f" roughness={0.62} />
+          </mesh>
+          <mesh castShadow position={[0, -0.92, 0.08]}>
+            <boxGeometry args={[0.22, 0.12, 0.42]} />
+            <meshStandardMaterial color="#0d1114" roughness={0.6} />
+          </mesh>
+        </group>
+
+        <group ref={rightLeg} position={[0.16, -0.37, 0]}>
+          <mesh castShadow position={[0, -0.49, 0]}>
+            <capsuleGeometry args={[0.12, 0.74, 8, 14]} />
+            <meshStandardMaterial color="#161b1f" roughness={0.62} />
+          </mesh>
+          <mesh castShadow position={[0, -0.92, 0.08]}>
+            <boxGeometry args={[0.22, 0.12, 0.42]} />
+            <meshStandardMaterial color="#0d1114" roughness={0.6} />
+          </mesh>
+        </group>
+
+        <mesh position={[-0.12, 0.22, 0.31]}>
+          <boxGeometry args={[0.13, 0.18, 0.02]} />
+          <meshStandardMaterial color="#dce3e6" roughness={0.38} />
+        </mesh>
+      </group>
+
+      <Html position={[0, 2.0, 0]} center transform distanceFactor={6}>
+        <div className="pooja-avatar-label">
+          <strong>POOJA</strong>
+          <span>SECURITY ENGINEER</span>
+        </div>
+      </Html>
+    </group>
+  );
+}
 
 function GuideRobot({ progress }: { progress: number }) {
   const group = useRef<THREE.Group>(null);
@@ -375,39 +502,30 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
     progressRef.current = progress;
   }, [progress]);
 
-  const cameraStops = useMemo(
-    () => [
-      { p: 0, pos: new THREE.Vector3(0, 1.68, 8.4), look: new THREE.Vector3(0, 1.55, 2.9) },
-      { p: 0.22, pos: new THREE.Vector3(0, 1.68, -5.2), look: new THREE.Vector3(0, 1.55, -11) },
-      { p: 0.46, pos: new THREE.Vector3(-0.45, 1.72, -20.2), look: new THREE.Vector3(0.35, 1.5, -27.5) },
-      { p: 0.70, pos: new THREE.Vector3(0.45, 1.72, -36.5), look: new THREE.Vector3(-0.2, 1.45, -44) },
-      { p: 1, pos: new THREE.Vector3(0, 1.7, -54.5), look: new THREE.Vector3(0, 1.45, -62) },
-    ],
-    [],
-  );
-
-  useFrame(() => {
+  useFrame(({ pointer, clock }) => {
     const p = THREE.MathUtils.clamp(progressRef.current, 0, 1);
+    const player = getPathPosition(p);
 
-    let a = cameraStops[0];
-    let b = cameraStops[cameraStops.length - 1];
-    for (let i = 0; i < cameraStops.length - 1; i += 1) {
-      if (p >= cameraStops[i].p && p <= cameraStops[i + 1].p) {
-        a = cameraStops[i];
-        b = cameraStops[i + 1];
-        break;
-      }
-    }
+    const cameraTarget = player.clone().add(
+      new THREE.Vector3(
+        1.45 + pointer.x * 0.55,
+        1.85 + pointer.y * 0.18,
+        3.8,
+      ),
+    );
 
-    const local = THREE.MathUtils.smoothstep(p, a.p, b.p);
-    const targetPos = a.pos.clone().lerp(b.pos, local);
-    const targetLook = a.look.clone().lerp(b.look, local);
+    const moving = Math.min(1, Math.abs(progress - progressRef.current) * 150);
+    cameraTarget.y += Math.sin(clock.elapsedTime * 7.2) * 0.008 * moving;
 
-    camera.position.lerp(targetPos, 0.075);
-    const currentDirection = new THREE.Vector3();
-    camera.getWorldDirection(currentDirection);
-    const currentLook = camera.position.clone().add(currentDirection.multiplyScalar(6));
-    currentLook.lerp(targetLook, 0.08);
+    const lookAt = player.clone().add(
+      new THREE.Vector3(pointer.x * 0.55, 1.2 + pointer.y * 0.2, -2.9),
+    );
+
+    camera.position.lerp(cameraTarget, 0.075);
+    const direction = new THREE.Vector3();
+    camera.getWorldDirection(direction);
+    const currentLook = camera.position.clone().add(direction.multiplyScalar(6));
+    currentLook.lerp(lookAt, 0.085);
     camera.lookAt(currentLook);
   });
 
@@ -444,10 +562,15 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
         <CeilingLight key={z} z={z} />
       ))}
 
-      <PortraitLobby />
+      <PoojaWalker progress={progress} />
       <GuideRobot progress={progress} />
 
-      <AccessGate z={-4.5} label="AUTHORIZED PERSONNEL · AI SECURITY LAB" />
+      <AccessGate
+        z={-4.5}
+        label="AUTHORIZED PERSONNEL · AI SECURITY LAB"
+        open={THREE.MathUtils.clamp((progress - 0.08) / 0.09, 0, 1)}
+        hook="I decide what AI is allowed to do before it acts."
+      />
 
       <Line
         points={[[-0.9, 0.08, 4], [-0.9, 0.08, -61]]}
@@ -489,7 +612,12 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
         accent="#9b7ceb"
       />
 
-      <AccessGate z={-22} label="IDENTITY & AUTHORIZATION ZONE" />
+      <AccessGate
+        z={-22}
+        label="IDENTITY & AUTHORIZATION ZONE"
+        open={THREE.MathUtils.clamp((progress - 0.33) / 0.09, 0, 1)}
+        hook="Capability is not permission."
+      />
 
       <mesh position={[0, 0.07, -24.5]} receiveShadow>
         <boxGeometry args={[4.4, 0.035, 6.2]} />
@@ -504,7 +632,12 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
         opacity={0.7}
       />
 
-      <AccessGate z={-38} label="MODEL SUPPLY-CHAIN ZONE" />
+      <AccessGate
+        z={-38}
+        label="MODEL SUPPLY-CHAIN ZONE"
+        open={THREE.MathUtils.clamp((progress - 0.58) / 0.09, 0, 1)}
+        hook="Trust the evidence, not the filename."
+      />
       <ModelVault z={-45.5} />
 
       <WallDisplay
