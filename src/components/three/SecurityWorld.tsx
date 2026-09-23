@@ -94,11 +94,11 @@ function PortraitMonolith() {
   return (
     <group position={[0, -0.08, 0.45]}>
       <mesh position={[0, 0.54, 0]} castShadow>
-        <boxGeometry args={[1.45, 1.72, 0.28]} />
+        <boxGeometry args={[1.45, 1.55, 0.28]} />
         <meshStandardMaterial color="#f6f8fb" roughness={0.36} metalness={0.08} />
       </mesh>
       <mesh position={[0, 0.56, 0.151]}>
-        <planeGeometry args={[1.22, 1.45]} />
+        <planeGeometry args={[1.22, 1.22]} />
         <meshBasicMaterial map={texture} toneMapped={false} />
       </mesh>
       <mesh position={[0, -0.42, 0]}>
