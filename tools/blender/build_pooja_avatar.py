@@ -86,10 +86,13 @@ def cylinder(name, loc, radius, depth, material, rotation=(0,0,0), vertices=32):
     return obj
 
 def parent_bone(obj, arm_obj, bone_name):
+    # Preserve the object's world transform when attaching it to a bone.
+    world = obj.matrix_world.copy()
     obj.parent = arm_obj
     obj.parent_type = "BONE"
     obj.parent_bone = bone_name
-    obj.matrix_parent_inverse = arm_obj.matrix_world.inverted()
+    bpy.context.view_layer.update()
+    obj.matrix_world = world
 
 def add_reference_board():
     if not os.path.exists(REF_IMAGE):
@@ -310,10 +313,10 @@ def add_stage():
     rim.data.size = 1.6
     rim.rotation_euler = (math.radians(-55),0,math.radians(180))
 
-    bpy.ops.object.camera_add(location=(2.55,-4.0,1.72))
+    bpy.ops.object.camera_add(location=(2.35,-4.2,1.58))
     cam = bpy.context.object
     bpy.context.scene.camera = cam
-    direction = Vector((0,0,1.0)) - cam.location
+    direction = Vector((0,0,0.92)) - cam.location
     cam.rotation_euler = direction.to_track_quat("-Z","Y").to_euler()
     cam.data.lens = 58
 
