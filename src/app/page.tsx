@@ -1,5 +1,5 @@
-import AuraPortfolioHome from "@/components/aura/AuraPortfolioHome";
+import CinematicSecurityPortfolio from "@/components/cinematic/CinematicSecurityPortfolio";
 
 export default function Home() {
-  return <AuraPortfolioHome />;
+  return <CinematicSecurityPortfolio />;
 }
