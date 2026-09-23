@@ -31,6 +31,21 @@ The homepage includes profile, experience, three flagship projects with expandab
 - All public asset URLs include the GitHub Pages project path explicitly. This works with or without a trailing slash in the initial URL.
 - The legacy root-level résumé PDF was removed to prevent ambiguity; only the canonical public résumé remains.
 
+
+## Cinematic interactive hero
+
+The homepage now includes a cinematic, depth-based hero built around the canonical portrait at `public/pooja-kiran.png`.
+
+- Desktop pointer movement drives restrained parallax, character depth, light-field movement, and technical boundary markers.
+- GSAP entrance choreography and ScrollTrigger create the pinned hero camera move and scroll-linked 3D section reveals.
+- The interaction honors `prefers-reduced-motion` and uses simplified touch/mobile behavior.
+- The character video is optional. Until it exists, the committed portrait remains the visual fallback.
+- Final interactive video contract: `public/media/pooja-interactive-hero.mp4`.
+- When that MP4 is present, the hero keeps it paused and smoothly maps horizontal pointer position to video time, using an intentionally clamped frame range to avoid unstable endpoint frames.
+- The hero does not expose autoplay or native video controls.
+
+The visual motion is presentation only; the engineering evidence and repository-backed project metrics remain unchanged.
+
 ## Development
 
 ```bash
