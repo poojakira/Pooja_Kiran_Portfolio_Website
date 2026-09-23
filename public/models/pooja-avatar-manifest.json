@@ -1,0 +1,17 @@
+{
+  "generated_by": "Blender 5.2.2 LTS",
+  "source_reference": "public/pooja-kiran.png",
+  "likeness_scope": "best-effort single-photo reference; not an exact photogrammetry scan",
+  "height_m": 1.63,
+  "animations": [
+    "Idle",
+    "Walk",
+    "TurnLeft",
+    "TurnRight"
+  ],
+  "files": {
+    "blend": "pooja-avatar.blend",
+    "glb": "pooja-avatar.glb",
+    "preview": "pooja-avatar-preview.png"
+  }
+}
