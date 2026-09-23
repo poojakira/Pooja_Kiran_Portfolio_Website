@@ -1,5 +1,6 @@
-import Image from "next/image";
-import { experience, PORTRAIT_URL, profile, projects, RESUME_URL, skillGroups } from "@/data/portfolio";
+import { experience, profile, projects, RESUME_URL, skillGroups } from "@/data/portfolio";
+import InteractivePortfolioHero from "@/components/sections/InteractivePortfolioHero";
+import PortfolioMotion from "@/components/PortfolioMotion";
 
 function SectionLabel({ number, children }: { number: string; children: React.ReactNode }) {
   return <p className="section-label"><span>{number}</span>{children}</p>;
@@ -8,29 +9,8 @@ function SectionLabel({ number, children }: { number: string; children: React.Re
 export default function Home() {
   return (
     <>
-      <section className="hero container" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <p className="hero-role">Security Engineer <span>Tempe, Arizona</span></p>
-          <h1 id="hero-title">Pooja Kiran<span className="name-period">.</span></h1>
-          <p className="hero-heading">Security for AI<br /> that takes action.</p>
-          <p className="hero-description">I build and test controls for what AI agents can execute, which cloud permissions they hold, and which model artifacts they load.</p>
-          <div className="hero-actions">
-            <a className="button button-dark" href="#projects">View projects <span aria-hidden="true">↘</span></a>
-            <a className="button button-outline" href={RESUME_URL} download>Download résumé <span aria-hidden="true">↓</span></a>
-          </div>
-          <div className="hero-links">
-            <a href={profile.github} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-            <span className="relocation">Open to relocation across the U.S.</span>
-          </div>
-        </div>
-        <figure className="portrait">
-          <div className="portrait-mat">
-            <Image src={PORTRAIT_URL} alt="Pooja Kiran wearing a navy blazer and white shirt" width={400} height={400} priority unoptimized />
-          </div>
-          <figcaption><span>Pooja Kiran</span><span>Security Engineer</span></figcaption>
-        </figure>
-      </section>
+      <PortfolioMotion />
+      <InteractivePortfolioHero />
 
       <div className="focus-band" aria-label="Focus areas">
         <div className="container focus-items"><span>AI & Agent Security</span><span>Cloud & Identity Security</span><span>Detection Engineering</span><span>Model Supply-Chain Security</span></div>
