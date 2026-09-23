@@ -497,6 +497,7 @@ function GuideRobot({ progress }: { progress: number }) {
 export default function SecurityWorld({ progress }: SecurityWorldProps) {
   const { camera } = useThree();
   const progressRef = useRef(progress);
+  const cameraProgress = useRef(progress);
 
   useEffect(() => {
     progressRef.current = progress;
@@ -514,8 +515,11 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
       ),
     );
 
-    const moving = Math.min(1, Math.abs(progress - progressRef.current) * 150);
-    cameraTarget.y += Math.sin(clock.elapsedTime * 7.2) * 0.008 * moving;
+    const delta = Math.abs(p - cameraProgress.current);
+    cameraProgress.current = p;
+    const moving = Math.min(1, delta * 180);
+    cameraTarget.y += Math.sin(clock.elapsedTime * 7.2) * 0.009 * moving;
+    cameraTarget.x += Math.sin(clock.elapsedTime * 3.6) * 0.006 * moving;
 
     const lookAt = player.clone().add(
       new THREE.Vector3(pointer.x * 0.55, 1.2 + pointer.y * 0.2, -2.9),
