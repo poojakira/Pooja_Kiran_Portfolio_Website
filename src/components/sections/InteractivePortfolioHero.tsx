@@ -1,146 +1,101 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { PORTRAIT_URL, RESUME_URL, SITE_PATH, profile } from "@/data/portfolio";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import { RESUME_URL, profile } from "@/data/portfolio";
 
-const VIDEO_URL = `${SITE_PATH}/media/pooja-interactive-hero.mp4`;
+const SecurityCanvas = dynamic(() => import("@/components/three/SecurityCanvas"), {
+  ssr: false,
+  loading: () => (
+    <div className="three-loader" role="status" aria-live="polite">
+      <span />
+      <p>Loading interactive security world…</p>
+    </div>
+  ),
+});
+
+const stages = {
+  1: {
+    eyebrow: "Hello — I’m Pooja",
+    title: "Security Engineer",
+    body: "I build and test controls for AI agents, cloud identity, and model supply chains.",
+    metric: "Drag the world to explore my work",
+    href: "#projects",
+    action: "View selected work",
+  },
+  2: {
+    eyebrow: "01 · Agent Security",
+    title: "MCP Agent Security Gateway",
+    body: "Inline MCP/JSON-RPC policy enforcement before tool execution, with prompt-injection detection, capability checks, audit logging, and SIEM validation.",
+    metric: "629 tests · 78.47% statement coverage · 9 Elastic rules",
+    href: "#projects",
+    action: "Explore the gateway",
+  },
+  3: {
+    eyebrow: "02 · Cloud Identity",
+    title: "AWS Agent Identity Guard",
+    body: "Static IAM analysis for risky privilege combinations, PassRole, AssumeRole, wildcard access, and agent authorization paths.",
+    metric: "230 tests · 25 deterministic IAM rules",
+    href: "#projects",
+    action: "Explore IAM controls",
+  },
+  4: {
+    eyebrow: "03 · Model Supply Chain",
+    title: "HF Model Provenance Scanner",
+    body: "Non-executing inspection for provenance, serialization, loader, impersonation, configuration, and model-artifact supply-chain signals.",
+    metric: "199 tests · 12/12 core fixtures · 18/18 extended variants",
+    href: "#projects",
+    action: "Explore provenance",
+  },
+} as const;
 
 export default function InteractivePortfolioHero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const targetX = useRef(0.5);
-  const smoothX = useRef(0.5);
-  const targetY = useRef(0.5);
-  const smoothY = useRef(0.5);
-  const frame = useRef<number | null>(null);
-  const [videoReady, setVideoReady] = useState(false);
-  const [videoFailed, setVideoFailed] = useState(false);
+  const [stage, setStage] = useState<1 | 2 | 3 | 4>(1);
+  const [isRotating, setIsRotating] = useState(false);
+  const current = stages[stage];
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const coarse = window.matchMedia("(pointer: coarse)");
-
-    const move = (event: PointerEvent) => {
-      if (reduced.matches || coarse.matches) return;
-      targetX.current = Math.min(1, Math.max(0, event.clientX / window.innerWidth));
-      targetY.current = Math.min(1, Math.max(0, event.clientY / window.innerHeight));
-    };
-
-    const tick = () => {
-      smoothX.current += (targetX.current - smoothX.current) * 0.045;
-      smoothY.current += (targetY.current - smoothY.current) * 0.045;
-
-      const x = (smoothX.current - 0.5) * 2;
-      const y = (smoothY.current - 0.5) * 2;
-      section.style.setProperty("--px", x.toFixed(4));
-      section.style.setProperty("--py", y.toFixed(4));
-
-      const video = videoRef.current;
-      if (
-        video &&
-        videoReady &&
-        !videoFailed &&
-        Number.isFinite(video.duration) &&
-        video.duration > 0 &&
-        !reduced.matches
-      ) {
-        const start = 0.1;
-        const end = 0.9;
-        const progress = start + smoothX.current * (end - start);
-        const time = progress * video.duration;
-        if (Math.abs(video.currentTime - time) > 0.01) video.currentTime = time;
-      }
-
-      frame.current = requestAnimationFrame(tick);
-    };
-
-    window.addEventListener("pointermove", move, { passive: true });
-    frame.current = requestAnimationFrame(tick);
-
-    return () => {
-      window.removeEventListener("pointermove", move);
-      if (frame.current !== null) cancelAnimationFrame(frame.current);
-    };
-  }, [videoReady, videoFailed]);
-
-  const onMetadata = () => {
-    const video = videoRef.current;
-    if (!video || !Number.isFinite(video.duration) || video.duration <= 0) return;
-    video.pause();
-    video.currentTime = video.duration * 0.5;
+  const updateStage = (value: number) => {
+    if (value >= 1 && value <= 4) setStage(value as 1 | 2 | 3 | 4);
   };
 
   return (
-    <section ref={sectionRef} className="premium-hero" aria-labelledby="hero-title">
-      <div className="premium-hero-light" aria-hidden="true" />
+    <section className="tutorial-hero" aria-labelledby="hero-title">
+      <div className="three-sky-glow" aria-hidden="true" />
 
-      <div className="premium-hero-inner container">
-        <div className="premium-hero-copy">
-          <p className="premium-eyebrow">Security Engineer · Tempe, Arizona</p>
-          <h1 id="hero-title">Pooja Kiran<span>.</span></h1>
-          <p className="premium-focus">
-            AI Security · Agent Security · Cloud Identity · Detection Engineering
-          </p>
-
-          <div className="premium-actions">
-            <a className="premium-button primary" href="#projects">View Security Work</a>
-            <a className="premium-button secondary" href="#contact">Contact Me</a>
-          </div>
-
-          <div className="premium-links">
-            <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-            <a href={RESUME_URL} download>Résumé ↓</a>
-          </div>
-        </div>
-
-        <div className="premium-portrait-wrap" aria-label="Portrait of Pooja Kiran">
-          <div className="premium-portrait-halo" aria-hidden="true" />
-          {!videoReady && (
-            <img
-              className="premium-portrait"
-              src={PORTRAIT_URL}
-              alt="Pooja Kiran, Security Engineer"
-            />
-          )}
-
-          {!videoFailed && (
-            <video
-              ref={videoRef}
-              className={`premium-portrait premium-video ${videoReady ? "ready" : ""}`}
-              muted
-              playsInline
-              preload="metadata"
-              poster={PORTRAIT_URL}
-              onLoadedMetadata={onMetadata}
-              onCanPlay={() => setVideoReady(true)}
-              onError={() => {
-                setVideoFailed(true);
-                setVideoReady(false);
-              }}
-              aria-hidden="true"
-            >
-              <source src={VIDEO_URL} type="video/mp4" />
-            </video>
-          )}
-        </div>
-
-        <div className="premium-hero-statement">
-          <p>Security for AI</p>
-          <p>that takes action.</p>
-          <span>
-            I build controls for what agents can execute, which permissions they hold,
-            and which model artifacts they trust.
-          </span>
+      <div className="three-stage-wrap">
+        <div className="three-stage-card" key={stage}>
+          <p className="three-stage-eyebrow">{current.eyebrow}</p>
+          <h1 id="hero-title">{current.title}</h1>
+          <p className="three-stage-body">{current.body}</p>
+          <p className="three-stage-metric">{current.metric}</p>
+          <a href={current.href} className="three-stage-action">
+            {current.action}
+            <span aria-hidden="true">↘</span>
+          </a>
         </div>
       </div>
 
-      <div className="premium-scroll-hint" aria-hidden="true">
-        <span>Selected work below</span>
-        <i />
+      <div className="three-world-shell" aria-label="Interactive 3D security portfolio scene">
+        <SecurityCanvas
+          isRotating={isRotating}
+          setIsRotating={setIsRotating}
+          setStage={updateStage}
+        />
+      </div>
+
+      <div className="three-signature">
+        <p>Pooja Kiran</p>
+        <span>AI Security · Cloud Identity · Detection Engineering</span>
+        <div>
+          <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a href={RESUME_URL} download>Résumé ↓</a>
+        </div>
+      </div>
+
+      <div className="three-controls" aria-hidden="true">
+        <span className={isRotating ? "three-control-dot active" : "three-control-dot"} />
+        <p>{isRotating ? "Exploring" : "Drag · swipe · arrow keys"}</p>
       </div>
     </section>
   );
