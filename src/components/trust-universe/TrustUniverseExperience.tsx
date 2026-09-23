@@ -45,7 +45,7 @@ export default function TrustUniverseExperience() {
   const [mapOpen, setMapOpen] = useState(false);
   const [quickOpen, setQuickOpen] = useState(false);
   const [askOpen, setAskOpen] = useState(false);
-  const [briefingWorld, setBriefingWorld] = useState<UniverseWorldId | null>("trust");
+  const [briefingWorld, setBriefingWorld] = useState<UniverseWorldId | null>(null);
   const [inspectWorld, setInspectWorld] = useState<UniverseWorldId | null>(null);
   const [visited, setVisited] = useState<Set<UniverseWorldId>>(new Set());
   const [guidedIndex, setGuidedIndex] = useState(0);
@@ -114,6 +114,7 @@ export default function TrustUniverseExperience() {
     if (nextMode === "guided") {
       setGuidedIndex(0);
       setCurrentWorld("trust");
+      setBriefingWorld("trust");
     }
   };
 
