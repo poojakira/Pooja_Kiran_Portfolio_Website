@@ -40,7 +40,7 @@ jobs:
           mkdir -p build/realistic-src build/realistic-out
 
           curl -L --fail --retry 3 \
-            https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/GLB/CarConcept.glb \
+            https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/glTF-Binary/CarConcept.glb \
             -o build/realistic-src/CarConcept.glb
 
           curl -L --fail --retry 3 \
