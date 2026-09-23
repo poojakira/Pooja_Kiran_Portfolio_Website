@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Html, PointerLockControls, RoundedBox } from "@react-three/drei";
+import { Html, PointerLockControls, RoundedBox, Sky } from "@react-three/drei";
 import * as THREE from "three";
 import {
   type UniverseWorldId,
@@ -462,6 +462,95 @@ function DesertLandscape() {
   );
 }
 
+
+function CampusLight({ x, z, rotation = 0 }: { x: number; z: number; rotation?: number }) {
+  return (
+    <group position={[x,0,z]} rotation={[0,rotation,0]}>
+      <mesh position={[0,1.9,0]} castShadow>
+        <cylinderGeometry args={[0.055,0.075,3.8,14]} />
+        <meshStandardMaterial color="#595f60" roughness={0.48} metalness={0.52} />
+      </mesh>
+      <mesh position={[0.28,3.65,0]} castShadow>
+        <boxGeometry args={[0.58,0.09,0.2]} />
+        <meshStandardMaterial color="#414748" roughness={0.38} metalness={0.55} />
+      </mesh>
+      <mesh position={[0.28,3.59,0]}>
+        <boxGeometry args={[0.42,0.025,0.11]} />
+        <meshBasicMaterial color="#e3d7ba" />
+      </mesh>
+    </group>
+  );
+}
+
+function CampusInfrastructure() {
+  const lights = [
+    [-7.2,9.4,0],[7.2,9.4,Math.PI],[-7.2,2.4,0],[7.2,2.4,Math.PI],
+    [-11,-8,0],[11,-8,Math.PI],[-12,16,0],[12,16,Math.PI],
+  ] as [number,number,number][];
+
+  return (
+    <group>
+      {lights.map(([x,z,r],index)=><CampusLight key={index} x={x} z={z} rotation={r} />)}
+
+      <group position={[10.5,0,6]}>
+        <mesh position={[0,1.9,0]} castShadow>
+          <boxGeometry args={[6.8,0.18,4.1]} />
+          <meshStandardMaterial color="#3e4546" roughness={0.38} metalness={0.46} />
+        </mesh>
+        {[-2.8,2.8].flatMap((x)=>[-1.45,1.45].map((z)=>(
+          <mesh key={`${x}-${z}`} position={[x,0.92,z]} castShadow>
+            <boxGeometry args={[0.14,1.84,0.14]} />
+            <meshStandardMaterial color="#555c5d" roughness={0.45} metalness={0.5} />
+          </mesh>
+        )))}
+        {[-2,-.7,.7,2].map((x)=>(
+          <mesh key={x} position={[x,1.98,0]}>
+            <boxGeometry args={[1.15,0.035,3.8]} />
+            <meshStandardMaterial color="#1e2729" roughness={0.24} metalness={0.38} />
+          </mesh>
+        ))}
+        <mesh position={[0,0.06,0]} receiveShadow>
+          <boxGeometry args={[7.4,0.08,4.8]} />
+          <meshStandardMaterial color="#77766f" roughness={0.84} />
+        </mesh>
+      </group>
+
+      {[-8.4,-6.9,-5.4].map((x)=>(
+        <mesh key={x} position={[x,0.48,-10.4]} castShadow>
+          <boxGeometry args={[0.9,0.96,0.55]} />
+          <meshStandardMaterial color="#747974" roughness={0.68} metalness={0.2} />
+        </mesh>
+      ))}
+
+      <mesh position={[-12.4,0.35,-3.8]} castShadow>
+        <boxGeometry args={[2.5,0.7,1.2]} />
+        <meshStandardMaterial color="#877f70" roughness={0.88} />
+      </mesh>
+      <mesh position={[-12.4,0.72,-3.8]}>
+        <boxGeometry args={[2.15,0.05,0.85]} />
+        <meshStandardMaterial color="#aaa08e" roughness={0.8} />
+      </mesh>
+    </group>
+  );
+}
+
+function TerrainVariation() {
+  const patches = [
+    [-20,18,16,10,"#a08f77"],[19,16,14,9,"#ad9c84"],[-22,-18,18,12,"#9d8b73"],
+    [21,-17,16,11,"#b09f87"],[-2,26,22,8,"#a59279"],[28,0,10,18,"#a29179"],
+  ] as [number,number,number,number,string][];
+  return (
+    <group>
+      {patches.map(([x,z,w,d,color],index)=>(
+        <mesh key={index} position={[x,0.012,z]} rotation={[-Math.PI/2,0,index*.2]}>
+          <planeGeometry args={[w,d]} />
+          <meshStandardMaterial color={color} roughness={1} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
 function SecurityGate() {
   return (
     <group position={[0,0,12.5]}>
@@ -776,8 +865,15 @@ function ExploreController({
 function UniverseScene(props:TrustUniverseCanvasProps){
   return (
     <>
-      <color attach="background" args={["#b8ad9a"]} />
-      <fog attach="fog" args={["#b8ad9a",55,130]} />
+      <Sky
+        distance={450000}
+        sunPosition={[34,18,-20]}
+        turbidity={7.5}
+        rayleigh={2.4}
+        mieCoefficient={0.008}
+        mieDirectionalG={0.82}
+      />
+      <fog attach="fog" args={["#b6ab99",58,132]} />
       <ambientLight intensity={0.62} />
       <hemisphereLight args={["#d8e0df","#746756",1.05]} />
       <directionalLight
@@ -795,9 +891,11 @@ function UniverseScene(props:TrustUniverseCanvasProps){
       </mesh>
 
       <Mountains />
+      <TerrainVariation />
       <ArrivalCourt />
       <SecurityGate />
       <CampusWayfinding />
+      <CampusInfrastructure />
       <DesertLandscape />
 
       {universeWorlds.filter((world)=>world.id!=="trust").map((world)=>(
