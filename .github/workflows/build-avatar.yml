@@ -14,11 +14,30 @@ permissions:
 jobs:
   build-avatar:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 40
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Python for face reconstruction
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install face reconstruction dependencies
+        run: |
+          python -m pip install --disable-pip-version-check \
+            mediapipe==0.10.21 \
+            scipy==1.14.1 \
+            opencv-python-headless==4.10.0.84
+
+      - name: Reconstruct facial landmarks from portrait
+        run: |
+          mkdir -p build/avatar
+          python tools/blender/extract_face_landmarks.py \
+            public/pooja-kiran.png \
+            build/avatar/pooja-face.json
 
       - name: Install Blender runtime libraries
         run: |
