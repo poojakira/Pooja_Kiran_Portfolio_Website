@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TrustUniverseExperience from "@/components/trust-universe/TrustUniverseExperience";
@@ -20,7 +20,8 @@ const focusAreas = [
     subtitle: "Control what AI is allowed to do.",
     copy: "Inline inspection, capability enforcement, prompt-injection detection, auditability, rate limits, and security telemetry at the point where agent intent becomes action.",
     signal: "629 tests · 55 patterns · 9 Elastic rules",
-    icon: "AG",
+    icon: "◉",
+    visualPosition: "18% 50%",
   },
   {
     number: "02",
@@ -28,7 +29,8 @@ const focusAreas = [
     subtitle: "Make authority explicit.",
     copy: "Cloud IAM analysis for privilege paths, trust relationships, excessive permissions, permission boundaries, agent identity and machine-readable security findings.",
     signal: "25 rule IDs · 230 tests · SARIF 2.1.0",
-    icon: "ID",
+    icon: "◇",
+    visualPosition: "54% 36%",
   },
   {
     number: "03",
@@ -36,7 +38,8 @@ const focusAreas = [
     subtitle: "Inspect the artifact before it runs.",
     copy: "Non-executing inspection of model provenance, serialization risk, suspicious loaders, impersonation indicators, dependency evidence and supply-chain metadata.",
     signal: "199 tests · 12/12 core · 18/18 variants",
-    icon: "ML",
+    icon: "⌬",
+    visualPosition: "72% 20%",
   },
   {
     number: "04",
@@ -44,69 +47,42 @@ const focusAreas = [
     subtitle: "Turn security into something inspectable.",
     copy: "Source, tests, CI, SIEM rules, SARIF findings, limitations, architecture decisions and scoped performance gates that can survive technical review.",
     signal: "1,058 documented passing tests across flagships",
-    icon: "EV",
+    icon: "▣",
+    visualPosition: "88% 48%",
   },
 ] as const;
 
-const liveSignals = [
-  ["AGENT EXECUTION", "629 tests"],
-  ["IDENTITY CONTROL", "25 IAM rules"],
-  ["MODEL PROVENANCE", "199 tests"],
-  ["DETECTION", "9 Elastic rules"],
-] as const;
-
-function GlobalMap() {
-  return (
-    <svg className="cyber-world-map" viewBox="0 0 800 420" aria-hidden="true">
-      <defs>
-        <linearGradient id="mapStroke" x1="0" x2="1">
-          <stop offset="0" stopColor="#4fc3ff" stopOpacity=".18" />
-          <stop offset=".5" stopColor="#9ee7ff" stopOpacity=".82" />
-          <stop offset="1" stopColor="#d6a861" stopOpacity=".25" />
-        </linearGradient>
-        <radialGradient id="mapGlow">
-          <stop offset="0" stopColor="#69cfff" stopOpacity=".9" />
-          <stop offset="1" stopColor="#69cfff" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <g className="map-grid-lines">
-        {Array.from({ length: 12 }, (_, i) => (
-          <line key={`v-${i}`} x1={40 + i * 66} y1="28" x2={40 + i * 66} y2="392" />
-        ))}
-        {Array.from({ length: 7 }, (_, i) => (
-          <line key={`h-${i}`} x1="38" y1={44 + i * 52} x2="762" y2={44 + i * 52} />
-        ))}
-      </g>
-      <path
-        className="world-contours"
-        d="M88 124l38-22 34 8 20 22 34 4 22 30-9 27-41 12-24-9-24 18-29-4-12-28-28-15 5-25 14-18zm172-4 28-27 43 8 20 19 34 3 18 31-11 26-31 4-20 29-32-12-19-25-31-12-7-24zm164 29 25-23 42-6 25 13 9 21 31 7 14 24-12 26-28 4-9 21-34 6-24-20-31 3-19-21 8-28zm168-30 26-18 38 9 14 23 28 8 13 26-17 22-31-4-18 17-37-4-15-25-29-10-6-25z"
-      />
-      <path className="arc arc-a" d="M164 177 Q330 18 512 173" />
-      <path className="arc arc-b" d="M248 212 Q440 65 641 172" />
-      <path className="arc arc-c" d="M173 209 Q407 337 618 221" />
-      <path className="arc arc-d" d="M319 153 Q433 258 578 158" />
-      {[
-        [164, 177],
-        [248, 212],
-        [319, 153],
-        [512, 173],
-        [578, 158],
-        [641, 172],
-        [618, 221],
-      ].map(([x, y], index) => (
-        <g key={index}>
-          <circle cx={x} cy={y} r="2.7" className="map-node" />
-          <circle cx={x} cy={y} r="18" fill="url(#mapGlow)" opacity=".45" />
-        </g>
-      ))}
-    </svg>
-  );
-}
+const HERO_PARTS = ["00", "01", "02", "03", "04", "05", "06", "07", "08a", "08b"] as const;
+const HERO_PART_BASE =
+  "https://raw.githubusercontent.com/poojakira/Pooja_Kiran_Portfolio_Website/main/.hero-assets";
 
 export default function CinematicSecurityPortfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [universeOpen, setUniverseOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [heroImage, setHeroImage] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    Promise.all(
+      HERO_PARTS.map(async (part) => {
+        const response = await fetch(`${HERO_PART_BASE}/part${part}.txt`, { cache: "force-cache" });
+        if (!response.ok) throw new Error(`Hero asset part ${part} failed to load`);
+        return (await response.text()).trim();
+      }),
+    )
+      .then((parts) => {
+        if (active) setHeroImage(`data:image/webp;base64,${parts.join("")}`);
+      })
+      .catch(() => {
+        if (active) setHeroImage("");
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -140,7 +116,9 @@ export default function CinematicSecurityPortfolio() {
       root.style.setProperty("--portrait-y", `${(currentY * -7).toFixed(2)}px`);
       root.style.setProperty("--portrait-ry", `${(currentX * -1.8).toFixed(3)}deg`);
       root.style.setProperty("--eye-x", `${(currentX * 5.2).toFixed(2)}px`);
-      root.style.setProperty("--eye-y", `${(currentY * 3.2).toFixed(2)}px`);
+      root.style.setProperty("--eye-y", `${(currentY * 2.1).toFixed(2)}px`);
+      root.style.setProperty("--hero-photo-x", `${(currentX * 4.2).toFixed(2)}px`);
+      root.style.setProperty("--hero-photo-y", `${(currentY * 2.8).toFixed(2)}px`);
       frame = requestAnimationFrame(renderPointer);
     };
 
@@ -245,7 +223,6 @@ export default function CinematicSecurityPortfolio() {
 
       <header className="cyber-header">
         <a href="#top" className="cyber-brand">
-          <span className="cyber-brand-mark">PK</span>
           <strong>POOJA KIRAN</strong>
         </a>
 
@@ -320,53 +297,27 @@ export default function CinematicSecurityPortfolio() {
               </button>
             </div>
 
-            <div className="cyber-hero-stage" aria-label="Pooja Kiran in a cybersecurity command-center interface">
-              <div className="cyber-stage-frame">
-                <div className="cyber-stage-grid" aria-hidden="true" />
-                <div className="cyber-stage-radial" aria-hidden="true" />
-
-                <div className="cyber-map-wrap">
-                  <GlobalMap />
-                  <div className="cyber-map-title">
-                    <span>GLOBAL SECURITY GRAPH</span>
-                    <strong>TRUST PATH OBSERVABILITY</strong>
+            <div className="cyber-hero-stage" aria-label="Pooja Kiran in a realistic cybersecurity command center">
+              <div className="cyber-stage-frame cyber-stage-photo">
+                {heroImage ? (
+                  <img
+                    className="cyber-command-image"
+                    src={heroImage}
+                    alt="Pooja Kiran seated in a cinematic cybersecurity operations center with global security maps and monitoring displays"
+                  />
+                ) : (
+                  <div className="cyber-command-loading" aria-hidden="true">
+                    <span />
+                    <small>SECURE OPERATIONS ENVIRONMENT</small>
                   </div>
-                </div>
-
-                <div className="cyber-left-console">
-                  {liveSignals.map(([label, value], index) => (
-                    <div key={label}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <p>{label}</p>
-                      <strong>{value}</strong>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="cyber-right-console">
-                  <div><span>FLAGSHIP SYSTEMS</span><strong>03</strong></div>
-                  <div><span>DOCUMENTED PASSING TESTS</span><strong>1,058</strong></div>
-                  <div><span>PROMPT-INJECTION PATTERNS</span><strong>55</strong></div>
-                  <div><span>IAM RULE IDS</span><strong>25</strong></div>
-                </div>
-
-                <div className="cyber-desk-monitors" aria-hidden="true">
-                  <div className="monitor monitor-left"><i /><i /><i /></div>
-                  <div className="monitor monitor-center"><i /><i /><i /><i /></div>
-                  <div className="monitor monitor-right"><i /><i /></div>
-                </div>
-
-                <figure className="cyber-portrait">
-                  <div className="cyber-portrait-halo" aria-hidden="true" />
-                  <img src={PORTRAIT_URL} alt="Pooja Kiran, Security Engineer" />
-                  <span className="cyber-eye cyber-eye-left" aria-hidden="true"><i /></span>
-                  <span className="cyber-eye cyber-eye-right" aria-hidden="true"><i /></span>
-                </figure>
-
-                <div className="cyber-stage-quote">
-                  <span>“Security isn’t a feature.</span>
-                  <strong>It’s a foundation for what’s next.” — POOJA KIRAN</strong>
-                </div>
+                )}
+                <div className="cyber-command-shade" aria-hidden="true" />
+                {heroImage && (
+                  <>
+                    <span className="cyber-eye cyber-eye-left" aria-hidden="true"><i /></span>
+                    <span className="cyber-eye cyber-eye-right" aria-hidden="true"><i /></span>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -395,7 +346,18 @@ export default function CinematicSecurityPortfolio() {
 
           <div className="cyber-focus-grid">
             {focusAreas.map((area) => (
-              <article key={area.number} className="cyber-focus-card">
+              <article
+                key={area.number}
+                className="cyber-focus-card"
+                style={
+                  heroImage
+                    ? ({
+                        "--focus-image": `url("${heroImage}")`,
+                        "--focus-position": area.visualPosition,
+                      } as CSSProperties)
+                    : undefined
+                }
+              >
                 <div className="cyber-focus-top">
                   <span className="cyber-focus-icon">{area.icon}</span>
                   <small>{area.number}</small>
@@ -404,6 +366,7 @@ export default function CinematicSecurityPortfolio() {
                 <strong>{area.subtitle}</strong>
                 <p>{area.copy}</p>
                 <div className="cyber-focus-signal">{area.signal}</div>
+                <a className="cyber-focus-link" href="#work">Learn more <span>→</span></a>
               </article>
             ))}
           </div>
