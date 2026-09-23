@@ -1,9 +1,12 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef } from "react";
-import { Html, Line } from "@react-three/drei";
+import { Html, Line, useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { SITE_PATH } from "@/data/portfolio";
+
+const POOJA_AVATAR_URL = `${SITE_PATH}/models/pooja-avatar.glb`;
 
 type SecurityWorldProps = {
   progress: number;
@@ -466,104 +469,67 @@ function getPathPosition(progress: number) {
 
 function PoojaWalker({ progress }: { progress: number }) {
   const root = useRef<THREE.Group>(null);
-  const leftArm = useRef<THREE.Group>(null);
-  const rightArm = useRef<THREE.Group>(null);
-  const leftLeg = useRef<THREE.Group>(null);
-  const rightLeg = useRef<THREE.Group>(null);
   const previous = useRef(progress);
-  const walkEnergy = useRef(0);
+  const walkUntil = useRef(0);
+  const currentAction = useRef<"Idle" | "Walk">("Idle");
+  const { scene, animations } = useGLTF(POOJA_AVATAR_URL);
+  const { actions } = useAnimations(animations, root);
+
+  useEffect(() => {
+    scene.traverse((object) => {
+      if (object instanceof THREE.Mesh) {
+        object.castShadow = true;
+        object.receiveShadow = true;
+        object.frustumCulled = true;
+      }
+    });
+  }, [scene]);
+
+  useEffect(() => {
+    const idle = actions.Idle;
+    if (idle) {
+      idle.reset().fadeIn(0.2).play();
+      currentAction.current = "Idle";
+    }
+
+    return () => {
+      Object.values(actions).forEach((action) => action?.stop());
+    };
+  }, [actions]);
 
   useFrame(({ clock }) => {
     if (!root.current) return;
 
-    const delta = Math.abs(progress - previous.current);
+    const deltaProgress = Math.abs(progress - previous.current);
     previous.current = progress;
-    walkEnergy.current = Math.max(walkEnergy.current * 0.9, Math.min(1, delta * 190));
+
+    if (deltaProgress > 0.000015) {
+      walkUntil.current = clock.elapsedTime + 0.22;
+    }
 
     const target = getPathPosition(progress);
     root.current.position.lerp(target, 0.12);
 
-    const energy = walkEnergy.current;
-    const cycle = clock.elapsedTime * 7.6;
-    const armSwing = Math.sin(cycle) * 0.4 * energy;
-    const legSwing = Math.sin(cycle) * 0.47 * energy;
+    const desired: "Idle" | "Walk" =
+      clock.elapsedTime < walkUntil.current ? "Walk" : "Idle";
 
-    if (leftArm.current) leftArm.current.rotation.x = armSwing;
-    if (rightArm.current) rightArm.current.rotation.x = -armSwing;
-    if (leftLeg.current) leftLeg.current.rotation.x = -legSwing;
-    if (rightLeg.current) rightLeg.current.rotation.x = legSwing;
+    if (desired !== currentAction.current) {
+      const previousAction = actions[currentAction.current];
+      const nextAction = actions[desired];
 
-    root.current.position.y = Math.abs(Math.sin(cycle)) * 0.012 * energy;
+      previousAction?.fadeOut(0.16);
+      if (nextAction) {
+        nextAction.reset().fadeIn(0.16).play();
+        currentAction.current = desired;
+      }
+    }
   });
 
   return (
     <group ref={root} position={[0, 0, 4.8]}>
-      <group position={[0, 1.0, 0]}>
-        <mesh castShadow position={[0, 0.18, 0]}>
-          <capsuleGeometry args={[0.30, 0.74, 10, 18]} />
-          <meshStandardMaterial color="#20272d" roughness={0.5} metalness={0.05} />
-        </mesh>
+      <primitive object={scene} />
 
-        <mesh castShadow position={[0, 0.64, 0]}>
-          <sphereGeometry args={[0.245, 28, 28]} />
-          <meshStandardMaterial color="#b98c72" roughness={0.62} />
-        </mesh>
-        <mesh castShadow position={[0, 0.72, -0.04]}>
-          <sphereGeometry args={[0.27, 24, 24]} />
-          <meshStandardMaterial color="#231d1b" roughness={0.9} />
-        </mesh>
-
-        <group ref={leftArm} position={[-0.37, 0.29, 0]}>
-          <mesh castShadow position={[0, -0.30, 0]}>
-            <capsuleGeometry args={[0.09, 0.5, 8, 14]} />
-            <meshStandardMaterial color="#20272d" roughness={0.55} />
-          </mesh>
-          <mesh castShadow position={[0, -0.62, 0]}>
-            <sphereGeometry args={[0.095, 18, 18]} />
-            <meshStandardMaterial color="#b98c72" roughness={0.62} />
-          </mesh>
-        </group>
-
-        <group ref={rightArm} position={[0.37, 0.29, 0]}>
-          <mesh castShadow position={[0, -0.30, 0]}>
-            <capsuleGeometry args={[0.09, 0.5, 8, 14]} />
-            <meshStandardMaterial color="#20272d" roughness={0.55} />
-          </mesh>
-          <mesh castShadow position={[0, -0.62, 0]}>
-            <sphereGeometry args={[0.095, 18, 18]} />
-            <meshStandardMaterial color="#b98c72" roughness={0.62} />
-          </mesh>
-        </group>
-
-        <group ref={leftLeg} position={[-0.16, -0.37, 0]}>
-          <mesh castShadow position={[0, -0.49, 0]}>
-            <capsuleGeometry args={[0.12, 0.74, 8, 14]} />
-            <meshStandardMaterial color="#161b1f" roughness={0.62} />
-          </mesh>
-          <mesh castShadow position={[0, -0.92, 0.08]}>
-            <boxGeometry args={[0.22, 0.12, 0.42]} />
-            <meshStandardMaterial color="#0d1114" roughness={0.6} />
-          </mesh>
-        </group>
-
-        <group ref={rightLeg} position={[0.16, -0.37, 0]}>
-          <mesh castShadow position={[0, -0.49, 0]}>
-            <capsuleGeometry args={[0.12, 0.74, 8, 14]} />
-            <meshStandardMaterial color="#161b1f" roughness={0.62} />
-          </mesh>
-          <mesh castShadow position={[0, -0.92, 0.08]}>
-            <boxGeometry args={[0.22, 0.12, 0.42]} />
-            <meshStandardMaterial color="#0d1114" roughness={0.6} />
-          </mesh>
-        </group>
-
-        <mesh position={[-0.12, 0.22, 0.31]}>
-          <boxGeometry args={[0.13, 0.18, 0.02]} />
-          <meshStandardMaterial color="#dce3e6" roughness={0.38} />
-        </mesh>
-      </group>
-
-      <Html position={[0, 2.0, 0]} center transform distanceFactor={6}>
+      <Html position={[0, 1.92, 0]} center transform distanceFactor={6}>
         <div className="pooja-avatar-label">
           <strong>POOJA</strong>
           <span>SECURITY ENGINEER</span>
@@ -572,6 +538,8 @@ function PoojaWalker({ progress }: { progress: number }) {
     </group>
   );
 }
+
+useGLTF.preload(POOJA_AVATAR_URL);
 
 function HumanoidGuide({ progress }: { progress: number }) {
   const root = useRef<THREE.Group>(null);
