@@ -6,16 +6,16 @@ import { profile, SITE_PATH } from "@/data/portfolio";
 
 const geist = localFont({ src: "./fonts/GeistVF.woff", variable: "--font-geist", display: "swap", weight: "100 900" });
 const geistMono = localFont({ src: "./fonts/GeistMonoVF.woff", variable: "--font-geist-mono", display: "swap", weight: "100 900" });
-const description = "Pooja Kiran, Security Engineer. Open-source engineering across AI agents, AWS IAM, model supply chains, and detection workflows.";
+const description = "POOJA // THE TRUST UNIVERSE — an interactive security engineering world connecting AI agents, identity, model provenance, runtime, cloud and telemetry evidence.";
 export const metadata: Metadata = {
   metadataBase: new URL("https://poojakira.github.io"),
-  title: "Pooja Kiran | Security Engineer",
+  title: "POOJA // THE TRUST UNIVERSE",
   description,
   authors: [{ name: profile.name }],
   alternates: { canonical: SITE_PATH + "/" },
   icons: { icon: SITE_PATH + "/favicon.svg" },
-  openGraph: { type: "website", locale: "en_US", title: "Pooja Kiran | Security Engineer", description, siteName: "Pooja Kiran", url: SITE_PATH + "/" },
-  twitter: { card: "summary", title: "Pooja Kiran | Security Engineer", description },
+  openGraph: { type: "website", locale: "en_US", title: "POOJA // THE TRUST UNIVERSE", description, siteName: "Pooja Kiran", url: SITE_PATH + "/" },
+  twitter: { card: "summary", title: "POOJA // THE TRUST UNIVERSE", description },
   robots: { index: true, follow: true },
 };
 const personSchema = {
@@ -30,9 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} /></head>
       <body>
         <a href="#main-content" className="skip-link">Skip to content</a>
-        <PortfolioHeader />
         <main id="main-content" tabIndex={-1}>{children}</main>
-        <footer className="site-footer"><div className="container footer-inner"><p>© 2026 Pooja Kiran · Security Engineer</p><a href={SITE_PATH + "/#main-content"}>Back to top ↑</a></div></footer>
       </body>
     </html>
   );
