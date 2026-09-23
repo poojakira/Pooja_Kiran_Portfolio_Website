@@ -22,6 +22,8 @@ const stages = {
     metric: "Scroll to move through the facility",
     href: "#projects",
     action: "Jump to engineering evidence",
+    hook: "Power without boundaries is not intelligence. It is risk.",
+    guide: "Welcome. I’m Sentinel. I’ll guide you through the decisions that turn powerful technology into systems people can trust.",
   },
   2: {
     eyebrow: "Zone 01 · Agent Execution",
@@ -30,6 +32,8 @@ const stages = {
     metric: "629 tests · 78.47% statement coverage · 9 Elastic rules",
     href: "#projects",
     action: "Review gateway evidence",
+    hook: "Before AI can act, it has to earn the right to act.",
+    guide: "This door is about execution. An intelligent system should not gain real-world power simply because it can ask for it.",
   },
   3: {
     eyebrow: "Zone 02 · Identity & Authorization",
@@ -38,6 +42,8 @@ const stages = {
     metric: "230 tests · 25 deterministic IAM rules",
     href: "#projects",
     action: "Review IAM evidence",
+    hook: "Identity is where capability becomes accountability.",
+    guide: "Here the question changes from what can the system do to who is allowed to do it, under which role, and with what blast radius.",
   },
   4: {
     eyebrow: "Zone 03 · Model Supply Chain",
@@ -46,6 +52,8 @@ const stages = {
     metric: "199 tests · 12/12 core fixtures · 18/18 extended variants",
     href: "#projects",
     action: "Review provenance evidence",
+    hook: "If you cannot trace what a model is, you should not trust what it can do.",
+    guide: "Models are software supply-chain artifacts too. This vault represents the evidence needed before loading something powerful into a trusted environment.",
   },
   5: {
     eyebrow: "Zone 04 · Detection & Validation",
@@ -54,6 +62,8 @@ const stages = {
     metric: "Telemetry · testing · detections · documented limitations",
     href: "#about",
     action: "See how I engineer",
+    hook: "Security is not a promise. It is evidence that survives scrutiny.",
+    guide: "This is the final room. Controls become credible when they can be tested, observed, challenged, and explained to people who were not in the room when they were built.",
   },
 } as const;
 
@@ -62,7 +72,13 @@ export default function InteractivePortfolioHero() {
   const ticking = useRef(false);
   const [progress, setProgress] = useState(0);
   const [stage, setStage] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [speechSupported, setSpeechSupported] = useState(false);
   const current = stages[stage];
+
+  useEffect(() => {
+    setSpeechSupported(typeof window !== "undefined" && "speechSynthesis" in window);
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -100,6 +116,41 @@ export default function InteractivePortfolioHero() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!voiceEnabled || !speechSupported) return;
+
+    const synth = window.speechSynthesis;
+    synth.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(
+      `${current.hook} ${current.guide}`,
+    );
+    const voices = synth.getVoices();
+    const preferred =
+      voices.find((voice) => voice.lang.startsWith("en") && voice.localService) ??
+      voices.find((voice) => voice.lang.startsWith("en"));
+
+    if (preferred) utterance.voice = preferred;
+    utterance.rate = 0.92;
+    utterance.pitch = 0.9;
+    utterance.volume = 0.92;
+    synth.speak(utterance);
+
+    return () => synth.cancel();
+  }, [stage, voiceEnabled, speechSupported, current.guide, current.hook]);
+
+  const toggleVoice = () => {
+    if (!speechSupported) return;
+
+    if (voiceEnabled) {
+      window.speechSynthesis.cancel();
+      setVoiceEnabled(false);
+      return;
+    }
+
+    setVoiceEnabled(true);
+  };
+
   return (
     <section ref={sectionRef} className="facility-journey" aria-labelledby="hero-title">
       <div className="facility-sticky">
@@ -124,6 +175,34 @@ export default function InteractivePortfolioHero() {
             </a>
           </div>
         </div>
+
+        <aside className="sentinel-dialogue" aria-live="polite">
+          <div className="sentinel-dialogue-head">
+            <div className="sentinel-avatar" aria-hidden="true">
+              <span />
+              <i />
+            </div>
+            <div>
+              <strong>SENTINEL</strong>
+              <span>AI SECURITY FACILITY GUIDE</span>
+            </div>
+            {speechSupported && (
+              <button
+                type="button"
+                className={voiceEnabled ? "sentinel-voice active" : "sentinel-voice"}
+                onClick={toggleVoice}
+                aria-pressed={voiceEnabled}
+                aria-label={voiceEnabled ? "Mute Sentinel guide voice" : "Enable Sentinel guide voice"}
+              >
+                {voiceEnabled ? "VOICE ON" : "ENABLE VOICE"}
+              </button>
+            )}
+          </div>
+
+          <p className="sentinel-principle-label">POOJA&apos;S PRINCIPLE</p>
+          <blockquote key={`hook-${stage}`}>“{current.hook}”</blockquote>
+          <p className="sentinel-guide-copy">{current.guide}</p>
+        </aside>
 
         <div className="facility-identity">
           <p>Pooja Kiran</p>
