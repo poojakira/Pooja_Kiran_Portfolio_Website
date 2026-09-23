@@ -451,7 +451,7 @@ function DesertLandscape() {
   return (
     <group>
       {plants.map(([x,z,s], index) => <DesertPlant key={index} x={x} z={z} scale={s} />)}
-      {[[-6.2,3.1],[-7.3,2.2],[7.3,3.2],[6.4,2.2]] as [number,number][]}.map((p,index)=>(
+      {([[-6.2,3.1],[-7.3,2.2],[7.3,3.2],[6.4,2.2]] as [number,number][]).map((p,index)=>(
         <mesh key={index} position={[p[0],0.16,p[1]]} rotation={[0,index*.6,0]}>
           <dodecahedronGeometry args={[0.48 + (index%2)*.18,0]} />
           <meshStandardMaterial color="#8f806e" roughness={1} />
