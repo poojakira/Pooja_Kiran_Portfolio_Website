@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { type CSSProperties, useEffect, useMemo, useRef } from "react";
 import { Html, Line, useTexture } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -134,7 +134,7 @@ function WallDisplay({
         <meshBasicMaterial color="#0d1419" />
       </mesh>
       <Html position={[0, 0, 0.075]} center transform distanceFactor={5.4}>
-        <div className="facility-screen" style={{ "--screen-accent": accent } as React.CSSProperties}>
+        <div className="facility-screen" style={{ "--screen-accent": accent } as CSSProperties}>
           <strong>{title}</strong>
           {lines.map((line) => <span key={line}>{line}</span>)}
         </div>
@@ -348,7 +348,7 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
         opacity={0.4}
       />
 
-      {rackRows.map(([x, z], index) => (
+      {rackRows.map(([x, z]) => (
         <ServerRack
           key={`${x}-${z}`}
           position={[x, 1.42, z]}
