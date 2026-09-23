@@ -1,5 +1,5 @@
-import CinematicSecurityPortfolio from "@/components/cinematic/CinematicSecurityPortfolio";
+import ExactSketchPortfolio from "@/components/sketch/ExactSketchPortfolio";
 
 export default function Home() {
-  return <CinematicSecurityPortfolio />;
+  return <ExactSketchPortfolio />;
 }
