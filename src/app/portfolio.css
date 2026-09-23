@@ -212,7 +212,7 @@
   left:50%;top:52%;
   width:min(43vw,650px);
   height:min(79vh,760px);
-  transform:translate3d(-50%,-50%,80px) rotateY(calc(var(--hero-x) * 1.2deg)) rotateX(calc(var(--hero-y) * -0.7deg));
+  transform:translate3d(-50%,-50%,80px);
   transform-style:preserve-3d;
   transform-origin:center center;
   will-change:transform,opacity,filter;
@@ -223,7 +223,7 @@
   inset:4% 10% 0;
   z-index:4;
   overflow:hidden;
-  transform:translate3d(calc(var(--hero-x) * 9px),calc(var(--hero-y) * 5px),35px);
+  transform:translate3d(calc(var(--hero-x) * 9px),calc(var(--hero-y) * 5px),35px) rotateY(calc(var(--hero-x) * 1.35deg)) rotateX(calc(var(--hero-y) * -0.8deg));
   transform-style:preserve-3d;
   filter:drop-shadow(0 36px 50px rgba(0,0,0,.38));
 }
