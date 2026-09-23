@@ -16,6 +16,7 @@ const SecurityCanvas = dynamic(() => import("@/components/three/SecurityCanvas")
 
 const stages = {
   1: {
+    keyword: "BOUNDARY",
     eyebrow: "Arrival · AI Security Facility",
     title: "Walk inside the systems I secure.",
     body: "A realistic walkthrough of the security boundaries around agent execution, cloud identity, model artifacts, and operational validation.",
@@ -27,6 +28,7 @@ const stages = {
     takeaway: "Pooja approaches AI security as an engineering problem: define the boundary, enforce it, then prove that it works.",
   },
   2: {
+    keyword: "EXECUTION",
     eyebrow: "Zone 01 · Agent Execution",
     title: "MCP Agent Security Gateway",
     body: "The first checkpoint represents the boundary before an AI agent can invoke tools: MCP/JSON-RPC policy, prompt-injection signals, capability checks, audit logging, and SIEM validation.",
@@ -38,6 +40,7 @@ const stages = {
     takeaway: "Pooja builds controls at the point where AI intent becomes action, with explicit enforcement and measurable validation.",
   },
   3: {
+    keyword: "IDENTITY",
     eyebrow: "Zone 02 · Identity & Authorization",
     title: "AWS Agent Identity Guard",
     body: "This zone represents the identity layer behind agent actions: risky IAM combinations, AssumeRole, PassRole, wildcard access, trust relationships, and authorization paths.",
@@ -49,6 +52,7 @@ const stages = {
     takeaway: "Pooja treats identity as a security control surface, not an administrative detail.",
   },
   4: {
+    keyword: "PROVENANCE",
     eyebrow: "Zone 03 · Model Supply Chain",
     title: "HF Model Provenance Scanner",
     body: "A controlled artifact vault represents model trust before execution: provenance, serialization risk, loader behavior, impersonation signals, configuration anomalies, and supply-chain evidence.",
@@ -60,6 +64,7 @@ const stages = {
     takeaway: "Pooja extends security thinking beyond applications and identities to the artifacts AI systems depend on.",
   },
   5: {
+    keyword: "EVIDENCE",
     eyebrow: "Zone 04 · Detection & Validation",
     title: "Security evidence, not security theater.",
     body: "The walkthrough ends in a security-operations space because controls only matter when they are tested, observable, and supported by evidence.",
@@ -331,36 +336,66 @@ export default function InteractivePortfolioHero() {
   };
 
   return (
-    <section ref={sectionRef} className="facility-journey" aria-labelledby="hero-title">
-      <div className="facility-sticky">
-        <div className="facility-world" aria-label="Interactive 3D AI security facility walkthrough">
+    <section ref={sectionRef} className="facility-journey aura-journey" aria-labelledby="hero-title">
+      <div className="facility-sticky aura-sticky">
+        <div className="facility-world aura-world" aria-label="Interactive 3D AI security facility walkthrough">
           <SecurityCanvas progress={progress} />
         </div>
 
-        <div className="facility-topbar" aria-hidden="true">
-          <span>AI SECURITY FACILITY</span>
-          <span>AUTHORIZED WALKTHROUGH</span>
+        <div className="aura-atmosphere" aria-hidden="true">
+          <i className="aura-orb aura-orb-a" />
+          <i className="aura-orb aura-orb-b" />
+          <i className="aura-beam" />
+          <i className="aura-grid" />
+          <i className="aura-noise" />
         </div>
 
-        <div className="facility-mission" key={`mission-${stage}`} aria-hidden="true">
-          <span>SECURITY WALKTHROUGH</span>
-          <strong>{current.eyebrow}</strong>
-        </div>
-
-        <div className="facility-story">
-          <div className="facility-story-card" key={stage}>
-            <p className="facility-eyebrow">{current.eyebrow}</p>
-            <h1 id="hero-title">{current.title}</h1>
-            <p className="facility-body">{current.body}</p>
-            <p className="facility-metric">{current.metric}</p>
-            <a href={current.href} className="facility-action">
-              {current.action}
-              <span aria-hidden="true">↘</span>
-            </a>
+        <div className="aura-topline">
+          <div>
+            <strong>POOJA KIRAN</strong>
+            <span>SECURITY ENGINEER · AI SYSTEMS</span>
+          </div>
+          <div className="aura-topline-center">
+            <span>TRUST ARCHITECTURE</span>
+            <i />
+            <span>{String(stage).padStart(2, "0")} / 05</span>
+          </div>
+          <div className="aura-top-links">
+            <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href={RESUME_URL} download>Résumé ↓</a>
           </div>
         </div>
 
-        <aside className={qaOpen ? "sentinel-dialogue qa-open" : "sentinel-dialogue"} aria-live="polite">
+        <div className="aura-stage-word" key={`word-${stage}`} aria-hidden="true">
+          {current.keyword}
+        </div>
+
+        <div className="aura-hero-copy" key={`copy-${stage}`}>
+          <p className="aura-kicker">{current.eyebrow}</p>
+          <h1 id="hero-title">
+            <span>{current.keyword}</span>
+            <em>{current.title}</em>
+          </h1>
+          <p className="aura-hero-body">{current.body}</p>
+
+          <div className="aura-proof">
+            <span>PROOF</span>
+            <strong>{current.metric}</strong>
+          </div>
+
+          <div className="aura-actions">
+            <a href={current.href} className="aura-primary-action">
+              {current.action}
+              <span aria-hidden="true">↘</span>
+            </a>
+            <button type="button" className="aura-secondary-action" onClick={() => setQaOpen(true)}>
+              Ask ORION
+            </button>
+          </div>
+        </div>
+
+        <aside className={qaOpen ? "sentinel-dialogue aura-orion qa-open" : "sentinel-dialogue aura-orion"} aria-live="polite">
           <div className="sentinel-dialogue-head">
             <div className="sentinel-avatar" aria-hidden="true">
               <span />
@@ -378,7 +413,7 @@ export default function InteractivePortfolioHero() {
                 aria-pressed={voiceEnabled}
                 aria-label={voiceEnabled ? "Mute ORION guide voice" : "Enable ORION guide voice"}
               >
-                {voiceEnabled ? "VOICE ON" : "ENABLE VOICE"}
+                {voiceEnabled ? "VOICE ON" : "VOICE"}
               </button>
             )}
           </div>
@@ -398,7 +433,7 @@ export default function InteractivePortfolioHero() {
             onClick={() => setQaOpen((open) => !open)}
             aria-expanded={qaOpen}
           >
-            {qaOpen ? "Close Q&A" : "Ask ORION about Pooja"}
+            {qaOpen ? "Close conversation" : "Ask ORION about Pooja"}
           </button>
 
           {qaOpen && (
@@ -418,7 +453,7 @@ export default function InteractivePortfolioHero() {
                     id="orion-question"
                     value={question}
                     onChange={(event) => setQuestion(event.target.value)}
-                    placeholder="e.g. What makes her work different?"
+                    placeholder="What makes her work different?"
                     autoComplete="off"
                   />
                   {micSupported && (
@@ -428,7 +463,7 @@ export default function InteractivePortfolioHero() {
                       onClick={startListening}
                       aria-label={listening ? "Listening for your question" : "Ask ORION by voice"}
                     >
-                      {listening ? "LISTENING…" : "MIC"}
+                      {listening ? "LIVE" : "MIC"}
                     </button>
                   )}
                   <button type="submit">Ask</button>
@@ -445,30 +480,29 @@ export default function InteractivePortfolioHero() {
           )}
         </aside>
 
-        <div className="facility-identity">
-          <p>Pooja Kiran</p>
-          <span>Security Engineer · AI Security · Cloud Identity · Detection Engineering</span>
-          <div>
-            <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-            <a href={RESUME_URL} download>Résumé ↓</a>
-          </div>
+        <div className="aura-stage-rail" aria-hidden="true">
+          {[1, 2, 3, 4, 5].map((item) => (
+            <span key={item} className={item === stage ? "active" : item < stage ? "passed" : ""}>
+              <i />
+              <small>{String(item).padStart(2, "0")}</small>
+            </span>
+          ))}
         </div>
 
-        <div className="facility-progress" aria-hidden="true">
+        <div className="facility-progress aura-progress" aria-hidden="true">
           <div className="facility-progress-track">
             <span style={{ transform: `scaleX(${progress})` }} />
           </div>
           <div className="facility-progress-meta">
-            <span>ENTRY</span>
-            <span>{String(stage).padStart(2, "0")} / 05</span>
-            <span>OPS</span>
+            <span>ENTER</span>
+            <span>SCROLL / W-S</span>
+            <span>VERIFY</span>
           </div>
         </div>
 
         <button
           type="button"
-          className="orion-proximity-prompt"
+          className="orion-proximity-prompt aura-talk"
           onClick={() => setQaOpen(true)}
           aria-label="Talk to ORION"
         >
@@ -477,10 +511,8 @@ export default function InteractivePortfolioHero() {
           <small>Ask about Pooja</small>
         </button>
 
-        <div className="facility-scroll-cue" aria-hidden="true">
-          <span>Scroll / W-S to move · mouse to look</span>
-          <i />
-        </div>
+        <div className="aura-corner aura-corner-tl" aria-hidden="true" />
+        <div className="aura-corner aura-corner-br" aria-hidden="true" />
       </div>
     </section>
   );
