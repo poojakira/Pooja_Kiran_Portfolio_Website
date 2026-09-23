@@ -8,7 +8,7 @@ function SectionLabel({ number, children }: { number: string; children: React.Re
 
 export default function Home() {
   return (
-    <>
+    <main className="aura-portfolio">
       <PortfolioMotion />
       <InteractivePortfolioHero />
 
@@ -111,6 +111,6 @@ export default function Home() {
           <div className="contact-copy"><p>Open to security engineering opportunities across AI security, cloud identity, detection engineering, and security automation.</p><a className="email-link" href={`mailto:${profile.email}`}>{profile.email}<span aria-hidden="true">↗</span></a><div className="contact-links"><a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={RESUME_URL} download>Résumé ↓</a></div><p className="authorization">Tempe, AZ · Open to U.S. relocation<br />F-1 OPT work authorization · Future sponsorship required</p></div>
         </div>
       </section>
-    </>
+    </main>
   );
 }
