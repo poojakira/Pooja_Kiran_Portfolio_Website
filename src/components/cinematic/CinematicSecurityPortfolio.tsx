@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TrustUniverseExperience from "@/components/trust-universe/TrustUniverseExperience";
 import {
   experience,
-  PORTRAIT_URL,
   profile,
   projects,
   RESUME_URL,
