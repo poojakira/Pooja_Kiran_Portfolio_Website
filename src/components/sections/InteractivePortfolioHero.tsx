@@ -117,6 +117,27 @@ export default function InteractivePortfolioHero() {
   }, []);
 
   useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const activeTag = document.activeElement?.tagName;
+      if (activeTag === "INPUT" || activeTag === "TEXTAREA" || activeTag === "SELECT") return;
+
+      const forward = event.key === "w" || event.key === "W" || event.key === "ArrowUp";
+      const backward = event.key === "s" || event.key === "S" || event.key === "ArrowDown";
+
+      if (!forward && !backward) return;
+      event.preventDefault();
+
+      window.scrollBy({
+        top: (forward ? 1 : -1) * Math.max(90, window.innerHeight * 0.085),
+        behavior: "smooth",
+      });
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  useEffect(() => {
     if (!voiceEnabled || !speechSupported) return;
 
     const synth = window.speechSynthesis;
@@ -161,6 +182,11 @@ export default function InteractivePortfolioHero() {
         <div className="facility-topbar" aria-hidden="true">
           <span>AI SECURITY FACILITY</span>
           <span>AUTHORIZED WALKTHROUGH</span>
+        </div>
+
+        <div className="facility-mission" key={`mission-${stage}`} aria-hidden="true">
+          <span>SECURITY WALKTHROUGH</span>
+          <strong>{current.eyebrow}</strong>
         </div>
 
         <div className="facility-story">
@@ -226,7 +252,7 @@ export default function InteractivePortfolioHero() {
         </div>
 
         <div className="facility-scroll-cue" aria-hidden="true">
-          <span>Scroll to walk</span>
+          <span>Scroll / W-S to move · mouse to look</span>
           <i />
         </div>
       </div>
