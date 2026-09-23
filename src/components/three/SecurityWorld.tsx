@@ -252,6 +252,121 @@ function SOCDesk({ position }: { position: [number, number, number] }) {
   );
 }
 
+
+function GuideRobot({ progress }: { progress: number }) {
+  const group = useRef<THREE.Group>(null);
+  const head = useRef<THREE.Group>(null);
+  const { camera } = useThree();
+
+  const checkpoints = useMemo(
+    () => [
+      { p: 0.0, position: new THREE.Vector3(2.45, 0, 1.4) },
+      { p: 0.18, position: new THREE.Vector3(2.55, 0, -7.6) },
+      { p: 0.43, position: new THREE.Vector3(-2.55, 0, -24.5) },
+      { p: 0.67, position: new THREE.Vector3(2.55, 0, -40.4) },
+      { p: 0.87, position: new THREE.Vector3(-2.25, 0, -56.2) },
+    ],
+    [],
+  );
+
+  useFrame(({ clock }) => {
+    if (!group.current) return;
+
+    const p = THREE.MathUtils.clamp(progress, 0, 1);
+    let target = checkpoints[0].position;
+
+    for (let i = 0; i < checkpoints.length; i += 1) {
+      if (p >= checkpoints[i].p) target = checkpoints[i].position;
+    }
+
+    group.current.position.lerp(target, 0.09);
+    group.current.position.y = Math.sin(clock.elapsedTime * 2.1) * 0.012;
+
+    const lookTarget = new THREE.Vector3(camera.position.x, 1.2, camera.position.z);
+    const dummy = new THREE.Object3D();
+    dummy.position.copy(group.current.position);
+    dummy.lookAt(lookTarget);
+    group.current.quaternion.slerp(dummy.quaternion, 0.08);
+
+    if (head.current) {
+      head.current.rotation.y = Math.sin(clock.elapsedTime * 0.55) * 0.055;
+    }
+  });
+
+  return (
+    <group ref={group}>
+      <mesh position={[0, 0.17, 0]} castShadow>
+        <cylinderGeometry args={[0.42, 0.48, 0.28, 24]} />
+        <meshStandardMaterial color="#1a2227" roughness={0.38} metalness={0.68} />
+      </mesh>
+
+      <mesh position={[-0.28, 0.04, 0.22]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+        <cylinderGeometry args={[0.11, 0.11, 0.12, 20]} />
+        <meshStandardMaterial color="#10161a" roughness={0.5} metalness={0.7} />
+      </mesh>
+      <mesh position={[0.28, 0.04, 0.22]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+        <cylinderGeometry args={[0.11, 0.11, 0.12, 20]} />
+        <meshStandardMaterial color="#10161a" roughness={0.5} metalness={0.7} />
+      </mesh>
+
+      <mesh position={[0, 0.7, 0]} castShadow>
+        <boxGeometry args={[0.62, 0.78, 0.46]} />
+        <meshStandardMaterial color="#c6cdd1" roughness={0.32} metalness={0.58} />
+      </mesh>
+
+      <mesh position={[0, 0.74, 0.238]}>
+        <planeGeometry args={[0.42, 0.36]} />
+        <meshBasicMaterial color="#10232c" />
+      </mesh>
+
+      <mesh position={[0, 0.79, 0.244]}>
+        <planeGeometry args={[0.30, 0.018]} />
+        <meshBasicMaterial color="#65b9e9" />
+      </mesh>
+
+      <mesh position={[0, 0.71, 0.244]}>
+        <planeGeometry args={[0.22, 0.018]} />
+        <meshBasicMaterial color="#78d3a2" />
+      </mesh>
+
+      <group ref={head} position={[0, 1.27, 0]}>
+        <mesh castShadow>
+          <boxGeometry args={[0.54, 0.38, 0.42]} />
+          <meshStandardMaterial color="#d3dade" roughness={0.28} metalness={0.62} />
+        </mesh>
+        <mesh position={[0, 0.01, 0.216]}>
+          <planeGeometry args={[0.36, 0.17]} />
+          <meshBasicMaterial color="#10191e" />
+        </mesh>
+        <mesh position={[-0.105, 0.02, 0.222]}>
+          <circleGeometry args={[0.025, 16]} />
+          <meshBasicMaterial color="#69bdf0" />
+        </mesh>
+        <mesh position={[0.105, 0.02, 0.222]}>
+          <circleGeometry args={[0.025, 16]} />
+          <meshBasicMaterial color="#69bdf0" />
+        </mesh>
+      </group>
+
+      <mesh position={[0, 1.55, 0]} castShadow>
+        <cylinderGeometry args={[0.035, 0.035, 0.32, 12]} />
+        <meshStandardMaterial color="#7b858a" roughness={0.32} metalness={0.72} />
+      </mesh>
+      <mesh position={[0, 1.73, 0]}>
+        <sphereGeometry args={[0.055, 14, 14]} />
+        <meshBasicMaterial color="#67c9ff" />
+      </mesh>
+
+      <Html position={[0, 1.92, 0]} center transform distanceFactor={6}>
+        <div className="guide-robot-label">
+          <strong>SENTINEL</strong>
+          <span>FACILITY GUIDE</span>
+        </div>
+      </Html>
+    </group>
+  );
+}
+
 export default function SecurityWorld({ progress }: SecurityWorldProps) {
   const { camera } = useThree();
   const progressRef = useRef(progress);
@@ -330,6 +445,7 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
       ))}
 
       <PortraitLobby />
+      <GuideRobot progress={progress} />
 
       <AccessGate z={-4.5} label="AUTHORIZED PERSONNEL · AI SECURITY LAB" />
 
