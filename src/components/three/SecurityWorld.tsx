@@ -1,7 +1,7 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef } from "react";
-import { Html, Line, useAnimations, useGLTF } from "@react-three/drei";
+import { Html, Line } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { SITE_PATH } from "@/data/portfolio";
@@ -469,77 +469,16 @@ function getPathPosition(progress: number) {
 
 function PoojaWalker({ progress }: { progress: number }) {
   const root = useRef<THREE.Group>(null);
-  const previous = useRef(progress);
-  const walkUntil = useRef(0);
-  const currentAction = useRef<"Idle" | "Walk">("Idle");
-  const { scene, animations } = useGLTF(POOJA_AVATAR_URL);
-  const { actions } = useAnimations(animations, root);
 
-  useEffect(() => {
-    scene.traverse((object) => {
-      if (object instanceof THREE.Mesh) {
-        object.castShadow = true;
-        object.receiveShadow = true;
-        object.frustumCulled = true;
-      }
-    });
-  }, [scene]);
-
-  useEffect(() => {
-    const idle = actions.Idle;
-    if (idle) {
-      idle.reset().fadeIn(0.2).play();
-      currentAction.current = "Idle";
-    }
-
-    return () => {
-      Object.values(actions).forEach((action) => action?.stop());
-    };
-  }, [actions]);
-
-  useFrame(({ clock }) => {
+  useFrame(() => {
     if (!root.current) return;
-
-    const deltaProgress = Math.abs(progress - previous.current);
-    previous.current = progress;
-
-    if (deltaProgress > 0.000015) {
-      walkUntil.current = clock.elapsedTime + 0.22;
-    }
-
-    const target = getPathPosition(progress);
-    root.current.position.lerp(target, 0.12);
-
-    const desired: "Idle" | "Walk" =
-      clock.elapsedTime < walkUntil.current ? "Walk" : "Idle";
-
-    if (desired !== currentAction.current) {
-      const previousAction = actions[currentAction.current];
-      const nextAction = actions[desired];
-
-      previousAction?.fadeOut(0.16);
-      if (nextAction) {
-        nextAction.reset().fadeIn(0.16).play();
-        currentAction.current = desired;
-      }
-    }
+    root.current.position.lerp(getPathPosition(progress), 0.12);
   });
 
-  return (
-    <group ref={root} position={[0, 0, 4.8]}>
-      <primitive object={scene} />
-
-      <Html position={[0, 1.92, 0]} center transform distanceFactor={6}>
-        <div className="pooja-avatar-label">
-          <strong>POOJA</strong>
-          <span>SECURITY ENGINEER</span>
-        </div>
-      </Html>
-    </group>
-  );
+  // The visible avatar is intentionally withheld until the rebuilt human model
+  // passes visual review. The group still drives the third-person route/camera.
+  return <group ref={root} position={[0, 0, 4.8]} />;
 }
-
-useGLTF.preload(POOJA_AVATAR_URL);
 
 function HumanoidGuide({ progress }: { progress: number }) {
   const root = useRef<THREE.Group>(null);
