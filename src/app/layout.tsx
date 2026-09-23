@@ -5,16 +5,16 @@ import { profile, SITE_PATH } from "@/data/portfolio";
 
 const geist = localFont({ src: "./fonts/GeistVF.woff", variable: "--font-geist", display: "swap", weight: "100 900" });
 const geistMono = localFont({ src: "./fonts/GeistMonoVF.woff", variable: "--font-geist-mono", display: "swap", weight: "100 900" });
-const description = "POOJA // THE TRUST UNIVERSE — an interactive security engineering world connecting AI agents, identity, model provenance, runtime, cloud and telemetry evidence.";
+const description = "Pooja Kiran — Security Engineer focused on AI agent security, cloud identity, model provenance, detection engineering, and evidence-driven security systems.";
 export const metadata: Metadata = {
   metadataBase: new URL("https://poojakira.github.io"),
-  title: "POOJA // THE TRUST UNIVERSE",
+  title: "Pooja Kiran | Security Engineer",
   description,
   authors: [{ name: profile.name }],
   alternates: { canonical: SITE_PATH + "/" },
   icons: { icon: SITE_PATH + "/favicon.svg" },
-  openGraph: { type: "website", locale: "en_US", title: "POOJA // THE TRUST UNIVERSE", description, siteName: "Pooja Kiran", url: SITE_PATH + "/" },
-  twitter: { card: "summary", title: "POOJA // THE TRUST UNIVERSE", description },
+  openGraph: { type: "website", locale: "en_US", title: "Pooja Kiran | Security Engineer", description, siteName: "Pooja Kiran", url: SITE_PATH + "/" },
+  twitter: { card: "summary", title: "Pooja Kiran | Security Engineer", description },
   robots: { index: true, follow: true },
 };
 const personSchema = {
