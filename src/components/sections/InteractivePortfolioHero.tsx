@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { RESUME_URL, profile } from "@/data/portfolio";
 
