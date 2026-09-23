@@ -306,23 +306,14 @@ export default function TrustUniverseExperience() {
 
             <div className="world-thesis">
               <p>{world.thesis}</p>
-              <span>{travelMode === "vehicle" ? "VEHICLE" : "ON FOOT"} · {quality.toUpperCase()}</span>
+              <span>{world.route}</span>
             </div>
 
-            <div className="universe-actions">
-              <button id="universe-look-button">Mouse look</button>
-              <button onClick={() => setMapOpen(true)}>M · World map</button>
-              <button onClick={() => setAskOpen(true)}>/ · Ask the System</button>
-              <button onClick={() => setInspectWorld(currentWorld)}>F · Inspect</button>
-            </div>
-
-            <div className="universe-movement" aria-label="Movement controls">
-              <button onClick={() => dispatchControl("w")}>W</button>
-              <div>
-                <button onClick={() => dispatchControl("a")}>A</button>
-                <button onClick={() => dispatchControl("s")}>S</button>
-                <button onClick={() => dispatchControl("d")}>D</button>
-              </div>
+            <div className="explore-utility">
+              <button id="universe-look-button">Look</button>
+              <button onClick={() => setMapOpen(true)}>Map</button>
+              <button onClick={() => setAskOpen(true)}>Ask</button>
+              <button onClick={() => setInspectWorld(currentWorld)}>Evidence</button>
             </div>
 
             {mode === "guided" && (
@@ -337,10 +328,8 @@ export default function TrustUniverseExperience() {
               </div>
             )}
 
-            <div className="universe-statusbar">
-              <span>{visitedCount} / {universeWorlds.length} visited</span>
-              <span>{destination ? `AUTOPILOT → ${universeWorldMap[destination].shortName}` : "FREE EXPLORE"}</span>
-              <span>WASD · SHIFT · E · F · M · /</span>
+            <div className="campus-session-state" aria-hidden="true">
+              <span>{visitedCount} / {universeWorlds.length} facilities visited</span>
             </div>
           </>
         )}
