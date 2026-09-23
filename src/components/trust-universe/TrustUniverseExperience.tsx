@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import {
   guidedRoute,
   type UniverseWorldId,
@@ -20,6 +20,7 @@ type ExperienceMode = "explore" | "guided" | "recruiter" | "engineering";
 type TravelMode = "foot" | "vehicle";
 
 const SESSION_KEY = "pooja-trust-universe-visited";
+const ONBOARDING_KEY = "pooja-trust-universe-onboarded";
 
 function readVisited() {
   if (typeof window === "undefined") return new Set<UniverseWorldId>();
@@ -51,10 +52,12 @@ export default function TrustUniverseExperience() {
   const [askText, setAskText] = useState("");
   const [systemAnswer, setSystemAnswer] = useState("");
   const [quality, setQuality] = useState<"balanced" | "lite">("balanced");
+  const [onboardingOpen, setOnboardingOpen] = useState(true);
   const askInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setVisited(readVisited());
+    setOnboardingOpen(sessionStorage.getItem(ONBOARDING_KEY) !== "1");
     const lowPower =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
       window.innerWidth < 760 ||
@@ -99,6 +102,20 @@ export default function TrustUniverseExperience() {
   }, [mode]);
 
   const world = universeWorldMap[currentWorld];
+
+  const closeOnboarding = () => {
+    sessionStorage.setItem(ONBOARDING_KEY, "1");
+    setOnboardingOpen(false);
+  };
+
+  const chooseEntryMode = (nextMode: ExperienceMode) => {
+    closeOnboarding();
+    setMode(nextMode);
+    if (nextMode === "guided") {
+      setGuidedIndex(0);
+      setCurrentWorld("trust");
+    }
+  };
 
   const markVisited = (id: UniverseWorldId) => {
     setVisited((previous) => {
@@ -235,6 +252,18 @@ export default function TrustUniverseExperience() {
           />
         </div>
 
+        {destination && (mode === "explore" || mode === "guided") && (
+          <div className="travel-status-card" aria-live="polite">
+            <div className="travel-status-icon" aria-hidden="true"><span /></div>
+            <div>
+              <small>AUTONOMOUS ROUTE ACTIVE</small>
+              <strong>{universeWorldMap[destination].shortName}</strong>
+              <span>{universeWorldMap[destination].route}</span>
+            </div>
+            <button onClick={() => setDestination(null)}>Cancel</button>
+          </div>
+        )}
+
         <header className="universe-header">
           <div className="universe-brand">
             <strong>POOJA // THE TRUST UNIVERSE</strong>
@@ -315,6 +344,58 @@ export default function TrustUniverseExperience() {
           </>
         )}
 
+        {onboardingOpen && (
+          <div className="universe-onboarding" role="dialog" aria-modal="true" aria-label="Choose how to enter Pooja Kiran's Trust Universe">
+            <div className="onboarding-backdrop" aria-hidden="true" />
+            <div className="onboarding-panel">
+              <div className="onboarding-brand">
+                <span>POOJA KIRAN · SECURITY ENGINEER</span>
+                <strong>THE TRUST UNIVERSE</strong>
+              </div>
+
+              <div className="onboarding-intro">
+                <p>SECURING THE INFRASTRUCTURE BETWEEN INTELLIGENCE AND ACTION</p>
+                <h1>Choose how you want to enter.</h1>
+                <p className="onboarding-copy">
+                  Explore a spatial security architecture, take a curated tour, or go directly to hiring and engineering evidence.
+                </p>
+              </div>
+
+              <div className="onboarding-paths">
+                <button onClick={() => chooseEntryMode("explore")}>
+                  <span>01</span>
+                  <strong>Explore the world</strong>
+                  <small>Walk, drive, inspect, and choose any security domain.</small>
+                  <i>Best immersive experience →</i>
+                </button>
+                <button onClick={() => chooseEntryMode("guided")}>
+                  <span>02</span>
+                  <strong>90-second guided tour</strong>
+                  <small>A curated route through the strongest security story.</small>
+                  <i>Start guided route →</i>
+                </button>
+                <button onClick={() => chooseEntryMode("recruiter")}>
+                  <span>03</span>
+                  <strong>I’m hiring</strong>
+                  <small>Verified impact, strongest work, résumé, experience and contact.</small>
+                  <i>Open recruiter view →</i>
+                </button>
+                <button onClick={() => chooseEntryMode("engineering")}>
+                  <span>04</span>
+                  <strong>I want the evidence</strong>
+                  <small>Controls, tests, CI, limitations and source repositories.</small>
+                  <i>Open engineering view →</i>
+                </button>
+              </div>
+
+              <div className="onboarding-foot">
+                <span>Desktop: WASD + mouse · Mobile: tap-to-travel</span>
+                <button onClick={() => chooseEntryMode("explore")}>Skip introduction</button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {mapOpen && (
           <div className="world-map-overlay" role="dialog" aria-modal="true" aria-label="Trust Universe world map">
             <div className="world-map-head">
@@ -326,18 +407,48 @@ export default function TrustUniverseExperience() {
               <button onClick={() => setMapOpen(false)}>Close</button>
             </div>
 
-            <div className="world-map-grid">
-              {worldStatus.map((item) => (
-                <button
-                  key={item.id}
-                  className={`world-map-node ${item.state}`}
-                  onClick={() => travelTo(item.id, true)}
-                >
-                  <span>{item.code}</span>
-                  <strong>{item.shortName}</strong>
-                  <small>{item.state}</small>
-                </button>
-              ))}
+            <div className="world-map-masterplan">
+              <div className="map-compass" aria-hidden="true">
+                <span>N</span><i />
+              </div>
+              <svg className="map-routes" viewBox="0 0 100 100" aria-hidden="true">
+                {worldStatus
+                  .filter((item) => item.id !== "trust")
+                  .map((item) => {
+                    const x = 50 + item.position[0] * 0.78;
+                    const y = 50 + item.position[1] * 0.68;
+                    return <line key={item.id} x1="50" y1="50" x2={x} y2={y} />;
+                  })}
+              </svg>
+
+              {worldStatus.map((item) => {
+                const style = {
+                  "--map-x": `${50 + item.position[0] * 0.78}%`,
+                  "--map-y": `${50 + item.position[1] * 0.68}%`,
+                } as CSSProperties;
+
+                return (
+                  <button
+                    key={item.id}
+                    style={style}
+                    className={`world-map-node ${item.state}`}
+                    onClick={() => travelTo(item.id, true)}
+                    aria-label={`Travel to ${item.shortName}`}
+                  >
+                    <span>{item.code}</span>
+                    <strong>{item.shortName}</strong>
+                    <small>
+                      {item.id === currentWorld ? "You are here" : item.state === "visited" ? "Visited" : "Available"}
+                    </small>
+                  </button>
+                );
+              })}
+
+              <div className="map-legend" aria-hidden="true">
+                <span><i className="current" />Current</span>
+                <span><i className="visited" />Visited</span>
+                <span><i />Available</span>
+              </div>
             </div>
 
             <div className="world-map-footer">
