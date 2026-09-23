@@ -1,0 +1,106 @@
+name: Build Realistic Web Assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/assets/**"
+      - ".github/workflows/build-realistic-assets.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-assets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Blender runtime libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            libegl1 libgl1 libx11-6 libxi6 libxrender1 libxfixes3 \
+            libxkbcommon0 libsm6 libice6
+
+      - name: Download Blender 5.2.2 LTS
+        run: |
+          curl -L --fail --retry 3 \
+            https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz \
+            -o /tmp/blender.tar.xz
+          mkdir -p /tmp/blender
+          tar -xJf /tmp/blender.tar.xz -C /tmp/blender --strip-components=1
+          /tmp/blender/blender --version
+
+      - name: Download licensed source assets
+        run: |
+          mkdir -p build/realistic-src build/realistic-out
+
+          curl -L --fail --retry 3 \
+            https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/GLB/CarConcept.glb \
+            -o build/realistic-src/CarConcept.glb
+
+          curl -L --fail --retry 3 \
+            https://raw.githubusercontent.com/microsoft/Microsoft-Rocketbox/master/Assets/Avatars/Adults/Female_Adult_01/Export/Female_Adult_01.fbx \
+            -o build/realistic-src/Female_Adult_01.fbx
+
+          curl -L --fail --retry 3 \
+            https://raw.githubusercontent.com/microsoft/Microsoft-Rocketbox/master/Assets/Animations/all_animations_max_motextr_static/f_idle_breathe_01.max.fbx \
+            -o build/realistic-src/f_idle_breathe_01.max.fbx
+
+          for tex in \
+            f001_body_color.tga \
+            f001_body_normal.tga \
+            f001_head_color.tga \
+            f001_head_normal.tga \
+            f001_opacity_color.tga
+          do
+            curl -L --fail --retry 3 \
+              "https://raw.githubusercontent.com/microsoft/Microsoft-Rocketbox/master/Assets/Avatars/Adults/Female_Adult_01/Textures/$tex" \
+              -o "build/realistic-src/$tex"
+          done
+
+      - name: Build optimized GLB assets
+        run: |
+          /tmp/blender/blender --background \
+            --python tools/assets/build_realistic_assets.py \
+            -- \
+            --source-dir "$GITHUB_WORKSPACE/build/realistic-src" \
+            --output-dir "$GITHUB_WORKSPACE/build/realistic-out"
+
+      - name: Verify outputs
+        run: |
+          test -s build/realistic-out/trust-grand-tourer.glb
+          test -s build/realistic-out/realistic-female-guide.glb
+          test -s build/realistic-out/trust-grand-tourer-preview.png
+          test -s build/realistic-out/realistic-female-guide-preview.png
+          test -s build/realistic-out/realistic-assets-manifest.json
+          ls -lh build/realistic-out
+
+      - name: Publish web assets
+        run: |
+          mkdir -p public/models
+          cp build/realistic-out/trust-grand-tourer.glb public/models/
+          cp build/realistic-out/realistic-female-guide.glb public/models/
+          cp build/realistic-out/trust-grand-tourer-preview.png public/models/
+          cp build/realistic-out/realistic-female-guide-preview.png public/models/
+          cp build/realistic-out/realistic-assets-manifest.json public/models/
+
+      - name: Commit generated assets
+        run: |
+          git config user.name "Pooja Asset Builder"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/models/trust-grand-tourer.glb \
+                  public/models/realistic-female-guide.glb \
+                  public/models/trust-grand-tourer-preview.png \
+                  public/models/realistic-female-guide-preview.png \
+                  public/models/realistic-assets-manifest.json
+          if git diff --cached --quiet; then
+            echo "No generated asset changes."
+            exit 0
+          fi
+          git commit -m "build: publish realistic vehicle and human assets"
+          git push
