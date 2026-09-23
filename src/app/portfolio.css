@@ -5989,3 +5989,984 @@ body:has(.cyber-universe-layer){
     transition:none!important;
   }
 }
+
+
+/* ==========================================================================
+   EXACT SKETCH PORTFOLIO — direct visual match to supplied reference
+   ========================================================================== */
+
+body:has(.sketch-site){overflow:auto;background:#040608}
+body:has(.sketch-universe){overflow:hidden}
+
+.sketch-site{
+  --sk-bg:#05080a;
+  --sk-bg2:#080d11;
+  --sk-gold:#e0b56b;
+  --sk-gold-soft:#cda663;
+  --sk-blue:#5dcfff;
+  --sk-text:#f3f1eb;
+  --sk-muted:#a4adb0;
+  --sk-line:rgba(222,182,106,.22);
+  --mx:50vw;
+  --my:50vh;
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  background:#05080a;
+  color:var(--sk-text);
+  isolation:isolate;
+}
+.sketch-cursor{
+  position:fixed;
+  z-index:100;
+  left:var(--mx);
+  top:var(--my);
+  width:180px;
+  aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,rgba(75,187,238,.08),transparent 68%);
+  filter:blur(10px);
+}
+
+.sketch-header{
+  position:fixed;
+  z-index:90;
+  top:0;left:0;right:0;
+  height:58px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:24px;
+  padding:0 clamp(24px,4.7vw,70px);
+  border-bottom:1px solid rgba(211,226,231,.12);
+  background:rgba(3,7,10,.72);
+  backdrop-filter:blur(14px);
+}
+.sketch-logo{
+  width:max-content;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.06rem;
+  letter-spacing:.19em;
+}
+.sketch-header nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+.sketch-header nav a{
+  color:#b5bcc0;
+  font-size:.55rem;
+}
+.sketch-header nav a:hover{color:white}
+.sketch-header>button{
+  justify-self:end;
+  min-width:196px;
+  height:34px;
+  border:1px solid rgba(224,181,107,.58);
+  border-radius:9px;
+  background:rgba(14,15,14,.38);
+  color:#ecc779;
+  font-size:.55rem;
+}
+.sketch-header>button span{margin-left:14px}
+
+.sketch-hero{
+  position:relative;
+  min-height:630px;
+  height:min(68vw,690px);
+  max-height:700px;
+  padding-top:58px;
+  overflow:hidden;
+  border-bottom:1px solid rgba(226,181,100,.34);
+  background:#05080a;
+}
+.sketch-hero-bg{
+  position:absolute;
+  inset:58px 0 0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,#05080a 0%,#05080a 30%,rgba(5,8,10,.95) 36%,rgba(4,8,11,.56) 51%,rgba(3,7,10,.08) 76%),
+    radial-gradient(circle at 76% 32%,rgba(36,147,204,.22),transparent 31%),
+    radial-gradient(circle at 90% 58%,rgba(228,170,75,.08),transparent 22%),
+    #071019;
+}
+.sketch-city-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(68,158,200,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(68,158,200,.035) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:linear-gradient(90deg,transparent 0 32%,#000 45%);
+}
+.sketch-city-lights{
+  position:absolute;
+  inset:0;
+  opacity:.9;
+  background:
+    radial-gradient(circle at 62% 21%,rgba(52,189,246,.65) 0 1px,transparent 2px),
+    radial-gradient(circle at 70% 18%,rgba(227,174,88,.58) 0 1px,transparent 2px),
+    radial-gradient(circle at 83% 28%,rgba(52,189,246,.55) 0 1px,transparent 2px),
+    radial-gradient(circle at 93% 33%,rgba(227,174,88,.5) 0 1px,transparent 2px),
+    radial-gradient(circle at 77% 48%,rgba(52,189,246,.42) 0 1px,transparent 2px),
+    radial-gradient(circle at 88% 57%,rgba(227,174,88,.38) 0 1px,transparent 2px);
+  background-size:85px 79px,117px 93px,101px 113px,131px 87px,89px 109px,127px 101px;
+}
+.sketch-hero-copy{
+  position:absolute;
+  z-index:12;
+  left:clamp(36px,4vw,60px);
+  top:105px;
+  width:min(36vw,510px);
+}
+.sketch-kicker{
+  color:#d4ac68;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.46rem;
+  letter-spacing:.22em;
+}
+.sketch-hero-copy h1{
+  margin-top:20px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(3.6rem,5.2vw,5.35rem);
+  line-height:.88;
+  letter-spacing:-.055em;
+  font-weight:620;
+}
+.sketch-hero-copy h1 em{
+  color:#f0c677;
+  font-style:normal;
+}
+.sketch-summary{
+  width:min(100%,475px);
+  margin-top:24px;
+  color:#b8c0c2;
+  font-size:.75rem;
+  line-height:1.62;
+}
+.sketch-actions{
+  display:flex;
+  gap:10px;
+  margin-top:25px;
+}
+.sketch-actions button,
+.sketch-actions a{
+  min-height:43px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  border-radius:8px;
+  padding:9px 17px;
+  font-size:.61rem;
+}
+.sketch-actions button{
+  border:1px solid #e3b56a;
+  background:linear-gradient(#efcb86,#daa657);
+  color:#17120b;
+  font-weight:650;
+}
+.sketch-actions a{
+  border:1px solid rgba(226,181,106,.38);
+  color:#ebe9e2;
+  background:rgba(7,10,12,.48);
+}
+.sketch-principles{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:20px;
+  color:#929c9f;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.41rem;
+  letter-spacing:.18em;
+}
+.sketch-principles i{width:18px;height:1px;background:#5c676a}
+.sketch-explore{
+  display:grid;
+  grid-template-columns:58px 1fr 38px;
+  align-items:center;
+  gap:13px;
+  width:330px;
+  margin-top:34px;
+  padding:18px 0 0;
+  border:0;
+  border-top:1px solid rgba(203,219,224,.1);
+  background:transparent;
+  color:white;
+  text-align:left;
+}
+.sketch-orb{
+  position:relative;
+  width:52px;height:52px;
+  border:1px solid rgba(87,189,232,.26);
+  border-radius:50%;
+}
+.sketch-orb::before{
+  content:"";
+  position:absolute;
+  left:50%;top:50%;
+  width:9px;height:9px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#e1b56d;
+  box-shadow:0 0 18px rgba(224,181,109,.5);
+}
+.sketch-orb i{
+  position:absolute;
+  inset:6px;
+  border:1px solid rgba(86,184,226,.2);
+  border-radius:50%;
+  transform:rotate(42deg) scaleY(.45);
+}
+.sketch-orb i:nth-child(2){transform:rotate(-42deg) scaleY(.45)}
+.sketch-orb i:nth-child(3){transform:rotate(90deg) scaleY(.45)}
+.sketch-explore>div:nth-child(2){display:grid;gap:1px}
+.sketch-explore small{
+  color:#7b8a90;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.4rem;
+  letter-spacing:.17em;
+}
+.sketch-explore strong{
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.52rem;
+  letter-spacing:.17em;
+}
+.sketch-explore span{
+  color:#64747a;
+  font-size:.4rem;
+  letter-spacing:.05em;
+}
+.sketch-explore b{
+  display:grid;
+  place-items:center;
+  width:34px;height:34px;
+  border:1px solid rgba(229,181,100,.42);
+  border-radius:50%;
+  color:#ebbe70;
+  font-weight:400;
+}
+
+.sketch-command{
+  position:absolute;
+  z-index:5;
+  top:58px;
+  right:0;
+  bottom:0;
+  width:64%;
+  overflow:hidden;
+  transform-style:preserve-3d;
+}
+.sketch-command::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    linear-gradient(90deg,rgba(5,8,10,.96) 0%,rgba(5,8,10,.4) 9%,transparent 27%),
+    linear-gradient(180deg,rgba(7,15,22,.05),rgba(3,7,9,.2) 70%,rgba(2,5,7,.85)),
+    radial-gradient(circle at 55% 32%,rgba(35,152,211,.2),transparent 30%);
+}
+.sketch-command::after{
+  content:"";
+  position:absolute;
+  left:10%;right:0;bottom:0;
+  height:21%;
+  z-index:1;
+  background:
+    linear-gradient(180deg,rgba(14,18,20,.2),rgba(4,7,8,.96)),
+    repeating-linear-gradient(90deg,rgba(239,189,105,.18) 0 2px,transparent 2px 92px);
+}
+.sketch-map-wall{
+  position:absolute;
+  z-index:2;
+  left:17%;
+  right:5%;
+  top:2%;
+  height:48%;
+  transform:translate3d(var(--map-x,0),var(--map-y,0),0);
+}
+.sketch-map-wall svg{width:100%;height:100%;filter:drop-shadow(0 0 13px rgba(72,190,237,.22))}
+.sketch-world{
+  fill:rgba(51,118,150,.07);
+  stroke:#64c9f0;
+  stroke-width:1.5;
+  stroke-opacity:.72;
+}
+.sketch-arc{
+  fill:none;
+  stroke:#74cdf0;
+  stroke-width:1.1;
+  stroke-dasharray:5 6;
+  opacity:.64;
+}
+.sketch-arc.b{stroke:#d8aa61;opacity:.66}
+.sketch-arc.c{stroke:#7bd0f0;opacity:.5}
+.sketch-map-wall circle{fill:#d9f4ff}
+.sketch-map-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(91,193,233,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(91,193,233,.04) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+.sketch-left-stack{
+  position:absolute;
+  z-index:7;
+  left:2%;
+  top:12%;
+  width:140px;
+  display:grid;
+  gap:6px;
+  transform:translateX(calc(var(--panel-x,0) * -1));
+}
+.sketch-left-stack>div{
+  display:grid;
+  grid-template-columns:26px 1fr;
+  align-items:center;
+  gap:7px;
+  padding:7px 8px;
+  border:1px solid rgba(104,183,218,.16);
+  background:rgba(7,16,22,.7);
+}
+.sketch-left-stack span{
+  display:grid;
+  place-items:center;
+  width:22px;height:22px;
+  border:1px solid rgba(225,180,103,.46);
+  border-radius:50%;
+  color:#e6bb70;
+  font-size:.58rem;
+}
+.sketch-left-stack p{
+  color:#a7bac1;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.36rem;
+  line-height:1.4;
+  letter-spacing:.06em;
+}
+.sketch-right-metrics{
+  position:absolute;
+  z-index:8;
+  right:1.8%;
+  top:3%;
+  width:150px;
+  border:1px solid rgba(88,170,205,.15);
+  background:rgba(7,16,22,.72);
+  transform:translateX(var(--panel-x,0));
+}
+.sketch-right-metrics>div{
+  padding:8px 9px;
+  border-bottom:1px solid rgba(101,181,214,.1);
+}
+.sketch-right-metrics>div:last-child{border-bottom:0}
+.sketch-right-metrics small{
+  display:block;
+  color:#71a6bb;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.36rem;
+  letter-spacing:.06em;
+}
+.sketch-right-metrics strong{
+  display:block;
+  margin-top:2px;
+  color:#bce5f5;
+  font-size:.78rem;
+}
+.sketch-monitor-row{
+  position:absolute;
+  z-index:4;
+  left:28%;
+  right:2%;
+  bottom:12%;
+  height:33%;
+}
+.sketch-monitor{
+  position:absolute;
+  bottom:0;
+  overflow:hidden;
+  border:6px solid #10171c;
+  border-bottom-width:10px;
+  background:linear-gradient(#10334a,#06141c);
+  box-shadow:0 13px 30px rgba(0,0,0,.4),0 0 24px rgba(68,177,221,.08);
+}
+.sketch-monitor::after{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(77,170,211,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(77,170,211,.05) 1px,transparent 1px);
+  background-size:16px 16px;
+}
+.sketch-monitor i{
+  position:absolute;left:11%;right:11%;height:1px;
+  background:linear-gradient(90deg,transparent,#65d4ff,transparent);
+  opacity:.7;
+}
+.sketch-monitor i:nth-child(1){top:24%}
+.sketch-monitor i:nth-child(2){top:45%}
+.sketch-monitor i:nth-child(3){top:68%}
+.sketch-monitor i:nth-child(4){top:81%}
+.sketch-monitor.m1{left:0;width:28%;height:75%;transform:perspective(600px) rotateY(10deg)}
+.sketch-monitor.m2{left:29%;width:40%;height:94%}
+.sketch-monitor.m3{right:0;width:29%;height:77%;transform:perspective(600px) rotateY(-10deg)}
+.sketch-person{
+  position:absolute;
+  z-index:10;
+  left:25%;
+  bottom:1%;
+  width:min(35%,340px);
+  margin:0;
+  transform:translate3d(var(--portrait-x,0),var(--portrait-y,0),40px);
+}
+.sketch-person::before{
+  content:"";
+  position:absolute;
+  inset:-27%;
+  z-index:-1;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(51,181,232,.2),transparent 65%);
+  filter:blur(15px);
+}
+.sketch-person img{
+  display:block;
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  object-position:center;
+  border-radius:18px;
+  border:1px solid rgba(218,227,229,.14);
+  box-shadow:0 35px 76px rgba(0,0,0,.45);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 85%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 85%,transparent 100%);
+}
+.sketch-eye{
+  position:absolute;
+  z-index:12;
+  top:27.7%;
+  width:11px;height:8px;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.sketch-eye-left{left:44.2%}
+.sketch-eye-right{left:55.25%}
+.sketch-eye i{
+  position:absolute;
+  left:50%;top:50%;
+  width:6.5px;height:6.5px;
+  border-radius:50%;
+  transform:translate(calc(-50% + var(--eye-x,0)),calc(-50% + var(--eye-y,0)));
+  background:
+    radial-gradient(circle at 35% 30%,rgba(255,255,255,.8) 0 8%,transparent 10%),
+    radial-gradient(circle,#0b0c0d 0 42%,#30201b 44% 66%,transparent 70%);
+  transition:transform .06s linear;
+}
+.sketch-desk{
+  position:absolute;
+  z-index:11;
+  right:2%;
+  bottom:2.5%;
+  width:47%;
+  height:30%;
+}
+.sketch-laptop{
+  position:absolute;
+  left:9%;bottom:15%;
+  width:44%;height:75%;
+  border:5px solid #11171b;
+  border-radius:6px;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(49,164,215,.2),transparent 45%),
+    #07131b;
+  transform:perspective(500px) rotateY(-8deg);
+  display:grid;
+  place-items:center;
+}
+.sketch-laptop span{
+  color:#b6d9e6;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.43rem;
+  text-align:center;
+  line-height:1.5;
+  letter-spacing:.11em;
+}
+.sketch-mug{
+  position:absolute;
+  left:58%;bottom:6%;
+  width:64px;height:72px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(224,180,101,.2);
+  border-radius:4px 4px 14px 14px;
+  background:#0b0d0e;
+  color:#dfb56f;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.32rem;
+  text-align:center;
+  line-height:1.45;
+}
+.sketch-books{
+  position:absolute;
+  right:0;bottom:3%;
+  width:112px;
+  display:grid;
+  gap:2px;
+}
+.sketch-books i{
+  display:block;
+  padding:4px 5px;
+  border:1px solid rgba(225,181,105,.18);
+  background:#131516;
+  color:#c2b28f;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.29rem;
+  font-style:normal;
+  text-align:center;
+}
+.sketch-command blockquote{
+  position:absolute;
+  z-index:13;
+  right:2.5%;
+  bottom:4%;
+  margin:0;
+  color:#d8d9d4;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:.65rem;
+  font-style:italic;
+  line-height:1.35;
+  text-align:right;
+}
+.sketch-command blockquote small{
+  display:block;
+  margin-top:6px;
+  color:#d8ad66;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.34rem;
+  font-style:normal;
+  letter-spacing:.14em;
+}
+
+.sketch-focus{
+  padding:26px clamp(30px,4vw,56px) 0;
+  background:
+    radial-gradient(circle at 94% 4%,rgba(57,140,175,.06),transparent 25%),
+    #070a0d;
+}
+.sketch-focus-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 78px minmax(300px,.52fr);
+  gap:24px;
+  align-items:end;
+}
+.sketch-focus-head>div:first-child>span,
+.sketch-section-title>span{
+  color:#d3aa67;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.43rem;
+  letter-spacing:.18em;
+}
+.sketch-focus-head h2,
+.sketch-section-title h2{
+  margin-top:7px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2.8rem,4vw,4.3rem);
+  line-height:.95;
+  letter-spacing:-.045em;
+}
+.sketch-focus-line{
+  align-self:center;
+  height:1px;
+  background:#d3aa67;
+}
+.sketch-focus-head>p{
+  color:#a0aaad;
+  font-size:.7rem;
+  line-height:1.6;
+}
+.sketch-card-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+.sketch-card{
+  position:relative;
+  min-height:242px;
+  overflow:hidden;
+  padding:14px 14px 13px;
+  border:1px solid rgba(225,181,101,.38);
+  border-radius:8px;
+  background:#0a1015;
+}
+.sketch-card-number{
+  position:absolute;
+  top:8px;right:9px;
+  z-index:3;
+  color:#5d6a70;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.39rem;
+}
+.sketch-card-visual{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.sketch-card-glow{
+  position:absolute;
+  right:-12%;top:-15%;
+  width:72%;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(67,176,222,.18),transparent 65%);
+}
+.sketch-card-shape{
+  position:absolute;
+  right:7%;
+  top:10%;
+  width:46%;
+  aspect-ratio:1;
+}
+.sketch-card.agent .sketch-card-shape{
+  border-radius:48% 52% 45% 55%;
+  background:
+    radial-gradient(circle at 48% 38%,rgba(228,179,96,.42) 0 2%,transparent 3%),
+    radial-gradient(circle at 50% 50%,rgba(66,170,214,.18),transparent 59%);
+  box-shadow:inset 0 0 0 1px rgba(90,189,226,.15);
+}
+.sketch-card.identity .sketch-card-shape{
+  width:51%;
+  border:1px solid rgba(84,182,220,.22);
+  background:
+    repeating-linear-gradient(90deg,rgba(86,186,224,.08) 0 1px,transparent 1px 29px),
+    repeating-linear-gradient(0deg,rgba(86,186,224,.08) 0 1px,transparent 1px 29px);
+}
+.sketch-card.model .sketch-card-shape{
+  border-radius:50%;
+  border:1px solid rgba(230,180,98,.3);
+  background:
+    radial-gradient(circle at 50% 50%,transparent 0 30%,rgba(69,174,218,.16) 31% 32%,transparent 33% 43%,rgba(223,175,94,.15) 44% 45%,transparent 46%),
+    radial-gradient(circle,rgba(60,158,198,.12),transparent 62%);
+}
+.sketch-card.evidence .sketch-card-shape{
+  border:1px solid rgba(76,170,210,.18);
+  transform:rotate(30deg);
+  background:
+    linear-gradient(30deg,transparent 0 45%,rgba(223,174,94,.13) 46% 47%,transparent 48%),
+    linear-gradient(-30deg,transparent 0 45%,rgba(75,164,203,.12) 46% 47%,transparent 48%);
+  background-size:28px 28px;
+}
+.sketch-card-icon{
+  position:relative;
+  z-index:3;
+  display:grid;
+  place-items:center;
+  width:43px;height:43px;
+  border:1px solid rgba(226,181,101,.5);
+  border-radius:8px;
+  color:#f0c372;
+  font-size:1rem;
+}
+.sketch-card h3{
+  position:relative;
+  z-index:3;
+  margin-top:58px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.28rem;
+}
+.sketch-card p{
+  position:relative;
+  z-index:3;
+  max-width:88%;
+  margin-top:8px;
+  color:#a2acad;
+  font-size:.59rem;
+  line-height:1.5;
+}
+.sketch-card>strong{
+  position:absolute;
+  z-index:3;
+  left:14px;bottom:12px;
+  color:#d9ae68;
+  font-size:.49rem;
+  font-weight:500;
+}
+.sketch-card>strong b{margin-left:7px}
+
+.sketch-metric-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin-top:14px;
+  border-top:1px solid rgba(225,181,101,.18);
+  border-bottom:1px solid rgba(225,181,101,.18);
+}
+.sketch-metric-strip article{
+  min-height:90px;
+  display:grid;
+  grid-template-columns:46px auto 1fr;
+  gap:13px;
+  align-items:center;
+  padding:13px 18px;
+  border-right:1px solid rgba(225,181,101,.16);
+}
+.sketch-metric-strip article:last-child{border-right:0}
+.sketch-metric-icon{
+  display:grid;
+  place-items:center;
+  width:43px;height:43px;
+  border:1px solid rgba(225,181,101,.46);
+  border-radius:8px;
+  color:#e9bc6e;
+}
+.sketch-metric-strip strong{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:2rem;
+  letter-spacing:-.04em;
+}
+.sketch-metric-strip span{
+  display:grid;
+  gap:2px;
+  color:#8e999d;
+  font-size:.47rem;
+  line-height:1.35;
+}
+.sketch-metric-strip b{
+  color:#c5a269;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.37rem;
+  letter-spacing:.12em;
+}
+
+.sketch-work,
+.sketch-evidence,
+.sketch-about{
+  padding:90px clamp(30px,5vw,76px);
+}
+.sketch-work{background:#06090b}
+.sketch-evidence{background:#eceae4;color:#14191b}
+.sketch-about{background:#f4f2ed;color:#14191b}
+.sketch-section-title{max-width:900px}
+.sketch-project-list{
+  margin-top:42px;
+  border-top:1px solid rgba(207,222,228,.1);
+}
+.sketch-project-list article{
+  display:grid;
+  grid-template-columns:1.2fr .8fr auto;
+  gap:30px;
+  align-items:center;
+  padding:27px 0;
+  border-bottom:1px solid rgba(207,222,228,.1);
+}
+.sketch-project-list article>div:first-child>span{
+  color:#7f8c91;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.43rem;
+}
+.sketch-project-list h3{
+  margin-top:7px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.65rem;
+}
+.sketch-project-list p{
+  max-width:700px;
+  margin-top:8px;
+  color:#829096;
+  font-size:.64rem;
+}
+.sketch-project-metrics{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+}
+.sketch-project-metrics small{
+  border:1px solid rgba(213,181,121,.14);
+  padding:4px 6px;
+  color:#a3acad;
+  font-size:.45rem;
+}
+.sketch-project-list a{
+  color:#d3aa68;
+  font-size:.53rem;
+}
+.sketch-skill-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:38px;
+}
+.sketch-skill-grid article{
+  min-height:145px;
+  padding:16px;
+  border:1px solid #d0d3ce;
+  background:#f7f5f1;
+}
+.sketch-skill-grid strong{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1rem;
+}
+.sketch-skill-grid p{
+  margin-top:10px;
+  color:#667174;
+  font-size:.59rem;
+  line-height:1.6;
+}
+.sketch-about>article{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:28px;
+  padding:26px 0;
+  border-bottom:1px solid #d0d2cd;
+}
+.sketch-about>article>div:first-child{
+  display:grid;
+  align-content:start;
+  gap:4px;
+  color:#697477;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.47rem;
+}
+.sketch-about h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.45rem;
+}
+.sketch-about>article>div:nth-child(2)>p{
+  margin-top:4px;
+  color:#806d4d;
+  font-size:.61rem;
+}
+.sketch-about ul{
+  margin:12px 0 0;
+  padding-left:18px;
+}
+.sketch-about li{
+  margin-top:6px;
+  color:#606b6f;
+  font-size:.61rem;
+  line-height:1.55;
+}
+.sketch-footer{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:50px;
+  align-items:end;
+  padding:90px clamp(30px,5vw,76px);
+  background:#080b0d;
+}
+.sketch-footer>div:first-child>span{
+  color:#d3aa68;
+  font-family:var(--font-geist-mono),monospace;
+  font-size:.45rem;
+  letter-spacing:.13em;
+}
+.sketch-footer h2{
+  max-width:780px;
+  margin-top:10px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(3rem,5vw,5.4rem);
+  line-height:.9;
+}
+.sketch-footer>div:last-child{
+  display:grid;
+  gap:10px;
+}
+.sketch-footer a{
+  padding:8px 0;
+  border-bottom:1px solid rgba(208,221,226,.13);
+  color:#a9b2b4;
+  font-size:.64rem;
+}
+.sketch-universe{
+  position:fixed;
+  inset:0;
+  z-index:300;
+  background:#05080a;
+}
+.sketch-universe-back{
+  position:fixed;
+  z-index:350;
+  left:14px;bottom:14px;
+  border:1px solid rgba(228,234,232,.13);
+  border-radius:6px;
+  background:rgba(5,8,10,.72);
+  color:#d9dddb;
+  padding:7px 10px;
+  font-size:.48rem;
+}
+
+@media(max-width:1100px){
+  .sketch-header nav{gap:18px}
+  .sketch-hero-copy{width:39vw}
+  .sketch-command{width:61%}
+  .sketch-person{left:23%;width:37%}
+  .sketch-card h3{font-size:1.1rem}
+}
+@media(max-width:900px){
+  .sketch-header{
+    grid-template-columns:1fr auto;
+  }
+  .sketch-header nav{display:none}
+  .sketch-header>button{min-width:auto}
+  .sketch-hero{
+    height:auto;
+    min-height:1050px;
+  }
+  .sketch-hero-copy{
+    position:relative;
+    left:auto;top:auto;
+    width:auto;
+    padding:52px 22px 0;
+  }
+  .sketch-command{
+    top:485px;
+    left:0;
+    width:100%;
+    height:565px;
+  }
+  .sketch-focus-head{grid-template-columns:1fr}
+  .sketch-focus-line{display:none}
+  .sketch-card-grid{grid-template-columns:repeat(2,1fr)}
+  .sketch-metric-strip{grid-template-columns:repeat(2,1fr)}
+  .sketch-metric-strip article:nth-child(2){border-right:0}
+  .sketch-metric-strip article:nth-child(-n+2){border-bottom:1px solid rgba(225,181,101,.16)}
+  .sketch-project-list article{grid-template-columns:1fr}
+  .sketch-skill-grid{grid-template-columns:repeat(2,1fr)}
+  .sketch-footer{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .sketch-header{height:56px;padding-inline:14px}
+  .sketch-logo{font-size:.83rem;letter-spacing:.13em}
+  .sketch-header>button{font-size:.42rem;padding-inline:8px}
+  .sketch-hero{padding-top:56px;min-height:940px}
+  .sketch-hero-copy{padding-inline:15px}
+  .sketch-hero-copy h1{font-size:3.35rem}
+  .sketch-summary{font-size:.68rem}
+  .sketch-actions{display:grid}
+  .sketch-principles{font-size:.35rem}
+  .sketch-explore{width:100%}
+  .sketch-command{top:500px;height:440px}
+  .sketch-left-stack{display:none}
+  .sketch-right-metrics{width:112px}
+  .sketch-map-wall{left:0;right:0}
+  .sketch-person{left:25%;width:48%}
+  .sketch-desk{right:0;width:53%}
+  .sketch-laptop{left:0;width:55%}
+  .sketch-mug,.sketch-books{display:none}
+  .sketch-command blockquote{display:none}
+  .sketch-card-grid{grid-template-columns:1fr}
+  .sketch-metric-strip{grid-template-columns:1fr}
+  .sketch-metric-strip article{border-right:0;border-bottom:1px solid rgba(225,181,101,.16)}
+  .sketch-work,.sketch-evidence,.sketch-about{padding:65px 15px}
+  .sketch-skill-grid{grid-template-columns:1fr}
+  .sketch-about>article{grid-template-columns:1fr}
+  .sketch-footer{padding:70px 15px}
+}
+@media(prefers-reduced-motion:reduce){
+  .sketch-cursor{display:none}
+  .sketch-person,.sketch-map-wall,.sketch-left-stack,.sketch-right-metrics{transform:none!important}
+  .sketch-eye i{transform:translate(-50%,-50%)!important;transition:none!important}
+}
