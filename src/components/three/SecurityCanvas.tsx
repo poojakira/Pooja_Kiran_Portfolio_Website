@@ -5,44 +5,42 @@ import { Canvas } from "@react-three/fiber";
 import SecurityWorld from "@/components/three/SecurityWorld";
 
 type SecurityCanvasProps = {
-  isRotating: boolean;
-  setIsRotating: (value: boolean) => void;
-  setStage: (value: number) => void;
+  progress: number;
 };
 
-export default function SecurityCanvas({ isRotating, setIsRotating, setStage }: SecurityCanvasProps) {
+export default function SecurityCanvas({ progress }: SecurityCanvasProps) {
   return (
     <Canvas
-      className={isRotating ? "three-canvas is-rotating" : "three-canvas"}
-      camera={{ position: [0, 1.3, 10.4], fov: 42, near: 0.1, far: 100 }}
-      dpr={[1, 1.5]}
+      className="facility-canvas"
+      camera={{ position: [0, 1.68, 8.4], fov: 55, near: 0.1, far: 120 }}
+      dpr={[1, 1.45]}
       shadows
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      gl={{
+        antialias: true,
+        alpha: false,
+        powerPreference: "high-performance",
+        toneMapping: 3,
+        toneMappingExposure: 1.02,
+      }}
     >
       <Suspense fallback={null}>
-        <fog attach="fog" args={["#dcebfa", 12, 28]} />
-        <ambientLight intensity={1.25} />
-        <hemisphereLight args={["#dff2ff", "#7a897f", 1.45]} />
+        <fog attach="fog" args={["#151b1f", 13, 34]} />
+        <ambientLight intensity={0.52} />
+        <hemisphereLight args={["#9eb7c8", "#1d2529", 0.48]} />
         <directionalLight
           castShadow
-          position={[5, 8, 6]}
-          intensity={2.2}
-          color="#fff8eb"
+          position={[4.5, 7.5, 3]}
+          intensity={1.25}
+          color="#e7f0f5"
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
-          shadow-camera-far={28}
-          shadow-camera-left={-8}
-          shadow-camera-right={8}
+          shadow-camera-far={38}
+          shadow-camera-left={-9}
+          shadow-camera-right={9}
           shadow-camera-top={8}
           shadow-camera-bottom={-8}
         />
-        <directionalLight position={[-5, 3, -4]} intensity={0.8} color="#90c8ff" />
-        <pointLight position={[0, 4, 2]} intensity={0.8} color="#ffffff" />
-        <SecurityWorld
-          isRotating={isRotating}
-          setIsRotating={setIsRotating}
-          setStage={setStage}
-        />
+        <SecurityWorld progress={progress} />
       </Suspense>
     </Canvas>
   );
