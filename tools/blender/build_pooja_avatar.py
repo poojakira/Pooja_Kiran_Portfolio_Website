@@ -323,7 +323,7 @@ def save_outputs(rig):
     preview_path = os.path.join(OUT, "pooja-avatar-preview.png")
     manifest_path = os.path.join(OUT, "pooja-avatar-manifest.json")
 
-    bpy.context.scene.render.engine = "BLENDER_EEVEE_NEXT"
+    bpy.context.scene.render.engine = "BLENDER_EEVEE"
     bpy.context.scene.render.resolution_x = 768
     bpy.context.scene.render.resolution_y = 1024
     bpy.context.scene.render.resolution_percentage = 100
