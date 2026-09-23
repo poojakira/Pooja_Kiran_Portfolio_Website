@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import TrustUniverseExperience from "@/components/trust-universe/TrustUniverseExperience";
-import { PORTRAIT_URL, RESUME_URL, profile, projects, experience, skillGroups } from "@/data/portfolio";
+import { RESUME_URL, SITE_PATH, profile, projects, experience, skillGroups } from "@/data/portfolio";
 
 const focusCards = [
   {
@@ -12,6 +12,7 @@ const focusCards = [
     copy: "Secure autonomous and agentic systems with guardrails, tool controls, prompt-injection detection, runtime protection, and auditability.",
     metric: "Learn more",
     visual: "agent",
+    position: "17% 45%",
   },
   {
     n: "02",
@@ -20,6 +21,7 @@ const focusCards = [
     copy: "Design and validate identity systems across cloud and AI with fine-grained authorization, least privilege, trust relationships, and policy analysis.",
     metric: "Learn more",
     visual: "identity",
+    position: "45% 47%",
   },
   {
     n: "03",
@@ -28,6 +30,7 @@ const focusCards = [
     copy: "Establish provenance, integrity, and supply-chain evidence for modern AI models before artifacts are trusted or executed.",
     metric: "Learn more",
     visual: "model",
+    position: "60% 28%",
   },
   {
     n: "04",
@@ -36,12 +39,36 @@ const focusCards = [
     copy: "Turn security into measurable outcomes with automated testing, CI validation, SIEM detections, SARIF findings, and explicit limitations.",
     metric: "Learn more",
     visual: "evidence",
+    position: "73% 58%",
   },
 ] as const;
 
 export default function ExactSketchPortfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [universeOpen, setUniverseOpen] = useState(false);
+  const [heroImage, setHeroImage] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    Promise.all(
+      HERO_PARTS.map(async (part) => {
+        const response = await fetch(`${SITE_PATH}/hero-parts/part${part}.txt`, { cache: "force-cache" });
+        if (!response.ok) throw new Error(`Hero image part ${part} failed to load`);
+        return (await response.text()).trim();
+      }),
+    )
+      .then((parts) => {
+        if (active) setHeroImage(`data:image/webp;base64,${parts.join("")}`);
+      })
+      .catch(() => {
+        if (active) setHeroImage("");
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -150,53 +177,32 @@ export default function ExactSketchPortfolio() {
             </button>
           </div>
 
-          <div className="sketch-command" aria-label="Cybersecurity command center">
-            <div className="sketch-map-wall">
-              <div className="sketch-map-grid" />
-              <svg viewBox="0 0 800 420" aria-hidden="true">
-                <path className="sketch-world" d="M70 130l50-28 43 9 21 28 42 4 25 31-9 28-40 14-29-11-26 21-33-3-17-29-31-16 5-28zm188-7 30-27 43 7 25 23 31 1 23 35-12 29-36 7-16 27-38-14-17-24-35-14-4-27zm174 24 30-24 47-6 28 14 10 25 34 7 17 29-15 29-31 4-13 24-35 7-27-24-34 2-19-23 7-31zm178-24 31-18 41 11 17 25 31 8 14 29-18 23-34-4-20 20-38-5-19-29-31-10-5-28z" />
-                <path className="sketch-arc a" d="M155 178 Q338 10 530 175" />
-                <path className="sketch-arc b" d="M242 214 Q446 56 650 179" />
-                <path className="sketch-arc c" d="M165 211 Q403 344 628 223" />
-                {[ [155,178],[242,214],[330,154],[530,175],[585,160],[650,179],[628,223] ].map(([cx,cy],i)=><circle key={i} cx={cx} cy={cy} r="4" />)}
-              </svg>
-            </div>
-
-            <div className="sketch-left-stack">
-              <div><span>◉</span><p>GLOBAL THREAT<br/>INTELLIGENCE</p></div>
-              <div><span>◈</span><p>AI SYSTEMS<br/>SECURITY</p></div>
-              <div><span>◇</span><p>IDENTITY & ACCESS</p></div>
-              <div><span>◌</span><p>MODEL MONITORING</p></div>
-              <div><span>▣</span><p>CLOUD<br/>INFRASTRUCTURE</p></div>
-              <div><span>⌁</span><p>RUNTIME<br/>ENFORCEMENT</p></div>
-            </div>
-
-            <div className="sketch-right-metrics">
+          <div className="sketch-command sketch-command-real" aria-label="Pooja Kiran in a realistic cybersecurity command center">
+            {heroImage ? (
+              <img
+                className="sketch-command-photo"
+                src={heroImage}
+                alt="Pooja Kiran seated in a cinematic cybersecurity operations center with global security maps and security monitoring displays"
+              />
+            ) : (
+              <div className="sketch-command-loading" aria-hidden="true">
+                <span />
+                <small>SECURITY OPERATIONS ENVIRONMENT</small>
+              </div>
+            )}
+            <div className="sketch-command-fade" aria-hidden="true" />
+            <div className="sketch-real-metrics">
               <div><small>FLAGSHIP SYSTEMS</small><strong>03</strong></div>
               <div><small>MCP PASSING TESTS</small><strong>629</strong></div>
               <div><small>IAM RULE IDs</small><strong>25</strong></div>
               <div><small>PROVENANCE TESTS</small><strong>199</strong></div>
             </div>
-
-            <div className="sketch-monitor-row" aria-hidden="true">
-              <div className="sketch-monitor m1"><i/><i/><i/></div>
-              <div className="sketch-monitor m2"><i/><i/><i/><i/></div>
-              <div className="sketch-monitor m3"><i/><i/><i/></div>
-            </div>
-
-            <figure className="sketch-person">
-              <img src={PORTRAIT_URL} alt="Pooja Kiran, Security Engineer" />
-              <span className="sketch-eye sketch-eye-left"><i /></span>
-              <span className="sketch-eye sketch-eye-right"><i /></span>
-            </figure>
-
-            <div className="sketch-desk" aria-hidden="true">
-              <div className="sketch-laptop"><span>SECURE<br/>INTELLIGENT<br/>VERIFIABLE</span></div>
-              <div className="sketch-mug">TRUST<br/>FUELS<br/>PROGRESS</div>
-              <div className="sketch-books"><i>AI SAFETY</i><i>CLOUD SECURITY</i><i>TRUST INFRASTRUCTURE</i></div>
-            </div>
-
-            <blockquote>“Security isn’t a feature.<br/>It’s a foundation for what’s next.”<small>— POOJA KIRAN</small></blockquote>
+            {heroImage && (
+              <>
+                <span className="sketch-eye sketch-eye-left" aria-hidden="true"><i /></span>
+                <span className="sketch-eye sketch-eye-right" aria-hidden="true"><i /></span>
+              </>
+            )}
           </div>
         </section>
 
@@ -212,7 +218,18 @@ export default function ExactSketchPortfolio() {
 
           <div className="sketch-card-grid">
             {focusCards.map((card) => (
-              <article className={`sketch-card ${card.visual}`} key={card.n}>
+              <article
+                className={`sketch-card ${card.visual}`}
+                key={card.n}
+                style={
+                  heroImage
+                    ? ({
+                        "--sketch-card-image": `url("${heroImage}")`,
+                        "--sketch-card-position": card.position,
+                      } as CSSProperties)
+                    : undefined
+                }
+              >
                 <span className="sketch-card-number">{card.n}</span>
                 <div className="sketch-card-visual" aria-hidden="true">
                   <div className="sketch-card-glow" />
