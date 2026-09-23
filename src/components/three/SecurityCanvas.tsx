@@ -1,6 +1,8 @@
 "use client";
 
 import { Suspense } from "react";
+import { SoftShadows } from "@react-three/drei";
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import SecurityWorld from "@/components/three/SecurityWorld";
 
@@ -19,11 +21,12 @@ export default function SecurityCanvas({ progress }: SecurityCanvasProps) {
         antialias: true,
         alpha: false,
         powerPreference: "high-performance",
-        toneMapping: 3,
-        toneMappingExposure: 1.02,
+        toneMapping: THREE.ACESFilmicToneMapping,
+        toneMappingExposure: 0.93,
       }}
     >
       <Suspense fallback={null}>
+        <SoftShadows size={18} samples={10} focus={0.72} />
         <fog attach="fog" args={["#151b1f", 13, 34]} />
         <ambientLight intensity={0.52} />
         <hemisphereLight args={["#9eb7c8", "#1d2529", 0.48]} />
