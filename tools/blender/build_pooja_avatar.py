@@ -20,7 +20,8 @@ def parse_args():
     os.makedirs(out, exist_ok=True)
     return out
 
-OUT = parse_args()\nFACE_DATA = os.path.join(OUT, "pooja-face.json")
+OUT = parse_args()
+FACE_DATA = os.path.join(OUT, "pooja-face.json")
 
 def clear_scene():
     bpy.ops.object.select_all(action="SELECT")
