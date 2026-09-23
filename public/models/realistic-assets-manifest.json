@@ -1,0 +1,19 @@
+{
+  "vehicle": {
+    "file": "trust-grand-tourer.glb",
+    "source": "KhronosGroup/glTF-Sample-Assets CarConcept",
+    "license": "CC-BY-4.0",
+    "modifications": [
+      "removed/replaced brand and license/logo materials",
+      "dark graphite paint treatment",
+      "web texture downscale"
+    ]
+  },
+  "human": {
+    "file": "realistic-female-guide.glb",
+    "source": "Microsoft Rocketbox Female_Adult_01",
+    "license": "MIT",
+    "animation": "Rocketbox f_idle_breathe_01",
+    "note": "Generic realistic female baseline; not a likeness of Pooja Kiran."
+  }
+}
