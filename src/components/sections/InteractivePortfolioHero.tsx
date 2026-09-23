@@ -121,6 +121,35 @@ function answerQuestion(raw: string) {
   return "I can answer questions about Pooja’s security projects, testing evidence, AI and agent security work, AWS IAM analysis, model provenance, background, role fit, and the engineering principles behind this facility. Try asking what makes her work different or which project best demonstrates her strengths.";
 }
 
+
+type SpeechRecognitionResultLike = {
+  0: { transcript: string };
+};
+
+type SpeechRecognitionEventLike = Event & {
+  results: {
+    0: SpeechRecognitionResultLike;
+  };
+};
+
+type SpeechRecognitionLike = {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  onresult: ((event: SpeechRecognitionEventLike) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  start: () => void;
+  stop: () => void;
+};
+
+type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
+
+type SpeechWindow = Window & {
+  SpeechRecognition?: SpeechRecognitionConstructor;
+  webkitSpeechRecognition?: SpeechRecognitionConstructor;
+};
+
 export default function InteractivePortfolioHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const ticking = useRef(false);
@@ -131,10 +160,18 @@ export default function InteractivePortfolioHero() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [qaOpen, setQaOpen] = useState(false);
+  const [micSupported, setMicSupported] = useState(false);
+  const [listening, setListening] = useState(false);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const current = stages[stage];
 
   useEffect(() => {
     setSpeechSupported(typeof window !== "undefined" && "speechSynthesis" in window);
+
+    if (typeof window !== "undefined") {
+      const speechWindow = window as SpeechWindow;
+      setMicSupported(Boolean(speechWindow.SpeechRecognition ?? speechWindow.webkitSpeechRecognition));
+    }
   }, []);
 
   useEffect(() => {
@@ -180,6 +217,13 @@ export default function InteractivePortfolioHero() {
 
       const forward = event.key === "w" || event.key === "W" || event.key === "ArrowUp";
       const backward = event.key === "s" || event.key === "S" || event.key === "ArrowDown";
+      const talk = event.key === "e" || event.key === "E";
+
+      if (talk) {
+        event.preventDefault();
+        setQaOpen(true);
+        return;
+      }
 
       if (!forward && !backward) return;
       event.preventDefault();
@@ -251,6 +295,34 @@ export default function InteractivePortfolioHero() {
     setAnswer(nextAnswer);
     setQaOpen(true);
     speak(nextAnswer);
+  };
+
+  const startListening = () => {
+    if (!micSupported || listening || typeof window === "undefined") return;
+
+    const speechWindow = window as SpeechWindow;
+    const Recognition = speechWindow.SpeechRecognition ?? speechWindow.webkitSpeechRecognition;
+    if (!Recognition) return;
+
+    const recognition = new Recognition();
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0]?.[0]?.transcript?.trim();
+      if (transcript) {
+        setQuestion(transcript);
+        ask(transcript);
+      }
+    };
+    recognition.onerror = () => setListening(false);
+    recognition.onend = () => setListening(false);
+
+    recognitionRef.current = recognition;
+    setListening(true);
+    setQaOpen(true);
+    recognition.start();
   };
 
   const submitQuestion = (event: FormEvent<HTMLFormElement>) => {
@@ -349,6 +421,16 @@ export default function InteractivePortfolioHero() {
                     placeholder="e.g. What makes her work different?"
                     autoComplete="off"
                   />
+                  {micSupported && (
+                    <button
+                      type="button"
+                      className={listening ? "orion-mic listening" : "orion-mic"}
+                      onClick={startListening}
+                      aria-label={listening ? "Listening for your question" : "Ask ORION by voice"}
+                    >
+                      {listening ? "LISTENING…" : "MIC"}
+                    </button>
+                  )}
                   <button type="submit">Ask</button>
                 </div>
               </form>
@@ -383,6 +465,17 @@ export default function InteractivePortfolioHero() {
             <span>OPS</span>
           </div>
         </div>
+
+        <button
+          type="button"
+          className="orion-proximity-prompt"
+          onClick={() => setQaOpen(true)}
+          aria-label="Talk to ORION"
+        >
+          <span>E</span>
+          <strong>Talk to ORION</strong>
+          <small>Ask about Pooja</small>
+        </button>
 
         <div className="facility-scroll-cue" aria-hidden="true">
           <span>Scroll / W-S to move · mouse to look</span>
