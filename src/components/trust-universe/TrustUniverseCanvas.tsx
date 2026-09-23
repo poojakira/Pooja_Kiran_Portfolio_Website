@@ -145,8 +145,15 @@ function Road({ to }: { to: [number, number] }) {
 }
 
 function Vehicle({ position, active }: { position: THREE.Vector3; active: boolean }) {
+  const root = useRef<THREE.Group>(null);
+
+  useFrame(() => {
+    if (!root.current) return;
+    root.current.position.copy(position);
+  });
+
   return (
-    <group position={position}>
+    <group ref={root} position={position}>
       <mesh position={[0, 0.48, 0]} castShadow>
         <boxGeometry args={[2.1, 0.55, 4.8]} />
         <meshStandardMaterial color="#15191b" roughness={0.32} metalness={0.58} />
