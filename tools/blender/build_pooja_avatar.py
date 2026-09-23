@@ -94,6 +94,114 @@ def parent_bone(obj, arm_obj, bone_name):
     bpy.context.view_layer.update()
     obj.matrix_world = world
 
+
+def tapered_segment(name, start, end, r_start, r_end, material, elliptical_y=1.0):
+    start = Vector(start)
+    end = Vector(end)
+    vec = end - start
+    length = vec.length
+    mid = (start + end) * 0.5
+    bpy.ops.mesh.primitive_cone_add(
+        vertices=40,
+        radius1=r_start,
+        radius2=r_end,
+        depth=length,
+        location=mid,
+    )
+    obj = bpy.context.object
+    obj.name = name
+    obj.rotation_mode = "QUATERNION"
+    obj.rotation_quaternion = Vector((0,0,1)).rotation_difference(vec.normalized())
+    if elliptical_y != 1.0:
+        obj.scale.y = elliptical_y
+        bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    mod = obj.modifiers.new("SoftBodyEdge", "BEVEL")
+    mod.width = min(r_start, r_end) * 0.35
+    mod.segments = 4
+    bpy.context.view_layer.objects.active = obj
+    bpy.ops.object.modifier_apply(modifier=mod.name)
+    smooth(obj)
+    obj.data.materials.append(material)
+    return obj
+
+def tapered_vertical(name, z0, z1, r0, r1, y_scale, material):
+    mid = (z0 + z1) * 0.5
+    bpy.ops.mesh.primitive_cone_add(vertices=48, radius1=r0, radius2=r1, depth=(z1-z0), location=(0,0,mid))
+    obj = bpy.context.object
+    obj.name = name
+    obj.scale.y = y_scale
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    mod = obj.modifiers.new("TailoredSoftEdges", "BEVEL")
+    mod.width = 0.025
+    mod.segments = 4
+    bpy.context.view_layer.objects.active = obj
+    bpy.ops.object.modifier_apply(modifier=mod.name)
+    smooth(obj)
+    obj.data.materials.append(material)
+    return obj
+
+def make_hair_cap(name, loc, scale, material):
+    obj = uv_sphere(name, loc, scale, material, 48, 28)
+    # Remove the lower front volume so the hair reads as a cap rather than a helmet.
+    import bmesh
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    doomed = [v for v in bm.verts if v.co.z < -0.025 and v.co.y < 0.02]
+    bmesh.ops.delete(bm, geom=doomed, context="VERTS")
+    bm.to_mesh(obj.data)
+    bm.free()
+    return obj
+
+def add_face_decal(rig):
+    if not os.path.exists(REF_IMAGE):
+        return None
+    try:
+        image = bpy.data.images.load(REF_IMAGE, check_existing=True)
+        # Oval mesh carrying a centered portrait crop. It improves front-view likeness
+        # while keeping the 3D head geometry for side/back views.
+        seg = 48
+        rx, rz = 0.082, 0.105
+        verts = [(0,0,0)]
+        faces = []
+        u0,u1 = 0.31,0.69
+        v0,v1 = 0.36,0.78
+        uvs = [((u0+u1)/2, (v0+v1)/2)]
+        for i in range(seg):
+            a = 2*math.pi*i/seg
+            verts.append((rx*math.cos(a), 0, rz*math.sin(a)))
+            uvs.append(((u0+u1)/2 + (u1-u0)*0.5*math.cos(a),
+                        (v0+v1)/2 + (v1-v0)*0.5*math.sin(a)))
+        for i in range(seg):
+            faces.append((0, i+1, ((i+1)%seg)+1))
+        mesh = bpy.data.meshes.new("FaceReferenceMesh")
+        mesh.from_pydata(verts, [], faces)
+        mesh.update()
+        uv_layer = mesh.uv_layers.new(name="UVMap")
+        for poly in mesh.polygons:
+            for loop_index in poly.loop_indices:
+                vi = mesh.loops[loop_index].vertex_index
+                uv_layer.data[loop_index].uv = uvs[vi]
+        obj = bpy.data.objects.new("FaceReferenceDecal", mesh)
+        bpy.context.collection.objects.link(obj)
+        obj.location = (0, -0.0915, 1.505)
+        obj.rotation_euler = (math.radians(90), 0, 0)
+
+        m = bpy.data.materials.new("FaceReferenceMaterial")
+        m.use_nodes = True
+        bsdf = m.node_tree.nodes.get("Principled BSDF")
+        tex = m.node_tree.nodes.new("ShaderNodeTexImage")
+        tex.image = image
+        tex.interpolation = "Linear"
+        m.node_tree.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+        bsdf.inputs["Roughness"].default_value = 0.52
+        obj.data.materials.append(m)
+        parent_bone(obj, rig, "head")
+        return obj
+    except Exception as exc:
+        print("Face decal skipped:", exc)
+        return None
+
+
 def add_reference_board():
     if not os.path.exists(REF_IMAGE):
         return None
@@ -132,26 +240,26 @@ def build_armature():
         bones[name] = b
         return b
 
-    eb("root", (0,0,0), (0,0,0.14))
-    eb("pelvis", (0,0,0.84), (0,0,1.02), "root")
-    eb("spine", (0,0,1.02), (0,0,1.25), "pelvis", True)
-    eb("chest", (0,0,1.25), (0,0,1.42), "spine", True)
-    eb("neck", (0,0,1.42), (0,0,1.50), "chest", True)
-    eb("head", (0,0,1.50), (0,0,1.66), "neck", True)
+    eb("root", (0,0,0), (0,0,0.12))
+    eb("pelvis", (0,0,0.82), (0,0,0.97), "root")
+    eb("spine", (0,0,0.97), (0,0,1.18), "pelvis", True)
+    eb("chest", (0,0,1.18), (0,0,1.34), "spine", True)
+    eb("neck", (0,0,1.34), (0,0,1.40), "chest", True)
+    eb("head", (0,0,1.40), (0,0,1.56), "neck", True)
 
-    eb("upper_arm.L", (0.22,0,1.38), (0.44,0,1.17), "chest")
-    eb("forearm.L", (0.44,0,1.17), (0.46,0,0.94), "upper_arm.L", True)
-    eb("hand.L", (0.46,0,0.94), (0.46,0,0.84), "forearm.L", True)
-    eb("upper_arm.R", (-0.22,0,1.38), (-0.44,0,1.17), "chest")
-    eb("forearm.R", (-0.44,0,1.17), (-0.46,0,0.94), "upper_arm.R", True)
-    eb("hand.R", (-0.46,0,0.94), (-0.46,0,0.84), "forearm.R", True)
+    eb("upper_arm.L", (0.20,0,1.31), (0.37,0,1.10), "chest")
+    eb("forearm.L", (0.37,0,1.10), (0.40,0,0.90), "upper_arm.L", True)
+    eb("hand.L", (0.40,0,0.90), (0.40,0,0.82), "forearm.L", True)
+    eb("upper_arm.R", (-0.20,0,1.31), (-0.37,0,1.10), "chest")
+    eb("forearm.R", (-0.37,0,1.10), (-0.40,0,0.90), "upper_arm.R", True)
+    eb("hand.R", (-0.40,0,0.90), (-0.40,0,0.82), "forearm.R", True)
 
-    eb("thigh.L", (0.12,0,0.92), (0.14,0,0.53), "pelvis")
-    eb("shin.L", (0.14,0,0.53), (0.14,0,0.14), "thigh.L", True)
-    eb("foot.L", (0.14,0,0.14), (0.14,-0.12,0.07), "shin.L", True)
-    eb("thigh.R", (-0.12,0,0.92), (-0.14,0,0.53), "pelvis")
-    eb("shin.R", (-0.14,0,0.53), (-0.14,0,0.14), "thigh.R", True)
-    eb("foot.R", (-0.14,0,0.14), (-0.14,-0.12,0.07), "shin.R", True)
+    eb("thigh.L", (0.105,0,0.88), (0.115,0,0.52), "pelvis")
+    eb("shin.L", (0.115,0,0.52), (0.115,0,0.13), "thigh.L", True)
+    eb("foot.L", (0.115,0,0.13), (0.115,-0.14,0.06), "shin.L", True)
+    eb("thigh.R", (-0.105,0,0.88), (-0.115,0,0.52), "pelvis")
+    eb("shin.R", (-0.115,0,0.52), (-0.115,0,0.13), "thigh.R", True)
+    eb("foot.R", (-0.115,0,0.13), (-0.115,-0.14,0.06), "shin.R", True)
 
     bpy.ops.object.mode_set(mode="POSE")
     for pb in rig.pose.bones:
@@ -162,67 +270,73 @@ def build_armature():
 def build_body(rig):
     parts = []
 
-    pelvis = uv_sphere("Pelvis", (0,0,0.96), (0.20,0.15,0.17), CLOTH2)
+    pelvis = tapered_vertical("Pelvis", 0.82, 1.00, 0.17, 0.145, 0.72, CLOTH2)
     parent_bone(pelvis, rig, "pelvis"); parts.append(pelvis)
 
-    torso = rounded_box("Torso", (0,0,1.22), (0.21,0.135,0.25), CLOTH, 0.12)
-    torso.rotation_euler = (0,0,0)
+    torso = tapered_vertical("Torso", 0.99, 1.37, 0.145, 0.205, 0.60, CLOTH)
     parent_bone(torso, rig, "spine"); parts.append(torso)
 
-    chest = rounded_box("Chest", (0,0,1.38), (0.245,0.15,0.16), CLOTH, 0.10)
-    parent_bone(chest, rig, "chest"); parts.append(chest)
+    # Shoulder structure under the jacket.
+    shoulder = tapered_segment("ShoulderLine", (-0.205,0,1.31), (0.205,0,1.31), 0.075, 0.075, CLOTH, 0.82)
+    parent_bone(shoulder, rig, "chest"); parts.append(shoulder)
 
-    neck = cylinder("Neck", (0,0,1.48), 0.07, 0.11, SKIN)
+    neck = tapered_segment("Neck", (0,0,1.34), (0,0,1.405), 0.052, 0.050, SKIN, 0.92)
     parent_bone(neck, rig, "neck"); parts.append(neck)
 
-    head = uv_sphere("Head", (0,-0.005,1.61), (0.155,0.13,0.195), SKIN, 48, 32)
+    head = uv_sphere("Head", (0,0,1.505), (0.108,0.090,0.132), SKIN, 56, 36)
     parent_bone(head, rig, "head"); parts.append(head)
 
-    # Hair cap and back volume
-    hair_top = uv_sphere("HairTop", (0,0.013,1.69), (0.166,0.142,0.13), HAIR, 40, 24)
+    hair_top = make_hair_cap("HairCap", (0,0.018,1.555), (0.116,0.099,0.104), HAIR)
     parent_bone(hair_top, rig, "head"); parts.append(hair_top)
-    hair_back = uv_sphere("HairBack", (0,0.085,1.56), (0.17,0.105,0.24), HAIR, 36, 22)
+    hair_back = uv_sphere("HairBack", (0,0.070,1.485), (0.118,0.065,0.155), HAIR, 42, 28)
     parent_bone(hair_back, rig, "head"); parts.append(hair_back)
 
-    # Facial features point toward negative Y (camera front)
-    eye_z = 1.635
-    for side, x in (("L", 0.054), ("R", -0.054)):
-        ew = uv_sphere(f"EyeWhite.{side}", (x,-0.125,eye_z), (0.030,0.012,0.017), EYE_WHITE, 24, 16)
+    # Subtle geometric facial landmarks; portrait decal supplies identity cues.
+    eye_z = 1.525
+    for side, x in (("L", 0.036), ("R", -0.036)):
+        ew = uv_sphere(f"EyeWhite.{side}", (x,-0.087,eye_z), (0.019,0.006,0.010), EYE_WHITE, 24, 14)
         parent_bone(ew, rig, "head"); parts.append(ew)
-        iris = uv_sphere(f"Iris.{side}", (x,-0.138,eye_z), (0.010,0.006,0.010), IRIS, 18, 12)
+        iris = uv_sphere(f"Iris.{side}", (x,-0.093,eye_z), (0.0065,0.003,0.0065), IRIS, 18, 10)
         parent_bone(iris, rig, "head"); parts.append(iris)
 
-    nose = uv_sphere("Nose", (0,-0.145,1.595), (0.024,0.028,0.037), SKIN, 24, 16)
+    nose = uv_sphere("Nose", (0,-0.094,1.495), (0.014,0.013,0.022), SKIN, 24, 14)
     parent_bone(nose, rig, "head"); parts.append(nose)
-    lips = rounded_box("Lips", (0,-0.144,1.548), (0.040,0.010,0.010), LIP, 0.012)
+    lips = rounded_box("Lips", (0,-0.095,1.462), (0.025,0.005,0.006), LIP, 0.006)
     parent_bone(lips, rig, "head"); parts.append(lips)
 
-    # Arms
+    add_face_decal(rig)
+
+    # Arms with natural taper.
     for side, sign in (("L", 1), ("R", -1)):
-        ua = uv_sphere(f"UpperArm.{side}", (0.33*sign,0,1.22), (0.09,0.085,0.25), CLOTH, 28, 18)
-        ua.rotation_euler[1] = math.radians(-6*sign)
+        shoulder_p=(0.20*sign,0,1.31)
+        elbow_p=(0.37*sign,0,1.10)
+        wrist_p=(0.40*sign,0,0.90)
+        ua=tapered_segment(f"UpperArm.{side}", shoulder_p, elbow_p, 0.064, 0.052, CLOTH, 0.92)
         parent_bone(ua, rig, f"upper_arm.{side}"); parts.append(ua)
-
-        fa = uv_sphere(f"Forearm.{side}", (0.455*sign,0,1.02), (0.072,0.068,0.22), SKIN, 28, 18)
+        elbow=uv_sphere(f"Elbow.{side}", elbow_p, (0.052,0.048,0.052), CLOTH, 24, 14)
+        parent_bone(elbow, rig, f"upper_arm.{side}"); parts.append(elbow)
+        fa=tapered_segment(f"Forearm.{side}", elbow_p, wrist_p, 0.048, 0.035, SKIN, 0.92)
         parent_bone(fa, rig, f"forearm.{side}"); parts.append(fa)
-
-        hand = uv_sphere(f"Hand.{side}", (0.46*sign,-0.005,0.88), (0.075,0.055,0.095), SKIN, 28, 18)
+        hand=uv_sphere(f"Hand.{side}", (0.40*sign,-0.004,0.855), (0.045,0.032,0.062), SKIN, 28, 16)
         parent_bone(hand, rig, f"hand.{side}"); parts.append(hand)
 
-    # Legs
+    # Legs with tailored trouser silhouette.
     for side, sign in (("L", 1), ("R", -1)):
-        thigh = uv_sphere(f"Thigh.{side}", (0.13*sign,0,0.72), (0.125,0.115,0.30), CLOTH2, 30, 20)
+        hip=(0.105*sign,0,0.88)
+        knee=(0.115*sign,0,0.52)
+        ankle=(0.115*sign,0,0.13)
+        thigh=tapered_segment(f"Thigh.{side}", hip, knee, 0.085, 0.065, CLOTH2, 0.94)
         parent_bone(thigh, rig, f"thigh.{side}"); parts.append(thigh)
-
-        shin = uv_sphere(f"Shin.{side}", (0.14*sign,0,0.34), (0.105,0.095,0.27), CLOTH2, 30, 20)
+        knee_obj=uv_sphere(f"Knee.{side}", knee, (0.064,0.058,0.060), CLOTH2, 24, 14)
+        parent_bone(knee_obj, rig, f"thigh.{side}"); parts.append(knee_obj)
+        shin=tapered_segment(f"Shin.{side}", knee, ankle, 0.062, 0.048, CLOTH2, 0.94)
         parent_bone(shin, rig, f"shin.{side}"); parts.append(shin)
-
-        foot = rounded_box(f"Foot.{side}", (0.14*sign,-0.075,0.075), (0.11,0.18,0.065), SHOE, 0.04)
+        foot=rounded_box(f"Foot.{side}", (0.115*sign,-0.075,0.065), (0.075,0.145,0.050), SHOE, 0.035)
         parent_bone(foot, rig, f"foot.{side}"); parts.append(foot)
 
-    badge = rounded_box("SecurityBadge", (-0.10,-0.148,1.34), (0.040,0.010,0.060), WHITE, 0.01)
+    badge = rounded_box("SecurityBadge", (-0.075,-0.126,1.275), (0.032,0.007,0.046), WHITE, 0.008)
     parent_bone(badge, rig, "chest"); parts.append(badge)
-    stripe = rounded_box("BadgeAccent", (-0.10,-0.161,1.355), (0.028,0.005,0.008), ACCENT, 0.004)
+    stripe = rounded_box("BadgeAccent", (-0.075,-0.134,1.286), (0.022,0.003,0.006), ACCENT, 0.003)
     parent_bone(stripe, rig, "chest"); parts.append(stripe)
 
     return parts
@@ -335,9 +449,17 @@ def save_outputs(rig):
     bpy.context.scene.render.film_transparent = False
     bpy.context.scene.world.color = (0.015,0.018,0.022)
 
-    bpy.ops.wm.save_as_mainfile(filepath=blend_path)
+    # Render a neutral idle pose rather than blending every NLA clip.
+    if rig.animation_data:
+        for track in rig.animation_data.nla_tracks:
+            track.mute = track.name != "Idle"
     bpy.context.scene.frame_set(1)
+    bpy.ops.wm.save_as_mainfile(filepath=blend_path)
     bpy.ops.render.render(write_still=True)
+
+    if rig.animation_data:
+        for track in rig.animation_data.nla_tracks:
+            track.mute = False
 
     # Select exportable avatar only; leave preview floor/lights/reference out.
     bpy.ops.object.select_all(action="DESELECT")
