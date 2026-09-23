@@ -45,3 +45,4 @@ jobs:
           git add package.json package-lock.json
           git commit -m "security: update Next.js and build dependencies"
           git push origin HEAD:main
+# trigger: verified dependency remediation
