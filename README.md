@@ -32,19 +32,23 @@ The homepage includes profile, experience, three flagship projects with expandab
 - The legacy root-level résumé PDF was removed to prevent ambiguity; only the canonical public résumé remains.
 
 
-## Cinematic interactive hero
+## Interactive Three.js security world
 
-The homepage now includes a cinematic, depth-based hero built around the canonical portrait at `public/pooja-kiran.png`.
+The homepage opens with an original React Three Fiber scene inspired by the interaction pattern used in modern 3D developer portfolios: a rotatable world, contextual stage cards, a moving background object, and responsive pointer/touch/keyboard controls.
 
-- Desktop pointer movement drives restrained parallax, character depth, light-field movement, and technical boundary markers.
-- GSAP entrance choreography and ScrollTrigger create the pinned hero camera move and scroll-linked 3D section reveals.
-- The interaction honors `prefers-reduced-motion` and uses simplified touch/mobile behavior.
-- The character video is optional. Until it exists, the committed portrait remains the visual fallback.
-- Final interactive video contract: `public/media/pooja-interactive-hero.mp4`.
-- When that MP4 is present, the hero keeps it paused and smoothly maps horizontal pointer position to video time, using an intentionally clamped frame range to avoid unstable endpoint frames.
-- The hero does not expose autoplay or native video controls.
+The scene is security-specific rather than a copied tutorial asset:
 
-The visual motion is presentation only; the engineering evidence and repository-backed project metrics remain unchanged.
+- A floating security platform represents the portfolio's engineering surface.
+- The canonical portrait at `public/pooja-kiran.png` is rendered inside the 3D scene without changing its aspect ratio.
+- Three visual nodes map to the flagship security themes: agent/tool security, AWS IAM and identity, and model provenance.
+- Dragging or swiping rotates the world with inertia; left/right arrow keys provide keyboard interaction.
+- Rotation updates the contextual story card between the introduction and the three flagship systems.
+- The animated packet/drone and procedural cloud geometry provide motion without external 3D-model dependencies.
+- The scene uses the existing `@react-three/fiber`, `@react-three/drei`, and `three` dependencies.
+- The rest of the portfolio keeps project metrics, evidence, limitations, experience, skills, education, and contact information readable outside the 3D canvas.
+- Reduced-motion users still receive the full portfolio content without relying on motion for meaning.
+
+The 3D presentation does not change or inflate the repository-backed engineering claims.
 
 ## Development
 
