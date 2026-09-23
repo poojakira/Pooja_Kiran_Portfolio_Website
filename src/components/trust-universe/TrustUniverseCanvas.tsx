@@ -179,7 +179,7 @@ function Vehicle({ position, active }: { position: THREE.Vector3; active: boolea
       </mesh>
       {!active && (
         <Html position={[0, 1.7, 0]} center distanceFactor={10}>
-          <div className="graybox-vehicle-label">E · ENTER VEHICLE</div>
+          <div className="graybox-vehicle-label"><strong>AUTONOMOUS GRAND TOURER</strong><span>E · ENTER VEHICLE</span></div>
         </Html>
       )}
     </group>
@@ -243,7 +243,7 @@ function ExploreController({
   const { camera, gl } = useThree();
   const keys = useRef(new Set<string>());
   const player = useRef(new THREE.Vector3(0, 0, 8));
-  const parkedVehicle = useRef(new THREE.Vector3(5.5, 0, 6.5));
+  const parkedVehicle = useRef(new THREE.Vector3(2.7, 0, 2.8));
   const destinationRef = useRef(destination);
 
   useEffect(() => {
