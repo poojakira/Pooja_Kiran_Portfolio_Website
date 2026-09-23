@@ -220,7 +220,7 @@ export default function TrustUniverseExperience() {
   );
 
   return (
-    <main className="trust-universe-shell">
+    <div className="trust-universe-shell">
       <section className="trust-universe-viewport" aria-label="Pooja Kiran Trust Universe">
         <div className="trust-universe-canvas">
           <TrustUniverseCanvas
