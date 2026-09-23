@@ -1,5 +1,5 @@
-import TrustUniverseExperience from "@/components/trust-universe/TrustUniverseExperience";
+import AuraPortfolioHome from "@/components/aura/AuraPortfolioHome";
 
 export default function Home() {
-  return <TrustUniverseExperience />;
+  return <AuraPortfolioHome />;
 }
