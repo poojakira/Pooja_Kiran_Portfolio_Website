@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { RESUME_URL, profile } from "@/data/portfolio";
 
@@ -19,11 +19,12 @@ const stages = {
     eyebrow: "Arrival · AI Security Facility",
     title: "Walk inside the systems I secure.",
     body: "A realistic walkthrough of the security boundaries around agent execution, cloud identity, model artifacts, and operational validation.",
-    metric: "Scroll to move through the facility",
+    metric: "Scroll or use W/S to move through the facility",
     href: "#projects",
     action: "Jump to engineering evidence",
     hook: "Power without boundaries is not intelligence. It is risk.",
-    guide: "Welcome. I’m Sentinel. I’ll guide you through the decisions that turn powerful technology into systems people can trust.",
+    guide: "Welcome. I’m ORION. I’ll walk with you through the decisions Pooja makes when intelligent systems are allowed to act in the real world.",
+    takeaway: "Pooja approaches AI security as an engineering problem: define the boundary, enforce it, then prove that it works.",
   },
   2: {
     eyebrow: "Zone 01 · Agent Execution",
@@ -33,7 +34,8 @@ const stages = {
     href: "#projects",
     action: "Review gateway evidence",
     hook: "Before AI can act, it has to earn the right to act.",
-    guide: "This door is about execution. An intelligent system should not gain real-world power simply because it can ask for it.",
+    guide: "This door is about execution. An intelligent system should not gain real-world power simply because it can request a tool call.",
+    takeaway: "Pooja builds controls at the point where AI intent becomes action, with explicit enforcement and measurable validation.",
   },
   3: {
     eyebrow: "Zone 02 · Identity & Authorization",
@@ -42,8 +44,9 @@ const stages = {
     metric: "230 tests · 25 deterministic IAM rules",
     href: "#projects",
     action: "Review IAM evidence",
-    hook: "Identity is where capability becomes accountability.",
+    hook: "Capability is not permission.",
     guide: "Here the question changes from what can the system do to who is allowed to do it, under which role, and with what blast radius.",
+    takeaway: "Pooja treats identity as a security control surface, not an administrative detail.",
   },
   4: {
     eyebrow: "Zone 03 · Model Supply Chain",
@@ -52,8 +55,9 @@ const stages = {
     metric: "199 tests · 12/12 core fixtures · 18/18 extended variants",
     href: "#projects",
     action: "Review provenance evidence",
-    hook: "If you cannot trace what a model is, you should not trust what it can do.",
+    hook: "If you cannot trace the artifact, you should not trust the outcome.",
     guide: "Models are software supply-chain artifacts too. This vault represents the evidence needed before loading something powerful into a trusted environment.",
+    takeaway: "Pooja extends security thinking beyond applications and identities to the artifacts AI systems depend on.",
   },
   5: {
     eyebrow: "Zone 04 · Detection & Validation",
@@ -64,8 +68,58 @@ const stages = {
     action: "See how I engineer",
     hook: "Security is not a promise. It is evidence that survives scrutiny.",
     guide: "This is the final room. Controls become credible when they can be tested, observed, challenged, and explained to people who were not in the room when they were built.",
+    takeaway: "Pooja’s strongest pattern is ownership from control design through testing, telemetry, evidence, and clear communication.",
   },
 } as const;
+
+const suggestedQuestions = [
+  "Why should we talk to Pooja?",
+  "What is her strongest project?",
+  "How does she validate security controls?",
+  "What roles fit her work?",
+];
+
+function answerQuestion(raw: string) {
+  const q = raw.toLowerCase();
+
+  if (q.includes("hire") || q.includes("why should") || q.includes("talk to")) {
+    return "Pooja combines AI security, cloud identity, detection engineering, and hands-on software development. The important part is the evidence: her flagship systems are backed by documented tests, scoped metrics, CI checks, security detections, and explicit limitations. That shows both initiative and engineering discipline.";
+  }
+
+  if (q.includes("strongest") || q.includes("best project")) {
+    return "The MCP Agent Security Gateway is the clearest single example of her direction. It sits directly in the agent action path, evaluates MCP and JSON-RPC tool calls, applies policy and prompt-injection signals, records audit evidence, and is currently documented with 629 passing tests, 78.47 percent statement coverage, and 9 Elastic detection rules.";
+  }
+
+  if (q.includes("mcp") || q.includes("agent") || q.includes("tool")) {
+    return "Her MCP Agent Security Gateway focuses on the moment an AI agent tries to execute a tool. It combines policy checks, capability validation, prompt-injection signals, audit logging, rate limiting, and SIEM-oriented evidence. The design goal is simple: capability should not automatically become permission.";
+  }
+
+  if (q.includes("iam") || q.includes("identity") || q.includes("aws") || q.includes("cloud")) {
+    return "Her AWS Agent Identity Guard is a static IAM analysis system for risky permission combinations and authorization paths, including AssumeRole, PassRole, wildcards, privilege-escalation patterns, and related agent identity risks. The current documented scope includes 25 deterministic rule IDs and 230 passing tests.";
+  }
+
+  if (q.includes("model") || q.includes("provenance") || q.includes("supply chain") || q.includes("hugging")) {
+    return "Her model-provenance work treats AI artifacts as part of the software supply chain. The scanner inspects provenance, serialization and loader risk, impersonation signals, configuration anomalies, and supporting evidence without executing untrusted model payloads. The current CI snapshot documents 199 tests, 12 of 12 core fixtures, and 18 of 18 extended variants.";
+  }
+
+  if (q.includes("test") || q.includes("validate") || q.includes("evidence") || q.includes("quality")) {
+    return "A recurring pattern across Pooja’s work is validation before marketing. Her projects expose test counts, coverage where applicable, CI gates, detection rules, scoped performance claims, and documented limitations. She distinguishes what a system proves from what it is only designed to explore.";
+  }
+
+  if (q.includes("role") || q.includes("position") || q.includes("fit")) {
+    return "Her portfolio is most directly aligned with security engineering roles involving AI or agent security, application and product security, cloud identity and IAM, detection engineering, security automation, and security infrastructure. The common thread is building enforceable security controls and validating them with software and telemetry.";
+  }
+
+  if (q.includes("background") || q.includes("education") || q.includes("degree")) {
+    return "Pooja completed a Master’s in Information Technology with a security focus at Arizona State University after a computer science engineering degree. Her portfolio combines graduate security work, open-source security engineering, applied AI security research, and an aerospace business-and-compliance project.";
+  }
+
+  if (q.includes("different") || q.includes("unique") || q.includes("stand out")) {
+    return "What stands out is the combination of systems thinking and evidence. She does not present AI security as a collection of buzzwords. Her portfolio connects agent execution, identity, model provenance, detection, testing, and operational visibility into one coherent security story.";
+  }
+
+  return "I can answer questions about Pooja’s security projects, testing evidence, AI and agent security work, AWS IAM analysis, model provenance, background, role fit, and the engineering principles behind this facility. Try asking what makes her work different or which project best demonstrates her strengths.";
+}
 
 export default function InteractivePortfolioHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -74,6 +128,9 @@ export default function InteractivePortfolioHero() {
   const [stage, setStage] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [voiceEnabled, setVoiceEnabled] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [qaOpen, setQaOpen] = useState(false);
   const current = stages[stage];
 
   useEffect(() => {
@@ -142,9 +199,8 @@ export default function InteractivePortfolioHero() {
 
     const synth = window.speechSynthesis;
     synth.cancel();
-
     const utterance = new SpeechSynthesisUtterance(
-      `${current.hook} ${current.guide}`,
+      `${current.hook} ${current.guide} Key takeaway. ${current.takeaway}`,
     );
     const voices = synth.getVoices();
     const preferred =
@@ -152,13 +208,28 @@ export default function InteractivePortfolioHero() {
       voices.find((voice) => voice.lang.startsWith("en"));
 
     if (preferred) utterance.voice = preferred;
-    utterance.rate = 0.92;
-    utterance.pitch = 0.9;
+    utterance.rate = 0.9;
+    utterance.pitch = 0.86;
     utterance.volume = 0.92;
     synth.speak(utterance);
 
     return () => synth.cancel();
-  }, [stage, voiceEnabled, speechSupported, current.guide, current.hook]);
+  }, [stage, voiceEnabled, speechSupported, current.guide, current.hook, current.takeaway]);
+
+  const speak = (text: string) => {
+    if (!voiceEnabled || !speechSupported) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voices = window.speechSynthesis.getVoices();
+    const preferred =
+      voices.find((voice) => voice.lang.startsWith("en") && voice.localService) ??
+      voices.find((voice) => voice.lang.startsWith("en"));
+    if (preferred) utterance.voice = preferred;
+    utterance.rate = 0.9;
+    utterance.pitch = 0.86;
+    utterance.volume = 0.92;
+    window.speechSynthesis.speak(utterance);
+  };
 
   const toggleVoice = () => {
     if (!speechSupported) return;
@@ -170,6 +241,21 @@ export default function InteractivePortfolioHero() {
     }
 
     setVoiceEnabled(true);
+  };
+
+  const ask = (raw: string) => {
+    const cleaned = raw.trim();
+    if (!cleaned) return;
+    const nextAnswer = answerQuestion(cleaned);
+    setQuestion(cleaned);
+    setAnswer(nextAnswer);
+    setQaOpen(true);
+    speak(nextAnswer);
+  };
+
+  const submitQuestion = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    ask(question);
   };
 
   return (
@@ -202,15 +288,15 @@ export default function InteractivePortfolioHero() {
           </div>
         </div>
 
-        <aside className="sentinel-dialogue" aria-live="polite">
+        <aside className={qaOpen ? "sentinel-dialogue qa-open" : "sentinel-dialogue"} aria-live="polite">
           <div className="sentinel-dialogue-head">
             <div className="sentinel-avatar" aria-hidden="true">
               <span />
               <i />
             </div>
             <div>
-              <strong>SENTINEL</strong>
-              <span>AI SECURITY FACILITY GUIDE</span>
+              <strong>ORION</strong>
+              <span>HUMANOID FACILITY GUIDE</span>
             </div>
             {speechSupported && (
               <button
@@ -218,16 +304,63 @@ export default function InteractivePortfolioHero() {
                 className={voiceEnabled ? "sentinel-voice active" : "sentinel-voice"}
                 onClick={toggleVoice}
                 aria-pressed={voiceEnabled}
-                aria-label={voiceEnabled ? "Mute Sentinel guide voice" : "Enable Sentinel guide voice"}
+                aria-label={voiceEnabled ? "Mute ORION guide voice" : "Enable ORION guide voice"}
               >
                 {voiceEnabled ? "VOICE ON" : "ENABLE VOICE"}
               </button>
             )}
           </div>
 
-          <p className="sentinel-principle-label">POOJA&apos;S PRINCIPLE</p>
+          <p className="sentinel-principle-label">POOJA&apos;S RULE</p>
           <blockquote key={`hook-${stage}`}>“{current.hook}”</blockquote>
           <p className="sentinel-guide-copy">{current.guide}</p>
+
+          <div className="mission-takeaway" key={`takeaway-${stage}`}>
+            <span>KEY TAKEAWAY</span>
+            <p>{current.takeaway}</p>
+          </div>
+
+          <button
+            type="button"
+            className="orion-ask-toggle"
+            onClick={() => setQaOpen((open) => !open)}
+            aria-expanded={qaOpen}
+          >
+            {qaOpen ? "Close Q&A" : "Ask ORION about Pooja"}
+          </button>
+
+          {qaOpen && (
+            <div className="orion-qa">
+              <div className="orion-suggestions">
+                {suggestedQuestions.map((item) => (
+                  <button key={item} type="button" onClick={() => ask(item)}>
+                    {item}
+                  </button>
+                ))}
+              </div>
+
+              <form onSubmit={submitQuestion} className="orion-question-form">
+                <label htmlFor="orion-question">Ask about Pooja&apos;s work</label>
+                <div>
+                  <input
+                    id="orion-question"
+                    value={question}
+                    onChange={(event) => setQuestion(event.target.value)}
+                    placeholder="e.g. What makes her work different?"
+                    autoComplete="off"
+                  />
+                  <button type="submit">Ask</button>
+                </div>
+              </form>
+
+              {answer && (
+                <div className="orion-answer">
+                  <span>ORION</span>
+                  <p>{answer}</p>
+                </div>
+              )}
+            </div>
+          )}
         </aside>
 
         <div className="facility-identity">
