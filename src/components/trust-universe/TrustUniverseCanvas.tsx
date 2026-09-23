@@ -144,6 +144,106 @@ function Road({ to }: { to: [number, number] }) {
   );
 }
 
+
+function CampusWayfinding() {
+  const signs = [
+    { position: [0, 0, -6] as [number, number, number], rotation: 0, title: "NORTH", lines: ["Agent Security", "Trust Nexus"] },
+    { position: [6, 0, 0] as [number, number, number], rotation: Math.PI / 2, title: "EAST", lines: ["Identity", "Model Provenance"] },
+    { position: [-6, 0, 0] as [number, number, number], rotation: -Math.PI / 2, title: "WEST", lines: ["Cloud", "Telemetry"] },
+    { position: [0, 0, 7] as [number, number, number], rotation: Math.PI, title: "SOUTH", lines: ["Runtime", "Engineering Vault"] },
+  ];
+
+  return (
+    <group>
+      {signs.map((sign) => (
+        <group key={sign.title} position={sign.position} rotation={[0, sign.rotation, 0]}>
+          <mesh position={[0, 1.35, 0]} castShadow>
+            <boxGeometry args={[0.12, 2.7, 0.12]} />
+            <meshStandardMaterial color="#5f625e" roughness={0.72} metalness={0.22} />
+          </mesh>
+          <mesh position={[0, 2.42, -0.03]} castShadow>
+            <boxGeometry args={[2.2, 0.78, 0.12]} />
+            <meshStandardMaterial color="#e2e1da" roughness={0.62} metalness={0.08} />
+          </mesh>
+          <Html position={[0, 2.43, -0.11]} center transform distanceFactor={8}>
+            <div className="campus-wayfinding-sign">
+              <span>{sign.title}</span>
+              {sign.lines.map((line) => <strong key={line}>{line}</strong>)}
+            </div>
+          </Html>
+        </group>
+      ))}
+    </group>
+  );
+}
+
+function ArrivalCourt() {
+  return (
+    <group>
+      <mesh position={[0, 0.025, 5.2]} receiveShadow>
+        <boxGeometry args={[12, 0.06, 7.2]} />
+        <meshStandardMaterial color="#8d8474" roughness={0.95} />
+      </mesh>
+
+      <mesh position={[2.7, 0.055, 2.8]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[2.05, 2.13, 64]} />
+        <meshBasicMaterial color="#e8e6de" transparent opacity={0.7} />
+      </mesh>
+
+      <mesh position={[2.7, 0.061, 2.8]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[2.3, 5.2]} />
+        <meshBasicMaterial color="#2e3233" transparent opacity={0.32} />
+      </mesh>
+
+      {[-4.6, -3.4, -2.2, -1, 0.2].map((x) => (
+        <mesh key={x} position={[x, 0.48, 6.7]} castShadow>
+          <cylinderGeometry args={[0.07, 0.085, 0.96, 18]} />
+          <meshStandardMaterial color="#777b77" roughness={0.62} metalness={0.46} />
+        </mesh>
+      ))}
+
+      <Html position={[-3.8, 1.6, 5.55]} center transform distanceFactor={9}>
+        <div className="arrival-monument">
+          <span>POOJA KIRAN</span>
+          <strong>TRUST DISTRICT</strong>
+          <small>Security Engineering Research Campus</small>
+        </div>
+      </Html>
+
+      <Html position={[2.7, 0.16, 0.6]} center transform distanceFactor={10}>
+        <div className="parking-bay-label">AUTONOMOUS ARRIVAL · BAY 01</div>
+      </Html>
+    </group>
+  );
+}
+
+function RoadMarkings() {
+  return (
+    <group>
+      {universeWorlds.filter((world) => world.id !== "trust").map((world) => {
+        const [x, z] = world.position;
+        const length = Math.sqrt(x * x + z * z);
+        const angle = Math.atan2(x, z);
+        const stripes = Math.max(2, Math.floor(length / 8));
+
+        return (
+          <group key={world.id} rotation={[0, angle, 0]} position={[x / 2, 0.078, z / 2]}>
+            {Array.from({ length: stripes }, (_, index) => {
+              const localZ = -length / 2 + 4 + index * 8;
+              return (
+                <mesh key={index} position={[0, 0, localZ]}>
+                  <boxGeometry args={[0.07, 0.01, 2.4]} />
+                  <meshBasicMaterial color="#d8d1bf" transparent opacity={0.48} />
+                </mesh>
+              );
+            })}
+          </group>
+        );
+      })}
+    </group>
+  );
+}
+
 function Vehicle({ position, active }: { position: THREE.Vector3; active: boolean }) {
   const root = useRef<THREE.Group>(null);
 
@@ -404,6 +504,9 @@ function UniverseScene(props: TrustUniverseCanvasProps) {
 
       <Mountains />
       <TrustSignal />
+      <ArrivalCourt />
+      <CampusWayfinding />
+      <RoadMarkings />
 
       {universeWorlds.filter((world) => world.id !== "trust").map((world) => (
         <Road key={world.id} to={world.position} />
