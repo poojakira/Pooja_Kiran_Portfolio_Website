@@ -152,13 +152,72 @@ def make_hair_cap(name, loc, scale, material):
     bm.free()
     return obj
 
+def face_reference_material(name):
+    m = bpy.data.materials.new(name)
+    m.use_nodes = True
+    bsdf = m.node_tree.nodes.get("Principled BSDF")
+    if os.path.exists(REF_IMAGE):
+        image = bpy.data.images.load(REF_IMAGE, check_existing=True)
+        tex = m.node_tree.nodes.new("ShaderNodeTexImage")
+        tex.image = image
+        tex.interpolation = "Linear"
+        m.node_tree.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+    bsdf.inputs["Roughness"].default_value = 0.50
+    return m
+
+def add_reconstructed_face(rig):
+    if not os.path.exists(FACE_DATA) or not os.path.exists(REF_IMAGE):
+        return None
+    try:
+        with open(FACE_DATA, "r", encoding="utf-8") as handle:
+            data = json.load(handle)
+        pts = data.get("landmarks", [])
+        tris = data.get("triangles", [])
+        if len(pts) < 400 or not tris:
+            return None
+
+        xs = sorted(p[0] for p in pts)
+        ys = sorted(p[1] for p in pts)
+        xmin, xmax = xs[8], xs[-9]
+        ymin, ymax = ys[8], ys[-9]
+        xmid = (xmin + xmax) * 0.5
+        ymid = (ymin + ymax) * 0.5
+        xspan = max(1e-6, xmax - xmin)
+        yspan = max(1e-6, ymax - ymin)
+
+        verts = []
+        uvs = []
+        for x, y, z in pts:
+            vx = (x - xmid) / xspan * 0.185
+            vz = 1.505 - (y - ymid) / yspan * 0.235
+            vy = -0.094 + z * 0.050
+            verts.append((vx, vy, vz))
+            uvs.append((x, 1.0 - y))
+
+        mesh = bpy.data.meshes.new("ReconstructedFaceMesh")
+        mesh.from_pydata(verts, [], [tuple(t) for t in tris])
+        mesh.update()
+        uv_layer = mesh.uv_layers.new(name="UVMap")
+        for poly in mesh.polygons:
+            for loop_index in poly.loop_indices:
+                vertex_index = mesh.loops[loop_index].vertex_index
+                uv_layer.data[loop_index].uv = uvs[vertex_index]
+
+        obj = bpy.data.objects.new("ReconstructedFace", mesh)
+        bpy.context.collection.objects.link(obj)
+        smooth(obj)
+        obj.data.materials.append(face_reference_material("ReconstructedFaceMaterial"))
+        parent_bone(obj, rig, "head")
+        return obj
+    except Exception as exc:
+        print("Reconstructed face skipped:", exc)
+        return None
+
 def add_face_decal(rig):
     if not os.path.exists(REF_IMAGE):
         return None
     try:
         image = bpy.data.images.load(REF_IMAGE, check_existing=True)
-        # Oval mesh carrying a centered portrait crop. It improves front-view likeness
-        # while keeping the 3D head geometry for side/back views.
         seg = 48
         rx, rz = 0.082, 0.105
         verts = [(0,0,0)]
@@ -183,24 +242,14 @@ def add_face_decal(rig):
                 uv_layer.data[loop_index].uv = uvs[vi]
         obj = bpy.data.objects.new("FaceReferenceDecal", mesh)
         bpy.context.collection.objects.link(obj)
-        obj.location = (0, -0.0915, 1.505)
+        obj.location = (0, -0.104, 1.505)
         obj.rotation_euler = (math.radians(90), 0, 0)
-
-        m = bpy.data.materials.new("FaceReferenceMaterial")
-        m.use_nodes = True
-        bsdf = m.node_tree.nodes.get("Principled BSDF")
-        tex = m.node_tree.nodes.new("ShaderNodeTexImage")
-        tex.image = image
-        tex.interpolation = "Linear"
-        m.node_tree.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
-        bsdf.inputs["Roughness"].default_value = 0.52
-        obj.data.materials.append(m)
+        obj.data.materials.append(face_reference_material("FaceFallbackMaterial"))
         parent_bone(obj, rig, "head")
         return obj
     except Exception as exc:
         print("Face decal skipped:", exc)
         return None
-
 
 def add_reference_board():
     if not os.path.exists(REF_IMAGE):
