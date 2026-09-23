@@ -259,6 +259,182 @@ function SOCDesk({ position }: { position: [number, number, number] }) {
 
 
 
+
+function CCTV({
+  position,
+  rotation = [0, 0, 0],
+}: {
+  position: [number, number, number];
+  rotation?: [number, number, number];
+}) {
+  return (
+    <group position={position} rotation={rotation}>
+      <mesh position={[0, 0.12, 0]} castShadow>
+        <boxGeometry args={[0.28, 0.08, 0.16]} />
+        <meshStandardMaterial color="#343c41" roughness={0.36} metalness={0.58} />
+      </mesh>
+      <mesh position={[0, -0.02, 0.09]} rotation={[0.08, 0, 0]} castShadow>
+        <cylinderGeometry args={[0.095, 0.12, 0.28, 18]} />
+        <meshStandardMaterial color="#d2d7da" roughness={0.3} metalness={0.52} />
+      </mesh>
+      <mesh position={[0, -0.03, 0.24]} rotation={[Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[0.055, 18]} />
+        <meshPhysicalMaterial color="#0b0f12" roughness={0.08} metalness={0.25} />
+      </mesh>
+      <mesh position={[0.065, -0.065, 0.235]}>
+        <sphereGeometry args={[0.012, 10, 10]} />
+        <meshBasicMaterial color="#e45d5d" />
+      </mesh>
+    </group>
+  );
+}
+
+function ConduitRun({ x, z, length }: { x: number; z: number; length: number }) {
+  return (
+    <group position={[x, 3.42, z]}>
+      {[-0.13, 0, 0.13].map((offset) => (
+        <mesh key={offset} position={[offset, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.025, 0.025, length, 10]} />
+          <meshStandardMaterial color="#626d72" roughness={0.52} metalness={0.66} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function CableTray({ z, side }: { z: number; side: -1 | 1 }) {
+  return (
+    <group position={[side * 3.55, 3.1, z]}>
+      <mesh>
+        <boxGeometry args={[0.52, 0.08, 7.4]} />
+        <meshStandardMaterial color="#4a5358" roughness={0.56} metalness={0.65} />
+      </mesh>
+      {[-0.17, 0, 0.17].map((x, index) => (
+        <mesh key={x} position={[x, 0.07, 0]}>
+          <boxGeometry args={[0.055, 0.055, 7.0]} />
+          <meshStandardMaterial
+            color={index === 0 ? "#315b7a" : index === 1 ? "#67537f" : "#59635f"}
+            roughness={0.7}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function Turnstile({ x, z }: { x: number; z: number }) {
+  return (
+    <group position={[x, 0, z]}>
+      <mesh position={[0, 0.56, 0]} castShadow>
+        <boxGeometry args={[0.28, 1.12, 0.72]} />
+        <meshStandardMaterial color="#bfc5c8" roughness={0.28} metalness={0.72} />
+      </mesh>
+      <mesh position={[0, 1.02, 0.24]}>
+        <boxGeometry args={[0.17, 0.08, 0.12]} />
+        <meshStandardMaterial color="#151b1f" roughness={0.32} metalness={0.32} />
+      </mesh>
+      <mesh position={[0, 1.04, 0.307]}>
+        <planeGeometry args={[0.085, 0.045]} />
+        <meshBasicMaterial color="#55c98a" />
+      </mesh>
+      <group position={[0, 0.73, -0.16]}>
+        {[0, Math.PI * 0.66, Math.PI * 1.33].map((angle) => (
+          <mesh key={angle} rotation={[0, 0, angle]} position={[Math.cos(angle) * 0.2, Math.sin(angle) * 0.2, 0]}>
+            <boxGeometry args={[0.44, 0.035, 0.035]} />
+            <meshStandardMaterial color="#60696e" roughness={0.38} metalness={0.7} />
+          </mesh>
+        ))}
+      </group>
+    </group>
+  );
+}
+
+function ReceptionDesk() {
+  return (
+    <group position={[-2.65, 0, 1.8]}>
+      <mesh position={[0, 0.52, 0]} castShadow>
+        <boxGeometry args={[2.4, 1.04, 0.74]} />
+        <meshStandardMaterial color="#2c3439" roughness={0.45} metalness={0.28} />
+      </mesh>
+      <mesh position={[0, 1.08, 0.03]} castShadow>
+        <boxGeometry args={[2.55, 0.12, 0.82]} />
+        <meshStandardMaterial color="#b9c0c4" roughness={0.32} metalness={0.58} />
+      </mesh>
+      <mesh position={[0.55, 1.48, -0.08]} rotation={[-0.08, 0, 0]}>
+        <boxGeometry args={[0.88, 0.52, 0.06]} />
+        <meshStandardMaterial color="#11171b" roughness={0.25} metalness={0.42} />
+      </mesh>
+      <mesh position={[0.55, 1.48, -0.044]}>
+        <planeGeometry args={[0.74, 0.4]} />
+        <meshBasicMaterial color="#173149" />
+      </mesh>
+      <mesh position={[-0.66, 1.12, 0.2]}>
+        <boxGeometry args={[0.25, 0.06, 0.18]} />
+        <meshStandardMaterial color="#20282d" roughness={0.45} metalness={0.4} />
+      </mesh>
+    </group>
+  );
+}
+
+function EmergencyExit({ position, rotation = [0, 0, 0] }: {
+  position: [number, number, number];
+  rotation?: [number, number, number];
+}) {
+  return (
+    <group position={position} rotation={rotation}>
+      <mesh>
+        <boxGeometry args={[0.72, 0.28, 0.06]} />
+        <meshStandardMaterial color="#e7f2ea" emissive="#2aaa62" emissiveIntensity={0.55} roughness={0.45} />
+      </mesh>
+      <Html position={[0, 0, 0.04]} center transform distanceFactor={5.5}>
+        <div className="facility-exit-sign">EXIT</div>
+      </Html>
+    </group>
+  );
+}
+
+function PatchPanel({ position, rotation = [0, 0, 0] }: {
+  position: [number, number, number];
+  rotation?: [number, number, number];
+}) {
+  return (
+    <group position={position} rotation={rotation}>
+      <mesh castShadow>
+        <boxGeometry args={[1.8, 1.1, 0.18]} />
+        <meshStandardMaterial color="#1b2226" roughness={0.32} metalness={0.55} />
+      </mesh>
+      {Array.from({ length: 4 }).map((_, row) =>
+        Array.from({ length: 8 }).map((__, col) => (
+          <mesh key={`${row}-${col}`} position={[-0.7 + col * 0.2, 0.34 - row * 0.22, 0.102]}>
+            <boxGeometry args={[0.08, 0.06, 0.02]} />
+            <meshBasicMaterial color={(row + col) % 5 === 0 ? "#4aa8ff" : "#334148"} />
+          </mesh>
+        )),
+      )}
+    </group>
+  );
+}
+
+function FloorSeams() {
+  return (
+    <group position={[0, 0.055, -28]}>
+      {Array.from({ length: 19 }, (_, i) => 5 - i * 4).map((z) => (
+        <mesh key={z} position={[0, 0, z]}>
+          <boxGeometry args={[9.2, 0.008, 0.018]} />
+          <meshBasicMaterial color="#697176" transparent opacity={0.24} />
+        </mesh>
+      ))}
+      {[-3, -1.5, 0, 1.5, 3].map((x) => (
+        <mesh key={x} position={[x, 0, -28]}>
+          <boxGeometry args={[0.018, 0.008, 73]} />
+          <meshBasicMaterial color="#697176" transparent opacity={0.18} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+
 function getPathPosition(progress: number) {
   const p = THREE.MathUtils.clamp(progress, 0, 1);
   const z = THREE.MathUtils.lerp(4.8, -57.2, p);
@@ -380,114 +556,158 @@ function PoojaWalker({ progress }: { progress: number }) {
   );
 }
 
-function GuideRobot({ progress }: { progress: number }) {
-  const group = useRef<THREE.Group>(null);
+function HumanoidGuide({ progress }: { progress: number }) {
+  const root = useRef<THREE.Group>(null);
   const head = useRef<THREE.Group>(null);
+  const leftArm = useRef<THREE.Group>(null);
+  const rightArm = useRef<THREE.Group>(null);
+  const leftLeg = useRef<THREE.Group>(null);
+  const rightLeg = useRef<THREE.Group>(null);
+  const previous = useRef(progress);
+  const walkEnergy = useRef(0);
   const { camera } = useThree();
 
-  const checkpoints = useMemo(
-    () => [
-      { p: 0.0, position: new THREE.Vector3(2.45, 0, 1.4) },
-      { p: 0.18, position: new THREE.Vector3(2.55, 0, -7.6) },
-      { p: 0.43, position: new THREE.Vector3(-2.55, 0, -24.5) },
-      { p: 0.67, position: new THREE.Vector3(2.55, 0, -40.4) },
-      { p: 0.87, position: new THREE.Vector3(-2.25, 0, -56.2) },
-    ],
-    [],
-  );
-
   useFrame(({ clock }) => {
-    if (!group.current) return;
+    if (!root.current) return;
 
-    const p = THREE.MathUtils.clamp(progress, 0, 1);
-    let target = checkpoints[0].position;
+    const player = getPathPosition(progress);
+    const side = progress < 0.32 ? 1 : progress < 0.58 ? -1 : progress < 0.82 ? 1 : -1;
+    const target = player.clone().add(new THREE.Vector3(side * 1.5, 0, -1.05));
+    root.current.position.lerp(target, 0.105);
 
-    for (let i = 0; i < checkpoints.length; i += 1) {
-      if (p >= checkpoints[i].p) target = checkpoints[i].position;
-    }
+    const delta = Math.abs(progress - previous.current);
+    previous.current = progress;
+    walkEnergy.current = Math.max(walkEnergy.current * 0.9, Math.min(1, delta * 200));
 
-    group.current.position.lerp(target, 0.09);
-    group.current.position.y = Math.sin(clock.elapsedTime * 2.1) * 0.012;
+    const energy = walkEnergy.current;
+    const cycle = clock.elapsedTime * 7.2;
+    if (leftArm.current) leftArm.current.rotation.x = Math.sin(cycle) * 0.28 * energy;
+    if (rightArm.current) rightArm.current.rotation.x = -Math.sin(cycle) * 0.28 * energy;
+    if (leftLeg.current) leftLeg.current.rotation.x = -Math.sin(cycle) * 0.34 * energy;
+    if (rightLeg.current) rightLeg.current.rotation.x = Math.sin(cycle) * 0.34 * energy;
 
-    const lookTarget = new THREE.Vector3(camera.position.x, 1.2, camera.position.z);
-    const dummy = new THREE.Object3D();
-    dummy.position.copy(group.current.position);
-    dummy.lookAt(lookTarget);
-    group.current.quaternion.slerp(dummy.quaternion, 0.08);
+    const lookTarget = new THREE.Vector3(camera.position.x, 1.45, camera.position.z);
+    const bodyLook = new THREE.Object3D();
+    bodyLook.position.copy(root.current.position);
+    bodyLook.lookAt(lookTarget.x, 0.95, lookTarget.z);
+    root.current.quaternion.slerp(bodyLook.quaternion, 0.045);
 
     if (head.current) {
-      head.current.rotation.y = Math.sin(clock.elapsedTime * 0.55) * 0.055;
+      const localTarget = lookTarget.clone();
+      const dummy = new THREE.Object3D();
+      dummy.position.copy(root.current.position).add(new THREE.Vector3(0, 1.78, 0));
+      dummy.lookAt(localTarget);
+      head.current.quaternion.slerp(dummy.quaternion, 0.055);
     }
   });
 
+  const metal = "#9aa4aa";
+  const dark = "#232b30";
+  const accent = "#4aa8ff";
+
   return (
-    <group ref={group}>
-      <mesh position={[0, 0.17, 0]} castShadow>
-        <cylinderGeometry args={[0.42, 0.48, 0.28, 24]} />
-        <meshStandardMaterial color="#1a2227" roughness={0.38} metalness={0.68} />
+    <group ref={root} scale={0.98}>
+      <mesh position={[0, 1.15, 0]} castShadow>
+        <boxGeometry args={[0.62, 0.86, 0.36]} />
+        <meshStandardMaterial color={dark} roughness={0.28} metalness={0.78} />
+      </mesh>
+      <mesh position={[0, 1.18, 0.205]}>
+        <boxGeometry args={[0.38, 0.34, 0.035]} />
+        <meshStandardMaterial color="#12191d" roughness={0.2} metalness={0.4} emissive="#102f46" emissiveIntensity={0.18} />
+      </mesh>
+      <mesh position={[0, 1.29, 0.228]}>
+        <boxGeometry args={[0.26, 0.025, 0.012]} />
+        <meshBasicMaterial color={accent} />
       </mesh>
 
-      <mesh position={[-0.28, 0.04, 0.22]} rotation={[Math.PI / 2, 0, 0]} castShadow>
-        <cylinderGeometry args={[0.11, 0.11, 0.12, 20]} />
-        <meshStandardMaterial color="#10161a" roughness={0.5} metalness={0.7} />
-      </mesh>
-      <mesh position={[0.28, 0.04, 0.22]} rotation={[Math.PI / 2, 0, 0]} castShadow>
-        <cylinderGeometry args={[0.11, 0.11, 0.12, 20]} />
-        <meshStandardMaterial color="#10161a" roughness={0.5} metalness={0.7} />
-      </mesh>
-
-      <mesh position={[0, 0.7, 0]} castShadow>
-        <boxGeometry args={[0.62, 0.78, 0.46]} />
-        <meshStandardMaterial color="#c6cdd1" roughness={0.32} metalness={0.58} />
-      </mesh>
-
-      <mesh position={[0, 0.74, 0.238]}>
-        <planeGeometry args={[0.42, 0.36]} />
-        <meshBasicMaterial color="#10232c" />
-      </mesh>
-
-      <mesh position={[0, 0.79, 0.244]}>
-        <planeGeometry args={[0.30, 0.018]} />
-        <meshBasicMaterial color="#65b9e9" />
-      </mesh>
-
-      <mesh position={[0, 0.71, 0.244]}>
-        <planeGeometry args={[0.22, 0.018]} />
-        <meshBasicMaterial color="#78d3a2" />
-      </mesh>
-
-      <group ref={head} position={[0, 1.27, 0]}>
+      <group ref={head} position={[0, 1.82, 0]}>
         <mesh castShadow>
-          <boxGeometry args={[0.54, 0.38, 0.42]} />
-          <meshStandardMaterial color="#d3dade" roughness={0.28} metalness={0.62} />
+          <boxGeometry args={[0.42, 0.34, 0.36]} />
+          <meshStandardMaterial color={metal} roughness={0.24} metalness={0.82} />
         </mesh>
-        <mesh position={[0, 0.01, 0.216]}>
-          <planeGeometry args={[0.36, 0.17]} />
-          <meshBasicMaterial color="#10191e" />
+        <mesh position={[0, 0, 0.188]}>
+          <planeGeometry args={[0.28, 0.13]} />
+          <meshBasicMaterial color="#0d1519" />
         </mesh>
-        <mesh position={[-0.105, 0.02, 0.222]}>
-          <circleGeometry args={[0.025, 16]} />
-          <meshBasicMaterial color="#69bdf0" />
+        <mesh position={[-0.075, 0.01, 0.195]}>
+          <circleGeometry args={[0.022, 16]} />
+          <meshBasicMaterial color="#79c9f2" />
         </mesh>
-        <mesh position={[0.105, 0.02, 0.222]}>
-          <circleGeometry args={[0.025, 16]} />
-          <meshBasicMaterial color="#69bdf0" />
+        <mesh position={[0.075, 0.01, 0.195]}>
+          <circleGeometry args={[0.022, 16]} />
+          <meshBasicMaterial color="#79c9f2" />
         </mesh>
       </group>
 
-      <mesh position={[0, 1.55, 0]} castShadow>
-        <cylinderGeometry args={[0.035, 0.035, 0.32, 12]} />
-        <meshStandardMaterial color="#7b858a" roughness={0.32} metalness={0.72} />
-      </mesh>
-      <mesh position={[0, 1.73, 0]}>
-        <sphereGeometry args={[0.055, 14, 14]} />
-        <meshBasicMaterial color="#67c9ff" />
+      <mesh position={[0, 1.57, 0]} castShadow>
+        <cylinderGeometry args={[0.11, 0.11, 0.18, 16]} />
+        <meshStandardMaterial color="#565f64" roughness={0.32} metalness={0.78} />
       </mesh>
 
-      <Html position={[0, 1.92, 0]} center transform distanceFactor={6}>
+      <group ref={leftArm} position={[-0.42, 1.38, 0]}>
+        <mesh castShadow position={[0, -0.28, 0]}>
+          <capsuleGeometry args={[0.105, 0.42, 8, 14]} />
+          <meshStandardMaterial color={metal} roughness={0.28} metalness={0.8} />
+        </mesh>
+        <mesh position={[0, -0.56, 0]} castShadow>
+          <sphereGeometry args={[0.115, 16, 16]} />
+          <meshStandardMaterial color="#596267" roughness={0.3} metalness={0.72} />
+        </mesh>
+        <mesh position={[0, -0.71, 0.02]} castShadow>
+          <boxGeometry args={[0.18, 0.24, 0.12]} />
+          <meshStandardMaterial color={dark} roughness={0.34} metalness={0.64} />
+        </mesh>
+      </group>
+
+      <group ref={rightArm} position={[0.42, 1.38, 0]}>
+        <mesh castShadow position={[0, -0.28, 0]}>
+          <capsuleGeometry args={[0.105, 0.42, 8, 14]} />
+          <meshStandardMaterial color={metal} roughness={0.28} metalness={0.8} />
+        </mesh>
+        <mesh position={[0, -0.56, 0]} castShadow>
+          <sphereGeometry args={[0.115, 16, 16]} />
+          <meshStandardMaterial color="#596267" roughness={0.3} metalness={0.72} />
+        </mesh>
+        <mesh position={[0, -0.71, 0.02]} castShadow>
+          <boxGeometry args={[0.18, 0.24, 0.12]} />
+          <meshStandardMaterial color={dark} roughness={0.34} metalness={0.64} />
+        </mesh>
+      </group>
+
+      <group ref={leftLeg} position={[-0.19, 0.76, 0]}>
+        <mesh castShadow position={[0, -0.32, 0]}>
+          <capsuleGeometry args={[0.125, 0.48, 8, 14]} />
+          <meshStandardMaterial color={dark} roughness={0.33} metalness={0.7} />
+        </mesh>
+        <mesh castShadow position={[0, -0.69, 0]}>
+          <capsuleGeometry args={[0.105, 0.4, 8, 14]} />
+          <meshStandardMaterial color={metal} roughness={0.3} metalness={0.78} />
+        </mesh>
+        <mesh castShadow position={[0, -0.96, 0.1]}>
+          <boxGeometry args={[0.24, 0.14, 0.42]} />
+          <meshStandardMaterial color="#1b2226" roughness={0.38} metalness={0.62} />
+        </mesh>
+      </group>
+
+      <group ref={rightLeg} position={[0.19, 0.76, 0]}>
+        <mesh castShadow position={[0, -0.32, 0]}>
+          <capsuleGeometry args={[0.125, 0.48, 8, 14]} />
+          <meshStandardMaterial color={dark} roughness={0.33} metalness={0.7} />
+        </mesh>
+        <mesh castShadow position={[0, -0.69, 0]}>
+          <capsuleGeometry args={[0.105, 0.4, 8, 14]} />
+          <meshStandardMaterial color={metal} roughness={0.3} metalness={0.78} />
+        </mesh>
+        <mesh castShadow position={[0, -0.96, 0.1]}>
+          <boxGeometry args={[0.24, 0.14, 0.42]} />
+          <meshStandardMaterial color="#1b2226" roughness={0.38} metalness={0.62} />
+        </mesh>
+      </group>
+
+      <Html position={[0, 2.18, 0]} center transform distanceFactor={6}>
         <div className="guide-robot-label">
-          <strong>SENTINEL</strong>
-          <span>FACILITY GUIDE</span>
+          <strong>ORION</strong>
+          <span>HUMANOID FACILITY GUIDE</span>
         </div>
       </Html>
     </group>
@@ -543,6 +763,24 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
   return (
     <>
       <color attach="background" args={["#10161a"]} />
+      <FloorSeams />
+      <ReceptionDesk />
+      <Turnstile x={-0.75} z={0.8} />
+      <Turnstile x={0.75} z={0.8} />
+      <CCTV position={[-4.35, 3.15, 0.8]} rotation={[0, Math.PI / 2, 0]} />
+      <CCTV position={[4.35, 3.15, -18]} rotation={[0, -Math.PI / 2, 0]} />
+      <CCTV position={[-4.35, 3.15, -37]} rotation={[0, Math.PI / 2, 0]} />
+      <CCTV position={[4.35, 3.15, -55]} rotation={[0, -Math.PI / 2, 0]} />
+      <ConduitRun x={-4.1} z={-27} length={68} />
+      <ConduitRun x={4.1} z={-27} length={68} />
+      <CableTray z={-13} side={-1} />
+      <CableTray z={-13} side={1} />
+      <CableTray z={-30} side={-1} />
+      <CableTray z={-30} side={1} />
+      <PatchPanel position={[-4.55, 1.7, -33]} rotation={[0, Math.PI / 2, 0]} />
+      <PatchPanel position={[4.55, 1.7, -49]} rotation={[0, -Math.PI / 2, 0]} />
+      <EmergencyExit position={[-4.55, 2.9, -7]} rotation={[0, Math.PI / 2, 0]} />
+      <EmergencyExit position={[4.55, 2.9, -52]} rotation={[0, -Math.PI / 2, 0]} />
 
       <mesh position={[0, -0.05, -28]} receiveShadow>
         <boxGeometry args={[9.6, 0.18, 76]} />
@@ -567,7 +805,7 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
       ))}
 
       <PoojaWalker progress={progress} />
-      <GuideRobot progress={progress} />
+      <HumanoidGuide progress={progress} />
 
       <AccessGate
         z={-4.5}
