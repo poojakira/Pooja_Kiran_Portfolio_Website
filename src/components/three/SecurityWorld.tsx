@@ -1,7 +1,7 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef } from "react";
-import { Html, Line } from "@react-three/drei";
+import { Html, Line, Sparkles } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { SITE_PATH } from "@/data/portfolio";
@@ -638,6 +638,104 @@ function HumanoidGuide({ progress }: { progress: number }) {
   );
 }
 
+function SecurityCore({ progress }: { progress: number }) {
+  const root = useRef<THREE.Group>(null);
+  const ringA = useRef<THREE.Mesh>(null);
+  const ringB = useRef<THREE.Mesh>(null);
+  const ringC = useRef<THREE.Mesh>(null);
+
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    const open = THREE.MathUtils.smoothstep(progress, 0, 0.16);
+
+    if (root.current) {
+      root.current.rotation.y = Math.sin(t * 0.16) * 0.08;
+      root.current.position.y = 1.48 + Math.sin(t * 0.7) * 0.025;
+      const scale = 1 + open * 0.14;
+      root.current.scale.setScalar(scale);
+    }
+    if (ringA.current) {
+      ringA.current.rotation.z = t * 0.18 + open * 0.6;
+      ringA.current.rotation.x = 0.35 + Math.sin(t * 0.3) * 0.05;
+    }
+    if (ringB.current) {
+      ringB.current.rotation.y = -t * 0.23 - open * 0.8;
+      ringB.current.rotation.x = 1.1 + Math.sin(t * 0.25) * 0.06;
+    }
+    if (ringC.current) {
+      ringC.current.rotation.x = t * 0.15;
+      ringC.current.rotation.z = -0.7 + Math.sin(t * 0.35) * 0.07;
+    }
+  });
+
+  const energy = 1 - THREE.MathUtils.smoothstep(progress, 0.08, 0.22);
+
+  return (
+    <group ref={root} position={[0, 1.48, 2.55]}>
+      <pointLight
+        intensity={6.5 * energy + 0.5}
+        distance={8}
+        decay={2}
+        color="#6ac7ff"
+      />
+
+      <mesh castShadow>
+        <icosahedronGeometry args={[0.29, 4]} />
+        <meshStandardMaterial
+          color="#b9ebff"
+          emissive="#2ea8e8"
+          emissiveIntensity={3.4}
+          roughness={0.18}
+          metalness={0.42}
+        />
+      </mesh>
+
+      <mesh ref={ringA}>
+        <torusGeometry args={[0.58, 0.018, 16, 96]} />
+        <meshStandardMaterial
+          color="#a7e8ff"
+          emissive="#4fc7ff"
+          emissiveIntensity={2.1}
+          roughness={0.22}
+          metalness={0.55}
+        />
+      </mesh>
+
+      <mesh ref={ringB}>
+        <torusGeometry args={[0.82, 0.011, 14, 96]} />
+        <meshStandardMaterial
+          color="#7468ff"
+          emissive="#5146d8"
+          emissiveIntensity={1.65}
+          roughness={0.28}
+          metalness={0.62}
+        />
+      </mesh>
+
+      <mesh ref={ringC}>
+        <torusGeometry args={[1.04, 0.008, 12, 96]} />
+        <meshStandardMaterial
+          color="#e6f6ff"
+          emissive="#6ba9c7"
+          emissiveIntensity={0.9}
+          transparent
+          opacity={0.65}
+          roughness={0.35}
+          metalness={0.5}
+        />
+      </mesh>
+
+      <Html position={[0, -1.15, 0]} center transform distanceFactor={7}>
+        <div className="security-core-label">
+          <span>TRUST CORE</span>
+          <strong>CAPABILITY → CONTROL → EVIDENCE</strong>
+        </div>
+      </Html>
+    </group>
+  );
+}
+
+
 export default function SecurityWorld({ progress }: SecurityWorldProps) {
   const { camera } = useThree();
   const progressRef = useRef(progress);
@@ -686,7 +784,7 @@ export default function SecurityWorld({ progress }: SecurityWorldProps) {
 
   return (
     <>
-      <color attach="background" args={["#10161a"]} />
+      <color attach="background" args={["#070a0d"]} />\n      <SecurityCore progress={progress} />\n      <Sparkles count={70} scale={[8.5, 3.4, 66]} size={0.7} speed={0.12} opacity={0.28} color="#9edcff" noise={0.7} />
       <FloorSeams />
       <ReceptionDesk />
       <Turnstile x={-0.75} z={0.8} />
