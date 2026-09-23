@@ -139,6 +139,8 @@ export default function CinematicSecurityPortfolio() {
       root.style.setProperty("--portrait-x", `${(currentX * -12).toFixed(2)}px`);
       root.style.setProperty("--portrait-y", `${(currentY * -7).toFixed(2)}px`);
       root.style.setProperty("--portrait-ry", `${(currentX * -1.8).toFixed(3)}deg`);
+      root.style.setProperty("--eye-x", `${(currentX * 5.2).toFixed(2)}px`);
+      root.style.setProperty("--eye-y", `${(currentY * 3.2).toFixed(2)}px`);
       frame = requestAnimationFrame(renderPointer);
     };
 
@@ -250,8 +252,9 @@ export default function CinematicSecurityPortfolio() {
         <nav className={menuOpen ? "cyber-nav open" : "cyber-nav"} aria-label="Main navigation">
           <a href="#work" onClick={() => setMenuOpen(false)}>Work</a>
           <a href="#approach" onClick={() => setMenuOpen(false)}>Approach</a>
-          <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
-          <a href="#evidence" onClick={() => setMenuOpen(false)}>Evidence</a>
+          <a href="#work" onClick={() => setMenuOpen(false)}>Research</a>
+          <a href="https://www.linkedin.com/in/poojakiran/recent-activity/all/" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>Writing</a>
+          <a href="#experience" onClick={() => setMenuOpen(false)}>About</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </nav>
 
@@ -356,15 +359,13 @@ export default function CinematicSecurityPortfolio() {
                 <figure className="cyber-portrait">
                   <div className="cyber-portrait-halo" aria-hidden="true" />
                   <img src={PORTRAIT_URL} alt="Pooja Kiran, Security Engineer" />
-                  <figcaption>
-                    <span>POOJA KIRAN</span>
-                    <strong>SECURITY ENGINEER</strong>
-                  </figcaption>
+                  <span className="cyber-eye cyber-eye-left" aria-hidden="true"><i /></span>
+                  <span className="cyber-eye cyber-eye-right" aria-hidden="true"><i /></span>
                 </figure>
 
                 <div className="cyber-stage-quote">
                   <span>“Security isn’t a feature.</span>
-                  <strong>It’s a boundary the system has to survive.”</strong>
+                  <strong>It’s a foundation for what’s next.” — POOJA KIRAN</strong>
                 </div>
               </div>
             </div>
