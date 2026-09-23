@@ -32,23 +32,20 @@ The homepage includes profile, experience, three flagship projects with expandab
 - The legacy root-level résumé PDF was removed to prevent ambiguity; only the canonical public résumé remains.
 
 
-## Interactive Three.js security world
+## Interactive AI security facility
 
-The homepage opens with an original React Three Fiber scene inspired by the interaction pattern used in modern 3D developer portfolios: a rotatable world, contextual stage cards, a moving background object, and responsive pointer/touch/keyboard controls.
+The homepage opens with a scroll-driven React Three Fiber walkthrough designed to feel like entering a real AI-security environment rather than rotating a cartoon 3D object.
 
-The scene is security-specific rather than a copied tutorial asset:
+- The camera moves forward through a physically structured corridor as the visitor scrolls.
+- The facility uses concrete floors, metal walls and ceilings, rack hardware, rack-status LEDs, glass partitions, access-control gates, cable/data paths, wall-mounted operational displays, a model-artifact vault, and a security-operations workstation.
+- The canonical portrait at `public/pooja-kiran.png` appears as a professional lobby identity display rather than a stylized avatar.
+- The walkthrough is divided into five stages: arrival, agent execution security, identity and authorization, model supply-chain security, and detection/validation.
+- Each stage changes the HTML story panel while the 3D camera enters the corresponding physical zone.
+- Project evidence remains repository-scoped; the immersive environment does not imply production deployment, customers, or infrastructure that does not exist.
+- The 3D implementation uses the existing `@react-three/fiber`, `@react-three/drei`, and `three` dependencies and procedural geometry, so it does not depend on unlicensed third-party 3D models.
+- The conventional portfolio sections remain below the walkthrough for fast recruiter scanning, project evidence, limitations, experience, skills, education, and contact information.
 
-- A floating security platform represents the portfolio's engineering surface.
-- The canonical portrait at `public/pooja-kiran.png` is rendered inside the 3D scene without changing its aspect ratio.
-- Three visual nodes map to the flagship security themes: agent/tool security, AWS IAM and identity, and model provenance.
-- Dragging or swiping rotates the world with inertia; left/right arrow keys provide keyboard interaction.
-- Rotation updates the contextual story card between the introduction and the three flagship systems.
-- The animated packet/drone and procedural cloud geometry provide motion without external 3D-model dependencies.
-- The scene uses the existing `@react-three/fiber`, `@react-three/drei`, and `three` dependencies.
-- The rest of the portfolio keeps project metrics, evidence, limitations, experience, skills, education, and contact information readable outside the 3D canvas.
-- Reduced-motion users still receive the full portfolio content without relying on motion for meaning.
-
-The 3D presentation does not change or inflate the repository-backed engineering claims.
+The 3D environment is a narrative representation of the security problems addressed by the projects, not a claim that the depicted facility is an operational deployment.
 
 ## Development
 
