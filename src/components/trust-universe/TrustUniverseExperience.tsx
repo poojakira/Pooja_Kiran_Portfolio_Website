@@ -208,6 +208,9 @@ export default function TrustUniverseExperience() {
   const [quality, setQuality] = useState<"balanced" | "lite">("balanced");
   const [travelMode, setTravelMode] = useState<TravelMode>("foot");
   const [isTraveling, setIsTraveling] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
+  const movementKeys = useRef<Record<string, boolean>>({});
+  const movementState = useRef({ forward: 0, side: 0, progress: 0, strafe: 0, last: 0 });
   const timers = useRef<number[]>([]);
   const travelTimer = useRef<number | null>(null);
   const wheelLocked = useRef(false);
@@ -231,8 +234,8 @@ export default function TrustUniverseExperience() {
       x += (tx - x) * 0.045;
       y += (ty - y) * 0.045;
 
-      const walking = isTraveling && travelMode === "foot" && !reduceMotion;
-      const driving = isTraveling && travelMode === "vehicle" && !reduceMotion;
+      const walking = (isTraveling || isMoving) && travelMode === "foot" && !reduceMotion;
+      const driving = (isTraveling || isMoving) && travelMode === "vehicle" && !reduceMotion;
       const gait = walking ? Math.sin(time * 0.018) : 0;
       const footfall = walking ? Math.abs(Math.sin(time * 0.009)) : 0;
       const breath = !walking && !driving && !reduceMotion ? Math.sin(time * 0.00125) : 0;
@@ -261,7 +264,7 @@ export default function TrustUniverseExperience() {
       window.removeEventListener("pointermove", onMove);
       cancelAnimationFrame(raf);
     };
-  }, [isTraveling, reduceMotion, travelMode]);
+  }, [isMoving, isTraveling, reduceMotion, travelMode]);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -353,6 +356,109 @@ export default function TrustUniverseExperience() {
     if (next !== guidedIndex) travelTo(GUIDED_ROUTE[next]);
   }, [guidedIndex, travelTo]);
 
+
+  useEffect(() => {
+    if (intro !== "entered" || mode !== "free" || mapOpen || evidenceOpen || accessOpen) {
+      movementKeys.current = {};
+      setIsMoving(false);
+      return;
+    }
+
+    const movement = movementState.current;
+    movement.last = performance.now();
+    let raf = 0;
+    let movingFlag = false;
+
+    const onDown = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      if (["w", "a", "s", "d", "shift", "arrowup", "arrowdown", "arrowleft", "arrowright"].includes(key)) {
+        movementKeys.current[key] = true;
+        if (["w", "a", "s", "d", "arrowup", "arrowdown", "arrowleft", "arrowright"].includes(key)) {
+          event.preventDefault();
+        }
+      }
+    };
+    const onUp = (event: KeyboardEvent) => {
+      movementKeys.current[event.key.toLowerCase()] = false;
+    };
+    const onBlur = () => {
+      movementKeys.current = {};
+    };
+
+    const tick = (time: number) => {
+      const root = rootRef.current;
+      if (!root) return;
+      const dt = Math.min(0.04, Math.max(0.001, (time - movement.last) / 1000));
+      movement.last = time;
+
+      const keys = movementKeys.current;
+      const forwardTarget =
+        (keys.w || keys.arrowup ? 1 : 0) -
+        (keys.s || keys.arrowdown ? 1 : 0);
+      const sideTarget =
+        (keys.d || keys.arrowright ? 1 : 0) -
+        (keys.a || keys.arrowleft ? 1 : 0);
+      const boost = keys.shift ? (travelMode === "vehicle" ? 1.35 : 1.65) : 1;
+      const response = Math.min(1, dt * 8.5);
+
+      movement.forward += (forwardTarget - movement.forward) * response;
+      movement.side += (sideTarget - movement.side) * response;
+
+      const active = Math.abs(movement.forward) > 0.035 || Math.abs(movement.side) > 0.035;
+      if (active !== movingFlag) {
+        movingFlag = active;
+        setIsMoving(active);
+      }
+
+      const pace = travelMode === "vehicle" ? 2.35 : 1;
+      movement.progress += movement.forward * dt * boost * pace;
+      movement.strafe += movement.side * dt * 22 * boost;
+      movement.strafe *= Math.pow(0.985, dt * 60);
+      movement.strafe = Math.max(-34, Math.min(34, movement.strafe));
+
+      const depth = Math.max(-1.4, Math.min(1.4, movement.progress));
+      const stride = Math.sin(time * (travelMode === "vehicle" ? 0.004 : 0.0125)) *
+        Math.min(1, Math.abs(movement.forward) + Math.abs(movement.side));
+      const walkScale = 1.075 + Math.max(-0.012, Math.min(0.046, depth * 0.028)) +
+        (travelMode === "vehicle" && active ? 0.018 : 0);
+
+      root.style.setProperty("--walk-strafe", `${movement.strafe.toFixed(2)}px`);
+      root.style.setProperty("--walk-strafe-near", `${(-movement.strafe * 1.7).toFixed(2)}px`);
+      root.style.setProperty("--walk-bob", `${(reduceMotion ? 0 : stride * 1.45).toFixed(2)}px`);
+      root.style.setProperty("--walk-bob-near", `${(reduceMotion ? 0 : stride * -2.1).toFixed(2)}px`);
+      root.style.setProperty("--walk-scale", walkScale.toFixed(4));
+      root.style.setProperty("--walk-ground", `${(depth * 22).toFixed(2)}px`);
+
+      if (!isTraveling && movement.progress > 1.55) {
+        movement.progress = 0;
+        movement.strafe *= 0.35;
+        const next = (guidedIndex + 1) % GUIDED_ROUTE.length;
+        travelTo(GUIDED_ROUTE[next]);
+      } else if (!isTraveling && movement.progress < -1.55) {
+        movement.progress = 0;
+        movement.strafe *= 0.35;
+        const previous = (guidedIndex - 1 + GUIDED_ROUTE.length) % GUIDED_ROUTE.length;
+        travelTo(GUIDED_ROUTE[previous]);
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("keydown", onDown, { passive: false });
+    window.addEventListener("keyup", onUp);
+    window.addEventListener("blur", onBlur);
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener("keydown", onDown);
+      window.removeEventListener("keyup", onUp);
+      window.removeEventListener("blur", onBlur);
+      cancelAnimationFrame(raf);
+      movementKeys.current = {};
+      setIsMoving(false);
+    };
+  }, [accessOpen, evidenceOpen, guidedIndex, intro, isTraveling, mapOpen, mode, reduceMotion, travelMode, travelTo]);
+
   useEffect(() => {
     if (intro !== "entered" || mode !== "guided" || mapOpen || evidenceOpen || accessOpen) return;
     const onWheel = (event: WheelEvent) => {
@@ -386,8 +492,6 @@ export default function TrustUniverseExperience() {
         if (WORLD_MAP[currentWorld].incident) runIncident();
         else setEvidenceOpen(true);
       }
-      if (mode === "free" && (key === "w" || key === "d" || event.key === "ArrowUp" || event.key === "ArrowRight")) nextWorld();
-      if (mode === "free" && (key === "s" || key === "a" || event.key === "ArrowDown" || event.key === "ArrowLeft")) previousWorld();
       if (mode === "guided" && (event.key === "ArrowRight" || event.key === "ArrowDown")) nextWorld();
       if (mode === "guided" && (event.key === "ArrowLeft" || event.key === "ArrowUp")) previousWorld();
     };
@@ -428,7 +532,7 @@ export default function TrustUniverseExperience() {
   }
 
   return (
-    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + " tu2-mode-" + travelMode + " tu2-explore-" + mode + (destination ? " tu2-traveling" : "") + (highContrast ? " tu2-high-contrast" : "")}>
+    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + " tu2-mode-" + travelMode + " tu2-explore-" + mode + (isMoving ? " tu2-human-moving" : "") + (destination ? " tu2-traveling" : "") + (highContrast ? " tu2-high-contrast" : "")}>
       <div className="tu2-photo-world" aria-hidden="true">
         <div className="tu2-photo-depth" />
         <div className="tu2-near-depth" />
@@ -550,9 +654,9 @@ export default function TrustUniverseExperience() {
 
           {mode === "free" && (
             <>
-              <div className="tu2-reticle" aria-hidden="true"><i /><span>WASD WALK · MOUSE LOOK · SHIFT MOVE FASTER · E INTERACT</span></div>
+              <div className="tu2-reticle" aria-hidden="true"><i /><span>W / S WALK · A / D STRAFE · MOUSE LOOK · SHIFT FASTER · E INTERACT</span></div>
               <div className="tu2-free-nav" aria-label="Free exploration controls">
-                <button onClick={previousWorld} disabled={isTraveling}><span>A / S</span><strong>PREVIOUS DISTRICT</strong></button>
+                <button onClick={previousWorld} disabled={isTraveling}><span>S</span><strong>WALK BACK</strong></button>
                 <button
                   className="primary"
                   onClick={() => world.incident ? runIncident() : setEvidenceOpen(true)}
@@ -560,7 +664,7 @@ export default function TrustUniverseExperience() {
                 >
                   <span>E</span><strong>{world.incident ? "INTERACT / RUN SCENARIO" : "ENTER / INSPECT"}</strong>
                 </button>
-                <button onClick={nextWorld} disabled={isTraveling}><span>W / D</span><strong>NEXT DISTRICT</strong></button>
+                <button onClick={nextWorld} disabled={isTraveling}><span>W</span><strong>WALK FORWARD</strong></button>
                 <button onClick={() => setTravelMode((value) => value === "foot" ? "vehicle" : "foot")} disabled={isTraveling}>
                   <span>V</span><strong>{travelMode === "vehicle" ? "DRIVING" : "WALKING"}</strong>
                 </button>
