@@ -302,7 +302,8 @@ export default function TrustUniverseExperience() {
     setDestination(id);
     setMapOpen(false);
     setEvidenceOpen(false);
-  }, [currentWorld, enterWorld]);
+    window.setTimeout(() => enterWorld(id), reduceMotion ? 20 : 520);
+  }, [currentWorld, enterWorld, reduceMotion]);
 
   const start = (nextMode: EntryMode) => {
     setMode(nextMode);
@@ -387,21 +388,11 @@ export default function TrustUniverseExperience() {
   }
 
   return (
-    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + (highContrast ? " tu2-high-contrast" : "")}>
+    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + (destination ? " tu2-traveling" : "") + (highContrast ? " tu2-high-contrast" : "")}>
       <div className="tu2-photo-world" aria-hidden="true"><div className="tu2-photo-depth" /></div>
-      <div className="tu2-canvas" aria-hidden="true">
-        <TrustUniverseCanvas
-          currentWorld={currentWorld}
-          destination={destination}
-          travelMode="vehicle"
-          quality={quality}
-          phase={phase}
-          reduceMotion={reduceMotion}
-          onEnterWorld={enterWorld}
-          onAutopilotComplete={() => setDestination(null)}
-        />
+      <div className="tu2-security-atmosphere" aria-hidden="true">
+        <i /><i /><i /><i /><i /><i />
       </div>
-
       <div className="tu2-film-grain" aria-hidden="true" />
       <div className="tu2-vignette" aria-hidden="true" />
 
