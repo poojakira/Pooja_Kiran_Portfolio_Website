@@ -539,6 +539,20 @@ export default function TrustUniverseExperience() {
         <div className="tu2-near-depth" />
         <div className="tu2-ground-depth" />
       </div>
+      <div className="tu2-canvas" aria-hidden="true">
+        <TrustUniverseCanvas
+          currentWorld={currentWorld}
+          destination={destination}
+          travelMode={travelMode}
+          quality={quality}
+          phase={phase}
+          reduceMotion={reduceMotion}
+          experienceMode={mode}
+          onEnterWorld={(id) => {
+            if (!isTraveling || mode === "free") enterWorld(id);
+          }}
+        />
+      </div>
       {destination && (
         <div className={"tu2-arrival-preview tu2-world-" + destination} aria-hidden="true">
           <div />
