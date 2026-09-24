@@ -75,9 +75,107 @@ function DecisionPath({ project, index }: { project: Project; index: number }) {
   );
 }
 
+
+function CinematicIntro({ onEnter, onSkip }: { onEnter: () => void; onSkip: () => void }) {
+  return (
+    <div className="fc-intro-screen" role="dialog" aria-modal="true" aria-label="Enter Pooja Kiran cinematic portfolio">
+      <div className="fc-intro-screen-grid" aria-hidden="true" />
+      <div className="fc-intro-screen-line" aria-hidden="true" />
+      <div className="fc-intro-screen-copy">
+        <span className="fc-intro-system">TRUST BOUNDARY / 2026</span>
+        <h1>POOJA KIRAN</h1>
+        <p>SECURITY ENGINEER</p>
+        <div className="fc-intro-sequence">
+          <span>AI AGENT SECURITY</span>
+          <i />
+          <span>CLOUD IDENTITY</span>
+          <i />
+          <span>MODEL SUPPLY CHAIN</span>
+        </div>
+        <div className="fc-intro-screen-actions">
+          <button type="button" onClick={onEnter}>ENTER EXPERIENCE <span>→</span></button>
+          <button type="button" onClick={onSkip}>SKIP TO ENGINEERING</button>
+        </div>
+      </div>
+      <div className="fc-intro-corner fc-intro-corner-a" aria-hidden="true">01 / TRUST</div>
+      <div className="fc-intro-corner fc-intro-corner-b" aria-hidden="true">SYSTEMS THAT CAN ACT</div>
+    </div>
+  );
+}
+
+function RecruiterPanel({ onClose }: { onClose: () => void }) {
+  return (
+    <aside className="fc-recruiter-panel" aria-label="Recruiter quick scan">
+      <div className="fc-recruiter-head">
+        <div>
+          <small>60-SECOND VIEW</small>
+          <strong>Recruiter mode</strong>
+        </div>
+        <button type="button" onClick={onClose} aria-label="Close recruiter mode">×</button>
+      </div>
+      <div className="fc-recruiter-summary">
+        <span>ROLE</span>
+        <h3>Security Engineer</h3>
+        <p>AI security · AWS IAM · model supply-chain · detection engineering</p>
+      </div>
+      <div className="fc-recruiter-stats">
+        <div><small>FLAGSHIP SYSTEMS</small><strong>03</strong></div>
+        <div><small>PASSING TESTS</small><strong>1,047</strong></div>
+        <div><small>IAM RULE IDS</small><strong>25</strong></div>
+      </div>
+      <div className="fc-recruiter-projects">
+        {projects.map((project) => (
+          <a key={project.repository} href={profile.github + "/" + project.repository} target="_blank" rel="noreferrer">
+            <span>{project.number}</span>
+            <div><strong>{project.title}</strong><small>{project.metrics.join(" · ")}</small></div>
+            <b>↗</b>
+          </a>
+        ))}
+      </div>
+      <div className="fc-recruiter-links">
+        <a href={RESUME_URL} download>Download résumé ↓</a>
+        <a href={"mailto:" + profile.email}>Email Pooja ↗</a>
+      </div>
+    </aside>
+  );
+}
+
+function TrustArchitecture() {
+  const nodes = [
+    { code: "01", title: "Agent Execution", sub: "MCP / tool-call boundary" },
+    { code: "02", title: "Cloud Identity", sub: "IAM / authorization boundary" },
+    { code: "03", title: "Model Provenance", sub: "Artifact trust boundary" },
+    { code: "04", title: "Detection", sub: "Telemetry / analyst boundary" },
+  ];
+  return (
+    <section className="fc-trust-map" aria-label="Trust architecture" data-reveal>
+      <div className="fc-trust-map-head">
+        <span className="fc-section-kicker">TRUST ARCHITECTURE</span>
+        <h2>Where trust can break.</h2>
+        <p>Each control sits at a different boundary, but the engineering story is connected end-to-end.</p>
+      </div>
+      <div className="fc-trust-map-stage">
+        <div className="fc-trust-line" aria-hidden="true" />
+        {nodes.map((node, index) => (
+          <div key={node.code} className={"fc-trust-node n" + (index + 1)}>
+            <span>{node.code}</span>
+            <strong>{node.title}</strong>
+            <small>{node.sub}</small>
+          </div>
+        ))}
+        <div className="fc-trust-core">
+          <span>TRUST</span>
+          <strong>ENFORCE</strong>
+          <small>MEASURE · OBSERVE · PROVE</small>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function FreshCinematicPortfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);\n  const [introVisible, setIntroVisible] = useState(true);\n  const [recruiterOpen, setRecruiterOpen] = useState(false);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -244,7 +342,7 @@ export default function FreshCinematicPortfolio() {
           </p>
         </section>
 
-        <section className="fc-project-reel">
+        <TrustArchitecture />\n\n        <section className="fc-project-reel">
           {projects.map((project, index) => (
             <article key={project.repository} className={"fc-project fc-project-" + (index + 1)} data-reveal>
               <div className="fc-project-backdrop" aria-hidden="true">
