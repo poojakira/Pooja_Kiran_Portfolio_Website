@@ -434,6 +434,11 @@ export default function TrustUniverseExperience() {
         <div className="tu2-near-depth" />
         <div className="tu2-ground-depth" />
       </div>
+      {destination && (
+        <div className={"tu2-arrival-preview tu2-world-" + destination} aria-hidden="true">
+          <div />
+        </div>
+      )}
       <div className="tu2-security-atmosphere" aria-hidden="true">
         <i /><i /><i /><i /><i /><i />
       </div>
