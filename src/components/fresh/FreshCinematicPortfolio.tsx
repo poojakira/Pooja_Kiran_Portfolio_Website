@@ -120,7 +120,7 @@ function RecruiterPanel({ onClose }: { onClose: () => void }) {
       </div>
       <div className="fc-recruiter-stats">
         <div><small>FLAGSHIP SYSTEMS</small><strong>03</strong></div>
-        <div><small>PASSING TESTS</small><strong>1,047</strong></div>
+        <div><small>PASSING TESTS</small><strong>1,070</strong></div>
         <div><small>IAM RULE IDS</small><strong>25</strong></div>
       </div>
       <div className="fc-recruiter-projects">
@@ -333,7 +333,7 @@ export default function FreshCinematicPortfolio() {
 
           <div className="fc-hero-evidence">
             <div><small>OPEN-SOURCE SYSTEMS</small><strong>03</strong></div>
-            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,047</strong></div>
+            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,070</strong></div>
             <div><small>IAM RULE IDS</small><strong>25</strong></div>
           </div>
 
@@ -363,7 +363,9 @@ export default function FreshCinematicPortfolio() {
           </p>
         </section>
 
-        <TrustArchitecture />\n\n        <section className="fc-project-reel">
+        <TrustArchitecture />
+
+        <section className="fc-project-reel">
           {projects.map((project, index) => (
             <article key={project.repository} className={"fc-project fc-project-" + (index + 1)} data-reveal>
               <div className="fc-project-backdrop" aria-hidden="true">
