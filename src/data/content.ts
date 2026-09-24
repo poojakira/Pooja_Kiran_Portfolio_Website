@@ -87,7 +87,7 @@ export const SYSTEM_CATEGORIES: CategoryInfo[] = [
 
 export const ABOUT = {
   summary:
-    "Security Engineer with 2+ years of hands-on experience in AI security, detection engineering, and cloud security. Focused on designing security controls and validation frameworks for agentic AI, MCP toolchains, AWS IAM, LLM applications, and model supply-chain risks, with emphasis on secure system design, access control, data-flow constraints, and adversarial testing. Developed and validated security harnesses including 55 MCP prompt-injection patterns, 25 AWS IAM rule IDs, 629 MCP tests, and 230 AWS IAM tests; LLM evaluation artifacts report F1 0.9714 on grouped held-out templates and 0.7188 on the current same-detector novel-phrasing OOD evaluation.",
+    "Security Engineer with 2+ years of hands-on experience in AI security, detection engineering, and cloud security. Focused on designing security controls and validation frameworks for agentic AI, MCP toolchains, AWS IAM, LLM applications, and model supply-chain risks, with emphasis on secure system design, access control, data-flow constraints, and adversarial testing. Developed and validated security harnesses including 55 MCP prompt-injection patterns, 25 AWS IAM rule IDs, 622 MCP tests, and 230 AWS IAM tests; LLM evaluation artifacts report F1 0.9714 on grouped held-out templates and 0.7188 on the current same-detector novel-phrasing OOD evaluation.",
   narrative: [
     "I design and ship open-source security tooling that guards the boundaries where AI agents, tools, identities, data, and model artifacts meet. Not slideware — working, tested, reproducible tools.",
     "These are research and portfolio projects: functional, tested, and open-source, but not hardened for enterprise scale. I'm deliberate about stating what each one does and does not do — the honest limitations are written into every repository.",
@@ -180,18 +180,18 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     title: "Independent AI Security Researcher & Engineer",
     org: "Self-Directed Research",
-    period: "Aug 2024 – Present",
+    period: "Jul 2024 – Present",
     bullets: [
       "Architected and developed AI security tooling across MCP, AWS IAM, and LLM red teaming, translating attack paths into deterministic security controls and automated validation workflows.",
       "Engineered 55 MCP prompt-injection patterns and 25 AWS IAM rule IDs covering AI-agent tool-call and cloud-identity attack surfaces.",
-      "Validated the MCP gateway with 629 passing tests at 78.47% coverage and documented LLM generalization with grouped F1 0.9714 versus current novel-phrasing OOD F1 0.7188.",
+      "Validated the MCP gateway with 622 passing tests at 78% statement coverage and documented LLM generalization with grouped F1 0.9714 versus current novel-phrasing OOD F1 0.7188.",
     ],
   },
   {
-    title: "Business & Compliance Lead | AEROSEC",
+    title: "Business & Compliance Lead |title: "Business and Compliance Lead | AEROSEC Externship",
     org: "Technology Innovation Lab Externship",
     orgDetail: "Honeywell Aerospace Technologies × Arizona State University",
-    period: "Aug 2025 – Dec 2025",
+    period: "Jul 2025 – Nov 2025",
     location: "Tempe, AZ, USA",
     bullets: [
       "Led business and compliance strategy for AEROSEC, focusing on third-party system security, compliance, and commercialization readiness.",
@@ -202,11 +202,11 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     title: "Graduate Teaching Assistant – IT Grader",
     org: "Arizona State University",
-    period: "Jan 2025 – Oct 2025",
+    period: "Dec 2024 – Sep 2025",
     location: "Tempe, AZ, USA",
     bullets: [
-      "Evaluated 85 undergraduate web-development submissions per semester against technical requirements, security concepts, and implementation quality.",
-      "Assessed 52 graduate-level IT-security assignments using rubric-based evaluation of security policies and cybersecurity concepts.",
+      "Managed technical assessment of approximately 85 undergraduate web programming submissions per term against technical requirements, security concepts, and implementation quality.",
+      "Evaluated 52 graduate IT security assignments using rubric-based evaluation of security policies and cybersecurity concepts.",
       "Collaborated with faculty to provide technical feedback supporting students' secure coding practices.",
     ],
   },
