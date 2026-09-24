@@ -233,13 +233,32 @@ export default function TrustUniverseExperience() {
       tx = event.clientX / window.innerWidth - 0.5;
       ty = event.clientY / window.innerHeight - 0.5;
     };
-    const tick = () => {
-      x += (tx - x) * 0.055;
-      y += (ty - y) * 0.055;
-      root.style.setProperty("--photo-x", `${(x * 18).toFixed(2)}px`);
-      root.style.setProperty("--photo-y", `${(y * 10).toFixed(2)}px`);
-      root.style.setProperty("--glass-x", `${(x * -8).toFixed(2)}px`);
+    const tick = (time: number) => {
+      x += (tx - x) * 0.045;
+      y += (ty - y) * 0.045;
+
+      const walking = isTraveling && travelMode === "foot" && !reduceMotion;
+      const driving = isTraveling && travelMode === "vehicle" && !reduceMotion;
+      const gait = walking ? Math.sin(time * 0.018) : 0;
+      const footfall = walking ? Math.abs(Math.sin(time * 0.009)) : 0;
+      const breath = !walking && !driving && !reduceMotion ? Math.sin(time * 0.00125) : 0;
+      const driveFloat = driving ? Math.sin(time * 0.005) : 0;
+
+      const humanY = gait * 1.9 + breath * 0.45 + driveFloat * 0.35;
+      const humanRoll = walking ? gait * 0.13 : driveFloat * 0.035;
+      const forwardScale = walking ? 1.075 + footfall * 0.018 : driving ? 1.105 : 1.075;
+
+      root.style.setProperty("--look-x", `${(x * 22).toFixed(2)}px`);
+      root.style.setProperty("--look-y", `${(y * 13).toFixed(2)}px`);
+      root.style.setProperty("--photo-x", `${(x * 17).toFixed(2)}px`);
+      root.style.setProperty("--photo-y", `${(y * 9 + humanY).toFixed(2)}px`);
+      root.style.setProperty("--near-x", `${(x * -34).toFixed(2)}px`);
+      root.style.setProperty("--near-y", `${(y * -17 - humanY * 1.4).toFixed(2)}px`);
+      root.style.setProperty("--glass-x", `${(x * -9).toFixed(2)}px`);
       root.style.setProperty("--glass-y", `${(y * -5).toFixed(2)}px`);
+      root.style.setProperty("--human-roll", `${humanRoll.toFixed(3)}deg`);
+      root.style.setProperty("--human-scale", forwardScale.toFixed(4));
+
       raf = requestAnimationFrame(tick);
     };
     window.addEventListener("pointermove", onMove, { passive: true });
@@ -248,7 +267,7 @@ export default function TrustUniverseExperience() {
       window.removeEventListener("pointermove", onMove);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isTraveling, reduceMotion, travelMode]);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -303,15 +322,24 @@ export default function TrustUniverseExperience() {
   }, [mode, reduceMotion, runIncident]);
 
   const travelTo = useCallback((id: TrustWorldId) => {
-    if (id === currentWorld) {
-      enterWorld(id);
+    if (id === currentWorld || isTraveling) {
+      if (id === currentWorld) enterWorld(id);
       return;
     }
+
+    if (travelTimer.current) window.clearTimeout(travelTimer.current);
     setDestination(id);
+    setIsTraveling(true);
     setMapOpen(false);
     setEvidenceOpen(false);
-    window.setTimeout(() => enterWorld(id), reduceMotion ? 20 : 520);
-  }, [currentWorld, enterWorld, reduceMotion]);
+
+    const duration = reduceMotion ? 40 : travelMode === "vehicle" ? 1050 : 1900;
+    travelTimer.current = window.setTimeout(() => {
+      enterWorld(id);
+      setIsTraveling(false);
+      travelTimer.current = null;
+    }, duration);
+  }, [currentWorld, enterWorld, isTraveling, reduceMotion, travelMode]);
 
   const start = (nextMode: EntryMode) => {
     setMode(nextMode);
@@ -356,6 +384,7 @@ export default function TrustUniverseExperience() {
         setAccessOpen(false);
       }
       if (intro !== "entered" || mapOpen || evidenceOpen || accessOpen || isTraveling) return;
+      if (event.repeat && ["w","a","s","d","arrowup","arrowdown","arrowleft","arrowright"].includes(key)) return;
       if (key === "m") setMapOpen((value) => !value);
       if (key === "i") setEvidenceOpen((value) => !value);
       if (key === "v") setTravelMode((value) => value === "foot" ? "vehicle" : "foot");
