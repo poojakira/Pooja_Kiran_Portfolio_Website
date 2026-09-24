@@ -432,7 +432,7 @@ export default function TrustUniverseExperience() {
   }
 
   return (
-    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + (destination ? " tu2-traveling" : "") + (highContrast ? " tu2-high-contrast" : "")}>
+    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + " tu2-mode-" + travelMode + (destination ? " tu2-traveling" : "") + (highContrast ? " tu2-high-contrast" : "")}>
       <div className="tu2-photo-world" aria-hidden="true"><div className="tu2-photo-depth" /></div>
       <div className={"tu2-canvas " + (mode === "free" ? "is-free" : "is-guided")} aria-hidden="true">
         <TrustUniverseCanvas
