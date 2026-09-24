@@ -9436,3 +9436,89 @@ body:has(.sketch-site){
   .tu2-travel-transition>i{animation:none!important;transform:none!important}
   .tu2-photo-depth,.tu2-near-depth{transform:none!important}
 }
+
+
+/* TRUST UNIVERSE HUMAN FIRST-PERSON */
+.tu2-canvas{
+  position:absolute;
+  inset:0;
+  z-index:2!important;
+}
+.tu2-canvas.is-guided{
+  opacity:.11;
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+.tu2-canvas.is-free{
+  opacity:.24;
+  pointer-events:auto;
+  mix-blend-mode:screen;
+  transition:opacity .35s ease;
+}
+.tu2-canvas.is-free canvas{
+  cursor:crosshair;
+  filter:saturate(.5) contrast(.96) brightness(.88);
+}
+.tu2-mode-free .tu2-photo-depth{
+  transform:translate3d(var(--photo-x,0),var(--photo-y,0),0) scale(1.09);
+}
+.tu2-mode-free .tu2-story{
+  width:min(330px,28vw);
+  top:104px;
+  opacity:.72;
+  transition:opacity .25s ease;
+}
+.tu2-mode-free .tu2-story:hover{opacity:1}
+.tu2-mode-free .tu2-story p{display:none}
+.tu2-mode-free .tu2-story blockquote{font-size:10px}
+.tu2-mode-free .tu2-system-state{
+  opacity:.72;
+  transition:opacity .25s ease;
+}
+.tu2-mode-free .tu2-system-state:hover{opacity:1}
+.tu2-mode-free .tu2-incident{
+  max-width:450px;
+  opacity:.84;
+}
+.tu2-mode-free .tu2-hud{
+  background:linear-gradient(180deg,rgba(4,7,9,.58),rgba(4,7,9,.12),transparent);
+  border-bottom-color:rgba(255,255,255,.06);
+  backdrop-filter:blur(7px);
+}
+.tu2-mode-free .tu2-reticle{
+  mix-blend-mode:screen;
+}
+.tu2-mode-free .tu2-vignette{
+  background:
+    radial-gradient(circle at center,transparent 48%,rgba(0,0,0,.18) 78%,rgba(0,0,0,.42) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.08),transparent 16%,transparent 82%,rgba(0,0,0,.12));
+}
+.tu2-mode-free .tu2-film-grain{opacity:.03}
+.tu2-mode-free .tu2-security-atmosphere{opacity:.42}
+.tu2-mode-free .tu2-wayfinding button{
+  transform:perspective(700px) rotateX(1deg);
+}
+.tu2-mode-free .tu2-wayfinding button:hover:not(:disabled){
+  transform:perspective(700px) translateY(-4px) scale(1.015);
+}
+.tu2-mode-free .tu2-free-nav{
+  opacity:.8;
+  transition:opacity .22s ease;
+}
+.tu2-mode-free .tu2-free-nav:hover{opacity:1}
+.tu2-mode-free .tu2-photo-world:after{
+  opacity:.07;
+}
+.tu2-mode-free:active .tu2-photo-depth{
+  filter:saturate(.84) contrast(1.07) brightness(.71);
+}
+@media(max-width:980px){
+  .tu2-canvas.is-free{opacity:.18}
+}
+@media(max-width:720px){
+  .tu2-canvas.is-free{opacity:.12;pointer-events:none}
+  .tu2-mode-free .tu2-story{width:auto;opacity:.9}
+}
+@media(prefers-reduced-motion:reduce){
+  .tu2-canvas.is-free{opacity:.14}
+}
