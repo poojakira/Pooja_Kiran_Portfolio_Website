@@ -1,5 +1,5 @@
-import WorldPortfolio from "@/components/world/WorldPortfolio";
+import FreshCinematicPortfolio from "@/components/fresh/FreshCinematicPortfolio";
 
 export default function Home() {
-  return <WorldPortfolio />;
+  return <FreshCinematicPortfolio />;
 }
