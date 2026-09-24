@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
-import { Suspense, useEffect, useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 export type TrustWorldId =
@@ -27,8 +27,8 @@ type TrustUniverseCanvasProps = {
   quality?: "balanced" | "lite";
   phase?: TrustPhase;
   reduceMotion?: boolean;
-  onEnterWorld?: (id: any) => void;
-  onInspectWorld?: (id: any) => void;
+  onEnterWorld?: (id: TrustWorldId) => void;
+  onInspectWorld?: (id: TrustWorldId) => void;
   onTravelModeChange?: (mode: TravelMode) => void;
   onAutopilotComplete?: () => void;
 };
