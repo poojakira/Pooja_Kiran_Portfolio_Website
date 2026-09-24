@@ -175,7 +175,9 @@ function TrustArchitecture() {
 
 export default function FreshCinematicPortfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);\n  const [introVisible, setIntroVisible] = useState(true);\n  const [recruiterOpen, setRecruiterOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [introVisible, setIntroVisible] = useState(true);
+  const [recruiterOpen, setRecruiterOpen] = useState(false);
 
   useEffect(() => {
     const root = rootRef.current;
