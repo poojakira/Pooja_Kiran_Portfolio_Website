@@ -188,15 +188,15 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    title: "Business & Compliance Lead |title: "Business and Compliance Lead | AEROSEC Externship",
+    title: "Business and Compliance Lead | AEROSEC Externship",
     org: "Technology Innovation Lab Externship",
     orgDetail: "Honeywell Aerospace Technologies × Arizona State University",
     period: "Jul 2025 – Nov 2025",
     location: "Tempe, AZ, USA",
     bullets: [
-      "Led business and compliance strategy for AEROSEC, focusing on third-party system security, compliance, and commercialization readiness.",
-      "Developed a funding model that secured $120K in year-one commercialization funding.",
-      "Created a 5-year financial projection modeling growth, costs, and profitability to support commercialization planning.",
+      "Directed business, security, and compliance planning for a $120K first-year passenger-service-system security scenario, translating third-party cybersecurity risk into deployment, operational readiness, and commercialization decisions.",
+      "Owned a five-year financial and deployment model evaluating implementation cost, growth assumptions, and security trade-offs, identifying a scenario with approximately 12% cost savings.",
+      "Presented security, compliance, financial, and deployment recommendations to ASU faculty and Honeywell mentors, supporting risk-informed project strategy and operational readiness decisions.",
     ],
   },
   {
