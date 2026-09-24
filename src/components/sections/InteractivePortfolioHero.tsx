@@ -32,7 +32,7 @@ const stages = {
     eyebrow: "Zone 01 · Agent Execution",
     title: "MCP Agent Security Gateway",
     body: "The first checkpoint represents the boundary before an AI agent can invoke tools: MCP/JSON-RPC policy, prompt-injection signals, capability checks, audit logging, and SIEM validation.",
-    metric: "641 tests · 79.54% statement coverage · 9 Elastic rules",
+    metric: "648 tests · 79.61% statement coverage · 9 Elastic rules",
     href: "#projects",
     action: "Review gateway evidence",
     hook: "Before AI can act, it has to earn the right to act.",
@@ -44,7 +44,7 @@ const stages = {
     eyebrow: "Zone 02 · Identity & Authorization",
     title: "AWS Agent Identity Guard",
     body: "This zone represents the identity layer behind agent actions: risky IAM combinations, AssumeRole, PassRole, wildcard access, trust relationships, and authorization paths.",
-    metric: "230 tests · 25 deterministic IAM rules",
+    metric: "235 tests · 25 deterministic IAM rules",
     href: "#projects",
     action: "Review IAM evidence",
     hook: "Capability is not permission.",
@@ -56,7 +56,7 @@ const stages = {
     eyebrow: "Zone 03 · Model Supply Chain",
     title: "HF Model Provenance Scanner",
     body: "A controlled artifact vault represents model trust before execution: provenance, serialization risk, loader behavior, impersonation signals, configuration anomalies, and supply-chain evidence.",
-    metric: "199 tests · 12/12 core fixtures · 18/18 extended variants",
+    metric: "211 tests · 12/12 core fixtures · 18/18 extended variants",
     href: "#projects",
     action: "Review provenance evidence",
     hook: "If you cannot trace the artifact, you should not trust the outcome.",
@@ -92,7 +92,7 @@ function answerQuestion(raw: string) {
   }
 
   if (q.includes("strongest") || q.includes("best project")) {
-    return "The MCP Agent Security Gateway is the clearest single example of her direction. It sits directly in the agent action path, evaluates MCP and JSON-RPC tool calls, applies policy and prompt-injection signals, records audit evidence, and is currently documented with 641 passing tests, 79.54 percent statement coverage, and 9 Elastic detection rules.";
+    return "The MCP Agent Security Gateway is the clearest single example of her direction. It sits directly in the agent action path, evaluates MCP and JSON-RPC tool calls, applies policy and prompt-injection signals, records audit evidence, and is currently documented with 648 passing tests, 79.61 percent statement coverage, and 9 Elastic detection rules.";
   }
 
   if (q.includes("mcp") || q.includes("agent") || q.includes("tool")) {
@@ -100,11 +100,11 @@ function answerQuestion(raw: string) {
   }
 
   if (q.includes("iam") || q.includes("identity") || q.includes("aws") || q.includes("cloud")) {
-    return "Her AWS Agent Identity Guard is a static IAM analysis system for risky permission combinations and authorization paths, including AssumeRole, PassRole, wildcards, privilege-escalation patterns, and related agent identity risks. The current documented scope includes 25 deterministic rule IDs and 231 passing tests.";
+    return "Her AWS Agent Identity Guard is a static IAM analysis system for risky permission combinations and authorization paths, including AssumeRole, PassRole, wildcards, privilege-escalation patterns, and related agent identity risks. The current documented scope includes 25 deterministic rule IDs and 235 passing tests.";
   }
 
   if (q.includes("model") || q.includes("provenance") || q.includes("supply chain") || q.includes("hugging")) {
-    return "Her model-provenance work treats AI artifacts as part of the software supply chain. The scanner inspects provenance, serialization and loader risk, impersonation signals, configuration anomalies, and supporting evidence without executing untrusted model payloads. The current CI snapshot documents 199 tests, 12 of 12 core fixtures, and 18 of 18 extended variants.";
+    return "Her model-provenance work treats AI artifacts as part of the software supply chain. The scanner inspects provenance, serialization and loader risk, impersonation signals, configuration anomalies, and supporting evidence without executing untrusted model payloads. The current CI snapshot documents 211 tests, 12 of 12 core fixtures, and 18 of 18 extended variants.";
   }
 
   if (q.includes("test") || q.includes("validate") || q.includes("evidence") || q.includes("quality")) {

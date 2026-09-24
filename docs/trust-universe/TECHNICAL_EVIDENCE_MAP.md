@@ -3,8 +3,8 @@
 ## Agent Security City
 Repository: poojakira/mcp-agent-security-gateway
 Verified anchor:
-- 641 passing tests
-- 79.54% statement coverage
+- 648 passing tests
+- 79.61% statement coverage
 - 55 prompt-injection regex patterns
 - 9 Elastic Security rules
 - 21 core SIEM tests
@@ -14,7 +14,7 @@ Boundary: research implementation; heuristic detection has false-positive/false-
 Repository: poojakira/aws-agent-identity-guard
 Verified anchor:
 - 25 deterministic rule IDs
-- 231 passed / 3 skipped in fresh exact-count CI
+- 235 passed / 3 skipped in fresh exact-count CI
 - SARIF 2.1.0
 - CI performance gates: p95 <10ms/policy and >1,000 policies/sec
 Boundary: static analysis; performance claims are scoped CI gates, not production measurements.
@@ -22,7 +22,7 @@ Boundary: static analysis; performance claims are scoped CI gates, not productio
 ## Model Provenance Lab
 Repository: poojakira/hf-model-provenance-scanner
 Verified anchor:
-- 199 passed / 1 skipped + 6 subtests
+- 211 passed / 6 subtests
 - 12/12 core fixtures
 - 18/18 extended variants
 - 3/3 large-scale fixtures

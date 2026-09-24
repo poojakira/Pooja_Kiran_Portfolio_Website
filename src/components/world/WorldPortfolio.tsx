@@ -35,7 +35,7 @@ const worlds: World[] = [
     copy: "An AI system can reason correctly and still make a dangerous tool call. This world visualizes the control boundary between model intent and privileged action.",
     flow: ["AI AGENT", "MCP REQUEST", "SERVER TRUST", "CAPABILITY", "INJECTION", "EGRESS", "BLOCK"],
     outcome: "The request is inspected before downstream execution and the security decision becomes audit evidence.",
-    proof: ["641 passing tests", "55 prompt-injection patterns", "9 Elastic rules"],
+    proof: ["648 passing tests", "55 prompt-injection patterns", "9 Elastic rules"],
     tone: "blue",
   },
   {
@@ -48,7 +48,7 @@ const worlds: World[] = [
     copy: "A valid workload identity can still carry dangerous authority. The district turns roles, trust policies and privilege paths into something you can see spatially.",
     flow: ["WORKLOAD", "ROLE", "TRUST", "PERMISSIONS", "iam:PassRole", "SECOND ROLE", "REMEDIATE"],
     outcome: "Privilege paths are surfaced before deployment so access can be reduced toward least privilege.",
-    proof: ["25 deterministic rule IDs", "231 passing tests", "SARIF 2.1.0"],
+    proof: ["25 deterministic rule IDs", "235 passing tests", "SARIF 2.1.0"],
     tone: "steel",
   },
   {
@@ -61,7 +61,7 @@ const worlds: World[] = [
     copy: "Models arrive as software artifacts with provenance, serialization and dependency risk. This world treats every model as something that must earn trust before loading.",
     flow: ["MODEL", "PROVENANCE", "REPOSITORY", "CONFIG", "FORMAT", "RISK", "QUARANTINE"],
     outcome: "Risk signals are surfaced without executing untrusted artifacts, preserving an inspect-before-load boundary.",
-    proof: ["214 passing tests", "12/12 core fixtures", "18/18 extended variants"],
+    proof: ["211 passing tests", "12/12 core fixtures", "18/18 extended variants"],
     tone: "ice",
   },
   {
@@ -255,7 +255,7 @@ export default function WorldPortfolio() {
 
           <div className="rw-hero-status" aria-label="Portfolio evidence summary">
             <div><small>FLAGSHIP SYSTEMS</small><strong>03</strong></div>
-            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,086</strong></div>
+            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,094</strong></div>
             <div><small>IAM RULE IDS</small><strong>25</strong></div>
           </div>
 

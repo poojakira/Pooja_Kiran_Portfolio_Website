@@ -198,9 +198,9 @@ export default function AuraPortfolioHome() {
           <h2>Built to be inspected.</h2>
         </div>
         <div className="aura-results-grid">
-          <article><strong>641</strong><span>passing tests in MCP Agent Security Gateway</span></article>
+          <article><strong>648</strong><span>passing tests in MCP Agent Security Gateway</span></article>
           <article><strong>25</strong><span>deterministic AWS IAM rule IDs</span></article>
-          <article><strong>199</strong><span>passing tests in model provenance scanner</span></article>
+          <article><strong>211</strong><span>passing tests in model provenance scanner</span></article>
         </div>
       </section>
 

@@ -21,14 +21,14 @@ const text = files
   .join("\n");
 
 const required = [
-  "641 passing tests",
-  "79.54% statement coverage",
-  "231 passing tests",
+  "648 passing tests",
+  "79.61% statement coverage",
+  "235 passing tests",
   "25 IAM rule IDs",
-  "214 passing tests",
+  "211 passing tests",
   "12/12 core",
   "18/18 extended",
-  "1,086",
+  "1,094",
 ];
 
 for (const token of required) {
@@ -38,6 +38,11 @@ for (const token of required) {
 }
 
 const stale = [
+  "207 passing tests", // superseded HF scanner CI evidence
+  "641 passing tests",
+  "231 passing tests",
+  "214 passing tests",
+  "1,086",
   "230 passing tests", // superseded AWS IAM evidence
   "199 passing tests", // superseded HF scanner evidence
   "1,070", // superseded flagship aggregate

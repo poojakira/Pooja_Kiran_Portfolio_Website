@@ -120,7 +120,7 @@ function RecruiterPanel({ onClose }: { onClose: () => void }) {
       </div>
       <div className="fc-recruiter-stats">
         <div><small>FLAGSHIP SYSTEMS</small><strong>03</strong></div>
-        <div><small>PASSING TESTS</small><strong>1,086</strong></div>
+        <div><small>PASSING TESTS</small><strong>1,094</strong></div>
         <div><small>IAM RULE IDS</small><strong>25</strong></div>
       </div>
       <div className="fc-recruiter-projects">
@@ -333,7 +333,7 @@ export default function FreshCinematicPortfolio() {
 
           <div className="fc-hero-evidence">
             <div><small>OPEN-SOURCE SYSTEMS</small><strong>03</strong></div>
-            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,086</strong></div>
+            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,094</strong></div>
             <div><small>IAM RULE IDS</small><strong>25</strong></div>
           </div>
 

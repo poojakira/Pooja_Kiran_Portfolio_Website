@@ -91,7 +91,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
       "Hash-chained audit log + WAL for reconstructable decisions",
     ],
     evidence: [
-      "641 automated tests at 79.54% statement coverage (verified by main CI)",
+      "648 automated tests at 79.61% statement coverage (verified by main CI)",
       "Integrated 9 Elastic detection rules, 6 Atomic Red Team-style attack simulations, and 21 SIEM tests for detection and security-event validation",
       "CI across Python 3.10/3.11/3.12 with Ruff, Pyright, Bandit, pip-audit, CodeQL, Trivy, Grype, SBOM",
       "Docker multi-stage build + Kubernetes deployment templates",
@@ -137,7 +137,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
       "Runs offline — no credentials, no cloud calls",
     ],
     evidence: [
-      "All 25 rule IDs verified through positive/negative tests, parser edge cases, Hypothesis fuzz testing, failure-mode tests, and SARIF validation; 231 passed tests",
+      "All 25 rule IDs verified through positive/negative tests, parser edge cases, Hypothesis fuzz testing, failure-mode tests, and SARIF validation; 235 passed tests",
       "Failure-mode tests + verification metadata pinned to a commit",
       "CI performance gate (p95 < 10ms, >1000 policies/sec)",
       "Terraform + integration examples committed",
