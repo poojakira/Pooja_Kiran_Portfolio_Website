@@ -9022,3 +9022,232 @@ body:has(.sketch-site){
   .tu2-security-atmosphere i{animation:none!important;opacity:.12}
   .tu2-traveling .tu2-photo-depth{filter:saturate(.82) contrast(1.06) brightness(.72);transform:none!important}
 }
+
+
+/* TRUST UNIVERSE INTERACTIVE EXPLORATION */
+.tu2-reticle{
+  position:absolute;
+  z-index:11;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:11px;
+  pointer-events:none;
+  opacity:.72;
+}
+.tu2-reticle i{
+  width:22px;
+  height:22px;
+  border:1px solid rgba(235,242,240,.48);
+  border-radius:50%;
+  position:relative;
+  box-shadow:0 0 22px rgba(180,210,214,.12);
+}
+.tu2-reticle i:before,.tu2-reticle i:after{
+  content:"";
+  position:absolute;
+  background:rgba(235,242,240,.5);
+}
+.tu2-reticle i:before{width:8px;height:1px;left:6px;top:10px}
+.tu2-reticle i:after{width:1px;height:8px;left:10px;top:6px}
+.tu2-reticle span{
+  padding:5px 8px;
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(3,7,9,.48);
+  backdrop-filter:blur(7px);
+  font:600 7px/1 ui-monospace,monospace;
+  letter-spacing:.14em;
+  color:#aebabb;
+}
+.tu2-free-nav{
+  position:absolute;
+  z-index:14;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  display:flex;
+  gap:5px;
+  padding:6px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(4,8,10,.68);
+  backdrop-filter:blur(18px);
+  box-shadow:0 18px 50px rgba(0,0,0,.26);
+}
+.tu2-free-nav button{
+  min-width:118px;
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.018);
+  color:#d9e0de;
+  padding:9px 11px;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  text-align:left;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.tu2-free-nav button:hover:not(:disabled){
+  transform:translateY(-2px);
+  border-color:rgba(158,196,199,.38);
+  background:rgba(132,174,179,.06);
+}
+.tu2-free-nav button.primary{
+  min-width:180px;
+  border-color:rgba(214,195,154,.32);
+  background:rgba(214,195,154,.055);
+}
+.tu2-free-nav button:disabled{opacity:.38;cursor:default}
+.tu2-free-nav span{
+  font:600 7px/1 ui-monospace,monospace;
+  letter-spacing:.13em;
+  color:#819093;
+}
+.tu2-free-nav strong{
+  font:600 8px/1.15 ui-monospace,monospace;
+  letter-spacing:.08em;
+}
+.tu2-wayfinding{
+  position:absolute;
+  z-index:13;
+  inset:0;
+  pointer-events:none;
+}
+.tu2-wayfinding button{
+  position:absolute;
+  pointer-events:auto;
+  min-width:122px;
+  padding:10px 12px;
+  border:1px solid rgba(205,220,221,.18);
+  background:linear-gradient(180deg,rgba(8,13,15,.58),rgba(6,10,12,.78));
+  color:#dce3e1;
+  text-align:left;
+  backdrop-filter:blur(11px);
+  box-shadow:0 15px 45px rgba(0,0,0,.24);
+  cursor:pointer;
+  transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+.tu2-wayfinding button:hover:not(:disabled){
+  transform:translateY(-4px) scale(1.015);
+  border-color:rgba(214,195,154,.46);
+  background:linear-gradient(180deg,rgba(17,24,26,.68),rgba(8,12,14,.86));
+}
+.tu2-wayfinding button:disabled{opacity:.4}
+.tu2-wayfinding .slot-0{left:57%;top:35%}
+.tu2-wayfinding .slot-1{right:8%;top:56%}
+.tu2-wayfinding .slot-2{left:27%;top:62%}
+.tu2-wayfinding button:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:100%;
+  width:1px;
+  height:44px;
+  background:linear-gradient(rgba(214,195,154,.42),transparent);
+}
+.tu2-wayfinding button>span{
+  font:500 17px/1 ui-monospace,monospace;
+  color:rgba(255,255,255,.25);
+}
+.tu2-wayfinding button>strong{
+  display:block;
+  margin-top:6px;
+  font:600 9px/1.2 ui-monospace,monospace;
+  letter-spacing:.08em;
+}
+.tu2-wayfinding button>small{
+  display:block;
+  margin-top:7px;
+  font:600 7px/1 ui-monospace,monospace;
+  letter-spacing:.13em;
+  color:#d7c39a;
+}
+.tu2-travel-transition{
+  position:absolute;
+  z-index:50;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(circle at center,rgba(5,9,11,.24),rgba(3,5,7,.88)),
+    linear-gradient(90deg,rgba(0,0,0,.85),rgba(8,14,17,.5),rgba(0,0,0,.85));
+  backdrop-filter:blur(0);
+  transition:opacity .22s ease,backdrop-filter .45s ease;
+}
+.tu2-travel-transition.active{
+  opacity:1;
+  backdrop-filter:blur(12px);
+}
+.tu2-travel-transition span{
+  font:600 8px/1 ui-monospace,monospace;
+  letter-spacing:.2em;
+  color:#859699;
+}
+.tu2-travel-transition strong{
+  font-size:clamp(22px,3vw,42px);
+  font-weight:430;
+  letter-spacing:-.035em;
+}
+.tu2-travel-transition i{
+  width:min(320px,58vw);
+  height:1px;
+  margin-top:12px;
+  background:rgba(255,255,255,.12);
+  overflow:hidden;
+  position:relative;
+}
+.tu2-travel-transition i:after{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:35%;
+  background:#d7c39a;
+  animation:tu2-travel-progress .92s cubic-bezier(.4,0,.2,1) infinite;
+}
+@keyframes tu2-travel-progress{
+  0%{transform:translateX(-110%)}
+  100%{transform:translateX(390%)}
+}
+.tu2-root:has(.tu2-travel-transition.active) .tu2-photo-depth{
+  transform:translate3d(calc(var(--photo-x,0) * 2.1),calc(var(--photo-y,0) * 1.6),0) scale(1.14);
+  filter:saturate(.55) contrast(1.12) brightness(.48) blur(1.5px);
+}
+.tu2-root:has(.tu2-travel-transition.active) .tu2-story,
+.tu2-root:has(.tu2-travel-transition.active) .tu2-system-state,
+.tu2-root:has(.tu2-travel-transition.active) .tu2-incident,
+.tu2-root:has(.tu2-travel-transition.active) .tu2-free-nav,
+.tu2-root:has(.tu2-travel-transition.active) .tu2-wayfinding{
+  opacity:.2;
+}
+@media(max-width:980px){
+  .tu2-wayfinding .slot-1{right:5%;top:49%}
+  .tu2-wayfinding .slot-2{left:8%;top:58%}
+  .tu2-free-nav button{min-width:92px}
+  .tu2-free-nav button.primary{min-width:145px}
+}
+@media(max-width:720px){
+  .tu2-reticle span{display:none}
+  .tu2-wayfinding{display:none}
+  .tu2-free-nav{
+    left:12px;
+    right:12px;
+    bottom:15px;
+    transform:none;
+    display:grid;
+    grid-template-columns:1fr 1.45fr 1fr;
+  }
+  .tu2-free-nav button{min-width:0;padding:9px 7px}
+  .tu2-free-nav button:nth-child(4){grid-column:1/-1;align-items:center}
+  .tu2-free-nav button span{font-size:6px}
+  .tu2-free-nav button strong{font-size:6.8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .tu2-travel-transition,.tu2-travel-transition i:after,.tu2-free-nav button,.tu2-wayfinding button{transition:none!important;animation:none!important}
+}
