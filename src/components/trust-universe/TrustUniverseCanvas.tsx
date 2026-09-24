@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 export type TrustWorldId =
@@ -27,6 +27,7 @@ type TrustUniverseCanvasProps = {
   quality?: "balanced" | "lite";
   phase?: TrustPhase;
   reduceMotion?: boolean;
+  experienceMode?: "guided" | "free";
   onEnterWorld?: (id: TrustWorldId) => void;
   onInspectWorld?: (id: TrustWorldId) => void;
   onTravelModeChange?: (mode: TravelMode) => void;
@@ -59,6 +60,18 @@ const CAMERA_PRESETS: Record<TrustWorldId, { position: Vec3; target: Vec3 }> = {
   real: { position: [-15, 9, -53], target: [-28, 2.5, -42] },
   vault: { position: [-4, 5, 19], target: [-13, 2.8, 12] },
   observatory: { position: [0, 18, 31], target: [0, 8, 8] },
+};
+const WALK_STARTS: Record<TrustWorldId, Vec3> = {
+  core: [0, 1.68, 15],
+  agent: [0, 1.68, -29],
+  identity: [46, 1.68, -8],
+  model: [49, 1.68, 34],
+  adversarial: [20, 1.68, 58],
+  soc: [-17, 1.68, 45],
+  cloud: [-53, 1.68, 2],
+  real: [-16, 1.68, -53],
+  vault: [-4, 1.68, 20],
+  observatory: [0, 1.68, 31],
 };
 
 const concrete = "#32373a";
@@ -489,6 +502,132 @@ function Rain({ quality, reduceMotion }: { quality: "balanced" | "lite"; reduceM
   );
 }
 
+
+function FirstPersonRig({
+  currentWorld,
+  travelMode = "foot",
+  reduceMotion,
+  onEnterWorld,
+}: Pick<TrustUniverseCanvasProps, "currentWorld" | "travelMode" | "reduceMotion" | "onEnterWorld">) {
+  const { camera, pointer } = useThree();
+  const keys = useRef<Record<string, boolean>>({});
+  const body = useRef(new THREE.Vector3());
+  const velocity = useRef(new THREE.Vector3());
+  const initialized = useRef(false);
+  const lastWorld = useRef<TrustWorldId>(currentWorld);
+  const stepClock = useRef(0);
+  const baseYaw = useRef(0);
+
+  useEffect(() => {
+    const onDown = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      if (["w", "a", "s", "d", "shift", "arrowup", "arrowdown", "arrowleft", "arrowright"].includes(key)) {
+        keys.current[key] = true;
+      }
+    };
+    const onUp = (event: KeyboardEvent) => {
+      keys.current[event.key.toLowerCase()] = false;
+    };
+    const onBlur = () => {
+      keys.current = {};
+      velocity.current.set(0, 0, 0);
+    };
+    window.addEventListener("keydown", onDown);
+    window.addEventListener("keyup", onUp);
+    window.addEventListener("blur", onBlur);
+    return () => {
+      window.removeEventListener("keydown", onDown);
+      window.removeEventListener("keyup", onUp);
+      window.removeEventListener("blur", onBlur);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (initialized.current) return;
+    const start = new THREE.Vector3(...WALK_STARTS[currentWorld]);
+    body.current.set(start.x, 0, start.z);
+    const target = new THREE.Vector3(...WORLD_POSITIONS[currentWorld]);
+    baseYaw.current = Math.atan2(target.x - start.x, -(target.z - start.z));
+    camera.position.set(start.x, start.y, start.z);
+    initialized.current = true;
+    lastWorld.current = currentWorld;
+  }, [camera, currentWorld]);
+
+  useFrame((_, delta) => {
+    if (!initialized.current) return;
+
+    const forwardInput =
+      (keys.current.w || keys.current.arrowup ? 1 : 0) -
+      (keys.current.s || keys.current.arrowdown ? 1 : 0);
+    const sideInput =
+      (keys.current.d || keys.current.arrowright ? 1 : 0) -
+      (keys.current.a || keys.current.arrowleft ? 1 : 0);
+
+    const lookYaw = baseYaw.current - pointer.x * 0.92;
+    const lookPitch = THREE.MathUtils.clamp(pointer.y * 0.34, -0.32, 0.32);
+    const forward = new THREE.Vector3(Math.sin(lookYaw), 0, -Math.cos(lookYaw));
+    const right = new THREE.Vector3(Math.cos(lookYaw), 0, Math.sin(lookYaw));
+    const desired = new THREE.Vector3()
+      .addScaledVector(forward, forwardInput)
+      .addScaledVector(right, sideInput);
+
+    const moving = desired.lengthSq() > 0.001;
+    if (moving) desired.normalize();
+
+    const sprint = Boolean(keys.current.shift);
+    const baseSpeed = travelMode === "vehicle" ? 8.6 : 2.85;
+    const speed = baseSpeed * (sprint ? (travelMode === "vehicle" ? 1.3 : 1.62) : 1);
+    desired.multiplyScalar(speed);
+
+    const response = 1 - Math.exp(-(moving ? 9.5 : 7.2) * delta);
+    velocity.current.lerp(desired, response);
+    body.current.addScaledVector(velocity.current, delta);
+    body.current.x = THREE.MathUtils.clamp(body.current.x, -76, 76);
+    body.current.z = THREE.MathUtils.clamp(body.current.z, -76, 76);
+
+    const horizontalSpeed = Math.hypot(velocity.current.x, velocity.current.z);
+    if (horizontalSpeed > 0.08) stepClock.current += delta * (travelMode === "vehicle" ? 3.1 : 8.6);
+
+    const eyeHeight = travelMode === "vehicle" ? 1.34 : 1.68;
+    const bob = reduceMotion || travelMode === "vehicle"
+      ? 0
+      : Math.sin(stepClock.current) * Math.min(0.036, horizontalSpeed * 0.012);
+    const sway = reduceMotion || travelMode === "vehicle"
+      ? 0
+      : Math.sin(stepClock.current * 0.5) * Math.min(0.012, horizontalSpeed * 0.004);
+
+    camera.position.set(body.current.x, eyeHeight + bob, body.current.z);
+
+    const euler = new THREE.Euler(-lookPitch, lookYaw, -sway, "YXZ");
+    const targetQuaternion = new THREE.Quaternion().setFromEuler(euler);
+    camera.quaternion.slerp(targetQuaternion, 1 - Math.exp(-13 * delta));
+
+    if (camera instanceof THREE.PerspectiveCamera) {
+      const targetFov = travelMode === "vehicle" ? 49 : sprint && moving ? 47 : 43;
+      camera.fov = THREE.MathUtils.lerp(camera.fov, targetFov, 1 - Math.exp(-5 * delta));
+      camera.updateProjectionMatrix();
+    }
+
+    let nearest: TrustWorldId = lastWorld.current;
+    let nearestDistance = Infinity;
+    (Object.keys(WORLD_POSITIONS) as TrustWorldId[]).forEach((id) => {
+      const [x, , z] = WORLD_POSITIONS[id];
+      const d = Math.hypot(body.current.x - x, body.current.z - z);
+      if (d < nearestDistance) {
+        nearestDistance = d;
+        nearest = id;
+      }
+    });
+
+    if (nearest !== lastWorld.current && nearestDistance < 13.5) {
+      lastWorld.current = nearest;
+      onEnterWorld?.(nearest);
+    }
+  });
+
+  return null;
+}
+
 function CameraRig({
   currentWorld,
   destination,
@@ -586,13 +725,22 @@ function Scene(props: TrustUniverseCanvasProps) {
       <Aircraft reduceMotion={reduceMotion} />
       <Rain quality={quality} reduceMotion={reduceMotion} />
 
-      <CameraRig
-        currentWorld={props.currentWorld}
-        destination={props.destination}
-        reduceMotion={props.reduceMotion}
-        onAutopilotComplete={props.onAutopilotComplete}
-        onEnterWorld={props.onEnterWorld}
-      />
+      {props.experienceMode === "free" && !props.destination ? (
+        <FirstPersonRig
+          currentWorld={props.currentWorld}
+          travelMode={props.travelMode}
+          reduceMotion={props.reduceMotion}
+          onEnterWorld={props.onEnterWorld}
+        />
+      ) : (
+        <CameraRig
+          currentWorld={props.currentWorld}
+          destination={props.destination}
+          reduceMotion={props.reduceMotion}
+          onAutopilotComplete={props.onAutopilotComplete}
+          onEnterWorld={props.onEnterWorld}
+        />
+      )}
     </>
   );
 }
