@@ -19,29 +19,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: '22'
-          cache: 'npm'
-
+          node-version: "22"
+          cache: npm
       - name: Install dependencies
         run: npm ci
-
+      - name: Dependency security review
+        run: |
+          npm audit --json > audit-report.json || true
+          node scripts/review-audit-report.mjs
+      - name: Evidence consistency
+        run: npm test
       - name: Lint
         run: npm run lint
-
       - name: Type-check
         run: npm run type-check
-
-      - name: Evidence consistency test
-        run: npm test
-
-      - name: Build
+      - name: Build static export
         run: npm run build
-
+      - name: Verify static export semantics and assets
+        run: node scripts/check-export.mjs
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

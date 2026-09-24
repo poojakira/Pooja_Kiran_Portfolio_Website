@@ -1,4 +1,4 @@
-name: Production Gate
+name: Build and Security Gate
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: production-gate-${{ github.workflow }}-${{ github.ref }}
+  group: build-security-gate-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -19,18 +19,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22"
           cache: npm
       - name: Install locked dependencies
         run: npm ci
-      - name: Gate 1
+      - name: Dependency security review
+        run: |
+          npm audit --json > audit-report.json || true
+          node scripts/review-audit-report.mjs
+      - name: Evidence consistency
         run: npm test
-      - name: Gate 2
+      - name: Lint
         run: npm run lint
-      - name: Gate 3
+      - name: Type check
         run: npm run type-check
-      - name: Gate 4
+      - name: Static production export
         run: npm run build
+      - name: Export semantics and asset integrity
+        run: node scripts/check-export.mjs
