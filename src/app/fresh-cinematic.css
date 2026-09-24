@@ -302,7 +302,7 @@ h1,h2,h3,h4,p,blockquote{margin:0}
 .fc-intro-screen-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(255,255,255,.16),transparent);opacity:.55}
 .fc-intro-screen-copy{text-align:center;width:min(900px,calc(100% - 40px));padding:40px}
 .fc-intro-system{font:600 .58rem/1 var(--font-geist-mono),monospace;letter-spacing:.18em;color:#7f929c}
-.fc-intro-screen h1{margin:28px 0 4px;font-size:clamp(4.2rem,11vw,10.5rem);line-height:.82;letter-spacing:-.08em;font-weight:520}
+.fc-intro-title{margin:28px 0 4px;font-size:clamp(4.2rem,11vw,10.5rem);line-height:.82;letter-spacing:-.08em;font-weight:520}
 .fc-intro-screen-copy>p{font-size:clamp(1rem,1.8vw,1.5rem);letter-spacing:.22em;color:#d7b36b}
 .fc-intro-sequence{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px;font:500 .54rem/1 var(--font-geist-mono),monospace;letter-spacing:.1em;color:#788992}
 .fc-intro-sequence i{width:28px;height:1px;background:rgba(255,255,255,.18)}
@@ -376,7 +376,7 @@ h1,h2,h3,h4,p,blockquote{margin:0}
 }
 @media(max-width:600px){
   .fc-intro-screen-copy{padding:24px}
-  .fc-intro-screen h1{font-size:clamp(4rem,21vw,6.4rem)}
+  .fc-intro-title{font-size:clamp(4rem,21vw,6.4rem)}
   .fc-intro-corner{display:none}
   .fc-recruiter-panel{padding:22px}
   .fc-recruiter-stats{grid-template-columns:1fr 1fr}

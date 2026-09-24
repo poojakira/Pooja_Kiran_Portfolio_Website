@@ -83,7 +83,7 @@ function CinematicIntro({ onEnter, onSkip }: { onEnter: () => void; onSkip: () =
       <div className="fc-intro-screen-line" aria-hidden="true" />
       <div className="fc-intro-screen-copy">
         <span className="fc-intro-system">TRUST BOUNDARY / 2026</span>
-        <h1>POOJA KIRAN</h1>
+        <div className="fc-intro-title" aria-hidden="true">POOJA KIRAN</div>
         <p>SECURITY ENGINEER</p>
         <div className="fc-intro-sequence">
           <span>AI AGENT SECURITY</span>
@@ -120,7 +120,7 @@ function RecruiterPanel({ onClose }: { onClose: () => void }) {
       </div>
       <div className="fc-recruiter-stats">
         <div><small>FLAGSHIP SYSTEMS</small><strong>03</strong></div>
-        <div><small>PASSING TESTS</small><strong>1,070</strong></div>
+        <div><small>PASSING TESTS</small><strong>1,086</strong></div>
         <div><small>IAM RULE IDS</small><strong>25</strong></div>
       </div>
       <div className="fc-recruiter-projects">
@@ -333,7 +333,7 @@ export default function FreshCinematicPortfolio() {
 
           <div className="fc-hero-evidence">
             <div><small>OPEN-SOURCE SYSTEMS</small><strong>03</strong></div>
-            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,070</strong></div>
+            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,086</strong></div>
             <div><small>IAM RULE IDS</small><strong>25</strong></div>
           </div>
 

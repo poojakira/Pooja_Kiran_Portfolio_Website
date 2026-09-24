@@ -65,7 +65,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
     url: "https://github.com/poojakira/mcp-agent-security-gateway",
     title: "MCP Agent Security Gateway",
     category: "Agent & Tool Security",
-    status: "Oct 2025 – Sep 2026 · Active · open source",
+    status: "Jul 2026 – Present · Active · open source",
     language: "Python · MCP · JSON-RPC 2.0 · FastAPI · Docker · Kubernetes · Elastic/SIEM",
     stars: 17,
     forks: 5,
@@ -91,7 +91,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
       "Hash-chained audit log + WAL for reconstructable decisions",
     ],
     evidence: [
-      "629 automated tests at 78.47% coverage (verified by main CI)",
+      "641 automated tests at 79.54% statement coverage (verified by main CI)",
       "Integrated 9 Elastic detection rules, 6 Atomic Red Team-style attack simulations, and 21 SIEM tests for detection and security-event validation",
       "CI across Python 3.10/3.11/3.12 with Ruff, Pyright, Bandit, pip-audit, CodeQL, Trivy, Grype, SBOM",
       "Docker multi-stage build + Kubernetes deployment templates",
@@ -137,7 +137,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
       "Runs offline — no credentials, no cloud calls",
     ],
     evidence: [
-      "All 25 rule IDs verified through positive/negative tests, parser edge cases, Hypothesis fuzz testing, failure-mode tests, and SARIF validation; 230 passed tests",
+      "All 25 rule IDs verified through positive/negative tests, parser edge cases, Hypothesis fuzz testing, failure-mode tests, and SARIF validation; 231 passed tests",
       "Failure-mode tests + verification metadata pinned to a commit",
       "CI performance gate (p95 < 10ms, >1000 policies/sec)",
       "Terraform + integration examples committed",

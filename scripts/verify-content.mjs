@@ -23,12 +23,12 @@ const text = files
 const required = [
   "641 passing tests",
   "79.54% statement coverage",
-  "230 passing tests",
+  "231 passing tests",
   "25 IAM rule IDs",
-  "199 passing tests",
+  "214 passing tests",
   "12/12 core",
   "18/18 extended",
-  "1,070",
+  "1,086",
 ];
 
 for (const token of required) {
@@ -38,6 +38,9 @@ for (const token of required) {
 }
 
 const stale = [
+  "230 passing tests", // superseded AWS IAM evidence
+  "199 passing tests", // superseded HF scanner evidence
+  "1,070", // superseded flagship aggregate
   "1,047 documented passing tests",
   "1,058 documented passing tests",
   "622 passing tests",
