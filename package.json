@@ -13,7 +13,7 @@
     "test": "node scripts/verify-content.mjs"
   },
   "dependencies": {
-    "@react-three/drei": "^9.88.17",
+    "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.15.19",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
