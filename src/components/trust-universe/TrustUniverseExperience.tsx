@@ -1,8 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { RESUME_URL, profile } from "@/data/portfolio";
 import type { TravelMode, TrustPhase, TrustWorldId } from "@/components/trust-universe/TrustUniverseCanvas";
+
+const TrustUniverseCanvas = dynamic(
+  () => import("@/components/trust-universe/TrustUniverseCanvas"),
+  { ssr: false },
+);
 
 type EntryMode = "guided" | "free";
 type IntroStage = "boot" | "verified" | "ready" | "entered";
