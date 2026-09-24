@@ -427,6 +427,7 @@ export default function TrustUniverseExperience() {
       root.style.setProperty("--walk-bob", `${(reduceMotion ? 0 : stride * 1.45).toFixed(2)}px`);
       root.style.setProperty("--walk-bob-near", `${(reduceMotion ? 0 : stride * -2.1).toFixed(2)}px`);
       root.style.setProperty("--walk-scale", walkScale.toFixed(4));
+      root.style.setProperty("--walk-scale-near", (1.14 + (walkScale - 1.075) * 1.2).toFixed(4));
       root.style.setProperty("--walk-ground", `${(depth * 22).toFixed(2)}px`);
 
       if (!isTraveling && movement.progress > 1.55) {
