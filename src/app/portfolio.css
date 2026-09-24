@@ -9711,7 +9711,7 @@ body:has(.sketch-site){
       calc(var(--near-y,0px) + var(--walk-bob-near,0px)),
       0
     )
-    scale(calc(1.14 + (var(--walk-scale,1.075) - 1.075) * 1.2));
+    scale(var(--walk-scale-near,1.14));
   will-change:transform;
 }
 .tu2-explore-free .tu2-ground-depth{
