@@ -8977,3 +8977,48 @@ body:has(.sketch-site){
 @media(prefers-reduced-motion:reduce){
   .tu2-photo-depth,.tu2-photo-world:before{transform:none!important;transition:none!important}
 }
+
+
+/* TRUST UNIVERSE STABLE CINEMATIC DOM LAYER */
+.tu2-security-atmosphere{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:.48;
+}
+.tu2-security-atmosphere i{
+  position:absolute;
+  display:block;
+  height:1px;
+  width:24vw;
+  min-width:180px;
+  background:linear-gradient(90deg,transparent,rgba(132,185,193,.34),rgba(215,195,154,.18),transparent);
+  filter:blur(.15px);
+  opacity:.35;
+  animation:tu2DataTrace 11s linear infinite;
+}
+.tu2-security-atmosphere i:nth-child(1){left:-18vw;top:22%;animation-delay:-2s}
+.tu2-security-atmosphere i:nth-child(2){left:-30vw;top:38%;width:34vw;animation-delay:-6.5s;opacity:.22}
+.tu2-security-atmosphere i:nth-child(3){left:-24vw;top:58%;width:28vw;animation-delay:-9s}
+.tu2-security-atmosphere i:nth-child(4){left:-36vw;top:72%;width:40vw;animation-delay:-4s;opacity:.2}
+.tu2-security-atmosphere i:nth-child(5){left:-16vw;top:31%;width:18vw;animation-delay:-11s;opacity:.18}
+.tu2-security-atmosphere i:nth-child(6){left:-28vw;top:84%;width:31vw;animation-delay:-7.5s;opacity:.16}
+@keyframes tu2DataTrace{
+  0%{transform:translate3d(-8vw,0,0);opacity:0}
+  12%{opacity:.34}
+  75%{opacity:.25}
+  100%{transform:translate3d(138vw,0,0);opacity:0}
+}
+.tu2-traveling .tu2-photo-depth{
+  filter:saturate(.68) contrast(1.1) brightness(.58) blur(.8px);
+  transform:translate3d(var(--photo-x,0),var(--photo-y,0),0) scale(1.095);
+}
+.tu2-traveling .tu2-vignette{background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.12) 48%,rgba(0,0,0,.5))}
+.tu2-root:not(.tu2-traveling) .tu2-photo-depth{transition:filter .55s ease,transform .75s cubic-bezier(.16,1,.3,1)}
+.tu2-canvas{display:none!important}
+@media(prefers-reduced-motion:reduce){
+  .tu2-security-atmosphere i{animation:none!important;opacity:.12}
+  .tu2-traveling .tu2-photo-depth{filter:saturate(.82) contrast(1.06) brightness(.72);transform:none!important}
+}
