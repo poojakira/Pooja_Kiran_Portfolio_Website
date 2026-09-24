@@ -75,7 +75,7 @@ const WORLDS: World[] = [
     problem: "A valid workload identity can still carry excessive or dangerous authority through wildcards, role assumption, iam:PassRole, weak trust, and broad service permissions.",
     control: "AWS Agent Identity Guard performs deterministic static IAM analysis before deployment and emits CI-ready findings including SARIF.",
     why: "For autonomous workloads, blast radius is defined by the authority attached to identity.",
-    evidence: ["25 deterministic IAM rule IDs", "230 passing tests in the validated suite", "SARIF 2.1.0 output", "CI policy gates and scoped performance checks"],
+    evidence: ["25 deterministic IAM rule IDs", "231 passing tests in the validated suite", "SARIF 2.1.0 output", "CI policy gates and scoped performance checks"],
     limitation: "Static analysis does not model every organization-wide or runtime permission interaction.",
     repo: "aws-agent-identity-guard",
     incident: {
@@ -94,7 +94,7 @@ const WORLDS: World[] = [
     problem: "Model artifacts and repositories can carry provenance, impersonation, unsafe serialization, dependency, and supply-chain risk before inference begins.",
     control: "HF Model Provenance Scanner performs non-executing static inspection across supported model and configuration formats, then produces structured findings and evidence.",
     why: "Trust should be established before an artifact is loaded into a trusted environment.",
-    evidence: ["199 passing tests in the current validated suite", "Committed red-team fixtures", "Pickle / SafeTensors / GGUF / ONNX / Keras paths", "Provenance and impersonation checks"],
+    evidence: ["214 passing tests in the current validated suite", "Committed red-team fixtures", "Pickle / SafeTensors / GGUF / ONNX / Keras paths", "Provenance and impersonation checks"],
     limitation: "Fixture-suite detection is scoped evidence, not a universal accuracy claim for every model or attack.",
     repo: "hf-model-provenance-scanner",
     incident: {

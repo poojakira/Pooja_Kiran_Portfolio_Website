@@ -48,7 +48,7 @@ const worlds: World[] = [
     copy: "A valid workload identity can still carry dangerous authority. The district turns roles, trust policies and privilege paths into something you can see spatially.",
     flow: ["WORKLOAD", "ROLE", "TRUST", "PERMISSIONS", "iam:PassRole", "SECOND ROLE", "REMEDIATE"],
     outcome: "Privilege paths are surfaced before deployment so access can be reduced toward least privilege.",
-    proof: ["25 deterministic rule IDs", "230 passing tests", "SARIF 2.1.0"],
+    proof: ["25 deterministic rule IDs", "231 passing tests", "SARIF 2.1.0"],
     tone: "steel",
   },
   {
@@ -61,7 +61,7 @@ const worlds: World[] = [
     copy: "Models arrive as software artifacts with provenance, serialization and dependency risk. This world treats every model as something that must earn trust before loading.",
     flow: ["MODEL", "PROVENANCE", "REPOSITORY", "CONFIG", "FORMAT", "RISK", "QUARANTINE"],
     outcome: "Risk signals are surfaced without executing untrusted artifacts, preserving an inspect-before-load boundary.",
-    proof: ["199 passing tests", "12/12 core fixtures", "18/18 extended variants"],
+    proof: ["214 passing tests", "12/12 core fixtures", "18/18 extended variants"],
     tone: "ice",
   },
   {
@@ -255,7 +255,7 @@ export default function WorldPortfolio() {
 
           <div className="rw-hero-status" aria-label="Portfolio evidence summary">
             <div><small>FLAGSHIP SYSTEMS</small><strong>03</strong></div>
-            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,070</strong></div>
+            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,086</strong></div>
             <div><small>IAM RULE IDS</small><strong>25</strong></div>
           </div>
 
