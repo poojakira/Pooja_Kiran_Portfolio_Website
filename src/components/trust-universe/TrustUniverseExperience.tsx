@@ -1,8 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { RESUME_URL, profile } from "@/data/portfolio";
 import type { TravelMode, TrustPhase, TrustWorldId } from "@/components/trust-universe/TrustUniverseCanvas";
+
+const TrustUniverseCanvas = dynamic(
+  () => import("@/components/trust-universe/TrustUniverseCanvas"),
+  { ssr: false },
+);
 
 type EntryMode = "guided" | "free";
 type IntroStage = "boot" | "verified" | "ready" | "entered";
@@ -326,7 +332,7 @@ export default function TrustUniverseExperience() {
   }, [guidedIndex, travelTo]);
 
   useEffect(() => {
-    if (intro !== "entered" || mapOpen || evidenceOpen || accessOpen) return;
+    if (intro !== "entered" || mode !== "guided" || mapOpen || evidenceOpen || accessOpen) return;
     const onWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaY) < 18 || wheelLocked.current || isTraveling) return;
       event.preventDefault();
@@ -339,7 +345,7 @@ export default function TrustUniverseExperience() {
     };
     window.addEventListener("wheel", onWheel, { passive: false });
     return () => window.removeEventListener("wheel", onWheel);
-  }, [accessOpen, evidenceOpen, intro, isTraveling, mapOpen, nextWorld, previousWorld, reduceMotion]);
+  }, [accessOpen, evidenceOpen, intro, isTraveling, mapOpen, mode, nextWorld, previousWorld, reduceMotion]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -357,12 +363,12 @@ export default function TrustUniverseExperience() {
         if (WORLD_MAP[currentWorld].incident) runIncident();
         else setEvidenceOpen(true);
       }
-      if (key === "w" || event.key === "ArrowUp" || event.key === "ArrowRight" || key === "d") nextWorld();
-      if (key === "s" || event.key === "ArrowDown" || event.key === "ArrowLeft" || key === "a") previousWorld();
+      if (mode === "guided" && (event.key === "ArrowRight" || event.key === "ArrowDown")) nextWorld();
+      if (mode === "guided" && (event.key === "ArrowLeft" || event.key === "ArrowUp")) previousWorld();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [accessOpen, currentWorld, evidenceOpen, intro, isTraveling, mapOpen, nextWorld, previousWorld, runIncident]);
+  }, [accessOpen, currentWorld, evidenceOpen, intro, isTraveling, mapOpen, mode, nextWorld, previousWorld, runIncident]);
 
   const phaseIndex = PHASES.indexOf(phase);
   const progress = useMemo(() => ((guidedIndex + 1) / GUIDED_ROUTE.length) * 100, [guidedIndex]);
@@ -399,6 +405,19 @@ export default function TrustUniverseExperience() {
   return (
     <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + (destination ? " tu2-traveling" : "") + (highContrast ? " tu2-high-contrast" : "")}>
       <div className="tu2-photo-world" aria-hidden="true"><div className="tu2-photo-depth" /></div>
+      <div className={"tu2-canvas " + (mode === "free" ? "is-free" : "is-guided")} aria-hidden="true">
+        <TrustUniverseCanvas
+          currentWorld={currentWorld}
+          destination={destination}
+          travelMode={travelMode}
+          quality={quality}
+          phase={phase}
+          reduceMotion={reduceMotion}
+          experienceMode={mode}
+          onEnterWorld={enterWorld}
+          onAutopilotComplete={() => setDestination(null)}
+        />
+      </div>
       <div className="tu2-security-atmosphere" aria-hidden="true">
         <i /><i /><i /><i /><i /><i />
       </div>
@@ -510,7 +529,7 @@ export default function TrustUniverseExperience() {
 
           {mode === "free" && (
             <>
-              <div className="tu2-reticle" aria-hidden="true"><i /><span>LOOK AROUND · MOVE WITH W A S D</span></div>
+              <div className="tu2-reticle" aria-hidden="true"><i /><span>WASD WALK · MOUSE LOOK · SHIFT MOVE FASTER · E INTERACT</span></div>
               <div className="tu2-free-nav" aria-label="Free exploration controls">
                 <button onClick={previousWorld} disabled={isTraveling}><span>A / S</span><strong>PREVIOUS DISTRICT</strong></button>
                 <button
