@@ -4,8 +4,16 @@ import crypto from "node:crypto";
 const files = [
   "src/data/portfolio.ts",
   "src/data/content.ts",
+  "src/data/projects.ts",
+  "src/data/trustUniverse.ts",
   "src/app/page.tsx",
   "src/components/fresh/FreshCinematicPortfolio.tsx",
+  "src/components/aura/AuraPortfolioHome.tsx",
+  "src/components/world/WorldPortfolio.tsx",
+  "src/components/sections/InteractivePortfolioHero.tsx",
+  "src/components/trust-universe/TrustUniverseExperience.tsx",
+  "docs/trust-universe/TECHNICAL_EVIDENCE_MAP.md",
+  "README.md",
 ];
 
 const text = files
