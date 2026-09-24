@@ -56,7 +56,7 @@ const WORLDS: World[] = [
     problem: "An AI agent can turn a model decision into a tool call that touches APIs, files, processes, networks, databases, and cloud services.",
     control: "MCP Agent Security Gateway inspects MCP / JSON-RPC tool calls before execution using server trust, capability checks, prompt-injection signals, semantic intent, process-spawn checks, network-egress policy, and auditable decisions.",
     why: "The boundary that matters is the point where intent becomes action.",
-    evidence: ["629 passing tests in the current validated suite", "50+ prompt-injection detection patterns", "Elastic / SIEM detection content", "Hash-chained audit evidence"],
+    evidence: ["641 passing tests in the current validated suite", "50+ prompt-injection detection patterns", "Elastic / SIEM detection content", "Hash-chained audit evidence"],
     limitation: "Research implementation. Heuristic detection can miss malicious input or flag benign input, and only traffic routed through the control is governed.",
     repo: "mcp-agent-security-gateway",
     incident: {
