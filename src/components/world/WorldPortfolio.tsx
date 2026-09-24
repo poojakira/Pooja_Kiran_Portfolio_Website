@@ -35,7 +35,7 @@ const worlds: World[] = [
     copy: "An AI system can reason correctly and still make a dangerous tool call. This world visualizes the control boundary between model intent and privileged action.",
     flow: ["AI AGENT", "MCP REQUEST", "SERVER TRUST", "CAPABILITY", "INJECTION", "EGRESS", "BLOCK"],
     outcome: "The request is inspected before downstream execution and the security decision becomes audit evidence.",
-    proof: ["629 passing tests", "55 prompt-injection patterns", "9 Elastic rules"],
+    proof: ["641 passing tests", "55 prompt-injection patterns", "9 Elastic rules"],
     tone: "blue",
   },
   {
@@ -255,7 +255,7 @@ export default function WorldPortfolio() {
 
           <div className="rw-hero-status" aria-label="Portfolio evidence summary">
             <div><small>FLAGSHIP SYSTEMS</small><strong>03</strong></div>
-            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,058</strong></div>
+            <div><small>DOCUMENTED PASSING TESTS</small><strong>1,070</strong></div>
             <div><small>IAM RULE IDS</small><strong>25</strong></div>
           </div>
 
