@@ -7,10 +7,13 @@ const minimumRank = severityRank.high;
 
 const allowed = {
   next: "Static-export portfolio: next.config.mjs sets output:'export'; no Next server, middleware, image optimizer server, server actions, or RSC endpoint is deployed from this repo.",
+  "@next/eslint-plugin-next": "Lint-only transitive path through eslint-config-next; not shipped in the static exported portfolio runtime.",
+  "eslint-config-next": "Lint-only package used by CI; not shipped in the static exported portfolio runtime.",
   postcss: "Build-time dependency under the static-export Next toolchain. No CSS source maps are accepted from untrusted users at runtime.",
   glob: "Build/lint dependency path. Repository does not expose glob CLI or shell command execution to users.",
   "js-yaml": "Build/development dependency path. Repository does not parse untrusted YAML at runtime.",
   "lodash.pick": "Transitive @react-three/drei dependency used for static portfolio rendering; no untrusted object merge/pick API is exposed to users.",
+  "@react-three/drei": "Static 3D rendering dependency. The flagged issue is inherited through lodash.pick/uuid, and this site does not expose user-controlled object processing through drei.",
 };
 
 function fail(message) {
