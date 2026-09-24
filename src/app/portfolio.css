@@ -8842,3 +8842,138 @@ body:has(.sketch-site){
 @media(prefers-reduced-motion:reduce){
   .tu2-film-grain{animation:none}.tu2-smart-glass,.tu2-map-grid button,.tu2-guided-track i{transition:none!important}
 }
+
+
+/* TRUST UNIVERSE PHOTOREAL ARCHITECTURE OVERRIDE */
+.tu2-root{
+  --tu2-photo:url("https://images.unsplash.com/photo-1774449977770-47161a3f708e?auto=format&fit=crop&w=2600&q=86");
+  --tu2-photo-position:center 58%;
+}
+.tu2-world-core{
+  --tu2-photo:url("https://images.unsplash.com/photo-1774449977770-47161a3f708e?auto=format&fit=crop&w=2600&q=86");
+  --tu2-photo-position:center 58%;
+}
+.tu2-world-agent{
+  --tu2-photo:url("https://images.unsplash.com/photo-1771964427867-1b734fc7f5a7?auto=format&fit=crop&w=2600&q=86");
+  --tu2-photo-position:center 48%;
+}
+.tu2-world-identity{
+  --tu2-photo:url("https://images.unsplash.com/photo-1775933802859-27889463db79?auto=format&fit=crop&w=2600&q=86");
+  --tu2-photo-position:center 54%;
+}
+.tu2-world-model{
+  --tu2-photo:url("https://images.unsplash.com/photo-1773148374151-ba5658056828?auto=format&fit=crop&w=2600&q=86");
+  --tu2-photo-position:center 50%;
+}
+.tu2-world-adversarial{
+  --tu2-photo:url("https://images.unsplash.com/photo-1751200065687-a126e7c304da?auto=format&fit=crop&w=2600&q=84");
+  --tu2-photo-position:center 48%;
+}
+.tu2-world-soc{
+  --tu2-photo:url("https://images.unsplash.com/photo-1751200065687-a126e7c304da?auto=format&fit=crop&w=2600&q=84");
+  --tu2-photo-position:center 45%;
+}
+.tu2-world-cloud{
+  --tu2-photo:url("https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?auto=format&fit=crop&w=2600&q=86");
+  --tu2-photo-position:center 50%;
+}
+.tu2-world-real{
+  --tu2-photo:url("https://images.unsplash.com/photo-1774124937855-0f309a6dc233?auto=format&fit=crop&w=2600&q=86");
+  --tu2-photo-position:center 52%;
+}
+.tu2-world-vault{
+  --tu2-photo:url("https://images.unsplash.com/photo-1774449977770-47161a3f708e?auto=format&fit=crop&w=2600&q=86");
+  --tu2-photo-position:center 72%;
+}
+.tu2-world-observatory{
+  --tu2-photo:url("https://images.unsplash.com/photo-1771964427867-1b734fc7f5a7?auto=format&fit=crop&w=2600&q=88");
+  --tu2-photo-position:center 38%;
+}
+.tu2-photo-world{
+  position:absolute;
+  inset:-3.5%;
+  z-index:0;
+  overflow:hidden;
+  background:#050708;
+}
+.tu2-photo-depth{
+  position:absolute;
+  inset:-3%;
+  background-image:
+    linear-gradient(90deg,rgba(1,4,6,.74) 0%,rgba(2,5,7,.36) 42%,rgba(1,4,6,.12) 68%,rgba(1,3,5,.45) 100%),
+    linear-gradient(180deg,rgba(3,6,8,.08) 0%,rgba(2,5,6,.06) 42%,rgba(0,0,0,.48) 100%),
+    var(--tu2-photo);
+  background-size:cover;
+  background-position:var(--tu2-photo-position);
+  transform:translate3d(var(--photo-x,0),var(--photo-y,0),0) scale(1.075);
+  filter:saturate(.82) contrast(1.06) brightness(.75);
+  transition:filter .7s ease,opacity .7s ease;
+  will-change:transform;
+}
+.tu2-photo-world:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 74% 22%,rgba(210,230,232,.12),transparent 22%),
+    linear-gradient(112deg,transparent 0 31%,rgba(218,231,232,.07) 38%,transparent 45%),
+    linear-gradient(72deg,transparent 0 68%,rgba(255,255,255,.035) 74%,transparent 79%);
+  transform:translate3d(var(--glass-x,0),var(--glass-y,0),0);
+  mix-blend-mode:screen;
+}
+.tu2-photo-world:after{
+  content:"";
+  position:absolute;
+  inset:-20% 0;
+  z-index:3;
+  pointer-events:none;
+  opacity:.13;
+  background-image:repeating-linear-gradient(100deg,transparent 0 14px,rgba(206,225,228,.18) 15px,transparent 17px 34px);
+  transform:translate3d(calc(var(--photo-x,0) * -.2),-2%,0);
+  filter:blur(.3px);
+  mask-image:linear-gradient(180deg,transparent,black 12%,black 80%,transparent);
+}
+.tu2-canvas{
+  z-index:1!important;
+  opacity:.12;
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+.tu2-canvas canvas{
+  filter:saturate(.38) contrast(.92) brightness(.82);
+}
+.tu2-vignette{z-index:4}
+.tu2-film-grain{z-index:5;opacity:.045}
+.tu2-intro,.tu2-hud,.tu2-story,.tu2-system-state,.tu2-incident,.tu2-controls,.tu2-guided,.tu2-finale{z-index:10}
+.tu2-intro-shade{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.42) 42%,rgba(0,0,0,.08) 72%,rgba(0,0,0,.32) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.16),transparent 60%,rgba(0,0,0,.28));
+}
+.tu2-intro-boot .tu2-photo-depth,.tu2-intro-verified .tu2-photo-depth{filter:saturate(.5) contrast(1.08) brightness(.28)}
+.tu2-intro-ready .tu2-photo-depth{filter:saturate(.82) contrast(1.06) brightness(.75)}
+.tu2-story,
+.tu2-system-state,
+.tu2-incident,
+.tu2-hud,
+.tu2-controls button,
+.tu2-guided{
+  text-shadow:0 2px 14px rgba(0,0,0,.72);
+}
+.tu2-story h1{font-weight:470}
+.tu2-smart-glass h1{font-weight:440}
+.tu2-world-cloud .tu2-photo-depth{filter:saturate(.7) contrast(1.12) brightness(.62)}
+.tu2-world-adversarial .tu2-photo-depth{filter:saturate(.56) contrast(1.12) brightness(.52)}
+.tu2-world-soc .tu2-photo-depth{filter:saturate(.6) contrast(1.1) brightness(.5)}
+.tu2-world-real .tu2-photo-depth{filter:saturate(.78) contrast(1.05) brightness(.72)}
+.tu2-world-observatory .tu2-photo-depth{filter:saturate(.86) contrast(1.02) brightness(.83)}
+@media(max-width:720px){
+  .tu2-photo-world{inset:-1.5%}
+  .tu2-photo-depth{transform:scale(1.035);background-position:var(--tu2-photo-position)}
+  .tu2-canvas{opacity:.07}
+}
+@media(prefers-reduced-motion:reduce){
+  .tu2-photo-depth,.tu2-photo-world:before{transform:none!important;transition:none!important}
+}
