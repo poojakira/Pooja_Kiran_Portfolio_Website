@@ -9,6 +9,7 @@ import {
   profile,
   projects,
   RESUME_URL,
+  SITE_PATH,
   skillGroups,
 } from "@/data/portfolio";
 
@@ -51,37 +52,13 @@ const focusAreas = [
   },
 ] as const;
 
-const HERO_PARTS = ["00", "01", "02", "03", "04", "05", "06", "07", "08a", "08b"] as const;
-const HERO_PART_BASE =
-  "https://raw.githubusercontent.com/poojakira/Pooja_Kiran_Portfolio_Website/main/.hero-assets";
+const HERO_IMAGE = `${SITE_PATH}/trust-universe-hero.webp`;
 
 export default function CinematicSecurityPortfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [universeOpen, setUniverseOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [heroImage, setHeroImage] = useState("");
-
-  useEffect(() => {
-    let active = true;
-
-    Promise.all(
-      HERO_PARTS.map(async (part) => {
-        const response = await fetch(`${HERO_PART_BASE}/part${part}.txt`, { cache: "force-cache" });
-        if (!response.ok) throw new Error(`Hero asset part ${part} failed to load`);
-        return (await response.text()).trim();
-      }),
-    )
-      .then((parts) => {
-        if (active) setHeroImage(`data:image/webp;base64,${parts.join("")}`);
-      })
-      .catch(() => {
-        if (active) setHeroImage("");
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
+  const heroImage = HERO_IMAGE;
 
   useEffect(() => {
     const root = rootRef.current;
@@ -311,6 +288,19 @@ export default function CinematicSecurityPortfolio() {
                   </div>
                 )}
                 <div className="cyber-command-shade" aria-hidden="true" />
+                <div className="cyber-world-hotspots" aria-label="Trust Universe districts">
+                  <button type="button" className="hotspot-agent" onClick={() => setUniverseOpen(true)}><span>01</span><strong>AGENT CITY</strong><small>MCP / AI SYSTEMS</small></button>
+                  <button type="button" className="hotspot-model" onClick={() => setUniverseOpen(true)}><span>03</span><strong>MODEL LAB</strong><small>SUPPLY-CHAIN SECURITY</small></button>
+                  <button type="button" className="hotspot-identity" onClick={() => setUniverseOpen(true)}><span>02</span><strong>IDENTITY</strong><small>AWS IAM</small></button>
+                  <button type="button" className="hotspot-soc" onClick={() => setUniverseOpen(true)}><span>05</span><strong>SOC</strong><small>DETECTION / RESPONSE</small></button>
+                  <button type="button" className="hotspot-real" onClick={() => setUniverseOpen(true)}><span>07</span><strong>REAL WORLD</strong><small>AVIATION / SYSTEMS</small></button>
+                </div>
+                <aside className="cyber-live-panel" aria-label="Validated engineering evidence">
+                  <span>VALIDATED ENGINEERING</span>
+                  <div><small>MCP TESTS</small><strong>629</strong></div>
+                  <div><small>IAM RULE IDS</small><strong>25</strong></div>
+                  <div><small>PROVENANCE TESTS</small><strong>199</strong></div>
+                </aside>
                 {heroImage && (
                   <>
                     <span className="cyber-eye cyber-eye-left" aria-hidden="true"><i /></span>
