@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./portfolio.css";
-import "./world-portfolio.css";
+import "./fresh-cinematic.css";
 import { profile, SITE_PATH } from "@/data/portfolio";
 
 const geist = localFont({ src: "./fonts/GeistVF.woff", variable: "--font-geist", display: "swap", weight: "100 900" });
 const geistMono = localFont({ src: "./fonts/GeistMonoVF.woff", variable: "--font-geist-mono", display: "swap", weight: "100 900" });
-const description = "Pooja Kiran — Security Engineer focused on AI agent security, cloud identity, model provenance, detection engineering, and evidence-driven security systems.";
+const description = "Pooja Kiran — Security Engineer building security boundaries for AI agents, cloud identities, model supply chains, adversarial validation, and detection engineering.";
 export const metadata: Metadata = {
   metadataBase: new URL("https://poojakira.github.io"),
   title: "Pooja Kiran | Security Engineer",

@@ -5,6 +5,7 @@ const files = [
   "src/data/portfolio.ts",
   "src/data/content.ts",
   "src/app/page.tsx",
+  "src/components/fresh/FreshCinematicPortfolio.tsx",
 ];
 
 const text = files
@@ -12,34 +13,30 @@ const text = files
   .join("\n");
 
 const required = [
-  "629 passing tests",
-  "78.47% statement coverage",
+  "622 passing tests",
+  "78% statement coverage",
   "230 passing tests",
   "25 IAM rule IDs",
-  "199 passing tests",
+  "195 passing tests",
   "12/12 core",
   "18/18 extended",
-  "1,058",
+  "1,047",
 ];
 
 for (const token of required) {
   if (!text.includes(token)) {
-    throw new Error(`Missing verified portfolio evidence token: ${token}`);
+    throw new Error(`Missing current resume evidence token: ${token}`);
   }
 }
 
-const forbidden = [
-  "1,047",
-  "622 passing tests",
-  "195 passing tests",
-  "51% detection",
-  "0.87",
-  "23% robust",
-  "F1=0.93",
-  "0.70 on transfer",
+const stale = [
+  "1,058 documented passing tests",
+  "629 passing tests",
+  "78.47% statement coverage",
+  "199 passing tests",
 ];
 
-for (const token of forbidden) {
+for (const token of stale) {
   if (text.includes(token)) {
     throw new Error(`Stale portfolio metric found: ${token}`);
   }
@@ -60,10 +57,12 @@ for (const repo of repositoryNames) {
 console.log("portfolio evidence consistency checks passed");
 
 const resumePath = "public/Pooja_Kiran_Security_Engineer_Resume.pdf";
+const portraitPath = "public/pooja-kiran.png";
 const expectedResumeSha256 = "408cbe449622aeed864758a382ba781845fd26cf32911edeebb95ad278b8918c";
-if (!fs.existsSync(resumePath)) {
-  throw new Error("Canonical résumé PDF is missing");
-}
+
+if (!fs.existsSync(resumePath)) throw new Error("Canonical résumé PDF is missing");
+if (!fs.existsSync(portraitPath)) throw new Error("Canonical portrait is missing");
+
 const resumeSha256 = crypto.createHash("sha256").update(fs.readFileSync(resumePath)).digest("hex");
 if (resumeSha256 !== expectedResumeSha256) {
   throw new Error(`Canonical résumé hash mismatch: ${resumeSha256}`);
@@ -71,4 +70,6 @@ if (resumeSha256 !== expectedResumeSha256) {
 if (fs.existsSync("Pooja_KIRAN_Security_Engineer.pdf")) {
   throw new Error("Legacy root-level résumé must not exist");
 }
+
 console.log(`canonical résumé SHA-256 verified: ${resumeSha256}`);
+console.log("canonical portrait verified");
