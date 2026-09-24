@@ -1,640 +1,555 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
-import {
-  guidedRoute,
-  type UniverseWorldId,
-  universeWorldMap,
-  universeWorlds,
-} from "@/data/trustUniverse";
-import { experience, profile, projects, RESUME_URL, skillGroups } from "@/data/portfolio";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { RESUME_URL, profile } from "@/data/portfolio";
+import type { TrustPhase, TrustWorldId } from "@/components/trust-universe/TrustUniverseCanvas";
 
 const TrustUniverseCanvas = dynamic(
   () => import("@/components/trust-universe/TrustUniverseCanvas"),
   { ssr: false },
 );
 
-type ExperienceMode = "explore" | "guided" | "recruiter" | "engineering";
-type TravelMode = "foot" | "vehicle";
+type EntryMode = "guided" | "free";
+type IntroStage = "boot" | "verified" | "ready" | "entered";
 
-const SESSION_KEY = "pooja-trust-universe-visited";
-const ONBOARDING_KEY = "pooja-trust-universe-onboarded";
+type World = {
+  id: TrustWorldId;
+  code: string;
+  name: string;
+  short: string;
+  place: string;
+  thesis: string;
+  problem: string;
+  control: string;
+  why: string;
+  evidence: string[];
+  limitation?: string;
+  incident?: {
+    title: string;
+    path: string[];
+    result: string;
+  };
+  repo?: string;
+};
 
-function readVisited() {
-  if (typeof window === "undefined") return new Set<UniverseWorldId>();
-  try {
-    const raw = sessionStorage.getItem(SESSION_KEY);
-    return new Set<UniverseWorldId>((raw ? JSON.parse(raw) : []) as UniverseWorldId[]);
-  } catch {
-    return new Set<UniverseWorldId>();
-  }
-}
+const WORLDS: World[] = [
+  {
+    id: "core",
+    code: "00",
+    name: "THE TRUST CORE",
+    short: "Trust Core",
+    place: "Glass command center · Central skyline",
+    thesis: "EVERY SYSTEM DEPENDS ON TRUST.",
+    problem: "Autonomous software crosses tool, identity, model, runtime, infrastructure, and observability boundaries before one real-world action completes.",
+    control: "The Trust Core makes those boundaries visible as one connected security architecture instead of isolated portfolio pages.",
+    why: "The visitor sees the system first, then the security layer, then the engineering evidence.",
+    evidence: ["One connected world", "Guided and free exploration", "Evidence-first project rooms", "Accessible text experience"],
+  },
+  {
+    id: "agent",
+    code: "01",
+    name: "AGENT CITY",
+    short: "Agent City",
+    place: "Autonomous services district",
+    thesis: "CAPABILITY IS NOT PERMISSION.",
+    problem: "An AI agent can turn a model decision into a tool call that touches APIs, files, processes, networks, databases, and cloud services.",
+    control: "MCP Agent Security Gateway inspects MCP / JSON-RPC tool calls before execution using server trust, capability checks, prompt-injection signals, semantic intent, process-spawn checks, network-egress policy, and auditable decisions.",
+    why: "The boundary that matters is the point where intent becomes action.",
+    evidence: ["629 passing tests in the current validated suite", "50+ prompt-injection detection patterns", "Elastic / SIEM detection content", "Hash-chained audit evidence"],
+    limitation: "Research implementation. Heuristic detection can miss malicious input or flag benign input, and only traffic routed through the control is governed.",
+    repo: "mcp-agent-security-gateway",
+    incident: {
+      title: "Compromised agent requests a dangerous tool action",
+      path: ["AI AGENT", "MCP REQUEST", "SERVER TRUST", "CAPABILITY", "INTENT", "INJECTION", "PROCESS", "EGRESS", "BLOCK"],
+      result: "The action is intercepted before downstream execution and the decision becomes security telemetry.",
+    },
+  },
+  {
+    id: "identity",
+    code: "02",
+    name: "IDENTITY DISTRICT",
+    short: "Identity",
+    place: "Cloud authorization towers",
+    thesis: "IDENTITY IS NOT AUTHORIZATION.",
+    problem: "A valid workload identity can still carry excessive or dangerous authority through wildcards, role assumption, iam:PassRole, weak trust, and broad service permissions.",
+    control: "AWS Agent Identity Guard performs deterministic static IAM analysis before deployment and emits CI-ready findings including SARIF.",
+    why: "For autonomous workloads, blast radius is defined by the authority attached to identity.",
+    evidence: ["25 deterministic IAM rule IDs", "230 passing tests in the validated suite", "SARIF 2.1.0 output", "CI policy gates and scoped performance checks"],
+    limitation: "Static analysis does not model every organization-wide or runtime permission interaction.",
+    repo: "aws-agent-identity-guard",
+    incident: {
+      title: "AI workload requests a privilege path",
+      path: ["WORKLOAD", "ROLE", "TRUST POLICY", "PERMISSIONS", "iam:PassRole", "SECOND ROLE", "SENSITIVE SERVICE", "REMEDIATE"],
+      result: "The privilege path is surfaced before deployment and can be reduced toward least privilege.",
+    },
+  },
+  {
+    id: "model",
+    code: "03",
+    name: "MODEL SUPPLY-CHAIN LAB",
+    short: "Model Lab",
+    place: "Isolated research campus",
+    thesis: "A MODEL IS SOFTWARE YOU DID NOT WRITE.",
+    problem: "Model artifacts and repositories can carry provenance, impersonation, unsafe serialization, dependency, and supply-chain risk before inference begins.",
+    control: "HF Model Provenance Scanner performs non-executing static inspection across supported model and configuration formats, then produces structured findings and evidence.",
+    why: "Trust should be established before an artifact is loaded into a trusted environment.",
+    evidence: ["199 passing tests in the current validated suite", "Committed red-team fixtures", "Pickle / SafeTensors / GGUF / ONNX / Keras paths", "Provenance and impersonation checks"],
+    limitation: "Fixture-suite detection is scoped evidence, not a universal accuracy claim for every model or attack.",
+    repo: "hf-model-provenance-scanner",
+    incident: {
+      title: "Untrusted model artifact enters the inspection pipeline",
+      path: ["MODEL", "PROVENANCE", "REPOSITORY", "CONFIG", "DEPENDENCIES", "FORMAT", "RISK SIGNAL", "QUARANTINE"],
+      result: "Risk signals are surfaced before loading and the artifact can be quarantined for review.",
+    },
+  },
+  {
+    id: "adversarial",
+    code: "04",
+    name: "ADVERSARIAL TESTING FACILITY",
+    short: "Red Team Lab",
+    place: "Underground validation facility",
+    thesis: "GOOD SECURITY TESTING MEASURES WHERE THE SYSTEM FAILS.",
+    problem: "A detector that only succeeds on familiar attack templates can create false confidence.",
+    control: "The LLM red-team work uses adversarial categories, normalization, regression data, grouped splitting, held-out evaluation, and novel-phrasing evaluation to measure generalization.",
+    why: "Security evidence is more credible when failures, false positives, and generalization gaps are visible.",
+    evidence: ["Prompt-injection categories", "TF-IDF + logistic regression baseline", "Grouped template splitting", "Held-out and novel-phrasing evaluation"],
+    incident: {
+      title: "Visitor launches an adversarial prompt",
+      path: ["ATTACK", "NORMALIZE", "FEATURES", "DETECT", "CLASSIFY", "POLICY", "LOG", "RESULT"],
+      result: "The result records both success and failure instead of hiding the difficult cases.",
+    },
+  },
+  {
+    id: "soc",
+    code: "05",
+    name: "SECURITY OPERATIONS CENTER",
+    short: "SOC",
+    place: "Enterprise detection floor",
+    thesis: "OBSERVABILITY PRECEDES RESPONSE.",
+    problem: "A security decision that cannot be reconstructed is difficult to investigate, validate, or improve.",
+    control: "Security telemetry, audit events, Elastic / SIEM detections, correlations, and attack simulations turn control decisions into evidence analysts can inspect.",
+    why: "This connects a workload event to an analyst without pretending every screen is a threat map.",
+    evidence: ["Elastic Security content", "ECS-oriented telemetry", "Audit logging", "Detection and event-correlation work"],
+    incident: {
+      title: "Agent City event reaches the SOC",
+      path: ["WORKLOAD", "TELEMETRY", "ELASTIC / SIEM", "DETECTION", "CORRELATION", "ALERT", "INVESTIGATE", "RESPOND"],
+      result: "The visitor can see one event travel from source control to analyst context.",
+    },
+  },
+  {
+    id: "cloud",
+    code: "06",
+    name: "CLOUD & INFRASTRUCTURE DISTRICT",
+    short: "Infrastructure",
+    place: "Data-center and service corridor",
+    thesis: "INFRASTRUCTURE MUST MAKE AUTHORITY EXPLICIT.",
+    problem: "Workloads inherit risk from service identity, network reachability, deployment configuration, runtime posture, and CI/CD decisions.",
+    control: "The district spatializes AWS, containers, Kubernetes, Terraform, GitHub Actions, service identity, network egress, least privilege, and code-scanning concepts supported by the projects.",
+    why: "Cloud security becomes easier to understand when topology, identity, and enforcement are visible in the same physical system.",
+    evidence: ["AWS IAM", "Docker and Kubernetes artifacts", "Terraform examples", "GitHub Actions security checks"],
+    limitation: "The universe describes documented engineering controls; it does not claim unverified enterprise production scale.",
+  },
+  {
+    id: "real",
+    code: "07",
+    name: "REAL-WORLD IMPACT ZONE",
+    short: "Real World",
+    place: "Airport and critical-service corridor",
+    thesis: "TRUST HAS CONSEQUENCES.",
+    problem: "Cybersecurity protects systems people rely on, not abstract code in isolation.",
+    control: "AEROSEC / aviation compliance work becomes the bridge from one API request to booking systems, operations, aircraft, passengers, businesses, and infrastructure.",
+    why: "The story zooms out from one technical control to the real operational environment that depends on secure software.",
+    evidence: ["Third-party system risk", "Aviation security / compliance context", "Operational-readiness perspective", "Business and commercialization analysis"],
+    limitation: "This section shows the operational context of the project and does not present simulated incidents as real-world deployments.",
+    incident: {
+      title: "One third-party API request crosses an operational chain",
+      path: ["API REQUEST", "APPLICATION", "SERVICE SYSTEM", "AIRPORT", "AIRCRAFT", "OPERATIONS", "PASSENGERS", "BUSINESS"],
+      result: "The impact view shows why security architecture matters beyond the codebase.",
+    },
+  },
+  {
+    id: "vault",
+    code: "08",
+    name: "ENGINEERING VAULT",
+    short: "Engineering Vault",
+    place: "Secure technical archive",
+    thesis: "SHOW EVIDENCE. DO NOT MAKE MARKETING CLAIMS.",
+    problem: "Cinematic storytelling is meaningless if technical reviewers cannot inspect the implementation and its limits.",
+    control: "Each evidence room exposes the problem, threat model, architecture, design decisions, implementation, tests, results, limitations, gaps, future work, and repository.",
+    why: "Recruiters can understand the system quickly while engineers can drill into what actually exists.",
+    evidence: ["Architecture", "Tests and CI", "Security controls", "Known limitations and repository links"],
+  },
+  {
+    id: "observatory",
+    code: "09",
+    name: "THE OBSERVATORY",
+    short: "Observatory",
+    place: "Sunrise above the universe",
+    thesis: "SECURITY ISN'T THE DESTINATION. TRUST IS.",
+    problem: "The final scene should connect the engineering work back to the person building it.",
+    control: "A quiet human ending: Pooja Kiran, Security Engineer, focused on controls for autonomous software systems, cloud identities, model supply chains, adversarial validation, and security telemetry.",
+    why: "The experience ends with a clear identity and direct paths to the résumé, GitHub, LinkedIn, and contact.",
+    evidence: ["Résumé", "GitHub", "LinkedIn", "Project repositories"],
+  },
+];
 
-function writeVisited(visited: Set<UniverseWorldId>) {
-  if (typeof window === "undefined") return;
-  sessionStorage.setItem(SESSION_KEY, JSON.stringify(Array.from(visited)));
-}
+const WORLD_MAP = Object.fromEntries(WORLDS.map((world) => [world.id, world])) as Record<TrustWorldId, World>;
+const GUIDED_ROUTE: TrustWorldId[] = ["core", "agent", "identity", "model", "adversarial", "soc", "cloud", "real", "vault", "observatory"];
+const PHASES: TrustPhase[] = ["normal", "threat", "analysis", "control", "recovery"];
 
 export default function TrustUniverseExperience() {
-  const [mode, setMode] = useState<ExperienceMode>("explore");
-  const [currentWorld, setCurrentWorld] = useState<UniverseWorldId>("trust");
-  const [destination, setDestination] = useState<UniverseWorldId | null>(null);
-  const [travelMode, setTravelMode] = useState<TravelMode>("foot");
-  const [mapOpen, setMapOpen] = useState(false);
-  const [quickOpen, setQuickOpen] = useState(false);
-  const [askOpen, setAskOpen] = useState(false);
-  const [briefingWorld, setBriefingWorld] = useState<UniverseWorldId | null>(null);
-  const [inspectWorld, setInspectWorld] = useState<UniverseWorldId | null>(null);
-  const [visited, setVisited] = useState<Set<UniverseWorldId>>(new Set());
+  const [intro, setIntro] = useState<IntroStage>("boot");
+  const [mode, setMode] = useState<EntryMode>("free");
+  const [currentWorld, setCurrentWorld] = useState<TrustWorldId>("core");
+  const [destination, setDestination] = useState<TrustWorldId | null>(null);
   const [guidedIndex, setGuidedIndex] = useState(0);
-  const [askText, setAskText] = useState("");
-  const [systemAnswer, setSystemAnswer] = useState("");
+  const [phase, setPhase] = useState<TrustPhase>("normal");
+  const [mapOpen, setMapOpen] = useState(false);
+  const [evidenceOpen, setEvidenceOpen] = useState(false);
+  const [accessOpen, setAccessOpen] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [highContrast, setHighContrast] = useState(false);
+  const [textMode, setTextMode] = useState(false);
   const [quality, setQuality] = useState<"balanced" | "lite">("balanced");
-  const [onboardingOpen, setOnboardingOpen] = useState(true);
-  const askInput = useRef<HTMLInputElement>(null);
+  const timers = useRef<number[]>([]);
+  const wheelLocked = useRef(false);
+
+  const world = WORLD_MAP[currentWorld];
 
   useEffect(() => {
-    setVisited(readVisited());
-    setOnboardingOpen(sessionStorage.getItem(ONBOARDING_KEY) !== "1");
-    const lowPower =
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      window.innerWidth < 760 ||
-      navigator.hardwareConcurrency <= 4;
-    if (lowPower) setQuality("lite");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const lite = window.innerWidth < 760 || (navigator.hardwareConcurrency || 8) <= 4;
+    setReduceMotion(reduced);
+    if (lite) setQuality("lite");
+
+    const ids = [
+      window.setTimeout(() => setIntro("verified"), reduced ? 100 : 850),
+      window.setTimeout(() => setIntro("ready"), reduced ? 180 : 1750),
+    ];
+    return () => ids.forEach((id) => window.clearTimeout(id));
   }, []);
+
+  const clearIncidentTimers = useCallback(() => {
+    timers.current.forEach((id) => window.clearTimeout(id));
+    timers.current = [];
+  }, []);
+
+  useEffect(() => clearIncidentTimers, [clearIncidentTimers]);
+
+  const runIncident = useCallback(() => {
+    clearIncidentTimers();
+    setPhase("threat");
+    if (reduceMotion) {
+      setPhase("control");
+      return;
+    }
+    const steps: Array<[TrustPhase, number]> = [
+      ["analysis", 1250],
+      ["control", 2800],
+      ["recovery", 4450],
+      ["normal", 6100],
+    ];
+    timers.current = steps.map(([next, delay]) => window.setTimeout(() => setPhase(next), delay));
+  }, [clearIncidentTimers, reduceMotion]);
+
+  const enterWorld = useCallback((id: TrustWorldId) => {
+    setCurrentWorld(id);
+    setDestination(null);
+    setPhase("normal");
+    const index = GUIDED_ROUTE.indexOf(id);
+    if (index >= 0) setGuidedIndex(index);
+    if (mode === "guided" && WORLD_MAP[id].incident) {
+      window.setTimeout(runIncident, reduceMotion ? 50 : 800);
+    }
+  }, [mode, reduceMotion, runIncident]);
+
+  const travelTo = useCallback((id: TrustWorldId) => {
+    if (id === currentWorld) {
+      enterWorld(id);
+      return;
+    }
+    setDestination(id);
+    setMapOpen(false);
+    setEvidenceOpen(false);
+  }, [currentWorld, enterWorld]);
+
+  const start = (nextMode: EntryMode) => {
+    setMode(nextMode);
+    setIntro("entered");
+    setCurrentWorld("core");
+    setGuidedIndex(0);
+    setPhase("normal");
+  };
+
+  const nextWorld = useCallback(() => {
+    const next = Math.min(GUIDED_ROUTE.length - 1, guidedIndex + 1);
+    if (next !== guidedIndex) travelTo(GUIDED_ROUTE[next]);
+  }, [guidedIndex, travelTo]);
+
+  const previousWorld = useCallback(() => {
+    const next = Math.max(0, guidedIndex - 1);
+    if (next !== guidedIndex) travelTo(GUIDED_ROUTE[next]);
+  }, [guidedIndex, travelTo]);
+
+  useEffect(() => {
+    if (intro !== "entered" || mode !== "guided" || mapOpen || evidenceOpen || accessOpen) return;
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaY) < 18 || wheelLocked.current) return;
+      event.preventDefault();
+      wheelLocked.current = true;
+      if (event.deltaY > 0) nextWorld();
+      else previousWorld();
+      window.setTimeout(() => {
+        wheelLocked.current = false;
+      }, reduceMotion ? 200 : 1050);
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => window.removeEventListener("wheel", onWheel);
+  }, [accessOpen, evidenceOpen, intro, mapOpen, mode, nextWorld, previousWorld, reduceMotion]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName ?? "")) {
-        if (event.key === "Escape") {
-          setAskOpen(false);
-          setMapOpen(false);
-          setQuickOpen(false);
-          setInspectWorld(null);
-        }
-        return;
-      }
-
-      if (event.key.toLowerCase() === "m") {
-        event.preventDefault();
-        setMapOpen((value) => !value);
-      }
-
-      if (event.key === "/") {
-        event.preventDefault();
-        setAskOpen(true);
-        window.setTimeout(() => askInput.current?.focus(), 30);
-      }
-
       if (event.key === "Escape") {
         setMapOpen(false);
-        setQuickOpen(false);
-        setAskOpen(false);
-        setInspectWorld(null);
-        if (mode === "recruiter" || mode === "engineering") setMode("explore");
+        setEvidenceOpen(false);
+        setAccessOpen(false);
       }
+      if (intro === "entered" && event.key.toLowerCase() === "m") setMapOpen((value) => !value);
+      if (intro === "entered" && event.key.toLowerCase() === "e") setEvidenceOpen((value) => !value);
+      if (intro === "entered" && event.key === "ArrowRight" && mode === "guided") nextWorld();
+      if (intro === "entered" && event.key === "ArrowLeft" && mode === "guided") previousWorld();
     };
-
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [mode]);
+  }, [intro, mode, nextWorld, previousWorld]);
 
-  const world = universeWorldMap[currentWorld];
+  const phaseIndex = PHASES.indexOf(phase);
+  const progress = useMemo(() => ((guidedIndex + 1) / GUIDED_ROUTE.length) * 100, [guidedIndex]);
 
-  const closeOnboarding = () => {
-    sessionStorage.setItem(ONBOARDING_KEY, "1");
-    setOnboardingOpen(false);
-  };
-
-  const chooseEntryMode = (nextMode: ExperienceMode) => {
-    closeOnboarding();
-    setMode(nextMode);
-    if (nextMode === "guided") {
-      setGuidedIndex(0);
-      setCurrentWorld("trust");
-      setBriefingWorld("trust");
-    }
-  };
-
-  const markVisited = (id: UniverseWorldId) => {
-    setVisited((previous) => {
-      const next = new Set(previous);
-      next.add(id);
-      writeVisited(next);
-      return next;
-    });
-  };
-
-  const enterWorld = (id: UniverseWorldId) => {
-    setCurrentWorld(id);
-    setDestination(null);
-
-    if (!visited.has(id)) {
-      setBriefingWorld(id);
-      markVisited(id);
-    }
-
-    if (mode === "guided") {
-      const index = guidedRoute.indexOf(id);
-      if (index >= 0) setGuidedIndex(index);
-    }
-  };
-
-  const travelTo = (id: UniverseWorldId, useAutopilot = true) => {
-    setMapOpen(false);
-    setInspectWorld(null);
-
-    if (id === currentWorld) {
-      if (!visited.has(id)) {
-        setBriefingWorld(id);
-        markVisited(id);
-      }
-      return;
-    }
-
-    if (useAutopilot) {
-      setDestination(id);
-      if (travelMode === "foot") setTravelMode("vehicle");
-    } else {
-      setDestination(id);
-    }
-  };
-
-  const runAsk = () => {
-    const q = askText.trim().toLowerCase();
-    if (!q) return;
-
-    const routeByWords: Array<[string[], UniverseWorldId]> = [
-      [["agent", "mcp", "tool", "strongest project"], "agent"],
-      [["iam", "identity", "permission", "role"], "identity"],
-      [["model", "provenance", "hugging", "artifact"], "model"],
-      [["runtime", "container", "isolation", "process"], "runtime"],
-      [["telemetry", "siem", "detection", "logs", "testing evidence"], "telemetry"],
-      [["cloud", "infrastructure", "network"], "cloud"],
-      [["source", "code", "engineering", "evidence", "github"], "vault"],
-      [["nexus", "everything", "trust architecture"], "nexus"],
-      [["home", "district", "hub"], "trust"],
-    ];
-
-    const match = routeByWords.find(([words]) => words.some((word) => q.includes(word)));
-
-    if (q.includes("recruiter")) {
-      setMode("recruiter");
-      setSystemAnswer("Opening Recruiter Mode: strongest work, verified evidence, resume and contact.");
-      return;
-    }
-
-    if (q.includes("engineering mode") || q.includes("technical")) {
-      setMode("engineering");
-      setSystemAnswer("Opening Engineering Mode: controls, evidence, limitations and repository links.");
-      return;
-    }
-
-    if (match) {
-      const target = match[1];
-      setSystemAnswer(
-        `Routing to ${universeWorldMap[target].shortName}. The system will use the physical route rather than a page jump.`,
-      );
-      travelTo(target, true);
-      return;
-    }
-
-    setSystemAnswer(
-      "I can navigate to agent security, IAM/identity, model provenance, runtime, telemetry, cloud, the Engineering Vault or Trust Nexus. You can also ask for Recruiter Mode or Engineering Mode.",
+  if (textMode) {
+    return (
+      <main className={"tu2-text-mode" + (highContrast ? " high-contrast" : "")}>
+        <header>
+          <div>
+            <span>POOJA KIRAN · SECURITY ENGINEER</span>
+            <h1>TRUST UNIVERSE — TEXT EXPERIENCE</h1>
+          </div>
+          <button onClick={() => setTextMode(false)}>Return to cinematic experience</button>
+        </header>
+        <p className="tu2-text-lead">Cybersecurity creates trust. Trust allows autonomous technology to operate safely. This portfolio connects the systems I build across agents, identity, model provenance, adversarial testing, detection, infrastructure, and real-world operations.</p>
+        <div className="tu2-text-worlds">
+          {WORLDS.map((item) => (
+            <article key={item.id}>
+              <span>{item.code}</span>
+              <h2>{item.name}</h2>
+              <strong>{item.thesis}</strong>
+              <p>{item.problem}</p>
+              <p>{item.control}</p>
+              <ul>{item.evidence.map((evidence) => <li key={evidence}>{evidence}</li>)}</ul>
+              {item.limitation && <small>LIMITATION · {item.limitation}</small>}
+              {item.repo && <a href={profile.github + "/" + item.repo} target="_blank" rel="noreferrer">View repository ↗</a>}
+            </article>
+          ))}
+        </div>
+      </main>
     );
-  };
-
-  const nextGuided = () => {
-    const nextIndex = Math.min(guidedRoute.length - 1, guidedIndex + 1);
-    setGuidedIndex(nextIndex);
-    travelTo(guidedRoute[nextIndex], true);
-  };
-
-  const previousGuided = () => {
-    const nextIndex = Math.max(0, guidedIndex - 1);
-    setGuidedIndex(nextIndex);
-    travelTo(guidedRoute[nextIndex], true);
-  };
-
-  const visitedCount = visited.size;
-  const briefing = briefingWorld ? universeWorldMap[briefingWorld] : null;
-  const inspection = inspectWorld ? universeWorldMap[inspectWorld] : null;
-
-  const worldStatus = useMemo(
-    () =>
-      universeWorlds.map((item) => ({
-        ...item,
-        state:
-          item.id === currentWorld ? "current" :
-          visited.has(item.id) ? "visited" : "available",
-      })),
-    [currentWorld, visited],
-  );
+  }
 
   return (
-    <div className="trust-universe-shell">
-      <section className="trust-universe-viewport" aria-label="Pooja Kiran Trust Universe">
-        <div className="trust-universe-canvas">
-          <TrustUniverseCanvas
-            currentWorld={currentWorld}
-            destination={destination}
-            travelMode={travelMode}
-            quality={quality}
-            onEnterWorld={enterWorld}
-            onInspectWorld={setInspectWorld}
-            onTravelModeChange={setTravelMode}
-            onAutopilotComplete={() => setDestination(null)}
-          />
-        </div>
+    <div className={"tu2-root" + (highContrast ? " tu2-high-contrast" : "")}>
+      <div className="tu2-canvas" aria-hidden="true">
+        <TrustUniverseCanvas
+          currentWorld={currentWorld}
+          destination={destination}
+          travelMode="vehicle"
+          quality={quality}
+          phase={phase}
+          reduceMotion={reduceMotion}
+          onEnterWorld={enterWorld}
+          onAutopilotComplete={() => setDestination(null)}
+        />
+      </div>
 
-        {destination && (mode === "explore" || mode === "guided") && (
-          <div className="travel-status-card" aria-live="polite">
-            <div className="travel-status-icon" aria-hidden="true"><span /></div>
-            <div>
-              <small>AUTONOMOUS ROUTE ACTIVE</small>
-              <strong>{universeWorldMap[destination].shortName}</strong>
-              <span>{universeWorldMap[destination].route}</span>
+      <div className="tu2-film-grain" aria-hidden="true" />
+      <div className="tu2-vignette" aria-hidden="true" />
+
+      {intro !== "entered" && (
+        <section className={"tu2-intro tu2-intro-" + intro} aria-label="Trust Universe opening">
+          <div className="tu2-intro-shade" />
+          <div className="tu2-boot-sequence" aria-live="polite">
+            <span className={intro === "boot" ? "active" : "done"}>INITIALIZING TRUST ENVIRONMENT</span>
+            <span className={intro === "verified" ? "active" : intro === "ready" ? "done" : ""}>IDENTITY VERIFIED</span>
+          </div>
+          <div className="tu2-smart-glass">
+            <div className="tu2-glass-index">TRUST CORE / OBSERVATION LEVEL 72</div>
+            <h1>POOJA KIRAN</h1>
+            <h2>SECURITY ENGINEER <i /> AI SECURITY <i /> SECURITY ARCHITECTURE</h2>
+            <p>I BUILD SECURITY SYSTEMS FOR A WORLD WHERE SOFTWARE CAN ACT ON ITS OWN.</p>
+            <div className="tu2-entry-actions">
+              <button onClick={() => start("guided")} disabled={intro !== "ready"}>
+                <small>CURATED CINEMATIC ROUTE</small>
+                <strong>ENTER EXPERIENCE</strong>
+                <span>→</span>
+              </button>
+              <button onClick={() => start("free")} disabled={intro !== "ready"}>
+                <small>CHOOSE ANY DISTRICT</small>
+                <strong>EXPLORE FREELY</strong>
+                <span>↗</span>
+              </button>
             </div>
-            <button onClick={() => setDestination(null)}>Cancel</button>
           </div>
-        )}
+          <div className="tu2-intro-footer">
+            <span>80% physical world · 20% security visualization</span>
+            <button onClick={() => setAccessOpen(true)}>Accessibility</button>
+          </div>
+        </section>
+      )}
 
-        <header className="universe-header">
-          <div className="universe-brand">
-            <strong>POOJA // THE TRUST UNIVERSE</strong>
-            <span>SECURING THE INFRASTRUCTURE BETWEEN INTELLIGENCE AND ACTION</span>
+      {intro === "entered" && (
+        <>
+          <header className="tu2-hud">
+            <div className="tu2-brand">
+              <strong>TRUST UNIVERSE</strong>
+              <span>POOJA KIRAN · SECURITY ENGINEER</span>
+            </div>
+            <div className="tu2-location">
+              <small>CURRENT LOCATION</small>
+              <strong>{world.name}</strong>
+            </div>
+            <nav>
+              <button onClick={() => setMapOpen(true)}>MAP <kbd>M</kbd></button>
+              <button onClick={() => setMode((value) => value === "guided" ? "free" : "guided")}>{mode === "guided" ? "GUIDED" : "FREE"}</button>
+              <button onClick={() => setEvidenceOpen(true)}>EVIDENCE <kbd>E</kbd></button>
+              <button onClick={() => setAccessOpen(true)}>ACCESSIBILITY</button>
+            </nav>
+          </header>
+
+          <aside className="tu2-story">
+            <div className="tu2-story-code">{world.code}</div>
+            <div>
+              <span>{world.place}</span>
+              <h1>{world.name}</h1>
+              <blockquote>{world.thesis}</blockquote>
+              <p>{world.why}</p>
+            </div>
+          </aside>
+
+          <aside className="tu2-system-state">
+            <span>SYSTEM STATE</span>
+            <div className="tu2-phase-row">
+              {PHASES.map((item, index) => (
+                <i key={item} className={index <= phaseIndex ? "active" : ""} />
+              ))}
+            </div>
+            <strong>{phase === "normal" ? "NORMAL" : phase.toUpperCase()}</strong>
+          </aside>
+
+          {world.incident && (
+            <section className={"tu2-incident tu2-phase-" + phase}>
+              <div className="tu2-incident-head">
+                <div>
+                  <span>LIVE SECURITY SCENARIO</span>
+                  <strong>{world.incident.title}</strong>
+                </div>
+                <button onClick={runIncident}>{phase === "normal" ? "RUN INCIDENT" : "REPLAY"}</button>
+              </div>
+              <div className="tu2-decision-path">
+                {world.incident.path.map((step, index) => (
+                  <div key={step} className={phase !== "normal" && index <= Math.min(world.incident!.path.length - 1, phaseIndex * 2 + 1) ? "active" : ""}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <strong>{step}</strong>
+                  </div>
+                ))}
+              </div>
+              <p>{world.incident.result}</p>
+            </section>
+          )}
+
+          <div className="tu2-controls">
+            <button onClick={() => setMapOpen(true)}><span>⌘</span><strong>WORLD MAP</strong></button>
+            <button onClick={() => setEvidenceOpen(true)}><span>◎</span><strong>INSPECT SYSTEM</strong></button>
+            {world.incident && <button onClick={runIncident}><span>⚑</span><strong>RUN SCENARIO</strong></button>}
           </div>
 
-          <nav aria-label="Experience modes">
-            {(["explore", "guided", "recruiter", "engineering"] as ExperienceMode[]).map((item) => (
-              <button
-                key={item}
-                className={mode === item ? "active" : ""}
-                onClick={() => {
-                  setMode(item);
-                  setMapOpen(false);
-                  if (item === "guided") {
-                    setGuidedIndex(Math.max(0, guidedRoute.indexOf(currentWorld)));
-                  }
-                }}
-              >
-                {item}
+          {mode === "guided" && (
+            <div className="tu2-guided">
+              <div className="tu2-guided-track"><i style={{ width: progress + "%" }} /></div>
+              <button onClick={previousWorld} disabled={guidedIndex === 0}>←</button>
+              <div>
+                <span>GUIDED EXPERIENCE</span>
+                <strong>{guidedIndex + 1} / {GUIDED_ROUTE.length}</strong>
+                <small>Scroll to move through the world</small>
+              </div>
+              <button onClick={nextWorld} disabled={guidedIndex === GUIDED_ROUTE.length - 1}>→</button>
+            </div>
+          )}
+
+          {currentWorld === "observatory" && (
+            <section className="tu2-finale">
+              <span>THE OBSERVATORY · SUNRISE SEQUENCE</span>
+              <h2>SECURITY ISN&apos;T THE DESTINATION.<br /><em>TRUST IS.</em></h2>
+              <p>POOJA KIRAN · SECURITY ENGINEER · AI SECURITY · SECURITY ARCHITECTURE</p>
+              <div>
+                <button onClick={() => travelTo("vault")}>VIEW ENGINEERING EVIDENCE</button>
+                <a href={RESUME_URL} download>VIEW RÉSUMÉ</a>
+                <a href={profile.github} target="_blank" rel="noreferrer">GITHUB ↗</a>
+                <a href={profile.linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a>
+              </div>
+            </section>
+          )}
+        </>
+      )}
+
+      {mapOpen && (
+        <section className="tu2-map" role="dialog" aria-modal="true" aria-label="Trust Universe map">
+          <div className="tu2-map-head">
+            <div><span>DIEGETIC NAVIGATION</span><h2>TRUST UNIVERSE</h2><p>One connected physical world. Choose a destination.</p></div>
+            <button onClick={() => setMapOpen(false)}>CLOSE ×</button>
+          </div>
+          <div className="tu2-map-grid">
+            {WORLDS.map((item) => (
+              <button key={item.id} className={item.id === currentWorld ? "current" : ""} onClick={() => travelTo(item.id)}>
+                <span>{item.code}</span>
+                <strong>{item.short}</strong>
+                <small>{item.place}</small>
+                <i>{item.id === currentWorld ? "YOU ARE HERE" : "TRAVEL →"}</i>
               </button>
             ))}
-          </nav>
-
-          <button className="quick-access-button" onClick={() => setQuickOpen(true)}>
-            Quick Access
-          </button>
-        </header>
-
-        {(mode === "explore" || mode === "guided") && (
-          <>
-            <div className="world-location">
-              <span>{world.code}</span>
-              <div>
-                <strong>{world.name}</strong>
-                <small>{world.route}</small>
-              </div>
-            </div>
-
-            <div className="world-thesis">
-              <p>{world.thesis}</p>
-              <span>{world.route}</span>
-            </div>
-
-            <div className="explore-utility">
-              <button id="universe-look-button">Look</button>
-              <button onClick={() => setMapOpen(true)}>Map</button>
-              <button onClick={() => setAskOpen(true)}>Ask</button>
-              <button onClick={() => setInspectWorld(currentWorld)}>Evidence</button>
-            </div>
-
-            {mode === "guided" && (
-              <div className="guided-control">
-                <span>GUIDED JOURNEY</span>
-                <strong>{guidedIndex + 1} / {guidedRoute.length}</strong>
-                <div>
-                  <button onClick={previousGuided} disabled={guidedIndex === 0}>Previous</button>
-                  <button onClick={() => setMode("explore")}>Return to Explore</button>
-                  <button onClick={nextGuided} disabled={guidedIndex === guidedRoute.length - 1}>Next</button>
-                </div>
-              </div>
-            )}
-
-            <div className="campus-session-state" aria-hidden="true">
-              <span>{visitedCount} / {universeWorlds.length} facilities visited</span>
-            </div>
-          </>
-        )}
-
-        {onboardingOpen && (
-          <div className="universe-onboarding" role="dialog" aria-modal="true" aria-label="Choose how to enter Pooja Kiran's Trust Universe">
-            <div className="onboarding-backdrop" aria-hidden="true" />
-            <div className="onboarding-panel">
-              <div className="onboarding-brand">
-                <span>POOJA KIRAN · SECURITY ENGINEER</span>
-                <strong>THE TRUST UNIVERSE</strong>
-              </div>
-
-              <div className="onboarding-intro">
-                <p>SECURING THE INFRASTRUCTURE BETWEEN INTELLIGENCE AND ACTION</p>
-                <h1>Choose how you want to enter.</h1>
-                <p className="onboarding-copy">
-                  Explore a spatial security architecture, take a curated tour, or go directly to hiring and engineering evidence.
-                </p>
-              </div>
-
-              <div className="onboarding-paths">
-                <button onClick={() => chooseEntryMode("explore")}>
-                  <span>01</span>
-                  <strong>Explore the world</strong>
-                  <small>Walk, drive, inspect, and choose any security domain.</small>
-                  <i>Best immersive experience →</i>
-                </button>
-                <button onClick={() => chooseEntryMode("guided")}>
-                  <span>02</span>
-                  <strong>90-second guided tour</strong>
-                  <small>A curated route through the strongest security story.</small>
-                  <i>Start guided route →</i>
-                </button>
-                <button onClick={() => chooseEntryMode("recruiter")}>
-                  <span>03</span>
-                  <strong>I’m hiring</strong>
-                  <small>Verified impact, strongest work, résumé, experience and contact.</small>
-                  <i>Open recruiter view →</i>
-                </button>
-                <button onClick={() => chooseEntryMode("engineering")}>
-                  <span>04</span>
-                  <strong>I want the evidence</strong>
-                  <small>Controls, tests, CI, limitations and source repositories.</small>
-                  <i>Open engineering view →</i>
-                </button>
-              </div>
-
-              <div className="onboarding-foot">
-                <span>Desktop: WASD + mouse · Mobile: tap-to-travel</span>
-                <button onClick={() => chooseEntryMode("explore")}>Skip introduction</button>
-              </div>
-            </div>
           </div>
-        )}
+        </section>
+      )}
 
-        {mapOpen && (
-          <div className="world-map-overlay" role="dialog" aria-modal="true" aria-label="Trust Universe world map">
-            <div className="world-map-head">
-              <div>
-                <span>NAVIGATION</span>
-                <h2>Trust Universe Map</h2>
-                <p>Choose any domain. There is no required order.</p>
-              </div>
-              <button onClick={() => setMapOpen(false)}>Close</button>
-            </div>
-
-            <div className="world-map-masterplan">
-              <div className="map-compass" aria-hidden="true">
-                <span>N</span><i />
-              </div>
-              <svg className="map-routes" viewBox="0 0 100 100" aria-hidden="true">
-                {worldStatus
-                  .filter((item) => item.id !== "trust")
-                  .map((item) => {
-                    const x = 50 + item.position[0] * 0.78;
-                    const y = 50 + item.position[1] * 0.68;
-                    return <line key={item.id} x1="50" y1="50" x2={x} y2={y} />;
-                  })}
-              </svg>
-
-              {worldStatus.map((item) => {
-                const style = {
-                  "--map-x": `${50 + item.position[0] * 0.78}%`,
-                  "--map-y": `${50 + item.position[1] * 0.68}%`,
-                } as CSSProperties;
-
-                return (
-                  <button
-                    key={item.id}
-                    style={style}
-                    className={`world-map-node ${item.state}`}
-                    onClick={() => travelTo(item.id, true)}
-                    aria-label={`Travel to ${item.shortName}`}
-                  >
-                    <span>{item.code}</span>
-                    <strong>{item.shortName}</strong>
-                    <small>
-                      {item.id === currentWorld ? "You are here" : item.state === "visited" ? "Visited" : "Available"}
-                    </small>
-                  </button>
-                );
-              })}
-
-              <div className="map-legend" aria-hidden="true">
-                <span><i className="current" />Current</span>
-                <span><i className="visited" />Visited</span>
-                <span><i />Available</span>
-              </div>
-            </div>
-
-            <div className="world-map-footer">
-              <span>FAST TRAVEL uses the gray-box autopilot route.</span>
-              <button onClick={() => setTravelMode((value) => value === "vehicle" ? "foot" : "vehicle")}>
-                {travelMode === "vehicle" ? "Exit Vehicle" : "Call / Enter Vehicle"}
-              </button>
-            </div>
+      {evidenceOpen && (
+        <section className="tu2-evidence" role="dialog" aria-modal="true" aria-label={world.name + " engineering evidence"}>
+          <div className="tu2-evidence-head">
+            <div><span>{world.code} · ENGINEERING EVIDENCE</span><h2>{world.name}</h2></div>
+            <button onClick={() => setEvidenceOpen(false)}>CLOSE ×</button>
           </div>
-        )}
-
-        {briefing && (
-          <div className={`world-briefing briefing-${briefing.tone}`} role="dialog" aria-modal="true">
-            <div className="briefing-code">{briefing.code}</div>
-            <div className="briefing-copy">
-              <span>WORLD ENTRY</span>
-              <h2>{briefing.name}</h2>
-              <blockquote>{briefing.thesis}</blockquote>
-
-              <div className="briefing-columns">
-                <div>
-                  <small>PROBLEM</small>
-                  <p>{briefing.problem}</p>
-                </div>
-                <div>
-                  <small>POOJA BUILT</small>
-                  <p>{briefing.built}</p>
-                </div>
-                <div>
-                  <small>WHY IT MATTERS</small>
-                  <p>{briefing.why}</p>
-                </div>
-              </div>
-
-              <div className="briefing-actions">
-                <button onClick={() => setBriefingWorld(null)}>Enter World</button>
-                <button onClick={() => { setInspectWorld(briefing.id); setBriefingWorld(null); }}>View Engineering</button>
-                <button onClick={() => { setAskText(`Explain ${briefing.shortName}`); setAskOpen(true); setBriefingWorld(null); }}>Ask About This</button>
-                <button onClick={() => setBriefingWorld(null)}>Skip Briefing</button>
-              </div>
-            </div>
+          <div className="tu2-evidence-grid">
+            <article><small>PROBLEM</small><p>{world.problem}</p></article>
+            <article><small>CONTROL / SYSTEM</small><p>{world.control}</p></article>
+            <article><small>WHY IT MATTERS</small><p>{world.why}</p></article>
+            <article><small>EVIDENCE</small><ul>{world.evidence.map((item) => <li key={item}>{item}</li>)}</ul></article>
+            {world.limitation && <article className="wide"><small>KNOWN LIMITATION</small><p>{world.limitation}</p></article>}
           </div>
-        )}
-
-        {inspection && (
-          <div className="engineering-inspector" role="dialog" aria-modal="true">
-            <div className="inspector-head">
-              <div>
-                <span>{inspection.code} · EVIDENCE</span>
-                <h2>{inspection.name}</h2>
-              </div>
-              <button onClick={() => setInspectWorld(null)}>Close</button>
-            </div>
-            <p className="inspection-thesis">{inspection.thesis}</p>
-            <div className="inspection-body">
-              <section><small>CONTROL STORY</small><p>{inspection.built}</p></section>
-              <section><small>EVIDENCE</small><ul>{inspection.evidence.map((item) => <li key={item}>{item}</li>)}</ul></section>
-              {inspection.limitation && <section><small>LIMITATION</small><p>{inspection.limitation}</p></section>}
-            </div>
-            {["agent", "identity", "model"].includes(inspection.id) && (
-              <a
-                href={`${profile.github}/${
-                  inspection.id === "agent"
-                    ? "mcp-agent-security-gateway"
-                    : inspection.id === "identity"
-                      ? "aws-agent-identity-guard"
-                      : "hf-model-provenance-scanner"
-                }`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open repository ↗
-              </a>
-            )}
+          <div className="tu2-evidence-actions">
+            {world.repo && <a href={profile.github + "/" + world.repo} target="_blank" rel="noreferrer">OPEN SOURCE REPOSITORY ↗</a>}
+            <button onClick={() => { setEvidenceOpen(false); travelTo("vault"); }}>GO TO ENGINEERING VAULT →</button>
           </div>
-        )}
+        </section>
+      )}
 
-        {askOpen && (
-          <div className="ask-system-panel" role="dialog" aria-modal="true">
-            <div>
-              <span>ASK THE SYSTEM</span>
-              <button onClick={() => setAskOpen(false)}>Esc</button>
-            </div>
-            <h2>Where do you want to go?</h2>
-            <p>Try “show IAM,” “take me to the strongest project,” “show source code,” or “open Recruiter Mode.”</p>
-            <form onSubmit={(event) => { event.preventDefault(); runAsk(); }}>
-              <input
-                ref={askInput}
-                value={askText}
-                onChange={(event) => setAskText(event.target.value)}
-                placeholder="Ask or navigate…"
-              />
-              <button type="submit">Go</button>
-            </form>
-            {systemAnswer && <div className="system-answer">{systemAnswer}</div>}
-          </div>
-        )}
-
-        {quickOpen && (
-          <div className="quick-access-panel" role="dialog" aria-modal="true">
-            <div className="quick-access-head">
-              <span>QUICK ACCESS</span>
-              <button onClick={() => setQuickOpen(false)}>Close</button>
-            </div>
-            <button onClick={() => { setMode("recruiter"); setQuickOpen(false); }}>About / Recruiter View</button>
-            <button onClick={() => { setMode("engineering"); setQuickOpen(false); }}>Top Engineering Work</button>
-            <a href={RESUME_URL} download>Resume ↓</a>
-            <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-            <a href={`mailto:${profile.email}`}>Contact ↗</a>
-            <button onClick={() => { setMapOpen(true); setQuickOpen(false); }}>World Map</button>
-          </div>
-        )}
-
-        {mode === "recruiter" && (
-          <section className="mode-surface recruiter-surface" aria-label="Recruiter Mode">
-            <div className="mode-toolbar">
-              <div><span>RECRUITER MODE</span><strong>Pooja Kiran · Security Engineer</strong></div>
-              <button onClick={() => setMode("explore")}>Enter World</button>
-            </div>
-
-            <div className="recruiter-hero">
-              <div>
-                <p>AI SECURITY · CLOUD IDENTITY · DETECTION ENGINEERING</p>
-                <h1>Build the boundary. Test the boundary. Show the evidence.</h1>
-              </div>
-              <div className="recruiter-links">
-                <a href={RESUME_URL} download>Resume ↓</a>
-                <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-                <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-              </div>
-            </div>
-
-            <div className="recruiter-metrics">
-              <article><strong>1,058</strong><span>documented passing tests across three flagship systems</span></article>
-              <article><strong>55</strong><span>prompt-injection patterns in MCP gateway evidence</span></article>
-              <article><strong>25</strong><span>deterministic IAM rule IDs</span></article>
-            </div>
-
-            <div className="recruiter-projects">
-              {projects.map((project) => (
-                <article key={project.repository}>
-                  <span>{project.number} · {project.category}</span>
-                  <h2>{project.title}</h2>
-                  <p>{project.description}</p>
-                  <div>{project.metrics.map((metric) => <small key={metric}>{metric}</small>)}</div>
-                  <a href={`${profile.github}/${project.repository}`} target="_blank" rel="noreferrer">Inspect repository ↗</a>
-                </article>
-              ))}
-            </div>
-
-            <div className="recruiter-bottom">
-              <section>
-                <span>EXPERIENCE</span>
-                {experience.map((item) => (
-                  <div key={item.role}><strong>{item.role}</strong><small>{item.period} · {item.organization}</small></div>
-                ))}
-              </section>
-              <section>
-                <span>CONTACT</span>
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
-                <p>Tempe, Arizona · Open to U.S. relocation</p>
-                <p>F-1 OPT work authorization · Future sponsorship required</p>
-              </section>
-            </div>
-          </section>
-        )}
-
-        {mode === "engineering" && (
-          <section className="mode-surface engineering-surface" aria-label="Engineering Mode">
-            <div className="mode-toolbar">
-              <div><span>ENGINEERING MODE</span><strong>Evidence before aesthetics.</strong></div>
-              <button onClick={() => setMode("explore")}>Return to World</button>
-            </div>
-
-            <div className="engineering-grid">
-              {projects.map((project) => (
-                <article key={project.repository}>
-                  <div className="engineering-title">
-                    <span>{project.number}</span>
-                    <div><h2>{project.title}</h2><small>{project.category}</small></div>
-                  </div>
-                  <dl>
-                    <div><dt>CONTROL</dt><dd>{project.controls}</dd></div>
-                    <div><dt>VALIDATION</dt><dd>{project.evidence}</dd></div>
-                    <div><dt>LIMITATIONS</dt><dd>{project.scope}</dd></div>
-                  </dl>
-                  <div className="engineering-metrics">{project.metrics.map((metric) => <span key={metric}>{metric}</span>)}</div>
-                  <a href={`${profile.github}/${project.repository}`} target="_blank" rel="noreferrer">Source / tests / CI ↗</a>
-                </article>
-              ))}
-            </div>
-
-            <div className="engineering-skills">
-              {skillGroups.map((group) => (
-                <section key={group.title}><strong>{group.title}</strong><p>{group.items.join(" · ")}</p></section>
-              ))}
-            </div>
-          </section>
-        )}
-      </section>
+      {accessOpen && (
+        <section className="tu2-access" role="dialog" aria-modal="true" aria-label="Accessibility and performance settings">
+          <div><span>EXPERIENCE SETTINGS</span><h2>Accessibility & performance</h2></div>
+          <label><input type="checkbox" checked={reduceMotion} onChange={(event) => setReduceMotion(event.target.checked)} /><span>Reduce motion</span></label>
+          <label><input type="checkbox" checked={highContrast} onChange={(event) => setHighContrast(event.target.checked)} /><span>High contrast</span></label>
+          <label><input type="checkbox" checked={quality === "lite"} onChange={(event) => setQuality(event.target.checked ? "lite" : "balanced")} /><span>Reduced graphics</span></label>
+          <button onClick={() => { setTextMode(true); setAccessOpen(false); }}>OPEN TEXT EXPERIENCE</button>
+          <button onClick={() => setAccessOpen(false)}>DONE</button>
+        </section>
+      )}
     </div>
   );
 }
