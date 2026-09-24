@@ -22,7 +22,9 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
       - name: Dependency audit
-        run: npm audit --audit-level=high
+        run: |
+          npm audit --json > audit-report.json || true
+          node scripts/review-audit-report.mjs
       - name: Evidence consistency
         run: npm test
       - name: Type check
