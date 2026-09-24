@@ -100,7 +100,7 @@ function answerQuestion(raw: string) {
   }
 
   if (q.includes("iam") || q.includes("identity") || q.includes("aws") || q.includes("cloud")) {
-    return "Her AWS Agent Identity Guard is a static IAM analysis system for risky permission combinations and authorization paths, including AssumeRole, PassRole, wildcards, privilege-escalation patterns, and related agent identity risks. The current documented scope includes 25 deterministic rule IDs and 230 passing tests.";
+    return "Her AWS Agent Identity Guard is a static IAM analysis system for risky permission combinations and authorization paths, including AssumeRole, PassRole, wildcards, privilege-escalation patterns, and related agent identity risks. The current documented scope includes 25 deterministic rule IDs and 231 passing tests.";
   }
 
   if (q.includes("model") || q.includes("provenance") || q.includes("supply chain") || q.includes("hugging")) {

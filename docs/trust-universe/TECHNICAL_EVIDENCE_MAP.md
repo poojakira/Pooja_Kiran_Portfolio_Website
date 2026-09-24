@@ -14,7 +14,7 @@ Boundary: research implementation; heuristic detection has false-positive/false-
 Repository: poojakira/aws-agent-identity-guard
 Verified anchor:
 - 25 deterministic rule IDs
-- 230 passed / 3 skipped in fresh exact-count CI
+- 231 passed / 3 skipped in fresh exact-count CI
 - SARIF 2.1.0
 - CI performance gates: p95 <10ms/policy and >1,000 policies/sec
 Boundary: static analysis; performance claims are scoped CI gates, not production measurements.

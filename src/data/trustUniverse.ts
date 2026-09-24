@@ -66,7 +66,7 @@ export const universeWorlds: UniverseWorld[] = [
     problem: "Cloud identities accumulate authority through policies, roles, trust relationships and delegation.",
     built: "A static AWS IAM analyzer for excessive permissions, risky trust, privilege paths, permission boundaries and agent identity risks.",
     why: "The blast radius of an autonomous system is shaped by what its identity can reach.",
-    evidence: ["25 deterministic rule IDs", "230 passed / 3 skipped", "SARIF 2.1.0", "scoped CI performance gates"],
+    evidence: ["25 deterministic rule IDs", "231 passed / 3 skipped", "SARIF 2.1.0", "scoped CI performance gates"],
     limitation: "Static analysis; it does not model every organization-wide or runtime permission interaction.",
     tone: "identity",
   },
