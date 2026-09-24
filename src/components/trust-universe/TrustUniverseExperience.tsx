@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { RESUME_URL, profile } from "@/data/portfolio";
-import type { TrustPhase, TrustWorldId } from "@/components/trust-universe/TrustUniverseCanvas";
+import type { TravelMode, TrustPhase, TrustWorldId } from "@/components/trust-universe/TrustUniverseCanvas";
 
 const TrustUniverseCanvas = dynamic(
   () => import("@/components/trust-universe/TrustUniverseCanvas"),
@@ -212,7 +212,10 @@ export default function TrustUniverseExperience() {
   const [highContrast, setHighContrast] = useState(false);
   const [textMode, setTextMode] = useState(false);
   const [quality, setQuality] = useState<"balanced" | "lite">("balanced");
+  const [travelMode, setTravelMode] = useState<TravelMode>("foot");
+  const [isTraveling, setIsTraveling] = useState(false);
   const timers = useRef<number[]>([]);
+  const travelTimer = useRef<number | null>(null);
   const wheelLocked = useRef(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -265,7 +268,12 @@ export default function TrustUniverseExperience() {
     timers.current = [];
   }, []);
 
-  useEffect(() => clearIncidentTimers, [clearIncidentTimers]);
+  useEffect(() => {
+    return () => {
+      clearIncidentTimers();
+      if (travelTimer.current) window.clearTimeout(travelTimer.current);
+    };
+  }, [clearIncidentTimers]);
 
   const runIncident = useCallback(() => {
     clearIncidentTimers();
@@ -324,36 +332,43 @@ export default function TrustUniverseExperience() {
   }, [guidedIndex, travelTo]);
 
   useEffect(() => {
-    if (intro !== "entered" || mode !== "guided" || mapOpen || evidenceOpen || accessOpen) return;
+    if (intro !== "entered" || mapOpen || evidenceOpen || accessOpen) return;
     const onWheel = (event: WheelEvent) => {
-      if (Math.abs(event.deltaY) < 18 || wheelLocked.current) return;
+      if (Math.abs(event.deltaY) < 18 || wheelLocked.current || isTraveling) return;
       event.preventDefault();
       wheelLocked.current = true;
       if (event.deltaY > 0) nextWorld();
       else previousWorld();
       window.setTimeout(() => {
         wheelLocked.current = false;
-      }, reduceMotion ? 200 : 1050);
+      }, reduceMotion ? 180 : 900);
     };
     window.addEventListener("wheel", onWheel, { passive: false });
     return () => window.removeEventListener("wheel", onWheel);
-  }, [accessOpen, evidenceOpen, intro, mapOpen, mode, nextWorld, previousWorld, reduceMotion]);
+  }, [accessOpen, evidenceOpen, intro, isTraveling, mapOpen, nextWorld, previousWorld, reduceMotion]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
       if (event.key === "Escape") {
         setMapOpen(false);
         setEvidenceOpen(false);
         setAccessOpen(false);
       }
-      if (intro === "entered" && event.key.toLowerCase() === "m") setMapOpen((value) => !value);
-      if (intro === "entered" && event.key.toLowerCase() === "e") setEvidenceOpen((value) => !value);
-      if (intro === "entered" && event.key === "ArrowRight" && mode === "guided") nextWorld();
-      if (intro === "entered" && event.key === "ArrowLeft" && mode === "guided") previousWorld();
+      if (intro !== "entered" || mapOpen || evidenceOpen || accessOpen || isTraveling) return;
+      if (key === "m") setMapOpen((value) => !value);
+      if (key === "i") setEvidenceOpen((value) => !value);
+      if (key === "v") setTravelMode((value) => value === "foot" ? "vehicle" : "foot");
+      if (key === "e") {
+        if (WORLD_MAP[currentWorld].incident) runIncident();
+        else setEvidenceOpen(true);
+      }
+      if (key === "w" || event.key === "ArrowUp" || event.key === "ArrowRight" || key === "d") nextWorld();
+      if (key === "s" || event.key === "ArrowDown" || event.key === "ArrowLeft" || key === "a") previousWorld();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [intro, mode, nextWorld, previousWorld]);
+  }, [accessOpen, currentWorld, evidenceOpen, intro, isTraveling, mapOpen, nextWorld, previousWorld, runIncident]);
 
   const phaseIndex = PHASES.indexOf(phase);
   const progress = useMemo(() => ((guidedIndex + 1) / GUIDED_ROUTE.length) * 100, [guidedIndex]);
@@ -392,6 +407,11 @@ export default function TrustUniverseExperience() {
       <div className="tu2-photo-world" aria-hidden="true"><div className="tu2-photo-depth" /></div>
       <div className="tu2-security-atmosphere" aria-hidden="true">
         <i /><i /><i /><i /><i /><i />
+      </div>
+      <div className={"tu2-travel-transition" + (isTraveling ? " active" : "")} aria-hidden="true">
+        <span>{travelMode === "vehicle" ? "AUTONOMOUS TRANSIT" : "MOVING THROUGH TRUST UNIVERSE"}</span>
+        <strong>{destination ? WORLD_MAP[destination].name : ""}</strong>
+        <i />
       </div>
       <div className="tu2-film-grain" aria-hidden="true" />
       <div className="tu2-vignette" aria-hidden="true" />
@@ -493,6 +513,39 @@ export default function TrustUniverseExperience() {
             <button onClick={() => setEvidenceOpen(true)}><span>◎</span><strong>INSPECT SYSTEM</strong></button>
             {world.incident && <button onClick={runIncident}><span>⚑</span><strong>RUN SCENARIO</strong></button>}
           </div>
+
+          {mode === "free" && (
+            <>
+              <div className="tu2-reticle" aria-hidden="true"><i /><span>LOOK AROUND · MOVE WITH W A S D</span></div>
+              <div className="tu2-free-nav" aria-label="Free exploration controls">
+                <button onClick={previousWorld} disabled={isTraveling}><span>A / S</span><strong>PREVIOUS DISTRICT</strong></button>
+                <button
+                  className="primary"
+                  onClick={() => world.incident ? runIncident() : setEvidenceOpen(true)}
+                  disabled={isTraveling}
+                >
+                  <span>E</span><strong>{world.incident ? "INTERACT / RUN SCENARIO" : "ENTER / INSPECT"}</strong>
+                </button>
+                <button onClick={nextWorld} disabled={isTraveling}><span>W / D</span><strong>NEXT DISTRICT</strong></button>
+                <button onClick={() => setTravelMode((value) => value === "foot" ? "vehicle" : "foot")} disabled={isTraveling}>
+                  <span>V</span><strong>{travelMode === "vehicle" ? "DRIVING" : "WALKING"}</strong>
+                </button>
+              </div>
+              <div className="tu2-wayfinding">
+                {[1, 2, -1].map((offset, slot) => {
+                  const index = (guidedIndex + offset + GUIDED_ROUTE.length) % GUIDED_ROUTE.length;
+                  const target = WORLD_MAP[GUIDED_ROUTE[index]];
+                  return (
+                    <button key={target.id} className={"slot-" + slot} onClick={() => travelTo(target.id)} disabled={isTraveling}>
+                      <span>{target.code}</span>
+                      <strong>{target.short}</strong>
+                      <small>{travelMode === "vehicle" ? "DRIVE" : "WALK"} →</small>
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          )}
 
           {mode === "guided" && (
             <div className="tu2-guided">
