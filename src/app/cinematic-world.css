@@ -1,0 +1,559 @@
+:root {
+  color-scheme: dark;
+  --world-cyan: #8ed7e6;
+  --world-blue: #4ea7ff;
+  --world-gold: #d9b46d;
+  --world-ink: #02070c;
+  --world-glass: rgba(3, 13, 22, 0.66);
+}
+
+html, body {
+  background: var(--world-ink);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#main-content {
+  background: var(--world-ink);
+}
+
+/* ---------- CINEMATIC PORTFOLIO ---------- */
+
+#main-content .cyber-portfolio {
+  min-height: 100svh;
+  color: #f4f8fb;
+  background:
+    radial-gradient(circle at 72% 18%, rgba(48, 128, 184, 0.13), transparent 31rem),
+    linear-gradient(180deg, #02070c 0%, #06111a 42%, #02070c 100%);
+}
+
+#main-content .cyber-header {
+  background: linear-gradient(180deg, rgba(2,7,12,.94), rgba(2,7,12,.56), transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+#main-content .cyber-hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #02070c;
+}
+
+#main-content .cyber-hero::before {
+  content: "";
+  position: absolute;
+  inset: -4%;
+  z-index: -3;
+  background:
+    linear-gradient(90deg, rgba(2,7,12,.96) 0%, rgba(2,7,12,.82) 28%, rgba(2,7,12,.22) 64%, rgba(2,7,12,.64) 100%),
+    linear-gradient(0deg, #02070c 0%, transparent 42%),
+    url("/Pooja_Kiran_Portfolio_Website/trust-universe-hero.webp") center/cover no-repeat;
+  filter: saturate(.88) contrast(1.05) brightness(.64) blur(1px);
+  transform: scale(1.04);
+}
+
+#main-content .cyber-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 78% 36%, rgba(78,167,255,.16), transparent 26rem),
+    linear-gradient(90deg, rgba(1,8,14,.86), transparent 54%);
+}
+
+#main-content .cyber-hero-grid {
+  width: min(1680px, 100%);
+  margin: 0 auto;
+  min-height: 100svh;
+  padding: clamp(7rem, 9vw, 9.5rem) clamp(1.25rem, 4.5vw, 5.5rem) 5rem;
+  display: grid;
+  grid-template-columns: minmax(330px, .72fr) minmax(620px, 1.42fr);
+  gap: clamp(2rem, 4vw, 5.5rem);
+  align-items: center;
+}
+
+#main-content .cyber-hero-copy {
+  position: relative;
+  z-index: 6;
+  align-self: center;
+  max-width: 680px;
+  text-shadow: 0 2px 22px rgba(0,0,0,.6);
+}
+
+#main-content .cyber-kicker {
+  letter-spacing: .2em;
+  color: #b6cbd8;
+}
+
+#main-content .cyber-hero-copy h1 {
+  max-width: 760px;
+  font-size: clamp(3.35rem, 6vw, 7rem);
+  line-height: .91;
+  letter-spacing: -.055em;
+}
+
+#main-content .cyber-hero-copy h1 em {
+  color: #e7c47a;
+  font-style: normal;
+  text-shadow: 0 0 36px rgba(217,180,109,.2);
+}
+
+#main-content .cyber-hero-summary {
+  max-width: 650px;
+  font-size: clamp(1rem, 1.25vw, 1.28rem);
+  line-height: 1.72;
+  color: #c9d6df;
+}
+
+#main-content .cyber-hero-stage {
+  position: relative;
+  min-height: min(76svh, 820px);
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  z-index: 3;
+}
+
+#main-content .cyber-stage-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(174,216,232,.24);
+  box-shadow:
+    0 45px 100px rgba(0,0,0,.58),
+    inset 0 0 0 1px rgba(255,255,255,.03);
+  background: #06121b;
+}
+
+#main-content .cyber-command-image {
+  width: 106%;
+  height: 106%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  transform:
+    translate3d(var(--hero-photo-x, 0px), var(--hero-photo-y, 0px), 0)
+    scale(1.025);
+  filter: saturate(.94) contrast(1.04) brightness(.96);
+  transition: filter .35s ease;
+}
+
+#main-content .cyber-stage-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(2,7,12,.55), transparent 24%, transparent 76%, rgba(2,7,12,.42)),
+    linear-gradient(0deg, rgba(2,7,12,.72), transparent 35%);
+}
+
+#main-content .cyber-world-hotspots {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+}
+
+#main-content .cyber-world-hotspots button {
+  pointer-events: auto;
+  position: absolute;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "num title" "num sub";
+  column-gap: .55rem;
+  align-items: center;
+  padding: .56rem .72rem;
+  border: 1px solid rgba(151,214,232,.34);
+  border-radius: 10px;
+  background: rgba(2,14,23,.62);
+  color: #f1f8fb;
+  text-align: left;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.28);
+  transform: translateZ(30px);
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+#main-content .cyber-world-hotspots button:hover,
+#main-content .cyber-world-hotspots button:focus-visible {
+  transform: translateZ(30px) translateY(-3px);
+  border-color: rgba(217,180,109,.82);
+  background: rgba(4,21,34,.88);
+}
+
+#main-content .cyber-world-hotspots button::after {
+  content: "";
+  position: absolute;
+  width: 42px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(142,215,230,.7), transparent);
+  right: -42px;
+  top: 50%;
+}
+
+#main-content .cyber-world-hotspots span {
+  grid-area: num;
+  font: 600 .62rem/1 var(--font-geist-mono), monospace;
+  color: #e2bf75;
+}
+
+#main-content .cyber-world-hotspots strong {
+  grid-area: title;
+  font-size: .68rem;
+  letter-spacing: .08em;
+}
+
+#main-content .cyber-world-hotspots small {
+  grid-area: sub;
+  margin-top: .18rem;
+  color: #9eb8c6;
+  font-size: .54rem;
+  letter-spacing: .06em;
+}
+
+#main-content .hotspot-agent { left: 8%; top: 27%; }
+#main-content .hotspot-model { left: 38%; top: 10%; }
+#main-content .hotspot-identity { right: 7%; top: 25%; }
+#main-content .hotspot-soc { left: 43%; bottom: 18%; }
+#main-content .hotspot-real { right: 7%; bottom: 23%; }
+
+#main-content .cyber-live-panel {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 160px;
+  padding: .85rem;
+  border: 1px solid rgba(142,215,230,.24);
+  border-radius: 12px;
+  background: rgba(2,12,20,.74);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.34);
+}
+
+#main-content .cyber-live-panel > span {
+  display: block;
+  margin-bottom: .7rem;
+  color: #8ed7e6;
+  font: 600 .53rem/1.2 var(--font-geist-mono), monospace;
+  letter-spacing: .11em;
+}
+
+#main-content .cyber-live-panel div {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: .8rem;
+  padding: .58rem 0;
+  border-top: 1px solid rgba(168,211,226,.12);
+}
+
+#main-content .cyber-live-panel small {
+  color: #7895a5;
+  font: 500 .5rem/1.25 var(--font-geist-mono), monospace;
+  letter-spacing: .07em;
+}
+
+#main-content .cyber-live-panel strong {
+  font-size: 1.08rem;
+  color: #fff;
+}
+
+#main-content .cyber-focus-card,
+#main-content .cyber-project,
+#main-content .cyber-experience-row,
+#main-content .cyber-skill-grid article {
+  box-shadow: 0 24px 70px rgba(0,0,0,.18);
+}
+
+#main-content .cyber-universe-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: #02070c;
+}
+
+#main-content .cyber-universe-back {
+  position: fixed;
+  z-index: 10050;
+  left: 1rem;
+  bottom: 1rem;
+  padding: .7rem 1rem;
+  border: 1px solid rgba(188,222,232,.28);
+  border-radius: 999px;
+  background: rgba(3,13,22,.72);
+  color: #e8f2f7;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ---------- TRUST UNIVERSE: REAL-WORLD + LIVE 3D HYBRID ---------- */
+
+#main-content .tu2-root {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 680px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #02070c;
+  color: #eef7fb;
+}
+
+#main-content .tu2-photo-world {
+  position: absolute;
+  inset: -3%;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(2,8,13,.18), rgba(2,8,13,.58) 68%, rgba(2,8,13,.82)),
+    url("/Pooja_Kiran_Portfolio_Website/trust-universe-hero.webp") center center / cover no-repeat;
+  filter: saturate(.82) brightness(.62) contrast(1.08);
+  transform:
+    translate3d(var(--photo-x, 0px), var(--photo-y, 0px), 0)
+    scale(var(--human-scale, 1.075))
+    rotate(var(--human-roll, 0deg));
+  transition: background-position 1.15s cubic-bezier(.2,.75,.2,1), filter .8s ease;
+  will-change: transform, background-position;
+}
+
+#main-content .tu2-world-core .tu2-photo-world { background-position: 50% 48%; }
+#main-content .tu2-world-agent .tu2-photo-world { background-position: 22% 50%; filter: saturate(.84) brightness(.48) contrast(1.12); }
+#main-content .tu2-world-identity .tu2-photo-world { background-position: 74% 43%; filter: saturate(.72) brightness(.5) contrast(1.1); }
+#main-content .tu2-world-model .tu2-photo-world { background-position: 60% 25%; filter: saturate(.68) brightness(.5) contrast(1.07); }
+#main-content .tu2-world-adversarial .tu2-photo-world { background-position: 37% 62%; filter: saturate(.62) brightness(.34) contrast(1.18); }
+#main-content .tu2-world-soc .tu2-photo-world { background-position: 22% 66%; filter: saturate(.66) brightness(.4) contrast(1.15); }
+#main-content .tu2-world-cloud .tu2-photo-world { background-position: 80% 28%; filter: saturate(.72) brightness(.47) contrast(1.08); }
+#main-content .tu2-world-real .tu2-photo-world { background-position: 88% 62%; filter: saturate(.88) brightness(.58) contrast(1.04); }
+#main-content .tu2-world-vault .tu2-photo-world { background-position: 36% 72%; filter: saturate(.42) brightness(.34) contrast(1.2); }
+#main-content .tu2-world-observatory .tu2-photo-world { background-position: 74% 22%; filter: saturate(.86) brightness(.82) contrast(1.02); }
+
+#main-content .tu2-photo-world::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at calc(50% + var(--look-x,0px)) calc(50% + var(--look-y,0px)), transparent 0 17rem, rgba(0,8,15,.18) 42rem),
+    linear-gradient(90deg, rgba(1,8,13,.55), transparent 32%, transparent 72%, rgba(1,8,13,.28));
+}
+
+#main-content .tu2-photo-world::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .32;
+  background-image:
+    linear-gradient(rgba(142,215,230,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(142,215,230,.035) 1px, transparent 1px);
+  background-size: 96px 96px;
+  transform: perspective(800px) rotateX(68deg) translateY(54%);
+  transform-origin: center bottom;
+  mask-image: linear-gradient(to top, #000, transparent 70%);
+}
+
+#main-content .tu2-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: .93;
+  pointer-events: none;
+  filter: saturate(.9) contrast(1.04);
+}
+
+#main-content .tu2-explore-free .tu2-canvas {
+  pointer-events: auto;
+}
+
+#main-content .tu2-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+#main-content .tu2-film-grain,
+#main-content .tu2-vignette,
+#main-content .tu2-security-atmosphere {
+  z-index: 4;
+  pointer-events: none;
+}
+
+#main-content .tu2-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 180px 48px rgba(0,0,0,.62);
+}
+
+#main-content .tu2-hud,
+#main-content .tu2-story,
+#main-content .tu2-system-state,
+#main-content .tu2-incident,
+#main-content .tu2-controls,
+#main-content .tu2-guided,
+#main-content .tu2-free-nav,
+#main-content .tu2-wayfinding,
+#main-content .tu2-reticle,
+#main-content .tu2-finale {
+  z-index: 12;
+}
+
+#main-content .tu2-hud {
+  background: linear-gradient(180deg, rgba(2,9,15,.82), rgba(2,9,15,.24));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+#main-content .tu2-story {
+  max-width: 560px;
+  border: 1px solid rgba(166,216,231,.2);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(3,14,23,.82), rgba(3,14,23,.42));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 22px 70px rgba(0,0,0,.34);
+}
+
+#main-content .tu2-incident {
+  max-width: min(760px, calc(100vw - 2rem));
+  border: 1px solid rgba(167,215,230,.22);
+  border-radius: 16px;
+  background: rgba(2,12,20,.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 26px 80px rgba(0,0,0,.42);
+}
+
+#main-content .tu2-system-state,
+#main-content .tu2-controls button,
+#main-content .tu2-free-nav button,
+#main-content .tu2-wayfinding button {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+#main-content .tu2-intro {
+  z-index: 40;
+  background:
+    linear-gradient(90deg, rgba(1,7,12,.82), rgba(1,7,12,.28) 58%, rgba(1,7,12,.48)),
+    linear-gradient(0deg, rgba(1,7,12,.72), transparent 46%);
+}
+
+#main-content .tu2-smart-glass {
+  border: 1px solid rgba(190,225,237,.22);
+  border-radius: 22px;
+  background: rgba(3,14,23,.48);
+  box-shadow: 0 35px 100px rgba(0,0,0,.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+#main-content .tu2-map,
+#main-content .tu2-evidence,
+#main-content .tu2-access {
+  z-index: 80;
+  background: rgba(2,8,13,.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+#main-content .tu2-travel-transition {
+  z-index: 32;
+}
+
+#main-content .tu2-arrival-preview {
+  z-index: 6;
+}
+
+@media (max-width: 1180px) {
+  #main-content .cyber-hero-grid {
+    grid-template-columns: minmax(300px, .86fr) minmax(500px, 1.14fr);
+    gap: 2rem;
+  }
+
+  #main-content .cyber-world-hotspots small { display: none; }
+  #main-content .cyber-world-hotspots button { padding: .48rem .58rem; }
+}
+
+@media (max-width: 900px) {
+  #main-content .cyber-hero-grid {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-top: 7.5rem;
+  }
+
+  #main-content .cyber-hero-stage {
+    min-height: 58svh;
+  }
+
+  #main-content .cyber-live-panel {
+    width: 138px;
+  }
+
+  #main-content .hotspot-model,
+  #main-content .hotspot-soc {
+    display: none;
+  }
+
+  #main-content .tu2-root {
+    min-height: 100svh;
+  }
+
+  #main-content .tu2-canvas {
+    opacity: .74;
+  }
+}
+
+@media (max-width: 640px) {
+  #main-content .cyber-hero-grid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #main-content .cyber-hero-copy h1 {
+    font-size: clamp(3.1rem, 16vw, 5.2rem);
+  }
+
+  #main-content .cyber-hero-stage {
+    min-height: 52svh;
+  }
+
+  #main-content .cyber-world-hotspots button {
+    transform: scale(.88);
+    transform-origin: center;
+  }
+
+  #main-content .cyber-live-panel {
+    display: none;
+  }
+
+  #main-content .hotspot-agent { left: 3%; top: 28%; }
+  #main-content .hotspot-identity { right: 3%; top: 28%; }
+  #main-content .hotspot-real { right: 4%; bottom: 18%; }
+
+  #main-content .tu2-photo-world {
+    inset: -7%;
+  }
+
+  #main-content .tu2-canvas {
+    opacity: .56;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-content .cyber-command-image,
+  #main-content .tu2-photo-world,
+  #main-content .cyber-world-hotspots button {
+    transform: none !important;
+    transition: none !important;
+  }
+}
