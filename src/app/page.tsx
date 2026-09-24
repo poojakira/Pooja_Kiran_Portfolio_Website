@@ -1,5 +1,5 @@
-import CinematicSecurityPortfolio from "@/components/cinematic/CinematicSecurityPortfolio";
+import WorldPortfolio from "@/components/world/WorldPortfolio";
 
 export default function Home() {
-  return <CinematicSecurityPortfolio />;
+  return <WorldPortfolio />;
 }
