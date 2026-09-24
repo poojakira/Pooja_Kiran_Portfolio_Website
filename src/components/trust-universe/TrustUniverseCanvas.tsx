@@ -677,7 +677,6 @@ function Scene(props: TrustUniverseCanvasProps) {
 
   return (
     <>
-      <color attach="background" args={["#06090b"]} />
       <fog attach="fog" args={["#10171a", 36, 118]} />
       <Stars radius={130} depth={65} count={quality === "balanced" ? 950 : 350} factor={2.1} saturation={0} fade speed={0.18} />
       <ambientLight intensity={0.34} />
@@ -754,10 +753,12 @@ export default function TrustUniverseCanvas(props: TrustUniverseCanvasProps) {
       shadows={quality === "balanced"}
       gl={{
         antialias: quality === "balanced",
+        alpha: true,
         powerPreference: "high-performance",
         toneMapping: THREE.ACESFilmicToneMapping,
         toneMappingExposure: 0.82,
       }}
+      onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
     >
       <Suspense fallback={null}>
         <Scene {...props} />
