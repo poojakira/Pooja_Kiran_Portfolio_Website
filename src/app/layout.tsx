@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./portfolio.css";
+import "./cinematic-world.css";
 import { profile, SITE_PATH } from "@/data/portfolio";
 
 const geist = localFont({ src: "./fonts/GeistVF.woff", variable: "--font-geist", display: "swap", weight: "100 900" });
