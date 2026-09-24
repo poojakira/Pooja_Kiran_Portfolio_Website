@@ -1,14 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { RESUME_URL, profile } from "@/data/portfolio";
 import type { TravelMode, TrustPhase, TrustWorldId } from "@/components/trust-universe/TrustUniverseCanvas";
-
-const TrustUniverseCanvas = dynamic(
-  () => import("@/components/trust-universe/TrustUniverseCanvas"),
-  { ssr: false },
-);
 
 type EntryMode = "guided" | "free";
 type IntroStage = "boot" | "verified" | "ready" | "entered";
@@ -392,6 +386,8 @@ export default function TrustUniverseExperience() {
         if (WORLD_MAP[currentWorld].incident) runIncident();
         else setEvidenceOpen(true);
       }
+      if (mode === "free" && (key === "w" || key === "d" || event.key === "ArrowUp" || event.key === "ArrowRight")) nextWorld();
+      if (mode === "free" && (key === "s" || key === "a" || event.key === "ArrowDown" || event.key === "ArrowLeft")) previousWorld();
       if (mode === "guided" && (event.key === "ArrowRight" || event.key === "ArrowDown")) nextWorld();
       if (mode === "guided" && (event.key === "ArrowLeft" || event.key === "ArrowUp")) previousWorld();
     };
@@ -432,20 +428,11 @@ export default function TrustUniverseExperience() {
   }
 
   return (
-    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + " tu2-mode-" + travelMode + (destination ? " tu2-traveling" : "") + (highContrast ? " tu2-high-contrast" : "")}>
-      <div className="tu2-photo-world" aria-hidden="true"><div className="tu2-photo-depth" /></div>
-      <div className={"tu2-canvas " + (mode === "free" ? "is-free" : "is-guided")} aria-hidden="true">
-        <TrustUniverseCanvas
-          currentWorld={currentWorld}
-          destination={destination}
-          travelMode={travelMode}
-          quality={quality}
-          phase={phase}
-          reduceMotion={reduceMotion}
-          experienceMode={mode}
-          onEnterWorld={enterWorld}
-          onAutopilotComplete={() => setDestination(null)}
-        />
+    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + " tu2-mode-" + travelMode + " tu2-explore-" + mode + (destination ? " tu2-traveling" : "") + (highContrast ? " tu2-high-contrast" : "")}>
+      <div className="tu2-photo-world" aria-hidden="true">
+        <div className="tu2-photo-depth" />
+        <div className="tu2-near-depth" />
+        <div className="tu2-ground-depth" />
       </div>
       <div className="tu2-security-atmosphere" aria-hidden="true">
         <i /><i /><i /><i /><i /><i />
