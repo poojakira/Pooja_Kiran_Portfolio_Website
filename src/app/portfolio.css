@@ -9522,3 +9522,170 @@ body:has(.sketch-site){
 @media(prefers-reduced-motion:reduce){
   .tu2-canvas.is-free{opacity:.14}
 }
+
+
+/* TRUST UNIVERSE HUMAN POV FINAL */
+.tu2-canvas{display:none!important}
+.tu2-root{cursor:default}
+.tu2-explore-free .tu2-hud{
+  background:linear-gradient(180deg,rgba(4,7,9,.54),rgba(4,7,9,.1),transparent);
+  backdrop-filter:blur(6px);
+}
+.tu2-explore-free .tu2-story{
+  width:min(350px,30vw);
+  opacity:.82;
+}
+.tu2-explore-free .tu2-story p{display:none}
+.tu2-explore-free .tu2-system-state{opacity:.78}
+.tu2-explore-free .tu2-security-atmosphere{opacity:.34}
+.tu2-explore-free .tu2-vignette{
+  background:
+    radial-gradient(circle at 50% 47%,transparent 46%,rgba(0,0,0,.16) 78%,rgba(0,0,0,.38) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.08),transparent 18%,transparent 82%,rgba(0,0,0,.14));
+}
+.tu2-photo-world{
+  overflow:hidden;
+  perspective:1400px;
+}
+.tu2-photo-depth{
+  transform:
+    translate3d(var(--photo-x,0),var(--photo-y,0),0)
+    scale(var(--human-scale,1.075))!important;
+  transform-origin:50% 52%;
+  transition:filter .45s ease;
+}
+.tu2-near-depth{
+  opacity:.14;
+  transform:translate3d(var(--near-x,0),var(--near-y,0),0) scale(1.14);
+}
+.tu2-ground-depth{
+  opacity:.22;
+  transform:
+    perspective(760px)
+    rotateX(66deg)
+    translate3d(calc(var(--look-x,0) * -.12),4%,0);
+}
+.tu2-mode-foot.tu2-traveling .tu2-photo-world{
+  transform:rotate(var(--human-roll,0deg));
+}
+.tu2-mode-foot.tu2-traveling .tu2-photo-depth{
+  filter:saturate(.8) contrast(1.08) brightness(.67);
+}
+.tu2-mode-foot.tu2-traveling .tu2-near-depth{
+  opacity:.23;
+  filter:blur(2.7px) brightness(.62) saturate(.66);
+}
+.tu2-mode-foot.tu2-traveling .tu2-ground-depth{
+  opacity:.38;
+  animation:tu2GroundWalk .42s linear infinite;
+}
+.tu2-mode-vehicle.tu2-traveling .tu2-photo-depth{
+  filter:saturate(.78) contrast(1.06) brightness(.64) blur(.25px);
+}
+.tu2-mode-vehicle.tu2-traveling .tu2-ground-depth{
+  opacity:.46;
+  animation:tu2GroundDrive .18s linear infinite;
+}
+.tu2-arrival-preview{
+  position:absolute;
+  inset:-3.5%;
+  z-index:1;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:0;
+  animation:tu2ApproachWorld 1.9s cubic-bezier(.2,.65,.2,1) forwards;
+}
+.tu2-mode-vehicle .tu2-arrival-preview{
+  animation-duration:1.05s;
+}
+.tu2-arrival-preview>div{
+  position:absolute;
+  inset:-3%;
+  background-image:
+    linear-gradient(90deg,rgba(1,4,6,.62),rgba(2,5,7,.22) 46%,rgba(1,4,6,.12) 72%,rgba(1,3,5,.38)),
+    linear-gradient(180deg,rgba(2,5,6,.04),transparent 60%,rgba(0,0,0,.28)),
+    var(--tu2-photo);
+  background-size:cover;
+  background-position:var(--tu2-photo-position);
+  filter:saturate(.78) contrast(1.06) brightness(.7);
+  transform:scale(1.14);
+}
+@keyframes tu2ApproachWorld{
+  0%{opacity:0;filter:blur(2px)}
+  28%{opacity:.08}
+  62%{opacity:.42;filter:blur(.7px)}
+  88%{opacity:.92;filter:blur(0)}
+  100%{opacity:1;filter:blur(0)}
+}
+.tu2-travel-transition{
+  z-index:12!important;
+  left:50%!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:86px!important;
+  inset:auto!important;
+  width:min(380px,70vw)!important;
+  min-height:0!important;
+  display:block!important;
+  padding:11px 13px!important;
+  transform:translateX(-50%) translateY(10px)!important;
+  background:rgba(4,8,9,.42)!important;
+  border:1px solid rgba(235,240,239,.13)!important;
+  backdrop-filter:blur(12px)!important;
+}
+.tu2-travel-transition.active{
+  transform:translateX(-50%) translateY(0)!important;
+}
+.tu2-travel-transition strong{
+  margin-top:5px;
+  font-size:11px!important;
+  letter-spacing:.08em!important;
+}
+.tu2-travel-transition i{
+  width:100%!important;
+  margin-top:9px!important;
+}
+.tu2-human-hint{
+  position:absolute;
+  z-index:9;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  padding:7px 11px;
+  text-align:center;
+  pointer-events:none;
+  text-shadow:0 2px 12px rgba(0,0,0,.92);
+}
+.tu2-human-hint span{
+  display:block;
+  font:600 7px/1 ui-monospace,monospace;
+  letter-spacing:.17em;
+  color:#d7c39a;
+}
+.tu2-human-hint strong{
+  display:block;
+  margin-top:5px;
+  font:500 8px/1.3 ui-monospace,monospace;
+  letter-spacing:.07em;
+  color:#a7b1b1;
+}
+.tu2-reticle{display:none!important}
+.tu2-explore-free .tu2-wayfinding{
+  transform:translate3d(calc(var(--look-x,0) * -.07),calc(var(--look-y,0) * -.045),0);
+}
+.tu2-explore-free .tu2-story{
+  transform:translate3d(calc(var(--look-x,0) * -.018),calc(var(--look-y,0) * -.014),0);
+}
+.tu2-explore-free .tu2-system-state{
+  transform:translate3d(calc(var(--look-x,0) * .014),calc(var(--look-y,0) * .012),0);
+}
+@media(max-width:720px){
+  .tu2-near-depth{opacity:.08}
+  .tu2-ground-depth{opacity:.14}
+  .tu2-human-hint{bottom:72px;width:80vw}
+  .tu2-arrival-preview{inset:-1.5%}
+}
+@media(prefers-reduced-motion:reduce){
+  .tu2-arrival-preview{animation:none!important;opacity:1!important}
+  .tu2-photo-world,.tu2-photo-depth,.tu2-near-depth,.tu2-ground-depth{transform:none!important;animation:none!important}
+}
