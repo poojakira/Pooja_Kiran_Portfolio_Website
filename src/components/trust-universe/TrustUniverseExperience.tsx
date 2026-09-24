@@ -214,8 +214,38 @@ export default function TrustUniverseExperience() {
   const [quality, setQuality] = useState<"balanced" | "lite">("balanced");
   const timers = useRef<number[]>([]);
   const wheelLocked = useRef(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const world = WORLD_MAP[currentWorld];
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    let raf = 0;
+    let tx = 0;
+    let ty = 0;
+    let x = 0;
+    let y = 0;
+    const onMove = (event: PointerEvent) => {
+      tx = event.clientX / window.innerWidth - 0.5;
+      ty = event.clientY / window.innerHeight - 0.5;
+    };
+    const tick = () => {
+      x += (tx - x) * 0.055;
+      y += (ty - y) * 0.055;
+      root.style.setProperty("--photo-x", `${(x * 18).toFixed(2)}px`);
+      root.style.setProperty("--photo-y", `${(y * 10).toFixed(2)}px`);
+      root.style.setProperty("--glass-x", `${(x * -8).toFixed(2)}px`);
+      root.style.setProperty("--glass-y", `${(y * -5).toFixed(2)}px`);
+      raf = requestAnimationFrame(tick);
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    raf = requestAnimationFrame(tick);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -357,7 +387,8 @@ export default function TrustUniverseExperience() {
   }
 
   return (
-    <div className={"tu2-root" + (highContrast ? " tu2-high-contrast" : "")}>
+    <div ref={rootRef} className={"tu2-root tu2-world-" + currentWorld + (highContrast ? " tu2-high-contrast" : "")}>
+      <div className="tu2-photo-world" aria-hidden="true"><div className="tu2-photo-depth" /></div>
       <div className="tu2-canvas" aria-hidden="true">
         <TrustUniverseCanvas
           currentWorld={currentWorld}
