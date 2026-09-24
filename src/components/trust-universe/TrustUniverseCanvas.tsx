@@ -21,8 +21,8 @@ export type TrustPhase = "normal" | "threat" | "analysis" | "control" | "recover
 export type TravelMode = "foot" | "vehicle";
 
 type TrustUniverseCanvasProps = {
-  currentWorld: string;
-  destination?: string | null;
+  currentWorld: TrustWorldId;
+  destination?: TrustWorldId | null;
   travelMode?: TravelMode;
   quality?: "balanced" | "lite";
   phase?: TrustPhase;
