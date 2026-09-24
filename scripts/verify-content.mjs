@@ -13,27 +13,30 @@ const text = files
   .join("\n");
 
 const required = [
-  "622 passing tests",
-  "78% statement coverage",
+  "641 passing tests",
+  "79.54% statement coverage",
   "230 passing tests",
   "25 IAM rule IDs",
-  "195 passing tests",
+  "199 passing tests",
   "12/12 core",
   "18/18 extended",
-  "1,047",
+  "1,070",
 ];
 
 for (const token of required) {
   if (!text.includes(token)) {
-    throw new Error(`Missing current resume evidence token: ${token}`);
+    throw new Error(`Missing current repository evidence token: ${token}`);
   }
 }
 
 const stale = [
+  "1,047 documented passing tests",
   "1,058 documented passing tests",
+  "622 passing tests",
   "629 passing tests",
+  "78% statement coverage",
   "78.47% statement coverage",
-  "199 passing tests",
+  "195 passing tests",
 ];
 
 for (const token of stale) {
