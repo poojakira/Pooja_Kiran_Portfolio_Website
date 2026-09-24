@@ -232,6 +232,16 @@ export default function FreshCinematicPortfolio() {
 
   return (
     <div ref={rootRef} className="fc-site">
+      {introVisible && (
+        <CinematicIntro
+          onEnter={() => setIntroVisible(false)}
+          onSkip={() => {
+            setIntroVisible(false);
+            window.setTimeout(() => document.querySelector("#evidence")?.scrollIntoView({ behavior: "smooth" }), 80);
+          }}
+        />
+      )}
+      {recruiterOpen && <RecruiterPanel onClose={() => setRecruiterOpen(false)} />}
       <div className="fc-grain" aria-hidden="true" />
       <div className="fc-pointer-light" aria-hidden="true" />
 
@@ -246,10 +256,19 @@ export default function FreshCinematicPortfolio() {
         </nav>
 
         <div className="fc-header-actions">
+          <button type="button" className="fc-recruiter-toggle" onClick={() => setRecruiterOpen(true)}>Recruiter mode</button>
           <a href={RESUME_URL} download className="fc-resume">Résumé <span>↗</span></a>
           <button type="button" className="fc-menu" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen}>Menu</button>
         </div>
       </header>
+
+      <nav className="fc-progress-rail" aria-label="Section progress">
+        <a href="#home"><span>01</span><b>INTRO</b></a>
+        <a href="#systems"><span>02</span><b>SYSTEMS</b></a>
+        <a href="#evidence"><span>03</span><b>EVIDENCE</b></a>
+        <a href="#experience"><span>04</span><b>EXPERIENCE</b></a>
+        <a href="#profile"><span>05</span><b>PROFILE</b></a>
+      </nav>
 
       <main>
         <section id="home" className="fc-hero">
