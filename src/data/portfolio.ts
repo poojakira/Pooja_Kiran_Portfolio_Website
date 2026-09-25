@@ -94,7 +94,7 @@ export const skillGroups = [
 ] as const;
 
 
-export const resumeSummary = "Security Engineer with 2+ years of hands-on experience owning security architecture, control development, adversarial validation, and security automation across AI agents, AWS IAM, and AI model supply chains. Architected three open-source Python security systems that address unsafe tool execution, excessive agent privileges, and model artifacts from unverified sources, backed by 1,094 documented passing tests across the three repositories.";
+export const resumeSummary = "Security Engineer with hands-on experience owning security architecture, control development, adversarial validation, and security automation across AI agents, AWS IAM, and AI model supply chains. Architected three open-source Python security systems that address unsafe tool execution, excessive agent privileges, and model artifacts from unverified sources, backed by 1,094 documented passing tests across the three repositories.";
 
 export const education = [
   {

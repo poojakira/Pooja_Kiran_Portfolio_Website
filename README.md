@@ -23,8 +23,8 @@ The homepage includes profile, experience, three flagship projects with expandab
 ## Assets and URLs
 
 - Canonical résumé asset: `public/Pooja_Kiran_Security_Engineer_Resume.pdf`
-- Canonical source file: `Pooja_Kiran_Security_Engineer_Resume(3).pdf`
-- SHA-256: `408cbe449622aeed864758a382ba781845fd26cf32911edeebb95ad278b8918c`
+- Canonical source: `resume/Pooja_Kiran_Security_Engineer_Resume.tex` (compile with `pdflatex`)
+- SHA-256: `c3c7d6e6efada3557fd9090b52c91951a194fb8f7d2ade4abb3c2910654d3e87`
 - Portrait: `public/pooja-kiran.png`
 - Favicon: `public/favicon.svg`
 - `SITE_PATH` in `src/data/portfolio.ts` matches the Next.js basePath.

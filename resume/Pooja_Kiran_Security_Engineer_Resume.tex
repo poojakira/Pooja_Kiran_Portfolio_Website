@@ -1,0 +1,116 @@
+\documentclass[letterpaper,10pt]{article}
+
+% Editable source for Pooja_Kiran_Security_Engineer_Resume.pdf.
+% Numbers in the projects/summary sections are reconciled to the verified
+% VERIFIED_METRICS.md evidence in the three flagship repositories
+% (MCP 648, AWS Identity Guard 235, HF scanner 211; total 1,094).
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+\definecolor{rulegray}{gray}{0.55}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\vspace{-0.6em}\color{rulegray}\rule{\linewidth}{0.6pt}]
+\titlespacing{\section}{0pt}{0.5em}{0.25em}
+
+\newcommand{\entry}[2]{\textbf{#1}\hfill #2\par}
+\newcommand{\subentry}[1]{\textit{#1}\par}
+\setlist[itemize]{leftmargin=1.4em,topsep=1pt,itemsep=1pt,parsep=0pt}
+
+\begin{document}
+
+\begin{center}
+  {\huge\bfseries POOJA KIRAN}\\[2pt]
+  {\large\bfseries SECURITY ENGINEER}\\[3pt]
+  Tempe, AZ | +1 480-776-7745 | poojakiranbhardwaj@gmail.com | linkedin.com/in/poojakiran | github.com/poojakira
+\end{center}
+
+\section*{PROFESSIONAL SUMMARY}
+Security Engineer with hands-on experience owning security architecture, control development, adversarial
+validation, and security automation across AI agents, AWS IAM, and AI model supply chains. Architected three
+open-source Python security systems that address unsafe tool execution, excessive agent privileges, and model
+artifacts from unverified sources, backed by 1{,}094 documented passing tests across the three repositories.
+Translates threat scenarios into enforceable controls, CI gates, and detection workflows using MCP, AWS IAM,
+SARIF, GitHub Code Scanning, Elastic Security, and SIEM telemetry.
+
+\section*{TECHNICAL SKILLS}
+\textbf{Security Engineering \& Testing:} Security Engineering, Information Security, Security Solutions, Security Automation, Security Testing, Automated Testing, Threat Modeling, Vulnerability Scanning, Incident Response Runbooks\\
+\textbf{Programming \& Platforms:} Python, Bash/Shell, FastAPI, REST APIs, JSON-RPC 2.0, Linux, Docker\\
+\textbf{AI \& Agent Security:} Model Context Protocol (MCP), Prompt Injection Detection, Secure Tool Invocation, Tool-Call Inspection, Capability Enforcement, PII Leakage Detection, Data Exfiltration Detection\\
+\textbf{Cloud \& Identity Security:} AWS IAM, Least Privilege, IAM Policy Analysis, iam:PassRole, sts:AssumeRole, Trust Policies, Permission Boundaries, Privilege Escalation Analysis, CloudTrail\\
+\textbf{Network \& Detection Security:} Network Security Controls, Network Egress Controls, Elastic Security, SIEM, Detection Engineering, Security Telemetry, MITRE ATT\&CK, Audit Logging\\
+\textbf{DevSecOps \& AI Supply Chain:} GitHub Actions, CI/CD Security, SARIF 2.1.0, CodeQL, Bandit, Trivy, pip-audit, Model Provenance, Model Artifact Security, Pickle Analysis, SafeTensors, GGUF, ONNX, SBOM
+
+\section*{WORK EXPERIENCE}
+\entry{Independent AI Security Researcher \& Engineer}{Jul 2024 - Present}
+\subentry{Self-Directed Security Research | Tempe, AZ}
+\begin{itemize}
+  \item Owned the architecture and delivery of three open-source Python security systems addressing unsafe AI tool invocation, excessive agent privileges, and model artifacts from unverified sources, codifying 55 prompt-injection patterns and 25 IAM security rules.
+  \item Drove end-to-end validation through 1{,}094 documented passing tests across the three repositories, establishing measurable assurance for prompt-injection controls, IAM rule behavior, model-artifact inspection, parser edge cases, and adversarial scenarios.
+  \item Integrated security findings into automated engineering workflows through SARIF 2.1.0, GitHub Code Scanning, Elastic Security detections, SIEM validation, and CI-integrated enforcement gates.
+\end{itemize}
+
+\entry{Business and Compliance Lead | AEROSEC Externship}{Jul 2025 - Nov 2025}
+\subentry{Arizona State University | Honeywell Aerospace Partnership | Tempe, AZ}
+\begin{itemize}
+  \item Directed business, security, and compliance planning for a \$120K first-year passenger-service-system (PSS) security scenario, translating third-party cybersecurity risk into deployment, operational readiness, and commercialization decisions.
+  \item Owned a five-year financial and deployment model evaluating implementation cost, growth assumptions, and security trade-offs, identifying a scenario with approximately 12\% cost savings.
+  \item Presented security, compliance, financial, and deployment recommendations to ASU faculty and Honeywell mentors, supporting risk-informed project strategy and operational readiness decisions.
+\end{itemize}
+
+\entry{Graduate Teaching Assistant | IT Grader}{Dec 2024 - Sep 2025}
+\subentry{Arizona State University | Tempe, AZ}
+\begin{itemize}
+  \item Managed technical assessment of approximately 85 undergraduate web programming submissions per term, identifying implementation defects and delivering structured, rubric-driven engineering feedback.
+  \item Evaluated 52 graduate IT security assignments spanning cybersecurity policy, compliance, and security concepts while enforcing consistent technical assessment standards.
+  \item Resolved grading inconsistencies with ASU faculty and communicated technical corrections across programming and cybersecurity coursework.
+\end{itemize}
+
+\section*{SELECTED SECURITY ENGINEERING PROJECTS}
+\entry{MCP Agent Security Gateway | \href{https://github.com/poojakira/mcp-agent-security-gateway}{GitHub}}{Jul 2026 - Present}
+\begin{itemize}
+  \item Closed an agent-security gap by architecting an inline MCP and JSON-RPC 2.0 gateway that inspects tool calls before downstream execution, creating a policy enforcement boundary between agent intent and privileged actions.
+  \item Hardened the execution boundary with 55 prompt-injection patterns, Unicode/Base64/ROT13 normalization, capability checks, PII and exfiltration signals, hash-chained audit logging, rate limiting, and security telemetry.
+  \item Validated 648 passing tests at 79.6\% statement coverage and defined 9 MITRE ATT\&CK-mapped Elastic Security rules, 21 SIEM tests, and end-to-end ELK event shipping with 0 Filebeat errors in the local Docker lab.
+\end{itemize}
+
+\entry{AWS Agent Identity Guard | \href{https://github.com/poojakira/aws-agent-identity-guard}{GitHub}}{Aug 2026 - Sep 2026}
+\begin{itemize}
+  \item Reduced pre-deployment IAM risk for autonomous agents by architecting a static analyzer that identifies excessive and high-risk permissions, privilege-escalation paths, risky trust policies, audit tampering, and missing permission boundaries before role deployment.
+  \item Codified 25 deterministic rules and converted findings into CI-enforceable JSON and SARIF 2.1.0 output, GitHub Code Scanning annotations, and exit-code gates for high and critical conditions.
+  \item Validated all 25 rule IDs across 235 passing tests, including positive and negative cases, parser fuzzing, SARIF conformance, and failure-mode tests.
+\end{itemize}
+
+\entry{HF Model Provenance Scanner | \href{https://github.com/poojakira/hf-model-provenance-scanner}{GitHub}}{Jul 2026 - Sep 2026}
+\begin{itemize}
+  \item Addressed AI model supply-chain risk by engineering a non-executing scanner that inspects untrusted repositories and artifacts for provenance gaps, unsafe serialization, suspicious loader behavior, impersonation, and configuration anomalies before model loading.
+  \item Expanded inspection across Python loaders, pickle bytecode, SafeTensors, GGUF, ONNX, dependency indicators, signatures, and SBOM evidence without executing untrusted artifacts.
+  \item Validated 211 passing tests; committed red-team fixture suites detected 12/12 core incident reproductions and 18/18 extended variants with 0 actionable false positives across 4 benign samples.
+\end{itemize}
+
+\section*{EDUCATION}
+\entry{Master of Science in Information Technology}{Aug 2024 - May 2026}
+\subentry{Arizona State University | Tempe, AZ | GPA: 3.87/4.00}
+\entry{Bachelor of Engineering in Computer Science and Engineering}{Aug 2019 - Aug 2023}
+\subentry{Ramaiah University of Applied Sciences | Bengaluru, KA, India}
+
+\section*{TRAINING \& CREDENTIALS}
+\textbf{AWS Academy Graduate - Cloud Security Foundations} | AWS Academy\\
+\textbf{AWS Academy Graduate - Cloud Architecting} | AWS Academy
+
+\section*{PUBLICATIONS}
+\textbf{A Personalized E-Learning System Using Reinforcement Learning Through Satellite} | IEEE INDICON 2023 | Dec 2023\\
+Co-authored and presented a peer-reviewed IEEE conference paper on reinforcement-learning-based personalized e-learning for remote communities using satellite connectivity.
+
+\section*{AWARDS \& GRANTS}
+\entry{KSCST 46th Series Student Project Programme Research Grant}{Apr 2023}
+\subentry{Karnataka State Council for Science and Technology (KSCST)}
+Awarded INR 6{,}000 in project funding for an AI-based e-learning initiative for remote communities.
+
+\end{document}
