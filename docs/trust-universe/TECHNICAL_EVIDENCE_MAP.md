@@ -3,8 +3,8 @@
 ## Agent Security City
 Repository: poojakira/mcp-agent-security-gateway
 Verified anchor:
-- 648 passing tests
-- 79.61% statement coverage
+- 652 passing tests
+- ~79.2% statement coverage
 - 55 prompt-injection regex patterns
 - 9 Elastic Security rules
 - 21 core SIEM tests
