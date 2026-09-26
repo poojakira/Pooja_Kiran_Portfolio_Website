@@ -1,116 +1,175 @@
-\documentclass[letterpaper,10pt]{article}
+%-------------------------
+% Resume in LaTeX  (based on Jake Gutierrez's "Jake's Resume" template, MIT License)
+% Candidate: Pooja Kiran Bharadwaj
+%------------------------
 
-% Editable source for Pooja_Kiran_Security_Engineer_Resume.pdf.
-% Numbers in the projects/summary sections are reconciled to the verified
-% VERIFIED_METRICS.md evidence in the three flagship repositories
-% (MCP 648, AWS Identity Guard 235, HF scanner 211; total 1,094).
+\documentclass[letterpaper,11pt]{article}
 
-\usepackage[margin=0.5in]{geometry}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
 \usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
-\usepackage{xcolor}
-\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
 
-\definecolor{rulegray}{gray}{0.55}
-\setlength{\parindent}{0pt}
-\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
-\titleformat{\section}{\large\bfseries}{}{0pt}{}[\vspace{-0.6em}\color{rulegray}\rule{\linewidth}{0.6pt}]
-\titlespacing{\section}{0pt}{0.5em}{0.25em}
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{1.8in}
 
-\newcommand{\entry}[2]{\textbf{#1}\hfill #2\par}
-\newcommand{\subentry}[1]{\textit{#1}\par}
-\setlist[itemize]{leftmargin=1.4em,topsep=1pt,itemsep=1pt,parsep=0pt}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
 
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
+
+\pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-3pt}}
+  }
+}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-3pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-4pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-3pt}
+}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt, topsep=4pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%---------------------------------------------------------------
 \begin{document}
 
+%----------HEADING----------
 \begin{center}
-  {\huge\bfseries POOJA KIRAN}\\[2pt]
-  {\large\bfseries SECURITY ENGINEER}\\[3pt]
-  Tempe, AZ | +1 480-776-7745 | poojakiranbhardwaj@gmail.com | linkedin.com/in/poojakiran | github.com/poojakira
+    \textbf{\Huge \scshape Pooja Kiran Bharadwaj} \\ \vspace{2pt}
+    \small Security Engineer $|$ AI Security $|$ Application Security $|$ Cloud \& IAM Security \\ \vspace{3pt}
+    \small
+    Tempe, AZ $\cdot$ +1 480-776-7745 $\cdot$
+    \href{mailto:poojakiranbhardwaj@gmail.com}{poojakiranbhardwaj@gmail.com} $\cdot$
+    \href{https://linkedin.com/in/poojakiran}{linkedin.com/in/poojakiran} $\cdot$
+    \href{https://github.com/poojakira}{github.com/poojakira}
 \end{center}
 
-\section*{PROFESSIONAL SUMMARY}
-Security Engineer with hands-on experience owning security architecture, control development, adversarial
-validation, and security automation across AI agents, AWS IAM, and AI model supply chains. Architected three
-open-source Python security systems that address unsafe tool execution, excessive agent privileges, and model
-artifacts from unverified sources, backed by 1{,}094 documented passing tests across the three repositories.
-Translates threat scenarios into enforceable controls, CI gates, and detection workflows using MCP, AWS IAM,
-SARIF, GitHub Code Scanning, Elastic Security, and SIEM telemetry.
+%-----------SUMMARY-----------
+\section{Summary}
+\small{Security engineer who builds and validates controls for AI agents, cloud identities, and model supply chains. Hands-on work spans MCP/JSON-RPC agent security, prompt-injection detection, AWS IAM analysis, and adversarial ML, backed by reproducible tests, CI, and SARIF telemetry in Python.}
+\vspace{-5pt}
 
-\section*{TECHNICAL SKILLS}
-\textbf{Security Engineering \& Testing:} Security Engineering, Information Security, Security Solutions, Security Automation, Security Testing, Automated Testing, Threat Modeling, Vulnerability Scanning, Incident Response Runbooks\\
-\textbf{Programming \& Platforms:} Python, Bash/Shell, FastAPI, REST APIs, JSON-RPC 2.0, Linux, Docker\\
-\textbf{AI \& Agent Security:} Model Context Protocol (MCP), Prompt Injection Detection, Secure Tool Invocation, Tool-Call Inspection, Capability Enforcement, PII Leakage Detection, Data Exfiltration Detection\\
-\textbf{Cloud \& Identity Security:} AWS IAM, Least Privilege, IAM Policy Analysis, iam:PassRole, sts:AssumeRole, Trust Policies, Permission Boundaries, Privilege Escalation Analysis, CloudTrail\\
-\textbf{Network \& Detection Security:} Network Security Controls, Network Egress Controls, Elastic Security, SIEM, Detection Engineering, Security Telemetry, MITRE ATT\&CK, Audit Logging\\
-\textbf{DevSecOps \& AI Supply Chain:} GitHub Actions, CI/CD Security, SARIF 2.1.0, CodeQL, Bandit, Trivy, pip-audit, Model Provenance, Model Artifact Security, Pickle Analysis, SafeTensors, GGUF, ONNX, SBOM
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Independent AI Security Researcher \& Engineer}{Aug 2024 -- Present}
+      {Self-Directed Security Research}{Tempe, AZ}
+      \resumeItemListStart
+        \resumeItem{Designed and validated security controls across six areas: agent runtime security, cloud IAM, LLM red teaming, model supply-chain security, training-data integrity, and adversarial ML.}
+        \resumeItem{Engineered an MCP/JSON-RPC security gateway with 55 prompt-injection patterns and an AWS IAM analyzer with 25 deterministic rules covering \texttt{iam:PassRole}, privilege escalation, trust-policy weaknesses, and audit tampering.}
+        \resumeItem{Backed every claim with reproducible evidence: 652 gateway tests (79\% coverage), 235 IAM analyzer tests, and 170+ LLM security tests, wired to CI, SARIF output, and audit telemetry.}
+      \resumeItemListEnd
 
-\section*{WORK EXPERIENCE}
-\entry{Independent AI Security Researcher \& Engineer}{Jul 2024 - Present}
-\subentry{Self-Directed Security Research | Tempe, AZ}
-\begin{itemize}
-  \item Owned the architecture and delivery of three open-source Python security systems addressing unsafe AI tool invocation, excessive agent privileges, and model artifacts from unverified sources, codifying 55 prompt-injection patterns and 25 IAM security rules.
-  \item Drove end-to-end validation through 1{,}094 documented passing tests across the three repositories, establishing measurable assurance for prompt-injection controls, IAM rule behavior, model-artifact inspection, parser edge cases, and adversarial scenarios.
-  \item Integrated security findings into automated engineering workflows through SARIF 2.1.0, GitHub Code Scanning, Elastic Security detections, SIEM validation, and CI-integrated enforcement gates.
-\end{itemize}
+    \resumeSubheading
+      {Business \& Compliance Lead, AEROSEC}{Aug 2025 -- Dec 2025}
+      {Honeywell Aerospace Technologies $\times$ Arizona State University}{Tempe, AZ}
+      \resumeItemListStart
+        \resumeItem{Led compliance and third-party security strategy for AEROSEC, a proposed protection layer addressing operational and security risk across airline Passenger Service System integrations.}
+        \resumeItem{Developed a \$120K first-year commercialization scenario and a five-year financial model, then presented the security and business case to ASU and Honeywell stakeholders.}
+      \resumeItemListEnd
 
-\entry{Business and Compliance Lead | AEROSEC Externship}{Jul 2025 - Nov 2025}
-\subentry{Arizona State University | Honeywell Aerospace Partnership | Tempe, AZ}
-\begin{itemize}
-  \item Directed business, security, and compliance planning for a \$120K first-year passenger-service-system (PSS) security scenario, translating third-party cybersecurity risk into deployment, operational readiness, and commercialization decisions.
-  \item Owned a five-year financial and deployment model evaluating implementation cost, growth assumptions, and security trade-offs, identifying a scenario with approximately 12\% cost savings.
-  \item Presented security, compliance, financial, and deployment recommendations to ASU faculty and Honeywell mentors, supporting risk-informed project strategy and operational readiness decisions.
-\end{itemize}
+    \resumeSubheading
+      {Graduate Teaching Assistant, IT Grader}{Jan 2025 -- Oct 2025}
+      {Ira A. Fulton Schools of Engineering, Arizona State University}{Mesa, AZ}
+      \resumeItemListStart
+        \resumeItem{Evaluated roughly 85 undergraduate web-development submissions per semester and 52 graduate assignments on IT security policy, secure coding, and risk analysis, delivering targeted technical feedback with faculty.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
 
-\entry{Graduate Teaching Assistant | IT Grader}{Dec 2024 - Sep 2025}
-\subentry{Arizona State University | Tempe, AZ}
-\begin{itemize}
-  \item Managed technical assessment of approximately 85 undergraduate web programming submissions per term, identifying implementation defects and delivering structured, rubric-driven engineering feedback.
-  \item Evaluated 52 graduate IT security assignments spanning cybersecurity policy, compliance, and security concepts while enforcing consistent technical assessment standards.
-  \item Resolved grading inconsistencies with ASU faculty and communicated technical corrections across programming and cybersecurity coursework.
-\end{itemize}
+%-----------PROJECTS-----------
+\section{Security Engineering Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{MCP Agent Security Gateway} $|$ \emph{Python, FastAPI, JSON-RPC} $\cdot$ \href{https://github.com/poojakira/mcp-agent-security-gateway}{poojakira/mcp-agent-security-gateway}}{}
+          \resumeItemListStart
+            \resumeItem{Built an inline security control that inspects agent MCP tool calls before execution, applying 55 prompt-injection patterns, capability and trust checks, PII/exfiltration signals, and process/egress policy at the agent-to-tool boundary.}
+            \resumeItem{Verified behavior with 652 passing tests and 79\% statement coverage; added hash-chained audit logging, rate limiting, 9 Elastic rules, and 21 SIEM tests. Enforcement applies only to routed traffic (research prototype).}
+          \resumeItemListEnd
 
-\section*{SELECTED SECURITY ENGINEERING PROJECTS}
-\entry{MCP Agent Security Gateway | \href{https://github.com/poojakira/mcp-agent-security-gateway}{GitHub}}{Jul 2026 - Present}
-\begin{itemize}
-  \item Closed an agent-security gap by architecting an inline MCP and JSON-RPC 2.0 gateway that inspects tool calls before downstream execution, creating a policy enforcement boundary between agent intent and privileged actions.
-  \item Hardened the execution boundary with 55 prompt-injection patterns, Unicode/Base64/ROT13 normalization, capability checks, PII and exfiltration signals, hash-chained audit logging, rate limiting, and security telemetry.
-  \item Validated 648 passing tests at 79.6\% statement coverage and defined 9 MITRE ATT\&CK-mapped Elastic Security rules, 21 SIEM tests, and end-to-end ELK event shipping with 0 Filebeat errors in the local Docker lab.
-\end{itemize}
+      \resumeProjectHeading
+          {\textbf{AWS Agent Identity Guard} $|$ \emph{Python, AWS IAM, SARIF} $\cdot$ \href{https://github.com/poojakira/aws-agent-identity-guard}{poojakira/aws-agent-identity-guard}}{}
+          \resumeItemListStart
+            \resumeItem{Developed a static IAM analyzer for AI-agent roles with 25 deterministic rules for wildcard grants, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy risks, and missing permission boundaries.}
+            \resumeItem{Confirmed with 235 passing tests; emitted SARIF 2.1.0 with CI exit codes for GitHub Code Scanning gating. Static analysis only; does not compute effective permissions or enforce at runtime.}
+          \resumeItemListEnd
 
-\entry{AWS Agent Identity Guard | \href{https://github.com/poojakira/aws-agent-identity-guard}{GitHub}}{Aug 2026 - Sep 2026}
-\begin{itemize}
-  \item Reduced pre-deployment IAM risk for autonomous agents by architecting a static analyzer that identifies excessive and high-risk permissions, privilege-escalation paths, risky trust policies, audit tampering, and missing permission boundaries before role deployment.
-  \item Codified 25 deterministic rules and converted findings into CI-enforceable JSON and SARIF 2.1.0 output, GitHub Code Scanning annotations, and exit-code gates for high and critical conditions.
-  \item Validated all 25 rule IDs across 235 passing tests, including positive and negative cases, parser fuzzing, SARIF conformance, and failure-mode tests.
-\end{itemize}
+      \resumeProjectHeading
+          {\textbf{HF Model Provenance Scanner} $|$ \emph{Python, Pickle/ONNX/Keras, AST} $\cdot$ \href{https://github.com/poojakira/hf-model-provenance-scanner}{poojakira/hf-model-provenance-scanner}}{}
+          \resumeItemListStart
+            \resumeItem{Engineered a non-executing model supply-chain scanner using custom pickle-opcode parsing plus AST, taint, and symbolic-string analysis across five artifact formats, mapping findings to MITRE ATT\&CK v19.}
+            \resumeItem{Detected 33/33 committed adversarial fixtures with zero actionable findings on the benign set; fails loud on unanalyzable streams. Fixture-scoped result, not a real-world detection rate.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
 
-\entry{HF Model Provenance Scanner | \href{https://github.com/poojakira/hf-model-provenance-scanner}{GitHub}}{Jul 2026 - Sep 2026}
-\begin{itemize}
-  \item Addressed AI model supply-chain risk by engineering a non-executing scanner that inspects untrusted repositories and artifacts for provenance gaps, unsafe serialization, suspicious loader behavior, impersonation, and configuration anomalies before model loading.
-  \item Expanded inspection across Python loaders, pickle bytecode, SafeTensors, GGUF, ONNX, dependency indicators, signatures, and SBOM evidence without executing untrusted artifacts.
-  \item Validated 211 passing tests; committed red-team fixture suites detected 12/12 core incident reproductions and 18/18 extended variants with 0 actionable false positives across 4 benign samples.
-\end{itemize}
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Security:} AI/LLM Security, Application Security, Threat Modeling, AWS IAM, Agent Security, Model Supply-Chain Security, AI Red Teaming \\ \vspace{1pt}
+     \textbf{Engineering:} Python, FastAPI, REST, JSON-RPC, pytest, GitHub Actions, CI/CD, Docker, Kubernetes, Git \\ \vspace{1pt}
+     \textbf{Security Tooling:} SARIF 2.1.0, GitHub Code Scanning, CodeQL, Elastic/ECS, SIEM, Prometheus, Audit Logging
+    }}
+ \end{itemize}
+ \vspace{-8pt}
 
-\section*{EDUCATION}
-\entry{Master of Science in Information Technology}{Aug 2024 - May 2026}
-\subentry{Arizona State University | Tempe, AZ | GPA: 3.87/4.00}
-\entry{Bachelor of Engineering in Computer Science and Engineering}{Aug 2019 - Aug 2023}
-\subentry{Ramaiah University of Applied Sciences | Bengaluru, KA, India}
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Arizona State University}{May 2026}
+      {Master of Science in Information Technology (Security), GPA 3.87/4.00}{Tempe, AZ}
+    \resumeSubheading
+      {M. S. Ramaiah University of Applied Sciences}{Aug 2023}
+      {B.Tech in Computer Science \& Engineering, CGPA 8.44/10}{Bengaluru, India}
+  \resumeSubHeadingListEnd
+\vspace{-6pt}
 
-\section*{TRAINING \& CREDENTIALS}
-\textbf{AWS Academy Graduate - Cloud Security Foundations} | AWS Academy\\
-\textbf{AWS Academy Graduate - Cloud Architecting} | AWS Academy
-
-\section*{PUBLICATIONS}
-\textbf{A Personalized E-Learning System Using Reinforcement Learning Through Satellite} | IEEE INDICON 2023 | Dec 2023\\
-Co-authored and presented a peer-reviewed IEEE conference paper on reinforcement-learning-based personalized e-learning for remote communities using satellite connectivity.
-
-\section*{AWARDS \& GRANTS}
-\entry{KSCST 46th Series Student Project Programme Research Grant}{Apr 2023}
-\subentry{Karnataka State Council for Science and Technology (KSCST)}
-Awarded INR 6{,}000 in project funding for an AI-based e-learning initiative for remote communities.
+%-----------CERTIFICATIONS & PUBLICATION-----------
+\section{Certifications \& Publication}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{AWS Academy:} Cloud Security Foundations (Nov 2025), Cloud Architecting (Apr 2025) \\ \vspace{1pt}
+     \textbf{Publication:} A Personalized E-Learning System Using Reinforcement Learning Through Satellite, IEEE INDICON 2023
+    }}
+ \end{itemize}
 
 \end{document}
