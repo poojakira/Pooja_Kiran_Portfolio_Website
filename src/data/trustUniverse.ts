@@ -51,7 +51,7 @@ export const universeWorlds: UniverseWorld[] = [
     problem: "AI agents can invoke increasingly powerful external tools.",
     built: "An inline MCP / JSON-RPC gateway that inspects tool calls before downstream execution and applies policy, capability checks, prompt-injection signals and telemetry.",
     why: "The control sits at the point where model intent becomes a privileged action.",
-    evidence: ["648 passing tests", "79.61% statement coverage", "55 injection patterns", "9 Elastic rules"],
+    evidence: ["652 passing tests", "79% statement coverage", "55 injection patterns", "9 Elastic rules"],
     limitation: "Research implementation. Heuristic detection can miss attacks or flag benign input; only routed calls are governed.",
     tone: "agent",
   },

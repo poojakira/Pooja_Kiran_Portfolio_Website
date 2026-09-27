@@ -32,7 +32,7 @@ const stages = {
     eyebrow: "Zone 01 · Agent Execution",
     title: "MCP Agent Security Gateway",
     body: "The first checkpoint represents the boundary before an AI agent can invoke tools: MCP/JSON-RPC policy, prompt-injection signals, capability checks, audit logging, and SIEM validation.",
-    metric: "648 tests · 79.61% statement coverage · 9 Elastic rules",
+    metric: "648 tests · 79% statement coverage · 9 Elastic rules",
     href: "#projects",
     action: "Review gateway evidence",
     hook: "Before AI can act, it has to earn the right to act.",
@@ -92,7 +92,7 @@ function answerQuestion(raw: string) {
   }
 
   if (q.includes("strongest") || q.includes("best project")) {
-    return "The MCP Agent Security Gateway is the clearest single example of her direction. It sits directly in the agent action path, evaluates MCP and JSON-RPC tool calls, applies policy and prompt-injection signals, records audit evidence, and is currently documented with 648 passing tests, 79.61 percent statement coverage, and 9 Elastic detection rules.";
+    return "The MCP Agent Security Gateway is the clearest single example of her direction. It sits directly in the agent action path, evaluates MCP and JSON-RPC tool calls, applies policy and prompt-injection signals, records audit evidence, and is currently documented with 652 passing tests, 79 percent statement coverage, and 9 Elastic detection rules.";
   }
 
   if (q.includes("mcp") || q.includes("agent") || q.includes("tool")) {

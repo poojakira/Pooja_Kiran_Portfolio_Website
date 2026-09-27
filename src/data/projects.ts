@@ -91,7 +91,7 @@ export const FLAGSHIP_PROJECTS: PortfolioProject[] = [
       "Hash-chained audit log + WAL for reconstructable decisions",
     ],
     evidence: [
-      "648 automated tests at 79.61% statement coverage (verified by main CI)",
+      "648 automated tests at 79% statement coverage (verified by main CI)",
       "Integrated 9 Elastic detection rules, 6 Atomic Red Team-style attack simulations, and 21 SIEM tests for detection and security-event validation",
       "CI across Python 3.10/3.11/3.12 with Ruff, Pyright, Bandit, pip-audit, CodeQL, Trivy, Grype, SBOM",
       "Docker multi-stage build + Kubernetes deployment templates",

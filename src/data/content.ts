@@ -184,7 +184,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     bullets: [
       "Architected and developed AI security tooling across MCP, AWS IAM, and LLM red teaming, translating attack paths into deterministic security controls and automated validation workflows.",
       "Engineered 55 MCP prompt-injection patterns and 25 AWS IAM rule IDs covering AI-agent tool-call and cloud-identity attack surfaces.",
-      "Validated the MCP gateway with 648 passing tests at 79.61% statement coverage and documented LLM generalization with grouped F1 0.9714 versus current novel-phrasing OOD F1 0.7188.",
+      "Validated the MCP gateway with 652 passing tests at 79% statement coverage and documented LLM generalization with grouped F1 0.9714 versus current novel-phrasing OOD F1 0.7188.",
     ],
   },
   {
@@ -195,7 +195,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     location: "Tempe, AZ, USA",
     bullets: [
       "Directed business, security, and compliance planning for a $120K first-year passenger-service-system security scenario, translating third-party cybersecurity risk into deployment, operational readiness, and commercialization decisions.",
-      "Owned a five-year financial and deployment model evaluating implementation cost, growth assumptions, and security trade-offs, identifying a scenario with approximately 12% cost savings.",
+      "Owned a five-year financial and deployment model evaluating implementation cost, growth assumptions, and security trade-offs, identifying a scenario with operating cost efficiencies.",
       "Presented security, compliance, financial, and deployment recommendations to ASU faculty and Honeywell mentors, supporting risk-informed project strategy and operational readiness decisions.",
     ],
   },
