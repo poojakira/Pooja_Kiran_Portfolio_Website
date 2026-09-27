@@ -20,7 +20,7 @@ export const experience = [
     location: "Tempe, AZ",
     bullets: [
       "Owned the architecture and delivery of three open-source Python security systems addressing unsafe AI tool invocation, excessive agent privileges, and model artifacts from unverified sources, codifying 55 prompt-injection patterns and 25 IAM security rules.",
-      "Drove end-to-end validation through 1,094 documented passing tests covering prompt-injection controls, IAM rule behavior, model-artifact inspection, parser edge cases, and adversarial scenarios.",
+      "Drove end-to-end validation through 1,098 documented passing tests (652 gateway, 235 IAM analyzer, 211 model-artifact scanner) covering prompt-injection controls, IAM rule behavior, model-artifact inspection, parser edge cases, and adversarial scenarios.",
       "Integrated findings into automated engineering workflows through SARIF 2.1.0, GitHub Code Scanning, Elastic Security detections, SIEM validation, and CI enforcement gates.",
     ],
   },
@@ -31,7 +31,7 @@ export const experience = [
     location: "Tempe, AZ",
     bullets: [
       "Directed business, security, and compliance planning for a $120K first-year passenger-service-system security scenario, translating third-party risk into deployment, operational readiness, and commercialization decisions.",
-      "Owned a five-year financial and deployment model evaluating implementation cost, growth assumptions, and security trade-offs, identifying a scenario with approximately 12% cost savings.",
+      "Owned a five-year financial and deployment model evaluating implementation cost, growth assumptions, and security trade-offs, identifying opportunities for operating cost efficiencies.",
       "Presented security, compliance, financial, and deployment recommendations to ASU faculty and Honeywell mentors, supporting risk-informed project strategy.",
     ],
   },
@@ -55,7 +55,7 @@ export const projects = [
     summary: "Inspect the tool call. Enforce the boundary.",
     description: "An inline MCP and JSON-RPC 2.0 gateway that inspects tool calls before downstream execution, creating a policy enforcement boundary between agent intent and privileged actions.",
     controls: "55 prompt-injection patterns, Unicode/Base64/ROT13 normalization, capability checks, PII and exfiltration signals, hash-chained audit logs, rate limiting, and security telemetry.",
-    metrics: ["648 passing tests", "79.61% statement coverage", "9 Elastic rules"],
+    metrics: ["652 passing tests", "79% statement coverage", "9 Elastic rules"],
     evidence: "21 SIEM tests and end-to-end ELK event shipping with 0 Filebeat errors in the local Docker lab. Elastic Security rules are mapped to MITRE ATT&CK.",
     scope: "A research implementation, not a guarantee against all prompt injection. Heuristic detection can miss attacks or flag benign input; downstream integrations must honor inspection decisions.",
     stack: ["Python", "MCP", "JSON-RPC 2.0", "FastAPI", "Elastic Security"],
@@ -67,7 +67,7 @@ export const projects = [
     description: "A static IAM policy analyzer for autonomous agents that surfaces excessive permissions, privilege-escalation paths, risky trust policies, audit tampering, and missing permission boundaries.",
     controls: "25 deterministic rules covering high-risk permissions, with JSON and SARIF 2.1.0 findings, GitHub Code Scanning annotations, and exit-code gates for high and critical conditions.",
     metrics: ["235 passing tests", "25 IAM rule IDs", "SARIF 2.1.0"],
-    evidence: "Positive and negative cases, parser fuzzing, SARIF conformance, and failure-mode tests. CI performance gates target p95 under 10 ms per policy and more than 1,000 policies per second.",
+    evidence: "Positive and negative cases, parser fuzzing, SARIF conformance, and failure-mode tests. CI performance gates are set at p95 under 10 ms per policy and more than 1,000 policies per second (gate thresholds, not production throughput).",
     scope: "Static policy analysis, not runtime enforcement. Single-policy findings do not model all cross-policy or organization-level permission interactions.",
     stack: ["Python", "AWS IAM", "SARIF", "Hypothesis", "GitHub Code Scanning"],
   },
@@ -94,7 +94,7 @@ export const skillGroups = [
 ] as const;
 
 
-export const resumeSummary = "Security Engineer with hands-on experience owning security architecture, control development, adversarial validation, and security automation across AI agents, AWS IAM, and AI model supply chains. Architected three open-source Python security systems that address unsafe tool execution, excessive agent privileges, and model artifacts from unverified sources, backed by 1,094 documented passing tests across the three repositories.";
+export const resumeSummary = "Security Engineer with hands-on experience owning security architecture, control development, adversarial validation, and security automation across AI agents, AWS IAM, and AI model supply chains. Architected three open-source Python security systems that address unsafe tool execution, excessive agent privileges, and model artifacts from unverified sources, backed by 1,098 documented passing tests across the three repositories.";
 
 export const education = [
   {
