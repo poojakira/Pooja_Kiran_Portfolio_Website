@@ -1,6 +1,6 @@
 {
   "name": "pooja-kiran-portfolio",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,6 +8,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@react-three/drei": "10.7.9",
+    "@react-three/fiber": "9.8.1",
     "next": "16.3.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",

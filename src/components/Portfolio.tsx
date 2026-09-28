@@ -1,55 +1,143 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { resume, resumeHref } from "@/data/resume";
+import type { UniverseWorld } from "@/components/TrustScene";
 
 const TrustScene = dynamic(() => import("@/components/TrustScene"), { ssr: false });
 
+type EvidenceKey = "mcp" | "iam" | "supply" | "telemetry" | "research" | null;
+
+const WORLD_ORDER: UniverseWorld[] = ["home", "agent", "identity", "supply", "telemetry", "research"];
+
+const WORLD_META: Record<UniverseWorld, { label: string; short: string }> = {
+  home: { label: "Command Lab", short: "Home" },
+  agent: { label: "Agent Security Control Plane", short: "Agent" },
+  identity: { label: "Identity Vault", short: "Identity" },
+  supply: { label: "Model Supply Chain Lab", short: "Supply Chain" },
+  telemetry: { label: "Security Telemetry Grid", short: "Telemetry" },
+  research: { label: "Research Chamber", short: "Research" },
+};
+
 function useReducedMotion() {
-  const [reduced, setReduced] = useState(false);
+  const [value, setValue] = useState(false);
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduced(query.matches);
+    const sync = () => setValue(query.matches);
     sync();
     query.addEventListener("change", sync);
     return () => query.removeEventListener("change", sync);
   }, []);
-  return reduced;
+  return value;
 }
 
-function ProjectWorld({ index }: { index: number }) {
-  const project = resume.projects[index];
-  const labels = [
-    ["REQUEST", "CAPABILITY", "POLICY", "ALLOW / BLOCK"],
-    ["IDENTITY", "TRUST", "PERMISSION", "BOUNDARY"],
-    ["ARTIFACT", "PROVENANCE", "ANALYSIS", "FINDING"]
-  ][index];
+function useLiteExperience() {
+  const [value, setValue] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 820px)");
+    const sync = () => setValue(query.matches || (navigator.hardwareConcurrency ?? 8) <= 4);
+    sync();
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
+  return value;
+}
+
+function useWebGL() {
+  const [available, setAvailable] = useState<boolean | null>(null);
+  useEffect(() => {
+    try {
+      const canvas = document.createElement("canvas");
+      const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
+      setAvailable(Boolean(gl));
+    } catch {
+      setAvailable(false);
+    }
+  }, []);
+  return available;
+}
+
+function scrollToWorld(world: UniverseWorld) {
+  document.getElementById(`world-${world}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function EvidenceDrawer({ selected, onClose }: { selected: EvidenceKey; onClose: () => void }) {
+  const project = selected === "mcp" ? resume.projects[0] : selected === "iam" ? resume.projects[1] : selected === "supply" ? resume.projects[2] : null;
+
+  const content = useMemo(() => {
+    if (project) {
+      return {
+        eyebrow: "Project evidence",
+        title: project.name,
+        stack: project.stack,
+        bullets: project.bullets,
+        metrics: project.metrics,
+        repository: project.repository,
+      };
+    }
+    if (selected === "telemetry") {
+      return {
+        eyebrow: "Cross-system evidence",
+        title: "Detection & observability",
+        stack: ["Elastic Security", "ECS", "SIEM", "Prometheus", "Security Telemetry", "Tamper-Evident Audit Logging", "Rate Limiting"],
+        bullets: [
+          "The résumé connects prevention and observability through CI, SARIF, GitHub Code Scanning, security telemetry, hash-chained audit logs, 9 Elastic Security rules, and 21 core SIEM tests.",
+          "This environment visualizes those résumé-listed capabilities as a shared telemetry layer rather than claiming a separate production system."
+        ],
+        metrics: ["9 Elastic Security rules", "21 core SIEM tests", "Security telemetry", "Tamper-evident audit logging"],
+        repository: resume.projects[0].repository,
+      };
+    }
+    if (selected === "research") {
+      return {
+        eyebrow: "Résumé-backed scope",
+        title: "Independent AI security research",
+        stack: ["Agent runtime security", "AWS IAM", "LLM red teaming", "Model supply-chain security", "Training-data integrity", "Adversarial ML"],
+        bullets: [
+          resume.experience[0].bullets[0],
+          resume.experience[1].bullets[0],
+          resume.experience[1].bullets[1],
+        ],
+        metrics: ["659 passing MCP tests", "235 passing IAM tests", "173 passing LLM security tests", "$120K first-year commercialization scenario"],
+        repository: resume.links.github,
+      };
+    }
+    return null;
+  }, [project, selected]);
+
+  if (!selected || !content) return null;
 
   return (
-    <section className="world" id={index === 0 ? "projects" : undefined} aria-labelledby={`world-${index}`}>
-      <div className="world-visual" aria-hidden="true">
-        <div className="boundary-frame">
-          {labels.map((label, labelIndex) => (
-            <div className={`boundary-node boundary-node--${labelIndex + 1}`} key={label}>
-              <span>{String(labelIndex + 1).padStart(2, "0")}</span>
-              <strong>{label}</strong>
-            </div>
-          ))}
-          <div className="boundary-line boundary-line--a" />
-          <div className="boundary-line boundary-line--b" />
-          <div className="boundary-line boundary-line--c" />
+    <aside className="evidence-drawer" aria-label="Evidence details">
+      <div className="drawer-top">
+        <div>
+          <p className="eyebrow">{content.eyebrow}</p>
+          <h2>{content.title}</h2>
         </div>
+        <button className="icon-button" type="button" onClick={onClose} aria-label="Close evidence panel">×</button>
       </div>
-      <div className="world-copy">
-        <p className="eyebrow">System {String(index + 1).padStart(2, "0")} · résumé evidence</p>
-        <h2 id={`world-${index}`}>{project.name}</h2>
-        <p className="stack">{project.stack.join(" · ")}</p>
-        {project.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
-        <div className="metric-tags">{project.metrics.map((metric) => <span key={metric}>{metric}</span>)}</div>
-        <a className="button button--primary" href={project.repository} target="_blank" rel="noreferrer">Inspect repository ↗</a>
+
+      <div className="drawer-stack">{content.stack.map((item) => <span key={item}>{item}</span>)}</div>
+
+      <div className="drawer-flow" aria-label="Résumé-backed engineering flow">
+        {selected === "mcp" && ["Tool call", "Security checks", "Allow / block", "Audit + telemetry"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
+        {selected === "iam" && ["IAM input", "25 rules", "SARIF", "Code scanning"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
+        {selected === "supply" && ["Model artifact", "Non-executing analysis", "Provenance + format checks", "Finding"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
+        {selected === "telemetry" && ["Control decision", "Structured telemetry", "Detection", "Evidence"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
+        {selected === "research" && ["Question", "Control", "Validation", "Evidence"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
       </div>
-    </section>
+
+      <div className="drawer-copy">
+        {content.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
+      </div>
+
+      <div className="drawer-metrics">{content.metrics.map((metric) => <span key={metric}>{metric}</span>)}</div>
+
+      <a className="button button--primary" href={content.repository} target="_blank" rel="noreferrer">
+        Open evidence source ↗
+      </a>
+    </aside>
   );
 }
 
@@ -61,18 +149,19 @@ function RecruiterView({ onExplore }: { onExplore: () => void }) {
           <p className="eyebrow">Recruiter view · résumé-sourced</p>
           <h1>{resume.name}</h1>
           <p className="recruiter-headline">{resume.headline}</p>
+          <p className="recruiter-positioning">Security controls across agents, cloud identity, model supply chains, application security, and observability.</p>
           <p className="muted">{resume.location} · {resume.email} · {resume.phone}</p>
         </div>
         <div className="recruiter-actions">
           <a className="button button--primary" href={resumeHref} target="_blank" rel="noreferrer">View résumé</a>
           <a className="button" href={resumeHref} download>Download résumé</a>
-          <button className="button" type="button" onClick={onExplore}>Explore mode</button>
+          <button className="button" type="button" onClick={onExplore}>Explore universe</button>
         </div>
       </header>
 
       <main className="recruiter-main">
         <section>
-          <div className="section-heading"><p className="eyebrow">Evidence at a glance</p><h2>Selected engineering evidence</h2></div>
+          <p className="eyebrow">Engineering evidence</p>
           <div className="metric-strip">
             <div><strong>659</strong><span>passing MCP tests</span></div>
             <div><strong>82%</strong><span>statement coverage</span></div>
@@ -82,22 +171,22 @@ function RecruiterView({ onExplore }: { onExplore: () => void }) {
         </section>
 
         <section>
-          <div className="section-heading"><p className="eyebrow">Selected projects</p><h2>Security engineering work</h2></div>
+          <div className="section-heading"><p className="eyebrow">Selected engineering work</p><h2>Three systems. Three security boundaries.</h2></div>
           <div className="recruiter-projects">
             {resume.projects.map((project) => (
               <article className="recruiter-card" key={project.name}>
                 <div className="card-topline"><h3>{project.name}</h3><span>{project.dates}</span></div>
                 <p className="stack">{project.stack.join(" · ")}</p>
-                <ul>{project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                {project.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
                 <div className="metric-tags">{project.metrics.map((metric) => <span key={metric}>{metric}</span>)}</div>
-                <a className="text-link" href={project.repository} target="_blank" rel="noreferrer">Open repository ↗</a>
+                <a className="text-link" href={project.repository} target="_blank" rel="noreferrer">Repository ↗</a>
               </article>
             ))}
           </div>
         </section>
 
         <section>
-          <div className="section-heading"><p className="eyebrow">Experience</p><h2>Roles and scope</h2></div>
+          <div className="section-heading"><p className="eyebrow">Experience</p><h2>Engineering, compliance, and technical evaluation</h2></div>
           <div className="timeline">
             {resume.experience.map((item) => (
               <article className="timeline-item" key={item.role + item.dates}>
@@ -105,7 +194,7 @@ function RecruiterView({ onExplore }: { onExplore: () => void }) {
                 <div>
                   <h3>{item.role}{item.detail ? <span> · {item.detail}</span> : null}</h3>
                   <p className="muted">{item.organization} · {item.location}{item.mode ? ` · ${item.mode}` : ""}</p>
-                  <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                  {item.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
                 </div>
               </article>
             ))}
@@ -113,7 +202,7 @@ function RecruiterView({ onExplore }: { onExplore: () => void }) {
         </section>
 
         <section>
-          <div className="section-heading"><p className="eyebrow">Technical skills</p><h2>Security and engineering stack</h2></div>
+          <div className="section-heading"><p className="eyebrow">Security expertise</p><h2>Technical stack</h2></div>
           <div className="skills-grid">
             {resume.skillGroups.map((group) => <article className="skill-block" key={group.label}><h3>{group.label}</h3><p>{group.items.join(" · ")}</p></article>)}
           </div>
@@ -141,105 +230,282 @@ function RecruiterView({ onExplore }: { onExplore: () => void }) {
   );
 }
 
+function WorldChapter({
+  world,
+  index,
+  title,
+  kicker,
+  description,
+  evidence,
+  side = "left",
+}: {
+  world: UniverseWorld;
+  index: string;
+  title: string;
+  kicker: string;
+  description: string;
+  evidence: Exclude<EvidenceKey, null>;
+  side?: "left" | "right";
+}) {
+  return (
+    <section className={`world-chapter world-chapter--${side}`} id={`world-${world}`} data-world={world}>
+      <div className="world-copy">
+        <span className="world-index">{index}</span>
+        <p className="eyebrow">{kicker}</p>
+        <h2>{title}</h2>
+        <p className="world-description">{description}</p>
+        <div className="chapter-actions">
+          <button className="button button--primary" type="button" data-evidence={evidence}>Inspect evidence</button>
+          {world === "agent" && <a className="text-link" href={resume.projects[0].repository} target="_blank" rel="noreferrer">Repository ↗</a>}
+          {world === "identity" && <a className="text-link" href={resume.projects[1].repository} target="_blank" rel="noreferrer">Repository ↗</a>}
+          {world === "supply" && <a className="text-link" href={resume.projects[2].repository} target="_blank" rel="noreferrer">Repository ↗</a>}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Portfolio() {
   const [mode, setMode] = useState<"explore" | "recruiter">("explore");
+  const [world, setWorld] = useState<UniverseWorld>("home");
+  const [evidence, setEvidence] = useState<EvidenceKey>(null);
   const reducedMotion = useReducedMotion();
+  const lite = useLiteExperience();
+  const webgl = useWebGL();
+
+  useEffect(() => {
+    if (mode !== "explore") return;
+
+    const sections = WORLD_ORDER
+      .map((item) => document.getElementById(`world-${item}`))
+      .filter(Boolean) as HTMLElement[];
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const next = visible?.target.getAttribute("data-world") as UniverseWorld | null;
+      if (next) setWorld(next);
+    }, { threshold: [0.28, 0.5, 0.72] });
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [mode]);
+
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const key = target.closest<HTMLElement>("[data-evidence]")?.dataset.evidence as EvidenceKey | undefined;
+      if (key) setEvidence(key);
+    };
+    document.addEventListener("click", handler);
+    return () => document.removeEventListener("click", handler);
+  }, []);
 
   if (mode === "recruiter") return <RecruiterView onExplore={() => setMode("explore")} />;
 
   return (
-    <div className="site-shell">
-      <a className="skip-link" href="#main-content">Skip to content</a>
-      <header className="topbar">
-        <a className="brand" href="#home" aria-label="Pooja Kiran home"><span className="brand-mark">PK</span><span>{resume.name}</span></a>
-        <nav className="desktop-nav" aria-label="Primary">
-          <a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#education">Education</a>
+    <div className="explore-shell">
+      <a className="skip-link" href="#explore-main">Skip to content</a>
+
+      <header className="universe-topbar">
+        <button className="brand-button" type="button" onClick={() => scrollToWorld("home")}>
+          <span className="brand-mark">PK</span>
+          <span>{resume.name}</span>
+        </button>
+
+        <div className="world-status" aria-live="polite">
+          <span>{String(WORLD_ORDER.indexOf(world) + 1).padStart(2, "0")}</span>
+          <strong>{WORLD_META[world].label}</strong>
+        </div>
+
+        <div className="top-actions">
           <a href={resumeHref} target="_blank" rel="noreferrer">Résumé</a>
-        </nav>
-        <button className="mode-switch" type="button" onClick={() => setMode("recruiter")}>Recruiter view</button>
+          <button type="button" onClick={() => setMode("recruiter")}>Recruiter view</button>
+        </div>
       </header>
 
-      <main id="main-content">
-        <section className="hero" id="home">
-          <div className="scene-fallback" aria-hidden="true" />
-          <TrustScene reducedMotion={reducedMotion} />
-          <div className="hero-vignette" aria-hidden="true" />
+      <nav className="world-nav" aria-label="Trust universe navigation">
+        {WORLD_ORDER.map((item, index) => (
+          <button
+            key={item}
+            type="button"
+            className={item === world ? "is-active" : ""}
+            onClick={() => scrollToWorld(item)}
+            aria-label={`Go to ${WORLD_META[item].label}`}
+          >
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{WORLD_META[item].short}</strong>
+          </button>
+        ))}
+      </nav>
+
+      <div className="universe-stage" aria-hidden="true">
+        <div className="static-lab-backdrop" />
+        {webgl && <TrustScene world={world} reducedMotion={reducedMotion} lite={lite} />}
+        <div className="cinematic-vignette" />
+        <div className="environment-label environment-label--left">{world === "home" ? "TRUST BOUNDARY" : WORLD_META[world].label.toUpperCase()}</div>
+        <div className="environment-label environment-label--right">EVIDENCE / CONTROL / DECISION</div>
+      </div>
+
+      <main id="explore-main" className="universe-story">
+        <section className="opening-scene" id="world-home" data-world="home">
           <div className="hero-copy">
-            <p className="eyebrow">Security engineering · résumé-sourced</p>
+            <p className="eyebrow">Security engineering portfolio</p>
             <h1>{resume.name}</h1>
-            <p className="hero-title">Security Engineer</p>
-            <p className="hero-subtitle">Agentic AI Security · Cloud IAM</p>
-            <p className="hero-summary">Security controls across agent tool calls, cloud identity, model supply chains, application security, and detection engineering.</p>
+            <p className="hero-role">Security Engineer</p>
+            <p className="hero-domains">AI · Application · Cloud · Identity</p>
+            <p className="hero-statement">I engineer trust boundaries for systems that can act.</p>
+            <p className="hero-support">Building security controls across agents, identity, model supply chains and cloud infrastructure.</p>
             <div className="hero-actions">
-              <a className="button button--primary" href="#projects">Explore work</a>
-              <button className="button" type="button" onClick={() => setMode("recruiter")}>Quick recruiter view</button>
-              <a className="button button--ghost" href={resumeHref} target="_blank" rel="noreferrer">View résumé ↗</a>
-            </div>
-            <div className="hero-proof" aria-label="Selected resume metrics">
-              <div><strong>659</strong><span>passing MCP tests</span></div>
-              <div><strong>235</strong><span>passing IAM tests</span></div>
-              <div><strong>173</strong><span>passing LLM security tests</span></div>
+              <button className="button button--primary" type="button" onClick={() => scrollToWorld("agent")}>Enter the trust universe</button>
+              <button className="button" type="button" onClick={() => setMode("recruiter")}>Recruiter view</button>
             </div>
           </div>
-          <div className="scroll-cue" aria-hidden="true"><span />Scroll to inspect</div>
+
+          <div className="monitor-caption monitor-caption--a">
+            <span>MCP / JSON-RPC</span><strong>tool-call boundary</strong>
+          </div>
+          <div className="monitor-caption monitor-caption--b">
+            <span>AWS IAM</span><strong>identity relationships</strong>
+          </div>
+          <div className="monitor-caption monitor-caption--c">
+            <span>Supply chain</span><strong>artifact inspection</strong>
+          </div>
+
+          <div className="opening-proof">
+            <div><strong>659</strong><span>passing MCP tests</span></div>
+            <div><strong>235</strong><span>passing IAM tests</span></div>
+            <div><strong>173</strong><span>passing LLM security tests</span></div>
+          </div>
         </section>
 
-        <section className="trust-strip" aria-label="Security domains">
-          <span>Agent runtime security</span><span>AWS IAM</span><span>LLM red teaming</span><span>Model supply-chain security</span><span>Detection & observability</span>
+        <WorldChapter
+          world="agent"
+          index="01"
+          kicker="Agent security control plane"
+          title="Capability is not execution."
+          description="The MCP Agent Security Gateway sits at the agent-to-tool boundary, inspecting routed tool calls with prompt-injection patterns, capability controls, PII/exfiltration signals, rate limiting, fail-closed behavior, and hash-chained audit logs."
+          evidence="mcp"
+          side="left"
+        />
+
+        <WorldChapter
+          world="identity"
+          index="02"
+          kicker="Identity vault"
+          title="Permission needs a path."
+          description="AWS Agent Identity Guard turns IAM risk into an inspectable authorization graph: wildcard access, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy risk, audit tampering, and permission boundaries."
+          evidence="iam"
+          side="right"
+        />
+
+        <WorldChapter
+          world="supply"
+          index="03"
+          kicker="Model supply chain lab"
+          title="Inspect before execution."
+          description="The HF Model Provenance Scanner analyzes model artifacts without blindly executing them, combining custom pickle-opcode analysis with SafeTensors, GGUF, ONNX, Keras, AST/taint, provenance, and dependency checks."
+          evidence="supply"
+          side="left"
+        />
+
+        <WorldChapter
+          world="telemetry"
+          index="04"
+          kicker="Security telemetry grid"
+          title="A decision should leave evidence."
+          description="The résumé connects controls to observability through security telemetry, tamper-evident audit logging, Elastic Security rules, SIEM tests, SARIF, and GitHub Code Scanning."
+          evidence="telemetry"
+          side="right"
+        />
+
+        <WorldChapter
+          world="research"
+          index="05"
+          kicker="Research chamber"
+          title="Build. Validate. Explain."
+          description="Independent security research spans agent runtime security, AWS IAM, LLM red teaming, model supply-chain security, training-data integrity, and adversarial ML, with AEROSEC extending that work into business, compliance, and third-party security."
+          evidence="research"
+          side="left"
+        />
+
+        <section className="trust-core">
+          <div className="trust-core-copy">
+            <p className="eyebrow">Trust core</p>
+            <h2>Trust is a chain of enforceable decisions.</h2>
+            <div className="trust-chain" aria-label="Trust chain">
+              {["Identity", "Capability", "Authorization", "Execution", "Telemetry", "Evidence"].map((item, index) => (
+                <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>
+              ))}
+            </div>
+          </div>
         </section>
 
-        <ProjectWorld index={0} />
-        <ProjectWorld index={1} />
-        <ProjectWorld index={2} />
-
-        <section className="experience-section" id="experience" aria-labelledby="experience-heading">
-          <div className="section-heading section-heading--wide"><p className="eyebrow">Experience</p><h2 id="experience-heading">Engineering, compliance, and technical evaluation</h2></div>
-          <div className="experience-rail">
+        <section className="resume-experience" id="experience">
+          <div className="experience-intro">
+            <p className="eyebrow">Experience</p>
+            <h2>Security work across engineering, compliance, and technical evaluation.</h2>
+          </div>
+          <div className="experience-ledger">
             {resume.experience.map((item, index) => (
-              <article className="experience-card" key={item.role + item.dates}>
-                <div className="experience-index">{String(index + 1).padStart(2, "0")}</div>
-                <div className="card-topline"><h3>{item.role}</h3><span>{item.dates}</span></div>
-                {item.detail ? <p className="experience-detail">{item.detail}</p> : null}
-                <p className="muted">{item.organization}</p><p className="muted">{item.location}{item.mode ? ` · ${item.mode}` : ""}</p>
-                <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+              <article key={item.role + item.dates}>
+                <span className="ledger-index">0{index + 1}</span>
+                <div>
+                  <h3>{item.role}</h3>
+                  {item.detail && <p className="experience-detail">{item.detail}</p>}
+                  <p className="muted">{item.organization} · {item.location}{item.mode ? ` · ${item.mode}` : ""}</p>
+                </div>
+                <strong className="ledger-date">{item.dates}</strong>
+                <div className="ledger-copy">{item.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}</div>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="skills-section" id="skills" aria-labelledby="skills-heading">
-          <div className="section-heading section-heading--wide"><p className="eyebrow">Technical skills</p><h2 id="skills-heading">Security systems, identity, engineering, and observability</h2></div>
-          <div className="skill-matrix">
+        <section className="expertise-zone" id="skills">
+          <div className="section-heading"><p className="eyebrow">Technical skills</p><h2>Four layers of the security stack.</h2></div>
+          <div className="expertise-grid">
             {resume.skillGroups.map((group, index) => (
-              <article className="skill-panel" key={group.label}><span className="skill-index">0{index + 1}</span><h3>{group.label}</h3><div className="skill-cloud">{group.items.map((item) => <span key={item}>{item}</span>)}</div></article>
+              <article key={group.label}>
+                <span>0{index + 1}</span>
+                <h3>{group.label}</h3>
+                <p>{group.items.join(" · ")}</p>
+              </article>
             ))}
           </div>
         </section>
 
-        <section className="education-section" id="education" aria-labelledby="education-heading">
-          <div className="section-heading"><p className="eyebrow">Education & certifications</p><h2 id="education-heading">Academic foundation</h2></div>
-          <div className="education-stack">
+        <section className="education-zone" id="education">
+          <div className="section-heading"><p className="eyebrow">Education & certifications</p><h2>Foundation</h2></div>
+          <div className="education-ledger">
             {resume.education.map((item) => (
-              <article key={item.school}><div><h3>{item.school}</h3><p>{item.degree}</p></div><div className="education-meta"><strong>{item.score}</strong><span>{item.dates}</span></div></article>
+              <article key={item.school}>
+                <div><h3>{item.school}</h3><p>{item.degree}</p></div>
+                <div><strong>{item.score}</strong><span>{item.dates}</span></div>
+              </article>
             ))}
           </div>
           <div className="cert-row">{resume.certifications.map((item) => <span key={item}>{item}</span>)}</div>
         </section>
 
-        <section className="closing" id="contact">
-          <div className="closing-grid" aria-hidden="true" />
-          <div className="closing-copy">
-            <p className="eyebrow">Contact</p><h2>{resume.name}</h2><p>{resume.headline}</p><p className="muted">{resume.location}</p>
+        <section className="closing-scene" id="contact">
+          <div>
+            <p className="eyebrow">Return to quiet</p>
+            <h2>Systems become autonomous.<br />Trust still has to be engineered.</h2>
+            <p>{resume.name} · {resume.headline}</p>
             <div className="closing-actions">
               <a className="button button--primary" href={`mailto:${resume.email}`}>Email</a>
               <a className="button" href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
               <a className="button" href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+              <a className="button" href={resumeHref} target="_blank" rel="noreferrer">View résumé ↗</a>
               <a className="button" href={resumeHref} download>Download résumé</a>
             </div>
-            <p className="source-note">Portfolio content source: {resume.sourceFile}</p>
           </div>
         </section>
       </main>
+
+      <EvidenceDrawer selected={evidence} onClose={() => setEvidence(null)} />
     </div>
   );
 }
