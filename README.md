@@ -1,5 +1,32 @@
 # Pooja Kiran Portfolio Website
 
-The public site at https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/ is reachable, but this repository's current `main` branch contains only the placeholder under `public/` and this status note. The source for the live deployment is not represented by the current branch. Do not use this repository to verify a TypeScript implementation or project metrics.
+Production portfolio for Pooja Kiran, built as a static-exported Next.js site for GitHub Pages.
 
-For reviewable security engineering work, start at https://github.com/poojakira and follow each project's source and evidence files. Resume and project claims should be checked against the corresponding repository's dated verification record.
+## Single content source
+
+All personal facts, experience, projects, metrics, skills, education, certifications, and profile/repository links shown by this website are sourced from:
+
+`public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf`
+
+The site intentionally does not import claims or biography from older portfolio files, prior résumé versions, or other repositories.
+
+## Experience modes
+
+- **Recruiter view:** fast DOM-first scan of experience, projects, evidence, skills, education, résumé, and contact.
+- **Explore mode:** cinematic security interface with a procedural Three.js environment plus the same résumé-backed content.
+
+## Local development
+
+```bash
+npm install
+npm run typecheck
+npm run dev
+```
+
+## Production
+
+```bash
+npm run build
+```
+
+The static export is written to `out/`. The GitHub Pages workflow deploys from `main`.
