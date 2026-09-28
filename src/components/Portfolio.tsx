@@ -342,7 +342,7 @@ export default function Portfolio() {
 
       <div className="universe-stage" aria-hidden="true">
         <div className="static-lab-backdrop" />
-        {webgl && <TrustScene world={world} reducedMotion={reducedMotion} lite={lite} />}
+        {webgl && <TrustScene progress={cameraProgress} reducedMotion={reducedMotion} lite={lite} />}
         <div className="cinematic-vignette" />
         <div className="environment-label environment-label--left">{world === "home" ? "TRUST BOUNDARY" : WORLD_META[world].label.toUpperCase()}</div>
         <div className="environment-label environment-label--right">EVIDENCE / CONTROL / DECISION</div>
