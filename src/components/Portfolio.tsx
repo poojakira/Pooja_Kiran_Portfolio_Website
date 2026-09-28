@@ -269,9 +269,29 @@ export default function Portfolio() {
   const [mode, setMode] = useState<"explore" | "recruiter">("explore");
   const [world, setWorld] = useState<UniverseWorld>("home");
   const [evidence, setEvidence] = useState<EvidenceKey>(null);
+  const [cameraProgress, setCameraProgress] = useState(0);
   const reducedMotion = useReducedMotion();
   const lite = useLiteExperience();
   const webgl = useWebGL();
+
+  useEffect(() => {
+    if (mode !== "explore") return;
+
+    const updateCamera = () => {
+      const finalWorld = document.getElementById("world-research");
+      if (!finalWorld) return;
+      const max = Math.max(1, finalWorld.offsetTop + finalWorld.offsetHeight - window.innerHeight);
+      setCameraProgress(Math.min(1, Math.max(0, window.scrollY / max)));
+    };
+
+    updateCamera();
+    window.addEventListener("scroll", updateCamera, { passive: true });
+    window.addEventListener("resize", updateCamera);
+    return () => {
+      window.removeEventListener("scroll", updateCamera);
+      window.removeEventListener("resize", updateCamera);
+    };
+  }, [mode]);
 
   useEffect(() => {
     if (mode !== "explore") return;
