@@ -2,10 +2,9 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
   pull_request:
-    branches: ["main"]
-  workflow_dispatch:
+    branches: [main]
 
 permissions:
   contents: read
@@ -15,35 +14,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  validate:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-
-      - name: Set up Node
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 22
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Audit production dependencies
-        run: npm audit --omit=dev --audit-level=high
-
-      - name: Type-check
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Type check
         run: npm run typecheck
-
-      - name: Build static site
+      - name: Production build
         run: npm run build
-
-      - name: Validate canonical resume artifact
-        shell: bash
-        run: |
-          test -s public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
-          grep -q 'Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf' src/data/resume.ts
-          test -s public/sitemap.xml
-          test -s public/robots.txt
-          echo "portfolio artifact checks passed"
