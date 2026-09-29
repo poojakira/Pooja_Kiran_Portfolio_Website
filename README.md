@@ -4,11 +4,9 @@ Production portfolio for Pooja Kiran, built as a static-exported Next.js site fo
 
 ## Single content source
 
-All personal facts, experience, projects, metrics, skills, education, certifications, and profile/repository links shown by this website are sourced from:
+`public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the canonical résumé artifact. The site renders from `src/data/resume.ts`, a structured mirror of the facts selected from that PDF; the browser does not parse the PDF at runtime.
 
-`public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf`
-
-The site intentionally does not import claims or biography from older portfolio files, prior résumé versions, or other repositories.
+When the résumé changes, `src/data/resume.ts` must be reconciled with the PDF in the same update. The site intentionally does not import biography or metrics from older portfolio files or prior résumé versions.
 
 ## Experience modes
 
