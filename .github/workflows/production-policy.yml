@@ -1,0 +1,38 @@
+name: Documentation Integrity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  documentation-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+      - name: Check tracked documentation for unresolved conflict markers
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          candidates = [Path("README.md")]
+          markers = ("<<<<<<<", ">>>>>>>", "TODO: FILL", "TBD_METRIC")
+          failures = []
+          for path in candidates:
+              if not path.is_file():
+                  continue
+              body = path.read_text(encoding="utf-8", errors="replace")
+              for marker in markers:
+                  if marker in body:
+                      failures.append(f"{path}: unresolved marker {marker!r}")
+          if failures:
+              raise SystemExit("\n".join(failures))
+          print("documentation integrity verified")
+          PY
