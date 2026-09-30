@@ -28,3 +28,13 @@ npm run build
 ```
 
 The static export is written to `out/`. The GitHub Pages workflow deploys from `main`.
+
+<!-- repo-verification:start -->
+## Verification update — 2026-09-30
+
+- **Scope:** Account-wide `poojakira` repository pass covering source/configuration, CI/release workflows, security-hygiene gates, dependency/SAST controls, and documentation consistency.
+- **Remediation:** Reviewed build/deploy/security workflows and documentation consistency; no repository-controlled defect required a code change in this pass.
+- **Verification state:** CI, Security Hygiene, Documentation Integrity, and GitHub Pages deployment completed successfully on the latest verified main-branch run.
+- **Security note:** Portfolio claims should remain tied to repository/test evidence and should not imply customer deployment or production usage unless separately evidenced.
+- **Evidence boundary:** This update records repository and GitHub Actions evidence observed during the pass. It is not a claim of independent penetration testing, production deployment, or zero residual risk.
+<!-- repo-verification:end -->
