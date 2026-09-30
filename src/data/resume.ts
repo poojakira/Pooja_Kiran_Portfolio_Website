@@ -18,7 +18,7 @@ export type ProjectItem = {
 };
 
 export const resume = {
-  sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
+  sourceFile: "Pooja_Kiran_AI_Security_Engineer.pdf",
   name: "Pooja Kiran",
   headline: "Security Engineer | Agentic AI Security | Cloud IAM",
   location: "Tempe, AZ",
@@ -118,4 +118,4 @@ export const resume = {
   ]
 } as const;
 
-export const resumeHref = "./Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf";
+export const resumeHref = "./Pooja_Kiran_AI_Security_Engineer.pdf";
