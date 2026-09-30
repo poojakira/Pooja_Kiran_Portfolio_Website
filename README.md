@@ -4,14 +4,14 @@ Production portfolio for Pooja Kiran, built as a static-exported Next.js site fo
 
 ## Single content source
 
-`public/Pooja_Kiran_AI_Security_Engineer.pdf` is the canonical résumé artifact. The site renders from `src/data/resume.ts`, a structured mirror of the facts selected from that PDF; the browser does not parse the PDF at runtime.
+`public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the canonical resume artifact. The site renders from `src/data/resume.ts`, a structured mirror of the facts selected from that PDF; the browser does not parse the PDF at runtime.
 
-When the résumé changes, `src/data/resume.ts` must be reconciled with the PDF in the same update. The site intentionally does not import biography or metrics from older portfolio files or prior résumé versions.
+When the resume changes, `src/data/resume.ts` must be reconciled with the PDF in the same update. The site intentionally does not import biography or metrics from older portfolio files or prior resume versions.
 
 ## Experience modes
 
-- **Recruiter view:** fast DOM-first scan of experience, projects, evidence, skills, education, résumé, and contact.
-- **Explore mode:** cinematic security interface with a procedural Three.js environment plus the same résumé-backed content.
+- **Recruiter view:** fast DOM-first scan of experience, projects, evidence, skills, education, resume, and contact.
+- **Explore mode:** cinematic security interface with a procedural Three.js environment plus the same resume-backed content.
 
 ## Local development
 
