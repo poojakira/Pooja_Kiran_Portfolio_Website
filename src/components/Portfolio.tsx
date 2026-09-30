@@ -163,8 +163,8 @@ function RecruiterView({ onExplore }: { onExplore: () => void }) {
         <section>
           <p className="eyebrow">Engineering evidence</p>
           <div className="metric-strip">
-            <div><strong>659</strong><span>passing MCP tests</span></div>
-            <div><strong>82%</strong><span>statement coverage</span></div>
+            <div><strong>707</strong><span>passing MCP tests</span></div>
+            <div><strong>82.85%</strong><span>statement coverage</span></div>
             <div><strong>235</strong><span>passing IAM tests</span></div>
             <div><strong>173</strong><span>passing LLM security tests</span></div>
           </div>
@@ -394,7 +394,7 @@ export default function Portfolio() {
           </div>
 
           <div className="opening-proof">
-            <div><strong>659</strong><span>passing MCP tests</span></div>
+            <div><strong>707</strong><span>passing MCP tests</span></div>
             <div><strong>235</strong><span>passing IAM tests</span></div>
             <div><strong>173</strong><span>passing LLM security tests</span></div>
           </div>
