@@ -38,3 +38,10 @@ The static export is written to `out/`. The GitHub Pages workflow deploys from `
 - **Security note:** Portfolio claims should remain tied to repository/test evidence and should not imply customer deployment or production usage unless separately evidenced.
 - **Evidence boundary:** This update records repository and GitHub Actions evidence observed during the pass. It is not a claim of independent penetration testing, production deployment, or zero residual risk.
 <!-- repo-verification:end -->
+
+## Verification checkpoint — 2026-09-30
+
+- **Snapshot commit:** `8feea92f80ef5f2b5f129a27422bd189f66cd288`
+- **Status:** VERIFIED GREEN
+- **Evidence:** Documentation Integrity, Security Hygiene, CI, and GitHub Pages deployment all completed successfully on the current main revision.
+- This checkpoint is intentionally date-bounded. It does not claim zero vulnerabilities or universal production readiness.
