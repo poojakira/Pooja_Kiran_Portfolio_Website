@@ -20,7 +20,7 @@ export type ProjectItem = {
 export const resume = {
   sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Security Engineer | Agent Security | Cloud IAM",
+  headline: "Security Engineer | AI & Agent Security | Cloud IAM",
   location: "Tempe, AZ",
   phone: "+1 480-776-7745",
   email: "pkiran1@asu.edu",
@@ -31,7 +31,7 @@ export const resume = {
   },
   skillGroups: [
     { label: "Languages", items: ["Python", "Rust", "C++"] },
-    { label: "Security", items: ["Agent Runtime Security", "MCP/JSON-RPC", "Policy Enforcement", "Prompt Injection", "Threat Modeling", "AWS IAM", "Workload Identity", "Least Privilege", "LLM Red Teaming", "Model Supply-Chain Security"] },
+    { label: "Security", items: ["Agent Security", "MCP/JSON-RPC", "Security Automation", "Threat Modeling", "AWS IAM", "Workload Identity", "Least Privilege", "LLM Red Teaming", "Model Supply-Chain Security", "Detection Engineering"] },
     { label: "Tooling", items: ["FastAPI", "pytest", "Hypothesis", "GitHub Actions", "SARIF 2.1.0", "CodeQL", "Bandit", "Trivy", "Docker", "Kubernetes", "Elastic Security", "Prometheus"] }
   ],
   experience: [
@@ -41,8 +41,8 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ",
       bullets: [
-        "Built and evaluated security tooling for agent runtimes, AWS IAM, LLM red teaming, model supply chains, training-data integrity, and adversarial ML.",
-        "Implemented CI-backed Python, Rust, and C++ controls with SARIF, GitHub Code Scanning, Elastic Security telemetry, and Docker; current baselines include 707 MCP, 235 IAM, and 211 model-scanner tests."
+        "Built security tooling across agent runtime enforcement, AWS IAM, LLM red teaming, model supply-chain analysis, training-data integrity, and adversarial ML, with reproducible threat models and test evidence.",
+        "Integrated GitHub Actions, SARIF/Code Scanning, Elastic Security telemetry, Docker, and multi-version Python CI to make security findings repeatable and machine-readable."
       ]
     },
     {
@@ -63,7 +63,7 @@ export const resume = {
       organization: "Ira A. Fulton Schools of Engineering, Arizona State University",
       location: "Mesa, AZ",
       bullets: [
-        "Evaluated approximately 85 undergraduate web-development submissions per semester and 52 graduate cybersecurity assignments covering security policy, compliance, risk analysis, and information-security controls."
+        "Evaluated approximately 85 undergraduate web-development submissions per semester and 52 graduate cybersecurity assignments spanning security policy, compliance, risk analysis, and information-security controls."
       ]
     }
   ] satisfies ExperienceItem[],
@@ -71,13 +71,13 @@ export const resume = {
     {
       name: "MCP Agent Security Gateway",
       stack: ["Python", "FastAPI", "MCP/JSON-RPC", "Elastic Security"],
-      dates: "Jul 2026 - Sep 2026",
+      dates: "Jul 2026 - Present",
       repository: "https://github.com/poojakira/mcp-agent-security-gateway",
       bullets: [
-        "Built an inline agent-security gateway with 55 prompt-injection patterns, capability checks, PII/exfiltration signals, rate limiting, fail-closed behavior, and hash-chained audit logs.",
-        "Validated 707 passing tests at 82.85% statement coverage, 9 Elastic Security rules, and 21 core SIEM tests; the same suite is green on Python 3.10, 3.11, and 3.12."
+        "Built an inline MCP/JSON-RPC gateway with 55 prompt-injection patterns, capability checks, PII/exfiltration signals, rate limiting, fail-closed decisions, and hash-chained audit logs.",
+        "Validated 707 automated tests at 82.85% statement coverage; added 9 Elastic Security rules and 21 core SIEM tests, with the same suite green on Python 3.10-3.12."
       ],
-      metrics: ["55 prompt-injection patterns", "707 passing tests", "82.85% statement coverage", "9 Elastic Security rules", "21 core SIEM tests"]
+      metrics: ["55 prompt-injection patterns", "707 automated tests", "82.85% statement coverage", "9 Elastic Security rules", "21 core SIEM tests"]
     },
     {
       name: "AWS Agent Identity Guard",
@@ -86,7 +86,7 @@ export const resume = {
       repository: "https://github.com/poojakira/aws-agent-identity-guard",
       bullets: [
         "Built a static IAM analyzer with 25 deterministic rules for wildcard access, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy risk, audit tampering, and permission boundaries.",
-        "Added SARIF 2.1.0, GitHub Code Scanning, and CI exit enforcement; current main validates 235 passing tests with 3 credential-gated live-scan skips."
+        "Added SARIF 2.1.0, GitHub Code Scanning, and CI enforcement; current main validates 235 passing tests with 3 credential-gated live-scan skips."
       ],
       metrics: ["25 deterministic rules", "235 passing tests", "3 credential-gated live-scan skips", "SARIF 2.1.0", "GitHub Code Scanning"]
     },
@@ -96,10 +96,10 @@ export const resume = {
       dates: "Jul 2026 - Sep 2026",
       repository: "https://github.com/poojakira/hf-model-provenance-scanner",
       bullets: [
-        "Built a non-executing model supply-chain scanner using pickle-opcode analysis plus SafeTensors, GGUF, ONNX, Keras, AST/taint, provenance, and dependency checks.",
-        "Validated 211 passing tests at 66.90% statement coverage and detected 33/33 committed adversarial fixtures with 0 actionable findings across 4 committed benign samples."
+        "Built a non-executing model supply-chain scanner combining pickle-opcode, AST/taint, provenance, dependency, and binary-format analysis across SafeTensors, GGUF, ONNX, and Keras.",
+        "Validated 211 passing tests; the committed internal fixture suite detected 33/33 adversarial cases with 0 actionable findings across 4 committed benign samples."
       ],
-      metrics: ["211 passing tests", "66.90% statement coverage", "33/33 committed adversarial fixtures", "0 actionable findings across 4 committed benign samples"]
+      metrics: ["211 passing tests", "33/33 committed adversarial fixtures", "0 actionable findings across 4 committed benign samples"]
     }
   ] satisfies ProjectItem[],
   education: [
