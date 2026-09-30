@@ -43,3 +43,6 @@ terraform.tfvars
 *.jks
 *.keystore
 *.pkcs12
+
+# TypeScript incremental build cache
+*.tsbuildinfo

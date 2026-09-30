@@ -16,7 +16,7 @@ When the resume changes, `src/data/resume.ts` must be reconciled with the PDF in
 ## Local development
 
 ```bash
-npm install
+npm ci
 npm run typecheck
 npm run dev
 ```
@@ -54,3 +54,12 @@ Keep runtime credentials outside Git. If this repository provides an `.env.examp
 Do not commit AWS access keys or session credentials, API tokens, service-account JSON, private keys, package-manager credentials, Terraform state, or secret-bearing `tfvars`. CI/deployment credentials belong in GitHub Actions secrets or the deployment provider's secret manager. AWS account IDs are identifiers; AWS access-key IDs, secret access keys, and session tokens are credentials.
 
 If a real credential is ever exposed, revoke or rotate it at the provider first, then remove it from the working tree and reachable Git history. The Security Hygiene workflow checks the current tree and reachable history for common credential formats without printing matched secret values.
+
+
+## Security review scope — 2026-09-30
+
+This is a public static export: there are no repository API routes, login handlers, server-side authorization decisions, or upload endpoints. React renders the tracked content as text; secrets must never be embedded in `src/`, `public/`, or any `NEXT_PUBLIC_*` variable. Rate limiting and response headers on GitHub Pages are hosting controls, not Next.js API middleware in this export.
+
+The dependency lockfile makes CI installation repeatable (`npm ci`). Read-only workflows disable persisted checkout credentials; the resume generation workflow retains credentials because it explicitly commits its generated PDF. Verification: TypeScript check and static production build passed; npm audit reported zero known vulnerabilities in the installed dependency graph on this date. This is a dated advisory result, not a guarantee that dependencies contain no vulnerabilities.
+
+Local `.env` and `.env.*` files are ignored; permitted example/sample templates must contain only empty values or explicit placeholders. This static repository requires no owner API key, AWS credential, or shared dashboard key. Keep credentials in your own deployment secret store; anything included in public website/profile content is public.

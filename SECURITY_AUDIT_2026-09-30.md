@@ -36,3 +36,10 @@ Tenant UUIDs, SQL injection, password reset, database indexes, payments, webhook
 - **Status:** VERIFIED GREEN
 - **Evidence:** Documentation Integrity, Security Hygiene, CI, and GitHub Pages deployment all completed successfully on the current main revision.
 - This checkpoint is intentionally date-bounded. It does not claim zero vulnerabilities or universal production readiness.
+
+
+## Follow-up local review
+
+Reviewed original revision `2f5d560c7a31fe85c5f7a62520fd6515edd12ab0`. Added a dependency lockfile, switched installation workflows to `npm ci`, and disabled persisted checkout credentials in read-only jobs. `npm run typecheck`, `npm run build`, and `npm audit --json` passed (zero reported advisories). The site is static and exposes no application authentication, authorization, or upload routes. Hosted HTTP header/rate controls, GitHub account settings, and credential-provider revocation require separate operator verification.
+
+Reachable-history Gitleaks scanning reported zero matches for this clone. No environment/private-key filenames were found in reachable history. These are detection results with the scanner's scope, not proof that unreferenced GitHub objects or provider credentials are absent.
