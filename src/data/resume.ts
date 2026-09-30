@@ -45,7 +45,7 @@ export const resume = {
       bullets: [
         "Built and evaluated security controls across agent runtime security, AWS IAM, LLM red teaming, model supply-chain security, training-data integrity, and adversarial ML.",
         "Engineered an MCP/JSON-RPC security gateway with 55 prompt-injection patterns and an AWS IAM analyzer with 25 deterministic rules covering agent tool calls, privilege escalation, trust-policy risk, and excessive permissions.",
-        "Validated tooling with 659 passing MCP tests, 235 passing IAM tests, and 173 passing LLM security tests, supported by CI, SARIF, GitHub Code Scanning, and security telemetry."
+        "Validated tooling with 707 passing MCP tests, 235 passing IAM tests, and 173 passing LLM security tests, supported by CI, SARIF, GitHub Code Scanning, and security telemetry."
       ]
     },
     {
@@ -81,9 +81,9 @@ export const resume = {
       repository: "https://github.com/poojakira/mcp-agent-security-gateway",
       bullets: [
         "Built an inline gateway that inspects routed agent tool calls using 55 prompt-injection patterns, capability controls, PII/exfiltration signals, rate limiting, fail-closed behavior, and hash-chained audit logs.",
-        "Validated 659 passing tests, 82% statement coverage, 9 Elastic Security rules, and 21 core SIEM tests."
+        "Validated 707 passing tests, 82.85% statement coverage, 9 Elastic Security rules, and 21 core SIEM tests."
       ],
-      metrics: ["55 prompt-injection patterns","659 passing tests","82% statement coverage","9 Elastic Security rules","21 core SIEM tests"]
+      metrics: ["55 prompt-injection patterns","707 passing tests","82.85% statement coverage","9 Elastic Security rules","21 core SIEM tests"]
     },
     {
       name: "AWS Agent Identity Guard",
