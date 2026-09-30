@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Install LaTeX
         run: |
@@ -50,4 +51,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
           git commit -m "build: refresh agentic AI security resume PDF"
-          git push origin HEAD:main
+          git -c http.https://github.com/.extraheader="AUTHORIZATION: bearer $GITHUB_TOKEN"             push https://github.com/${GITHUB_REPOSITORY}.git HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
