@@ -99,7 +99,7 @@ function EvidenceDrawer({ selected, onClose }: { selected: EvidenceKey; onClose:
           resume.experience[1].bullets[0],
           resume.experience[1].bullets[1],
         ],
-        metrics: ["659 passing MCP tests", "235 passing IAM tests", "173 passing LLM security tests", "$120K first-year commercialization scenario"],
+        metrics: ["707 passing MCP tests", "235 passing IAM tests", "173 passing LLM security tests", "$120K first-year commercialization scenario"],
         repository: resume.links.github,
       };
     }
