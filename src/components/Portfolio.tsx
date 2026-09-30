@@ -193,7 +193,7 @@ function RecruiterView({ onExplore }: { onExplore: () => void }) {
                 <div className="timeline-date">{item.dates}</div>
                 <div>
                   <h3>{item.role}{item.detail ? <span> · {item.detail}</span> : null}</h3>
-                  <p className="muted">{item.organization} · {item.location}{item.mode ? ` · ${item.mode}` : ""}</p>
+                  <p className="muted">{item.organization} · {item.location}{"mode" in item && item.mode ? ` · ${item.mode}` : ""}</p>
                   {item.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
                 </div>
               </article>
@@ -474,7 +474,7 @@ export default function Portfolio() {
                 <div>
                   <h3>{item.role}</h3>
                   {item.detail && <p className="experience-detail">{item.detail}</p>}
-                  <p className="muted">{item.organization} · {item.location}{item.mode ? ` · ${item.mode}` : ""}</p>
+                  <p className="muted">{item.organization} · {item.location}{"mode" in item && item.mode ? ` · ${item.mode}` : ""}</p>
                 </div>
                 <strong className="ledger-date">{item.dates}</strong>
                 <div className="ledger-copy">{item.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}</div>
