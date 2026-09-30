@@ -32,10 +32,10 @@ Tenant UUIDs, SQL injection, password reset, database indexes, payments, webhook
 
 ## Verification checkpoint — 2026-09-30
 
-- **Snapshot commit:** `8feea92f80ef5f2b5f129a27422bd189f66cd288`
+- **Checked snapshot:** `9da16b249c4d385bdcf8ff4b3fd167aa69adb60c`
 - **Status:** VERIFIED GREEN
-- **Evidence:** Documentation Integrity, Security Hygiene, CI, and GitHub Pages deployment all completed successfully on the current main revision.
-- This checkpoint is intentionally date-bounded. It does not claim zero vulnerabilities or universal production readiness.
+- **Evidence:** CI, Security Hygiene, Documentation Integrity, resume build, and GitHub Pages deployment completed successfully for the cited checked snapshot.
+- This record is immutable and date-bounded. Later `main` commits may be newer; consult GitHub Actions for the latest run state. It does not claim zero vulnerabilities or universal production readiness.
 
 
 ## Follow-up local review
