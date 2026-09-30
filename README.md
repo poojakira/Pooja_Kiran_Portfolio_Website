@@ -63,3 +63,13 @@ This is a public static export: there are no repository API routes, login handle
 The dependency lockfile makes CI installation repeatable (`npm ci`). Read-only workflows disable persisted checkout credentials; the resume generation workflow retains credentials because it explicitly commits its generated PDF. Verification: TypeScript check and static production build passed; npm audit reported zero known vulnerabilities in the installed dependency graph on this date. This is a dated advisory result, not a guarantee that dependencies contain no vulnerabilities.
 
 Local `.env` and `.env.*` files are ignored; permitted example/sample templates must contain only empty values or explicit placeholders. This static repository requires no owner API key, AWS credential, or shared dashboard key. Keep credentials in your own deployment secret store; anything included in public website/profile content is public.
+
+<!-- security-local-config:start -->
+## Secrets and local configuration
+
+- Never commit real API keys, access tokens, passwords, cloud credentials, private keys, or a populated `.env` file.
+- Local `.env` and `.env.*` files are ignored by Git. Only safe templates such as `.env.example` or `.env.sample` may be committed, and they must contain placeholder or empty values only.
+- If an integration needs credentials, create your own local `.env` file (or use your shell/secret manager) and supply **your own** API key. In GitHub Actions, use repository/environment secrets rather than hard-coding values in workflow YAML.
+- Do not copy or reuse any credential that appears in repository history, examples, tests, screenshots, logs, or documentation. Test strings are not intended to be usable credentials.
+- If a real credential is ever committed, **revoke or rotate it at the credential provider first**, then remove it from the current tree and reachable Git history. Deleting a key from GitHub does not revoke it.
+<!-- security-local-config:end -->
