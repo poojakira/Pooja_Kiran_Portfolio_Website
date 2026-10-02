@@ -20,7 +20,7 @@ When the resume changes, `src/data/resume.ts` must be reconciled with the PDF in
 - Static Next.js production export passed with `npm run build`.
 - Repository security-control scan passed with `py scripts/security_scan.py`.
 - The canonical one-page resume is `public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf`, and the site data mirrors its four selected projects.
-- Current portfolio evidence references the account-wide hardening result: 19 protected `main` branches, a final full-history Gitleaks pass with zero findings in all 19 repositories, zero broken relative Markdown links in the account-wide documentation sweep, and 10 poster verifications passing.
+- Current portfolio evidence references an account-wide audit snapshot: GitHub reports protected `main` branches across 19 repositories; the cited sweep recorded zero Gitleaks findings, zero broken relative Markdown links, and 10 poster verifications. Required status checks are not uniformly enforced across the fleet, so this is not an account-wide mandatory-CI merge-gate claim.
 - These are repository/evidence checks, not claims of production deployment, universal security efficacy, or zero residual risk.
 
 ## Local development

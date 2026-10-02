@@ -1,6 +1,10 @@
 name: Build Agentic AI Security Resume
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
   workflow_dispatch:
 
 permissions:
