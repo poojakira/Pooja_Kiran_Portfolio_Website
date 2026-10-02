@@ -43,14 +43,14 @@ export const resume = {
       location: "Tempe, AZ",
       bullets: [
         "Built and evaluated security controls across agent runtime enforcement, AWS IAM, LLM red teaming, model supply-chain analysis, training-data integrity, and adversarial ML with reproducible threat models and test evidence.",
-        "Hardened 19 repositories with protected main branches, CI quality gates, SARIF/Code Scanning workflows, documentation checks, and full-history secret scanning.",
+        "Hardened 19 repositories with protected main branches, CI/security workflows, dependency and secret-scanning controls, SARIF/Code Scanning integrations where supported, and documented verification evidence.",
         "Integrated FastAPI, Docker, Elastic Security telemetry, multi-version Python CI, and evidence-backed runbooks/posters so security behavior and limitations remain reviewable."
       ]
     },
     {
       role: "Business & Compliance Lead",
       detail: "AEROSEC",
-      dates: "Aug 2025 - Dec 2025",
+      dates: "Jul 2025 - Nov 2025",
       organization: "Honeywell Aerospace Technologies x Arizona State University",
       location: "Tempe, AZ",
       bullets: [
