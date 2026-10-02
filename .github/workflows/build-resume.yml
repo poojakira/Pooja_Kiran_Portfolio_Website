@@ -1,7 +1,7 @@
 name: Build Agentic AI Security Resume
 
 on:
-  push:
+  pull_request:
     branches: [main]
     paths:
       - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
@@ -15,11 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout
+      - name: Checkout PR branch
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
           fetch-depth: 0
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Install LaTeX
         run: |
@@ -27,7 +28,7 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             texlive-latex-base texlive-latex-extra texlive-fonts-recommended poppler-utils
 
-      - name: Compile one-page resume
+      - name: Compile and validate one-page resume
         run: |
           rm -rf .resume-build
           mkdir -p .resume-build
@@ -40,7 +41,8 @@ jobs:
           cp .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf \
             public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
 
-      - name: Commit generated PDF
+      - name: Commit generated PDF to same-repository PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
           if git diff --quiet -- public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf; then
             echo "Resume PDF already matches source."
@@ -50,6 +52,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
           git commit -m "build: refresh agentic AI security resume PDF"
-          git -c http.https://github.com/.extraheader="AUTHORIZATION: bearer $GITHUB_TOKEN"             push https://github.com/${GITHUB_REPOSITORY}.git HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+
+      - name: Upload generated PDF
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
+        with:
+          name: agentic-ai-security-resume
+          path: public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
