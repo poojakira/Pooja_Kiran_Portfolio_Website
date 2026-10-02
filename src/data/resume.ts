@@ -50,7 +50,7 @@ export const resume = {
     {
       role: "Business & Compliance Lead",
       detail: "AEROSEC",
-      dates: "Jul 2025 - Nov 2025",
+      dates: "Aug 2025 - Dec 2025",
       organization: "Honeywell Aerospace Technologies x Arizona State University",
       location: "Tempe, AZ",
       bullets: [
