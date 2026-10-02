@@ -6,7 +6,7 @@
 % Content adapted for Pooja Kiran
 %------------------------
 
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
@@ -27,11 +27,11 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\oddsidemargin}{-0.58in}
+\addtolength{\evensidemargin}{-0.58in}
+\addtolength{\textwidth}{1.16in}
+\addtolength{\topmargin}{-.62in}
+\addtolength{\textheight}{1.22in}
 
 \urlstyle{same}
 \raggedbottom
@@ -39,51 +39,41 @@
 \setlength{\tabcolsep}{0in}
 
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
 
 \pdfgentounicode=1
 
 \newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
+  \item\footnotesize{{#1 \vspace{-2.2pt}}}
 }
 
 \newcommand{\resumeSubheading}[4]{
   \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubSubheading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
+      \textit{\footnotesize#3} & \textit{\footnotesize #4} \\
     \end{tabular*}\vspace{-7pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
     \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
+    \begin{tabular*}{0.98\textwidth}{l@{\extracolsep{\fill}}r}
+      \footnotesize#1 & \footnotesize#2 \\
     \end{tabular*}\vspace{-7pt}
 }
 
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.14in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-2pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.19in]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 \begin{document}
 
 \begin{center}
     \textbf{\Huge \scshape Pooja Kiran} \\ \vspace{1pt}
-    \small 480-776-7745 $|$ \href{mailto:pkiran1@asu.edu}{\underline{pkiran1@asu.edu}} $|$
+    \small +1 480-776-7745 $|$ \href{mailto:pkiran1@asu.edu}{\underline{pkiran1@asu.edu}} $|$
     \href{https://www.linkedin.com/in/poojakiran}{\underline{linkedin.com/in/poojakiran}} $|$
     \href{https://github.com/poojakira}{\underline{github.com/poojakira}} $|$
     \href{https://poojakira.github.io/Pooja_Kiran_Portfolio_Website}{\underline{Portfolio}}
@@ -101,62 +91,71 @@
 
 \section{Experience}
   \resumeSubHeadingListStart
-
     \resumeSubheading
       {Independent AI Security Researcher \& Engineer}{Aug. 2024 -- Present}
       {Self-Directed Research}{Tempe, AZ}
       \resumeItemListStart
-        \resumeItem{Built security tooling across agent runtime enforcement, AWS IAM, LLM red teaming, model supply-chain analysis, training-data integrity, and adversarial ML, with reproducible threat models and test evidence.}
-        \resumeItem{Integrated GitHub Actions, SARIF/Code Scanning, Elastic Security telemetry, Docker, and multi-version Python CI to make security findings repeatable and machine-readable.}
+        \resumeItem{Built and evaluated security controls across agent runtime enforcement, AWS IAM, LLM red teaming, model supply-chain analysis, training-data integrity, and adversarial ML, with threat models and reproducible evidence across 19 repositories.}
+        \resumeItem{Hardened repositories with protected \texttt{main}, CI quality gates, SARIF/Code Scanning workflows, dependency/security checks, and full-history secret scanning; final Gitleaks verification returned zero findings across all 19 repositories.}
+        \resumeItem{Integrated FastAPI, Docker, Elastic Security telemetry, multi-version Python CI, and evidence-backed runbooks/posters so security behavior, failure modes, and limitations remain reviewable and repeatable.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Business \& Compliance Lead -- AEROSEC}{Aug. 2025 -- Dec. 2025}
       {Honeywell Aerospace Technologies $\times$ Arizona State University}{Tempe, AZ}
       \resumeItemListStart
-        \resumeItem{Led business, compliance, and third-party security analysis for AEROSEC, a proposed protection layer for airline Passenger Service System integrations.}
-        \resumeItem{Built a \$120K first-year commercialization scenario and five-year financial model covering revenue, operating costs, growth, and profitability; presented the case to ASU and Honeywell stakeholders.}
+        \resumeItem{Led business/compliance analysis for a proposed airline PSS protection layer and built a \$120K first-year commercialization scenario with a five-year financial model presented to ASU and Honeywell stakeholders.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Graduate Teaching Assistant -- IT Grader}{Jan. 2025 -- Oct. 2025}
       {Ira A. Fulton Schools of Engineering, Arizona State University}{Mesa, AZ}
       \resumeItemListStart
-        \resumeItem{Evaluated approximately 85 undergraduate web-development submissions per semester and 52 graduate cybersecurity assignments spanning security policy, compliance, risk analysis, and information-security controls.}
+        \resumeItem{Evaluated approximately 85 undergraduate web-development submissions per semester and 52 graduate cybersecurity assignments covering policy, compliance, risk analysis, and security controls.}
       \resumeItemListEnd
-
   \resumeSubHeadingListEnd
 
-\section{Projects}
+\section{Selected Security Projects}
   \resumeSubHeadingListStart
     \resumeProjectHeading
       {\textbf{\href{https://github.com/poojakira/mcp-agent-security-gateway}{\underline{MCP Agent Security Gateway}}} $|$ \emph{Python, FastAPI, MCP/JSON-RPC, Elastic Security}}{Jul. 2026 -- Present}
       \resumeItemListStart
-        \resumeItem{Built an inline MCP/JSON-RPC gateway with 55 prompt-injection patterns, capability checks, PII/exfiltration signals, rate limiting, fail-closed decisions, and hash-chained audit logs.}
-        \resumeItem{Validated 707 automated tests at 82.85\% statement coverage; added 9 Elastic Security rules and 21 core SIEM tests, with the same suite green on Python 3.10--3.12.}
+        \resumeItem{Built an inline MCP/JSON-RPC security gateway with 55 prompt-injection patterns, capability checks, PII/exfiltration signals, rate limiting, default-deny policy enforcement, anti-SSRF controls, and hash-chained audit evidence.}
+        \resumeItem{Validated 718 automated tests at 82.46\% statement coverage, with the same suite green on Python 3.10--3.12 and fail-closed tests proving denied calls do not reach downstream transport.}
+        \resumeItem{Implemented 9 Elastic Security rules and 21 core SIEM tests; added ATT\&CK/ATLAS mappings, synthetic lifecycle evaluation, and security telemetry for investigation and tuning.}
       \resumeItemListEnd
 
     \resumeProjectHeading
       {\textbf{\href{https://github.com/poojakira/aws-agent-identity-guard}{\underline{AWS Agent Identity Guard}}} $|$ \emph{Python, AWS IAM, SARIF 2.1.0}}{Aug. 2026 -- Sep. 2026}
       \resumeItemListStart
-        \resumeItem{Built a static IAM analyzer with 25 deterministic rules for wildcard access, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy risk, audit tampering, and permission boundaries.}
-        \resumeItem{Added SARIF 2.1.0, GitHub Code Scanning, and CI enforcement; current main validates 235 passing tests with 3 credential-gated live-scan skips.}
+        \resumeItem{Built a static IAM analyzer with 25 deterministic rules covering wildcard access, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, risky trust policies, audit tampering, and missing permission boundaries.}
+        \resumeItem{Emitted text, JSON, and SARIF 2.1.0 for GitHub Code Scanning, with CI exit enforcement on critical/high findings and zero runtime dependencies for local-file scans.}
+        \resumeItem{Verified 238 collected tests with 235 passing and 3 credential-gated live-scan skips; positive/negative tests cover every emitted rule ID plus parser fuzzing and failure modes.}
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {\textbf{\href{https://github.com/poojakira/hf-model-provenance-scanner}{\underline{HF Model Provenance Scanner}}} $|$ \emph{Python, SafeTensors, GGUF, ONNX, SARIF}}{Jul. 2026 -- Sep. 2026}
+      {\textbf{\href{https://github.com/poojakira/hf-model-provenance-scanner}{\underline{HF Model Provenance Scanner}}} $|$ \emph{Python, SafeTensors, GGUF, ONNX, Keras, SARIF}}{Jul. 2026 -- Sep. 2026}
       \resumeItemListStart
-        \resumeItem{Built a non-executing model supply-chain scanner combining pickle-opcode, AST/taint, provenance, dependency, and binary-format analysis across SafeTensors, GGUF, ONNX, and Keras.}
-        \resumeItem{Validated 211 passing tests; the committed internal fixture suite detected 33/33 adversarial cases with 0 actionable findings across 4 committed benign samples.}
+        \resumeItem{Built a non-executing model supply-chain scanner combining pickle-opcode parsing, AST/taint/symbolic-string analysis, provenance checks, dependency risk, and binary-format inspection without loading untrusted model code.}
+        \resumeItem{Validated 241 passing tests, 1 platform-specific skip, 6 additional pytest subtests, and 75.81\% statement coverage across Python 3.10--3.12 CI.}
+        \resumeItem{Detected 33/33 committed adversarial fixtures with 0 actionable findings across 4 committed benign samples; documented these as fixture-scoped regression results, not universal detection claims.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{\href{https://github.com/poojakira/dataset-poisoning-detector}{\underline{Dataset Poisoning Detector}}} $|$ \emph{Python, FastAPI, Redis Streams, Kafka, Prometheus}}{Jul. 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Built a training-data security pipeline combining statistical outlier checks, Isolation Forest, spectral and label-aware signals, quarantine, dead-letter routing, and streaming backpressure controls.}
+        \resumeItem{Hardened API and streaming boundaries with fail-closed authentication, request-size limits, shared production rate limiting, trusted-baseline readiness, bounded scoring, and WebSocket abuse controls.}
+        \resumeItem{Verified 199 passing tests at 90.88\% statement coverage with a 90\% CI/release gate, including Redis/Kafka runtime paths, readiness failures, rate limiting, and error handling.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
 \section{Technical Skills}
- \begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{
-     \textbf{Languages}{: Python, Rust, C++} \\
-     \textbf{Security}{: Agent Security, MCP/JSON-RPC, Security Automation, Threat Modeling, AWS IAM, Workload Identity, Least Privilege, LLM Red Teaming, Model Supply-Chain Security, Detection Engineering} \\
-     \textbf{Tooling}{: FastAPI, pytest, Hypothesis, GitHub Actions, SARIF 2.1.0, CodeQL, Bandit, Trivy, Docker, Kubernetes, Elastic Security, Prometheus} \\
+ \begin{itemize}[leftmargin=0.14in, label={}]
+    \footnotesize{\item{
+     \textbf{Languages}{: Python, Rust, C++} $|$
+     \textbf{Security}{: AI/Agent Security, MCP/JSON-RPC, Application Security, AWS IAM, LLM Red Teaming, Model Supply-Chain Security, Detection Engineering} \\
+     \textbf{Tooling}{: FastAPI, pytest, Hypothesis, GitHub Actions, SARIF, CodeQL, Bandit, Trivy, Docker, Elastic Security, Prometheus} $|$
      \textbf{Certifications}{: AWS Academy Cloud Architecting; AWS Academy Cloud Security Foundations}
     }}
  \end{itemize}
