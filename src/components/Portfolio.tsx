@@ -177,7 +177,7 @@ function SecurityVisual({ kind }: { kind: World["visual"] }) {
   }
   return <div className="scene scene--evidence">
     <div className="scene-label">Evidence room</div>
-    <div className="evidence-ledger"><span>19 PROTECTED MAINS</span><span>0 GITLEAKS FINDINGS</span><span>0 BROKEN DOC LINKS</span><span>CI GATES</span><span>RUNBOOKS</span><span>POSTERS</span></div>
+    <div className="evidence-ledger"><span>19 PROTECTED MAINS</span><span>DATED SECRET-SCAN SNAPSHOT</span><span>0 BROKEN DOC LINKS</span><span>CI GATES</span><span>RUNBOOKS</span><span>POSTERS</span></div>
     <div className="seal">VERIFIED · SCOPED · REPRODUCIBLE</div>
   </div>;
 }
@@ -214,9 +214,9 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="hero-system" aria-label="Security engineering evidence map">
-              <div className="hero-system__title">CURRENT VERIFIED PROJECT EVIDENCE</div>
+              <div className="hero-system__title">VERIFIED PROJECT EVIDENCE SNAPSHOTS</div>
               <div className="hero-metrics">
-                <div><strong>718</strong><span>MCP tests passed</span></div>
+                <div><strong>718</strong><span>MCP tests at cited snapshot</span></div>
                 <div><strong>235</strong><span>IAM tests passed</span></div>
                 <div><strong>241</strong><span>HF scanner tests passed</span></div>
                 <div><strong>199</strong><span>Dataset tests passed</span></div>
@@ -253,7 +253,7 @@ export default function Portfolio() {
                       <p>AEROSEC was an ASU x Honeywell externship project focused on business, compliance, and third-party system security strategy.</p>
                     </>}
                     {world.visual === "evidence" && <>
-                      <div className="metric-grid"><div className="metric">19 protected main branches</div><div className="metric">0 final Gitleaks findings</div><div className="metric">0 broken relative Markdown links</div><div className="metric">10 poster verifications passed</div></div>
+                      <div className="metric-grid"><div className="metric">19 protected main branches</div><div className="metric">dated full-history secret-scan result</div><div className="metric">dated relative-link audit result</div><div className="metric">dated poster verification results</div></div>
                       <p>README files, runbooks, tests, coverage gates, security scans, and conference-style posters are maintained as reviewable evidence. The final secret scan covers full Git history, not only the current worktree.</p>
                     </>}
                   </div>
