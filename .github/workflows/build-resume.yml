@@ -1,20 +1,31 @@
-name: Build Agentic AI Security Resume
+name: Validate Agentic AI Security Resume
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
+      - "public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf"
+      - "src/data/resume.ts"
+  pull_request:
+    branches: [main]
+    paths:
+      - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
+      - "public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf"
+      - "src/data/resume.ts"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  build-resume:
+  validate-resume:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          fetch-depth: 0
           persist-credentials: false
 
       - name: Install LaTeX
@@ -33,19 +44,14 @@ jobs:
           test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
-          cp .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf \
-            public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
 
-      - name: Commit generated PDF
-        run: |
-          if git diff --quiet -- public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf; then
-            echo "Resume PDF already matches source."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
-          git commit -m "build: refresh agentic AI security resume PDF"
-          git -c http.https://github.com/.extraheader="AUTHORIZATION: bearer $GITHUB_TOKEN"             push https://github.com/${GITHUB_REPOSITORY}.git HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify tracked PDF matches TeX source
+        run: cmp .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
+
+      - name: Upload compiled resume evidence
+        if: always()
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
+        with:
+          name: compiled-resume
+          path: .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
+          retention-days: 14
