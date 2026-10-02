@@ -1,531 +1,310 @@
-"use client";
+import { resume, resumeHref, supplementalProjects, type ProjectItem } from "@/data/resume";
 
-import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
-import { resume, resumeHref } from "@/data/resume";
-import type { UniverseWorld } from "@/components/TrustScene";
+type EvidenceProject = Pick<ProjectItem, "name" | "stack" | "repository" | "bullets" | "metrics">;
 
-const TrustScene = dynamic(() => import("@/components/TrustScene"), { ssr: false });
-
-type EvidenceKey = "mcp" | "iam" | "supply" | "telemetry" | "research" | null;
-
-const WORLD_ORDER: UniverseWorld[] = ["home", "agent", "identity", "supply", "telemetry", "research"];
-
-const WORLD_META: Record<UniverseWorld, { label: string; short: string }> = {
-  home: { label: "Command Lab", short: "Home" },
-  agent: { label: "Agent Security Control Plane", short: "Agent" },
-  identity: { label: "Identity Vault", short: "Identity" },
-  supply: { label: "Model Supply Chain Lab", short: "Supply Chain" },
-  telemetry: { label: "Security Telemetry Grid", short: "Telemetry" },
-  research: { label: "Research Chamber", short: "Research" },
+type World = {
+  id: string;
+  number: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  project?: EvidenceProject;
+  visual: "gateway" | "identity" | "supply" | "llm" | "dataset" | "adversarial" | "siem" | "aerospace" | "evidence";
 };
 
-function useReducedMotion() {
-  const [value, setValue] = useState(false);
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setValue(query.matches);
-    sync();
-    query.addEventListener("change", sync);
-    return () => query.removeEventListener("change", sync);
-  }, []);
-  return value;
-}
+const worlds: World[] = [
+  {
+    id: "agent-security",
+    number: "01",
+    eyebrow: "Agent Runtime Security",
+    title: "Tool calls cross a trust boundary.",
+    description: "Inspect, authorize, log, and constrain agent actions before downstream tools execute.",
+    project: resume.projects[0],
+    visual: "gateway",
+  },
+  {
+    id: "identity",
+    number: "02",
+    eyebrow: "Cloud Identity",
+    title: "Permissions become attack paths.",
+    description: "Turn IAM policy relationships into deterministic findings that reviewers and CI can act on.",
+    project: resume.projects[1],
+    visual: "identity",
+  },
+  {
+    id: "model-supply-chain",
+    number: "03",
+    eyebrow: "Model Supply Chain",
+    title: "Inspect artifacts without trusting them.",
+    description: "Treat model repositories as software supply chains and analyze them without executing untrusted model code.",
+    project: resume.projects[2],
+    visual: "supply",
+  },
+  {
+    id: "dataset-integrity",
+    number: "04",
+    eyebrow: "Training Data Integrity",
+    title: "Secure the data-ingestion boundary.",
+    description: "Detect suspicious samples, preserve evidence, and route risky data to quarantine instead of silently accepting it.",
+    project: resume.projects[3],
+    visual: "dataset",
+  },
+  {
+    id: "llm-red-team",
+    number: "05",
+    eyebrow: "LLM Red Teaming",
+    title: "Measure the generalization gap.",
+    description: "Evaluate prompt-injection defenses on held-out and novel phrasing instead of trusting optimistic in-distribution scores.",
+    project: supplementalProjects.llm,
+    visual: "llm",
+  },
+  {
+    id: "adversarial-ml",
+    number: "06",
+    eyebrow: "Adversarial ML",
+    title: "Clean accuracy is not robust accuracy.",
+    description: "Reproduce gradient-based attacks, measure the clean/robust gap, and keep the benchmark scope explicit.",
+    project: supplementalProjects.adversarial,
+    visual: "adversarial",
+  },
+  {
+    id: "detection",
+    number: "07",
+    eyebrow: "Detection Engineering",
+    title: "Prevention needs observable evidence.",
+    description: "Security decisions become structured telemetry, audit evidence, SIEM detections, and reproducible regression tests.",
+    visual: "siem",
+  },
+  {
+    id: "aerosec",
+    number: "08",
+    eyebrow: "Aerospace Security Strategy",
+    title: "Translate security into operating decisions.",
+    description: "AEROSEC connected third-party system risk, compliance, funding, and commercialization tradeoffs for airline PSS integrations.",
+    visual: "aerospace",
+  },
+  {
+    id: "evidence",
+    number: "09",
+    eyebrow: "Reproducibility",
+    title: "Claims should survive inspection.",
+    description: "Metrics stay tied to committed tests, coverage gates, CI, runbooks, posters, limitations, and clean repository history.",
+    visual: "evidence",
+  },
+];
 
-function useLiteExperience() {
-  const [value, setValue] = useState(false);
-  useEffect(() => {
-    const query = window.matchMedia("(max-width: 820px)");
-    const sync = () => setValue(query.matches || (navigator.hardwareConcurrency ?? 8) <= 4);
-    sync();
-    query.addEventListener("change", sync);
-    return () => query.removeEventListener("change", sync);
-  }, []);
-  return value;
-}
-
-function useWebGL() {
-  const [available, setAvailable] = useState<boolean | null>(null);
-  useEffect(() => {
-    try {
-      const canvas = document.createElement("canvas");
-      const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
-      setAvailable(Boolean(gl));
-    } catch {
-      setAvailable(false);
-    }
-  }, []);
-  return available;
-}
-
-function scrollToWorld(world: UniverseWorld) {
-  document.getElementById(`world-${world}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-function EvidenceDrawer({ selected, onClose }: { selected: EvidenceKey; onClose: () => void }) {
-  const project = selected === "mcp" ? resume.projects[0] : selected === "iam" ? resume.projects[1] : selected === "supply" ? resume.projects[2] : null;
-
-  const content = useMemo(() => {
-    if (project) {
-      return {
-        eyebrow: "Project evidence",
-        title: project.name,
-        stack: project.stack,
-        bullets: project.bullets,
-        metrics: project.metrics,
-        repository: project.repository,
-      };
-    }
-    if (selected === "telemetry") {
-      return {
-        eyebrow: "Cross-system evidence",
-        title: "Detection & observability",
-        stack: ["Elastic Security", "ECS", "SIEM", "Prometheus", "Security Telemetry", "Tamper-Evident Audit Logging", "Rate Limiting"],
-        bullets: [
-          "The résumé connects prevention and observability through CI, SARIF, GitHub Code Scanning, security telemetry, hash-chained audit logs, 9 Elastic Security rules, and 21 core SIEM tests.",
-          "This environment visualizes those résumé-listed capabilities as a shared telemetry layer rather than claiming a separate production system."
-        ],
-        metrics: ["9 Elastic Security rules", "21 core SIEM tests", "Security telemetry", "Tamper-evident audit logging"],
-        repository: resume.projects[0].repository,
-      };
-    }
-    if (selected === "research") {
-      return {
-        eyebrow: "Résumé-backed scope",
-        title: "Independent AI security research",
-        stack: ["Agent runtime security", "AWS IAM", "LLM red teaming", "Model supply-chain security", "Training-data integrity", "Adversarial ML"],
-        bullets: [
-          resume.experience[0].bullets[0],
-          resume.experience[1].bullets[0],
-          resume.experience[1].bullets[1],
-        ],
-        metrics: ["707 passing MCP tests", "235 passing IAM tests", "173 passing LLM security tests", "$120K first-year commercialization scenario"],
-        repository: resume.links.github,
-      };
-    }
-    return null;
-  }, [project, selected]);
-
-  if (!selected || !content) return null;
-
+function ProjectEvidence({ project }: { project: EvidenceProject }) {
   return (
-    <aside className="evidence-drawer" aria-label="Evidence details">
-      <div className="drawer-top">
-        <div>
-          <p className="eyebrow">{content.eyebrow}</p>
-          <h2>{content.title}</h2>
-        </div>
-        <button className="icon-button" type="button" onClick={onClose} aria-label="Close evidence panel">×</button>
+    <div className="evidence-panel">
+      <div className="metric-grid">
+        {project.metrics.slice(0, 5).map((metric) => (
+          <div className="metric" key={metric}>{metric}</div>
+        ))}
       </div>
-
-      <div className="drawer-stack">{content.stack.map((item) => <span key={item}>{item}</span>)}</div>
-
-      <div className="drawer-flow" aria-label="Résumé-backed engineering flow">
-        {selected === "mcp" && ["Tool call", "Security checks", "Allow / block", "Audit + telemetry"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
-        {selected === "iam" && ["IAM input", "25 rules", "SARIF", "Code scanning"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
-        {selected === "supply" && ["Model artifact", "Non-executing analysis", "Provenance + format checks", "Finding"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
-        {selected === "telemetry" && ["Control decision", "Structured telemetry", "Detection", "Evidence"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
-        {selected === "research" && ["Question", "Control", "Validation", "Evidence"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
+      <div className="project-copy">
+        {project.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
       </div>
-
-      <div className="drawer-copy">
-        {content.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
-      </div>
-
-      <div className="drawer-metrics">{content.metrics.map((metric) => <span key={metric}>{metric}</span>)}</div>
-
-      <a className="button button--primary" href={content.repository} target="_blank" rel="noreferrer">
-        Open evidence source ↗
-      </a>
-    </aside>
-  );
-}
-
-function RecruiterView({ onExplore }: { onExplore: () => void }) {
-  return (
-    <div className="recruiter-shell">
-      <header className="recruiter-hero">
-        <div>
-          <p className="eyebrow">Recruiter view · résumé-sourced</p>
-          <h1>{resume.name}</h1>
-          <p className="recruiter-headline">{resume.headline}</p>
-          <p className="recruiter-positioning">Security controls across agents, cloud identity, model supply chains, application security, and observability.</p>
-          <p className="muted">{resume.location} · {resume.email} · {resume.phone}</p>
-        </div>
-        <div className="recruiter-actions">
-          <a className="button button--primary" href={resumeHref} target="_blank" rel="noreferrer">View résumé</a>
-          <a className="button" href={resumeHref} download>Download résumé</a>
-          <button className="button" type="button" onClick={onExplore}>Explore universe</button>
-        </div>
-      </header>
-
-      <main className="recruiter-main">
-        <section>
-          <p className="eyebrow">Engineering evidence</p>
-          <div className="metric-strip">
-            <div><strong>707</strong><span>passing MCP tests</span></div>
-            <div><strong>82.85%</strong><span>statement coverage</span></div>
-            <div><strong>235</strong><span>passing IAM tests</span></div>
-            <div><strong>173</strong><span>passing LLM security tests</span></div>
-          </div>
-        </section>
-
-        <section>
-          <div className="section-heading"><p className="eyebrow">Selected engineering work</p><h2>Three systems. Three security boundaries.</h2></div>
-          <div className="recruiter-projects">
-            {resume.projects.map((project) => (
-              <article className="recruiter-card" key={project.name}>
-                <div className="card-topline"><h3>{project.name}</h3><span>{project.dates}</span></div>
-                <p className="stack">{project.stack.join(" · ")}</p>
-                {project.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
-                <div className="metric-tags">{project.metrics.map((metric) => <span key={metric}>{metric}</span>)}</div>
-                <a className="text-link" href={project.repository} target="_blank" rel="noreferrer">Repository ↗</a>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="section-heading"><p className="eyebrow">Experience</p><h2>Engineering, compliance, and technical evaluation</h2></div>
-          <div className="timeline">
-            {resume.experience.map((item) => (
-              <article className="timeline-item" key={item.role + item.dates}>
-                <div className="timeline-date">{item.dates}</div>
-                <div>
-                  <h3>{item.role}{item.detail ? <span> · {item.detail}</span> : null}</h3>
-                  <p className="muted">{item.organization} · {item.location}{"mode" in item && item.mode ? ` · ${item.mode}` : ""}</p>
-                  {item.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="section-heading"><p className="eyebrow">Security expertise</p><h2>Technical stack</h2></div>
-          <div className="skills-grid">
-            {resume.skillGroups.map((group) => <article className="skill-block" key={group.label}><h3>{group.label}</h3><p>{group.items.join(" · ")}</p></article>)}
-          </div>
-        </section>
-
-        <section>
-          <div className="section-heading"><p className="eyebrow">Education & certifications</p><h2>Academic foundation</h2></div>
-          <div className="education-grid">
-            {resume.education.map((item) => <article key={item.school}><h3>{item.school}</h3><p>{item.degree}</p><p className="muted">{item.score} · {item.dates}</p></article>)}
-          </div>
-          <div className="cert-row">{resume.certifications.map((item) => <span key={item}>{item}</span>)}</div>
-        </section>
-
-        <footer className="recruiter-footer">
-          <div><strong>{resume.name}</strong><p>{resume.headline}</p></div>
-          <nav aria-label="Profile links">
-            <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-            <a href={`mailto:${resume.email}`}>Email</a>
-            <a href={resumeHref} target="_blank" rel="noreferrer">Résumé</a>
-          </nav>
-        </footer>
-      </main>
+      <div className="stack-row">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
+      <a className="text-link" href={project.repository} target="_blank" rel="noreferrer">Open repository ↗</a>
     </div>
   );
 }
 
-function WorldChapter({
-  world,
-  index,
-  title,
-  kicker,
-  description,
-  evidence,
-  side = "left",
-}: {
-  world: UniverseWorld;
-  index: string;
-  title: string;
-  kicker: string;
-  description: string;
-  evidence: Exclude<EvidenceKey, null>;
-  side?: "left" | "right";
-}) {
-  return (
-    <section className={`world-chapter world-chapter--${side}`} id={`world-${world}`} data-world={world}>
-      <div className="world-copy">
-        <span className="world-index">{index}</span>
-        <p className="eyebrow">{kicker}</p>
-        <h2>{title}</h2>
-        <p className="world-description">{description}</p>
-        <div className="chapter-actions">
-          <button className="button button--primary" type="button" data-evidence={evidence}>Inspect evidence</button>
-          {world === "agent" && <a className="text-link" href={resume.projects[0].repository} target="_blank" rel="noreferrer">Repository ↗</a>}
-          {world === "identity" && <a className="text-link" href={resume.projects[1].repository} target="_blank" rel="noreferrer">Repository ↗</a>}
-          {world === "supply" && <a className="text-link" href={resume.projects[2].repository} target="_blank" rel="noreferrer">Repository ↗</a>}
-        </div>
+function SecurityVisual({ kind }: { kind: World["visual"] }) {
+  if (kind === "gateway") {
+    return <div className="scene scene--gateway">
+      <div className="scene-label">MCP / JSON-RPC boundary</div>
+      <div className="flow-line"><span>Agent</span><i>tools/call</i><strong>Gateway</strong><i>allow / block</i><span>Tool</span></div>
+      <div className="console-lines"><b>normalize input</b><b>capability check</b><b>egress policy</b><b>audit evidence</b></div>
+    </div>;
+  }
+  if (kind === "identity") {
+    return <div className="scene scene--identity">
+      <div className="scene-label">IAM relationship map</div>
+      <div className="graph">
+        <span className="node node--a">Agent role</span><span className="node node--b">PassRole</span><span className="node node--c">Target role</span><span className="node node--d">Resource</span>
       </div>
-    </section>
-  );
+      <div className="risk-card">25 deterministic rule IDs · SARIF 2.1.0</div>
+    </div>;
+  }
+  if (kind === "supply") {
+    return <div className="scene scene--supply">
+      <div className="scene-label">Artifact inspection bench</div>
+      <div className="artifact-rack"><span>Pickle</span><span>SafeTensors</span><span>GGUF</span><span>ONNX</span><span>Keras</span></div>
+      <div className="scan-beam">NON-EXECUTING ANALYSIS</div>
+    </div>;
+  }
+  if (kind === "llm") {
+    return <div className="scene scene--llm">
+      <div className="scene-label">Prompt-injection evaluation</div>
+      <div className="ood-grid">
+        <div><span>Grouped split</span><strong>0.9714</strong><small>F1</small></div>
+        <div className="ood-risk"><span>Novel phrasing</span><strong>0.7188</strong><small>OOD F1</small></div>
+      </div>
+      <div className="generalization-gap"><i /><span>generalization gap</span><i /></div>
+    </div>;
+  }
+  if (kind === "dataset") {
+    return <div className="scene scene--dataset">
+      <div className="scene-label">Training-data ingestion</div>
+      <div className="sample-grid">{Array.from({ length: 18 }).map((_, i) => <span className={i === 5 || i === 14 ? "is-risk" : ""} key={i} />)}</div>
+      <div className="pipeline-row"><b>Screen</b><b>Score</b><b>Quarantine</b><b>Evidence</b></div>
+    </div>;
+  }
+  if (kind === "adversarial") {
+    return <div className="scene scene--adversarial">
+      <div className="scene-label">Robustness evaluation</div>
+      <div className="accuracy-compare">
+        <div><span>Clean</span><strong>71.82%</strong><i style={{ width: "71.82%" }} /></div>
+        <div className="robust-row"><span>PGD-20 @ 8/255</span><strong>0.00%</strong><i style={{ width: "1%" }} /></div>
+      </div>
+      <div className="attack-row"><span>FGSM</span><span>PGD</span><span>C&amp;W</span><span>AML.T0043</span></div>
+    </div>;
+  }
+  if (kind === "siem") {
+    return <div className="scene scene--siem">
+      <div className="scene-label">Detection operations</div>
+      <div className="siem-grid"><span>ECS events</span><span>9 Elastic rules</span><span>21 SIEM tests</span><span>Hash-chain audit</span></div>
+      <div className="signal-bars">{[28, 52, 38, 74, 49, 88, 60, 94, 69].map((h, i) => <i style={{ height: `${h}%` }} key={i} />)}</div>
+    </div>;
+  }
+  if (kind === "aerospace") {
+    return <div className="scene scene--aerospace">
+      <div className="scene-label">AEROSEC decision room</div>
+      <div className="flight-route"><i /><strong>PSS</strong><i /><strong>API shield</strong><i /><strong>Airline</strong></div>
+      <div className="decision-cards"><span>Third-party risk</span><span>Compliance</span><span>$120K year-one scenario</span></div>
+    </div>;
+  }
+  return <div className="scene scene--evidence">
+    <div className="scene-label">Evidence room</div>
+    <div className="evidence-ledger"><span>19 PROTECTED MAINS</span><span>0 GITLEAKS FINDINGS</span><span>0 BROKEN DOC LINKS</span><span>CI GATES</span><span>RUNBOOKS</span><span>POSTERS</span></div>
+    <div className="seal">VERIFIED · SCOPED · REPRODUCIBLE</div>
+  </div>;
 }
 
 export default function Portfolio() {
-  const [mode, setMode] = useState<"explore" | "recruiter">("explore");
-  const [world, setWorld] = useState<UniverseWorld>("home");
-  const [evidence, setEvidence] = useState<EvidenceKey>(null);
-  const [cameraProgress, setCameraProgress] = useState(0);
-  const reducedMotion = useReducedMotion();
-  const lite = useLiteExperience();
-  const webgl = useWebGL();
-
-  useEffect(() => {
-    if (mode !== "explore") return;
-
-    const updateCamera = () => {
-      const finalWorld = document.getElementById("world-research");
-      if (!finalWorld) return;
-      const max = Math.max(1, finalWorld.offsetTop + finalWorld.offsetHeight - window.innerHeight);
-      setCameraProgress(Math.min(1, Math.max(0, window.scrollY / max)));
-    };
-
-    updateCamera();
-    window.addEventListener("scroll", updateCamera, { passive: true });
-    window.addEventListener("resize", updateCamera);
-    return () => {
-      window.removeEventListener("scroll", updateCamera);
-      window.removeEventListener("resize", updateCamera);
-    };
-  }, [mode]);
-
-  useEffect(() => {
-    if (mode !== "explore") return;
-
-    const sections = WORLD_ORDER
-      .map((item) => document.getElementById(`world-${item}`))
-      .filter(Boolean) as HTMLElement[];
-
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      const next = visible?.target.getAttribute("data-world") as UniverseWorld | null;
-      if (next) setWorld(next);
-    }, { threshold: [0.28, 0.5, 0.72] });
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [mode]);
-
-  useEffect(() => {
-    const handler = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const key = target.closest<HTMLElement>("[data-evidence]")?.dataset.evidence as EvidenceKey | undefined;
-      if (key) setEvidence(key);
-    };
-    document.addEventListener("click", handler);
-    return () => document.removeEventListener("click", handler);
-  }, []);
-
-  if (mode === "recruiter") return <RecruiterView onExplore={() => setMode("explore")} />;
-
   return (
-    <div className="explore-shell">
-      <a className="skip-link" href="#explore-main">Skip to content</a>
-
-      <header className="universe-topbar">
-        <button className="brand-button" type="button" onClick={() => scrollToWorld("home")}>
-          <span className="brand-mark">PK</span>
-          <span>{resume.name}</span>
-        </button>
-
-        <div className="world-status" aria-live="polite">
-          <span>{String(WORLD_ORDER.indexOf(world) + 1).padStart(2, "0")}</span>
-          <strong>{WORLD_META[world].label}</strong>
-        </div>
-
-        <div className="top-actions">
-          <a href={resumeHref} target="_blank" rel="noreferrer">Résumé</a>
-          <button type="button" onClick={() => setMode("recruiter")}>Recruiter view</button>
-        </div>
+    <div className="site-shell">
+      <a className="skip-link" href="#main">Skip to content</a>
+      <header className="site-header">
+        <a className="brand" href="#home"><span>PK</span><strong>Pooja Kiran</strong></a>
+        <nav aria-label="Primary navigation">
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#academics">Academics</a>
+          <a href="#evidence">Evidence</a>
+        </nav>
+        <a className="header-resume" href={resumeHref} target="_blank" rel="noreferrer">Résumé ↗</a>
       </header>
 
-      <nav className="world-nav" aria-label="Trust universe navigation">
-        {WORLD_ORDER.map((item, index) => (
-          <button
-            key={item}
-            type="button"
-            className={item === world ? "is-active" : ""}
-            onClick={() => scrollToWorld(item)}
-            aria-label={`Go to ${WORLD_META[item].label}`}
-          >
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <strong>{WORLD_META[item].short}</strong>
-          </button>
-        ))}
-      </nav>
-
-      <div className="universe-stage" aria-hidden="true">
-        <div className="static-lab-backdrop" />
-        {webgl && <TrustScene progress={cameraProgress} reducedMotion={reducedMotion} lite={lite} />}
-        <div className="cinematic-vignette" />
-        <div className="environment-label environment-label--left">{world === "home" ? "TRUST BOUNDARY" : WORLD_META[world].label.toUpperCase()}</div>
-        <div className="environment-label environment-label--right">EVIDENCE / CONTROL / DECISION</div>
-      </div>
-
-      <main id="explore-main" className="universe-story">
-        <section className="opening-scene" id="world-home" data-world="home">
-          <div className="hero-copy">
-            <p className="eyebrow">Security engineering portfolio</p>
-            <h1>{resume.name}</h1>
-            <p className="hero-role">Security Engineer</p>
-            <p className="hero-domains">AI · Application · Cloud · Identity</p>
-            <p className="hero-statement">I engineer trust boundaries for systems that can act.</p>
-            <p className="hero-support">Building security controls across agents, identity, model supply chains and cloud infrastructure.</p>
-            <div className="hero-actions">
-              <button className="button button--primary" type="button" onClick={() => scrollToWorld("agent")}>Enter the trust universe</button>
-              <button className="button" type="button" onClick={() => setMode("recruiter")}>Recruiter view</button>
+      <main id="main">
+        <section className="hero" id="home">
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <p className="eyebrow">Security Engineering Portfolio</p>
+              <h1>Pooja<br />Kiran</h1>
+              <p className="hero-role">Security Engineer</p>
+              <p className="hero-domains">AI & Agent Security · Application Security · Cloud IAM</p>
+              <p className="hero-statement">I engineer trust boundaries for systems that can act.</p>
+              <p className="hero-support">Security controls across agent runtime execution, cloud identity, LLM red teaming, model supply chains, training-data integrity, adversarial ML, and detection engineering.</p>
+              <div className="actions">
+                <a className="button button--primary" href="#projects">Enter the security worlds</a>
+                <a className="button" href={resumeHref} target="_blank" rel="noreferrer">View résumé</a>
+                <a className="button" href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+              </div>
+            </div>
+            <div className="hero-system" aria-label="Security engineering evidence map">
+              <div className="hero-system__title">CURRENT VERIFIED PROJECT EVIDENCE</div>
+              <div className="hero-metrics">
+                <div><strong>718</strong><span>MCP tests passed</span></div>
+                <div><strong>235</strong><span>IAM tests passed</span></div>
+                <div><strong>241</strong><span>HF scanner tests passed</span></div>
+                <div><strong>199</strong><span>Dataset tests passed</span></div>
+              </div>
+              <div className="boundary-diagram"><span>Input</span><i /><strong>Control</strong><i /><span>Decision</span><i /><span>Evidence</span></div>
+              <p>Repository-level counts are shown separately and are not presented as an efficacy metric. Final full-history Gitleaks verification returned zero findings across all 19 repositories.</p>
             </div>
           </div>
-
-          <div className="monitor-caption monitor-caption--a">
-            <span>MCP / JSON-RPC</span><strong>tool-call boundary</strong>
-          </div>
-          <div className="monitor-caption monitor-caption--b">
-            <span>AWS IAM</span><strong>identity relationships</strong>
-          </div>
-          <div className="monitor-caption monitor-caption--c">
-            <span>Supply chain</span><strong>artifact inspection</strong>
-          </div>
-
-          <div className="opening-proof">
-            <div><strong>707</strong><span>passing MCP tests</span></div>
-            <div><strong>235</strong><span>passing IAM tests</span></div>
-            <div><strong>173</strong><span>passing LLM security tests</span></div>
-          </div>
+          <div className="hero-footer"><span>Tempe, Arizona</span><span>{resume.email}</span><span>{resume.phone}</span></div>
         </section>
 
-        <WorldChapter
-          world="agent"
-          index="01"
-          kicker="Agent security control plane"
-          title="Capability is not execution."
-          description="The MCP Agent Security Gateway sits at the agent-to-tool boundary, inspecting routed tool calls with prompt-injection patterns, capability controls, PII/exfiltration signals, rate limiting, fail-closed behavior, and hash-chained audit logs."
-          evidence="mcp"
-          side="left"
-        />
-
-        <WorldChapter
-          world="identity"
-          index="02"
-          kicker="Identity vault"
-          title="Permission needs a path."
-          description="AWS Agent Identity Guard turns IAM risk into an inspectable authorization graph: wildcard access, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy risk, audit tampering, and permission boundaries."
-          evidence="iam"
-          side="right"
-        />
-
-        <WorldChapter
-          world="supply"
-          index="03"
-          kicker="Model supply chain lab"
-          title="Inspect before execution."
-          description="The HF Model Provenance Scanner analyzes model artifacts without blindly executing them, combining custom pickle-opcode analysis with SafeTensors, GGUF, ONNX, Keras, AST/taint, provenance, and dependency checks."
-          evidence="supply"
-          side="left"
-        />
-
-        <WorldChapter
-          world="telemetry"
-          index="04"
-          kicker="Security telemetry grid"
-          title="A decision should leave evidence."
-          description="The résumé connects controls to observability through security telemetry, tamper-evident audit logging, Elastic Security rules, SIEM tests, SARIF, and GitHub Code Scanning."
-          evidence="telemetry"
-          side="right"
-        />
-
-        <WorldChapter
-          world="research"
-          index="05"
-          kicker="Research chamber"
-          title="Build. Validate. Explain."
-          description="Independent security research spans agent runtime security, AWS IAM, LLM red teaming, model supply-chain security, training-data integrity, and adversarial ML, with AEROSEC extending that work into business, compliance, and third-party security."
-          evidence="research"
-          side="left"
-        />
-
-        <section className="trust-core">
-          <div className="trust-core-copy">
-            <p className="eyebrow">Trust core</p>
-            <h2>Trust is a chain of enforceable decisions.</h2>
-            <div className="trust-chain" aria-label="Trust chain">
-              {["Identity", "Capability", "Authorization", "Execution", "Telemetry", "Evidence"].map((item, index) => (
-                <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>
-              ))}
-            </div>
-          </div>
+        <section className="worlds-intro" id="projects">
+          <p className="eyebrow">Nine security environments</p>
+          <h2>Different systems. Different trust boundaries.</h2>
+          <p>Each environment maps to current repository evidence or documented professional work. Metrics stay scoped to the test, fixture, benchmark, or business context that produced them.</p>
         </section>
 
-        <section className="resume-experience" id="experience">
-          <div className="experience-intro">
-            <p className="eyebrow">Experience</p>
-            <h2>Security work across engineering, compliance, and technical evaluation.</h2>
-          </div>
-          <div className="experience-ledger">
+        <div className="worlds">
+          {worlds.map((world) => (
+            <section className="world" id={world.id} key={world.id}>
+              <div className="world-copy">
+                <div className="world-number">{world.number}</div>
+                <p className="eyebrow">{world.eyebrow}</p>
+                <h2>{world.title}</h2>
+                <p className="world-description">{world.description}</p>
+                {world.project ? <ProjectEvidence project={world.project} /> : (
+                  <div className="evidence-panel">
+                    {world.visual === "siem" && <>
+                      <div className="metric-grid"><div className="metric">9 Elastic Security rules</div><div className="metric">21 core SIEM tests</div><div className="metric">ECS telemetry</div><div className="metric">Hash-chained audit</div></div>
+                      <p>Detection evidence is anchored in the MCP gateway repository and its local security-telemetry validation.</p>
+                    </>}
+                    {world.visual === "aerospace" && <>
+                      <div className="metric-grid"><div className="metric">$120K year-one scenario</div><div className="metric">Five-year financial model</div><div className="metric">Third-party PSS risk</div></div>
+                      <p>AEROSEC was an ASU x Honeywell externship project focused on business, compliance, and third-party system security strategy.</p>
+                    </>}
+                    {world.visual === "evidence" && <>
+                      <div className="metric-grid"><div className="metric">19 protected main branches</div><div className="metric">0 final Gitleaks findings</div><div className="metric">0 broken relative Markdown links</div><div className="metric">10 poster verifications passed</div></div>
+                      <p>README files, runbooks, tests, coverage gates, security scans, and conference-style posters are maintained as reviewable evidence. The final secret scan covers full Git history, not only the current worktree.</p>
+                    </>}
+                  </div>
+                )}
+              </div>
+              <SecurityVisual kind={world.visual} />
+            </section>
+          ))}
+        </div>
+
+        <section className="experience" id="experience">
+          <div className="section-heading"><p className="eyebrow">Experience</p><h2>Engineering, compliance, and technical evaluation.</h2></div>
+          <div className="experience-list">
             {resume.experience.map((item, index) => (
               <article key={item.role + item.dates}>
-                <span className="ledger-index">0{index + 1}</span>
-                <div>
-                  <h3>{item.role}</h3>
-                  {item.detail && <p className="experience-detail">{item.detail}</p>}
-                  <p className="muted">{item.organization} · {item.location}{"mode" in item && item.mode ? ` · ${item.mode}` : ""}</p>
-                </div>
-                <strong className="ledger-date">{item.dates}</strong>
-                <div className="ledger-copy">{item.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}</div>
+                <span className="experience-index">{String(index + 1).padStart(2, "0")}</span>
+                <div><h3>{item.role}{item.detail ? <small> · {item.detail}</small> : null}</h3><p>{item.organization} · {item.location}</p></div>
+                <time>{item.dates}</time>
+                <div className="experience-bullets">{item.bullets.map((bullet) => <p key={bullet}>{bullet}</p>)}</div>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="expertise-zone" id="skills">
-          <div className="section-heading"><p className="eyebrow">Technical skills</p><h2>Four layers of the security stack.</h2></div>
-          <div className="expertise-grid">
-            {resume.skillGroups.map((group, index) => (
-              <article key={group.label}>
-                <span>0{index + 1}</span>
-                <h3>{group.label}</h3>
-                <p>{group.items.join(" · ")}</p>
-              </article>
-            ))}
-          </div>
+        <section className="skills">
+          <div className="section-heading"><p className="eyebrow">Security expertise</p><h2>Built around controls, evidence, and failure modes.</h2></div>
+          <div className="skills-grid">{resume.skillGroups.map((group) => <article key={group.label}><span>{group.label}</span><p>{group.items.join(" · ")}</p></article>)}</div>
         </section>
 
-        <section className="education-zone" id="education">
-          <div className="section-heading"><p className="eyebrow">Education & certifications</p><h2>Foundation</h2></div>
-          <div className="education-ledger">
-            {resume.education.map((item) => (
-              <article key={item.school}>
-                <div><h3>{item.school}</h3><p>{item.degree}</p></div>
-                <div><strong>{item.score}</strong><span>{item.dates}</span></div>
-              </article>
-            ))}
+        <section className="academics" id="academics">
+          <div className="section-heading"><p className="eyebrow">Academics & certifications</p><h2>Security engineering foundation.</h2></div>
+          <div className="academic-grid">
+            {resume.education.map((item) => <article key={item.school}><h3>{item.school}</h3><p>{item.degree}</p><span>{item.score} · {item.dates}</span></article>)}
           </div>
-          <div className="cert-row">{resume.certifications.map((item) => <span key={item}>{item}</span>)}</div>
+          <div className="certifications">{resume.certifications.map((cert) => <span key={cert}>{cert}</span>)}</div>
         </section>
 
-        <section className="closing-scene" id="contact">
-          <div>
-            <p className="eyebrow">Return to quiet</p>
-            <h2>Systems become autonomous.<br />Trust still has to be engineered.</h2>
-            <p>{resume.name} · {resume.headline}</p>
-            <div className="closing-actions">
-              <a className="button button--primary" href={`mailto:${resume.email}`}>Email</a>
-              <a className="button" href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-              <a className="button" href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-              <a className="button" href={resumeHref} target="_blank" rel="noreferrer">View résumé ↗</a>
-              <a className="button" href={resumeHref} download>Download résumé</a>
-            </div>
+        <section className="contact">
+          <p className="eyebrow">Review the evidence</p>
+          <h2>Security claims should be inspectable.</h2>
+          <p>Open the repositories, read the runbooks, inspect the tests, or start with the one-page résumé.</p>
+          <div className="actions">
+            <a className="button button--primary" href={resumeHref} target="_blank" rel="noreferrer">Open résumé</a>
+            <a className="button" href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a className="button" href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a className="button" href={`mailto:${resume.email}`}>Email</a>
           </div>
         </section>
       </main>
 
-      <EvidenceDrawer selected={evidence} onClose={() => setEvidence(null)} />
+      <footer className="site-footer"><span>© 2026 Pooja Kiran</span><span>Security engineering · evidence-backed</span></footer>
     </div>
   );
 }
