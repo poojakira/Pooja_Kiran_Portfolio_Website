@@ -78,9 +78,9 @@ export const resume = {
       bullets: [
         "Built an inline MCP/JSON-RPC security gateway with prompt-injection, capability, PII/exfiltration, process, egress, rate-limit, and default-deny enforcement controls.",
         "Implemented 55 prompt-injection patterns, hash-chained audit evidence, ECS telemetry, and 9 Elastic Security rules.",
-        "Verified 718 passing tests at 82.46% statement coverage, with the same suite green on Python 3.10-3.12."
+        "At the cited verification snapshot, 718 tests passed at 82.46% statement coverage; newer commits are evaluated by their own CI evidence."
       ],
-      metrics: ["718 passing tests", "82.46% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"]
+      metrics: ["718 tests at cited snapshot", "82.46% snapshot coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"]
     },
     {
       id: "iam",
@@ -154,7 +154,7 @@ export const supplementalProjects = {
     repository: "https://github.com/poojakira/adversarial-ml-lab",
     bullets: [
       "Built a robustness measurement harness for FGSM, PGD, and C&W attacks with structured evidence and MITRE ATLAS AML.T0043 mapping.",
-      "Current main records 109 passing tests and 32.16% overall line coverage, with core attack modules at substantially higher coverage than the repository aggregate.",
+      "The cited verified snapshot records 109 passing tests and 32.16% overall line coverage, with core attack modules at substantially higher coverage than the repository aggregate.",
       "Committed CIFAR-10 evidence measures 71.82% clean accuracy and 0.00% PGD-20 robust accuracy at epsilon 8/255 on the documented 1,024-sample attack subset."
     ],
     metrics: ["109 passing tests", "32.16% overall coverage", "FGSM / PGD / C&W", "71.82% clean", "0.00% PGD robust @ 8/255"]
