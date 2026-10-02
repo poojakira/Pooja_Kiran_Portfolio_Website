@@ -37,7 +37,7 @@ npm run dev
 npm run build
 ```
 
-The static export is written to `out/`. The GitHub Pages workflow deploys from `main`.
+The static export is written to `out/`. The GitHub Pages workflow deploys automatically from `main`; CI, Security Hygiene, and Documentation Integrity also run on public `main`/pull-request changes.
 
 <!-- repo-verification:start -->
 ## Verification update — 2026-09-30
