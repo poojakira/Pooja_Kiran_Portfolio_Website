@@ -222,7 +222,7 @@ export default function Portfolio() {
                 <div><strong>199</strong><span>Dataset tests passed</span></div>
               </div>
               <div className="boundary-diagram"><span>Input</span><i /><strong>Control</strong><i /><span>Decision</span><i /><span>Evidence</span></div>
-              <p>Repository-level counts are shown separately and are not presented as an efficacy metric. Final full-history Gitleaks verification returned zero findings across all 19 repositories.</p>
+              <p>Repository-level counts are shown separately and are not presented as an efficacy metric. Repository-level security evidence is date-bounded; protected main branches and security workflows are tracked separately, and historical scan results are not presented as guarantees for later commits.</p>
             </div>
           </div>
           <div className="hero-footer"><span>Tempe, Arizona</span><span>{resume.email}</span><span>{resume.phone}</span></div>
