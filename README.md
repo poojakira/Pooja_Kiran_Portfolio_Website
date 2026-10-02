@@ -8,10 +8,20 @@ Production portfolio for Pooja Kiran, built as a static-exported Next.js site fo
 
 When the resume changes, `src/data/resume.ts` must be reconciled with the PDF in the same update. The site intentionally does not import biography or metrics from older portfolio files or prior resume versions.
 
-## Experience modes
+## Portfolio experience
 
-- **Recruiter view:** fast DOM-first scan of experience, projects, evidence, skills, education, resume, and contact.
-- **Explore mode:** cinematic security interface with a procedural Three.js environment plus the same resume-backed content.
+- **Recruiter-first:** fast, static DOM rendering of experience, projects, evidence, skills, education, resume, and contact.
+- **Nine security environments:** dedicated sections for agent runtime security, cloud identity, model supply-chain security, training-data integrity, LLM red teaming, adversarial ML, detection engineering, AEROSEC strategy, and reproducibility.
+- **No runtime 3D engine:** the production site uses lightweight semantic HTML/CSS security diagrams instead of WebGL/Three.js, reducing bundle size and avoiding animation-heavy interaction while keeping the evidence hierarchy readable on desktop and mobile.
+
+## Verification update - 2026-10-01
+
+- Production TypeScript check passed with `npm run typecheck`.
+- Static Next.js production export passed with `npm run build`.
+- Repository security-control scan passed with `py scripts/security_scan.py`.
+- The canonical one-page resume is `public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf`, and the site data mirrors its four selected projects.
+- Current portfolio evidence references the account-wide hardening result: 19 protected `main` branches, a final full-history Gitleaks pass with zero findings in all 19 repositories, zero broken relative Markdown links in the account-wide documentation sweep, and 10 poster verifications passing.
+- These are repository/evidence checks, not claims of production deployment, universal security efficacy, or zero residual risk.
 
 ## Local development
 
