@@ -4,9 +4,9 @@ Production portfolio for Pooja Kiran, built as a static-exported Next.js site fo
 
 ## Single content source
 
-`public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the canonical resume artifact. The site renders from `src/data/resume.ts`, a structured mirror of the facts selected from that PDF; the browser does not parse the PDF at runtime.
+`resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex` is the editable resume source of truth. `public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the generated public artifact, and `src/data/resume.ts` is the structured site mirror; the browser does not parse the PDF at runtime.
 
-When the resume changes, `src/data/resume.ts` must be reconciled with the PDF in the same update. The site intentionally does not import biography or metrics from older portfolio files or prior resume versions.
+When the resume changes, the TeX source and `src/data/resume.ts` must be reconciled in the same update, then the PDF must be regenerated from the TeX source. The site intentionally does not import biography or metrics from older portfolio files or prior resume versions.
 
 ## Portfolio experience
 
@@ -20,7 +20,7 @@ When the resume changes, `src/data/resume.ts` must be reconciled with the PDF in
 - Static Next.js production export passed with `npm run build`.
 - Repository security-control scan passed with `py scripts/security_scan.py`.
 - The canonical one-page resume is `public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf`, and the site data mirrors its four selected projects.
-- Current portfolio evidence references the account-wide hardening result: 19 protected `main` branches, a final full-history Gitleaks pass with zero findings in all 19 repositories, zero broken relative Markdown links in the account-wide documentation sweep, and 10 poster verifications passing.
+- Account-wide hardening evidence records 19 protected `main` branches. Required status checks are not uniformly enforced across the fleet, and private repositories may use manual-only workflows to avoid unplanned hosted-runner usage. Historical secret-scan, link-check, and poster-verification results remain dated snapshot evidence rather than guarantees about every later commit.
 - These are repository/evidence checks, not claims of production deployment, universal security efficacy, or zero residual risk.
 
 ## Local development
