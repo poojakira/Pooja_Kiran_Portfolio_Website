@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { resume } from "@/data/resume";
 
@@ -6,24 +6,29 @@ const siteUrl = "https://poojakira.github.io/Pooja_Kiran_Portfolio_Website";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: `${resume.name} | ${resume.headline}`,
-  description: "Security engineering portfolio focused on agentic AI security, cloud IAM, application and identity security, model supply-chain security, and detection engineering.",
+  title: "Pooja Kiran | Security Engineer",
+  description: "Pooja Kiran builds security controls across AI agents, cloud identity, model supply chains, training-data integrity, and detection engineering.",
   alternates: { canonical: siteUrl },
   openGraph: {
-    title: `${resume.name} | ${resume.headline}`,
-    description: "Agentic AI security, AWS IAM, model supply-chain security, application security, and detection engineering.",
+    title: "Pooja Kiran | Security Engineer",
+    description: "I engineer trust boundaries for systems that can act.",
     url: siteUrl,
-    siteName: "Pooja Kiran Portfolio",
+    siteName: "Pooja Kiran Security Engineering Portfolio",
     type: "website",
-    images: [{ url: "/Pooja_Kiran_Portfolio_Website/og-card.svg", width: 1200, height: 630, alt: "Pooja Kiran security engineering portfolio" }]
+    images: [{ url: "/Pooja_Kiran_Portfolio_Website/og-card.svg", width: 1200, height: 630, alt: "Pooja Kiran, Security Engineer" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: `${resume.name} | ${resume.headline}`,
-    description: "Security Engineer | Agentic AI Security | Cloud IAM",
+    title: "Pooja Kiran | Security Engineer",
+    description: "AI & Agent Security · Cloud IAM · Model Supply Chain · Training-Data Integrity",
     images: ["/Pooja_Kiran_Portfolio_Website/og-card.svg"]
   },
   icons: { icon: "/Pooja_Kiran_Portfolio_Website/favicon.svg" }
+};
+
+export const viewport: Viewport = {
+  themeColor: "#05080c",
+  colorScheme: "dark"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -35,16 +40,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     email: `mailto:${resume.email}`,
     url: resume.links.portfolio,
     sameAs: [resume.links.linkedin, resume.links.github],
-    address: { "@type": "PostalAddress", addressLocality: "Tempe", addressRegion: "AZ" }
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "Arizona State University" },
+      { "@type": "CollegeOrUniversity", name: "M. S. Ramaiah University of Applied Sciences" }
+    ]
   };
 
   return (
     <html lang="en">
       <head>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests"
-        />
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
       <body>
