@@ -109,7 +109,7 @@ function Hero() {
   const capabilities = [
     "AI Security",
     "Cloud Security",
-    "Model Security",
+    "Model Supply Chain",
     "Open Source",
     "Teaching",
   ];
@@ -132,7 +132,7 @@ function Hero() {
         <p className="hero-overline">PORTFOLIO</p>
         <h1>AI Security<br />Engineer</h1>
         <p className="hero-reference-subtitle">
-          Building safer AI systems through research, engineering, and real-world impact.
+          Engineering security controls for AI agents, cloud identities, and model supply chains.
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View My Work <ArrowIcon /></a>
