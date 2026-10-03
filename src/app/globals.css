@@ -763,3 +763,22 @@ section[id],article[id]{scroll-margin-top:82px}
   text-transform:uppercase;
   color:#5a4638;
 }
+
+
+.hero-photo-reference figcaption.hero-signature-quote{
+  max-width:320px;
+  text-align:left;
+  line-height:1.35;
+}
+.hero-photo-reference figcaption.hero-signature-quote span{
+  display:block;
+  font-size:11px;
+  font-weight:600;
+}
+.hero-photo-reference figcaption.hero-signature-quote strong{
+  display:block;
+  margin-top:7px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.04em;
+}
