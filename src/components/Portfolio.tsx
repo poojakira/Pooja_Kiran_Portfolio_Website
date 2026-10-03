@@ -132,9 +132,8 @@ function Hero() {
         <div className="portrait-shell">
           <img src={asset("pooja-portrait.webp")} alt="Pooja Kiran" width="900" height="1100" />
         </div>
-        <figcaption>
-          <span>Pooja Kiran</span>
-          <strong>Engineer. Researcher. Builder.</strong>
+        <figcaption className="portrait-signature">
+          <strong>“Pooja Kiran”</strong>
         </figcaption>
       </figure>
 
