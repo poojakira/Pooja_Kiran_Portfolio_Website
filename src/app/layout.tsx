@@ -1,29 +1,31 @@
-import type { Metadata, Viewport } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { resume } from "@/data/resume";
 
 const siteUrl = "https://poojakira.github.io/Pooja_Kiran_Portfolio_Website";
+const socialImage = `${siteUrl}/og-card.png`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(`${siteUrl}/`),
   title: "Pooja Kiran | Security Engineer",
-  description: "Pooja Kiran builds security controls across AI agents, cloud identity, model supply chains, training-data integrity, and detection engineering.",
-  alternates: { canonical: siteUrl },
+  description: "Pooja Kiran builds security controls across agent runtime security, application security, cloud IAM, and model supply chains.",
+  alternates: { canonical: `${siteUrl}/` },
+  manifest: `${siteUrl}/site.webmanifest`,
   openGraph: {
     title: "Pooja Kiran | Security Engineer",
     description: "I engineer trust boundaries for systems that can act.",
-    url: siteUrl,
+    url: `${siteUrl}/`,
     siteName: "Pooja Kiran Security Engineering Portfolio",
     type: "website",
-    images: [{ url: "/og-card.png", width: 1200, height: 630, alt: "Pooja Kiran, Security Engineer" }]
+    images: [{ url: socialImage, width: 1200, height: 630, alt: "Pooja Kiran, Security Engineer" }]
   },
   twitter: {
     card: "summary_large_image",
     title: "Pooja Kiran | Security Engineer",
-    description: "AI & Agent Security · Cloud IAM · Model Supply Chain · Training-Data Integrity",
-    images: ["/og-card.png"]
+    description: "Agent Security · Application Security · Cloud IAM · Model Supply Chain",
+    images: [socialImage]
   },
-  icons: { icon: "/Pooja_Kiran_Portfolio_Website/favicon.svg" }
+  icons: { icon: `${siteUrl}/favicon.svg` }
 };
 
 export const viewport: Viewport = {
@@ -40,10 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     email: `mailto:${resume.email}`,
     url: resume.links.portfolio,
     sameAs: [resume.links.linkedin, resume.links.github],
-    alumniOf: [
-      { "@type": "CollegeOrUniversity", name: "Arizona State University" },
-      { "@type": "CollegeOrUniversity", name: "M. S. Ramaiah University of Applied Sciences" }
-    ]
+    alumniOf: resume.education.map(item => ({ "@type": "CollegeOrUniversity", name: item.school }))
   };
 
   return (
@@ -59,3 +58,4 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+
