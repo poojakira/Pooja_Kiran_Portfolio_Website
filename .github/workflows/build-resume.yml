@@ -57,12 +57,16 @@ jobs:
             echo "Canonical PDF is already current."
             exit 0
           fi
-          encoded="$(base64 -w0 "$path")"
+          base64 -w0 "$path" > /tmp/resume-pdf.b64
+          jq -n \
+            --arg message "build: regenerate canonical resume PDF" \
+            --rawfile content /tmp/resume-pdf.b64 \
+            --arg sha "$remote_blob" \
+            --arg branch "$PR_BRANCH" \
+            '{message: $message, content: $content, sha: $sha, branch: $branch}' \
+            > /tmp/resume-pdf-request.json
           gh api --method PUT "repos/$GITHUB_REPOSITORY/contents/$path" \
-            -f message="build: regenerate canonical resume PDF" \
-            -f content="$encoded" \
-            -f sha="$remote_blob" \
-            -f branch="$PR_BRANCH" >/dev/null
+            --input /tmp/resume-pdf-request.json >/dev/null
 
       - name: Upload generated PDF
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
