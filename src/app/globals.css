@@ -744,3 +744,22 @@ section[id],article[id]{scroll-margin-top:82px}
   .hero-photo-frame{height:62svh}
   .hero-photo-reference figcaption{right:12px;bottom:12px}
 }
+
+
+.contact-quote blockquote{
+  max-width:12ch;
+  margin:14px 0 0;
+  font-size:clamp(44px,5.2vw,76px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  font-weight:520;
+}
+.contact-quote cite{
+  display:block;
+  margin-top:26px;
+  font-style:normal;
+  font:700 11px/1.4 var(--mono);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#5a4638;
+}
