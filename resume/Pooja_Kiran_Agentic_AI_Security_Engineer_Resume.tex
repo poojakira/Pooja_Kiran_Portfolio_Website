@@ -5,7 +5,7 @@
 % License : MIT
 % Content adapted for Pooja Kiran
 %------------------------
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
@@ -22,30 +22,31 @@
 \addtolength{\oddsidemargin}{-0.55in}
 \addtolength{\evensidemargin}{-0.55in}
 \addtolength{\textwidth}{1.10in}
-\addtolength{\topmargin}{-.60in}
-\addtolength{\textheight}{1.16in}
+\addtolength{\topmargin}{-.70in}
+\addtolength{\textheight}{1.40in}
 \urlstyle{same}\raggedbottom\raggedright\setlength{\tabcolsep}{0in}
-\titleformat{\section}{\vspace{-5pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\titleformat{\section}{\vspace{-7pt}\scshape\raggedright\normalsize}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 \pdfgentounicode=1
 \newcommand{\resumeItem}[1]{\item\small{{#1 \vspace{-2pt}}}}
 \newcommand{\resumeSubheading}[4]{\vspace{-2pt}\item
   \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
   \textbf{#1} & #2 \\
   \textit{\small#3} & \textit{\small #4} \\
-  \end{tabular*}\vspace{-6pt}}
+  \end{tabular*}\vspace{-7pt}}
 \newcommand{\resumeProjectHeading}[2]{\item
   \begin{tabular*}{0.98\textwidth}{l@{\extracolsep{\fill}}r}
   \small#1 & \small#2 \\
-  \end{tabular*}\vspace{-6pt}}
+  \end{tabular*}\vspace{-7pt}}
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.14in,label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-2pt}}
-\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.19in]}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-3pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.19in,itemsep=-1pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 \begin{document}
+
 \begin{center}
-  \textbf{\Huge \scshape Pooja Kiran} \\ \vspace{1pt}
-  \small Security Engineer $|$ AI \& Agent Security $|$ Cloud IAM $|$ Application Security \\ \vspace{2pt}
+  \textbf{\LARGE \scshape Pooja Kiran} \\ \vspace{1pt}
+  \small Security Engineer $|$ Agent Security $|$ Application Security $|$ Cloud IAM \\ \vspace{2pt}
   \small +1 480-776-7745 $|$ \href{mailto:pkiran1@asu.edu}{\underline{pkiran1@asu.edu}} $|$
   \href{https://www.linkedin.com/in/poojakiran}{\underline{linkedin.com/in/poojakiran}} $|$
   \href{https://github.com/poojakira}{\underline{github.com/poojakira}} $|$
@@ -56,53 +57,63 @@
 \resumeSubHeadingListStart
   \resumeSubheading{Independent AI Security Researcher \& Engineer}{Aug. 2024 - Present}{Self-Directed Research}{Tempe, AZ}
   \resumeItemListStart
-    \resumeItem{Started self-directed security research in Aug. 2024. A Dec. 2024 Flask/Docker OS resource-management lab later became a PostgreSQL-backed lease control plane; by 2026, the work expanded into agent runtime security, cloud IAM, model provenance, and training-data integrity across \textbf{19 repositories}.}
+    \resumeItem{\textbf{2024:} Built the \href{https://github.com/poojakira/OS-Resource-Management-Simulator-Dockerized-Flask-Application}{\underline{OS Resource Management Simulator}}, a Flask/Docker IFT 510 lab, then evolved the design into a PostgreSQL lease service with atomic acquisition, expiring leases, idempotent retries, role-based API access, audit history, metrics, and concurrency tests.}
+    \resumeItem{\textbf{2025:} Applied AWS IAM roles and policy evaluation, least-privilege design, CloudTrail logging, and compliance controls in graduate security work, establishing the cloud identity foundation for later security tooling.}
+    \resumeItem{\textbf{2026:} Built and evaluated security tooling across agent runtime enforcement, AWS IAM analysis, model supply-chain scanning, and training-data poisoning detection; standardized evidence with CI, SARIF/Code Scanning, Elastic Security, Prometheus, Docker, and reproducible tests.}
   \resumeItemListEnd
 
+  \resumeSubheading{Business \& Compliance Lead, AEROSEC}{Aug. 2025 - Dec. 2025}{Honeywell Aerospace Technologies $\times$ Arizona State University}{Tempe, AZ}
+  \resumeItemListStart
+    \resumeItem{Led business/compliance analysis for a proposed airline PSS protection layer and built a \textbf{\$120K first-year commercialization scenario} with a five-year financial model presented to ASU and Honeywell stakeholders.}
+  \resumeItemListEnd
+
+  \resumeSubheading{Graduate Teaching Assistant, IT Grader}{Jan. 2025 - Oct. 2025}{Ira A. Fulton Schools of Engineering, Arizona State University}{Mesa, AZ}
+  \resumeItemListStart
+    \resumeItem{Evaluated approximately \textbf{85 undergraduate web-development submissions per semester} and \textbf{52 graduate cybersecurity assignments}, giving evidence-based feedback on security controls, policy, compliance, risk analysis, and implementation quality.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Projects}
+\resumeSubHeadingListStart
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/mcp-agent-security-gateway}{\underline{MCP Agent Security Gateway}}} $|$ \emph{Python, FastAPI, MCP/JSON-RPC 2.0, Elastic Security}}{Jul. 2026 - Present}
   \resumeItemListStart
-    \resumeItem{Built an inline tool-call policy gateway with \textbf{55 prompt-injection patterns}, capability and PII/exfiltration checks, anti-SSRF, rate limiting, fail-closed enforcement, and tamper-evident audit evidence; validated \textbf{718 tests at 82.46\% coverage}, \textbf{9 Elastic rules}, and \textbf{21 core SIEM tests}.}
+    \resumeItem{Engineered an inline policy gateway with default-deny capability checks, \textbf{55 prompt-injection patterns}, PII/exfiltration and anti-SSRF controls, rate limiting, fail-closed enforcement, and tamper-evident audit logs; verified \textbf{718 tests at 82.46\% coverage}, \textbf{9 Elastic rules}, and \textbf{21 SIEM tests}.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/aws-agent-identity-guard}{\underline{AWS Agent Identity Guard}}} $|$ \emph{Python, AWS IAM, SARIF 2.1.0}}{Aug. 2026 - Sep. 2026}
   \resumeItemListStart
-    \resumeItem{Built a static IAM analyzer with \textbf{25 deterministic rules} covering wildcards, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, weak trust policies, audit tampering, and permission boundaries; verified \textbf{235 passing tests} with \textbf{3 credential-gated skips} and a synthetic \textbf{1.146 ms p95 / 1,846 policies/sec}.}
+    \resumeItem{Built a static IAM analyzer with \textbf{25 deterministic rules} for wildcard grants, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries; verified \textbf{235 passing tests} plus SARIF 2.1.0 and GitHub Code Scanning output.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/hf-model-provenance-scanner}{\underline{HF Model Provenance Scanner}}} $|$ \emph{Python, SafeTensors, GGUF, ONNX, Keras}}{Jul. 2026 - Sep. 2026}
   \resumeItemListStart
-    \resumeItem{Built a non-executing model supply-chain scanner using pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format inspection; verified \textbf{241 tests at 75.81\% coverage}, detected \textbf{33/33 committed adversarial fixtures}, and recorded \textbf{0 actionable findings across 4 committed benign samples}.}
+    \resumeItem{Developed a non-executing model supply-chain scanner using pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks; verified \textbf{241 tests at 75.81\% coverage} and detected \textbf{33/33 committed adversarial fixtures}.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/dataset-poisoning-detector}{\underline{Dataset Poisoning Detector}}} $|$ \emph{Python, FastAPI, Kafka, Redis, Prometheus}}{Jul. 2026 - Present}
   \resumeItemListStart
-    \resumeItem{Built statistical and spectral training-data screening with Isolation Forest, label-aware analysis, drift detection, deduplication, streaming, and quarantine; verified \textbf{199 tests at 90.88\% coverage} with a \textbf{90\% CI gate} and \textbf{0.55 / 0.60 / 0.70 F1 at 5\% / 10\% / 20\% poisoning}.}
-  \resumeItemListEnd
-
-  \resumeSubheading{Business \& Compliance Lead | AEROSEC}{Aug. 2025 - Dec. 2025}{Honeywell Aerospace Technologies $\times$ Arizona State University}{Tempe, AZ}
-  \resumeItemListStart
-    \resumeItem{Led business/compliance analysis for a proposed airline PSS protection layer and built a \textbf{\$120K first-year commercialization scenario} with a \textbf{five-year financial model} presented to ASU and Honeywell stakeholders.}
-  \resumeItemListEnd
-
-  \resumeSubheading{Graduate Teaching Assistant | IT Grader}{Jan. 2025 - Oct. 2025}{Ira A. Fulton Schools of Engineering, Arizona State University}{Mesa, AZ}
-  \resumeItemListStart
-    \resumeItem{Evaluated approximately \textbf{85 undergraduate web-development submissions per semester} and \textbf{52 graduate cybersecurity assignments} covering policy, compliance, risk analysis, and security controls.}
+    \resumeItem{Built statistical and spectral training-data screening with Isolation Forest, label-aware analysis, drift detection, deduplication, streaming, and quarantine; verified \textbf{199 tests at 90.88\% coverage} and \textbf{0.55 / 0.60 / 0.70 F1} at 5\% / 10\% / 20\% poisoning.}
   \resumeItemListEnd
 \resumeSubHeadingListEnd
 
 \section{Education}
 \resumeSubHeadingListStart
-  \resumeSubheading{Arizona State University}{Tempe, AZ}{M.S., Information Technology (Security) -- GPA: \textbf{3.87/4.00}}{Aug. 2024 - May 2026}
-  \resumeSubheading{M. S. Ramaiah University of Applied Sciences}{Bengaluru, India}{B.Tech., Computer Science \& Engineering -- CGPA: \textbf{8.44/10}}{Aug. 2019 - Aug. 2023}
+  \resumeSubheading{Arizona State University}{Tempe, AZ}{M.S., Information Technology (Security), GPA: \textbf{3.87/4.00}}{Aug. 2024 - May 2026}
+  \resumeSubheading{M. S. Ramaiah University of Applied Sciences}{Bengaluru, India}{B.Tech., Computer Science \& Engineering, CGPA: \textbf{8.44/10}}{Aug. 2019 - Aug. 2023}
 \resumeSubHeadingListEnd
 
 \section{Technical Skills}
 \begin{itemize}[leftmargin=0.14in,label={}]
 \small{\item{
-\textbf{Security}{: MCP/JSON-RPC, Tool Security, Prompt Injection, LLM Red Teaming, AWS IAM, API Security, Model Supply Chain, Training-Data Integrity, Adversarial ML} \\
-\textbf{Engineering}{: Python, Rust, C++, FastAPI, pytest, Hypothesis, GitHub Actions, Docker, Kubernetes, SARIF 2.1.0, CodeQL, Bandit, Trivy} \\
-\textbf{Detection}{: Elastic Security, ECS, SIEM, Prometheus, Security Telemetry, Tamper-Evident Audit Logging, MITRE ATLAS, OWASP LLM Top 10} \\
-\textbf{Certifications}{: AWS Academy Cloud Architecting; AWS Academy Cloud Security Foundations}
+\textbf{Agent \& AI Security}{: MCP/JSON-RPC 2.0, Tool/Function-Call Security, Prompt Injection, LLM Red Teaming, Model Supply-Chain Security, Training-Data Integrity, Adversarial ML} \\
+\textbf{Cloud \& Application Security}{: AWS IAM, Least Privilege, Trust Policies, Permission Boundaries, Threat Modeling, API Security, Capability-Based Authorization, Data Exfiltration Detection} \\
+\textbf{Engineering \& Detection}{: Python, Rust, C++, FastAPI, pytest, Hypothesis, GitHub Actions, SARIF 2.1.0, CodeQL, Docker, Kubernetes, Elastic Security, Prometheus}
 }}
 \end{itemize}
+
+\section{Certifications}
+\begin{itemize}[leftmargin=0.14in,label={}]
+\small{\item{AWS Academy Graduate - Cloud Architecting (Apr. 2025) $|$ AWS Academy Graduate - Cloud Security Foundations (Nov. 2025)}}
+\end{itemize}
+
 \end{document}
