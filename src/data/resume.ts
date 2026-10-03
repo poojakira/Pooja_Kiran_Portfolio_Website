@@ -28,7 +28,7 @@ export const resume = {
   name: "Pooja Kiran",
   headline: "Security Engineer | Agent Security | Application Security | Cloud IAM",
   positioning: "I engineer trust boundaries for systems that can act.",
-  location: "Tempe, AZ",
+  location: "Tempe, AZ, USA",
   phone: "+1 480-776-7745",
   email: "pkiran1@asu.edu",
   links: {
@@ -59,7 +59,7 @@ export const resume = {
       role: "Independent AI Security Researcher & Engineer",
       dates: "Aug. 2024 - Present",
       organization: "Self-Directed Research",
-      location: "Tempe, AZ",
+      location: "Tempe, AZ, USA",
       bullets: [
         "Built the OS Resource Management Simulator in Flask and Docker, then evolved it into a PostgreSQL-backed lease service with atomic acquisition, expiring leases, idempotent retries, role-based API access, audit history, metrics, and concurrency validation.",
         "Expanded into cloud and identity security by applying AWS IAM, least-privilege access, policy evaluation, and CloudTrail-backed auditability, building the foundation for later identity and authorization tooling.",
@@ -71,7 +71,7 @@ export const resume = {
       detail: "AEROSEC",
       dates: "Aug. 2025 - Dec. 2025",
       organization: "Honeywell Aerospace Technologies x Arizona State University",
-      location: "Tempe, AZ",
+      location: "Tempe, AZ, USA",
       bullets: [
         "Led business/compliance analysis for a proposed airline PSS protection layer and built a $120K first-year commercialization scenario with a five-year financial model presented to ASU and Honeywell stakeholders."
       ]
@@ -147,8 +147,8 @@ export const resume = {
     }
   ] satisfies ProjectItem[],
   education: [
-    { school: "Arizona State University", location: "Tempe, AZ", degree: "M.S., Information Technology (Security)", score: "GPA: 3.87/4.00", dates: "Aug. 2024 - May 2026" },
-    { school: "M. S. Ramaiah University of Applied Sciences", location: "Bengaluru, India", degree: "B.Tech., Computer Science & Engineering", score: "CGPA: 8.44/10", dates: "Aug. 2019 - Aug. 2023" }
+    { school: "Arizona State University", location: "Tempe, AZ, USA", degree: "M.S., Information Technology (Security)", score: "GPA: 3.87/4.00", dates: "Aug. 2024 - May 2026" },
+    { school: "M. S. Ramaiah University of Applied Sciences", location: "Banglore, KA,India", degree: "B.Tech., Computer Science & Engineering", score: "CGPA: 8.44/10", dates: "Aug. 2019 - Aug. 2023" }
   ],
   certifications: [
     "AWS Academy Graduate - Cloud Architecting (Apr. 2025)",
