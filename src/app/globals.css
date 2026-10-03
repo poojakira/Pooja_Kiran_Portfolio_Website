@@ -347,3 +347,213 @@ footer{min-height:80px;padding:0 max(18px,calc((100vw - var(--max))/2));display:
   .world-viewport{position:relative;height:auto;display:block;padding:30px;background:#fff;color:#111}
   .lobby-plaque,.portrait-installation,.lobby-index,.world-title,.world-thesis,.wall-poster,.code-desk,.evidence-glass,.flow-rail,.implementation-drawer,.career-title,.career-wall,.skill-shelf,.education-plaque,.contact-window,.contact-table,.contact-address{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;width:100%!important;margin:12px 0}
 }
+
+
+/* Architectural realism pass: the room itself becomes the interface */
+.world-lobby .world-viewport::before{
+  content:"";
+  position:absolute;
+  left:4.7%;
+  top:10%;
+  bottom:18%;
+  width:1px;
+  z-index:2;
+  background:linear-gradient(180deg,transparent,rgba(41,40,36,.28) 12%,rgba(41,40,36,.28) 88%,transparent);
+}
+.world-lobby .world-viewport::after{
+  content:"";
+  position:absolute;
+  right:7%;
+  bottom:19%;
+  width:23%;
+  height:42px;
+  z-index:5;
+  background:linear-gradient(180deg,#77726a,#4d4943);
+  box-shadow:0 15px 24px rgba(52,47,40,.22);
+  transform:perspective(700px) rotateX(7deg);
+}
+.tone-lobby .room-back-wall{
+  background:
+    linear-gradient(90deg,transparent 0 54%,rgba(55,53,48,.09) 54% 54.15%,transparent 54.15%),
+    linear-gradient(180deg,#dedbd4 0%,#d2cec6 72%,#c7c1b7);
+}
+.tone-lobby .room-back-wall::after{
+  content:"";
+  position:absolute;
+  right:7%;
+  top:10%;
+  width:30%;
+  height:62%;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.15) 49.7%,rgba(72,72,68,.22) 50%,rgba(255,255,255,.08) 50.3%),
+    linear-gradient(rgba(255,255,255,.12) 49.7%,rgba(72,72,68,.2) 50%,rgba(255,255,255,.08) 50.3%);
+  background-size:100% 50%,50% 100%;
+  border:1px solid rgba(54,52,48,.2);
+  box-shadow:inset 0 0 70px rgba(255,255,255,.22);
+}
+.lobby-plaque{
+  left:7.2%;
+  top:22%;
+  width:min(43vw,640px);
+  padding:0 0 0 26px;
+  background:transparent;
+  border:0;
+  border-left:3px solid rgba(44,43,39,.72);
+  box-shadow:none;
+  backdrop-filter:none;
+}
+.lobby-plaque>span{color:#706c64}
+.lobby-plaque h1{
+  margin:17px 0 20px;
+  max-width:9.5ch;
+  font-size:clamp(48px,5.3vw,80px);
+  line-height:.91;
+  letter-spacing:-.061em;
+}
+.lobby-plaque p{max-width:520px;font-size:13px;line-height:1.72}
+.lobby-plaque a:first-child{
+  background:#1a1b18;
+  box-shadow:0 8px 20px rgba(30,29,25,.12);
+}
+.portrait-installation{
+  right:17.5%;
+  top:14.5%;
+  width:min(24vw,360px);
+  height:59%;
+  padding:9px;
+  background:#1c1d1a;
+  box-shadow:0 22px 46px rgba(42,38,32,.24);
+}
+.portrait-installation:before{
+  inset:-7px;
+  border:1px solid rgba(25,25,22,.24);
+  background:rgba(255,255,255,.08);
+}
+.portrait-installation:after{
+  content:"";
+  position:absolute;
+  left:-12%;
+  right:-12%;
+  top:-11%;
+  height:7%;
+  background:linear-gradient(180deg,rgba(255,255,255,.36),transparent);
+  filter:blur(7px);
+  pointer-events:none;
+}
+.portrait-installation figcaption{height:44px;padding-top:9px}
+.portrait-light{left:15%;right:15%;top:-8%;height:4px;box-shadow:0 9px 30px rgba(255,247,225,.62)}
+.lobby-index{
+  left:7.2%;
+  right:auto;
+  bottom:10%;
+  width:min(39vw,570px);
+  padding:13px 0 0 26px;
+  background:transparent;
+  border:0;
+  border-left:3px solid #8e826b;
+}
+.lobby-index dl{
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.lobby-index dl div{grid-template-columns:1fr;gap:4px}
+.lobby-index dt{font:700 7px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.lobby-index dd{font-size:9px}
+
+/* Runtime room: built-in operations wall */
+.tone-runtime .room-back-wall{
+  background:
+    linear-gradient(90deg,transparent 0 34%,rgba(174,213,195,.08) 34% 34.15%,transparent 34.15% 67%,rgba(174,213,195,.08) 67% 67.15%,transparent 67%),
+    linear-gradient(180deg,#1a211f,#101514 72%,#0a0d0c);
+}
+.tone-runtime .room-back-wall::after{
+  content:"";
+  position:absolute;
+  left:37%;
+  right:5%;
+  top:14%;
+  height:45%;
+  border:1px solid rgba(188,225,207,.12);
+  background:linear-gradient(180deg,rgba(135,177,157,.06),rgba(4,7,6,.18));
+  box-shadow:inset 0 0 80px rgba(114,174,145,.06);
+}
+.world-mcp .world-title{left:6.5%;top:13.5%}
+.world-mcp .wall-poster{left:39%;top:17%}
+.world-mcp .evidence-glass{top:16%;right:6%}
+.world-mcp .code-desk{right:6%;bottom:10%}
+
+/* Identity archive: wood, brass, filing rhythm */
+.tone-identity .room-back-wall{
+  background:
+    repeating-linear-gradient(90deg,rgba(29,23,18,.12) 0 1px,transparent 1px 86px),
+    linear-gradient(180deg,#786b5a,#5b5044 72%,#433a32);
+}
+.tone-identity .room-back-wall::after{
+  content:"";
+  position:absolute;
+  left:37%;
+  right:5%;
+  top:13%;
+  height:50%;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 20%,rgba(24,18,14,.36) 20% 20.7%),
+    repeating-linear-gradient(180deg,rgba(221,190,142,.05) 0 23%,rgba(28,21,16,.34) 23% 24%);
+  border:8px solid rgba(49,37,28,.52);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.18);
+}
+.world-iam .wall-poster{box-shadow:0 30px 62px rgba(23,17,12,.42)}
+.world-iam .project-thesis,.world-iam .world-thesis{border-left:3px solid #927044}
+.world-iam .evidence-glass{border-color:rgba(255,231,188,.45)}
+
+/* Inspection lab: illuminated work surface and translucent partitions */
+.tone-lab .room-back-wall{
+  background:
+    linear-gradient(90deg,transparent 0 33%,rgba(74,95,100,.13) 33% 33.2%,transparent 33.2% 66%,rgba(74,95,100,.13) 66% 66.2%,transparent 66.2%),
+    linear-gradient(180deg,#e7ecec,#ccd5d6 72%,#b5c0c2);
+}
+.tone-lab .room-back-wall::after{
+  content:"";
+  position:absolute;
+  left:36%;
+  right:5%;
+  top:12%;
+  height:52%;
+  background:linear-gradient(135deg,rgba(255,255,255,.36),rgba(207,224,226,.08));
+  border:1px solid rgba(75,97,101,.22);
+  box-shadow:inset 0 0 75px rgba(255,255,255,.3);
+  backdrop-filter:blur(3px);
+}
+.world-supply .code-desk .desk-surface{
+  background:linear-gradient(180deg,#e8eeee,#9ba8aa);
+  box-shadow:0 12px 26px rgba(42,56,59,.24);
+}
+.world-supply .monitor{border-color:#687578}
+
+/* Slow physical drift and light breathing */
+@keyframes lamp-breathe{
+  0%,100%{filter:brightness(.94);opacity:.86}
+  50%{filter:brightness(1.08);opacity:1}
+}
+.poster-lamp,.portrait-light,.room-ceiling i{animation:lamp-breathe 5.5s ease-in-out infinite}
+.wall-poster{rotate:calc((var(--p) - .5) * .9deg)}
+.evidence-glass{rotate:calc((var(--p) - .5) * -.7deg)}
+.code-desk{translate:0 calc((var(--p) - .5) * 10px)}
+.world-thesis{translate:0 calc((var(--p) - .5) * -8px)}
+.portrait-installation{translate:0 calc((var(--p) - .5) * -10px)}
+
+@media(max-width:1120px){
+  .world-lobby .world-viewport::before,.world-lobby .world-viewport::after,
+  .tone-lobby .room-back-wall::after,.tone-runtime .room-back-wall::after,
+  .tone-identity .room-back-wall::after,.tone-lab .room-back-wall::after{display:none}
+  .lobby-plaque,.portrait-installation,.lobby-index{translate:none}
+  .lobby-index dl{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .lobby-plaque{padding-left:18px;border-left-width:2px}
+  .lobby-index{padding-left:18px}
+  .lobby-index dl{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .poster-lamp,.portrait-light,.room-ceiling i{animation:none}
+  .wall-poster,.evidence-glass,.code-desk,.world-thesis,.portrait-installation{rotate:0deg;translate:none}
+}
