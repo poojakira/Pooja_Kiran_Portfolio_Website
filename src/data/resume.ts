@@ -38,16 +38,20 @@ export const resume = {
   },
   skillGroups: [
     {
-      label: "Agent & AI Security",
-      items: ["MCP/JSON-RPC 2.0", "Tool/Function-Call Security", "Prompt Injection", "LLM Red Teaming", "Model Supply-Chain Security", "Training-Data Integrity", "Adversarial ML"]
+      label: "AI & Agent Security",
+      items: ["Agentic AI Security", "MCP/JSON-RPC 2.0", "Tool/Function-Call Security", "Prompt Injection", "Indirect Prompt Injection", "RAG Security", "LLM Red Teaming", "Model Supply-Chain Security", "Model Provenance", "Training-Data Integrity", "Adversarial ML"]
     },
     {
-      label: "Cloud & Application Security",
-      items: ["AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Threat Modeling", "API Security", "Capability-Based Authorization", "Data Exfiltration Detection"]
+      label: "Identity & Product Security",
+      items: ["AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Capability-Based Authorization", "Threat Modeling", "Secure System Design", "API Security", "Anti-SSRF", "PII/Data-Exfiltration Detection"]
     },
     {
-      label: "Engineering & Detection",
-      items: ["Python", "Rust", "C++", "FastAPI", "pytest", "Hypothesis", "GitHub Actions", "SARIF 2.1.0", "CodeQL", "Docker", "Kubernetes", "Elastic Security", "Prometheus"]
+      label: "Security Engineering & DevSecOps",
+      items: ["Python", "Rust", "C++", "FastAPI", "pytest", "Hypothesis", "Secure SDLC", "GitHub Actions", "CI/CD Security", "SARIF 2.1.0", "GitHub Code Scanning", "CodeQL", "Bandit", "Trivy", "pip-audit", "Docker", "Kubernetes"]
+    },
+    {
+      label: "Detection & AI Security Standards",
+      items: ["Elastic Security", "ECS", "SIEM", "Prometheus", "Security Telemetry", "Tamper-Evident Audit Logging", "Rate Limiting", "MITRE ATLAS", "OWASP LLM Top 10"]
     }
   ],
   experience: [
