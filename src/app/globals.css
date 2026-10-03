@@ -557,3 +557,35 @@ footer{min-height:80px;padding:0 max(18px,calc((100vw - var(--max))/2));display:
   .poster-lamp,.portrait-light,.room-ceiling i{animation:none}
   .wall-poster,.evidence-glass,.code-desk,.world-thesis,.portrait-installation{rotate:0deg;translate:none}
 }
+
+
+/* Composition correction after browser review */
+.project-world .world-title{
+  width:31%;
+  max-width:470px;
+}
+.project-world .world-title h2{
+  max-width:9ch;
+  font-size:clamp(42px,4.9vw,72px);
+  line-height:.9;
+}
+.project-world .world-title p{
+  max-width:28ch;
+}
+.world-mcp .wall-poster,
+.world-iam .wall-poster,
+.world-supply .wall-poster{
+  top:18%;
+  width:min(23vw,350px);
+}
+.world-mcp .evidence-glass,
+.world-iam .evidence-glass,
+.world-supply .evidence-glass{
+  width:min(25vw,380px);
+}
+@media(max-width:1120px){
+  .project-world .world-title{width:auto;max-width:none}
+  .project-world .world-title h2{max-width:none;font-size:58px}
+  .world-mcp .wall-poster,.world-iam .wall-poster,.world-supply .wall-poster{width:min(100%,420px)}
+  .world-mcp .evidence-glass,.world-iam .evidence-glass,.world-supply .evidence-glass{width:auto}
+}
