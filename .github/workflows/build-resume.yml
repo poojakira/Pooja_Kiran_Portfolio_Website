@@ -1,6 +1,10 @@
 name: Build Agentic AI Security Resume
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
   pull_request:
     branches: [main]
     paths:
@@ -8,19 +12,19 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-resume:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout PR branch
+      - name: Checkout source branch
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
           fetch-depth: 0
-          persist-credentials: false
+          persist-credentials: ${{ github.event_name == 'push' }}
 
       - name: Install LaTeX
         run: |
@@ -38,8 +42,23 @@ jobs:
           test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
+          pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
+            grep -q "OS Resource Management Simulator"
           cp .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf \
             public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
+
+      - name: Commit canonical PDF on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          if git diff --quiet -- public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf; then
+            echo "Canonical PDF is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
+          git commit -m "build: regenerate canonical resume PDF"
+          git push origin HEAD:main
 
       - name: Upload generated PDF
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
