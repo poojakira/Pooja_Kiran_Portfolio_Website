@@ -49,7 +49,7 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ",
       bullets: [
-        "Built and evaluated security controls across agent runtime enforcement, AWS IAM, model supply-chain security, LLM red teaming, training-data integrity, and adversarial ML across 19 repositories, with threat models, reproducible tests, and evidence-backed security claims.",
+        "Started self-directed security research in Aug. 2024. A Dec. 2024 Flask/Docker OS resource-management lab later became a PostgreSQL-backed lease control plane; by 2026, the work expanded into agent runtime security, cloud IAM, model provenance, and training-data integrity across 19 repositories.",
         "Standardized engineering and security verification with GitHub Actions, SARIF/Code Scanning, CodeQL, Bandit, Trivy, dependency and secret scanning, Docker, Elastic Security, Prometheus, and documented runbooks covering controls, failure modes, and limitations."
       ]
     },
@@ -161,19 +161,19 @@ export const resume = {
 export const secondaryWork = [
   {
     title: "OS Resource Management Simulator → Resource Control Plane",
-    date: "Dec. 2024 coursework / production evolution in 2026",
+    date: "Dec. 2024 - Oct. 2026",
     description: "A Fall 2024 Flask/Docker resource-allocation lab evolved into a PostgreSQL-backed lease service with atomic acquisition, expiring leases, idempotency, role-based API access, audit history, metrics, migrations, and concurrency validation.",
     repository: "https://github.com/poojakira/OS-Resource-Management-Simulator-Dockerized-Flask-Application-"
   },
   {
     title: "LLM Red-Team Framework",
-    date: "Research implementation",
+    date: "Jul. 2026 - Oct. 2026",
     description: "Offline prompt-injection evaluation with grouped-template and novel-phrasing OOD measurement, designed to expose generalization gaps instead of presenting only optimistic in-distribution results.",
     repository: "https://github.com/poojakira/llm-redteam-framework"
   },
   {
     title: "Adversarial ML Lab",
-    date: "Research implementation",
+    date: "Jul. 2026 - Sep. 2026",
     description: "Reproducible FGSM, PGD, and C&W robustness measurement with MITRE ATLAS mapping and committed CIFAR-10 attack evidence.",
     repository: "https://github.com/poojakira/adversarial-ml-lab"
   }
