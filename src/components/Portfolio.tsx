@@ -77,7 +77,7 @@ function Hero() {
             <span>Current focus</span>
             <strong>AI security systems with verifiable engineering evidence</strong>
           </div>
-          <p>Metrics on this portfolio are bounded to the resume and repository evidence. No production or adoption claims are implied.</p>
+          <p>Project metrics are drawn from resume and repository validation evidence, with scope limits stated alongside each case study.</p>
         </div>
       </div>
     </section>
@@ -89,7 +89,7 @@ function EvidenceOverview() {
     <section className="evidence-overview" aria-label="Selected engineering evidence">
       <div className="evidence-heading">
         <p className="eyebrow">Selected evidence</p>
-        <p>Three projects from the current resume, shown with the exact validation scope carried in the portfolio data.</p>
+        <p>Repository-backed validation metrics from selected security engineering projects.</p>
       </div>
       <div className="evidence-grid">
         {resume.projects.map((project) => (
@@ -193,7 +193,7 @@ function WorkSection() {
     <section className="work-section" id="work">
       <div className="section-heading">
         <p className="eyebrow">Selected engineering</p>
-        <h2>Security work presented as case studies, not concept art.</h2>
+        <h2>Security work presented with architecture, evidence, and scope.</h2>
         <p>
           Each project shows the security problem, implemented control boundary, validation evidence, and the limits of what the evidence proves.
         </p>
