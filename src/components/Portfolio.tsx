@@ -164,42 +164,49 @@ function Hero() {
 function DualPaths() {
   return (
     <section className="dual-paths" id="paths">
-      <div className="section-intro" data-reveal>
-        <p className="eyebrow">Two directions. One body of work.</p>
-        <h2>I am building a career and building things that can become products.</h2>
+      <div className="section-intro path-intro" data-reveal>
+        <p className="eyebrow">Engineering depth. Builder mindset.</p>
+        <h2>I approach security from two angles: build the control well, then understand how it becomes useful.</h2>
       </div>
 
       <div className="path-grid">
         <article className="path-card career-card" data-reveal>
-          <div className="path-number">01</div>
-          <span className="path-label">JOB / SECURITY ENGINEERING</span>
-          <h3>Ready to contribute inside a security engineering team.</h3>
+          <div className="path-topline">
+            <span className="path-number">01</span>
+            <span className="path-label">SECURITY ENGINEERING</span>
+          </div>
+          <h3>Technical work that can be inspected, tested, and reviewed.</h3>
           <p>
-            My portfolio shows implementation depth across runtime controls, IAM analysis, model supply-chain security,
-            testing, CI evidence, telemetry, and secure system design.
+            I build security controls at the boundaries where AI agents, identities, APIs, and model artifacts become
+            security decisions, then back that work with tests, CI evidence, telemetry, and reproducible validation.
           </p>
-          <div className="path-points">
+          <div className="path-evidence" aria-label="Security engineering focus areas">
             <span>Agent & AI Security</span>
             <span>Application Security</span>
             <span>Cloud IAM</span>
             <span>Security Automation</span>
           </div>
-          <a href={resumeHref} target="_blank" rel="noreferrer">Open resume <ArrowIcon /></a>
+          <a href={resumeHref} target="_blank" rel="noreferrer">View engineering resume <ArrowIcon /></a>
         </article>
 
         <article className="path-card builder-card" id="builder" data-reveal>
-          <div className="path-number">02</div>
-          <span className="path-label">ENTREPRENEURSHIP / BUILDER</span>
-          <h3>Exploring how security research becomes useful, adoptable systems.</h3>
-          <p>
-            I treat each project as more than a demo: define the user or operational problem, build the control boundary,
-            create reproducible evidence, and think about how the system could be evaluated or adopted.
-          </p>
-          <div className="builder-proof">
-            <strong>$120K</strong>
-            <span>first-year commercialization scenario built during AEROSEC, not reported revenue</span>
+          <div className="path-topline">
+            <span className="path-number">02</span>
+            <span className="path-label">BUILDER & PRODUCT THINKING</span>
           </div>
-          <a href="#work">See build-to-evidence projects <ArrowIcon /></a>
+          <h3>Taking a security problem from idea to something people can evaluate and use.</h3>
+          <p>
+            Alongside implementation, I work on problem framing, validation, adoption thinking, and how security evidence
+            is communicated. In AEROSEC, that included business and compliance analysis plus a five-year financial model
+            presented to ASU and Honeywell stakeholders.
+          </p>
+          <div className="path-evidence" aria-label="Builder focus areas">
+            <span>Problem Framing</span>
+            <span>Validation</span>
+            <span>Adoption Thinking</span>
+            <span>Business & Compliance</span>
+          </div>
+          <a href="#work">Explore the projects <ArrowIcon /></a>
         </article>
       </div>
     </section>
