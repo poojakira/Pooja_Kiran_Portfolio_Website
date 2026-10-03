@@ -82,23 +82,23 @@ function Header() {
   return (
     <>
       <div className="page-progress" aria-hidden="true"><span /></div>
-      <header className="site-header">
+      <header className="site-header hero-header">
         <a className="brand" href="#home" aria-label="Pooja Kiran home">
           <span className="brand-mark">PK</span>
           <span>
-            <strong>{resume.name}</strong>
-            <small>Security Engineer · Builder</small>
+            <strong>AI SECURITY</strong>
           </span>
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
-          <a href="#paths">Paths</a>
-          <a href="#work">Work</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Capabilities</a>
+          <a href="#home">About</a>
+          <a href="#experience">Work</a>
+          <a href="#work">Research</a>
+          <a href="#experience">Teaching</a>
+          <a href="#work">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a className="resume-pill" href={resumeHref} target="_blank" rel="noreferrer">
-          Resume <ArrowIcon />
+        <a className="resume-pill hero-talk" href={`mailto:${resume.email}`}>
+          Let&apos;s Talk
         </a>
       </header>
     </>
@@ -106,48 +106,53 @@ function Header() {
 }
 
 function Hero() {
+  const capabilities = [
+    "AI Security",
+    "Cloud Security",
+    "Model Security",
+    "Open Source",
+    "Teaching",
+  ];
+
   return (
-    <section className="hero" id="home">
-      <div className="hero-world" aria-hidden="true">
-        <div className="world-sun" />
-        <div className="world-haze world-haze-one" />
-        <div className="world-haze world-haze-two" />
-        <div className="mountain mountain-a" />
-        <div className="mountain mountain-b" />
-        <div className="mountain mountain-c" />
-        <div className="architecture architecture-left" />
-        <div className="architecture architecture-right" />
-        <div className="ground-plane" />
+    <section className="hero hero-reference" id="home">
+      <div className="office-world" aria-hidden="true">
+        <div className="office-window office-window-a" />
+        <div className="office-window office-window-b" />
+        <div className="office-city">
+          <i /><i /><i /><i /><i /><i />
+        </div>
+        <div className="office-glow" />
+        <div className="office-plant office-plant-left" />
+        <div className="office-plant office-plant-right" />
+        <div className="office-desk" />
       </div>
 
-      <div className="hero-side hero-side-left" data-reveal>
-        <p className="side-kicker">Career track</p>
-        <h1>Security<br />Engineer</h1>
-        <p>Agent security, application security, cloud IAM, secure systems, detection, and evidence-driven engineering.</p>
-        <a href="#experience">Explore career evidence <ArrowIcon /></a>
+      <div className="hero-copy-reference" data-reveal>
+        <p className="hero-overline">PORTFOLIO</p>
+        <h1>AI Security<br />Engineer</h1>
+        <p className="hero-reference-subtitle">
+          Building safer AI systems through research, engineering, and real-world impact.
+        </p>
+        <div className="hero-reference-actions">
+          <a className="hero-primary" href="#work">View My Work <ArrowIcon /></a>
+          <a className="hero-secondary" href={resumeHref} target="_blank" rel="noreferrer">
+            Download CV
+          </a>
+        </div>
       </div>
 
-      <figure className="hero-portrait" data-reveal>
-        <div className="portrait-halo" />
-        <div className="portrait-shell">
+      <figure className="hero-photo-reference" data-reveal>
+        <div className="hero-photo-frame">
           <img src={asset("pooja-portrait.webp")} alt="Pooja Kiran" width="900" height="1100" />
         </div>
-        <figcaption className="portrait-signature">
-          <strong>“Pooja Kiran”</strong>
-        </figcaption>
+        <figcaption>“Pooja Kiran”</figcaption>
       </figure>
 
-      <div className="hero-side hero-side-right" data-reveal>
-        <p className="side-kicker">Builder track</p>
-        <h2>Product<br />& Venture</h2>
-        <p>Turning security problems into testable systems, reusable tooling, pilot-ready evidence, and commercialization thinking.</p>
-        <a href="#builder">Explore builder evidence <ArrowIcon /></a>
-      </div>
-
-      <div className="hero-bottom" data-reveal>
-        <span>50% Career</span>
-        <i />
-        <span>50% Entrepreneurship</span>
+      <div className="hero-capability-strip" data-reveal>
+        {capabilities.map((item) => (
+          <span key={item}>{item}</span>
+        ))}
       </div>
     </section>
   );
