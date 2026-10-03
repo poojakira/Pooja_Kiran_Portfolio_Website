@@ -380,7 +380,7 @@ function ContactSection() {
     <section className="contact-section" id="contact">
       <div className="contact-copy contact-quote" data-reveal>
         <p className="eyebrow">A principle I build by</p>
-        <blockquote>“Build systems that earn trust before they ask for it.”</blockquote>
+        <blockquote>“Ambition matters. Evidence decides what lasts.”</blockquote>
         <cite>— Pooja Kiran</cite>
       </div>
       <div className="contact-actions" data-reveal>
