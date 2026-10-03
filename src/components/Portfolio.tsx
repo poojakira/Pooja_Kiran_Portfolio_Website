@@ -165,42 +165,34 @@ function DualPaths() {
   return (
     <section className="dual-paths" id="paths">
       <div className="section-intro path-intro" data-reveal>
-        <p className="eyebrow">Engineering depth. Builder mindset.</p>
-        <h2>I approach security from two angles: build the control well, then understand how it becomes useful.</h2>
+        <p className="eyebrow">How I work</p>
+        <h2>I care about both how a security control works and how it becomes useful in practice.</h2>
       </div>
 
       <div className="path-grid">
         <article className="path-card career-card" data-reveal>
-          <div className="path-topline">
-            <span className="path-number">01</span>
-            <span className="path-label">SECURITY ENGINEERING</span>
-          </div>
-          <h3>Technical work that can be inspected, tested, and reviewed.</h3>
+          <h3>Build the control so it can stand up to inspection.</h3>
           <p>
-            I build security controls at the boundaries where AI agents, identities, APIs, and model artifacts become
-            security decisions, then back that work with tests, CI evidence, telemetry, and reproducible validation.
+            I work at the boundaries where AI agents, identities, APIs, and model artifacts become security decisions,
+            then back those decisions with tests, CI evidence, telemetry, and reproducible validation.
           </p>
-          <div className="path-evidence" aria-label="Security engineering focus areas">
+          <div className="path-evidence" aria-label="Technical focus areas">
             <span>Agent & AI Security</span>
             <span>Application Security</span>
             <span>Cloud IAM</span>
             <span>Security Automation</span>
           </div>
-          <a href={resumeHref} target="_blank" rel="noreferrer">View engineering resume <ArrowIcon /></a>
+          <a href={resumeHref} target="_blank" rel="noreferrer">View resume <ArrowIcon /></a>
         </article>
 
         <article className="path-card builder-card" id="builder" data-reveal>
-          <div className="path-topline">
-            <span className="path-number">02</span>
-            <span className="path-label">BUILDER & PRODUCT THINKING</span>
-          </div>
-          <h3>Taking a security problem from idea to something people can evaluate and use.</h3>
+          <h3>Carry the work beyond implementation.</h3>
           <p>
-            Alongside implementation, I work on problem framing, validation, adoption thinking, and how security evidence
-            is communicated. In AEROSEC, that included business and compliance analysis plus a five-year financial model
-            presented to ASU and Honeywell stakeholders.
+            I also think about the problem being solved, how the result is validated, how people will evaluate it, and
+            what makes the work practical to adopt. In AEROSEC, that included business and compliance analysis plus a
+            five-year financial model presented to ASU and Honeywell stakeholders.
           </p>
-          <div className="path-evidence" aria-label="Builder focus areas">
+          <div className="path-evidence" aria-label="Practical focus areas">
             <span>Problem Framing</span>
             <span>Validation</span>
             <span>Adoption Thinking</span>
