@@ -146,7 +146,10 @@ function Hero() {
         <div className="hero-photo-frame">
           <img src={asset("pooja-portrait.webp")} alt="Pooja Kiran" width="900" height="1100" />
         </div>
-        <figcaption>“Pooja Kiran”</figcaption>
+        <figcaption className="hero-signature-quote">
+          <span>“I build security so intelligent systems earn trust before they act.”</span>
+          <strong>— Pooja Kiran</strong>
+        </figcaption>
       </figure>
 
       <div className="hero-capability-strip" data-reveal>
