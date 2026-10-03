@@ -49,9 +49,9 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ",
       bullets: [
-        "2024: Built the OS Resource Management Simulator, a Flask/Docker IFT 510 lab, then evolved the design into a PostgreSQL lease service with atomic acquisition, expiring leases, idempotent retries, role-based API access, audit history, metrics, and concurrency tests.",
-        "2025: Applied AWS IAM roles and policy evaluation, least-privilege design, CloudTrail logging, and compliance controls in graduate security work, establishing the cloud identity foundation for later security tooling.",
-        "2026: Built and evaluated security tooling across agent runtime enforcement, AWS IAM analysis, model supply-chain scanning, and training-data poisoning detection; standardized evidence with CI, SARIF/Code Scanning, Elastic Security, Prometheus, Docker, and reproducible tests."
+        "Built the OS Resource Management Simulator in Flask and Docker, then evolved it into a PostgreSQL-backed lease service with atomic acquisition, expiring leases, idempotent retries, role-based API access, audit history, metrics, and concurrency validation.",
+        "Expanded into cloud and identity security by applying AWS IAM, least-privilege access, policy evaluation, and CloudTrail-backed auditability, building the foundation for later identity and authorization tooling.",
+        "Extended the work into AI and agent security, engineering controls for runtime tool calls, IAM analysis, model provenance, and training-data integrity while standardizing evidence through CI, SARIF/Code Scanning, Elastic Security, Prometheus, Docker, and reproducible tests."
       ]
     },
     {
