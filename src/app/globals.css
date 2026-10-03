@@ -86,6 +86,8 @@ section[id],article[id]{scroll-margin-top:82px}
 .hero-portrait figcaption{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);width:80%;padding:14px 16px;border:1px solid rgba(255,255,255,.32);background:rgba(34,25,20,.24);backdrop-filter:blur(13px);text-align:center}
 .hero-portrait figcaption span{display:block;font:700 9px/1.35 var(--mono);letter-spacing:.18em;text-transform:uppercase}
 .hero-portrait figcaption strong{display:block;margin-top:5px;font-size:12px;font-weight:600}
+.hero-portrait figcaption.portrait-signature{padding:15px 18px}
+.hero-portrait figcaption.portrait-signature strong{margin:0;font-size:14px;font-weight:650;letter-spacing:.04em}
 
 .hero-bottom{position:absolute;left:max(26px,calc((100vw - var(--max))/2));right:max(26px,calc((100vw - var(--max))/2));bottom:24px;z-index:5;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;font:700 9px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.78)}
 .hero-bottom i{height:1px;background:linear-gradient(90deg,rgba(255,255,255,.18),rgba(255,255,255,.75),rgba(255,255,255,.18))}
