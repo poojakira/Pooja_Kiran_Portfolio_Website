@@ -78,17 +78,17 @@
 \resumeSubHeadingListStart
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/mcp-agent-security-gateway}{\underline{MCP Agent Security Gateway}}} $|$ \emph{Python, FastAPI, MCP/JSON-RPC 2.0, Elastic Security}}{Jul. 2026 - Present}
   \resumeItemListStart
-    \resumeItem{Engineered an inline policy gateway with default-deny capability checks, \textbf{55 prompt-injection patterns}, PII/exfiltration and anti-SSRF controls, rate limiting, fail-closed enforcement, and tamper-evident audit logs; verified \textbf{718 tests at 82.46\% coverage}, \textbf{9 Elastic rules}, and \textbf{21 SIEM tests}.}
+    \resumeItem{Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with \textbf{55 prompt-injection patterns}, capability, PII/exfiltration, anti-SSRF, rate-limiting, and tamper-evident audit controls; validated the design with \textbf{718 passing tests at 82.46\% coverage}, \textbf{9 Elastic rules}, and \textbf{21 SIEM tests}.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/aws-agent-identity-guard}{\underline{AWS Agent Identity Guard}}} $|$ \emph{Python, AWS IAM, SARIF 2.1.0}}{Aug. 2026 - Sep. 2026}
   \resumeItemListStart
-    \resumeItem{Built a static IAM analyzer with \textbf{25 deterministic rules} for wildcard grants, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries; verified \textbf{235 passing tests} plus SARIF 2.1.0 and GitHub Code Scanning output.}
+    \resumeItem{Reduced over-privileged agent and workload identity risk by building a static IAM analyzer with \textbf{25 deterministic rules} for wildcard grants, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries; verified \textbf{235 passing tests} with SARIF 2.1.0 and GitHub Code Scanning output.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/hf-model-provenance-scanner}{\underline{HF Model Provenance Scanner}}} $|$ \emph{Python, SafeTensors, GGUF, ONNX, Keras}}{Jul. 2026 - Sep. 2026}
   \resumeItemListStart
-    \resumeItem{Developed a non-executing model supply-chain scanner using pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks; verified \textbf{241 tests at 75.81\% coverage} and detected \textbf{33/33 committed adversarial fixtures}.}
+    \resumeItem{Addressed model supply-chain risk without executing untrusted artifacts by developing static pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks; verified \textbf{241 passing tests at 75.81\% coverage}, detected \textbf{33/33 committed adversarial fixtures}, and recorded \textbf{0 actionable findings across 4 committed benign samples}.}
   \resumeItemListEnd
 
 \resumeSubHeadingListEnd
