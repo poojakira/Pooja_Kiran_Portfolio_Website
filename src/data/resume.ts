@@ -26,7 +26,7 @@ export type ProjectItem = {
 export const resume = {
   sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Security Engineer | AI & Agent Security | Cloud IAM",
+  headline: "Security Engineer | Agent Security | Application Security | Cloud IAM",
   positioning: "I engineer trust boundaries for systems that can act.",
   location: "Tempe, AZ",
   phone: "+1 480-776-7745",
@@ -49,8 +49,9 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ",
       bullets: [
-        "Started self-directed security research in Aug. 2024. A Dec. 2024 Flask/Docker OS resource-management lab later became a PostgreSQL-backed lease control plane; by 2026, the work expanded into agent runtime security, cloud IAM, model provenance, and training-data integrity across 19 repositories.",
-        "Standardized engineering and security verification with GitHub Actions, SARIF/Code Scanning, CodeQL, Bandit, Trivy, dependency and secret scanning, Docker, Elastic Security, Prometheus, and documented runbooks covering controls, failure modes, and limitations."
+        "2024: Built the OS Resource Management Simulator, a Flask/Docker IFT 510 lab, then evolved the design into a PostgreSQL lease service with atomic acquisition, expiring leases, idempotent retries, role-based API access, audit history, metrics, and concurrency tests.",
+        "2025: Applied AWS IAM roles and policy evaluation, least-privilege design, CloudTrail logging, and compliance controls in graduate security work, establishing the cloud identity foundation for later security tooling.",
+        "2026: Built and evaluated security tooling across agent runtime enforcement, AWS IAM analysis, model supply-chain scanning, and training-data poisoning detection; standardized evidence with CI, SARIF/Code Scanning, Elastic Security, Prometheus, Docker, and reproducible tests."
       ]
     },
     {
@@ -70,7 +71,7 @@ export const resume = {
       organization: "Ira A. Fulton Schools of Engineering, Arizona State University",
       location: "Mesa, AZ",
       bullets: [
-        "Evaluated approximately 85 undergraduate web-development submissions per semester and 52 graduate cybersecurity assignments covering policy, compliance, risk analysis, and security controls."
+        "Evaluated approximately 85 undergraduate web-development submissions per semester and 52 graduate cybersecurity assignments, giving evidence-based feedback on security controls, policy, compliance, risk analysis, and implementation quality."
       ]
     }
   ] satisfies ExperienceItem[],
@@ -153,8 +154,8 @@ export const resume = {
     { school: "M. S. Ramaiah University of Applied Sciences", degree: "B.Tech., Computer Science & Engineering", score: "CGPA: 8.44/10", dates: "Aug. 2019 - Aug. 2023" }
   ],
   certifications: [
-    "AWS Academy Graduate - Cloud Architecting",
-    "AWS Academy Graduate - Cloud Security Foundations"
+    "AWS Academy Graduate - Cloud Architecting (Apr. 2025)",
+    "AWS Academy Graduate - Cloud Security Foundations (Nov. 2025)"
   ]
 } as const;
 
@@ -163,7 +164,7 @@ export const secondaryWork = [
     title: "OS Resource Management Simulator → Resource Control Plane",
     date: "Dec. 2024 - Oct. 2026",
     description: "A Fall 2024 Flask/Docker resource-allocation lab evolved into a PostgreSQL-backed lease service with atomic acquisition, expiring leases, idempotency, role-based API access, audit history, metrics, migrations, and concurrency validation.",
-    repository: "https://github.com/poojakira/OS-Resource-Management-Simulator-Dockerized-Flask-Application-"
+    repository: "https://github.com/poojakira/OS-Resource-Management-Simulator-Dockerized-Flask-Application"
   },
   {
     title: "LLM Red-Team Framework",

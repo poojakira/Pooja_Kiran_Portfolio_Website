@@ -5,17 +5,18 @@ on:
     branches: [main]
     paths:
       - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
+      - ".github/workflows/build-resume.yml"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-resume:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout PR branch
+      - name: Checkout source branch
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
@@ -38,8 +39,34 @@ jobs:
           test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
+          pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
+            grep -q "OS Resource Management Simulator"
           cp .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf \
             public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
+
+      - name: Sync generated PDF to PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: ${{ github.head_ref }}
+        run: |
+          path="public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf"
+          local_blob="$(git hash-object "$path")"
+          remote_blob="$(gh api "repos/$GITHUB_REPOSITORY/contents/$path?ref=$PR_BRANCH" --jq .sha)"
+          if [ "$local_blob" = "$remote_blob" ]; then
+            echo "Canonical PDF is already current."
+            exit 0
+          fi
+          base64 -w0 "$path" > /tmp/resume-pdf.b64
+          jq -n \
+            --arg message "build: regenerate canonical resume PDF" \
+            --rawfile content /tmp/resume-pdf.b64 \
+            --arg sha "$remote_blob" \
+            --arg branch "$PR_BRANCH" \
+            '{message: $message, content: $content, sha: $sha, branch: $branch}' \
+            > /tmp/resume-pdf-request.json
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/contents/$path" \
+            --input /tmp/resume-pdf-request.json >/dev/null
 
       - name: Upload generated PDF
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
