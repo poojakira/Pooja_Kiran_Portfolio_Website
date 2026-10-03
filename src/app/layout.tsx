@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Pooja Kiran Security Engineering Portfolio",
     type: "website",
-    images: [{ url: "/Pooja_Kiran_Portfolio_Website/og-card.png", width: 1200, height: 630, alt: "Pooja Kiran, Security Engineer" }]
+    images: [{ url: "/og-card.png", width: 1200, height: 630, alt: "Pooja Kiran, Security Engineer" }]
   },
   twitter: {
     card: "summary_large_image",
     title: "Pooja Kiran | Security Engineer",
     description: "AI & Agent Security · Cloud IAM · Model Supply Chain · Training-Data Integrity",
-    images: ["/Pooja_Kiran_Portfolio_Website/og-card.png"]
+    images: ["/og-card.png"]
   },
   icons: { icon: "/Pooja_Kiran_Portfolio_Website/favicon.svg" }
 };
