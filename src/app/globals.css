@@ -2,3 +2,6 @@
 @import "./content.css";
 @import "./scenes.css";
 @import "./responsive.css";
+
+@import "./inspectors.css";
+@import "./refinements.css";

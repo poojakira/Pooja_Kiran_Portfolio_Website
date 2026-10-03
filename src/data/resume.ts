@@ -1,4 +1,4 @@
-﻿export type ExperienceItem = {
+export type ExperienceItem = {
   role: string;
   detail?: string;
   dates: string;
@@ -93,7 +93,7 @@ export const resume = {
       repository: "https://github.com/poojakira/mcp-agent-security-gateway",
       problem: "Agent tool calls cross an execution boundary where authorization, content risk, egress policy, rate limits, and audit evidence need to be enforced before downstream execution.",
       solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
-      architecture: ["Agent request", "Normalize", "Capability authorization", "Content and egress checks", "Allow or block", "Audit and telemetry"],
+      architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
       bullets: [
         "Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.",
         "Expanded runtime detection with 55 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
@@ -112,7 +112,7 @@ export const resume = {
       repository: "https://github.com/poojakira/aws-agent-identity-guard",
       problem: "Agent and workload identities can become over-privileged through wildcard grants, iam:PassRole, sts:AssumeRole, weak trust policies, privilege-escalation paths, and missing permission boundaries.",
       solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
-      architecture: ["IAM policy", "Parse and normalize", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "Code review"],
+      architecture: ["IAM policy", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "GitHub Code Scanning", "Code review"],
       bullets: [
         "Reduced over-privileged agent and workload identity risk by building a static IAM analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
         "Made IAM findings reviewable in CI by emitting text, JSON, and SARIF 2.1.0 results into GitHub Code Scanning, turning policy weaknesses into actionable code-review evidence.",
@@ -131,7 +131,7 @@ export const resume = {
       repository: "https://github.com/poojakira/hf-model-provenance-scanner",
       problem: "Untrusted model repositories and artifacts can carry serialization, loader, dependency, provenance, and obfuscation risk before a model is loaded.",
       solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
-      architecture: ["Repository or artifact", "Static inspection", "Serialization checks", "Dependency and provenance checks", "Normalized findings", "Evidence"],
+      architecture: ["Repository or artifact", "Non-executing inspection", "Pickle and AST/taint checks", "Dependency and provenance checks", "Obfuscation and format checks", "Findings"],
       bullets: [
         "Reduced model supply-chain exposure by developing a non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
         "Combined pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks to surface risky behavior across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",

@@ -1,7 +1,11 @@
-﻿"use client";
+"use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { resume, resumeHref, trustChain, type ProjectItem } from "@/data/resume";
+
+import dynamic from "next/dynamic";
+import WorldInspector, { TelemetryWorld } from "./WorldInspector";
+const TrustScene = dynamic(() => import("./TrustScene"), { ssr: false });
 
 type ViewMode = "explore" | "recruiter";
 
@@ -17,30 +21,20 @@ function ShieldMark() {
 }
 
 function Header({ mode, setMode }: { mode: ViewMode; setMode: (mode: ViewMode) => void }) {
-  return (
-    <header className="nav-shell">
-      <a className="brand-lockup" href="#home" aria-label="Pooja Kiran home">
-        <span className="brand-mark"><ShieldMark /></span>
-        <span><strong>Pooja Kiran</strong><small>Security Engineer</small></span>
-      </a>
-      <nav className="desktop-nav" aria-label="Primary">
-        <a href="#home">Home</a>
-        <a href="#projects">Explore</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#research">Research</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div className="nav-actions">
-        <button className={mode === "recruiter" ? "view-toggle is-active" : "view-toggle"} onClick={() => setMode(mode === "recruiter" ? "explore" : "recruiter")}>
-          <span className="view-dot" />
-          {mode === "recruiter" ? "Explore View" : "Recruiter View"}
-        </button>
-        <a className="icon-link" href={resumeHref} target="_blank" rel="noreferrer" aria-label="Open resume">CV</a>
-      </div>
-    </header>
-  );
+  const [open, setOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const links = ["Home", "Explore", "Projects", "Experience", "Research", "About", "Contact"];
+  const navigation = () => links.map(label => <a key={label} href={`#${label === "Explore" ? "projects" : label.toLowerCase()}`} onClick={() => { setOpen(false); if (label === "Explore" && mode !== "explore") setMode("explore"); }}>{label}</a>);
+  return <header className="nav-shell" onKeyDown={event => { if (event.key === "Escape" && open) { setOpen(false); menuButton.current?.focus(); } }}>
+    <a className="brand-lockup" href="#home" aria-label="Pooja Kiran home"><span className="brand-mark"><ShieldMark /></span><span><strong>{resume.name}</strong><small>Security Engineer</small></span></a>
+    <nav className="desktop-nav" aria-label="Primary">{navigation()}</nav>
+    <div className="nav-actions">
+      <button className={mode === "recruiter" ? "view-toggle is-active" : "view-toggle"} onClick={() => setMode(mode === "recruiter" ? "explore" : "recruiter")}><span className="view-dot" />{mode === "recruiter" ? "Explore View" : "Recruiter View"}</button>
+      <a className="icon-link" href={resumeHref} target="_blank" rel="noreferrer" aria-label="Open resume">CV</a>
+      <button ref={menuButton} className="mobile-menu-button" aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>Menu</button>
+    </div>
+    <nav id="mobile-navigation" className="mobile-navigation" aria-label="Mobile primary" hidden={!open}>{navigation()}<a href={resumeHref}>Resume</a><a href={resume.links.github} target="_blank" rel="noreferrer">GitHub</a><a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></nav>
+  </header>;
 }
 
 function MonitorPanel({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) {
@@ -49,9 +43,17 @@ function MonitorPanel({ title, children, className = "" }: { title: string; chil
 
 function HeroLab({ setMode }: { setMode: (mode: ViewMode) => void }) {
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
+  const motionAllowed = useRef(false);
+  useEffect(() => {
+    const preference = matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)");
+    const update = () => { motionAllowed.current = !preference.matches; setPointer({ x: 0, y: 0 }); };
+    update(); preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
 
   return (
     <section className="hero-lab" id="home" onPointerMove={(event) => {
+      if (!motionAllowed.current) return;
       const rect = event.currentTarget.getBoundingClientRect();
       setPointer({ x: ((event.clientX - rect.left) / rect.width - .5) * 2, y: ((event.clientY - rect.top) / rect.height - .5) * 2 });
     }}>
@@ -66,9 +68,7 @@ function HeroLab({ setMode }: { setMode: (mode: ViewMode) => void }) {
           <button className="secondary-action" onClick={() => setMode("recruiter")}>Recruiter View</button>
         </div>
         <div className="hero-proof" aria-label="Resume-backed engineering evidence">
-          <span><b>718</b>MCP gateway tests</span>
-          <span><b>235</b>IAM analyzer tests</span>
-          <span><b>241</b>provenance tests</span>
+          {resume.projects.map(project => <span key={project.id}><b>{project.metrics.find(metric => metric.includes("passing tests"))?.split(" ")[0]}</b>{project.id === "mcp" ? "Gateway" : project.id === "iam" ? "IAM analyzer" : "Provenance"} tests in resume</span>)}
         </div>
       </div>
 
@@ -82,7 +82,7 @@ function HeroLab({ setMode }: { setMode: (mode: ViewMode) => void }) {
         <div className="monitor-stack" style={{ transform: `translate3d(${pointer.x * 8}px,${pointer.y * 4}px,0)` }}>
           <MonitorPanel title="MCP / JSON-RPC EXECUTION BOUNDARY" className="monitor-mcp">
             <div className="agent-flow"><span>Agent</span><i /><strong>Gateway</strong><i /><span>Tool</span></div>
-            <div className="check-stack"><b>normalize</b><b>capability</b><b>policy</b><b className="blocked">blocked request</b></div>
+            <div className="check-stack"><b>inspect</b><b>capability</b><b>policy</b><b className="blocked">blocked request</b></div>
           </MonitorPanel>
           <MonitorPanel title="IAM AUTHORIZATION GRAPH" className="monitor-iam">
             <div className="iam-graph">
@@ -102,35 +102,6 @@ function HeroLab({ setMode }: { setMode: (mode: ViewMode) => void }) {
       </div>
       <div className="hero-scroll"><span>SCROLL TO INSPECT</span><i /></div>
     </section>
-  );
-}
-
-function ProjectVisual({ project }: { project: ProjectItem }) {
-  if (project.id === "mcp") return (
-    <div className="project-visual gateway-visual" aria-hidden="true">
-      <div className="visual-label">INLINE POLICY BOUNDARY</div>
-      <div className="packet p1">tools/call</div><div className="packet p2">prompt signal</div>
-      <div className="gateway-core"><ShieldMark /><span>MCP</span><small>POLICY ENGINE</small></div>
-      <div className="boundary-ring r1" /><div className="boundary-ring r2" /><div className="boundary-ring r3" />
-      <div className="decision allow">ALLOW</div><div className="decision block">BLOCK</div>
-    </div>
-  );
-  if (project.id === "iam") return (
-    <div className="project-visual identity-visual" aria-hidden="true">
-      <div className="visual-label">AUTHORIZATION GRAPH</div>
-      <svg viewBox="0 0 620 400"><path d="M100 200 260 90 490 145M100 200l170 115 220-170M260 90l10 225" /><path className="danger-edge" d="M100 200 260 90 490 145" /></svg>
-      <span className="graph-node g1">Principal</span><span className="graph-node g2">PassRole</span><span className="graph-node g3">Target role</span><span className="graph-node g4">Resource</span>
-      <div className="finding-chip">PRIVILEGE PATH</div>
-    </div>
-  );
-  return (
-    <div className="project-visual supply-visual" aria-hidden="true">
-      <div className="visual-label">NON-EXECUTING INSPECTION</div>
-      <div className="artifact-cube"><span>MODEL</span><i /></div>
-      <div className="scan-plane" />
-      <div className="artifact-list"><span>serialization</span><span>loader</span><span>provenance</span><span>dependencies</span></div>
-      <div className="verified-stamp">INSPECT BEFORE TRUST</div>
-    </div>
   );
 }
 
@@ -160,7 +131,7 @@ function ProjectWorld({ project, index }: { project: ProjectItem; index: number 
         </details>
         <a className="repo-link" href={project.repository} target="_blank" rel="noreferrer">Repository evidence <ArrowIcon /></a>
       </div>
-      <ProjectVisual project={project} />
+      <WorldInspector project={project} />
     </article>
   );
 }
@@ -196,16 +167,16 @@ function ResearchSection() {
   const independent = resume.experience[0];
   return (
     <section className="research-section" id="research">
-      <div className="section-title"><p>RESEARCH CHAMBER</p><h2>A progression from resource control to identity and agent security.</h2></div>
+      <div className="section-title"><p>WORLD 05 · RESEARCH CHAMBER</p><h2>A progression from resource control to identity and agent security.</h2></div>
       <div className="research-grid">
         {independent.bullets.map((bullet, index) => (
           <article className="research-object" key={bullet}>
             <span>0{index + 1}</span>
-            <div><small>{independent.dates}</small><h3>{index === 0 ? "Resource control" : index === 1 ? "Cloud identity" : "AI and agent security"}</h3><p>{bullet}</p></div>
+            <div><small>{independent.dates}</small><h3>{index === 0 ? "Resource control" : index === 1 ? "Cloud identity" : "AI and agent security"}</h3><details><summary>Inspect the work</summary><p>{bullet}</p></details></div>
           </article>
         ))}
         <article className="research-object research-object--aerosec">
-          <span>04</span><div><small>Aug. 2025 - Dec. 2025</small><h3>AEROSEC / Honeywell x ASU</h3><p>{resume.experience[1].bullets[0]}</p></div>
+          <span>04</span><div><small>{resume.experience[1].dates}</small><h3>AEROSEC / Honeywell x ASU</h3><details><summary>Inspect the analysis</summary><p>{resume.experience[1].bullets[0]}</p></details></div>
         </article>
       </div>
     </section>
@@ -245,13 +216,13 @@ function AboutContact() {
 
 function RecruiterView({ setMode }: { setMode: (mode: ViewMode) => void }) {
   return (
-    <main className="recruiter-view" id="main">
+    <main className="recruiter-view" id="main" tabIndex={-1}>
       <section className="quick-hero" id="home">
         <div>
           <p className="kicker">SECURITY ENGINEER · TEMPE, AZ</p>
           <h1>Pooja Kiran</h1>
           <h2>{resume.positioning}</h2>
-          <p>Agent security, application security, cloud IAM, and model supply-chain security. The evidence below is limited to the current designated resume.</p>
+          <p>Agent security, application security, cloud IAM, and model supply-chain security.</p>
           <div className="hero-actions">
             <a className="primary-action" href={resumeHref} target="_blank" rel="noreferrer">View resume <ArrowIcon /></a>
             <a className="secondary-link" href={resumeHref} download>Download resume</a>
@@ -263,9 +234,9 @@ function RecruiterView({ setMode }: { setMode: (mode: ViewMode) => void }) {
       </section>
 
       <section className="quick-projects" id="projects">
-        <div className="section-title"><p>SELECTED ENGINEERING</p><h2>Three security systems. Claims bounded by resume evidence.</h2></div>
+        <div className="section-title"><p>SELECTED ENGINEERING</p><h2>Three systems. Three trust boundaries.</h2></div>
         <div className="project-card-grid">{resume.projects.map(project => <article className="quick-project" key={project.id}>
-          <p>{project.label}</p><h3>{project.name}</h3><span>{project.dates}</span><p className="quick-problem">{project.solution}</p><EvidenceStrip project={project} /><div className="tech-list">{project.stack.map(item => <span key={item}>{item}</span>)}</div><a href={project.repository} target="_blank" rel="noreferrer">Repository <ArrowIcon /></a>
+          <p>{project.label}</p><h3>{project.name}</h3><span>{project.dates}</span><p className="quick-problem">{project.solution}</p><EvidenceStrip project={project} /><details className="technical-details"><summary>Engineering evidence</summary><div className="detail-grid"><section><h4>Implementation and results</h4>{project.bullets.map(bullet => <p key={bullet}>{bullet}</p>)}</section><section><h4>Scope</h4><p>{project.limitations}</p></section></div></details><div className="tech-list">{project.stack.map(item => <span key={item}>{item}</span>)}</div><a href={project.repository} target="_blank" rel="noreferrer">Repository <ArrowIcon /></a>
         </article>)}</div>
       </section>
       <ExperienceSection />
@@ -277,16 +248,23 @@ function RecruiterView({ setMode }: { setMode: (mode: ViewMode) => void }) {
 }
 
 function ExploreView({ setMode }: { setMode: (mode: ViewMode) => void }) {
+  const [sceneEnabled, setSceneEnabled] = useState(false);
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    setSceneEnabled(new URLSearchParams(location.search).get("view") !== "recruiter" && !matchMedia("(max-width: 760px)").matches && !connection?.saveData);
+  }, []);
   return (
-    <main id="main" className="explore-view">
+    <main id="main" className="explore-view" tabIndex={-1}>
+      <div className="scene-stage">{sceneEnabled && <TrustScene />}</div>
       <HeroLab setMode={setMode} />
       <section className="world-intro" id="projects">
         <p className="section-index">EXPLORE THE TRUST UNIVERSE</p>
         <h2>Security is the system between <em>capability</em> and <em>consequence.</em></h2>
-        <p>Each environment represents one implemented security boundary and the evidence the current resume uses to support it.</p>
-        <div className="universe-map" aria-label="Three security worlds">{resume.projects.map((project, i) => <a href={`#${project.id}`} key={project.id}><span>0{i + 1}</span><strong>{project.label}</strong></a>)}</div>
+        <p>Follow an agent request, inspect an identity relationship, or examine a model artifact. Explore the controls and the evidence behind them.</p>
+        <div className="universe-map" aria-label="Security environments">{resume.projects.map((project, i) => <a href={`#${project.id}`} key={project.id}><span>0{i + 1}</span><strong>{project.label}</strong></a>)}<a href="#telemetry"><span>04</span><strong>Security Telemetry Grid</strong></a><a href="#research"><span>05</span><strong>Research Chamber</strong></a></div>
       </section>
       <div className="project-worlds">{resume.projects.map((project, index) => <ProjectWorld project={project} index={index} key={project.id} />)}</div>
+      <TelemetryWorld />
       <TrustCore />
       <ExperienceSection />
       <ResearchSection />
@@ -297,10 +275,28 @@ function ExploreView({ setMode }: { setMode: (mode: ViewMode) => void }) {
 }
 
 export default function Portfolio() {
-  const [mode, setMode] = useState<ViewMode>("explore");
+  const [mode, updateMode] = useState<ViewMode>("explore");
+  const shouldFocus = useRef(false);
+  const setMode = useCallback((next: ViewMode) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("view", next); url.hash = "home";
+    window.history.pushState({}, "", url);
+    shouldFocus.current = true;
+    updateMode(next);
+  }, []);
+  useEffect(() => {
+    const restore = () => updateMode(new URLSearchParams(window.location.search).get("view") === "recruiter" ? "recruiter" : "explore");
+    restore(); window.addEventListener("popstate", restore);
+    return () => window.removeEventListener("popstate", restore);
+  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.view = mode;
+    if (shouldFocus.current) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      document.getElementById("main")?.focus({ preventScroll: true });
+      shouldFocus.current = false;
+    }
   }, [mode]);
 
   useEffect(() => {
@@ -318,7 +314,7 @@ export default function Portfolio() {
     return () => observer.disconnect();
   }, [mode]);
 
-  const current = useMemo(() => mode === "recruiter" ? <RecruiterView setMode={setMode} /> : <ExploreView setMode={setMode} />, [mode]);
+  const current = mode === "recruiter" ? <RecruiterView setMode={setMode} /> : <ExploreView setMode={setMode} />;
 
   return (
     <div className="portfolio-shell">
