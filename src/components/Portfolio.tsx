@@ -147,7 +147,7 @@ function Hero() {
           <img src={asset("pooja-portrait.webp")} alt="Pooja Kiran" width="900" height="1100" />
         </div>
         <figcaption className="hero-signature-quote">
-          <span>“I build security so intelligent systems earn trust before they act.”</span>
+          <span>“I want to build systems people can trust, and prove why they should.”</span>
           <strong>— Pooja Kiran</strong>
         </figcaption>
       </figure>
