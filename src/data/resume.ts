@@ -90,7 +90,7 @@ export const resume = {
   projects: [
     {
       id: "mcp",
-      label: "Agent Security Control Plane",
+      label: "Agent Runtime Security",
       name: "MCP Agent Security Gateway",
       stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
       dates: "Jul. 2026 - Present",
@@ -109,7 +109,7 @@ export const resume = {
     },
     {
       id: "iam",
-      label: "Identity Vault",
+      label: "Cloud Identity Security",
       name: "AWS Agent Identity Guard",
       stack: ["Python", "AWS IAM", "SARIF 2.1.0"],
       dates: "Aug. 2026 - Sep. 2026",
@@ -128,7 +128,7 @@ export const resume = {
     },
     {
       id: "supply",
-      label: "Model Supply Chain Lab",
+      label: "Model Supply Chain Security",
       name: "HF Model Provenance Scanner",
       stack: ["Python", "SafeTensors", "GGUF", "ONNX", "Keras"],
       dates: "Jul. 2026 - Sep. 2026",
