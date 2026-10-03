@@ -20,7 +20,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
           fetch-depth: 0
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Install LaTeX
         run: |
