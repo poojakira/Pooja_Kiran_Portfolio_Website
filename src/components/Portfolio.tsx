@@ -375,9 +375,10 @@ function EducationSection() {
 function ContactSection() {
   return (
     <section className="contact-section" id="contact">
-      <div className="contact-copy" data-reveal>
-        <p className="eyebrow">Next chapter</p>
-        <h2>Join a strong security team. Build ambitious security systems. Keep both paths open.</h2>
+      <div className="contact-copy contact-quote" data-reveal>
+        <p className="eyebrow">A principle I build by</p>
+        <blockquote>“Build systems that earn trust before they ask for it.”</blockquote>
+        <cite>— Pooja Kiran</cite>
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Email me <ArrowIcon /></a>
