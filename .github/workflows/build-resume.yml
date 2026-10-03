@@ -1,14 +1,11 @@
 name: Build Agentic AI Security Resume
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
   pull_request:
     branches: [main]
     paths:
       - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
+      - ".github/workflows/build-resume.yml"
   workflow_dispatch:
 
 permissions:
@@ -24,7 +21,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
           fetch-depth: 0
-          persist-credentials: ${{ github.event_name == 'push' }}
+          persist-credentials: false
 
       - name: Install LaTeX
         run: |
@@ -47,18 +44,25 @@ jobs:
           cp .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf \
             public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
 
-      - name: Commit canonical PDF on main
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Sync generated PDF to PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: ${{ github.head_ref }}
         run: |
-          if git diff --quiet -- public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf; then
+          path="public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf"
+          local_blob="$(git hash-object "$path")"
+          remote_blob="$(gh api "repos/$GITHUB_REPOSITORY/contents/$path?ref=$PR_BRANCH" --jq .sha)"
+          if [ "$local_blob" = "$remote_blob" ]; then
             echo "Canonical PDF is already current."
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
-          git commit -m "build: regenerate canonical resume PDF"
-          git push origin HEAD:main
+          encoded="$(base64 -w0 "$path")"
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/contents/$path" \
+            -f message="build: regenerate canonical resume PDF" \
+            -f content="$encoded" \
+            -f sha="$remote_blob" \
+            -f branch="$PR_BRANCH" >/dev/null
 
       - name: Upload generated PDF
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
