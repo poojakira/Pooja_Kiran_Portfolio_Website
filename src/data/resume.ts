@@ -1,4 +1,4 @@
-export type ExperienceItem = {
+﻿export type ExperienceItem = {
   role: string;
   detail?: string;
   dates: string;
@@ -8,7 +8,7 @@ export type ExperienceItem = {
 };
 
 export type ProjectItem = {
-  id: string;
+  id: "mcp" | "iam" | "supply";
   name: string;
   label: string;
   stack: string[];
@@ -37,10 +37,18 @@ export const resume = {
     portfolio: "https://poojakira.github.io/Pooja_Kiran_Portfolio_Website"
   },
   skillGroups: [
-    { label: "Agent & AI Security", items: ["MCP/JSON-RPC 2.0", "Tool/Function-Call Security", "Prompt Injection", "LLM Red Teaming", "Model Supply-Chain Security", "Training-Data Integrity", "Adversarial ML"] },
-    { label: "Cloud, Identity & AppSec", items: ["AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Threat Modeling", "API Security", "Capability-Based Authorization", "Data Exfiltration Detection"] },
-    { label: "Engineering & DevSecOps", items: ["Python", "Rust", "C++", "FastAPI", "pytest", "Hypothesis", "GitHub Actions", "SARIF 2.1.0", "CodeQL", "Bandit", "Trivy", "pip-audit", "Docker"] },
-    { label: "Detection & Observability", items: ["Elastic Security", "ECS", "SIEM", "Prometheus", "Security Telemetry", "Tamper-Evident Audit Logging", "MITRE ATT&CK", "MITRE ATLAS"] }
+    {
+      label: "Agent & AI Security",
+      items: ["MCP/JSON-RPC 2.0", "Tool/Function-Call Security", "Prompt Injection", "LLM Red Teaming", "Model Supply-Chain Security", "Training-Data Integrity", "Adversarial ML"]
+    },
+    {
+      label: "Cloud & Application Security",
+      items: ["AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Threat Modeling", "API Security", "Capability-Based Authorization", "Data Exfiltration Detection"]
+    },
+    {
+      label: "Engineering & Detection",
+      items: ["Python", "Rust", "C++", "FastAPI", "pytest", "Hypothesis", "GitHub Actions", "SARIF 2.1.0", "CodeQL", "Docker", "Kubernetes", "Elastic Security", "Prometheus"]
+    }
   ],
   experience: [
     {
@@ -78,80 +86,65 @@ export const resume = {
   projects: [
     {
       id: "mcp",
-      label: "Agent Runtime Security",
+      label: "Agent Security Control Plane",
       name: "MCP Agent Security Gateway",
-      stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security", "Docker"],
+      stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
       dates: "Jul. 2026 - Present",
       repository: "https://github.com/poojakira/mcp-agent-security-gateway",
-      problem: "Autonomous agents can turn a permitted tool interface into an execution boundary. Tool calls need authorization, inspection, egress policy, and evidence before downstream execution.",
-      solution: "An inline MCP/JSON-RPC gateway that normalizes requests and applies capability checks, prompt-injection signals, PII/exfiltration controls, anti-SSRF policy, rate limiting, and default-deny enforcement.",
-      architecture: ["Agent request", "Normalize", "Capability policy", "Content & egress checks", "Allow / block", "Telemetry & audit"],
+      problem: "Agent tool calls cross an execution boundary where authorization, content risk, egress policy, rate limits, and audit evidence need to be enforced before downstream execution.",
+      solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
+      architecture: ["Agent request", "Normalize", "Capability authorization", "Content and egress checks", "Allow or block", "Audit and telemetry"],
       bullets: [
-        "Engineered an inline security gateway that inspects AI-agent tool calls before execution using default-deny authorization, capability validation, 55 prompt-injection patterns, PII/exfiltration signals, anti-SSRF egress controls, rate limiting, fail-closed enforcement, and tamper-evident audit evidence.",
-        "Validated 718 automated tests at 82.46% statement coverage across Python 3.10-3.12 at the cited verification snapshot, including tests proving denied calls never reach downstream transport; implemented 9 Elastic Security rules and 21 core SIEM tests."
+        "Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.",
+        "Expanded runtime detection with 55 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
+        "Validated the gateway with 718 passing tests at 82.46% coverage, including denied-call enforcement, and implemented 9 Elastic rules with 21 SIEM tests."
       ],
-      metrics: ["718 tests", "82.46% coverage", "55 injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "Snapshot metrics are anchored in VERIFIED_METRICS.md and CI evidence. Fail-closed tests assert denied calls never reach the downstream transport.",
-      limitations: "The repository demonstrates implemented controls and local/CI validation. It does not claim broad enterprise deployment or universal prompt-injection prevention."
+      metrics: ["718 passing tests", "82.46% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 SIEM tests"],
+      testing: "The resume reports 718 passing tests at 82.46% coverage, including denied-call enforcement, plus 9 Elastic rules and 21 SIEM tests.",
+      limitations: "The resume supports implemented controls and test evidence. It does not claim customer deployment, enterprise adoption, or universal prevention."
     },
     {
       id: "iam",
-      label: "Agent Identity & Least Privilege",
+      label: "Identity Vault",
       name: "AWS Agent Identity Guard",
-      stack: ["Python", "AWS IAM", "SARIF 2.1.0", "GitHub Code Scanning"],
+      stack: ["Python", "AWS IAM", "SARIF 2.1.0"],
       dates: "Aug. 2026 - Sep. 2026",
       repository: "https://github.com/poojakira/aws-agent-identity-guard",
-      problem: "Agent and workload identities can inherit dangerous permissions through wildcard access, role passing, trust relationships, and privilege-escalation paths.",
-      solution: "A static IAM analyzer with deterministic security rules and CI-native SARIF output for reviewable, repeatable identity findings.",
-      architecture: ["IAM policy", "Parse & normalize", "25 deterministic rules", "Severity & evidence", "SARIF / JSON / text", "CI gate"],
+      problem: "Agent and workload identities can become over-privileged through wildcard grants, iam:PassRole, sts:AssumeRole, weak trust policies, privilege-escalation paths, and missing permission boundaries.",
+      solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
+      architecture: ["IAM policy", "Parse and normalize", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "Code review"],
       bullets: [
-        "Built a static IAM security analyzer with 25 deterministic rules covering wildcard permissions, iam:PassRole, sts:AssumeRole, privilege escalation, weak trust policies, audit tampering, and missing permission boundaries for AI-agent and workload identities.",
-        "Verified 235 passing tests with 3 credential-gated skips and integrated text, JSON, and SARIF 2.1.0 CI enforcement; a 500-policy synthetic CI benchmark measured 1.146 ms p95 and 1,846 policies/sec."
+        "Reduced over-privileged agent and workload identity risk by building a static IAM analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
+        "Made IAM findings reviewable in CI by emitting text, JSON, and SARIF 2.1.0 results into GitHub Code Scanning, turning policy weaknesses into actionable code-review evidence.",
+        "Verified rule behavior and failure paths with 235 passing tests, while keeping credential-dependent live-scan checks isolated from deterministic static-analysis coverage."
       ],
-      metrics: ["25 deterministic rules", "235 passed", "3 credential-gated skips", "1.146 ms p95 synthetic", "1,846 policies/sec synthetic"],
-      testing: "Positive and negative tests cover emitted rule IDs, parser behavior, failure modes, and credential-gated live-scan paths.",
-      limitations: "Latency and throughput figures are synthetic CI measurements, not production-service SLOs. Static analysis cannot observe every runtime authorization context."
+      metrics: ["25 deterministic rules", "235 passing tests", "SARIF 2.1.0", "GitHub Code Scanning"],
+      testing: "The resume reports 235 passing tests covering rule behavior and failure paths while isolating credential-dependent live-scan checks.",
+      limitations: "The resume supports deterministic static-analysis behavior. It does not provide production latency, throughput, or runtime authorization guarantees."
     },
     {
       id: "supply",
-      label: "AI Model Supply Chain",
+      label: "Model Supply Chain Lab",
       name: "HF Model Provenance Scanner",
-      stack: ["Python", "SafeTensors", "GGUF", "ONNX", "Keras", "SARIF", "CycloneDX"],
+      stack: ["Python", "SafeTensors", "GGUF", "ONNX", "Keras"],
       dates: "Jul. 2026 - Sep. 2026",
       repository: "https://github.com/poojakira/hf-model-provenance-scanner",
-      problem: "Model repositories can contain executable loaders, unsafe serialization, dependency risk, provenance gaps, and obfuscation before a model is ever trusted or loaded.",
-      solution: "A non-executing scanner that inspects source, metadata, dependencies, serialization formats, and provenance signals without importing untrusted model repository code.",
-      architecture: ["Repository / artifact", "Immutable revision", "Static & binary parsers", "Provenance checks", "Normalized findings", "SARIF / AIBOM / baseline"],
+      problem: "Untrusted model repositories and artifacts can carry serialization, loader, dependency, provenance, and obfuscation risk before a model is loaded.",
+      solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
+      architecture: ["Repository or artifact", "Static inspection", "Serialization checks", "Dependency and provenance checks", "Normalized findings", "Evidence"],
       bullets: [
-        "Developed a non-executing AI model supply-chain scanner using pickle-opcode inspection, AST/taint and symbolic-string analysis, dependency and provenance checks, obfuscation detection, and binary inspection across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
-        "Verified 241 passing tests at 75.81% statement coverage; detected 33/33 committed adversarial fixtures with 0 actionable findings across 4 committed benign samples, with SARIF output, temporal baselines, and CycloneDX AI Bill of Materials generation."
+        "Reduced model supply-chain exposure by developing a non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
+        "Combined pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks to surface risky behavior across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
+        "Verified 241 passing tests at 75.81% coverage, detected 33/33 committed adversarial fixtures, and recorded 0 actionable findings across 4 committed benign samples."
       ],
-      metrics: ["241 passing tests", "75.81% coverage", "33/33 committed attack fixtures", "0 actionable / 4 benign fixtures", "Non-executing default path"],
-      testing: "The committed red-team suite pins attack and benign fixture counts, with multi-version CI and evidence files separating current metrics from historical snapshots.",
-      limitations: "Fixture results are regression evidence, not a universal detection rate. Missing provenance is a risk signal, not proof of compromise."
-    },
-    {
-      id: "dataset",
-      label: "Training-Data Integrity",
-      name: "Dataset Poisoning Detector",
-      stack: ["Python", "FastAPI", "Kafka", "Redis", "Prometheus", "scikit-learn"],
-      dates: "Jul. 2026 - Present",
-      repository: "https://github.com/poojakira/dataset-poisoning-detector",
-      problem: "Training pipelines need a defensible boundary for suspicious samples, label anomalies, drift, duplicate content, and poisoned data before those samples enter trusted datasets.",
-      solution: "A batch and streaming screening pipeline combining statistical, isolation, spectral, label-aware, drift, deduplication, quarantine, and evidence paths.",
-      architecture: ["Ingest", "Validate", "Multi-signal scoring", "Drift / label checks", "Quarantine / DLQ", "Prometheus evidence"],
-      bullets: [
-        "Built a training-data integrity pipeline combining Z-score, IQR, Isolation Forest, ensemble voting, spectral and label-aware analysis, drift detection, deduplication, quarantine, Kafka streaming, and fail-closed trusted-baseline readiness.",
-        "Verified 199 passing tests at 90.88% statement coverage with a 90% CI gate; cross-class label-flip screening measured 0.55 / 0.60 / 0.70 F1 at 5% / 10% / 20% poisoning in the committed benchmark."
-      ],
-      metrics: ["199 passing tests", "90.88% coverage", "90% CI gate", "0.55 / 0.60 / 0.70 F1", "Kafka + Redis paths"],
-      testing: "Tests cover API, streaming, readiness, rate limiting, error handling, Redis/Kafka paths, and committed poisoning benchmarks.",
-      limitations: "Benchmark results are dataset- and attack-specific. The project does not claim a universal poisoning detector or production throughput figure."
+      metrics: ["241 passing tests", "75.81% coverage", "33/33 adversarial fixtures", "0 actionable / 4 benign samples", "Non-executing inspection"],
+      testing: "The resume reports 241 passing tests at 75.81% coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
+      limitations: "The fixture results are bounded test evidence. They are not a universal model-malware detection rate."
     }
   ] satisfies ProjectItem[],
   education: [
-    { school: "Arizona State University", degree: "M.S., Information Technology (Security)", score: "GPA: 3.87/4.00", dates: "Aug. 2024 - May 2026" },
-    { school: "M. S. Ramaiah University of Applied Sciences", degree: "B.Tech., Computer Science & Engineering", score: "CGPA: 8.44/10", dates: "Aug. 2019 - Aug. 2023" }
+    { school: "Arizona State University", location: "Tempe, AZ", degree: "M.S., Information Technology (Security)", score: "GPA: 3.87/4.00", dates: "Aug. 2024 - May 2026" },
+    { school: "M. S. Ramaiah University of Applied Sciences", location: "Bengaluru, India", degree: "B.Tech., Computer Science & Engineering", score: "CGPA: 8.44/10", dates: "Aug. 2019 - Aug. 2023" }
   ],
   certifications: [
     "AWS Academy Graduate - Cloud Architecting (Apr. 2025)",
@@ -159,27 +152,6 @@ export const resume = {
   ]
 } as const;
 
-export const secondaryWork = [
-  {
-    title: "OS Resource Management Simulator → Resource Control Plane",
-    date: "Dec. 2024 - Oct. 2026",
-    description: "A Fall 2024 Flask/Docker resource-allocation lab evolved into a PostgreSQL-backed lease service with atomic acquisition, expiring leases, idempotency, role-based API access, audit history, metrics, migrations, and concurrency validation.",
-    repository: "https://github.com/poojakira/OS-Resource-Management-Simulator-Dockerized-Flask-Application"
-  },
-  {
-    title: "LLM Red-Team Framework",
-    date: "Jul. 2026 - Oct. 2026",
-    description: "Offline prompt-injection evaluation with grouped-template and novel-phrasing OOD measurement, designed to expose generalization gaps instead of presenting only optimistic in-distribution results.",
-    repository: "https://github.com/poojakira/llm-redteam-framework"
-  },
-  {
-    title: "Adversarial ML Lab",
-    date: "Jul. 2026 - Sep. 2026",
-    description: "Reproducible FGSM, PGD, and C&W robustness measurement with MITRE ATLAS mapping and committed CIFAR-10 attack evidence.",
-    repository: "https://github.com/poojakira/adversarial-ml-lab"
-  }
-] as const;
-
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
-
 export const resumeHref = "./Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf";
+
