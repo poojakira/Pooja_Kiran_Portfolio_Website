@@ -7,6 +7,8 @@ const basePath = process.env.NODE_ENV === "production" ? "/Pooja_Kiran_Portfolio
 const asset = (path: string) => `${basePath}/${path.replace(/^\//, "")}`;
 
 type Artifact = {
+  room: string;
+  roomNo: string;
   poster: string;
   posterLink: string;
   file: string;
@@ -19,7 +21,9 @@ type Artifact = {
 
 const artifacts: Record<ProjectItem["id"], Artifact> = {
   mcp: {
-    poster: "https://raw.githubusercontent.com/poojakira/mcp-agent-security-gateway/main/poster/poster.png",
+    room: "Runtime Control Room",
+    roomNo: "01",
+    poster: asset("mcp-poster.png"),
     posterLink: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/poster/poster_36x48.pdf",
     file: "src/mcp_monitor/detectors/prompt_injection.py",
     commit: "8427f9ec",
@@ -34,7 +38,9 @@ const artifacts: Record<ProjectItem["id"], Artifact> = {
 Security-critical deployments fail closed by default.`,
   },
   iam: {
-    poster: "https://raw.githubusercontent.com/poojakira/aws-agent-identity-guard/main/poster/poster.png",
+    room: "Identity Archive",
+    roomNo: "02",
+    poster: asset("iam-poster.png"),
     posterLink: "https://github.com/poojakira/aws-agent-identity-guard/blob/main/poster/poster_36x48.pdf",
     file: "src/aws_agent_identity_guard/scanner.py",
     commit: "c39ba67f",
@@ -50,7 +56,9 @@ Security-critical deployments fail closed by default.`,
 }`,
   },
   supply: {
-    poster: "https://raw.githubusercontent.com/poojakira/hf-model-provenance-scanner/main/poster/poster.png",
+    room: "Model Inspection Lab",
+    roomNo: "03",
+    poster: asset("provenance-poster.png"),
     posterLink: "https://github.com/poojakira/hf-model-provenance-scanner/blob/main/poster/poster_36x48.pdf",
     file: "scanner/rules/definitions.py",
     commit: "4501739a",
@@ -60,7 +68,6 @@ Security-critical deployments fail closed by default.`,
     excerpt: `"HFS-001": Rule(
     "powershell-subprocess",
     Severity.CRITICAL,
-    "subprocess or shell execution...",
 )
 
 "HFS-003": Rule(
@@ -70,38 +77,42 @@ Security-critical deployments fail closed by default.`,
   },
 };
 
+const journey = [
+  ["home", "Lobby"],
+  ["mcp", "Runtime"],
+  ["iam", "Identity"],
+  ["supply", "Provenance"],
+  ["experience", "Career"],
+  ["contact", "Contact"],
+] as const;
+
 function ArrowIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 12h13M13 6l6 6-6 6" />
-    </svg>
-  );
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg>;
 }
 
-function useImmersiveMotion() {
+function useWorldMotion() {
   useEffect(() => {
     const root = document.documentElement;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const worlds = Array.from(document.querySelectorAll<HTMLElement>("[data-world]"));
     const reveals = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-    const exhibits = Array.from(document.querySelectorAll<HTMLElement>("[data-exhibit]"));
-    const hero = document.querySelector<HTMLElement>(".hero-stage");
+    const navItems = Array.from(document.querySelectorAll<HTMLAnchorElement>(".world-nav a"));
 
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           (entry.target as HTMLElement).classList.add("is-visible");
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
-      }),
-      { threshold: 0.12, rootMargin: "0px 0px -7% 0px" }
-    );
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
 
-    reveals.forEach((node) => observer.observe(node));
+    reveals.forEach((el) => revealObserver.observe(el));
 
     if (reduced.matches) {
       root.style.setProperty("--page-progress", "1");
-      reveals.forEach((node) => node.classList.add("is-visible"));
-      return () => observer.disconnect();
+      reveals.forEach((el) => el.classList.add("is-visible"));
+      return () => revealObserver.disconnect();
     }
 
     root.classList.add("motion-ready");
@@ -109,46 +120,51 @@ function useImmersiveMotion() {
 
     const render = () => {
       const max = Math.max(document.documentElement.scrollHeight - innerHeight, 1);
-      root.style.setProperty("--page-progress", String(scrollY / max));
+      root.style.setProperty("--page-progress", (scrollY / max).toFixed(4));
 
-      if (hero) {
-        const rect = hero.getBoundingClientRect();
-        const p = Math.min(Math.max(-rect.top / Math.max(rect.height, 1), 0), 1);
-        hero.style.setProperty("--hero-progress", p.toFixed(4));
-      }
+      let active = "home";
+      let best = Number.POSITIVE_INFINITY;
 
-      exhibits.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const distance = (center - innerHeight / 2) / Math.max(innerHeight, 1);
-        const p = Math.min(Math.max(distance, -1.2), 1.2);
-        section.style.setProperty("--exhibit-shift", p.toFixed(4));
+      worlds.forEach((world) => {
+        const rect = world.getBoundingClientRect();
+        const travel = Math.max(rect.height - innerHeight, 1);
+        const p = Math.min(Math.max(-rect.top / travel, 0), 1);
+        const centerDistance = Math.abs(rect.top + rect.height / 2 - innerHeight / 2);
+
+        world.style.setProperty("--p", p.toFixed(4));
+        world.style.setProperty("--camera-y", `${(-18 + p * 36).toFixed(2)}px`);
+        world.style.setProperty("--camera-scale", (0.97 + p * 0.055).toFixed(4));
+        world.style.setProperty("--back-x", `${((p - 0.5) * -32).toFixed(2)}px`);
+        world.style.setProperty("--mid-x", `${((p - 0.5) * 52).toFixed(2)}px`);
+        world.style.setProperty("--front-x", `${((p - 0.5) * -76).toFixed(2)}px`);
+        world.style.setProperty("--door-open", Math.max((p - 0.72) / 0.28, 0).toFixed(4));
+
+        if (centerDistance < best) {
+          best = centerDistance;
+          active = world.id;
+        }
       });
 
+      navItems.forEach((item) => item.dataset.active = item.getAttribute("href") === `#${active}` ? "true" : "false");
       raf = 0;
     };
 
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(render);
-    };
-
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(render); };
     const onPointer = (event: PointerEvent) => {
-      if (!hero) return;
-      const rect = hero.getBoundingClientRect();
-      hero.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-      hero.style.setProperty("--my", `${event.clientY - rect.top}px`);
+      root.style.setProperty("--mx", `${(event.clientX / innerWidth).toFixed(4)}`);
+      root.style.setProperty("--my", `${(event.clientY / innerHeight).toFixed(4)}`);
     };
 
     render();
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", onScroll, { passive: true });
-    hero?.addEventListener("pointermove", onPointer);
+    addEventListener("pointermove", onPointer, { passive: true });
 
     return () => {
-      observer.disconnect();
+      revealObserver.disconnect();
       removeEventListener("scroll", onScroll);
       removeEventListener("resize", onScroll);
-      hero?.removeEventListener("pointermove", onPointer);
+      removeEventListener("pointermove", onPointer);
       if (raf) cancelAnimationFrame(raf);
       root.classList.remove("motion-ready");
     };
@@ -160,313 +176,281 @@ function Header() {
     <>
       <div className="page-progress" aria-hidden="true"><i /></div>
       <header className="site-header">
-        <a className="brand" href="#home"><span>PK</span><strong>Pooja Kiran</strong></a>
-        <nav aria-label="Primary navigation">
-          <a href="#work">Work</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Capabilities</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <a className="header-cta" href={resumeHref} target="_blank" rel="noreferrer">Resume <ArrowIcon /></a>
+        <a href="#home" className="brand"><span>PK</span><strong>{resume.name}</strong></a>
+        <div className="header-center">Security Engineer · AI · Application · Identity</div>
+        <a href={resumeHref} target="_blank" rel="noreferrer" className="header-resume">Resume <ArrowIcon /></a>
       </header>
+      <nav className="world-nav" aria-label="Portfolio worlds">
+        {journey.map(([id, label], index) => (
+          <a href={`#${id}`} key={id} data-active={index === 0 ? "true" : "false"}>
+            <i>{String(index + 1).padStart(2, "0")}</i><span>{label}</span>
+          </a>
+        ))}
+      </nav>
     </>
   );
 }
 
-function Hero() {
+function RoomArchitecture({ tone }: { tone: string }) {
   return (
-    <section className="hero-stage" id="home">
-      <div className="hero-spotlight" aria-hidden="true" />
-      <div className="hero-grid" aria-hidden="true" />
-      <div className="hero-kicker" data-reveal>
-        <span>Security Engineer</span>
-        <span>Tempe, Arizona</span>
-        <span>AI · Application · Identity</span>
-      </div>
+    <div className={`room-architecture ${tone}`} aria-hidden="true">
+      <div className="room-ceiling"><i /><i /><i /></div>
+      <div className="room-back-wall" />
+      <div className="room-side room-side-left" />
+      <div className="room-side room-side-right" />
+      <div className="room-floor" />
+      <div className="room-light-pool" />
+    </div>
+  );
+}
 
-      <div className="hero-title" aria-label="Pooja Kiran">
-        <span className="hero-line hero-line-one" data-reveal>POOJA</span>
-        <span className="hero-line hero-line-two" data-reveal>KIRAN</span>
-      </div>
+function Doorway({ label }: { label: string }) {
+  return (
+    <div className="exit-door" aria-hidden="true">
+      <div className="door-frame"><span>{label}</span><i /></div>
+      <div className="door-light" />
+    </div>
+  );
+}
 
-      <figure className="hero-portrait" data-reveal>
-        <img src={asset("pooja-portrait.webp")} alt="Pooja Kiran" width="900" height="900" />
-        <figcaption>
-          <span>Independent AI Security Researcher & Engineer</span>
-          <strong>Aug. 2024 · Present</strong>
-        </figcaption>
-      </figure>
+function LobbyWorld() {
+  return (
+    <section className="world-shell world-lobby" id="home" data-world>
+      <div className="world-viewport">
+        <RoomArchitecture tone="tone-lobby" />
 
-      <div className="hero-statement" data-reveal>
-        <p>I engineer the boundary between intelligent software and the systems it is allowed to touch.</p>
-        <div className="hero-actions">
-          <a href="#work" className="pill pill-light">Enter selected work <ArrowIcon /></a>
-          <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <div className="lobby-plaque depth-mid" data-reveal>
+          <span>POOJA KIRAN</span>
+          <h1>Security engineering for software that can act.</h1>
+          <p>I build controls around agent execution, cloud identity, application boundaries, and model supply chains, with evidence that can be inspected and reproduced.</p>
+          <div>
+            <a href="#mcp">Enter the work <ArrowIcon /></a>
+            <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
         </div>
-      </div>
 
-      <div className="scroll-cue" aria-hidden="true"><i /><span>Scroll to enter</span></div>
+        <figure className="portrait-installation depth-front" data-reveal>
+          <div className="portrait-light" />
+          <img src={asset("pooja-portrait.webp")} alt="Pooja Kiran" width="900" height="900" />
+          <figcaption>
+            <span>Independent AI Security Researcher & Engineer</span>
+            <strong>Aug. 2024 · Present</strong>
+          </figcaption>
+        </figure>
+
+        <aside className="lobby-index depth-back" data-reveal>
+          <span>FIELD NOTES</span>
+          <dl>
+            <div><dt>Location</dt><dd>{resume.location}</dd></div>
+            <div><dt>Graduate study</dt><dd>M.S. IT (Security), ASU</dd></div>
+            <div><dt>GPA</dt><dd>3.87 / 4.00</dd></div>
+            <div><dt>Practice</dt><dd>AI Security · AppSec · IAM</dd></div>
+          </dl>
+        </aside>
+
+        <div className="world-caption"><span>WORLD 00</span><strong>Human / Practice</strong></div>
+        <Doorway label="Runtime Control Room" />
+      </div>
     </section>
   );
 }
 
-function Manifesto() {
+function ArtifactPoster({ artifact, project }: { artifact: Artifact; project: ProjectItem }) {
   return (
-    <section className="manifesto">
-      <div className="manifesto-index">01 / PRACTICE</div>
-      <div className="manifesto-copy" data-reveal>
-        <span>Security engineering becomes different when software can act.</span>
-        <h2>Identity becomes a control plane. Tool calls become an execution boundary. Telemetry becomes evidence.</h2>
-      </div>
-      <div className="manifesto-aside" data-reveal>
-        <p>My work focuses on making those boundaries explicit, testable, and reviewable before systems are trusted with real capabilities.</p>
-        <div>
-          <span>M.S. IT (Security), ASU</span>
-          <strong>GPA 3.87 / 4.00</strong>
-        </div>
-      </div>
-    </section>
+    <a className="wall-poster depth-back" href={artifact.posterLink} target="_blank" rel="noreferrer" data-reveal>
+      <div className="poster-lamp" />
+      <img src={artifact.poster} alt={`${project.name} research poster`} />
+      <span>Research poster · open ↗</span>
+    </a>
   );
 }
 
-function ArchitectureRail({ steps }: { steps: readonly string[] }) {
+function EvidenceGlass({ artifact, project }: { artifact: Artifact; project: ProjectItem }) {
   return (
-    <div className="architecture-rail">
-      {steps.map((step, index) => (
+    <aside className="evidence-glass depth-front" data-reveal>
+      <header><span>VERIFIED_METRICS.md</span><i>{artifact.commit}</i></header>
+      <h4>Evidence</h4>
+      <div className="evidence-list">
+        {artifact.proof.map((item) => <div key={item}><i />{item}</div>)}
+      </div>
+      <p>{project.limitations}</p>
+      <a href={artifact.ciLink} target="_blank" rel="noreferrer">{artifact.ci} ↗</a>
+    </aside>
+  );
+}
+
+function CodeDesk({ artifact }: { artifact: Artifact }) {
+  return (
+    <div className="code-desk depth-mid" data-reveal>
+      <div className="monitor">
+        <div className="monitor-bar"><span>{artifact.file}</span><i>source</i></div>
+        <pre><code>{artifact.excerpt}</code></pre>
+      </div>
+      <div className="desk-surface" />
+    </div>
+  );
+}
+
+function FlowRail({ project }: { project: ProjectItem }) {
+  return (
+    <div className="flow-rail depth-front" data-reveal>
+      {project.architecture.map((step, index) => (
         <div key={step}>
-          <span>{String(index + 1).padStart(2, "0")}</span>
+          <i>{String(index + 1).padStart(2, "0")}</i>
           <strong>{step}</strong>
+          {index < project.architecture.length - 1 && <span />}
         </div>
       ))}
     </div>
   );
 }
 
-function EvidenceSheet({ project, artifact }: { project: ProjectItem; artifact: Artifact }) {
-  return (
-    <div className="evidence-sheet">
-      <div className="sheet-top">
-        <span>VERIFIED_METRICS.md</span>
-        <span>{artifact.commit}</span>
-      </div>
-      <div className="sheet-title">Repository evidence</div>
-      <div className="sheet-metrics">
-        {artifact.proof.map((item) => <div key={item}><i />{item}</div>)}
-      </div>
-      <p>{project.limitations}</p>
-      <a href={artifact.ciLink} target="_blank" rel="noreferrer">{artifact.ci} ↗</a>
-    </div>
-  );
-}
-
-function SourceSheet({ artifact }: { artifact: Artifact }) {
-  return (
-    <div className="source-sheet">
-      <div className="source-head">
-        <span>{artifact.file}</span>
-        <i>source excerpt</i>
-      </div>
-      <pre><code>{artifact.excerpt}</code></pre>
-    </div>
-  );
-}
-
-function ProjectExhibit({ project, index }: { project: ProjectItem; index: number }) {
+function ProjectWorld({ project, nextLabel }: { project: ProjectItem; nextLabel: string }) {
   const artifact = artifacts[project.id];
+  const tone = project.id === "mcp" ? "tone-runtime" : project.id === "iam" ? "tone-identity" : "tone-lab";
+
   return (
-    <article className={`project-exhibit exhibit-${project.id}`} id={project.id} data-exhibit>
-      <div className="exhibit-intro">
-        <div className="exhibit-number">0{index + 1}</div>
-        <div data-reveal>
+    <section className={`world-shell project-world world-${project.id}`} id={project.id} data-world>
+      <div className="world-viewport">
+        <RoomArchitecture tone={tone} />
+
+        <div className="world-title depth-back" data-reveal>
+          <span>WORLD {artifact.roomNo}</span>
+          <h2>{artifact.room}</h2>
           <p>{project.label}</p>
+        </div>
+
+        <div className="world-thesis depth-mid" data-reveal>
+          <span>SECURITY PROBLEM</span>
           <h3>{project.name}</h3>
-        </div>
-        <div className="exhibit-meta" data-reveal>
-          <time>{project.dates}</time>
-          <span>{project.stack.join(" · ")}</span>
-        </div>
-      </div>
-
-      <div className="exhibit-room">
-        <div className="room-title" aria-hidden="true">{project.id === "mcp" ? "RUNTIME" : project.id === "iam" ? "IDENTITY" : "PROVENANCE"}</div>
-
-        <a className="poster-object" href={artifact.posterLink} target="_blank" rel="noreferrer" data-reveal>
-          <img src={artifact.poster} alt={`${project.name} research poster`} />
-          <span>Open research poster ↗</span>
-        </a>
-
-        <div className="project-thesis" data-reveal>
-          <span>Security problem</span>
           <p>{project.problem}</p>
-          <span>Control</span>
           <strong>{project.solution}</strong>
-          <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
-        </div>
-
-        <div className="artifact-stack" data-reveal>
-          <EvidenceSheet project={project} artifact={artifact} />
-          <SourceSheet artifact={artifact} />
-        </div>
-      </div>
-
-      <div className="architecture-stage" data-reveal>
-        <div className="architecture-heading">
-          <span>CONTROL PATH</span>
-          <p>From input to reviewable evidence</p>
-        </div>
-        <ArchitectureRail steps={project.architecture} />
-      </div>
-
-      <div className="implementation-strip" data-reveal>
-        <span>Implemented</span>
-        <ul>{project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-      </div>
-    </article>
-  );
-}
-
-function Work() {
-  return (
-    <section className="work" id="work">
-      <div className="work-heading" data-reveal>
-        <span>02 / SELECTED WORK</span>
-        <h2>Three systems. Three security boundaries. Every claim paired with evidence.</h2>
-      </div>
-      {resume.projects.map((project, index) => <ProjectExhibit key={project.id} project={project} index={index} />)}
-    </section>
-  );
-}
-
-function DecisionPath() {
-  return (
-    <section className="decision-section">
-      <div className="decision-copy" data-reveal>
-        <span>03 / SECURITY METHOD</span>
-        <h2>The path from identity to evidence should be visible.</h2>
-      </div>
-      <div className="decision-path" data-reveal>
-        {trustChain.map((item, index) => (
-          <div key={item}>
-            <i>{String(index + 1).padStart(2, "0")}</i>
-            <strong>{item}</strong>
+          <div className="world-links">
+            <a href={project.repository} target="_blank" rel="noreferrer">Repository <ArrowIcon /></a>
+            <time>{project.dates}</time>
           </div>
-        ))}
+        </div>
+
+        <ArtifactPoster artifact={artifact} project={project} />
+        <CodeDesk artifact={artifact} />
+        <EvidenceGlass artifact={artifact} project={project} />
+        <FlowRail project={project} />
+
+        <div className="implementation-drawer depth-mid" data-reveal>
+          <span>IMPLEMENTED</span>
+          <ul>{project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+        </div>
+
+        <div className="world-caption"><span>SECURITY WORLD</span><strong>{artifact.room}</strong></div>
+        <Doorway label={nextLabel} />
       </div>
     </section>
   );
 }
 
-function Experience() {
+function CareerWorld() {
   return (
-    <section className="experience" id="experience">
-      <div className="experience-heading" data-reveal>
-        <span>04 / EXPERIENCE</span>
-        <h2>Built across research, applied security analysis, and technical evaluation.</h2>
-      </div>
-      <div className="experience-wall">
-        {resume.experience.map((item, index) => (
-          <article key={item.role + item.dates} data-reveal>
-            <div className="exp-no">0{index + 1}</div>
-            <time>{item.dates}</time>
-            <div>
+    <section className="world-shell world-career" id="experience" data-world>
+      <div className="world-viewport">
+        <RoomArchitecture tone="tone-career" />
+
+        <div className="career-title depth-back" data-reveal>
+          <span>WORLD 04</span>
+          <h2>Career Archive</h2>
+          <p>Research, applied security analysis, teaching, and technical evaluation.</p>
+        </div>
+
+        <div className="career-wall depth-mid">
+          {resume.experience.map((item, index) => (
+            <article key={item.role + item.dates} data-reveal>
+              <div className="career-no">{String(index + 1).padStart(2, "0")}</div>
+              <time>{item.dates}</time>
               <h3>{item.role}{item.detail && <small>{item.detail}</small>}</h3>
               <p>{item.organization} · {item.location}</p>
               <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+
+        <div className="skill-shelf depth-front" data-reveal>
+          <span>CAPABILITY SHELF</span>
+          <div>
+            {resume.skillGroups.map((group) => (
+              <section key={group.label}>
+                <h3>{group.label}</h3>
+                <p>{group.items.join(" · ")}</p>
+              </section>
+            ))}
+          </div>
+        </div>
+
+        <div className="education-plaque depth-front" data-reveal>
+          {resume.education.map((item) => (
+            <div key={item.school}>
+              <time>{item.dates}</time><strong>{item.school}</strong><span>{item.degree} · {item.score}</span>
             </div>
-          </article>
-        ))}
+          ))}
+          <div className="cert-line">{resume.certifications.join("  ·  ")}</div>
+        </div>
+
+        <div className="world-caption"><span>WORLD 04</span><strong>Career / Foundation</strong></div>
+        <Doorway label="Contact" />
       </div>
     </section>
   );
 }
 
-function Skills() {
+function ContactWorld() {
   return (
-    <section className="capabilities" id="skills">
-      <div className="capability-heading" data-reveal>
-        <span>05 / CAPABILITIES</span>
-        <h2>Security disciplines, not a keyword cloud.</h2>
-      </div>
-      <div className="capability-list">
-        {resume.skillGroups.map((group, index) => (
-          <article key={group.label} data-reveal>
-            <div className="capability-no">0{index + 1}</div>
-            <h3>{group.label}</h3>
-            <p>{group.items.join(" · ")}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
+    <section className="world-shell world-contact" id="contact" data-world>
+      <div className="world-viewport">
+        <RoomArchitecture tone="tone-contact" />
 
-function Education() {
-  return (
-    <section className="education">
-      <div className="education-heading" data-reveal>
-        <span>06 / FOUNDATION</span>
-        <h2>Education and credentials.</h2>
-      </div>
-      <div className="education-grid">
-        {resume.education.map((item) => (
-          <article key={item.school} data-reveal>
-            <time>{item.dates}</time>
-            <h3>{item.school}</h3>
-            <p>{item.degree}</p>
-            <span>{item.location}</span>
-            <strong>{item.score}</strong>
-          </article>
-        ))}
-        <article className="cert-card" data-reveal>
-          <span>Credentials</span>
-          {resume.certifications.map((cert) => <p key={cert}>{cert}</p>)}
-        </article>
-      </div>
-    </section>
-  );
-}
+        <div className="contact-window depth-back" aria-hidden="true">
+          <i /><i /><i />
+        </div>
 
-function Contact() {
-  return (
-    <section className="contact" id="contact">
-      <div className="contact-orbit" aria-hidden="true"><i /><i /><i /></div>
-      <div className="contact-copy" data-reveal>
-        <span>07 / CONTACT</span>
-        <h2>Build systems that can act.<br />Secure what they can do.</h2>
-        <p>AI security · Application security · Cloud IAM · Security engineering</p>
-      </div>
-      <div className="contact-actions" data-reveal>
-        <a className="contact-primary" href={`mailto:${resume.email}`}>Start a conversation <ArrowIcon /></a>
-        <a href={resumeHref} target="_blank" rel="noreferrer">Resume ↗</a>
-        <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-        <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-      </div>
-      <div className="contact-meta" data-reveal>
-        <span>{resume.email}</span>
-        <span>{resume.phone}</span>
-        <span>{resume.location}</span>
+        <div className="contact-table depth-mid" data-reveal>
+          <span>WORLD 05 · CONTACT</span>
+          <h2>Build systems that can act.<br />Secure what they can do.</h2>
+          <p>AI security · Application security · Cloud IAM · Security engineering</p>
+          <div>
+            <a className="contact-primary" href={`mailto:${resume.email}`}>Start a conversation <ArrowIcon /></a>
+            <a href={resumeHref} target="_blank" rel="noreferrer">Resume ↗</a>
+            <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <div className="contact-address depth-front" data-reveal>
+          <span>{resume.email}</span>
+          <span>{resume.phone}</span>
+          <span>{resume.location}</span>
+        </div>
+
+        <div className="world-caption"><span>WORLD 05</span><strong>Open / Contact</strong></div>
       </div>
     </section>
   );
 }
 
 export default function Portfolio() {
-  useImmersiveMotion();
+  useWorldMotion();
 
   return (
     <div className="portfolio-shell">
       <a className="skip-link" href="#main">Skip to content</a>
       <Header />
       <main id="main">
-        <Hero />
-        <Manifesto />
-        <Work />
-        <DecisionPath />
-        <Experience />
-        <Skills />
-        <Education />
-        <Contact />
+        <LobbyWorld />
+        <section id="work" aria-label="Selected security engineering worlds">
+          <ProjectWorld project={resume.projects[0]} nextLabel="Identity Archive" />
+          <ProjectWorld project={resume.projects[1]} nextLabel="Model Inspection Lab" />
+          <ProjectWorld project={resume.projects[2]} nextLabel="Career Archive" />
+        </section>
+        <CareerWorld />
+        <ContactWorld />
       </main>
       <footer>
         <span>© {new Date().getFullYear()} Pooja Kiran</span>
