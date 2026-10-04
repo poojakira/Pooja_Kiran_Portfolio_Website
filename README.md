@@ -4,9 +4,9 @@ Pooja Kiran's security engineering portfolio, built with Next.js, React, TypeScr
 
 ## Content and identity
 
-`public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the designated factual source for this portfolio and its only public resume PDF. This website update does not change that PDF. `src/data/resume.ts` contains the selected facts used by both views; reconcile that data with the designated PDF whenever the resume changes. The editable LaTeX source remains under `resume/`.
+`resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex` is the editable factual source for the one-page resume. Its generated `public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the only public resume PDF, and `src/data/resume.ts` mirrors the selected facts used by both portfolio views. Keep all three synchronized whenever verified evidence changes.
 
-The three featured projects are MCP Agent Security Gateway, AWS Agent Identity Guard, and HF Model Provenance Scanner. Test counts, coverage, dates, and credentials are resume snapshots, not live repository measurements or fresh benchmark runs. The site does not claim production deployment, customer adoption, or universal attack detection.
+The three featured projects are MCP Agent Security Gateway, AWS Agent Identity Guard, and HF Model Provenance Scanner. Test counts, coverage, dates, and verification boundaries are evidence-backed resume snapshots tied to the cited repository state; they are not universal production measurements. The site does not claim production deployment, customer adoption, or universal attack detection.
 
 `public/pooja-portrait.webp` is the supplied portrait. The scene does not replace Pooja's identity with an invented character.
 
@@ -51,3 +51,8 @@ No owner API key or paid service is required. Never embed secrets in `src/`, `pu
 Never commit tokens, cloud access keys, private keys, or populated credential files. If a credential is exposed, revoke or rotate it at the provider before removing it from files and reachable Git history. Removing a value from Git does not revoke it. The Security Hygiene workflow scans tracked files and reachable history for selected credential patterns without printing matched values; this does not guarantee detection of every secret format.
 
 External links opened in a new tab use restrictive relationship attributes. A meta Content Security Policy provides the restrictions supported by this static host; response headers and platform-level controls are governed by GitHub Pages. Dependabot checks npm and GitHub Actions dependencies. Dependency advisories and workflow results should be reviewed for the current commit, rather than inferred from historical audit notes.
+
+
+## Evidence refresh — 2026-10-03
+
+The current resume/portfolio synchronization uses MCP Gateway **718 passing tests at 82.46% coverage**, AWS Agent Identity Guard **235 passed with 3 credential-dependent skips**, and HF Model Provenance Scanner **241 passed / 1 skipped plus 6 subtests at 75.81% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
