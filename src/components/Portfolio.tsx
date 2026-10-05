@@ -106,12 +106,10 @@ function Header() {
 }
 
 function Hero() {
-  const capabilities = [
-    "AI Security",
-    "Cloud Security",
-    "Model Supply Chain",
-    "Open Source",
-    "Teaching",
+  const recruiterProof = [
+    { value: "723 tests", label: "Agent runtime security" },
+    { value: "25 IAM rules", label: "Cloud identity analysis" },
+    { value: "33/33 fixtures", label: "Model supply-chain detection" },
   ];
 
   return (
@@ -160,9 +158,12 @@ function Hero() {
         </figcaption>
       </figure>
 
-      <div className="hero-capability-strip" data-reveal>
-        {capabilities.map((item) => (
-          <span key={item}>{item}</span>
+      <div className="hero-capability-strip recruiter-proof-strip" data-reveal>
+        {recruiterProof.map((item) => (
+          <span key={item.value}>
+            <strong>{item.value}</strong>
+            <small>{item.label}</small>
+          </span>
         ))}
       </div>
     </section>
@@ -263,7 +264,18 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
         <div className="scope-line" data-reveal>
           <span>Evidence boundary</span>
           <p>{project.limitations}</p>
-          <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
+          <div className="scope-links">
+            <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
+            {project.id === "mcp" && (
+              <a
+                href="https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_SECURITY_REVIEW_CASE_STUDY.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read AppSec case study <ArrowIcon />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </article>
