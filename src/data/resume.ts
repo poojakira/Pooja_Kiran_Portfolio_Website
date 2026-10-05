@@ -21,6 +21,7 @@ export type ProjectItem = {
   metrics: string[];
   testing: string;
   limitations: string;
+  caseStudy?: string;
 };
 
 export const resume = {
@@ -95,6 +96,7 @@ export const resume = {
       stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
       dates: "Oct. 2025 - Sep. 2026",
       repository: "https://github.com/poojakira/mcp-agent-security-gateway",
+      caseStudy: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_CASE_STUDY.md",
       problem: "Agent tool calls cross an execution boundary where authorization, content risk, egress policy, rate limits, and audit evidence need to be enforced before downstream execution.",
       solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
       architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
