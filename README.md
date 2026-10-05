@@ -72,4 +72,4 @@ The canonical public resume PDF is rebuilt from the tracked LaTeX source and the
 These are owner-authorized, repository-backed assessments and demonstrations. They are not presented as independent third-party penetration tests.
 
 
-The portfolio presents MAX (Mentor for Academic eXcellence) as academic/student participation, explicitly separate from employment, internship, and research-service appointments.
+The portfolio presents this ASU Generative AI learning-assistant initiative as academic/student participation, explicitly separate from employment, internship, and research-service appointments.
