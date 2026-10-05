@@ -213,6 +213,7 @@ section[id],article[id]{scroll-margin-top:82px}
 .academic-card h3{margin:18px 0 8px;font-size:28px;line-height:1.1;letter-spacing:-.03em;font-weight:560}
 .academic-card>p{max-width:70ch;margin:8px 0;color:#665d56;font-size:13px;line-height:1.7}
 .academic-card .academic-org{font:700 10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:#684c3a}
+.academic-card .academic-scope{margin-top:16px;padding-top:14px;border-top:1px solid rgba(47,36,29,.16);font-size:11px;color:#765f50}
 .academic-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .academic-tags span{padding:7px 10px;border:1px solid rgba(47,36,29,.18);font:700 9px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em}
 .academic-credentials{background:#c5a98e}
@@ -221,6 +222,7 @@ section[id],article[id]{scroll-margin-top:82px}
 
 .contact-section{display:grid;grid-template-columns:1fr .72fr;gap:75px;align-items:start;background:#c7a37f}
 .contact-copy h2{max-width:12ch;margin:12px 0 0;font-size:clamp(45px,5.2vw,76px);line-height:.96;letter-spacing:-.055em;font-weight:520}
+.contact-recruiter-copy{max-width:58ch;margin:24px 0 0;color:#5b4b40;font-size:14px;line-height:1.7}
 .contact-actions{padding:28px;display:flex;flex-wrap:wrap;gap:9px;align-items:center;border:1px solid rgba(48,36,28,.22);background:rgba(255,248,238,.28)}
 .button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 17px;border:1px solid #231d18;border-radius:999px;font-size:11px;font-weight:800;transition:transform .2s,background .2s,color .2s}
 .button:hover{transform:translateY(-2px)}
@@ -576,6 +578,14 @@ section[id],article[id]{scroll-margin-top:82px}
   color:rgba(255,255,255,.76);
   font-size:13px;
   line-height:1.65;
+}
+.hero-specialization{
+  margin:20px 0 0;
+  color:#fff;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
 }
 .hero-reference-subtitle{
   max-width:500px;

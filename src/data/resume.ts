@@ -29,7 +29,7 @@ export type ProjectItem = {
 export const resume = {
   sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Security Engineer | Agent Security | Application Security | Cloud IAM",
+  headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM",
   positioning: "I engineer trust boundaries for systems that can act.",
   location: "Tempe, AZ, USA",
   phone: "+1 480-776-7745",
