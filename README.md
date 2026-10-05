@@ -55,4 +55,4 @@ External links opened in a new tab use restrictive relationship attributes. A me
 
 ## Evidence refresh — 2026-10-03
 
-The current resume/portfolio synchronization uses MCP Gateway **718 passing tests at 82.46% coverage**, AWS Agent Identity Guard **235 passed with 3 credential-dependent skips**, and HF Model Provenance Scanner **241 passed / 1 skipped plus 6 subtests at 75.81% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
+The current resume/portfolio synchronization uses MCP Gateway **723 passing tests at 81.91% coverage**, AWS Agent Identity Guard **240 passed with 3 credential-dependent skips**, and HF Model Provenance Scanner **241 passed / 1 skipped plus 6 subtests at 75.67% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.

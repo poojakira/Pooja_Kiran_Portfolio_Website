@@ -101,10 +101,10 @@ export const resume = {
       bullets: [
         "Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.",
         "Expanded runtime detection with 55 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
-        "Validated the gateway with 718 passing tests at 82.46% coverage, including denied-call enforcement, and implemented 9 Elastic rules with 21 SIEM tests."
+        "Validated the gateway with 723 passing tests at 81.91% coverage, including denied-call enforcement, and implemented 9 Elastic rules with 21 SIEM tests."
       ],
-      metrics: ["718 passing tests", "82.46% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 SIEM tests"],
-      testing: "The resume reports 718 passing tests at 82.46% coverage, including denied-call enforcement, plus 9 Elastic rules and 21 SIEM tests.",
+      metrics: ["723 passing tests", "81.91% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 SIEM tests"],
+      testing: "Current repository evidence reports 723 passing tests at 81.91% coverage, including denied-call enforcement, plus 9 Elastic rules and 21 SIEM tests.",
       limitations: "The resume supports implemented controls and test evidence. It does not claim customer deployment, enterprise adoption, or universal prevention."
     },
     {
@@ -120,10 +120,10 @@ export const resume = {
       bullets: [
         "Reduced over-privileged agent and workload identity risk by building a static IAM analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
         "Made IAM findings reviewable in CI by emitting text, JSON, and SARIF 2.1.0 results into GitHub Code Scanning, turning policy weaknesses into actionable code-review evidence.",
-        "Verified rule behavior and failure paths with 235 passing tests and 3 credential-dependent skips, keeping live-scan checks isolated from deterministic static-analysis coverage."
+        "Verified rule behavior and failure paths with 240 passing tests and 3 credential-dependent skips, keeping live-scan checks isolated from deterministic static-analysis coverage."
       ],
-      metrics: ["25 deterministic rules", "235 passing tests", "3 credential-dependent skips", "SARIF 2.1.0", "GitHub Code Scanning"],
-      testing: "The resume reports 235 passing tests and 3 credential-dependent skips covering rule behavior and failure paths while isolating live-scan checks.",
+      metrics: ["25 deterministic rules", "240 passing tests", "3 credential-dependent skips", "SARIF 2.1.0", "GitHub Code Scanning"],
+      testing: "Current repository evidence reports 240 passing tests and 3 credential-dependent skips covering rule behavior and failure paths while isolating live-scan checks.",
       limitations: "The resume supports deterministic static-analysis behavior. It does not provide production latency, throughput, or runtime authorization guarantees."
     },
     {
@@ -139,10 +139,10 @@ export const resume = {
       bullets: [
         "Reduced model supply-chain exposure by developing a non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
         "Combined pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks to surface risky behavior across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
-        "Verified 241 passed / 1 skipped plus 6 subtests at 75.81% coverage, detected 33/33 committed adversarial fixtures, and recorded 0 actionable findings across 4 committed benign samples."
+        "Verified 241 passed / 1 skipped plus 6 subtests at 75.67% coverage, detected 33/33 committed adversarial fixtures, and recorded 0 actionable findings across 4 committed benign samples."
       ],
-      metrics: ["241 passed / 1 skipped + 6 subtests", "75.81% coverage", "33/33 adversarial fixtures", "0 actionable / 4 benign samples", "Non-executing inspection"],
-      testing: "The resume reports 241 passed / 1 skipped plus 6 subtests at 75.81% coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
+      metrics: ["241 passed / 1 skipped + 6 subtests", "75.67% coverage", "33/33 adversarial fixtures", "0 actionable / 4 benign samples", "Non-executing inspection"],
+      testing: "Current repository evidence reports 241 passed / 1 skipped plus 6 subtests at 75.67% coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
       limitations: "The fixture results are bounded test evidence. They are not a universal model-malware detection rate."
     }
   ] satisfies ProjectItem[],
