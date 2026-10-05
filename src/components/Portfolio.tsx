@@ -86,7 +86,7 @@ function Header() {
         <a className="brand" href="#home" aria-label="Pooja Kiran home">
           <span className="brand-mark">PK</span>
           <span>
-            <strong>AI SECURITY</strong>
+            <strong>SECURITY ENGINEERING</strong>
           </span>
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
