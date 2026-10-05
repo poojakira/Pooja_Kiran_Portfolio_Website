@@ -1,3 +1,4 @@
+// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
 export type ExperienceItem = {
   role: string;
   detail?: string;
