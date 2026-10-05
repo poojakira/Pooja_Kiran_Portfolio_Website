@@ -91,10 +91,10 @@ function Header() {
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#home">About</a>
-          <a href="#experience">Work</a>
-          <a href="#work">Research</a>
-          <a href="#experience">Teaching</a>
           <a href="#work">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
           <a href="#contact">Contact</a>
         </nav>
         <a className="resume-pill hero-talk" href={`mailto:${resume.email}`}>
@@ -107,11 +107,9 @@ function Header() {
 
 function Hero() {
   const capabilities = [
-    "AI Security",
-    "Cloud Security",
-    "Model Supply Chain",
-    "Open Source",
-    "Teaching",
+    "723 tests · Agent runtime security",
+    "25 IAM rules · Cloud identity analysis",
+    "33/33 fixtures · Model supply-chain detection",
   ];
 
   return (
@@ -130,15 +128,19 @@ function Hero() {
 
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
-        <h1>AI Security<br />Engineer</h1>
-        <p className="hero-reference-subtitle">
-          Engineering security controls for AI agents, cloud identities, and model supply chains.
+        <h1>Security<br />Engineer</h1>
+        <p className="hero-reference-subtitle hero-specialization">
+          AI &amp; Agent Security · Application Security · Cloud IAM
+        </p>
+        <p className="hero-reference-subtitle hero-recruiter-summary">
+          I build security controls for agent execution, privileged identities, APIs, and model supply chains, backed by reproducible tests and security telemetry.
         </p>
         <div className="hero-reference-actions">
-          <a className="hero-primary" href="#work">View My Work <ArrowIcon /></a>
+          <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
           <a className="hero-secondary" href={resumeHref} target="_blank" rel="noreferrer">
-            Download CV
+            Download Resume
           </a>
+          <a className="hero-secondary" href={`mailto:${resume.email}`}>Contact Me</a>
         </div>
       </div>
 
@@ -255,7 +257,12 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
         <div className="scope-line" data-reveal>
           <span>Evidence boundary</span>
           <p>{project.limitations}</p>
-          <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
+          <div className="scope-links">
+            <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
+            {project.caseStudy && (
+              <a href={project.caseStudy} target="_blank" rel="noreferrer">Security review case study <ArrowIcon /></a>
+            )}
+          </div>
         </div>
       </div>
     </article>
@@ -381,10 +388,11 @@ function AcademicParticipationSection() {
       </div>
       <div className="academic-layout">
         <article className="academic-card" data-reveal>
-          <span className="panel-label">{item.role}</span>
+          <span className="panel-label">{item.role} · {item.dates}</span>
           <h3>{item.title}</h3>
           <p className="academic-org">{item.organization}</p>
           <p>{item.description}</p>
+          <p className="academic-scope"><strong>Participation scope:</strong> {item.scope}</p>
           <div className="academic-tags" aria-label="Academic participation focus areas">
             {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
           </div>
@@ -402,9 +410,11 @@ function ContactSection() {
   return (
     <section className="contact-section" id="contact">
       <div className="contact-copy contact-quote" data-reveal>
-        <p className="eyebrow">A principle I build by</p>
-        <blockquote>“Ambition matters. Evidence decides what lasts.”</blockquote>
-        <cite>— Pooja Kiran</cite>
+        <p className="eyebrow">Security Engineering opportunities</p>
+        <blockquote>Hiring for Security Engineering?</blockquote>
+        <p className="contact-recruiter-copy">
+          I am targeting U.S.-based Security Engineering, Application Security, Product Security, Cloud/IAM Security, and AI Security roles.
+        </p>
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Email me <ArrowIcon /></a>
