@@ -107,11 +107,9 @@ function Header() {
 
 function Hero() {
   const capabilities = [
-    "AI Security",
-    "Cloud Security",
-    "Model Supply Chain",
-    "Open Source",
-    "Teaching",
+    "723 tests · Agent runtime security",
+    "25 IAM rules · Cloud identity analysis",
+    "33/33 fixtures · Model supply-chain detection",
   ];
 
   return (
