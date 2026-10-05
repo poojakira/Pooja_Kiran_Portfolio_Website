@@ -565,10 +565,10 @@ section[id],article[id]{scroll-margin-top:82px}
   color:rgba(255,255,255,.72);
 }
 .hero-copy-reference h1{
-  margin:0;
-  font-size:clamp(64px,8.1vw,124px);
-  line-height:.82;
-  letter-spacing:-.07em;
+  margin:0 0 22px;
+  font-size:clamp(58px,7vw,112px);
+  line-height:.92;
+  letter-spacing:-.06em;
   font-weight:650;
   text-shadow:0 5px 32px rgba(0,0,0,.28);
 }
@@ -588,8 +588,8 @@ section[id],article[id]{scroll-margin-top:82px}
   text-transform:uppercase;
 }
 .hero-reference-subtitle{
-  max-width:500px;
-  margin:24px 0 0;
+  max-width:540px;
+  margin:18px 0 0;
   color:rgba(255,255,255,.84);
   font-size:16px;
   line-height:1.55;
@@ -766,7 +766,9 @@ section[id],article[id]{scroll-margin-top:82px}
 @media(max-width:520px){
   .hero-header .brand strong{font-size:10px}
   .hero-talk{min-width:76px}
-  .hero-copy-reference h1{font-size:clamp(54px,17vw,74px)}
+  .hero-copy-reference h1{font-size:clamp(50px,15vw,70px);line-height:.95;margin-bottom:18px}
+  .hero-role-line{font-size:10px;line-height:1.7;letter-spacing:.045em}
+  .hero-reference-subtitle{margin-top:15px;font-size:13px;line-height:1.6}
   .hero-reference-actions{display:grid;grid-template-columns:1fr 1fr}
   .hero-primary,.hero-secondary{width:100%}
   .hero-photo-frame{height:62svh}
@@ -890,11 +892,14 @@ section[id],article[id]{scroll-margin-top:82px}
 
 /* Recruiter scan + security review enhancements */
 .hero-role-line{
-  margin:12px 0 0;
-  font:700 11px/1.5 var(--mono);
-  letter-spacing:.06em;
+  display:block;
+  position:relative;
+  margin:0;
+  max-width:580px;
+  font:700 11px/1.65 var(--mono);
+  letter-spacing:.055em;
   text-transform:uppercase;
-  color:rgba(255,255,255,.78);
+  color:rgba(255,255,255,.82);
 }
 .hero-proof-strip{
   margin-top:26px;
