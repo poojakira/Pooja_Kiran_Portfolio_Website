@@ -365,7 +365,31 @@ function EducationSection() {
             <strong>{item.score}</strong>
           </article>
         ))}
-        <aside data-reveal>
+      </div>
+    </section>
+  );
+}
+
+function AcademicParticipationSection() {
+  const item = resume.academicParticipation;
+
+  return (
+    <section className="academic-section" id="academic-participation">
+      <div className="section-intro" data-reveal>
+        <p className="eyebrow">Academic & research participation</p>
+        <h2>Generative AI learning, clearly separated from professional experience.</h2>
+      </div>
+      <div className="academic-layout">
+        <article className="academic-card" data-reveal>
+          <span className="panel-label">{item.role}</span>
+          <h3>{item.title}</h3>
+          <p className="academic-org">{item.organization}</p>
+          <p>{item.description}</p>
+          <div className="academic-tags" aria-label="Academic participation focus areas">
+            {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
+          </div>
+        </article>
+        <aside className="academic-credentials" data-reveal>
           <span className="panel-label">Credentials</span>
           {resume.certifications.map((cert) => <p key={cert}>{cert}</p>)}
         </aside>
@@ -412,6 +436,7 @@ export default function Portfolio() {
         <ExperienceSection />
         <SkillsSection />
         <EducationSection />
+        <AcademicParticipationSection />
         <ContactSection />
       </main>
       <footer className="site-footer">
