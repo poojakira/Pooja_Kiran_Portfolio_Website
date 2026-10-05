@@ -106,12 +106,6 @@ function Header() {
 }
 
 function Hero() {
-  const recruiterProof = [
-    { value: "723 tests", label: "Agent runtime security" },
-    { value: "25 IAM rules", label: "Cloud identity analysis" },
-    { value: "33/33 fixtures", label: "Model supply-chain detection" },
-  ];
-
   return (
     <section className="hero hero-reference" id="home">
       <div className="office-world" aria-hidden="true">
@@ -127,7 +121,7 @@ function Hero() {
       </div>
 
       <div className="hero-copy-reference" data-reveal>
-        <p className="hero-overline">PORTFOLIO</p>
+        <p className="hero-overline">SECURITY ENGINEERING PORTFOLIO</p>
         <h1>Security<br />Engineer</h1>
         <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM</p>
         <p className="hero-reference-subtitle">
@@ -158,14 +152,6 @@ function Hero() {
         </figcaption>
       </figure>
 
-      <div className="hero-capability-strip recruiter-proof-strip" data-reveal>
-        {recruiterProof.map((item) => (
-          <span key={item.value}>
-            <strong>{item.value}</strong>
-            <small>{item.label}</small>
-          </span>
-        ))}
-      </div>
     </section>
   );
 }
@@ -334,7 +320,7 @@ function SecurityReviewCaseStudy() {
             This is not presented as an independent third-party penetration test or production deployment assessment.
           </p>
         </div>
-        <a className="button button-dark" href="https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_CASE_STUDY.md" target="_blank" rel="noreferrer">
+        <a className="button button-dark" href="https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_SECURITY_REVIEW_CASE_STUDY.md" target="_blank" rel="noreferrer">
           Read the security review <ArrowIcon />
         </a>
       </div>
@@ -475,7 +461,7 @@ function ContactSection() {
         </p>
       </div>
       <div className="contact-actions" data-reveal>
-        <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
+        <a className="button button-dark" href={`mailto:${resume.email}?subject=Security%20Engineering%20Opportunity`}>Discuss a Security Role <ArrowIcon /></a>
         <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
