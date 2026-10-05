@@ -43,14 +43,15 @@ jobs:
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "OS Resource Management Simulator"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf /tmp/resume-text.txt
-          grep -q "723 passing tests" /tmp/resume-text.txt
-          grep -q "81.91%" /tmp/resume-text.txt
-          grep -q "240 passing tests" /tmp/resume-text.txt
-          grep -q "75.67%" /tmp/resume-text.txt
-          ! grep -q "718 passing tests" /tmp/resume-text.txt
-          ! grep -q "82.46%" /tmp/resume-text.txt
-          ! grep -q "235 passing tests" /tmp/resume-text.txt
-          ! grep -q "75.81%" /tmp/resume-text.txt
+          tr '\n' ' ' < /tmp/resume-text.txt | sed -E 's/[[:space:]]+/ /g' > /tmp/resume-text-normalized.txt
+          grep -Fq "723 passing tests" /tmp/resume-text-normalized.txt
+          grep -Fq "81.91%" /tmp/resume-text-normalized.txt
+          grep -Fq "240 passing tests" /tmp/resume-text-normalized.txt
+          grep -Fq "75.67%" /tmp/resume-text-normalized.txt
+          ! grep -Fq "718 passing tests" /tmp/resume-text-normalized.txt
+          ! grep -Fq "82.46%" /tmp/resume-text-normalized.txt
+          ! grep -Fq "235 passing tests" /tmp/resume-text-normalized.txt
+          ! grep -Fq "75.81%" /tmp/resume-text-normalized.txt
 
       - name: Sync generated PDF to PR branch
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
