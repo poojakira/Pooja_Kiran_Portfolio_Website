@@ -70,3 +70,6 @@ The canonical public resume PDF is rebuilt from the tracked LaTeX source and the
 - **MCP 60-second recruiter demo guide:** https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/RECRUITER_DEMO_60S.md
 
 These are owner-authorized, repository-backed assessments and demonstrations. They are not presented as independent third-party penetration tests.
+
+
+The portfolio presents MAX (Mentor for Academic eXcellence) as academic/student participation, explicitly separate from employment, internship, and research-service appointments.
