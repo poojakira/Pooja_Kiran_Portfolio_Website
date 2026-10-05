@@ -153,8 +153,10 @@ export const resume = {
   academicParticipation: {
     title: "Generative AI Learning Initiative",
     role: "Student Participant",
-    organization: "Arizona State University - Learning Engineering",
-    description: "Participated in an ASU Learning Engineering initiative involving a generative AI learning assistant designed to support personalized education.",
+    dates: "2025",
+    organization: "Arizona State University · Principled Innovation-Infused Learning Engineering",
+    description: "Participated in an ASU Principled Innovation-infused Learning Engineering initiative involving a Generative AI learning assistant designed to support personalized education.",
+    scope: "Educational participation; separate from professional employment, internship, and research-service appointments.",
     tags: ["Generative AI", "Learning Engineering", "Personalized Education"]
   },
   certifications: [

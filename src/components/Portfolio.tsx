@@ -86,15 +86,15 @@ function Header() {
         <a className="brand" href="#home" aria-label="Pooja Kiran home">
           <span className="brand-mark">PK</span>
           <span>
-            <strong>AI SECURITY</strong>
+            <strong>SECURITY ENGINEERING</strong>
           </span>
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#home">About</a>
-          <a href="#experience">Work</a>
-          <a href="#work">Research</a>
-          <a href="#experience">Teaching</a>
           <a href="#work">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
           <a href="#contact">Contact</a>
         </nav>
         <a className="resume-pill hero-talk" href={`mailto:${resume.email}`}>
@@ -130,15 +130,23 @@ function Hero() {
 
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
-        <h1>AI Security<br />Engineer</h1>
+        <h1>Security<br />Engineer</h1>
+        <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM</p>
         <p className="hero-reference-subtitle">
-          Engineering security controls for AI agents, cloud identities, and model supply chains.
+          I build security controls for agent execution, privileged identities, APIs, and model supply chains, backed by reproducible tests and security telemetry.
         </p>
         <div className="hero-reference-actions">
-          <a className="hero-primary" href="#work">View My Work <ArrowIcon /></a>
+          <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
           <a className="hero-secondary" href={resumeHref} target="_blank" rel="noreferrer">
-            Download CV
+            Download Resume
           </a>
+          <a className="hero-secondary" href="#contact">Contact Me</a>
+        </div>
+        <div className="hero-proof-strip" aria-label="Selected repository-backed evidence">
+          <div><strong>723</strong><span>tests · Agent runtime security</span></div>
+          <div><strong>25</strong><span>IAM rules · Cloud identity analysis</span></div>
+          <div><strong>33/33</strong><span>fixtures · Model supply-chain detection</span></div>
+          <small>Repository-backed evidence. Scope and limitations are documented in each project.</small>
         </div>
       </div>
 
@@ -278,6 +286,50 @@ function WorkSection() {
   );
 }
 
+function SecurityReviewCaseStudy() {
+  const controls = [
+    ["Authentication", "Protected inspection and metrics endpoints require configured API credentials; health/readiness remain orchestration-safe."],
+    ["Authorization", "Default-deny capability and server policy gates agent tool calls before downstream execution."],
+    ["Input & protocol abuse", "Strict JSON-RPC and HTTP parsing rejects malformed requests, duplicate JSON keys, ambiguous framing, oversized headers, and unsupported methods."],
+    ["SSRF & egress", "Policy checks deny private, loopback, and link-local destinations unless explicitly allowlisted."],
+    ["Abuse resistance", "Payload limits, rate limiting, circuit breaking, and fail-closed error handling constrain abusive or degraded paths."],
+    ["Detection & evidence", "Tamper-evident audit records, ECS telemetry, Elastic rules, and SIEM tests make blocked activity reviewable."]
+  ] as const;
+
+  return (
+    <section className="security-review-section" id="security-review">
+      <div className="section-intro" data-reveal>
+        <p className="eyebrow">Application security case study</p>
+        <h2>MCP agent-to-tool boundary: threat model → control → verification.</h2>
+        <p>
+          A white-box security review of the gateway&apos;s public attack surface, focused on authentication,
+          authorization, parser abuse, SSRF/egress, availability controls, and evidence generation.
+        </p>
+      </div>
+      <div className="security-review-grid" data-reveal>
+        {controls.map(([title, detail]) => (
+          <article key={title}>
+            <h3>{title}</h3>
+            <p>{detail}</p>
+          </article>
+        ))}
+      </div>
+      <div className="security-review-outcome" data-reveal>
+        <div>
+          <span className="panel-label">Assessment boundary</span>
+          <p>
+            Authorized review of my own application using source inspection and automated repository tests.
+            This is not presented as an independent third-party penetration test or production deployment assessment.
+          </p>
+        </div>
+        <a className="button button-dark" href="https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_CASE_STUDY.md" target="_blank" rel="noreferrer">
+          Read the security review <ArrowIcon />
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function DecisionPath() {
   return (
     <section className="decision-section">
@@ -376,15 +428,16 @@ function AcademicParticipationSection() {
   return (
     <section className="academic-section" id="academic-participation">
       <div className="section-intro" data-reveal>
-        <p className="eyebrow">Academic & research participation</p>
+        <p className="eyebrow">Academic &amp; AI participation</p>
         <h2>Generative AI learning, clearly separated from professional experience.</h2>
       </div>
       <div className="academic-layout">
         <article className="academic-card" data-reveal>
-          <span className="panel-label">{item.role}</span>
+          <span className="panel-label">{item.role} · {item.dates}</span>
           <h3>{item.title}</h3>
           <p className="academic-org">{item.organization}</p>
           <p>{item.description}</p>
+          <p className="academic-scope"><strong>Participation scope:</strong> {item.scope}</p>
           <div className="academic-tags" aria-label="Academic participation focus areas">
             {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
           </div>
@@ -401,13 +454,16 @@ function AcademicParticipationSection() {
 function ContactSection() {
   return (
     <section className="contact-section" id="contact">
-      <div className="contact-copy contact-quote" data-reveal>
-        <p className="eyebrow">A principle I build by</p>
-        <blockquote>“Ambition matters. Evidence decides what lasts.”</blockquote>
-        <cite>— Pooja Kiran</cite>
+      <div className="contact-copy recruiter-contact" data-reveal>
+        <p className="eyebrow">Recruiting &amp; collaboration</p>
+        <h2>Hiring for Security Engineering?</h2>
+        <p>
+          I&apos;m interested in U.S.-based Security Engineering, Application Security, Product Security,
+          Cloud/IAM Security, and AI Security opportunities.
+        </p>
       </div>
       <div className="contact-actions" data-reveal>
-        <a className="button button-dark" href={`mailto:${resume.email}`}>Email me <ArrowIcon /></a>
+        <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
         <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
@@ -432,6 +488,7 @@ export default function Portfolio() {
         <Hero />
         <DualPaths />
         <WorkSection />
+        <SecurityReviewCaseStudy />
         <DecisionPath />
         <ExperienceSection />
         <SkillsSection />

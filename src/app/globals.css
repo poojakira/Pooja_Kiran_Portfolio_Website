@@ -869,3 +869,93 @@ section[id],article[id]{scroll-margin-top:82px}
 }
 
 @media (max-width: 760px){.academic-layout{grid-template-columns:1fr}.academic-card,.academic-credentials{padding:23px}}
+
+
+/* Recruiter scan + security review enhancements */
+.hero-role-line{
+  margin:12px 0 0;
+  font:700 11px/1.5 var(--mono);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.78);
+}
+.hero-proof-strip{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+.hero-proof-strip>div{
+  min-height:76px;
+  padding:13px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(14,18,20,.34);
+  backdrop-filter:blur(8px);
+}
+.hero-proof-strip strong{font-size:24px;line-height:1;letter-spacing:-.04em}
+.hero-proof-strip span{margin-top:7px;font-size:9px;line-height:1.45;color:rgba(255,255,255,.72)}
+.hero-proof-strip small{
+  grid-column:1/-1;
+  font-size:9px;
+  line-height:1.5;
+  color:rgba(255,255,255,.62);
+}
+.security-review-section{
+  width:min(100% - 48px,var(--max));
+  margin:0 auto;
+  padding:140px 0;
+  background:var(--cream);
+}
+.security-review-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:42px;
+}
+.security-review-grid article{
+  min-height:190px;
+  padding:24px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.38);
+}
+.security-review-grid h3{margin:0 0 14px;font-size:18px;letter-spacing:-.02em}
+.security-review-grid p{margin:0;color:#625a53;font-size:12px;line-height:1.7}
+.security-review-outcome{
+  margin-top:12px;
+  padding:24px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:28px;
+  align-items:center;
+  border:1px solid var(--line);
+  background:#d8c4ad;
+}
+.security-review-outcome p{max-width:76ch;margin:10px 0 0;font-size:12px;line-height:1.7;color:#544b44}
+.academic-scope{
+  margin-top:16px!important;
+  padding-top:14px;
+  border-top:1px solid rgba(47,36,29,.16);
+}
+.recruiter-contact h2{
+  max-width:12ch;
+  margin:12px 0 18px;
+  font-size:clamp(45px,5.2vw,76px);
+  line-height:.96;
+  letter-spacing:-.055em;
+  font-weight:520;
+}
+.recruiter-contact>p:last-child{max-width:55ch;font-size:13px;line-height:1.7;color:#58483d}
+
+@media(max-width:900px){
+  .security-review-section{width:min(100% - 36px,var(--max));padding-block:96px}
+  .security-review-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .hero-proof-strip{grid-template-columns:1fr}
+  .hero-proof-strip small{grid-column:1}
+  .security-review-grid{grid-template-columns:1fr}
+  .security-review-outcome{grid-template-columns:1fr}
+}
