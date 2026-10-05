@@ -1,3 +1,4 @@
+# Canonical resume PDF must be generated from the tracked LaTeX source.
 name: Build Agentic AI Security Resume
 
 on:
