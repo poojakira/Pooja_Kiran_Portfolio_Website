@@ -93,7 +93,7 @@ section[id],article[id]{scroll-margin-top:82px}
 .hero-bottom i{height:1px;background:linear-gradient(90deg,rgba(255,255,255,.18),rgba(255,255,255,.75),rgba(255,255,255,.18))}
 
 .eyebrow,.panel-label{margin:0;font:700 10px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--rust)}
-.dual-paths,.experience-section,.skills-section,.education-section,.contact-section,.decision-section{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+.dual-paths,.experience-section,.skills-section,.education-section,.academic-section,.contact-section,.decision-section{width:min(var(--max),calc(100% - 48px));margin:0 auto}
 .dual-paths{padding:130px 0 140px;background:var(--cream)}
 .dual-paths:before{content:"";position:absolute;left:0;right:0;height:1px;background:var(--line)}
 .section-intro{display:grid;grid-template-columns:.36fr 1fr;gap:62px;align-items:start;margin-bottom:72px}
@@ -173,7 +173,7 @@ section[id],article[id]{scroll-margin-top:82px}
 .decision-track span{font:700 9px/1 var(--mono);color:#948778}
 .decision-track strong{font-size:11px;letter-spacing:.08em}
 
-.experience-section,.skills-section,.education-section,.contact-section{padding:140px 0;background:var(--cream)}
+.experience-section,.skills-section,.education-section,.academic-section,.contact-section{padding:140px 0;background:var(--cream)}
 .experience-section{border-top:1px solid var(--line)}
 .experience-list{border-top:1px solid var(--line)}
 .experience-row{padding:38px 0;display:grid;grid-template-columns:70px 220px 1fr;gap:28px;border-bottom:1px solid var(--line)}
@@ -207,6 +207,17 @@ section[id],article[id]{scroll-margin-top:82px}
 .education-grid aside{background:#c5a98e}
 .education-grid aside .panel-label{color:#664b3b}
 .education-grid aside p{margin:20px 0 0;padding-top:20px;border-top:1px solid rgba(47,36,29,.2);font-size:12px;line-height:1.55}
+.academic-section{background:#e9ded0}
+.academic-layout{display:grid;grid-template-columns:1.45fr .75fr;gap:12px}
+.academic-card,.academic-credentials{padding:30px;border:1px solid var(--line);background:rgba(255,255,255,.32)}
+.academic-card h3{margin:18px 0 8px;font-size:28px;line-height:1.1;letter-spacing:-.03em;font-weight:560}
+.academic-card>p{max-width:70ch;margin:8px 0;color:#665d56;font-size:13px;line-height:1.7}
+.academic-card .academic-org{font:700 10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:#684c3a}
+.academic-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.academic-tags span{padding:7px 10px;border:1px solid rgba(47,36,29,.18);font:700 9px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.academic-credentials{background:#c5a98e}
+.academic-credentials .panel-label{color:#664b3b}
+.academic-credentials p{margin:20px 0 0;padding-top:20px;border-top:1px solid rgba(47,36,29,.2);font-size:12px;line-height:1.55}
 
 .contact-section{display:grid;grid-template-columns:1fr .72fr;gap:75px;align-items:start;background:#c7a37f}
 .contact-copy h2{max-width:12ch;margin:12px 0 0;font-size:clamp(45px,5.2vw,76px);line-height:.96;letter-spacing:-.055em;font-weight:520}
@@ -249,8 +260,8 @@ section[id],article[id]{scroll-margin-top:82px}
   .hero-portrait{grid-column:1/3;grid-row:2;width:min(70vw,460px)}
   .hero-bottom{position:relative;left:auto;right:auto;bottom:auto;grid-column:1/3;grid-row:3;margin-top:12px}
   .hero-side p:not(.side-kicker){font-size:12px}
-  .dual-paths,.experience-section,.skills-section,.education-section,.contact-section,.decision-section{width:min(100% - 36px,var(--max))}
-  .dual-paths,.decision-section,.experience-section,.skills-section,.education-section,.contact-section{padding-block:96px}
+  .dual-paths,.experience-section,.skills-section,.education-section,.academic-section,.contact-section,.decision-section{width:min(100% - 36px,var(--max))}
+  .dual-paths,.decision-section,.experience-section,.skills-section,.education-section,.academic-section,.contact-section{padding-block:96px}
   .path-grid{grid-template-columns:1fr}
   .career-card{border-right:0;border-bottom:1px solid var(--line)}
   .path-card{min-height:520px;padding:28px}
@@ -856,3 +867,5 @@ section[id],article[id]{scroll-margin-top:82px}
   .path-evidence span:nth-child(odd){border-right:0}
   .path-card h3{max-width:16ch}
 }
+
+@media (max-width: 760px){.academic-layout{grid-template-columns:1fr}.academic-card,.academic-credentials{padding:23px}}
