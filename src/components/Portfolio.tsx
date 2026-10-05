@@ -107,9 +107,9 @@ function Header() {
 
 function Hero() {
   const capabilities = [
-    "723 tests · Agent runtime security",
-    "25 IAM rules · Cloud identity analysis",
-    "33/33 fixtures · Model supply-chain detection",
+    "Agent → Tool · execution security",
+    "Identity → Authority · cloud IAM",
+    "Artifact → Runtime · model supply chain",
   ];
 
   return (
@@ -131,7 +131,7 @@ function Hero() {
         <h1>Security<br />Engineer</h1>
         <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM</p>
         <p className="hero-reference-subtitle">
-          I build security controls for agent execution, privileged identities, APIs, and model supply chains, backed by reproducible tests and security telemetry.
+          I secure the trust boundaries where AI systems gain authority and take action: agent-to-tool execution, identity-to-permission, and model-artifact-to-runtime.
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
@@ -140,11 +140,11 @@ function Hero() {
           </a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
-        <div className="hero-proof-strip" aria-label="Selected repository-backed evidence">
-          <div><strong>723</strong><span>tests · Agent runtime security</span></div>
-          <div><strong>25</strong><span>IAM rules · Cloud identity analysis</span></div>
-          <div><strong>33/33</strong><span>fixtures · Model supply-chain detection</span></div>
-          <small>Repository-backed evidence. Scope and limitations are documented in each project.</small>
+        <div className="hero-proof-strip" aria-label="Three security trust boundaries">
+          <div><strong>Agent → Tool</strong><span>Default-deny authorization and execution controls</span></div>
+          <div><strong>Identity → Authority</strong><span>IAM analysis for privilege and trust-policy risk</span></div>
+          <div><strong>Artifact → Runtime</strong><span>Non-executing model supply-chain inspection</span></div>
+          <small>Each system is backed by repository-level tests, CI evidence, and explicit scope limitations.</small>
         </div>
       </div>
 
@@ -172,12 +172,12 @@ function DualPaths() {
     <section className="dual-paths" id="paths">
       <div className="section-intro path-intro" data-reveal>
         <p className="eyebrow">How I work</p>
-        <h2>I care about both how a security control works and how it becomes useful in practice.</h2>
+        <h2>I design the control, test the failure modes, and make the evidence reviewable.</h2>
       </div>
 
       <div className="path-grid">
         <article className="path-card career-card" data-reveal>
-          <h3>Build the control so it can stand up to inspection.</h3>
+          <h3>Build security controls that can stand up to inspection.</h3>
           <p>
             I work at the boundaries where AI agents, identities, APIs, and model artifacts become security decisions,
             then back those decisions with tests, CI evidence, telemetry, and reproducible validation.
@@ -192,7 +192,7 @@ function DualPaths() {
         </article>
 
         <article className="path-card builder-card" id="builder" data-reveal>
-          <h3>Carry the work beyond implementation.</h3>
+          <h3>Turn technical findings into decisions people can act on.</h3>
           <p>
             I also think about the problem being solved, how the result is validated, how people will evaluate it, and
             what makes the work practical to adopt. In AEROSEC, that included business and compliance analysis plus a
@@ -233,16 +233,16 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
 
         <div className="project-dual-proof">
           <section className="proof-panel proof-career" data-reveal>
-            <span className="panel-label">Career proof</span>
-            <h4>What an engineering team can evaluate</h4>
+            <span className="panel-label">Security outcome</span>
+            <h4>What the control protects and how it is verified</h4>
             <ul>
               {project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
             </ul>
           </section>
 
           <section className="proof-panel proof-builder" data-reveal>
-            <span className="panel-label">Builder proof</span>
-            <h4>How the work moves from problem to usable system</h4>
+            <span className="panel-label">Architecture & verification</span>
+            <h4>How the security decision is enforced end to end</h4>
             <div className="builder-sequence">
               {project.architecture.map((step, stepIndex) => (
                 <div key={step}>
@@ -276,8 +276,8 @@ function WorkSection() {
   return (
     <section className="work-section" id="work">
       <div className="section-intro light" data-reveal>
-        <p className="eyebrow">Projects as physical evidence</p>
-        <h2>Each project has two readings: engineering depth and builder potential.</h2>
+        <p className="eyebrow">Three security trust boundaries</p>
+        <h2>Agent → Tool. Identity → Authority. Artifact → Runtime.</h2>
       </div>
       <div className="project-list">
         {resume.projects.map((project, index) => (
@@ -360,7 +360,7 @@ function ExperienceSection() {
     <section className="experience-section" id="experience">
       <div className="section-intro" data-reveal>
         <p className="eyebrow">Professional & applied experience</p>
-        <h2>Engineering depth on one side. Business context on the other.</h2>
+        <h2>Security engineering backed by applied business and teaching experience.</h2>
       </div>
       <div className="experience-list">
         {resume.experience.map((item, index) => (
@@ -387,7 +387,7 @@ function SkillsSection() {
     <section className="skills-section" id="skills">
       <div className="section-intro" data-reveal>
         <p className="eyebrow">Capabilities</p>
-        <h2>Technical depth for the job. Systems thinking for the build.</h2>
+        <h2>Security depth across runtime, identity, application security, and detection.</h2>
       </div>
       <div className="skills-grid">
         {resume.skillGroups.map((group, index) => (
@@ -460,8 +460,8 @@ function ContactSection() {
         <p className="eyebrow">Recruiting &amp; collaboration</p>
         <h2>Hiring for Security Engineering?</h2>
         <p>
-          I&apos;m interested in U.S.-based Security Engineering, Application Security, Product Security,
-          Cloud/IAM Security, and AI Security opportunities.
+          I&apos;m interested in U.S.-based Security Engineering roles spanning AI and agent security,
+          Application Security, Product Security, and Cloud/IAM Security.
         </p>
       </div>
       <div className="contact-actions" data-reveal>
@@ -500,7 +500,7 @@ export default function Portfolio() {
       </main>
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} Pooja Kiran</span>
-        <span>Security Engineering × Builder Portfolio</span>
+        <span>AI & Agent Security × Application Security × Cloud IAM</span>
       </footer>
     </div>
   );
