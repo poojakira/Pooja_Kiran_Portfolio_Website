@@ -42,8 +42,15 @@ jobs:
             grep -q "MCP Agent Security Gateway"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "OS Resource Management Simulator"
-          cp .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf \
-            public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
+          pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf /tmp/resume-text.txt
+          grep -q "723 passing tests" /tmp/resume-text.txt
+          grep -q "81.91%" /tmp/resume-text.txt
+          grep -q "240 passing tests" /tmp/resume-text.txt
+          grep -q "75.67%" /tmp/resume-text.txt
+          ! grep -q "718 passing tests" /tmp/resume-text.txt
+          ! grep -q "82.46%" /tmp/resume-text.txt
+          ! grep -q "235 passing tests" /tmp/resume-text.txt
+          ! grep -q "75.81%" /tmp/resume-text.txt
 
       - name: Sync generated PDF to PR branch
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
@@ -52,12 +59,15 @@ jobs:
           PR_BRANCH: ${{ github.head_ref }}
         run: |
           path="public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf"
-          local_blob="$(git hash-object "$path")"
-          remote_blob="$(gh api "repos/$GITHUB_REPOSITORY/contents/$path?ref=$PR_BRANCH" --jq .sha)"
-          if [ "$local_blob" = "$remote_blob" ]; then
-            echo "Canonical PDF is already current."
+          generated=".resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf"
+          pdftotext "$generated" /tmp/generated-resume.txt
+          pdftotext "$path" /tmp/current-resume.txt
+          if cmp -s /tmp/generated-resume.txt /tmp/current-resume.txt; then
+            echo "Canonical PDF text is already current; ignoring volatile PDF metadata."
             exit 0
           fi
+          cp "$generated" "$path"
+          remote_blob="$(gh api "repos/$GITHUB_REPOSITORY/contents/$path?ref=$PR_BRANCH" --jq .sha)"
           base64 -w0 "$path" > /tmp/resume-pdf.b64
           jq -n \
             --arg message "build: regenerate canonical resume PDF" \
