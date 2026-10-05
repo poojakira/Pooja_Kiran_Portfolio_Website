@@ -30,7 +30,7 @@ export const resume = {
   sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
   name: "Pooja Kiran",
   headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM",
-  positioning: "I engineer trust boundaries for systems that can act.",
+  positioning: "I secure the trust boundaries where AI systems gain authority and take action.",
   location: "Tempe, AZ, USA",
   phone: "+1 480-776-7745",
   email: "poojakiranbhardwaj@gmail.com",
@@ -93,7 +93,7 @@ export const resume = {
   projects: [
     {
       id: "mcp",
-      label: "Agent Runtime Security",
+      label: "Agent → Tool Security",
       name: "MCP Agent Security Gateway",
       stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
       dates: "Oct. 2025 - Sep. 2026",
@@ -114,7 +114,7 @@ export const resume = {
     },
     {
       id: "iam",
-      label: "Cloud Identity Security",
+      label: "Identity → Authority Security",
       name: "AWS Agent Identity Guard",
       stack: ["Python", "AWS IAM", "SARIF 2.1.0"],
       dates: "Apr. 2025 - Sep. 2025",
@@ -133,7 +133,7 @@ export const resume = {
     },
     {
       id: "supply",
-      label: "Model Supply Chain Security",
+      label: "Artifact → Runtime Security",
       name: "HF Model Provenance Scanner",
       stack: ["Python", "SafeTensors", "GGUF", "ONNX", "Keras"],
       dates: "Nov. 2024 - Mar. 2025",
