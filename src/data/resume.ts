@@ -14,6 +14,7 @@ export type ProjectItem = {
   stack: string[];
   dates: string;
   repository: string;
+  caseStudy?: string;
   problem: string;
   solution: string;
   architecture: string[];
@@ -95,6 +96,7 @@ export const resume = {
       stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
       dates: "Oct. 2025 - Sep. 2026",
       repository: "https://github.com/poojakira/mcp-agent-security-gateway",
+      caseStudy: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_SECURITY_REVIEW_CASE_STUDY.md",
       problem: "Agent tool calls cross an execution boundary where authorization, content risk, egress policy, rate limits, and audit evidence need to be enforced before downstream execution.",
       solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
       architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
@@ -151,10 +153,12 @@ export const resume = {
     { school: "M. S. Ramaiah University of Applied Sciences", location: "Bengaluru, KA, India", degree: "B.Tech., Computer Science & Engineering", score: "CGPA: 8.44/10", dates: "Aug. 2019 - Aug. 2023" }
   ],
   academicParticipation: {
-    title: "Generative AI Learning Initiative",
+    title: "MAX — Mentor for Academic eXcellence",
     role: "Student Participant",
-    organization: "Arizona State University - Learning Engineering",
-    description: "Participated in an ASU Learning Engineering initiative involving a generative AI learning assistant designed to support personalized education.",
+    dates: "2025",
+    organization: "Arizona State University · Principled Innovation / Learning Engineering",
+    description: "Participated in an ASU Principled Innovation–infused Learning Engineering initiative involving MAX, a Generative AI learning assistant designed to support personalized education.",
+    scope: "Educational student participation; separate from professional employment, an internship, or a research-services appointment.",
     tags: ["Generative AI", "Learning Engineering", "Personalized Education"]
   },
   certifications: [
