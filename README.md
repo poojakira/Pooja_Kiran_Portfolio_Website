@@ -53,6 +53,10 @@ Never commit tokens, cloud access keys, private keys, or populated credential fi
 External links opened in a new tab use restrictive relationship attributes. A meta Content Security Policy provides the restrictions supported by this static host; response headers and platform-level controls are governed by GitHub Pages. Dependabot checks npm and GitHub Actions dependencies. Dependency advisories and workflow results should be reviewed for the current commit, rather than inferred from historical audit notes.
 
 
-## Evidence refresh — 2026-10-03
+## Evidence refresh — 2026-10-04
 
 The current resume/portfolio synchronization uses MCP Gateway **723 passing tests at 81.91% coverage**, AWS Agent Identity Guard **240 passed with 3 credential-dependent skips**, and HF Model Provenance Scanner **241 passed / 1 skipped plus 6 subtests at 75.67% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
+
+The embedded project poster images are pinned to the regenerated evidence artifacts from MCP Gateway commit `d936cadde0ff4e0fb322c6600638b387b1c39d09`, AWS Agent Identity Guard commit `51916ac3d381579c78112233911827217304022a`, and HF Model Provenance Scanner commit `dec0c68ceb9167c7e9b4b439b1bfd006beb5c148`.
+
+The canonical public resume PDF is rebuilt from the tracked LaTeX source and the build gate verifies the current project metrics before synchronization. The generated artifact is accepted only after the one-page and current-metric checks pass.
