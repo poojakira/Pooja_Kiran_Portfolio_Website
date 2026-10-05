@@ -45,7 +45,7 @@ export const resume = {
     },
     {
       label: "Identity & Product Security",
-      items: ["AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Capability-Based Authorization", "Threat Modeling", "Secure System Design", "API Security", "Anti-SSRF", "PII/Data-Exfiltration Detection"]
+      items: ["AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Capability-Based Authorization", "Threat Modeling", "Secure System Design", "Application Security Assessment", "Application Security Testing", "API Security", "Anti-SSRF", "PII/Data-Exfiltration Detection"]
     },
     {
       label: "Security Engineering & DevSecOps",
