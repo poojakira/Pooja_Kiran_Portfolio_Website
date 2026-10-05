@@ -106,12 +106,6 @@ function Header() {
 }
 
 function Hero() {
-  const capabilities = [
-    "723 tests · Agent runtime security",
-    "25 IAM rules · Cloud identity analysis",
-    "33/33 fixtures · Model supply-chain detection",
-  ];
-
   return (
     <section className="hero hero-reference" id="home">
       <div className="office-world" aria-hidden="true">
@@ -158,11 +152,6 @@ function Hero() {
         </figcaption>
       </figure>
 
-      <div className="hero-capability-strip" data-reveal>
-        {capabilities.map((item) => (
-          <span key={item}>{item}</span>
-        ))}
-      </div>
     </section>
   );
 }
