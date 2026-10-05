@@ -428,7 +428,7 @@ function AcademicParticipationSection() {
   return (
     <section className="academic-section" id="academic-participation">
       <div className="section-intro" data-reveal>
-        <p className="eyebrow">Academic & research participation</p>
+        <p className="eyebrow">Academic &amp; AI participation</p>
         <h2>Generative AI learning, clearly separated from professional experience.</h2>
       </div>
       <div className="academic-layout">
