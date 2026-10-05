@@ -134,11 +134,11 @@ function Hero() {
           </a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
-        <div className="hero-proof-strip" aria-label="Three security trust boundaries">
-          <div><strong>Agent → Tool</strong><span>Default-deny authorization and execution controls</span></div>
-          <div><strong>Identity → Authority</strong><span>IAM analysis for privilege and trust-policy risk</span></div>
-          <div><strong>Artifact → Runtime</strong><span>Non-executing model supply-chain inspection</span></div>
-          <small>Each system is backed by repository-level tests, CI evidence, and explicit scope limitations.</small>
+        <div className="hero-proof-strip" aria-label="Three security trust boundaries with repository-backed proof">
+          <div><strong>Agent → Tool</strong><span>723 tests · default-deny execution controls</span></div>
+          <div><strong>Identity → Authority</strong><span>25 IAM rules · privilege and trust-policy analysis</span></div>
+          <div><strong>Artifact → Runtime</strong><span>33/33 adversarial fixtures · non-executing inspection</span></div>
+          <small>Repository-backed evidence with CI verification and explicit scope limitations.</small>
         </div>
       </div>
 
