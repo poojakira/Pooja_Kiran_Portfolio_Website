@@ -107,11 +107,9 @@ function Header() {
 
 function Hero() {
   const capabilities = [
-    "AI Security",
-    "Cloud Security",
-    "Model Supply Chain",
-    "Open Source",
-    "Teaching",
+    "723 tests · Agent runtime security",
+    "25 IAM rules · Cloud identity analysis",
+    "33/33 fixtures · Model supply-chain detection",
   ];
 
   return (
@@ -263,7 +261,10 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
         <div className="scope-line" data-reveal>
           <span>Evidence boundary</span>
           <p>{project.limitations}</p>
-          <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
+          <div className="scope-actions">
+            <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
+            {project.caseStudy && <a href={project.caseStudy} target="_blank" rel="noreferrer">Read AppSec case study <ArrowIcon /></a>}
+          </div>
         </div>
       </div>
     </article>
