@@ -6,7 +6,7 @@ Pooja Kiran's security engineering portfolio, built with Next.js, React, TypeScr
 
 `resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex` is the editable factual source for the one-page resume. Its generated `public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the only public resume PDF, and `src/data/resume.ts` mirrors the selected facts used by both portfolio views. Keep all three synchronized whenever verified evidence changes.
 
-The three featured projects are MCP Agent Security Gateway, AWS Agent Identity Guard, and HF Model Provenance Scanner. Test counts, coverage, dates, and verification boundaries are evidence-backed resume snapshots tied to the cited repository state; they are not universal production measurements. The site does not claim production deployment, customer adoption, or universal attack detection.
+The three featured projects form one recruiter-facing security story: **Agent → Tool** (MCP Agent Security Gateway), **Identity → Authority** (AWS Agent Identity Guard), and **Artifact → Runtime** (HF Model Provenance Scanner). Test counts, coverage, dates, and verification boundaries are evidence-backed resume snapshots tied to the cited repository state; they are not universal production measurements. The site does not claim production deployment, customer adoption, or universal attack detection.
 
 `public/pooja-portrait.webp` is the supplied portrait. The scene does not replace Pooja's identity with an invented character.
 
