@@ -264,6 +264,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <div className="scope-actions">
             <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
             {project.caseStudy && <a href={project.caseStudy} target="_blank" rel="noreferrer">Read AppSec case study <ArrowIcon /></a>}
+            {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">60-second demo <ArrowIcon /></a>}
           </div>
         </div>
       </div>
