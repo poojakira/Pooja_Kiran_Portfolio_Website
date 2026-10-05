@@ -30,7 +30,7 @@ export const resume = {
   positioning: "I engineer trust boundaries for systems that can act.",
   location: "Tempe, AZ, USA",
   phone: "+1 480-776-7745",
-  email: "pkiran1@asu.edu",
+  email: "poojakiranbhardwaj@gmail.com",
   links: {
     linkedin: "https://www.linkedin.com/in/poojakiran",
     github: "https://github.com/poojakira",
