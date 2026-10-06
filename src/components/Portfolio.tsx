@@ -123,7 +123,7 @@ function Hero() {
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
         <h1>Security<br />Engineer</h1>
-        <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM</p>
+        <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM Security</p>
         <p className="hero-reference-subtitle">
           I secure the trust boundaries where AI systems gain authority and take action: agent-to-tool execution, identity-to-permission, and model-artifact-to-runtime.
         </p>
@@ -174,7 +174,7 @@ function DualPaths() {
           <div className="path-evidence" aria-label="Technical focus areas">
             <span>Agent & AI Security</span>
             <span>Application Security</span>
-            <span>Cloud IAM</span>
+            <span>Cloud IAM Security</span>
             <span>Security Automation</span>
           </div>
           <a href={resumeHref} target="_blank" rel="noreferrer">View resume <ArrowIcon /></a>
@@ -450,7 +450,7 @@ function ContactSection() {
         <h2>Hiring for Security Engineering?</h2>
         <p>
           I&apos;m interested in U.S.-based Security Engineering roles spanning AI and agent security,
-          Application Security, Product Security, and Cloud/IAM Security.
+          Application Security, Product Security, and Cloud IAM Security.
         </p>
       </div>
       <div className="contact-actions" data-reveal>
@@ -489,7 +489,7 @@ export default function Portfolio() {
       </main>
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} Pooja Kiran</span>
-        <span>AI & Agent Security × Application Security × Cloud IAM</span>
+        <span>AI & Agent Security × Application Security × Cloud IAM Security</span>
       </footer>
     </div>
   );
