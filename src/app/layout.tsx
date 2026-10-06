@@ -7,13 +7,18 @@ const socialImage = `${siteUrl}/og-card.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}/`),
-  title: "Pooja Kiran | Security Engineer",
-  description: "Pooja Kiran is a Security Engineer focused on AI and agent security, application security, cloud IAM, and model supply-chain security.",
+  title: "Pooja Kiran | AI Security & Security Engineer",
+  description: "Pooja Kiran is a Security Engineer specializing in AI & Agent Security, Application Security, Cloud IAM Security, Model Supply-Chain Security, and Security Automation.",
   alternates: { canonical: `${siteUrl}/` },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true }
+  },
   manifest: `${siteUrl}/site.webmanifest`,
   openGraph: {
-    title: "Pooja Kiran | Security Engineer",
-    description: "I secure the trust boundaries where AI systems gain authority and take action.",
+    title: "Pooja Kiran | AI Security & Security Engineer",
+    description: "Security Engineer specializing in AI & Agent Security, Application Security, Cloud IAM Security, Model Supply-Chain Security, and Security Automation.",
     url: `${siteUrl}/`,
     siteName: "Pooja Kiran Security Engineering Portfolio",
     type: "website",
@@ -21,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pooja Kiran | Security Engineer",
-    description: "AI & Agent Security · Application Security · Cloud IAM · Model Supply Chain",
+    title: "Pooja Kiran | AI Security & Security Engineer",
+    description: "AI & Agent Security · Application Security · Cloud IAM Security · Model Supply-Chain Security · Security Automation",
     images: [socialImage]
   },
   icons: { icon: `${siteUrl}/favicon.svg` }
@@ -42,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     email: `mailto:${resume.email}`,
     url: resume.links.portfolio,
     sameAs: [resume.links.linkedin, resume.links.github],
+    knowsAbout: ["AI Security", "Agent Security", "Application Security", "Cloud IAM Security", "Model Supply-Chain Security", "Security Automation"],
     alumniOf: resume.education.map(item => ({ "@type": "CollegeOrUniversity", name: item.school }))
   };
 
