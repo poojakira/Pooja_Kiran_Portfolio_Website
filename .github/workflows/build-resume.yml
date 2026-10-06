@@ -41,9 +41,12 @@ jobs:
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
-            grep -q "OS Resource Management Simulator"
+            grep -q "Directed end-to-end security engineering"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf /tmp/resume-text.txt
           tr '\n' ' ' < /tmp/resume-text.txt | sed -E 's/[[:space:]]+/ /g' > /tmp/resume-text-normalized.txt
+          grep -Fq "16.2%" /tmp/resume-text-normalized.txt
+          grep -Fq "3.5 percentage points" /tmp/resume-text-normalized.txt
+          grep -Fq "20.6%" /tmp/resume-text-normalized.txt
           grep -Fq "723 passing tests" /tmp/resume-text-normalized.txt
           grep -Fq "81.91%" /tmp/resume-text-normalized.txt
           grep -Fq "240 passing tests" /tmp/resume-text-normalized.txt
