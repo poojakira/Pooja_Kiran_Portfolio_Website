@@ -64,9 +64,8 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ, USA",
       bullets: [
-        "Built the OS Resource Management Simulator in Flask and Docker, then evolved it into a PostgreSQL-backed lease service with atomic acquisition, expiring leases, idempotent retries, role-based API access, audit history, metrics, and concurrency validation.",
-        "Expanded into cloud and identity security by applying AWS IAM, least-privilege access, policy evaluation, and CloudTrail-backed auditability, building the foundation for later identity and authorization tooling.",
-        "Extended the work into AI and agent security, engineering controls for runtime tool calls, IAM analysis, model provenance, and training-data integrity while standardizing evidence through CI, SARIF/Code Scanning, Elastic Security, Prometheus, Docker, and reproducible tests."
+        "Directed end-to-end security engineering and architecture reviews across cloud identity, application services, network trust boundaries, and AI/ML infrastructure; converted threat models and security assessments into enforceable design requirements, prioritized remediation, and evidence-backed release decisions.",
+        "Expanded a continuously verified Python security-control validation track by 16.2% in automated tests while increasing statement coverage by 3.5 percentage points as measured Python statements grew by 20.6%; established repeatable design-review, vulnerability-analysis, adversarial-validation, and automated security-gate practices."
       ]
     },
     {
