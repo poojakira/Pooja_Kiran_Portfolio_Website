@@ -123,7 +123,7 @@ function Hero() {
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
         <h1>Security<br />Engineer</h1>
-        <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM Security</p>
+        <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM Security · Model Supply-Chain Security</p>
         <p className="hero-reference-subtitle">
           I secure the trust boundaries where AI systems gain authority and take action: agent-to-tool execution, identity-to-permission, and model-artifact-to-runtime.
         </p>
@@ -147,7 +147,7 @@ function Hero() {
           <img src={asset("pooja-portrait.webp")} alt="Pooja Kiran" width="900" height="1100" />
         </div>
         <figcaption className="hero-signature-quote">
-          <span>“I want to build systems people can trust, and prove why they should.”</span>
+          <span>“AI becomes a different security problem when it can act.”</span>
           <strong>— Pooja Kiran</strong>
         </figcaption>
       </figure>
@@ -175,7 +175,7 @@ function DualPaths() {
             <span>Agent & AI Security</span>
             <span>Application Security</span>
             <span>Cloud IAM Security</span>
-            <span>Security Automation</span>
+            <span>Model Supply-Chain Security</span>
           </div>
           <a href={resumeHref} target="_blank" rel="noreferrer">View resume <ArrowIcon /></a>
         </article>
@@ -211,6 +211,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <div className="project-stack">
             {project.stack.map((item) => <span key={item}>{item}</span>)}
           </div>
+          <p className="project-history">{project.history}</p>
         </div>
 
         <div className="poster-object" data-reveal>
@@ -450,7 +451,7 @@ function ContactSection() {
         <h2>Hiring for Security Engineering?</h2>
         <p>
           I&apos;m interested in U.S.-based Security Engineering roles spanning AI and agent security,
-          Application Security, Product Security, and Cloud IAM Security.
+          Application Security, Product Security, Cloud IAM Security, and Model Supply-Chain Security.
         </p>
       </div>
       <div className="contact-actions" data-reveal>
@@ -489,7 +490,7 @@ export default function Portfolio() {
       </main>
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} Pooja Kiran</span>
-        <span>AI & Agent Security × Application Security × Cloud IAM Security</span>
+        <span>AI & Agent Security × Application Security × Cloud IAM Security × Model Supply-Chain Security</span>
       </footer>
     </div>
   );
