@@ -1,12 +1,12 @@
 # Pooja Kiran Portfolio Website
 
-Pooja Kiran's security engineering portfolio, built with Next.js, React, TypeScript, and an on-demand Three.js environment. The site is exported as static files for [GitHub Pages](https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/).
+Pooja Kiran's canonical security-engineering portfolio, built with Next.js, React, TypeScript, and an on-demand Three.js environment. The canonical public URL is [GitHub Pages](https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/); other dashboard or preview sites are supporting evidence surfaces, not alternate professional homepages.
 
 ## Content and identity
 
 `resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex` is the editable factual source for the one-page resume. Its generated `public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the only public resume PDF, and `src/data/resume.ts` mirrors the selected facts used by both portfolio views. Keep all three synchronized whenever verified evidence changes.
 
-The three featured projects form one recruiter-facing security story: **Agent → Tool** (MCP Agent Security Gateway), **Identity → Authority** (AWS Agent Identity Guard), and **Artifact → Runtime** (HF Model Provenance Scanner). Test counts, coverage, dates, and verification boundaries are evidence-backed resume snapshots tied to the cited repository state; they are not universal production measurements. The site does not claim production deployment, customer adoption, or universal attack detection.
+The three featured projects form one recruiter-facing security story: **Agent → Tool** (MCP Agent Security Gateway), **Identity → Authority** (AWS Agent Identity Guard), and **Artifact → Runtime** (HF Model Provenance Scanner). Project dates show the original development periods supplied by the maintainer; the current test counts, coverage, fixtures, and other metrics are later 2026 public-repository verification snapshots. The site does not imply that the present implementation or present metrics existed unchanged at the start of each project, and it does not claim production deployment, customer adoption, or universal attack detection.
 
 `public/pooja-portrait.webp` is the supplied portrait. The scene does not replace Pooja's identity with an invented character.
 
@@ -55,7 +55,7 @@ External links opened in a new tab use restrictive relationship attributes. A me
 
 ## Evidence refresh — 2026-10-04
 
-The current resume/portfolio synchronization uses MCP Gateway **723 passing tests at 81.91% coverage**, AWS Agent Identity Guard **240 passing tests**, and HF Model Provenance Scanner **241 passing tests at 75.67% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
+The current resume/portfolio synchronization uses MCP Gateway **723 passing tests at 81.91% coverage**, AWS Agent Identity Guard **243 collected / 240 passed / 3 skipped**, and HF Model Provenance Scanner **241 passed / 1 skipped at 75.67% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
 
 The embedded project poster images are pinned to the regenerated evidence artifacts from MCP Gateway commit `d936cadde0ff4e0fb322c6600638b387b1c39d09`, AWS Agent Identity Guard commit `51916ac3d381579c78112233911827217304022a`, and HF Model Provenance Scanner commit `dec0c68ceb9167c7e9b4b439b1bfd006beb5c148`.
 

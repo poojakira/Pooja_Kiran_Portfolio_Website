@@ -41,7 +41,7 @@ jobs:
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
-            grep -q "Directed end-to-end security engineering"
+            grep -q "Led security design and architecture reviews"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf /tmp/resume-text.txt
           tr '\n' ' ' < /tmp/resume-text.txt | sed -E 's/[[:space:]]+/ /g' > /tmp/resume-text-normalized.txt
           grep -Fq "16.2%" /tmp/resume-text-normalized.txt
@@ -49,8 +49,10 @@ jobs:
           grep -Fq "20.6%" /tmp/resume-text-normalized.txt
           grep -Fq "723 passing tests" /tmp/resume-text-normalized.txt
           grep -Fq "81.91%" /tmp/resume-text-normalized.txt
-          grep -Fq "240 passing tests" /tmp/resume-text-normalized.txt
+          grep -Fq "243 collected, 240 passed, 3 skipped" /tmp/resume-text-normalized.txt
+          grep -Fq "241 passed, 1 skipped" /tmp/resume-text-normalized.txt
           grep -Fq "75.67%" /tmp/resume-text-normalized.txt
+          grep -Fq "original development periods" /tmp/resume-text-normalized.txt
           ! grep -Fq "718 passing tests" /tmp/resume-text-normalized.txt
           ! grep -Fq "82.46%" /tmp/resume-text-normalized.txt
           ! grep -Fq "235 passing tests" /tmp/resume-text-normalized.txt

@@ -7,7 +7,7 @@ const socialImage = `${siteUrl}/og-card.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}/`),
-  title: "Pooja Kiran | AI Security & Security Engineer",
+  title: "Pooja Kiran | Security Engineer | AI & Agent Security",
   description: "Pooja Kiran is a Security Engineer specializing in AI & Agent Security, Application Security, Cloud IAM Security, Model Supply-Chain Security, and Security Automation.",
   alternates: { canonical: `${siteUrl}/` },
   robots: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   manifest: `${siteUrl}/site.webmanifest`,
   openGraph: {
-    title: "Pooja Kiran | AI Security & Security Engineer",
+    title: "Pooja Kiran | Security Engineer | AI & Agent Security",
     description: "Security Engineer specializing in AI & Agent Security, Application Security, Cloud IAM Security, Model Supply-Chain Security, and Security Automation.",
     url: `${siteUrl}/`,
     siteName: "Pooja Kiran Security Engineering Portfolio",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pooja Kiran | AI Security & Security Engineer",
+    title: "Pooja Kiran | Security Engineer | AI & Agent Security",
     description: "AI & Agent Security · Application Security · Cloud IAM Security · Model Supply-Chain Security · Security Automation",
     images: [socialImage]
   },

@@ -22,6 +22,7 @@ export type ProjectItem = {
   metrics: string[];
   testing: string;
   limitations: string;
+  history: string;
   caseStudy?: string;
   demo?: string;
 };
@@ -29,7 +30,7 @@ export type ProjectItem = {
 export const resume = {
   sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM Security",
+  headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM Security | Model Supply-Chain Security",
   positioning: "I secure the trust boundaries where AI systems gain authority and take action.",
   location: "Tempe, AZ, USA",
   phone: "+1 480-776-7745",
@@ -64,8 +65,8 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ, USA",
       bullets: [
-        "Directed end-to-end security engineering and architecture reviews across cloud identity, application services, network trust boundaries, and AI/ML infrastructure; converted threat models and security assessments into enforceable design requirements, prioritized remediation, and evidence-backed release decisions.",
-        "Expanded a continuously verified Python security-control validation track by 16.2% in automated tests while increasing statement coverage by 3.5 percentage points as measured Python statements grew by 20.6%; established repeatable design-review, vulnerability-analysis, adversarial-validation, and automated security-gate practices."
+        "Led security design and architecture reviews across self-directed AI and cloud security systems, translating threat models into enforceable requirements, CI gates, and documented repository release criteria.",
+        "Expanded the MCP Gateway validation track from 622 to 723 passing tests (+16.2%) while statement coverage rose from 78.41% to 81.91% (+3.5 percentage points) as measured Python statements grew from 4,679 to 5,644 (+20.6%)."
       ]
     },
     {
@@ -105,11 +106,12 @@ export const resume = {
       bullets: [
         "Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.",
         "Expanded runtime detection with 55 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
-        "Validated the gateway with 723 passing tests at 81.91% coverage, including denied-call enforcement, and implemented 9 Elastic rules with 21 SIEM tests."
+        "Current public-repo verification (2026): 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
       ],
-      metrics: ["723 passing tests", "81.91% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 SIEM tests"],
-      testing: "Current repository evidence reports 723 passing tests at 81.91% coverage, including denied-call enforcement, plus 9 Elastic rules and 21 SIEM tests.",
-      limitations: "The resume supports implemented controls and test evidence. It does not claim customer deployment, enterprise adoption, or universal prevention."
+      metrics: ["723 passing tests", "81.91% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
+      testing: "Current 2026 public-repository evidence reports 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests.",
+      limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
+      history: "Original development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; current verification reflects later 2026 repository snapshots."
     },
     {
       id: "iam",
@@ -124,11 +126,12 @@ export const resume = {
       bullets: [
         "Reduced over-privileged agent and workload identity risk by building a static IAM analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
         "Made IAM findings reviewable in CI by emitting text, JSON, and SARIF 2.1.0 results into GitHub Code Scanning, turning policy weaknesses into actionable code-review evidence.",
-        "Verified deterministic static-analysis behavior with 240 passing tests, keeping live-scan checks isolated from static-analysis coverage."
+        "Current public-repo verification (2026): 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped."
       ],
-      metrics: ["25 deterministic rules", "240 passing tests", "SARIF 2.1.0", "GitHub Code Scanning"],
-      testing: "Current repository evidence reports 240 passing tests for deterministic static-analysis behavior, with live-scan checks isolated from static-analysis coverage.",
-      limitations: "The resume supports deterministic static-analysis behavior. It does not provide production latency, throughput, or runtime authorization guarantees."
+      metrics: ["25 deterministic rules", "240 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
+      testing: "Current 2026 public-repository evidence reports 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped.",
+      limitations: "The evidence supports deterministic static-policy analysis. It does not claim complete effective-permission evaluation, production latency, or runtime authorization guarantees.",
+      history: "Original development period: Apr. 2025 - Sep. 2025. Public GitHub history begins Aug. 2026; current verification reflects later 2026 repository snapshots."
     },
     {
       id: "supply",
@@ -143,11 +146,12 @@ export const resume = {
       bullets: [
         "Reduced model supply-chain exposure by developing a non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
         "Combined pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks to surface risky behavior across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
-        "Verified 241 passing tests at 75.67% coverage, detected 33/33 committed adversarial fixtures, and recorded 0 actionable findings across 4 committed benign samples."
+        "Current public-repo verification (2026): 241 passed, 1 skipped at 75.67% statement coverage; 33/33 committed adversarial fixtures detected."
       ],
-      metrics: ["241 passing tests", "75.67% coverage", "33/33 adversarial fixtures", "0 actionable / 4 benign samples", "Non-executing inspection"],
-      testing: "Current repository evidence reports 241 passing tests at 75.67% coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
-      limitations: "The fixture results are bounded test evidence. They are not a universal model-malware detection rate."
+      metrics: ["241 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
+      testing: "Current 2026 public-repository evidence reports 241 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
+      limitations: "The fixture results are bounded regression evidence; the benign result covers only four committed samples. Neither is a universal detection or false-positive rate.",
+      history: "Original development period: Nov. 2024 - Mar. 2025. Public GitHub history begins Jul. 2026; current verification reflects later 2026 repository snapshots."
     }
   ] satisfies ProjectItem[],
   education: [
