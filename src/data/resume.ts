@@ -43,19 +43,19 @@ export const resume = {
   skillGroups: [
     {
       label: "AI & Agent Security",
-      items: ["Agentic AI Security", "MCP/JSON-RPC 2.0", "Tool/Function-Call Security", "Prompt Injection", "Indirect Prompt Injection", "RAG Security", "LLM Red Teaming", "Model Supply-Chain Security", "Model Provenance", "Training-Data Integrity", "Adversarial ML"]
+      items: ["MCP/JSON-RPC 2.0", "Tool/Function-Call Security", "Prompt Injection", "LLM Red Teaming", "Model Supply-Chain Security"]
     },
     {
-      label: "Identity & Product Security",
-      items: ["AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Capability-Based Authorization", "Threat Modeling", "Secure System Design", "Application Security Assessment", "Application Security Testing", "API Security", "Anti-SSRF", "PII/Data-Exfiltration Detection"]
+      label: "Identity & Application Security",
+      items: ["Cloud IAM Security", "AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Capability-Based Authorization", "Threat Modeling", "API Security"]
     },
     {
       label: "Security Engineering & DevSecOps",
-      items: ["Python", "Rust", "C++", "FastAPI", "pytest", "Hypothesis", "Secure SDLC", "GitHub Actions", "CI/CD Security", "SARIF 2.1.0", "GitHub Code Scanning", "CodeQL", "Bandit", "Trivy", "pip-audit", "Docker", "Kubernetes"]
+      items: ["Python", "FastAPI", "pytest", "GitHub Actions", "CI/CD Security", "SARIF 2.1.0", "GitHub Code Scanning", "Docker"]
     },
     {
-      label: "Detection & AI Security Standards",
-      items: ["Elastic Security", "ECS", "SIEM", "Prometheus", "Security Telemetry", "Tamper-Evident Audit Logging", "Rate Limiting", "MITRE ATLAS", "OWASP LLM Top 10"]
+      label: "Detection & Observability",
+      items: ["Elastic Security", "ECS", "SIEM", "Prometheus", "Tamper-Evident Audit Logging", "MITRE ATLAS"]
     }
   ],
   experience: [
