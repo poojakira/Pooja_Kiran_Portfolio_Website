@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/sync-evidence-assets.yml"
+      - "public/og-card.svg"
   workflow_dispatch:
 
 permissions:
@@ -31,7 +32,15 @@ jobs:
           curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/aws-agent-identity-guard/51916ac3d381579c78112233911827217304022a/poster/poster.png"             -o /tmp/iam-poster.png
           curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/hf-model-provenance-scanner/dec0c68ceb9167c7e9b4b439b1bfd006beb5c148/poster/poster.png"             -o /tmp/provenance-poster.png
 
-      - name: Sync poster images to PR branch
+      - name: Render social preview from canonical SVG
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends librsvg2-bin
+          rsvg-convert -w 1200 -h 630 public/og-card.svg -o /tmp/og-card.png
+
+      - name: Sync poster and social images to PR branch
         if: github.event_name == 'pull_request'
         shell: bash
         env:
@@ -56,3 +65,4 @@ jobs:
           sync_file /tmp/mcp-poster.png public/mcp-poster.png
           sync_file /tmp/iam-poster.png public/iam-poster.png
           sync_file /tmp/provenance-poster.png public/provenance-poster.png
+          sync_file /tmp/og-card.png public/og-card.png
