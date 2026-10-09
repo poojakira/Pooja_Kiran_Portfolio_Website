@@ -73,3 +73,7 @@ These are owner-authorized, repository-backed assessments and demonstrations. Th
 
 
 The portfolio presents this ASU Generative AI learning-assistant initiative as academic/student participation, explicitly separate from employment, internship, and research-service appointments.
+
+## Recruiting evidence audit (2026-10-09)
+
+See [the bounded recruiting evidence audit](docs/RECRUITER_EVIDENCE_AUDIT_2026-10-09.md) for current dated verification, test-scope limitations and unsupported impact claims.
