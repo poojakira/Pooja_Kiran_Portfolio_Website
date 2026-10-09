@@ -40,22 +40,7 @@ jobs:
           test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
-          pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
-            grep -q "Conducted security design reviews"
-          pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf /tmp/resume-text.txt
-          tr '\n' ' ' < /tmp/resume-text.txt | sed -E 's/[[:space:]]+/ /g' > /tmp/resume-text-normalized.txt
-          grep -Fq "16.2%" /tmp/resume-text-normalized.txt
-          grep -Fq "3.50 percentage points" /tmp/resume-text-normalized.txt
-          grep -Fq "723 passing tests" /tmp/resume-text-normalized.txt
-          grep -Fq "81.91%" /tmp/resume-text-normalized.txt
-          grep -Fq "243 collected, 240 passed, 3 skipped" /tmp/resume-text-normalized.txt
-          grep -Fq "241 passed, 1 skipped" /tmp/resume-text-normalized.txt
-          grep -Fq "75.67%" /tmp/resume-text-normalized.txt
-          grep -Fq "original development periods" /tmp/resume-text-normalized.txt
-          ! grep -Fq "718 passing tests" /tmp/resume-text-normalized.txt
-          ! grep -Fq "82.46%" /tmp/resume-text-normalized.txt
-          ! grep -Fq "235 passing tests" /tmp/resume-text-normalized.txt
-          ! grep -Fq "75.81%" /tmp/resume-text-normalized.txt
+          python3 scripts/verify_recruiter_claims.py
 
       - name: Sync generated PDF to PR branch
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
