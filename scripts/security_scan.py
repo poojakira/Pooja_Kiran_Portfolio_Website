@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -44,8 +45,11 @@ PLACEHOLDER_WORDS = (
 
 
 def tracked_files() -> list[Path]:
+    git = shutil.which("git")
+    if git is None:
+        raise RuntimeError("git executable is required for repository security scans")
     raw = subprocess.check_output(
-        ["git", "-C", str(ROOT), "ls-files", "-z"],
+        [git, "-C", str(ROOT), "ls-files", "-z"],
         text=False,
     ).decode().split("\0")
     return [ROOT / item for item in raw if item]
