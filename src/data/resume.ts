@@ -65,7 +65,7 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ, USA",
       bullets: [
-        "Led security design and architecture reviews across self-directed AI and cloud security systems, translating threat models into enforceable requirements, CI gates, and documented repository release criteria.",
+        "Conducted security design reviews of self-directed AI and cloud security implementations, converting threat models into testable authorization checks, CI gates, and documented release criteria.",
         "Expanded the MCP Gateway validation track from 622 to 723 passing tests (+16.2%) while statement coverage rose from 78.41% to 81.91% (+3.5 percentage points) as measured Python statements grew from 4,679 to 5,644 (+20.6%)."
       ]
     },
@@ -106,7 +106,7 @@ export const resume = {
       bullets: [
         "Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.",
         "Expanded runtime detection with 55 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
-        "Current public-repo verification (2026): 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
+        "Verified 2026 CI snapshot: 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
       ],
       metrics: ["723 passing tests", "81.91% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
       testing: "Current 2026 public-repository evidence reports 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests.",
@@ -124,9 +124,9 @@ export const resume = {
       solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
       architecture: ["IAM policy", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "GitHub Code Scanning", "Code review"],
       bullets: [
-        "Reduced over-privileged agent and workload identity risk by building a static IAM analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
+        "Built a static IAM policy analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
         "Made IAM findings reviewable in CI by emitting text, JSON, and SARIF 2.1.0 results into GitHub Code Scanning, turning policy weaknesses into actionable code-review evidence.",
-        "Current public-repo verification (2026): 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped."
+        "Verified 2026 CI snapshot: 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped."
       ],
       metrics: ["25 deterministic rules", "240 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
       testing: "Current 2026 public-repository evidence reports 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped.",
@@ -144,9 +144,9 @@ export const resume = {
       solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
       architecture: ["Repository or artifact", "Non-executing inspection", "Pickle and AST/taint checks", "Dependency and provenance checks", "Obfuscation and format checks", "Findings"],
       bullets: [
-        "Reduced model supply-chain exposure by developing a non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
+        "Built a non-executing model supply-chain scanner that inspects unsafe serialization and provenance indicators without executing untrusted repository code in the default inspection path.",
         "Combined pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks to surface risky behavior across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
-        "Current public-repo verification (2026): 241 passed, 1 skipped at 75.67% statement coverage; 33/33 committed adversarial fixtures detected."
+        "Verified 2026 CI snapshot: 241 passed, 1 skipped at 75.67% statement coverage; 33/33 committed adversarial fixtures detected."
       ],
       metrics: ["241 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
       testing: "Current 2026 public-repository evidence reports 241 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
