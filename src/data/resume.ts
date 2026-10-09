@@ -109,9 +109,9 @@ export const resume = {
         "Verified 2026 CI snapshot: 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
       ],
       metrics: ["723 passing tests", "81.91% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "Current 2026 public-repository evidence reports 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests.",
+      testing: "The cited 2026 repository verification snapshot reports 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests.",
       limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
-      history: "Original development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; current verification reflects later 2026 repository snapshots."
+      history: "Original development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
     {
       id: "iam",
@@ -129,9 +129,9 @@ export const resume = {
         "Verified 2026 CI snapshot: 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped."
       ],
       metrics: ["25 deterministic rules", "240 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
-      testing: "Current 2026 public-repository evidence reports 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped.",
+      testing: "The cited 2026 repository verification snapshot reports 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped.",
       limitations: "The evidence supports deterministic static-policy analysis. It does not claim complete effective-permission evaluation, production latency, or runtime authorization guarantees.",
-      history: "Original development period: Apr. 2025 - Sep. 2025. Public GitHub history begins Aug. 2026; current verification reflects later 2026 repository snapshots."
+      history: "Original development period: Apr. 2025 - Sep. 2025. Public GitHub history begins Aug. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
     {
       id: "supply",
@@ -149,9 +149,9 @@ export const resume = {
         "Verified 2026 CI snapshot: 241 passed, 1 skipped at 75.67% statement coverage; 33/33 committed adversarial fixtures detected."
       ],
       metrics: ["241 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
-      testing: "Current 2026 public-repository evidence reports 241 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
+      testing: "The cited 2026 repository verification snapshot reports 241 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
       limitations: "The fixture results are bounded regression evidence; the benign result covers only four committed samples. Neither is a universal detection or false-positive rate.",
-      history: "Original development period: Nov. 2024 - Mar. 2025. Public GitHub history begins Jul. 2026; current verification reflects later 2026 repository snapshots."
+      history: "Original development period: Nov. 2024 - Mar. 2025. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     }
   ] satisfies ProjectItem[],
   education: [

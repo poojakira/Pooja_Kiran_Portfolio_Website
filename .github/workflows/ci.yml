@@ -29,8 +29,8 @@ jobs:
       - name: Lint Python verification scripts
         run: |
           python3 -m pip install ruff==0.8.4
-          python3 -m ruff check scripts/verify_recruiter_claims.py scripts/security_scan.py
-          python3 -m ruff format --check scripts/verify_recruiter_claims.py
+          python3 -m ruff check scripts
+          python3 -m ruff format --check scripts
       - name: Guard resume impact claims
         run: python3 scripts/verify_recruiter_claims.py
       - name: Type check
