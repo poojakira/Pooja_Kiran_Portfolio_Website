@@ -6,7 +6,7 @@ Pooja Kiran's canonical security-engineering portfolio, built with Next.js, Reac
 
 `resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex` is the editable factual source for the one-page resume. Its generated `public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf` is the only public resume PDF, and `src/data/resume.ts` mirrors the selected facts used by both portfolio views. Keep all three synchronized whenever verified evidence changes.
 
-The three featured projects form one recruiter-facing security story: **Agent → Tool** (MCP Agent Security Gateway), **Identity → Authority** (AWS Agent Identity Guard), and **Artifact → Runtime** (HF Model Provenance Scanner). Project dates show the original development periods supplied by the maintainer; the current test counts, coverage, fixtures, and other metrics are later 2026 public-repository verification snapshots. The site does not imply that the present implementation or present metrics existed unchanged at the start of each project, and it does not claim production deployment, customer adoption, or universal attack detection.
+The three featured projects form one recruiter-facing security story: **Agent → Tool** (MCP Agent Security Gateway), **Identity → Authority** (AWS Agent Identity Guard), and **Artifact → Runtime** (HF Model Provenance Scanner). Project dates show the original development periods supplied by the maintainer; the displayed test counts, coverage, fixtures, and other metrics are cited 2026 public-repository verification snapshots, not necessarily results for the latest commit. The site does not imply that the present implementation or present metrics existed unchanged at the start of each project, and it does not claim production deployment, customer adoption, or universal attack detection.
 
 `public/pooja-portrait.webp` is the supplied portrait. The scene does not replace Pooja's identity with an invented character.
 
@@ -32,6 +32,10 @@ The development server uses the root path. Run the following checks before publi
 npm run typecheck
 npm run build
 python3 scripts/security_scan.py
+python3 scripts/verify_recruiter_claims.py
+python3 -m pip install ruff==0.8.4
+python3 -m ruff check scripts
+python3 -m ruff format --check scripts
 ```
 
 On Windows, `py scripts/security_scan.py` is an alternative if Python is installed through the Python launcher. A successful command only establishes the scope it checks; type checking and a production build do not replace browser checks for navigation, layout, keyboard access, reduced motion, WebGL failure, resume downloads, and external links. This README does not assert that a particular commit has passed those checks.
@@ -77,3 +81,6 @@ The portfolio presents this ASU Generative AI learning-assistant initiative as a
 ## Recruiting evidence audit (2026-10-09)
 
 See [the bounded recruiting evidence audit](docs/RECRUITER_EVIDENCE_AUDIT_2026-10-09.md) for current dated verification, test-scope limitations and unsupported impact claims.
+
+
+Maintenance checks and their limits are recorded in [the October 9 fix verification](docs/FIX_VERIFICATION_2026-10-09.md).
