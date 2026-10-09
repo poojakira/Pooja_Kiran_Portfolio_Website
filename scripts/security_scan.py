@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -44,8 +45,11 @@ PLACEHOLDER_WORDS = (
 
 
 def tracked_files() -> list[Path]:
+    git = shutil.which("git")
+    if git is None:
+        raise RuntimeError("git executable is required for repository security scans")
     raw = subprocess.check_output(
-        ["git", "-C", str(ROOT), "ls-files", "-z"],
+        [git, "-C", str(ROOT), "ls-files", "-z"],
         text=False,
     ).decode().split("\0")
     return [ROOT / item for item in raw if item]
@@ -60,9 +64,12 @@ def scan_tracked_files() -> list[str]:
         if name.startswith(".env") and name not in ALLOWED_ENV_FILES:
             failures.append(f"{rel}: tracked environment file")
 
-        if name in SENSITIVE_NAMES or path.suffix.lower() in SENSITIVE_SUFFIXES:
-            if ".example." not in name and ".sample." not in name:
-                failures.append(f"{rel}: tracked credential/private-key file")
+        if (
+            (name in SENSITIVE_NAMES or path.suffix.lower() in SENSITIVE_SUFFIXES)
+            and ".example." not in name
+            and ".sample." not in name
+        ):
+            failures.append(f"{rel}: tracked credential/private-key file")
 
         if name.startswith("service-account") and name.endswith(".json"):
             failures.append(f"{rel}: tracked service-account credential file")
