@@ -57,9 +57,9 @@ Never commit tokens, cloud access keys, private keys, or populated credential fi
 External links opened in a new tab use restrictive relationship attributes. A meta Content Security Policy provides the restrictions supported by this static host; response headers and platform-level controls are governed by GitHub Pages. Dependabot checks npm and GitHub Actions dependencies. Dependency advisories and workflow results should be reviewed for the current commit, rather than inferred from historical audit notes.
 
 
-## Evidence refresh — 2026-10-04
+## Evidence refresh — 2026-10-10
 
-The current resume/portfolio synchronization uses MCP Gateway **752 passing Docker CI tests** (with **81.91% coverage from an earlier, separate CI snapshot**), AWS Agent Identity Guard **247 collected / 244 passed / 3 skipped**, and HF Model Provenance Scanner **260 passed / 1 skipped at 75.67% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
+The portfolio cites bounded repository snapshots: MCP Agent Security Gateway **723 passing CI tests** (with **81.91% statement coverage from a separate snapshot**), AWS Agent Identity Guard **243 collected / 240 passed / 3 skipped**, and HF Model Provenance Scanner **241 passed / 1 skipped, plus 6 additional pytest subtests, at 75.67% statement coverage**. The HF scanner also has separate committed-fixture evidence; fixture totals are not population-level detection rates. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
 
 The embedded project poster images are pinned to the regenerated evidence artifacts from MCP Gateway commit `d936cadde0ff4e0fb322c6600638b387b1c39d09`, AWS Agent Identity Guard commit `51916ac3d381579c78112233911827217304022a`, and HF Model Provenance Scanner commit `dec0c68ceb9167c7e9b4b439b1bfd006beb5c148`.
 
