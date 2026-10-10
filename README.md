@@ -84,3 +84,7 @@ See [the bounded recruiting evidence audit](docs/RECRUITER_EVIDENCE_AUDIT_2026-1
 
 
 Maintenance checks and their limits are recorded in [the October 9 fix verification](docs/FIX_VERIFICATION_2026-10-09.md).
+
+## Source-backed poster evidence
+
+The poster assets and their historical evidence limits are recorded in [poster evidence alignment](docs/POSTER_EVIDENCE_ALIGNMENT_2026-10-09.md). Avoid treating dated metrics as current-HEAD outcomes.
