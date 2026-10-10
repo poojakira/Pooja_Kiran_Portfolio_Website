@@ -13,3 +13,7 @@ Snapshot boundaries matter. Other MCP evidence includes a distinct 718-pass/82.4
 The IAM throughput and latency numbers are synthetic benchmark measurements, not production performance. Gateway and model-scanner findings are not evidence of universal prevention or validated detector effectiveness. The Cerberus persistent deployment, identities, credentials, configuration, and baseline were not changed by this poster synchronization.
 
 The authoritative source remains each project's research brief, verified metrics, CI evidence and committed generator source. Changes to claims should update those sources and regenerate artifacts before synchronizing the portfolio.
+
+## Current merged detector update
+
+The gateway detector at commit `c30075d` now has **69** runtime signatures, versus **55** at the historical snapshot. It detected 15/15 development attacks and flagged 3/15 benign examples. Those results are not independent population-level recall, a detection improvement percentage on unseen cases, or a real-world unauthorized-execution reduction. No Cerberus settings were changed.

@@ -105,10 +105,10 @@ export const resume = {
       architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
       bullets: [
         "Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.",
-        "Expanded runtime detection with 55 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
+        "Expanded runtime detection with 69 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
         "Latest Docker CI: 752 passing tests; earlier CI snapshot: 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
       ],
-      metrics: ["752 Docker CI tests", "81.91% earlier coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
+      metrics: ["752 Docker CI tests", "81.91% earlier coverage", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
       testing: "The latest cited Docker CI run passed 752 tests; a separate earlier CI snapshot measured 81.91% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
       limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
       history: "Candidate-reported development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
