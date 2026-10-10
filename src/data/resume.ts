@@ -1,4 +1,4 @@
-// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
+﻿// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
 export type ExperienceItem = {
   role: string;
   detail?: string;
@@ -65,8 +65,8 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ, USA",
       bullets: [
-        "Developed threat models for 3 self-directed security research projects, translating agent-tool, IAM, and model-artifact risks into enforceable controls and regression tests.",
-        "Established reproducible Python regression testing and GitHub Actions checks across 3 repositories; dated 2026 evidence includes 752 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
+        "Mapped agent-to-tool, cloud IAM, and model supply-chain threats to enforceable controls, static checks, and repeatable regression tests.",
+        "Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes 752 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
       ]
     },
     {
@@ -76,7 +76,7 @@ export const resume = {
       organization: "Honeywell Aerospace Technologies x Arizona State University",
       location: "Tempe, AZ, USA",
       bullets: [
-        "Led business/compliance analysis for a proposed airline PSS protection layer and built a $120K first-year commercialization scenario with a five-year financial model presented to ASU and Honeywell stakeholders."
+        "Developed compliance and commercialization analysis for a proposed airline PSS security layer, including a $120K first-year commercialization scenario with a five-year financial model presented to ASU and Honeywell stakeholders."
       ]
     },
     {
@@ -93,7 +93,7 @@ export const resume = {
   projects: [
     {
       id: "mcp",
-      label: "Agent → Tool Security",
+      label: "Agent â†’ Tool Security",
       name: "MCP Agent Security Gateway",
       stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
       dates: "Oct. 2025 - Sep. 2026",
@@ -104,18 +104,18 @@ export const resume = {
       solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
       architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
       bullets: [
-        "Engineered a default-deny MCP/JSON-RPC 2.0 gateway enforcing capability authorization, PII/exfiltration checks, anti-SSRF policy, and rate limits before downstream tool execution.",
-        "Implemented 69 current prompt-injection patterns and tamper-evident audit logging to capture reviewable tool-call decisions and security telemetry.",
-        "Latest Docker CI: 752 passing tests; earlier CI snapshot: 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
+        "Built a default-deny MCP/JSON-RPC 2.0 gateway with 5 pre-execution controls: capability authorization, prompt-injection inspection, PII/exfiltration checks, anti-SSRF egress policy, and rate limiting.",
+        "Expanded the injection-pattern collection from 55 in an earlier verified snapshot to 69 in current source code, with tamper-evident policy-decision audit logging.",
+        "Cited Docker CI: 752 passing tests; earlier CI snapshot: 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
       ],
-      metrics: ["752 Docker CI tests", "81.91% earlier coverage", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "The latest cited Docker CI run passed 752 tests; a separate earlier CI snapshot measured 81.91% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
+      metrics: ["752 tests in cited Docker CI", "81.91% earlier coverage", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
+      testing: "A cited October 2026 Docker CI run passed 752 tests; a separate earlier CI snapshot measured 81.91% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
       limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
       history: "Candidate-reported development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
     {
       id: "iam",
-      label: "Identity → Authority Security",
+      label: "Identity â†’ Authority Security",
       name: "AWS Agent Identity Guard",
       stack: ["Python", "AWS IAM", "SARIF 2.1.0"],
       dates: "Apr. 2025 - Sep. 2025",
@@ -124,8 +124,8 @@ export const resume = {
       solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
       architecture: ["IAM policy", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "GitHub Code Scanning", "Code review"],
       bullets: [
-        "Built a static IAM analyzer with 25 deterministic rules for wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
-        "Integrated 3 finding formats (text, JSON, SARIF 2.1.0) with GitHub Code Scanning to make policy risks visible in code review.",
+        "Built an IAM static analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
+        "Produced 3 finding formats (text, JSON, SARIF 2.1.0), integrating SARIF with GitHub Code Scanning for reviewable IAM policy risks.",
         "Verified 2026 CI snapshot: 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped."
       ],
       metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
@@ -135,7 +135,7 @@ export const resume = {
     },
     {
       id: "supply",
-      label: "Artifact → Runtime Security",
+      label: "Artifact â†’ Runtime Security",
       name: "HF Model Provenance Scanner",
       stack: ["Python", "SafeTensors", "GGUF", "ONNX", "Keras"],
       dates: "Nov. 2024 - Mar. 2025",
@@ -144,9 +144,9 @@ export const resume = {
       solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
       architecture: ["Repository or artifact", "Non-executing inspection", "Pickle and AST/taint checks", "Dependency and provenance checks", "Obfuscation and format checks", "Findings"],
       bullets: [
-        "Developed a non-executing model supply-chain scanner for unsafe serialization and provenance indicators, avoiding untrusted code execution in its default inspection path.",
-        "Combined pickle-opcode, AST/taint, dependency, and obfuscation checks across 5 model format families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
-        "Verified 2026 CI snapshot: 260 passed, 1 skipped at 75.67% statement coverage; 33/33 committed adversarial fixtures detected."
+        "Engineered non-executing inspection across 5 model artifact families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived files; avoided running untrusted model code by default.",
+        "Combined pickle-opcode, AST/taint, provenance/dependency, and obfuscation checks; detected 33/33 committed adversarial fixtures (12 incident recreations, 18 variants, 3 large-scale cases).",
+        "Verified 2026 CI snapshot: 260 passed, 1 skipped, and 75.67% statement coverage; fixture detection separately evaluated."
       ],
       metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
       testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
@@ -162,7 +162,7 @@ export const resume = {
     title: "Generative AI Learning Assistant Initiative",
     role: "Student Participant",
     dates: "2025",
-    organization: "Arizona State University · Principled Innovation-Infused Learning Engineering",
+    organization: "Arizona State University Â· Principled Innovation-Infused Learning Engineering",
     description: "Participated in an ASU Principled Innovation-infused Learning Engineering initiative involving a Generative AI learning assistant designed to support personalized education.",
     scope: "Educational participation; separate from professional employment, internship, and research-service appointments.",
     tags: ["Generative AI", "Learning Engineering", "Personalized Education"]
