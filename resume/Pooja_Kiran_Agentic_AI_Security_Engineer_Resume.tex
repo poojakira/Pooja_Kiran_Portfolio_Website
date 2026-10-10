@@ -58,13 +58,13 @@
 \resumeSubHeadingListStart
   \resumeSubheading{Independent AI Security Researcher \& Engineer}{Aug. 2024 - Present}{Self-Directed Research}{Tempe, AZ, USA}
   \resumeItemListStart
-    \resumeItem{Developed threat models for 3 self-directed security research projects, translating agent-tool, IAM, and model-artifact risks into enforceable controls and regression tests.}
-    \resumeItem{Established reproducible Python regression testing and GitHub Actions checks across 3 repositories; dated 2026 evidence includes \textbf{752 gateway tests}, \textbf{25 IAM rule IDs}, and \textbf{260 model-scanner tests}.}
+    \resumeItem{Mapped agent-to-tool, cloud IAM, and model supply-chain threats to enforceable controls, static checks, and repeatable regression tests.}
+    \resumeItem{Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes \textbf{752 gateway tests}, \textbf{25 IAM rule IDs}, and \textbf{260 model-scanner tests}.}
   \resumeItemListEnd
 
   \resumeSubheading{Business \& Compliance Lead, AEROSEC}{Aug. 2025 - Dec. 2025}{Honeywell Aerospace Technologies $\times$ Arizona State University}{Tempe, AZ, USA}
   \resumeItemListStart
-    \resumeItem{Led business/compliance analysis for a proposed airline PSS protection layer and built a \textbf{\$120K first-year commercialization scenario} with a five-year financial model presented to ASU and Honeywell stakeholders.}
+    \resumeItem{Developed compliance and commercialization analysis for a proposed airline PSS security layer, including a \textbf{\$120K first-year commercialization scenario} with a five-year financial model presented to ASU and Honeywell stakeholders.}
   \resumeItemListEnd
 
   \resumeSubheading{Graduate Teaching Assistant, IT Grader}{Jan. 2025 - Oct. 2025}{Ira A. Fulton Schools of Engineering, Arizona State University}{Mesa, AZ}
@@ -78,23 +78,23 @@
 \resumeSubHeadingListStart
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/mcp-agent-security-gateway}{\underline{MCP Agent Security Gateway}}} $|$ \emph{Python, FastAPI, MCP/JSON-RPC 2.0, Elastic Security}}{Oct. 2025 - Sep. 2026}
   \resumeItemListStart
-    \resumeItem{Engineered a default-deny MCP/JSON-RPC 2.0 gateway enforcing capability authorization, PII/exfiltration checks, anti-SSRF policy, and rate limits before downstream tool execution.}
-    \resumeItem{Implemented \textbf{69 current prompt-injection patterns} and tamper-evident audit logging to capture reviewable tool-call decisions and security telemetry.}
-    \resumeItem{Latest Docker CI: \textbf{752 passing tests}; earlier snapshot: \textbf{81.91\% statement coverage}. Includes \textbf{9 Elastic rules} and \textbf{21 core SIEM tests}.}
+    \resumeItem{Built a default-deny MCP/JSON-RPC 2.0 gateway with 5 pre-execution controls: capability authorization, prompt-injection inspection, PII/exfiltration checks, anti-SSRF egress policy, and rate limiting.}
+    \resumeItem{Expanded the prompt-injection collection from \textbf{55 earlier patterns to 69 current patterns}, with tamper-evident policy-decision audit logging.}
+    \resumeItem{Cited Docker CI: \textbf{752 passing tests}; earlier snapshot: \textbf{81.91\% statement coverage}. Includes \textbf{9 Elastic rules} and \textbf{21 core SIEM tests}.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/aws-agent-identity-guard}{\underline{AWS Agent Identity Guard}}} $|$ \emph{Python, AWS IAM, SARIF 2.1.0}}{Apr. 2025 - Sep. 2025}
   \resumeItemListStart
-    \resumeItem{Built a static IAM analyzer with \textbf{25 deterministic rules} for wildcard grants, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.}
-    \resumeItem{Integrated 3 finding formats (text, JSON, SARIF 2.1.0) with GitHub Code Scanning to make policy risks visible in code review.}
+    \resumeItem{Built an IAM static analyzer with \textbf{25 deterministic rules} covering wildcard grants, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.}
+    \resumeItem{Produced 3 finding formats (text, JSON, SARIF 2.1.0), integrating SARIF with GitHub Code Scanning for reviewable IAM policy risks.}
     \resumeItem{Verified 2026 CI snapshot: \textbf{247 collected, 244 passed, 3 skipped}; the skipped checks require live AWS credentials.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/hf-model-provenance-scanner}{\underline{HF Model Provenance Scanner}}} $|$ \emph{Python, SafeTensors, GGUF, ONNX, Keras}}{Nov. 2024 - Mar. 2025}
   \resumeItemListStart
-    \resumeItem{Developed a non-executing model supply-chain scanner for unsafe serialization and provenance indicators, avoiding untrusted code execution in its default inspection path.}
-    \resumeItem{Combined pickle-opcode, AST/taint, dependency, and obfuscation checks across 5 model format families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.}
-    \resumeItem{Verified 2026 CI snapshot: \textbf{260 passed, 1 skipped at 75.67\% statement coverage}; detected \textbf{33/33 committed adversarial fixtures}.}
+    \resumeItem{Engineered non-executing inspection across 5 model artifact families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived files; avoided running untrusted model code by default.}
+    \resumeItem{Combined pickle-opcode, AST/taint, provenance/dependency, and obfuscation checks; detected 33/33 committed adversarial fixtures (12 incident recreations, 18 variants, 3 large-scale cases).}
+    \resumeItem{Verified 2026 CI snapshot: \textbf{260 passed, 1 skipped} with \textbf{75.67\% statement coverage}; fixture detection separately evaluated.}
   \resumeItemListEnd
 
 \resumeSubHeadingListEnd
