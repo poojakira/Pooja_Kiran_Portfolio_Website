@@ -65,8 +65,8 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ, USA",
       bullets: [
-        "Developed threat models and security checks for self-directed AI and cloud tooling, translating risks into capability controls, static IAM rules, and testable CI gates.",
-        "Built reproducible Python regression and CI validation across an agent gateway, IAM analyzer, and model scanner; dated 2026 evidence covers 752 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
+        "Developed threat models for 3 self-directed security research projects, translating agent-tool, IAM, and model-artifact risks into enforceable controls and regression tests.",
+        "Established reproducible Python regression testing and GitHub Actions checks across 3 repositories; dated 2026 evidence includes 752 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
       ]
     },
     {
@@ -104,8 +104,8 @@ export const resume = {
       solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
       architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
       bullets: [
-        "Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.",
-        "Expanded runtime detection with 69 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
+        "Engineered a default-deny MCP/JSON-RPC 2.0 gateway enforcing capability authorization, PII/exfiltration checks, anti-SSRF policy, and rate limits before downstream tool execution.",
+        "Implemented 69 current prompt-injection patterns and tamper-evident audit logging to capture reviewable tool-call decisions and security telemetry.",
         "Latest Docker CI: 752 passing tests; earlier CI snapshot: 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
       ],
       metrics: ["752 Docker CI tests", "81.91% earlier coverage", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
@@ -124,8 +124,8 @@ export const resume = {
       solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
       architecture: ["IAM policy", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "GitHub Code Scanning", "Code review"],
       bullets: [
-        "Built a static IAM policy analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
-        "Made IAM findings reviewable in CI by emitting text, JSON, and SARIF 2.1.0 results into GitHub Code Scanning, turning policy weaknesses into actionable code-review evidence.",
+        "Built a static IAM analyzer with 25 deterministic rules for wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
+        "Integrated 3 finding formats (text, JSON, SARIF 2.1.0) with GitHub Code Scanning to make policy risks visible in code review.",
         "Verified 2026 CI snapshot: 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped."
       ],
       metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
@@ -144,8 +144,8 @@ export const resume = {
       solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
       architecture: ["Repository or artifact", "Non-executing inspection", "Pickle and AST/taint checks", "Dependency and provenance checks", "Obfuscation and format checks", "Findings"],
       bullets: [
-        "Built a non-executing model supply-chain scanner that inspects unsafe serialization and provenance indicators without executing untrusted repository code in the default inspection path.",
-        "Combined pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks to surface risky behavior across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
+        "Developed a non-executing model supply-chain scanner for unsafe serialization and provenance indicators, avoiding untrusted code execution in its default inspection path.",
+        "Combined pickle-opcode, AST/taint, dependency, and obfuscation checks across 5 model format families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
         "Verified 2026 CI snapshot: 260 passed, 1 skipped at 75.67% statement coverage; 33/33 committed adversarial fixtures detected."
       ],
       metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
