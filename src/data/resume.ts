@@ -60,20 +60,20 @@ export const resume = {
   ],
   experience: [
     {
-      role: "Independent AI Security Researcher & Engineer",
+      role: "Independent AI Security Engineer",
       dates: "Aug. 2024 - Present",
-      organization: "Self-Directed Research",
+      organization: "Self-Directed Security Projects",
       location: "Tempe, AZ, USA",
       bullets: [
         "Mapped agent-to-tool, cloud IAM, and model supply-chain threats to enforceable controls, static checks, and repeatable regression tests.",
-        "Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes 752 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
+        "Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes 723 gateway tests, 25 IAM rule IDs, and 241 model-scanner tests."
       ]
     },
     {
-      role: "Business & Compliance Lead",
+      role: "Business & Compliance Lead, AEROSEC (Academic Project)",
       detail: "AEROSEC",
       dates: "Aug. 2025 - Dec. 2025",
-      organization: "Honeywell Aerospace Technologies x Arizona State University",
+      organization: "ASU & Honeywell Aerospace Technology Innovation Lab (TEM 598)",
       location: "Tempe, AZ, USA",
       bullets: [
         "Developed compliance and commercialization analysis for a proposed airline PSS security layer, including a $120K first-year commercialization scenario with a five-year financial model presented to ASU and Honeywell stakeholders."
@@ -106,10 +106,10 @@ export const resume = {
       bullets: [
         "Built a default-deny MCP/JSON-RPC 2.0 gateway with 5 pre-execution controls: capability authorization, prompt-injection inspection, PII/exfiltration checks, anti-SSRF egress policy, and rate limiting.",
         "Expanded the injection-pattern collection from 55 in an earlier verified snapshot to 69 in current source code, with tamper-evident policy-decision audit logging.",
-        "Cited Docker CI: 752 passing tests; earlier CI snapshot: 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
+        "Cited CI snapshot: 723 passing tests; a separate earlier CI snapshot measured 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
       ],
-      metrics: ["752 tests in cited Docker CI", "81.91% earlier coverage", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "A cited October 2026 Docker CI run passed 752 tests; a separate earlier CI snapshot measured 81.91% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
+      metrics: ["723 tests in cited CI snapshot", "81.91% earlier coverage", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
+      testing: "A cited CI snapshot passed 723 tests; a separate earlier CI snapshot measured 81.91% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
       limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
       history: "Candidate-reported development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
@@ -126,10 +126,10 @@ export const resume = {
       bullets: [
         "Built an IAM static analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
         "Produced 3 finding formats (text, JSON, SARIF 2.1.0), integrating SARIF with GitHub Code Scanning for reviewable IAM policy risks.",
-        "Verified 2026 CI snapshot: 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped."
+        "Verified CI snapshot: 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped."
       ],
-      metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
-      testing: "The cited 2026 repository verification snapshot reports 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped.",
+      metrics: ["25 deterministic rules", "240 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
+      testing: "The cited repository verification snapshot reports 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped.",
       limitations: "The evidence supports deterministic static-policy analysis. It does not claim complete effective-permission evaluation, production latency, or runtime authorization guarantees.",
       history: "Candidate-reported development period: Apr. 2025 - Sep. 2025. Public GitHub history begins Aug. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
@@ -146,10 +146,10 @@ export const resume = {
       bullets: [
         "Engineered non-executing inspection across 5 model artifact families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived files; avoided running untrusted model code by default.",
         "Combined pickle-opcode, AST/taint, provenance/dependency, and obfuscation checks; detected 33/33 committed adversarial fixtures (12 incident recreations, 18 variants, 3 large-scale cases).",
-        "Verified 2026 CI snapshot: 260 passed, 1 skipped, and 75.67% statement coverage; fixture detection separately evaluated."
+        "Verified CI snapshot: 241 passed, 1 skipped, 6 additional pytest subtests passed, and 75.67% statement coverage; fixture detection separately evaluated."
       ],
-      metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
-      testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
+      metrics: ["241 passed / 1 skipped; 6 subtests", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
+      testing: "The cited CI snapshot reports 241 passed, 1 skipped, 6 additional pytest subtests, and 75.67% statement coverage. Separate committed fixture evidence records 33/33 adversarial fixtures detected and 0 actionable findings across 4 benign samples.",
       limitations: "The fixture results are bounded regression evidence; the benign result covers only four committed samples. Neither is a universal detection or false-positive rate.",
       history: "Candidate-reported development period: Nov. 2024 - Mar. 2025. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     }

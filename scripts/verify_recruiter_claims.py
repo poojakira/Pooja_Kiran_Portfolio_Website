@@ -17,11 +17,11 @@ for f in files:
         if forbidden in s:
             raise SystemExit(f"{f.name}: unverified impact claim {forbidden}")
     for verified in [
-        "752",
+        "723",
         "81.91",
         "25 deterministic",
-        "244 passed",
-        "260 passed",
+        "240 passed",
+        "241 passed",
         "33/33",
     ]:
         if verified not in s:

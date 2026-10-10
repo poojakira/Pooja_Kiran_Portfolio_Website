@@ -56,13 +56,13 @@
 
 \section{Experience}
 \resumeSubHeadingListStart
-  \resumeSubheading{Independent AI Security Researcher \& Engineer}{Aug. 2024 - Present}{Self-Directed Research}{Tempe, AZ, USA}
+  \resumeSubheading{Independent AI Security Engineer}{Aug. 2024 - Present}{Self-Directed Security Projects}{Tempe, AZ, USA}
   \resumeItemListStart
     \resumeItem{Mapped agent-to-tool, cloud IAM, and model supply-chain threats to enforceable controls, static checks, and repeatable regression tests.}
-    \resumeItem{Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes \textbf{752 gateway tests}, \textbf{25 IAM rule IDs}, and \textbf{260 model-scanner tests}.}
+    \resumeItem{Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes \textbf{723 gateway tests}, \textbf{25 IAM rule IDs}, and \textbf{241 model-scanner tests}.}
   \resumeItemListEnd
 
-  \resumeSubheading{Business \& Compliance Lead, AEROSEC}{Aug. 2025 - Dec. 2025}{Honeywell Aerospace Technologies $\times$ Arizona State University}{Tempe, AZ, USA}
+  \resumeSubheading{Business \& Compliance Lead, AEROSEC (Academic Project)}{Aug. 2025 - Dec. 2025}{ASU \& Honeywell Aerospace Technology Innovation Lab (TEM 598)}{Tempe, AZ, USA}
   \resumeItemListStart
     \resumeItem{Developed compliance and commercialization analysis for a proposed airline PSS security layer, including a \textbf{\$120K first-year commercialization scenario} with a five-year financial model presented to ASU and Honeywell stakeholders.}
   \resumeItemListEnd
@@ -80,21 +80,21 @@
   \resumeItemListStart
     \resumeItem{Built a default-deny MCP/JSON-RPC 2.0 gateway with 5 pre-execution controls: capability authorization, prompt-injection inspection, PII/exfiltration checks, anti-SSRF egress policy, and rate limiting.}
     \resumeItem{Expanded the prompt-injection collection from \textbf{55 earlier patterns to 69 current patterns}, with tamper-evident policy-decision audit logging.}
-    \resumeItem{Cited Docker CI: \textbf{752 passing tests}; earlier snapshot: \textbf{81.91\% statement coverage}. Includes \textbf{9 Elastic rules} and \textbf{21 core SIEM tests}.}
+    \resumeItem{Cited CI snapshot: \textbf{723 passing tests}; a separate snapshot measured \textbf{81.91\% statement coverage}. Includes \textbf{9 Elastic rules} and \textbf{21 core SIEM tests}.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/aws-agent-identity-guard}{\underline{AWS Agent Identity Guard}}} $|$ \emph{Python, AWS IAM, SARIF 2.1.0}}{Apr. 2025 - Sep. 2025}
   \resumeItemListStart
     \resumeItem{Built an IAM static analyzer with \textbf{25 deterministic rules} covering wildcard grants, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.}
     \resumeItem{Produced 3 finding formats (text, JSON, SARIF 2.1.0), integrating SARIF with GitHub Code Scanning for reviewable IAM policy risks.}
-    \resumeItem{Verified 2026 CI snapshot: \textbf{247 collected, 244 passed, 3 skipped}; the skipped checks require live AWS credentials.}
+    \resumeItem{Verified CI snapshot: \textbf{243 collected, 240 passed, 3 skipped}; skipped checks require live AWS credentials.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/hf-model-provenance-scanner}{\underline{HF Model Provenance Scanner}}} $|$ \emph{Python, SafeTensors, GGUF, ONNX, Keras}}{Nov. 2024 - Mar. 2025}
   \resumeItemListStart
     \resumeItem{Engineered non-executing inspection across 5 model artifact families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived files; avoided running untrusted model code by default.}
     \resumeItem{Combined pickle-opcode, AST/taint, provenance/dependency, and obfuscation checks; detected 33/33 committed adversarial fixtures (12 incident recreations, 18 variants, 3 large-scale cases).}
-    \resumeItem{Verified 2026 CI snapshot: \textbf{260 passed, 1 skipped} with \textbf{75.67\% statement coverage}; fixture detection separately evaluated.}
+    \resumeItem{Verified CI snapshot: \textbf{241 passed, 1 skipped, 6 additional pytest subtests passed} with \textbf{75.67\% statement coverage}; fixture detection is evaluated separately.}
   \resumeItemListEnd
 
 \resumeSubHeadingListEnd
