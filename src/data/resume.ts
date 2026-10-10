@@ -66,7 +66,7 @@ export const resume = {
       location: "Tempe, AZ, USA",
       bullets: [
         "Developed threat models and security checks for self-directed AI and cloud tooling, translating risks into capability controls, static IAM rules, and testable CI gates.",
-        "Built reproducible Python regression and CI validation across an agent gateway, IAM analyzer, and model scanner; dated 2026 evidence covers 723 gateway tests, 25 IAM rule IDs, and 241 model-scanner tests."
+        "Built reproducible Python regression and CI validation across an agent gateway, IAM analyzer, and model scanner; dated 2026 evidence covers 752 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
       ]
     },
     {
@@ -106,10 +106,10 @@ export const resume = {
       bullets: [
         "Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.",
         "Expanded runtime detection with 55 prompt-injection patterns and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.",
-        "Verified 2026 CI snapshot: 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
+        "Latest Docker CI: 752 passing tests; earlier CI snapshot: 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
       ],
-      metrics: ["723 passing tests", "81.91% coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "The cited 2026 repository verification snapshot reports 723 passing tests at 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests.",
+      metrics: ["752 Docker CI tests", "81.91% earlier coverage", "55 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
+      testing: "The latest cited Docker CI run passed 752 tests; a separate earlier CI snapshot measured 81.91% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
       limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
       history: "Candidate-reported development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
@@ -126,10 +126,10 @@ export const resume = {
       bullets: [
         "Built a static IAM policy analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
         "Made IAM findings reviewable in CI by emitting text, JSON, and SARIF 2.1.0 results into GitHub Code Scanning, turning policy weaknesses into actionable code-review evidence.",
-        "Verified 2026 CI snapshot: 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped."
+        "Verified 2026 CI snapshot: 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped."
       ],
-      metrics: ["25 deterministic rules", "240 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
-      testing: "The cited 2026 repository verification snapshot reports 243 collected, 240 passed, and 3 credential-dependent live-scan tests skipped.",
+      metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
+      testing: "The cited 2026 repository verification snapshot reports 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped.",
       limitations: "The evidence supports deterministic static-policy analysis. It does not claim complete effective-permission evaluation, production latency, or runtime authorization guarantees.",
       history: "Candidate-reported development period: Apr. 2025 - Sep. 2025. Public GitHub history begins Aug. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
@@ -146,10 +146,10 @@ export const resume = {
       bullets: [
         "Built a non-executing model supply-chain scanner that inspects unsafe serialization and provenance indicators without executing untrusted repository code in the default inspection path.",
         "Combined pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks to surface risky behavior across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.",
-        "Verified 2026 CI snapshot: 241 passed, 1 skipped at 75.67% statement coverage; 33/33 committed adversarial fixtures detected."
+        "Verified 2026 CI snapshot: 260 passed, 1 skipped at 75.67% statement coverage; 33/33 committed adversarial fixtures detected."
       ],
-      metrics: ["241 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
-      testing: "The cited 2026 repository verification snapshot reports 241 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
+      metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
+      testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
       limitations: "The fixture results are bounded regression evidence; the benign result covers only four committed samples. Neither is a universal detection or false-positive rate.",
       history: "Candidate-reported development period: Nov. 2024 - Mar. 2025. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     }
