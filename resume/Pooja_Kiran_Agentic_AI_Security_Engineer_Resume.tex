@@ -59,7 +59,7 @@
   \resumeSubheading{Independent AI Security Researcher \& Engineer}{Aug. 2024 - Present}{Self-Directed Research}{Tempe, AZ, USA}
   \resumeItemListStart
     \resumeItem{Developed threat models and security checks for self-directed AI and cloud tooling, translating risks into capability controls, static IAM rules, and testable CI gates.}
-    \resumeItem{Built reproducible Python regression and CI validation across an agent gateway, IAM analyzer, and model scanner; dated 2026 evidence covers \textbf{723 gateway tests}, \textbf{25 IAM rule IDs}, and \textbf{241 model-scanner tests}.}
+    \resumeItem{Built reproducible Python regression and CI validation across an agent gateway, IAM analyzer, and model scanner; dated 2026 evidence covers \textbf{752 gateway tests}, \textbf{25 IAM rule IDs}, and \textbf{260 model-scanner tests}.}
   \resumeItemListEnd
 
   \resumeSubheading{Business \& Compliance Lead, AEROSEC}{Aug. 2025 - Dec. 2025}{Honeywell Aerospace Technologies $\times$ Arizona State University}{Tempe, AZ, USA}
@@ -80,21 +80,21 @@
   \resumeItemListStart
     \resumeItem{Secured the agent-to-tool execution boundary by engineering a default-deny MCP/JSON-RPC gateway with capability authorization, PII/exfiltration checks, anti-SSRF controls, rate limiting, and fail-closed enforcement before downstream execution.}
     \resumeItem{Expanded runtime detection with \textbf{55 prompt-injection patterns} and tamper-evident audit logging, producing reviewable security telemetry for policy decisions and incident analysis.}
-    \resumeItem{Verified 2026 CI snapshot: \textbf{723 passing tests at 81.91\% statement coverage}, plus \textbf{9 Elastic rules} and \textbf{21 core SIEM tests}.}
+    \resumeItem{Latest Docker CI: \textbf{752 passing tests}; earlier snapshot: \textbf{81.91\% statement coverage}. Includes \textbf{9 Elastic rules} and \textbf{21 core SIEM tests}.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/aws-agent-identity-guard}{\underline{AWS Agent Identity Guard}}} $|$ \emph{Python, AWS IAM, SARIF 2.1.0}}{Apr. 2025 - Sep. 2025}
   \resumeItemListStart
     \resumeItem{Built a static IAM policy analyzer with \textbf{25 deterministic rules} covering wildcard grants, \texttt{iam:PassRole}, \texttt{sts:AssumeRole}, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.}
     \resumeItem{Made IAM findings reviewable in CI by emitting text, JSON, and SARIF 2.1.0 results into GitHub Code Scanning, turning policy weaknesses into actionable code-review evidence.}
-    \resumeItem{Verified 2026 CI snapshot: \textbf{243 collected, 240 passed, 3 skipped}; the skipped checks require live AWS credentials.}
+    \resumeItem{Verified 2026 CI snapshot: \textbf{247 collected, 244 passed, 3 skipped}; the skipped checks require live AWS credentials.}
   \resumeItemListEnd
 
   \resumeProjectHeading{\textbf{\href{https://github.com/poojakira/hf-model-provenance-scanner}{\underline{HF Model Provenance Scanner}}} $|$ \emph{Python, SafeTensors, GGUF, ONNX, Keras}}{Nov. 2024 - Mar. 2025}
   \resumeItemListStart
     \resumeItem{Built a non-executing model supply-chain scanner that inspects unsafe serialization and provenance indicators without executing untrusted repository code in the default inspection path.}
     \resumeItem{Combined pickle-opcode, AST/taint, dependency/provenance, obfuscation, and binary-format checks to surface risky behavior across SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts.}
-    \resumeItem{Verified 2026 CI snapshot: \textbf{241 passed, 1 skipped at 75.67\% statement coverage}; detected \textbf{33/33 committed adversarial fixtures}.}
+    \resumeItem{Verified 2026 CI snapshot: \textbf{260 passed, 1 skipped at 75.67\% statement coverage}; detected \textbf{33/33 committed adversarial fixtures}.}
   \resumeItemListEnd
 
 \resumeSubHeadingListEnd
