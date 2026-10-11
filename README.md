@@ -88,3 +88,7 @@ Maintenance checks and their limits are recorded in [the October 9 fix verificat
 ## Source-backed poster evidence
 
 The poster assets and their historical evidence limits are recorded in [poster evidence alignment](docs/POSTER_EVIDENCE_ALIGNMENT_2026-10-09.md). Avoid treating dated metrics as current-HEAD outcomes.
+
+## October 11, 2026 evidence reconciliation
+
+The canonical resume and recruiter view cite a **752-pass gateway Docker CI snapshot** with a **separate earlier 81.91% coverage snapshot**. A later October 10 GitHub Actions [gateway Python 3.12 run](https://github.com/poojakira/mcp-agent-security-gateway/actions/runs/38012954359) completed with **782 passed and 81.93% coverage**. Do not combine these two test/coverage results as one run; the public resume PDF remains anchored to its existing cited figures until source and generated PDF are rebuilt together. In the same audit, [IAM CI](https://github.com/poojakira/aws-agent-identity-guard/actions/runs/38009457205) reported **244 passed / 3 skipped**, and [HF CI](https://github.com/poojakira/hf-model-provenance-scanner/actions/runs/38002138828) reported **260 passed / 1 skipped / 6 subtests** at **75.67% coverage**. Historical poster panels and their original run/commit anchors remain unchanged. AEROSEC is an **academic Honeywell × ASU externship**, not a claim of employment by Honeywell, and the $120K is a proposed commercialization scenario, not received funding.
