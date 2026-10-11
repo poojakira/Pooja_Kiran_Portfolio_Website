@@ -16,6 +16,12 @@ for f in files:
     ]:
         if forbidden in s:
             raise SystemExit(f"{f.name}: unverified impact claim {forbidden}")
+    if f.suffix == ".ts":
+        for broken in ["â†’", "â·"]:
+            if broken in s:
+                raise SystemExit(f"{f.name}: corrupted Unicode label {broken!r}")
+        if "academic externship" not in s:
+            raise SystemExit(f"{f.name}: AEROSEC academic scope not labeled")
     for verified in [
         "752",
         "81.91",

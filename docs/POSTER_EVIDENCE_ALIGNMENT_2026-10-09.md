@@ -17,3 +17,7 @@ The authoritative source remains each project's research brief, verified metrics
 ## Current merged detector update
 
 The gateway detector at commit `c30075d` now has **69** runtime signatures, versus **55** at the historical snapshot. It detected 15/15 development attacks and flagged 3/15 benign examples. Those results are not independent population-level recall, a detection improvement percentage on unseen cases, or a real-world unauthorized-execution reduction. No Cerberus settings were changed.
+
+## October 11, 2026 follow-up: keep poster snapshots separate
+
+The repository posters referenced above are frozen to their originally cited commits. Subsequently, [gateway main CI run 38012954359](https://github.com/poojakira/mcp-agent-security-gateway/actions/runs/38012954359) reported **782 tests passed and 81.93% coverage**. [IAM run 38009457205](https://github.com/poojakira/aws-agent-identity-guard/actions/runs/38009457205) reported **244 passed / 3 skipped**, and [HF run 38002138828](https://github.com/poojakira/hf-model-provenance-scanner/actions/runs/38002138828) reported **260 passed / 1 skipped, 75.67% coverage**. Those newer results are not printed on the pinned historical poster images and must not be attributed to the older poster-run anchors. Updating graphic files requires a separate evidence-pinned regenerate-and-visual-review operation; this note does not assert that the images were regenerated.

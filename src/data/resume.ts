@@ -71,9 +71,9 @@ export const resume = {
     },
     {
       role: "Business & Compliance Lead",
-      detail: "AEROSEC",
+      detail: "AEROSEC (academic externship)",
       dates: "Aug. 2025 - Dec. 2025",
-      organization: "Honeywell Aerospace Technologies x Arizona State University",
+      organization: "Honeywell Aerospace Technologies × Arizona State University (academic externship)",
       location: "Tempe, AZ, USA",
       bullets: [
         "Developed compliance and commercialization analysis for a proposed airline PSS security layer, including a $120K first-year commercialization scenario with a five-year financial model presented to ASU and Honeywell stakeholders."
@@ -93,7 +93,7 @@ export const resume = {
   projects: [
     {
       id: "mcp",
-      label: "Agent â†’ Tool Security",
+      label: "Agent → Tool Security",
       name: "MCP Agent Security Gateway",
       stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
       dates: "Oct. 2025 - Sep. 2026",
@@ -115,7 +115,7 @@ export const resume = {
     },
     {
       id: "iam",
-      label: "Identity â†’ Authority Security",
+      label: "Identity → Authority Security",
       name: "AWS Agent Identity Guard",
       stack: ["Python", "AWS IAM", "SARIF 2.1.0"],
       dates: "Apr. 2025 - Sep. 2025",
@@ -135,7 +135,7 @@ export const resume = {
     },
     {
       id: "supply",
-      label: "Artifact â†’ Runtime Security",
+      label: "Artifact → Runtime Security",
       name: "HF Model Provenance Scanner",
       stack: ["Python", "SafeTensors", "GGUF", "ONNX", "Keras"],
       dates: "Nov. 2024 - Mar. 2025",
@@ -162,7 +162,7 @@ export const resume = {
     title: "Generative AI Learning Assistant Initiative",
     role: "Student Participant",
     dates: "2025",
-    organization: "Arizona State University Â· Principled Innovation-Infused Learning Engineering",
+    organization: "Arizona State University · Principled Innovation-Infused Learning Engineering",
     description: "Participated in an ASU Principled Innovation-infused Learning Engineering initiative involving a Generative AI learning assistant designed to support personalized education.",
     scope: "Educational participation; separate from professional employment, internship, and research-service appointments.",
     tags: ["Generative AI", "Learning Engineering", "Personalized Education"]
