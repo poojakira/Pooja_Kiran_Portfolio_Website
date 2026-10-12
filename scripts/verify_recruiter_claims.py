@@ -23,8 +23,8 @@ for f in files:
         if "academic externship" not in s:
             raise SystemExit(f"{f.name}: AEROSEC academic scope not labeled")
     for verified in [
-        "752",
-        "81.91",
+        "782",
+        "81.93",
         "25 deterministic",
         "244 passed",
         "260 passed",
@@ -32,4 +32,9 @@ for f in files:
     ]:
         if verified not in s:
             raise SystemExit(f"{f.name}: missing evidence {verified}")
+if "AEROSEC (academic externship)" not in files[0].read_text(encoding="utf-8-sig"):
+    raise SystemExit("LaTeX must label AEROSEC as an academic externship")
+portfolio_ui = (r / "src/components/Portfolio.tsx").read_text(encoding="utf-8-sig")
+if "60-second demo script (text)" not in portfolio_ui:
+    raise SystemExit("Portfolio must label the Markdown demo guide as text")
 print("Resume factual guard passed on canonical LaTeX and TypeScript sources")
