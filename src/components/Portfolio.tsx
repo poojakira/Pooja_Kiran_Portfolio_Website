@@ -135,7 +135,7 @@ function Hero() {
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Three security trust boundaries with repository-backed proof">
-          <div><strong>Agent → Tool</strong><span>752 Docker CI tests · default-deny execution controls</span></div>
+          <div><strong>Agent → Tool</strong><span>782 Python 3.12 CI tests · default-deny execution controls</span></div>
           <div><strong>Identity → Authority</strong><span>25 IAM rules · privilege and trust-policy analysis</span></div>
           <div><strong>Artifact → Runtime</strong><span>33/33 adversarial fixtures · non-executing inspection</span></div>
           <small>Repository-backed evidence with CI verification and explicit scope limitations.</small>
@@ -254,7 +254,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <div className="scope-actions">
             <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
             {project.caseStudy && <a href={project.caseStudy} target="_blank" rel="noreferrer">Read AppSec case study <ArrowIcon /></a>}
-            {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">60-second demo <ArrowIcon /></a>}
+            {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">60-second demo script (text) <ArrowIcon /></a>}
           </div>
         </div>
       </div>
