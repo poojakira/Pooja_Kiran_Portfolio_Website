@@ -66,7 +66,7 @@ export const resume = {
       location: "Tempe, AZ, USA",
       bullets: [
         "Mapped agent-to-tool, cloud IAM, and model supply-chain threats to enforceable controls, static checks, and repeatable regression tests.",
-        "Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes 752 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
+        "Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes 782 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
       ]
     },
     {
@@ -106,10 +106,10 @@ export const resume = {
       bullets: [
         "Built a default-deny MCP/JSON-RPC 2.0 gateway with 5 pre-execution controls: capability authorization, prompt-injection inspection, PII/exfiltration checks, anti-SSRF egress policy, and rate limiting.",
         "Expanded the injection-pattern collection from 55 in an earlier verified snapshot to 69 in current source code, with tamper-evident policy-decision audit logging.",
-        "Cited Docker CI: 752 passing tests; earlier CI snapshot: 81.91% statement coverage, plus 9 Elastic rules and 21 core SIEM tests."
+        "Cited Python 3.12 CI: 782 passing tests at 81.93% statement coverage in the same run, plus 9 Elastic rules and 21 core SIEM tests."
       ],
-      metrics: ["752 tests in cited Docker CI", "81.91% earlier coverage", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "A cited October 2026 Docker CI run passed 752 tests; a separate earlier CI snapshot measured 81.91% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
+      metrics: ["782 tests in cited Python 3.12 CI", "81.93% coverage, same CI run", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
+      testing: "The October 10, 2026 Python 3.12 CI run 38012954359 passed 782 tests at 81.93% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
       limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
       history: "Candidate-reported development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
