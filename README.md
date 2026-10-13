@@ -1,3 +1,5 @@
+> **READ THIS LICENSE BEFORE COPYING, USING, OR MODIFYING ANY MATERIAL.** This repository's owner-controlled original content is proprietary and **All Rights Reserved**. There is no permission to copy, modify, distribute, or reuse it without prior written authorization, subject to existing third-party rights, any prior valid licenses, GitHub's Terms, and applicable law. See [LICENSE](LICENSE).
+
 # Pooja Kiran Portfolio Website
 
 Pooja Kiran's canonical security-engineering portfolio, built with Next.js, React, TypeScript, and an on-demand Three.js environment. The canonical public URL is [GitHub Pages](https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/); other dashboard or preview sites are supporting evidence surfaces, not alternate professional homepages.
