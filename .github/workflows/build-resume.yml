@@ -70,7 +70,7 @@ jobs:
             --input /tmp/resume-pdf-request.json >/dev/null
 
       - name: Upload generated PDF
-        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: agentic-ai-security-resume
           path: public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
