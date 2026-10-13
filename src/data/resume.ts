@@ -126,10 +126,10 @@ export const resume = {
       bullets: [
         "Built an IAM static analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
         "Produced 3 finding formats (text, JSON, SARIF 2.1.0), integrating SARIF with GitHub Code Scanning for reviewable IAM policy risks.",
-        "Verified 2026 CI snapshot: 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped."
+        "Verified 2026 CI snapshot: 247 collected, 244 passed, and 3 unavailable rule-API tests skipped."
       ],
       metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
-      testing: "The cited 2026 repository verification snapshot reports 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped.",
+      testing: "The cited 2026 repository verification snapshot reports 247 collected, 244 passed, and 3 unavailable rule-API tests skipped.",
       limitations: "The evidence supports deterministic static-policy analysis. It does not claim complete effective-permission evaluation, production latency, or runtime authorization guarantees.",
       history: "Candidate-reported development period: Apr. 2025 - Sep. 2025. Public GitHub history begins Aug. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
