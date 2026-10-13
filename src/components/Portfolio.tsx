@@ -135,8 +135,8 @@ function Hero() {
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Three security trust boundaries with repository-backed proof">
-          <div><strong>Agent → Tool</strong><span>782 Python 3.12 CI tests · default-deny execution controls</span></div>
-          <div><strong>Identity → Authority</strong><span>25 IAM rules · privilege and trust-policy analysis</span></div>
+          <div><strong>Agent → Tool</strong><span>782 tests in dated CI · path-specific inspection controls</span></div>
+          <div><strong>Identity → Authority</strong><span>24 offline IAM rules + optional role-metadata check</span></div>
           <div><strong>Artifact → Runtime</strong><span>33/33 adversarial fixtures · non-executing inspection</span></div>
           <small>Repository-backed evidence with CI verification and explicit scope limitations.</small>
         </div>
@@ -216,9 +216,9 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
 
         <div className="poster-object" data-reveal>
           <div className="poster-frame">
-            <img src={projectPosters[project.id]} alt={`${project.name} research poster`} />
+            <a href={projectPosters[project.id]} target="_blank" rel="noreferrer" aria-label={`Open ${project.name} dated evidence poster`}><img src={projectPosters[project.id]} alt={`${project.name} dated evidence poster`} /></a>
           </div>
-          <span className="poster-caption">Current verified evidence poster · repository-backed</span>
+          <span className="poster-caption">Dated evidence poster · open image to inspect claims</span>
         </div>
 
         <div className="project-dual-proof">
@@ -232,7 +232,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
 
           <section className="proof-panel proof-builder" data-reveal>
             <span className="panel-label">Architecture & verification</span>
-            <h4>How the security decision is enforced end to end</h4>
+            <h4>Implemented components and evidence flow</h4>
             <div className="builder-sequence">
               {project.architecture.map((step, stepIndex) => (
                 <div key={step}>

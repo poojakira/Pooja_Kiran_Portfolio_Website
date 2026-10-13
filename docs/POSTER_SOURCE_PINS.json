@@ -1,0 +1,23 @@
+[
+  {
+    "repository": "mcp-agent-security-gateway",
+    "commit": "c45a3699432e558991e07ba9f4b837c947670c33",
+    "path": "poster/poster.png",
+    "portfolio_path": "public/mcp-poster.png",
+    "sha256": "bb2384e694b4648d86273e85c47e74d813b4b1d1992e76a5b5167a148efc0a5f"
+  },
+  {
+    "repository": "aws-agent-identity-guard",
+    "commit": "31e372844802e66ef71e66f1cb66aa5dbcbbbc08",
+    "path": "poster/poster.png",
+    "portfolio_path": "public/iam-poster.png",
+    "sha256": "b0c53f89f2458cebb8b7182a8ea8cf74a299c92c567a2913585e79d91715c07e"
+  },
+  {
+    "repository": "hf-model-provenance-scanner",
+    "commit": "a90031a3ae1003d35b3d6e8b9de60cf26894dfb5",
+    "path": "poster/poster.png",
+    "portfolio_path": "public/provenance-poster.png",
+    "sha256": "8a7fcf1a99fb65371e9382803b024105a5ae916e96ddf997a6b05b416c0991c0"
+  }
+]

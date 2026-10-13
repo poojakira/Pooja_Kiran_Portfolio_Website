@@ -1,4 +1,4 @@
-﻿// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
+// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
 export type ExperienceItem = {
   role: string;
   detail?: string;
@@ -65,8 +65,8 @@ export const resume = {
       organization: "Self-Directed Research",
       location: "Tempe, AZ, USA",
       bullets: [
-        "Mapped agent-to-tool, cloud IAM, and model supply-chain threats to enforceable controls, static checks, and repeatable regression tests.",
-        "Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes 782 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
+        "Implemented MCP inspection controls, offline IAM checks, and non-executing model-artifact analysis across three self-directed repositories.",
+        "Automated pytest and GitHub Actions checks for malformed inputs, policy failures, and adversarial artifact fixtures; documented reproducible evidence and remaining security limits."
       ]
     },
     {
@@ -101,16 +101,16 @@ export const resume = {
       caseStudy: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_CASE_STUDY.md",
       demo: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/RECRUITER_DEMO_60S.md",
       problem: "Agent tool calls cross an execution boundary where authorization, content risk, egress policy, rate limits, and audit evidence need to be enforced before downstream execution.",
-      solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
+      solution: "MCP inspection and policy components for tool/server authorization, injection and PII signals, egress checks, rate limiting and hash-chained audit evidence; enforcement differs across integration paths.",
       architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
       bullets: [
-        "Built a default-deny MCP/JSON-RPC 2.0 gateway with 5 pre-execution controls: capability authorization, prompt-injection inspection, PII/exfiltration checks, anti-SSRF egress policy, and rate limiting.",
-        "Expanded the injection-pattern collection from 55 in an earlier verified snapshot to 69 in current source code, with tamper-evident policy-decision audit logging.",
-        "Cited Python 3.12 CI: 782 passing tests at 81.93% statement coverage in the same run, plus 9 Elastic rules and 21 core SIEM tests."
+        "Implemented tool/server allowlists, egress policies, injection and PII inspection, rate limits, and hash-chained audit logging across supported gateway paths.",
+        "Maintained 69 injection-pattern entries and 9 Elastic rule records, with 21 core SIEM tests; controls vary by integration path.",
+        "October 10, 2026 UTC Python 3.12 CI: 782 passed at 81.93% statement coverage in the same run."
       ],
-      metrics: ["782 tests in cited Python 3.12 CI", "81.93% coverage, same CI run", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "The October 10, 2026 Python 3.12 CI run 38012954359 passed 782 tests at 81.93% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
-      limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
+      metrics: ["782 tests in cited Python 3.12 CI", "81.93% coverage, same CI run", "69 dated injection-pattern entries", "9 Elastic rules", "21 core SIEM tests"],
+      testing: "Run 38012954359 at b6d7122ab6f008bd24fa3fcff933618e051aaae1, initiated October 10, 2026 UTC, passed 782 tests at 81.93% statement coverage. Source inventories separately establish 9 Elastic rule records and 21 core SIEM test functions.",
+      limitations: "Controls vary by integration path. HTTP inspection callers must honor returned decisions; the stdio path is not a universal five-control pipeline. Dated tests do not establish production deployment, adoption or universal prevention.",
       history: "Candidate-reported development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
     {
@@ -121,15 +121,15 @@ export const resume = {
       dates: "Apr. 2025 - Sep. 2025",
       repository: "https://github.com/poojakira/aws-agent-identity-guard",
       problem: "Agent and workload identities can become over-privileged through wildcard grants, iam:PassRole, sts:AssumeRole, weak trust policies, privilege-escalation paths, and missing permission boundaries.",
-      solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
-      architecture: ["IAM policy", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "GitHub Code Scanning", "Code review"],
+      solution: "An IAM analyzer with 24 offline policy/trust rules plus a permission-boundary check for optional role metadata, and text, JSON, and SARIF 2.1.0 findings.",
+      architecture: ["IAM policy", "Policy/trust and optional role checks", "Finding evidence", "Text / JSON / SARIF", "GitHub Code Scanning", "Code review"],
       bullets: [
-        "Built an IAM static analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
-        "Produced 3 finding formats (text, JSON, SARIF 2.1.0), integrating SARIF with GitHub Code Scanning for reviewable IAM policy risks.",
-        "Verified 2026 CI snapshot: 247 collected, 244 passed, and 3 unavailable rule-API tests skipped."
+        "Implemented 24 offline policy/trust rules plus a permission-boundary check for optional role metadata, covering wildcard grants, PassRole, AssumeRole, and escalation risks.",
+        "Produced text, JSON, and SARIF 2.1.0 findings for policy review and GitHub Code Scanning; static analysis does not establish complete effective permissions.",
+        "October 10, 2026 UTC CI: 247 collected, 244 passed, 3 skipped; skips are disabled separate-rule-API tests."
       ],
-      metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
-      testing: "The cited 2026 repository verification snapshot reports 247 collected, 244 passed, and 3 unavailable rule-API tests skipped.",
+      metrics: ["24 offline rules + 1 role-metadata check", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
+      testing: "Run 38009457205 at bc35752dbfd72a7ce80eb1ad992bc6bc656d70fe, initiated October 10, 2026 UTC, reports 247 collected, 244 passed and 3 disabled separate-rule-API tests skipped.",
       limitations: "The evidence supports deterministic static-policy analysis. It does not claim complete effective-permission evaluation, production latency, or runtime authorization guarantees.",
       history: "Candidate-reported development period: Apr. 2025 - Sep. 2025. Public GitHub history begins Aug. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     },
@@ -144,12 +144,12 @@ export const resume = {
       solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
       architecture: ["Repository or artifact", "Non-executing inspection", "Pickle and AST/taint checks", "Dependency and provenance checks", "Obfuscation and format checks", "Findings"],
       bullets: [
-        "Engineered non-executing inspection across 5 model artifact families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived files; avoided running untrusted model code by default.",
-        "Combined pickle-opcode, AST/taint, provenance/dependency, and obfuscation checks; detected 33/33 committed adversarial fixtures (12 incident recreations, 18 variants, 3 large-scale cases).",
-        "Verified 2026 CI snapshot: 260 passed, 1 skipped, and 75.67% statement coverage; fixture detection separately evaluated."
+        "Built static, non-executing inspection for SafeTensors, GGUF, ONNX, Keras, and pickle-derived artifacts, plus Python-loader and dependency checks.",
+        "Detected 33/33 committed adversarial fixtures, with 0 actionable findings on 4 committed benign samples; these are bounded fixture results.",
+        "October 9, 2026 UTC Python 3.12 CI: 260 passed, 1 skipped with 75.67% statement coverage."
       ],
       metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
-      testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
+      testing: "Run 38002138828 at 2f937ba51f31c678e43a064e95d6939e3feb9226, initiated October 9, 2026 UTC, reports 260 passed, 1 skipped and 75.67% statement coverage. Separate guarded static-fixture checks reproduced 33/33 adversarial detections and 0 actionable findings across 4 benign samples.",
       limitations: "The fixture results are bounded regression evidence; the benign result covers only four committed samples. Neither is a universal detection or false-positive rate.",
       history: "Candidate-reported development period: Nov. 2024 - Mar. 2025. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
     }

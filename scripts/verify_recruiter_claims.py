@@ -25,7 +25,8 @@ for f in files:
     for verified in [
         "782",
         "81.93",
-        "25 deterministic",
+        "24 offline",
+        "permission-boundary",
         "244 passed",
         "260 passed",
         "33/33",
