@@ -19,9 +19,15 @@ class SourceGateTests(unittest.TestCase):
         for repo, path in EXPECTED.items():
             content = repo.encode()
             (self.root / path).write_bytes(content)
-            self.records.append({"repository": repo, "portfolio_path": path,
-                                 "path": "poster/poster.png", "commit": "a" * 40,
-                                 "sha256": hashlib.sha256(content).hexdigest()})
+            self.records.append(
+                {
+                    "repository": repo,
+                    "portfolio_path": path,
+                    "path": "poster/poster.png",
+                    "commit": "a" * 40,
+                    "sha256": hashlib.sha256(content).hexdigest(),
+                }
+            )
 
     def test_valid_local_manifest(self):
         self.assertTrue(verify(self.root, self.records, local_only=True))

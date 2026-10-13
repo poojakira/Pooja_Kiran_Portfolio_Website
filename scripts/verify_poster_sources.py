@@ -20,7 +20,7 @@ def verify(root: Path, records, *, local_only: bool = False):
     seen = set()
     for entry in records:
         if not isinstance(entry, dict):
-            raise ValueError("invalid source record")
+            raise TypeError("invalid source record")
         repo = entry.get("repository")
         if repo not in EXPECTED or repo in seen:
             raise ValueError("unknown or duplicate repository")
@@ -37,8 +37,13 @@ def verify(root: Path, records, *, local_only: bool = False):
         if hashlib.sha256(content).hexdigest() != entry["sha256"]:
             raise ValueError("local poster hash mismatch")
         if not local_only:
-            url = ("https://raw.githubusercontent.com/poojakira/" + repo
-                   + "/" + entry["commit"] + "/poster/poster.png")
+            url = (
+                "https://raw.githubusercontent.com/poojakira/"
+                + repo
+                + "/"
+                + entry["commit"]
+                + "/poster/poster.png"
+            )
             with urllib.request.urlopen(url, timeout=30) as response:
                 remote = response.read(8 * 1024 * 1024 + 1)
             if len(remote) > 8 * 1024 * 1024 or remote != content:
@@ -51,5 +56,8 @@ if __name__ == "__main__":
     records = json.loads((root / "docs/POSTER_SOURCE_PINS.json").read_text())
     local_only = "--local-only" in sys.argv
     verify(root, records, local_only=local_only)
-    print("Three local pinned hashes match; remote sources not checked" if local_only
-          else "Three portfolio posters match their immutable source copies")
+    print(
+        "Three local pinned hashes match; remote sources not checked"
+        if local_only
+        else "Three portfolio posters match their immutable source copies"
+    )
