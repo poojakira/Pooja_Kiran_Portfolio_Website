@@ -40,6 +40,16 @@ jobs:
           test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
+          pdftotext -layout .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf /tmp/generated-resume-content.txt
+          # Verify the printed artifact, not only the LaTeX source.
+          test "$(grep -o 'Oct 2026' /tmp/generated-resume-content.txt | wc -l)" -ge 3
+          grep -Fq "Built automated regression coverage" /tmp/generated-resume-content.txt
+          grep -Fq "Tested IAM policy analysis" /tmp/generated-resume-content.txt
+          grep -Fq "Tested model artifact inspection" /tmp/generated-resume-content.txt
+          if grep -Fqi "Project periods are candidate-reported" /tmp/generated-resume-content.txt; then
+            echo "Unwanted project-period note found in generated PDF"
+            exit 1
+          fi
           python3 scripts/verify_recruiter_claims.py
 
       - name: Sync generated PDF to PR branch
