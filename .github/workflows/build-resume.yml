@@ -45,7 +45,7 @@ jobs:
           test "$(grep -o 'Oct 2026' /tmp/generated-resume-content.txt | wc -l)" -ge 3
           grep -Fq "Built automated regression coverage" /tmp/generated-resume-content.txt
           grep -Fq "Tested IAM policy analysis" /tmp/generated-resume-content.txt
-          grep -Fq "Tested artifact inspection" /tmp/generated-resume-content.txt
+          grep -Fq "Tested model artifact inspection" /tmp/generated-resume-content.txt
           if grep -Fqi "Project periods are candidate-reported" /tmp/generated-resume-content.txt; then
             echo "Unwanted project-period note found in generated PDF"
             exit 1
