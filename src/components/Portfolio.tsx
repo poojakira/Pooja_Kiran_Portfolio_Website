@@ -218,7 +218,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <div className="poster-frame">
             <img src={projectPosters[project.id]} alt={`${project.name} research poster`} />
           </div>
-          <span className="poster-caption">Current verified evidence poster · repository-backed</span>
+          <span className="poster-caption">Historical poster snapshot · consult dated evidence for current CI</span>
         </div>
 
         <div className="project-dual-proof">
