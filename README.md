@@ -63,7 +63,7 @@ External links opened in a new tab use restrictive relationship attributes. A me
 
 The updated resume/portfolio source cites the MCP Gateway **782 passing Python 3.12 CI tests at 81.93% coverage from the same October 10, 2026 UTC run**, AWS Agent Identity Guard **247 collected / 244 passed / 3 skipped**, and HF Model Provenance Scanner **260 passed / 1 skipped at 75.67% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
 
-The embedded project poster images are pinned to the regenerated evidence artifacts from MCP Gateway commit `d936cadde0ff4e0fb322c6600638b387b1c39d09`, AWS Agent Identity Guard commit `51916ac3d381579c78112233911827217304022a`, and HF Model Provenance Scanner commit `dec0c68ceb9167c7e9b4b439b1bfd006beb5c148`.
+The three embedded poster thumbnails are **historical evidence snapshots**, associated with older MCP Gateway (`d936cadde0ff4e0fb322c6600638b387b1c39d09`), AWS Identity Guard (`51916ac3d381579c78112233911827217304022a`), and HF Provenance Scanner (`dec0c68ceb9167c7e9b4b439b1bfd006beb5c148`) source periods. They are **not** claimed to be byte-identical to current source-repository poster exports or to display the latest hosted CI counts. Current results are shown separately in the editable résumé/portfolio data; the thumbnails must be regenerated and visually verified before any claim that they show the latest source graphics.
 
 The canonical public resume PDF is rebuilt from the tracked LaTeX source and the build gate verifies the current project metrics before synchronization. The generated artifact is accepted only after the one-page and current-metric checks pass.
 
