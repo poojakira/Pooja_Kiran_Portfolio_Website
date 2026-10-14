@@ -40,4 +40,14 @@ for period in ("Oct 2025 - Oct 2026", "Apr 2025 - Oct 2026", "Nov 2024 - Oct 202
 if "candidate-reported" in sources[0].lower() + sources[1].lower():
     raise SystemExit("Unwanted project-period disclaimer")
 
+for source in sources:
+    if "not realized funding or revenue" in source.lower():
+        raise SystemExit("Unwanted AEROSEC funding wording")
+    if "one test was skipped" in source.lower():
+        raise SystemExit("Unwanted HF Scanner skipped-test wording")
+
+for cert in ("Cloud Architecting", "Cloud Security Foundations"):
+    if cert not in sources[0] or cert not in sources[1]:
+        raise SystemExit("Missing AWS Academy certification: " + cert)
+
 print("Resume evidence check passed")
