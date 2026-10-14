@@ -1,40 +1,33 @@
+"""Verify resume and website against bounded engineering evidence."""
+
+import re
 from pathlib import Path
 
-r = Path(__file__).resolve().parents[1]
-files = [
-    r / "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex",
-    r / "src/data/resume.ts",
-]
-for f in files:
-    s = f.read_text(encoding="utf-8-sig").lower()
-    for forbidden in [
-        "96.15",
-        "40% reduction",
-        "60% detection",
-        "100% of unauthorized",
-        "98.7% success",
-    ]:
-        if forbidden in s:
-            raise SystemExit(f"{f.name}: unverified impact claim {forbidden}")
-    if f.suffix == ".ts":
-        for broken in ["â†’", "â·"]:
-            if broken in s:
-                raise SystemExit(f"{f.name}: corrupted Unicode label {broken!r}")
-        if "academic externship" not in s:
-            raise SystemExit(f"{f.name}: AEROSEC academic scope not labeled")
-    for verified in [
-        "782",
-        "81.93",
-        "25 deterministic",
-        "244 passed",
-        "260 passed",
-        "33/33",
-    ]:
-        if verified not in s:
-            raise SystemExit(f"{f.name}: missing evidence {verified}")
-if "AEROSEC (academic externship)" not in files[0].read_text(encoding="utf-8-sig"):
-    raise SystemExit("LaTeX must label AEROSEC as an academic externship")
-portfolio_ui = (r / "src/components/Portfolio.tsx").read_text(encoding="utf-8-sig")
-if "60-second demo script (text)" not in portfolio_ui:
-    raise SystemExit("Portfolio must label the Markdown demo guide as text")
-print("Resume factual guard passed on canonical LaTeX and TypeScript sources")
+root = Path(__file__).resolve().parents[1]
+tex = root / "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
+data = root / "src/data/resume.ts"
+sources = (tex.read_text(encoding="utf-8-sig"), data.read_text(encoding="utf-8-sig"))
+
+for source in sources:
+    lower = source.lower()
+    for forbidden in ("96.15", "40% reduction", "60% detection", "100% secure"):
+        if forbidden in lower:
+            raise SystemExit("Unsupported impact claim: " + forbidden)
+    required = ("782", "81.93", "25 deterministic", "85 undergraduate")
+    required += ("52 graduate", "120,000", "externship", "244", "260")
+    for value in required:
+        if value.lower() not in lower:
+            raise SystemExit("Missing source-backed evidence: " + value)
+    if not re.search(r"\b33\s*(?:/|of)\s*33\b", source):
+        raise SystemExit("Missing bounded 33/33 model-scanner fixture result")
+
+if "academic externship" not in sources[1].lower():
+    raise SystemExit("Academic externship labeling missing in website data")
+if "â†’" in sources[1] or "â·" in sources[1]:
+    raise SystemExit("Corrupted Unicode in website data")
+
+portfolio = root / "src/components/Portfolio.tsx"
+ui = portfolio.read_text(encoding="utf-8-sig")
+if "60-second demo script (text)" not in ui:
+    raise SystemExit("Portfolio must label the Markdown demo as text")
+print("Resume evidence check passed")

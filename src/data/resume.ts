@@ -30,7 +30,7 @@ export type ProjectItem = {
 export const resume = {
   sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM Security | Model Supply-Chain Security",
+  headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM",
   positioning: "I secure the trust boundaries where AI systems gain authority and take action.",
   location: "Tempe, AZ, USA",
   phone: "+1 480-776-7745",
@@ -61,32 +61,34 @@ export const resume = {
   experience: [
     {
       role: "Independent AI Security Researcher & Engineer",
-      dates: "Aug. 2024 - Present",
-      organization: "Self-Directed Research",
-      location: "Tempe, AZ, USA",
+      dates: "Aug 2024 - Present",
+      organization: "Self-Directed Engineering",
+      location: "Tempe, AZ",
       bullets: [
-        "Mapped agent-to-tool, cloud IAM, and model supply-chain threats to enforceable controls, static checks, and repeatable regression tests.",
-        "Automated Python regression and GitHub Actions validation across 3 self-directed security projects; dated CI evidence includes 782 gateway tests, 25 IAM rule IDs, and 260 model-scanner tests."
+        "Built Python security tooling for MCP tool authorization, IAM policy analysis, and model artifact inspection across three independently developed projects.",
+        "Implemented fail-closed decisions, structured findings, audit trails, and CI-based regression testing with pytest, GitHub Actions, CodeQL, and Docker."
       ]
     },
     {
       role: "Business & Compliance Lead",
       detail: "AEROSEC (academic externship)",
-      dates: "Aug. 2025 - Dec. 2025",
-      organization: "Honeywell Aerospace Technologies × Arizona State University (academic externship)",
-      location: "Tempe, AZ, USA",
+      dates: "Aug 2025 - Dec 2025",
+      organization: "Technology Innovation Lab Externship, Arizona State University | Externally mentored aviation project",
+      location: "Tempe, AZ",
       bullets: [
-        "Developed compliance and commercialization analysis for a proposed airline PSS security layer, including a $120K first-year commercialization scenario with a five-year financial model presented to ASU and Honeywell stakeholders."
+        "Defined third-party Passenger Service System and vendor API risks for a proposed airline security dashboard with compliance and incident-reporting workflows.",
+        "Compared four commercial security solutions and modeled a proposed $120,000 year-one budget with 12-month runway; not realized funding or revenue."
       ]
     },
     {
       role: "Graduate Teaching Assistant",
       detail: "IT Grader",
-      dates: "Jan. 2025 - Oct. 2025",
+      dates: "Jan 2025 - Oct 2025",
       organization: "Ira A. Fulton Schools of Engineering, Arizona State University",
       location: "Mesa, AZ",
       bullets: [
-        "Evaluated approximately 85 undergraduate web-development submissions per semester and 52 graduate cybersecurity assignments, giving evidence-based feedback on security controls, policy, compliance, risk analysis, and implementation quality."
+        "Assessed approximately 85 undergraduate Web Programming submissions per semester and 52 graduate cybersecurity assignments using instructor rubrics.",
+        "Provided technical feedback on secure development, security compliance, risk analysis, and information-systems security coursework."
       ]
     }
   ] satisfies ExperienceItem[],
@@ -104,9 +106,9 @@ export const resume = {
       solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
       architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
       bullets: [
-        "Built a default-deny MCP/JSON-RPC 2.0 gateway with 5 pre-execution controls: capability authorization, prompt-injection inspection, PII/exfiltration checks, anti-SSRF egress policy, and rate limiting.",
-        "Expanded the injection-pattern collection from 55 in an earlier verified snapshot to 69 in current source code, with tamper-evident policy-decision audit logging.",
-        "Cited Python 3.12 CI: 782 passing tests at 81.93% statement coverage in the same run, plus 9 Elastic rules and 21 core SIEM tests."
+        "Engineered a default-deny agent-to-tool gateway with capability checks, request inspection, anti-SSRF egress rules, and rate limits.",
+        "Implemented 69 named prompt-injection signatures, PII/exfiltration signals, hash-chained auditing, and nine Elastic Security rule records.",
+        "Verified October 2026 Python 3.12 CI: 782 tests passed, 81.93% statement coverage; 21 core SIEM tests separately documented."
       ],
       metrics: ["782 tests in cited Python 3.12 CI", "81.93% coverage, same CI run", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
       testing: "The October 10, 2026 Python 3.12 CI run 38012954359 passed 782 tests at 81.93% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
@@ -124,9 +126,9 @@ export const resume = {
       solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
       architecture: ["IAM policy", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "GitHub Code Scanning", "Code review"],
       bullets: [
-        "Built an IAM static analyzer with 25 deterministic rules covering wildcard grants, iam:PassRole, sts:AssumeRole, privilege escalation, trust-policy weaknesses, audit tampering, and permission boundaries.",
-        "Produced 3 finding formats (text, JSON, SARIF 2.1.0), integrating SARIF with GitHub Code Scanning for reviewable IAM policy risks.",
-        "Verified 2026 CI snapshot: 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped."
+        "Built a static workload-identity analyzer for dangerous grants, escalation paths, trust-policy weaknesses, and missing permission boundaries.",
+        "Implemented 25 deterministic rules for wildcard access, iam:PassRole, sts:AssumeRole, and trust policies; emitted CI-readable SARIF findings.",
+        "Verified October 2026 CI: 244 tests passed, three credential-gated tests skipped; results are static-policy checks, not live authorization."
       ],
       metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
       testing: "The cited 2026 repository verification snapshot reports 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped.",
@@ -144,9 +146,9 @@ export const resume = {
       solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
       architecture: ["Repository or artifact", "Non-executing inspection", "Pickle and AST/taint checks", "Dependency and provenance checks", "Obfuscation and format checks", "Findings"],
       bullets: [
-        "Engineered non-executing inspection across 5 model artifact families: SafeTensors, GGUF, ONNX, Keras, and pickle-derived files; avoided running untrusted model code by default.",
-        "Combined pickle-opcode, AST/taint, provenance/dependency, and obfuscation checks; detected 33/33 committed adversarial fixtures (12 incident recreations, 18 variants, 3 large-scale cases).",
-        "Verified 2026 CI snapshot: 260 passed, 1 skipped, and 75.67% statement coverage; fixture detection separately evaluated."
+        "Built non-executing model artifact scanning for pickle-derived, SafeTensors, GGUF, ONNX, and Keras formats.",
+        "Combined serialization, AST/taint, provenance, and dependency checks; flagged 33 of 33 committed adversarial test fixtures.",
+        "Verified October 2026 CI: 260 tests passed, one skipped, 75.67% statement coverage; fixtures do not establish universal detection."
       ],
       metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
       testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
