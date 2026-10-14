@@ -59,7 +59,7 @@ Never commit tokens, cloud access keys, private keys, or populated credential fi
 External links opened in a new tab use restrictive relationship attributes. A meta Content Security Policy provides the restrictions supported by this static host; response headers and platform-level controls are governed by GitHub Pages. Dependabot checks npm and GitHub Actions dependencies. Dependency advisories and workflow results should be reviewed for the current commit, rather than inferred from historical audit notes.
 
 
-## Evidence refresh — 2026-10-04
+## Evidence refresh — posters October 4; newer source and CI evidence October 10–12, 2026
 
 The updated resume/portfolio source cites the MCP Gateway **782 passing Python 3.12 CI tests at 81.93% coverage from the same October 10, 2026 UTC run**, AWS Agent Identity Guard **247 collected / 244 passed / 3 skipped**, and HF Model Provenance Scanner **260 passed / 1 skipped at 75.67% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
 
