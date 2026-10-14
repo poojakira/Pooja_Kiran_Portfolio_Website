@@ -1,0 +1,53 @@
+name: Poster Source Sync
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/poster_sources.json'
+      - 'docs/POSTER_EVIDENCE_ALIGNMENT_2026-10-14.md'
+      - 'scripts/sync_poster_assets.py'
+      - '.github/workflows/poster-source-sync.yml'
+      - 'public/mcp-poster.png'
+      - 'public/iam-poster.png'
+      - 'public/provenance-poster.png'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  synchronize:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout internal review branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          persist-credentials: false
+      - name: Fetch only pinned public source poster bytes
+        run: python3 scripts/sync_poster_assets.py --sync
+      - name: Update poster image files on the PR head
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          for path in public/mcp-poster.png public/iam-poster.png public/provenance-poster.png; do
+            local_hash="$(git hash-object "$path")"
+            remote_hash="$(gh api "repos/$GITHUB_REPOSITORY/contents/$path?ref=$PR_BRANCH" --jq .sha)"
+            if [ "$local_hash" = "$remote_hash" ]; then
+              echo "$path is already synchronized"
+              continue
+            fi
+            base64 -w0 "$path" > /tmp/verified-poster.b64
+            jq -n --arg message "build: synchronize evidence-pinned portfolio poster" --rawfile content /tmp/verified-poster.b64 --arg sha "$remote_hash" --arg branch "$PR_BRANCH" '{message:$message, content:$content, sha:$sha, branch:$branch}' > /tmp/verified-poster-update.json
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/contents/$path" --input /tmp/verified-poster-update.json >/dev/null
+          done
+      - name: Verify sources still match committed art
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/sync_poster_assets.py
