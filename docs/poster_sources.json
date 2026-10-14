@@ -13,16 +13,16 @@
     {
       "file": "iam-poster.png",
       "repository": "aws-agent-identity-guard",
-      "commit": "b0a0f47d611749ea1466017016c9a5991d49b71f",
-      "git_blob_sha": "935433b95e18d47b860c03ea958223bbe7eb8692",
+      "commit": "da0b9f1e453ae0e640af9734dc88a3bed14ea7b2",
+      "git_blob_sha": "8aa9bb09a48c6aebcbc34a84e10623796595876d",
       "run_id": 38497940763,
       "summary": "247 collected, 244 passed, 3 skipped; 25 rule IDs"
     },
     {
       "file": "provenance-poster.png",
       "repository": "hf-model-provenance-scanner",
-      "commit": "44073732d6dd04252064ce0366a7d6caf6041cd9",
-      "git_blob_sha": "6c293eff19c6cd76461dc2205ff148c6d33cd93f",
+      "commit": "595b33ba8b1af4c2d4ed6ce1ab4b95bc5034cef4",
+      "git_blob_sha": "ebc57344ac1d7dde878fdba42c5d6108be744790",
       "run_id": 38498005353,
       "summary": "260 passed, 1 skipped, 6 subtests, 75.67% statement coverage"
     }
