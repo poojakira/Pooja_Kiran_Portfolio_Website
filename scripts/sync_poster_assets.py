@@ -24,7 +24,9 @@ def git_blob_sha(data: bytes) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--sync", action="store_true", help="Fetch verified source PNGs")
+    parser.add_argument(
+        "--sync", action="store_true", help="Fetch verified source PNGs"
+    )
     args = parser.parse_args()
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
