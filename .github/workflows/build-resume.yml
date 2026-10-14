@@ -46,6 +46,12 @@ jobs:
           grep -Fq "Built automated regression coverage" /tmp/generated-resume-content.txt
           grep -Fq "Tested IAM policy analysis" /tmp/generated-resume-content.txt
           grep -Fq "Tested model artifact inspection" /tmp/generated-resume-content.txt
+          grep -Fq "Cloud Architecting" /tmp/generated-resume-content.txt
+          grep -Fq "Cloud Security Foundations" /tmp/generated-resume-content.txt
+          if grep -Eiq "not realized funding or revenue|one test was skipped" /tmp/generated-resume-content.txt; then
+            echo "Unwanted AEROSEC/HF text found in PDF"
+            exit 1
+          fi
           if grep -Fqi "Project periods are candidate-reported" /tmp/generated-resume-content.txt; then
             echo "Unwanted project-period note found in generated PDF"
             exit 1
