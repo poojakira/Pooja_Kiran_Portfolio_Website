@@ -30,4 +30,14 @@ portfolio = root / "src/components/Portfolio.tsx"
 ui = portfolio.read_text(encoding="utf-8-sig")
 if "60-second demo script (text)" not in ui:
     raise SystemExit("Portfolio must label the Markdown demo as text")
+
+for period in ("Oct 2025 -- Oct 2026", "Apr 2025 -- Oct 2026", "Nov 2024 -- Oct 2026"):
+    if period not in sources[0]:
+        raise SystemExit("Incorrect project period in LaTeX: " + period)
+for period in ("Oct 2025 - Oct 2026", "Apr 2025 - Oct 2026", "Nov 2024 - Oct 2026"):
+    if period not in sources[1]:
+        raise SystemExit("Incorrect project period in website: " + period)
+if "candidate-reported" in sources[0].lower() + sources[1].lower():
+    raise SystemExit("Unwanted project-period disclaimer")
+
 print("Resume evidence check passed")

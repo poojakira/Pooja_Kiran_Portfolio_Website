@@ -98,7 +98,7 @@ export const resume = {
       label: "Agent → Tool Security",
       name: "MCP Agent Security Gateway",
       stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
-      dates: "Oct. 2025 - Sep. 2026",
+      dates: "Oct 2025 - Oct 2026",
       repository: "https://github.com/poojakira/mcp-agent-security-gateway",
       caseStudy: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_CASE_STUDY.md",
       demo: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/RECRUITER_DEMO_60S.md",
@@ -108,19 +108,19 @@ export const resume = {
       bullets: [
         "Engineered a default-deny agent-to-tool gateway with capability checks, request inspection, anti-SSRF egress rules, and rate limits.",
         "Implemented 69 named prompt-injection signatures, PII/exfiltration signals, hash-chained auditing, and nine Elastic Security rule records.",
-        "Verified October 2026 Python 3.12 CI: 782 tests passed, 81.93% statement coverage; 21 core SIEM tests separately documented."
+        "Built automated regression coverage for gateway controls and SIEM integration; the Python 3.12 suite passed 782 tests with 81.93% statement coverage."
       ],
       metrics: ["782 tests in cited Python 3.12 CI", "81.93% coverage, same CI run", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
       testing: "The October 10, 2026 Python 3.12 CI run 38012954359 passed 782 tests at 81.93% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
       limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
-      history: "Candidate-reported development period: Oct. 2025 - Sep. 2026. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
+      history: "Project work: Oct 2025 to Oct 2026. CI figures are from a specific October 2026 Python 3.12 run, not operational detection effectiveness."
     },
     {
       id: "iam",
       label: "Identity → Authority Security",
       name: "AWS Agent Identity Guard",
       stack: ["Python", "AWS IAM", "SARIF 2.1.0"],
-      dates: "Apr. 2025 - Sep. 2025",
+      dates: "Apr 2025 - Oct 2026",
       repository: "https://github.com/poojakira/aws-agent-identity-guard",
       problem: "Agent and workload identities can become over-privileged through wildcard grants, iam:PassRole, sts:AssumeRole, weak trust policies, privilege-escalation paths, and missing permission boundaries.",
       solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
@@ -128,19 +128,19 @@ export const resume = {
       bullets: [
         "Built a static workload-identity analyzer for dangerous grants, escalation paths, trust-policy weaknesses, and missing permission boundaries.",
         "Implemented 25 deterministic rules for wildcard access, iam:PassRole, sts:AssumeRole, and trust policies; emitted CI-readable SARIF findings.",
-        "Verified October 2026 CI: 244 tests passed, three credential-gated tests skipped; results are static-policy checks, not live authorization."
+        "Tested IAM policy analysis through CI, with 244 passing tests; three live-AWS checks were skipped because they required credentials."
       ],
       metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
       testing: "The cited 2026 repository verification snapshot reports 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped.",
       limitations: "The evidence supports deterministic static-policy analysis. It does not claim complete effective-permission evaluation, production latency, or runtime authorization guarantees.",
-      history: "Candidate-reported development period: Apr. 2025 - Sep. 2025. Public GitHub history begins Aug. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
+      history: "Project work: Apr 2025 to Oct 2026. Static policy analysis does not establish live AWS authorization outcomes."
     },
     {
       id: "supply",
       label: "Artifact → Runtime Security",
       name: "HF Model Provenance Scanner",
       stack: ["Python", "SafeTensors", "GGUF", "ONNX", "Keras"],
-      dates: "Nov. 2024 - Mar. 2025",
+      dates: "Nov 2024 - Oct 2026",
       repository: "https://github.com/poojakira/hf-model-provenance-scanner",
       problem: "Untrusted model repositories and artifacts can carry serialization, loader, dependency, provenance, and obfuscation risk before a model is loaded.",
       solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
@@ -148,12 +148,12 @@ export const resume = {
       bullets: [
         "Built non-executing model artifact scanning for pickle-derived, SafeTensors, GGUF, ONNX, and Keras formats.",
         "Combined serialization, AST/taint, provenance, and dependency checks; flagged 33 of 33 committed adversarial test fixtures.",
-        "Verified October 2026 CI: 260 tests passed, one skipped, 75.67% statement coverage; fixtures do not establish universal detection."
+        "Tested artifact inspection and security checks through CI, with 260 passing tests and 75.67% statement coverage; one test was skipped."
       ],
       metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
       testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
       limitations: "The fixture results are bounded regression evidence; the benign result covers only four committed samples. Neither is a universal detection or false-positive rate.",
-      history: "Candidate-reported development period: Nov. 2024 - Mar. 2025. Public GitHub history begins Jul. 2026; the cited verification reflects later 2026 repository snapshots, not necessarily the latest commit."
+      history: "Project work: Nov 2024 to Oct 2026. Committed regression fixtures are bounded tests, not population-level malware detection evidence."
     }
   ] satisfies ProjectItem[],
   education: [

@@ -14,7 +14,7 @@
 \titleformat{\section}{\bfseries\fontsize{10.9}{12}\selectfont}{}{0pt}{}[\titlerule]
 \titlespacing*{\section}{0pt}{3pt}{2pt}
 \newcommand{\job}[3]{\textbf{#1}\hfill{\fontsize{9.2}{10}\selectfont #2}\\{\fontsize{9.2}{10}\selectfont #3}\vspace{1pt}}
-\newcommand{\proj}[2]{\textbf{#1} {\fontsize{9.2}{10}\selectfont | #2}\vspace{1pt}}
+\newcommand{\proj}[3]{\textbf{#1} {\fontsize{9.2}{10}\selectfont | #2}\hfill{\fontsize{9}{10}\selectfont #3}\vspace{1pt}}
 \begin{document}
 \fontsize{10.5}{11.4}\selectfont
 \begin{center}
@@ -41,23 +41,23 @@
 \end{itemize}
 
 \section{Security Engineering Projects}
-\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}}{Python | FastAPI | MCP/JSON-RPC | SIEM}
+\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}}{Python | FastAPI | MCP/JSON-RPC | SIEM}{Oct 2025 -- Oct 2026}
 \begin{itemize}
 \item Engineered a default-deny agent-to-tool gateway with capability checks, request inspection, anti-SSRF egress rules, and rate limits.
 \item Implemented 69 named prompt-injection signatures, PII/exfiltration signals, hash-chained auditing, and nine Elastic Security rule records.
-\item Verified October 2026 Python 3.12 CI: 782 tests passed, 81.93\% statement coverage; 21 core SIEM tests separately documented.
+\item Built automated regression coverage for gateway controls and SIEM integration; the Python 3.12 suite passed 782 tests with 81.93\% statement coverage.
 \end{itemize}
-\proj{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}}{Python | AWS IAM | SARIF 2.1.0}
+\proj{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}}{Python | AWS IAM | SARIF 2.1.0}{Apr 2025 -- Oct 2026}
 \begin{itemize}
 \item Built a static workload-identity analyzer for dangerous grants, escalation paths, trust-policy weaknesses, and missing permission boundaries.
 \item Implemented 25 deterministic rules for wildcard access, iam:PassRole, sts:AssumeRole, and trust policies; emitted CI-readable SARIF findings.
-\item Verified October 2026 CI: 244 tests passed, three credential-gated tests skipped; results are static-policy checks, not live authorization.
+\item Tested IAM policy analysis through CI, with 244 passing tests; three live-AWS checks were skipped because they required credentials.
 \end{itemize}
-\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner}{HF Model Provenance Scanner}}{Python | SafeTensors | GGUF | ONNX | Keras}
+\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner}{HF Model Provenance Scanner}}{Python | SafeTensors | GGUF | ONNX | Keras}{Nov 2024 -- Oct 2026}
 \begin{itemize}
 \item Built non-executing model artifact scanning for pickle-derived, SafeTensors, GGUF, ONNX, and Keras formats.
 \item Combined serialization, AST/taint, provenance, and dependency checks; flagged 33 of 33 committed adversarial test fixtures.
-\item Verified October 2026 CI: 260 tests passed, one skipped, 75.67\% statement coverage; fixtures do not establish universal detection.
+\item Tested artifact inspection and security checks through CI, with 260 passing tests and 75.67\% statement coverage; one test was skipped.
 \end{itemize}
 
 \section{Technical Skills}
