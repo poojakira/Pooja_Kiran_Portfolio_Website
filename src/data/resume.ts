@@ -148,7 +148,7 @@ export const resume = {
       bullets: [
         "Built non-executing model artifact scanning for pickle-derived, SafeTensors, GGUF, ONNX, and Keras formats.",
         "Combined serialization, AST/taint, provenance, and dependency checks; flagged 33 of 33 committed adversarial test fixtures.",
-        "Tested artifact inspection and security checks through CI, with 260 passing tests and 75.67% statement coverage; one test was skipped."
+        "Tested model artifact inspection in CI: 260 tests passed with 75.67% statement coverage; one test was skipped."
       ],
       metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
       testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
