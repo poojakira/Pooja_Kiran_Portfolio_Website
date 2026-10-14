@@ -1,5 +1,8 @@
 # Security poster evidence alignment — October 9, 2026
 
+> **Archived October 9–11 poster evidence.** This page preserves the earlier graphical snapshots. The current active source-pinned portfolio posters are recorded in [the October 14 alignment](POSTER_EVIDENCE_ALIGNMENT_2026-10-14.md). Do not mistake this historical page for the current published image inventory.
+
+
 The three portfolio PNGs are generated artifacts tied to historical, explicitly bounded repository evidence. They are not assertions about the latest commit, deployed traffic, or detector effectiveness.
 
 | Image | Source | Cited snapshot |

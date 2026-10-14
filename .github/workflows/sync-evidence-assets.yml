@@ -28,9 +28,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/mcp-agent-security-gateway/d936cadde0ff4e0fb322c6600638b387b1c39d09/poster/poster.png"             -o /tmp/mcp-poster.png
-          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/aws-agent-identity-guard/51916ac3d381579c78112233911827217304022a/poster/poster.png"             -o /tmp/iam-poster.png
-          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/hf-model-provenance-scanner/dec0c68ceb9167c7e9b4b439b1bfd006beb5c148/poster/poster.png"             -o /tmp/provenance-poster.png
+          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/mcp-agent-security-gateway/9bad1c2f06563e7fdf637b1f70dc75521d6c2e5e/poster/poster.png"             -o /tmp/mcp-poster.png
+          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/aws-agent-identity-guard/b0a0f47d611749ea1466017016c9a5991d49b71f/poster/poster.png"             -o /tmp/iam-poster.png
+          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/hf-model-provenance-scanner/44073732d6dd04252064ce0366a7d6caf6041cd9/poster/poster.png"             -o /tmp/provenance-poster.png
 
       - name: Render social preview from canonical SVG
         shell: bash
