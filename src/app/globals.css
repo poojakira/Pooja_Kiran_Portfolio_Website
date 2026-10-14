@@ -993,3 +993,14 @@ section[id],article[id]{scroll-margin-top:82px}
   .hero-capability-strip span,.hero-capability-strip span:nth-child(even){border-right:0}
   .hero-capability-strip span:last-child{grid-column:1;border-bottom:0}
 }
+
+/* Keep recruiter hero content within narrow mobile viewports. */
+@media(max-width:760px){
+  .hero-reference{grid-template-columns:minmax(0,1fr)}
+  .hero-copy-reference,.hero-role-line,.hero-recruiter-summary,.hero-reference-subtitle{min-width:0;max-width:100%;overflow-wrap:anywhere}
+  .hero-reference-actions{min-width:0;max-width:100%}
+}
+@media(max-width:520px){
+  .hero-reference-actions{grid-template-columns:minmax(0,1fr)}
+  .hero-reference-actions > a{min-width:0;max-width:100%;white-space:normal;text-align:center}
+}
