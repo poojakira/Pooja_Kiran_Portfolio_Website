@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "description": "Immutable public source-poster pins, compared using Git blob SHA-1; CI never substitutes values from other commits.",
+  "sources": [
+    {
+      "file": "mcp-poster.png",
+      "repository": "mcp-agent-security-gateway",
+      "commit": "9bad1c2f06563e7fdf637b1f70dc75521d6c2e5e",
+      "git_blob_sha": "3becd4a461b8ec6569b6b7c2d8f05b70fd456232",
+      "run_id": 38502413461,
+      "summary": "782 tests, 81.93% statement coverage; 69 separately inventoried runtime signatures"
+    },
+    {
+      "file": "iam-poster.png",
+      "repository": "aws-agent-identity-guard",
+      "commit": "c14015602db7423a2cd075c79bdaa48dcb9a5530",
+      "git_blob_sha": "0c8ec3a6c4fa1c5b04feca187d6b0ef38bfb7c56",
+      "run_id": 38497940763,
+      "summary": "247 collected, 244 passed, 3 skipped; 25 rule IDs"
+    },
+    {
+      "file": "provenance-poster.png",
+      "repository": "hf-model-provenance-scanner",
+      "commit": "71e3a41f15aa9f0b4d005de6313014786a09c845",
+      "git_blob_sha": "ac86131d4a409e25ccccb8555c69d6b0d48d9b2a",
+      "run_id": 38498005353,
+      "summary": "260 passed, 1 skipped, 6 subtests, 75.67% statement coverage"
+    }
+  ]
+}
