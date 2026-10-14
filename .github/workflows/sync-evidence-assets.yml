@@ -1,4 +1,4 @@
-name: Sync Current Evidence Posters
+name: Sync Social Preview
 
 on:
   pull_request:
@@ -24,14 +24,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Fetch evidence-anchored poster images
-        shell: bash
-        run: |
-          set -euo pipefail
-          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/mcp-agent-security-gateway/9bad1c2f06563e7fdf637b1f70dc75521d6c2e5e/poster/poster.png"             -o /tmp/mcp-poster.png
-          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/aws-agent-identity-guard/b0a0f47d611749ea1466017016c9a5991d49b71f/poster/poster.png"             -o /tmp/iam-poster.png
-          curl --fail --silent --show-error --location             "https://raw.githubusercontent.com/poojakira/hf-model-provenance-scanner/44073732d6dd04252064ce0366a7d6caf6041cd9/poster/poster.png"             -o /tmp/provenance-poster.png
-
       - name: Render social preview from canonical SVG
         shell: bash
         run: |
@@ -40,7 +32,7 @@ jobs:
           sudo apt-get install -y --no-install-recommends librsvg2-bin
           rsvg-convert -w 1200 -h 630 public/og-card.svg -o /tmp/og-card.png
 
-      - name: Sync poster and social images to PR branch
+      - name: Sync social preview to PR branch
         if: github.event_name == 'pull_request'
         shell: bash
         env:
@@ -61,8 +53,4 @@ jobs:
             jq -n               --arg message "build: sync current evidence poster"               --rawfile content /tmp/evidence-poster.b64               --arg sha "$remote_blob"               --arg branch "$PR_BRANCH"               '{message: $message, content: $content, sha: $sha, branch: $branch}'               > /tmp/evidence-poster-request.json
             gh api --method PUT "repos/$GITHUB_REPOSITORY/contents/$dest"               --input /tmp/evidence-poster-request.json >/dev/null
           }
-
-          sync_file /tmp/mcp-poster.png public/mcp-poster.png
-          sync_file /tmp/iam-poster.png public/iam-poster.png
-          sync_file /tmp/provenance-poster.png public/provenance-poster.png
           sync_file /tmp/og-card.png public/og-card.png

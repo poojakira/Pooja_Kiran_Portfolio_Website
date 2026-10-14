@@ -10,6 +10,15 @@ on:
       - 'public/mcp-poster.png'
       - 'public/iam-poster.png'
       - 'public/provenance-poster.png'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/poster_sources.json'
+      - 'scripts/sync_poster_assets.py'
+      - '.github/workflows/poster-source-sync.yml'
+      - 'public/mcp-poster.png'
+      - 'public/iam-poster.png'
+      - 'public/provenance-poster.png'
   workflow_dispatch:
 
 permissions:
