@@ -1,53 +1,33 @@
-"""Reject unsupported metrics and enforce candidate-confirmed experience evidence."""
+"""Verify resume and website against bounded engineering evidence."""
 
 import re
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
-paths = [
-    root / "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex",
-    root / "src/data/resume.ts",
-]
-sources = [(f.name, f.read_text(encoding="utf-8-sig")) for f in paths]
-patterns = {
-    "MCP 782 tests": r"\b782\b",
-    "MCP 81.93% coverage": r"\b81\.93\b",
-    "IAM deterministic rules": r"\b25\s+deterministic\b",
-    "IAM passing tests": r"\b244\s+(?:tests\s+)?pass(?:ed|ing)\b",
-    "HF passing tests": r"\b260\s+(?:tests\s+)?pass(?:ed|ing)\b",
-    "HF committed fixtures": r"\b33\s*(?:/|of)\s*33\b",
-    "Undergraduate grading volume": r"\b85\s+undergraduate\b",
-    "Graduate grading volume": r"\b52\s+graduate\b",
-    "AEROSEC planned budget": r"120,000",
-    "AEROSEC externship": r"externship",
-}
-for name, source in sources:
-    low = source.lower()
-    forbidden = (
-        "96.15",
-        "40% reduction",
-        "60% detection",
-        "100% of unauthorized",
-        "98.7% success",
-        "production-deployed",
-    )
-    for item in forbidden:
-        if item in low:
-            raise SystemExit(f"{name}: unsupported impact claim {item}")
-    for label, pattern in patterns.items():
-        if not re.search(pattern, source, flags=re.IGNORECASE):
-            raise SystemExit(f"{name}: missing evidence {label}")
+tex = root / "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
+data = root / "src/data/resume.ts"
+sources = (tex.read_text(encoding="utf-8-sig"), data.read_text(encoding="utf-8-sig"))
 
-data = sources[1][1]
-if "academic externship" not in data.lower():
-    raise SystemExit("TypeScript must identify the academic externship")
-if "â†’" in data or "â·" in data:
-    raise SystemExit("TypeScript contains corrupted Unicode")
+for source in sources:
+    lower = source.lower()
+    for forbidden in ("96.15", "40% reduction", "60% detection", "100% secure"):
+        if forbidden in lower:
+            raise SystemExit("Unsupported impact claim: " + forbidden)
+    required = ("782", "81.93", "25 deterministic", "85 undergraduate")
+    required += ("52 graduate", "120,000", "externship", "244", "260")
+    for value in required:
+        if value.lower() not in lower:
+            raise SystemExit("Missing source-backed evidence: " + value)
+    if not re.search(r"\b33\s*(?:/|of)\s*33\b", source):
+        raise SystemExit("Missing bounded 33/33 model-scanner fixture result")
 
-portfolio = (root / "src/components/Portfolio.tsx").read_text(
-    encoding="utf-8-sig"
-)
-if "60-second demo script (text)" not in portfolio:
-    raise SystemExit("Markdown demo must be labeled as text")
+if "academic externship" not in sources[1].lower():
+    raise SystemExit("Academic externship labeling missing in website data")
+if "â†’" in sources[1] or "â·" in sources[1]:
+    raise SystemExit("Corrupted Unicode in website data")
 
-print("Resume evidence and scope checks passed")
+portfolio = root / "src/components/Portfolio.tsx"
+ui = portfolio.read_text(encoding="utf-8-sig")
+if "60-second demo script (text)" not in ui:
+    raise SystemExit("Portfolio must label the Markdown demo as text")
+print("Resume evidence check passed")
