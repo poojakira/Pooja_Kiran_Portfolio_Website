@@ -9,7 +9,7 @@ export type ExperienceItem = {
 };
 
 export type ProjectItem = {
-  id: "mcp" | "iam" | "supply";
+  id: "mcp" | "iam" | "supply" | "automotive";
   name: string;
   label: string;
   stack: string[];
@@ -154,6 +154,28 @@ export const resume = {
       testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
       limitations: "The fixture results are bounded regression evidence; the benign result covers only four committed samples. Neither is a universal detection or false-positive rate.",
       history: "Project work: Nov 2024 to Oct 2026. Committed regression fixtures are bounded tests, not population-level malware detection evidence."
+    }
+    ,
+    {
+      id: "automotive",
+      label: "Embedded & Automotive Security",
+      name: "Attack Detection Engine | ARM Firmware & CAN Security",
+      stack: ["Python", "Embedded C", "ARM Cortex-M3", "CAN/CAN-FD", "pytest"],
+      dates: "Oct 2026",
+      repository: "https://github.com/poojakira/attack-detection-engine",
+      caseStudy: "https://github.com/poojakira/attack-detection-engine/blob/main/AUTOMOTIVE_SECURITY.md",
+      problem: "Embedded C firmware and automotive CAN traces require reproducible security review that distinguishes measured lab evidence from real-vehicle validation.",
+      solution: "Extended a rule-based detection engine with offline CAN-frame policy analysis, conservative C/C++ source-audit checks and ARM ELF32 binary inspection.",
+      architecture: ["Timestamped CAN trace / lab firmware", "Frame and ELF structure validation", "ID/rate policy checks", "C/C++ CWE candidates", "ARM segment review", "Evidence-backed findings"],
+      bullets: [
+        "Built offline CAN/CAN-FD frame analysis and firmware inspection modules; validated abnormal message rates, unexpected arbitration IDs, and risky ARM ELF32 segment permissions.",
+        "Cross-compiled freestanding C firmware for ARM Cortex-M3 and analyzed the resulting ELF binary, while testing a deliberately vulnerable C fixture with AddressSanitizer.",
+        "Fixed test-suite setup by sharing the MITRE ATT&CK index; verified 68/68 Python 3.12 tests passing in 23.42 seconds on the merged main branch."
+      ],
+      metrics: ["68/68 tests passed on merged main", "23.42-second full local suite", "ARM Cortex-M3 ELF32 cross-compiled", "AddressSanitizer overflow reproduced and remediated", "Synthetic CAN traces only"],
+      testing: "On October 15, 2026, the full Python 3.12 regression suite passed 68 tests in 23.42 seconds after merging shared-index fixtures. ARM firmware was compiled with arm-none-eabi-gcc; controlled C fixtures were checked with AddressSanitizer.",
+      limitations: "No physical ECU, connected CAN adapter, live vehicle penetration test, production detection-rate benchmark, or comprehensive firmware reverse engineering was performed.",
+      history: "Lab extension verified in October 2026. Synthetic inputs and deliberately authored vulnerable code must not be represented as customer systems or real vehicle incidents."
     }
   ] satisfies ProjectItem[],
   education: [

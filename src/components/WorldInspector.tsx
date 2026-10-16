@@ -70,7 +70,7 @@ export default function WorldInspector({ project }: { project: ProjectItem }) {
   return <section className={`world-inspector inspector-${project.id}`} aria-label={`${project.name} interactive explanation`}>
     <div className="inspector-heading"><h4>Inspect the system</h4><span>Illustrative walkthrough</span></div>
     <p className="inspector-intro">Explore the control logic. These examples explain the design; they do not run the project or report live results.</p>
-    {project.id === "mcp" ? <GatewayInspector /> : project.id === "iam" ? <IdentityInspector /> : <ArtifactInspector />}
+    {project.id === "mcp" ? <GatewayInspector /> : project.id === "iam" ? <IdentityInspector /> : project.id === "automotive" ? <div className="automotive-lab-explainer"><strong>Evidence-backed embedded security</strong><p>ARM Cortex-M3 firmware was cross-compiled for offline binary review. Synthetic CAN traces test arbitration-ID and message-rate policies; a deliberately vulnerable C fixture demonstrated an AddressSanitizer finding and fix. No vehicle hardware was used.</p><a href={project.repository} target="_blank" rel="noreferrer">Inspect source and tests →</a></div> : <ArtifactInspector />}
   </section>;
 }
 

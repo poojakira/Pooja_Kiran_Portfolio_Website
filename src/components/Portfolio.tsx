@@ -10,6 +10,7 @@ const projectPosters: Record<ProjectItem["id"], string> = {
   mcp: asset("mcp-poster.png"),
   iam: asset("iam-poster.png"),
   supply: asset("provenance-poster.png"),
+  automotive: "",
 };
 
 function ArrowIcon() {
@@ -216,7 +217,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
 
         <div className="poster-object" data-reveal>
           <div className="poster-frame">
-            <img src={projectPosters[project.id]} alt={`${project.name} research poster`} />
+            {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} research poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="ARM Cortex-M3 firmware and CAN laboratory verification"><strong>ARM / CAN</strong><span>68/68 REGRESSION TESTS</span><small>Firmware inspection · Offline CAN trace analysis · CWE evidence</small></div>}
           </div>
           <span className="poster-caption">Current verified evidence poster · repository-backed</span>
         </div>
@@ -253,7 +254,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <p>{project.limitations}</p>
           <div className="scope-actions">
             <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
-            {project.caseStudy && <a href={project.caseStudy} target="_blank" rel="noreferrer">Read AppSec case study <ArrowIcon /></a>}
+            {project.caseStudy && <a href={project.caseStudy} target="_blank" rel="noreferrer">Read technical evidence <ArrowIcon /></a>}
             {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">60-second demo script (text) <ArrowIcon /></a>}
           </div>
         </div>
