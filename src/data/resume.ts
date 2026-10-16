@@ -1,4 +1,4 @@
-﻿// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
+// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
 export type ExperienceItem = {
   role: string;
   detail?: string;
@@ -161,7 +161,7 @@ export const resume = {
       label: "Embedded & Automotive Security",
       name: "Attack Detection Engine | ARM Firmware & CAN Security",
       stack: ["Python", "Embedded C", "ARM Cortex-M3", "CAN/CAN-FD", "pytest"],
-      dates: "Oct 2026",
+      dates: "Aug 2026 - Oct 2026",
       repository: "https://github.com/poojakira/attack-detection-engine",
       caseStudy: "https://github.com/poojakira/attack-detection-engine/blob/main/AUTOMOTIVE_SECURITY.md",
       problem: "Embedded C firmware and automotive CAN traces require reproducible security review that distinguishes measured lab evidence from real-vehicle validation.",
