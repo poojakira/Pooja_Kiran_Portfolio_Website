@@ -1,9 +1,8 @@
 \documentclass[letterpaper,10pt]{article}
 \usepackage[margin=0.68in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
+\usepackage{fontspec}
+% Use Calibri when available, otherwise the metric-compatible Carlito.
+\IfFontExistsTF{Calibri}{\setmainfont{Calibri}}{\setmainfont{Carlito}}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
@@ -35,17 +34,18 @@ Security engineer with an M.S. in Information Technology who identifies security
 \item \textbf{Tested} security changes with \textbf{pytest}, \textbf{CodeQL}, dependency scans, and \textbf{GitHub Actions}; separated passing test evidence from unresolved design and deployment limits.
 \end{itemize}
 
-\job{Business \& Compliance Lead | AEROSEC}{Aug -- Dec 2025}{Honeywell Aerospace x ASU | Technology Innovation Lab Externship | Tempe, AZ}
+\job{Business \& Compliance Lead | AEROSEC}{Aug 2025 -- Dec 2025}{Honeywell Aerospace $\times$ ASU | Technology Innovation Lab (TIL) Externship | Tempe, AZ}
 \begin{itemize}
-\item \textbf{Interviewed} 4 of 12 industry participants over video calls; documented vendor-access, audit-record, and service-disruption concerns for a proposed airline security platform.
-\item \textbf{Coordinated} technical, prototype, and market-research tasks across \textbf{three remote peer project leads}; tracked deliverables in online meetings and reported progress to mentors.
-\item \textbf{Translated} interviews into \textbf{API authorization}, encryption, logging, and vendor-risk requirements; compared four security platforms and drafted a proposed \textbf{\$120,000 first-year budget} with a 12-month cost plan.
+\item \textbf{Interviewed} 4 of 12 industry participants over \textbf{Zoom}, including a Microsoft cybersecurity specialist, former airline ticketing professional, founder, and former propulsion engineer; documented vendor-access, audit-record, and service-disruption risks.
+\item \textbf{Assigned} tasks to three peer project leads working from separate homes; reviewed technical research, market research, and prototype work during online meetings and reported progress to mentors.
+\item \textbf{Defined} \textbf{API access}, encryption, \textbf{audit logging}, and vendor-risk requirements for airline connections using interview findings; drafted a \textbf{2--4-week pilot} with owners and success measures.
+\item \textbf{Compared} four security platforms, identified \textbf{three target customer segments}, and wrote a \textbf{proposed \$120,000 first-year budget} with a \textbf{12-month cost plan}.
 \end{itemize}
 
-\job{Graduate Teaching Assistant | IT Grader}{Jan -- Oct 2025}{Ira A. Fulton Schools of Engineering | Arizona State University | Tempe, AZ}
+\job{Graduate Teaching Assistant | IT Grader}{Jan 2025 -- Oct 2025}{Ira A. Fulton Schools of Engineering | Arizona State University | Tempe, AZ}
 \begin{itemize}
-\item \textbf{Graded} approximately 85 undergraduate web-programming submissions per semester and 52 graduate cybersecurity assignments using instructor rubrics.
-\item \textbf{Identified} \textbf{secure-coding}, risk-assessment, and compliance gaps in student work; wrote corrective feedback against the grading criteria.
+\item \textbf{Graded} approximately \textbf{85 undergraduate web-programming submissions per semester} and \textbf{52 graduate cybersecurity assignments} using instructor rubrics.
+\item \textbf{Wrote} corrective feedback identifying \textbf{secure coding}, \textbf{risk assessment}, and \textbf{compliance} gaps so students could address the issues against grading criteria.
 \end{itemize}
 
 \section{Selected Security Engineering Projects}
