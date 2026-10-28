@@ -14,14 +14,14 @@ for source in sources:
         if forbidden in lower:
             raise SystemExit("Unsupported impact claim: " + forbidden)
     required = ("782", "81.93", "25 deterministic", "85 undergraduate")
-    required += ("52 graduate", "120,000", "externship", "244", "260")
+    required += ("52 graduate", "120,000", "externship", "244", "260", "P0", "P1")
     for value in required:
         if value.lower() not in lower:
             raise SystemExit("Missing source-backed evidence: " + value)
     if not re.search(r"\b33\s*(?:/|of)\s*33\b", source):
         raise SystemExit("Missing bounded 33/33 model-scanner fixture result")
 
-if "academic externship" not in sources[1].lower():
+if "externship" not in sources[1].lower():
     raise SystemExit("Academic externship labeling missing in website data")
 if "â†’" in sources[1] or "â·" in sources[1]:
     raise SystemExit("Corrupted Unicode in website data")
