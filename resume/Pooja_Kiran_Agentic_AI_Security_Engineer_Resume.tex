@@ -1,5 +1,5 @@
 \documentclass[letterpaper,10pt]{article}
-\usepackage[margin=0.64in]{geometry}
+\usepackage[margin=0.7in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{helvet}
@@ -10,75 +10,74 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=0.16in,itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt}
-\titleformat{\section}{\bfseries\fontsize{10.9}{12}\selectfont}{}{0pt}{}[\titlerule]
-\titlespacing*{\section}{0pt}{3pt}{2pt}
-\newcommand{\job}[3]{\textbf{#1}\hfill{\fontsize{9.2}{10}\selectfont #2}\\{\fontsize{9.2}{10}\selectfont #3}\vspace{1pt}}
-\newcommand{\proj}[3]{\textbf{#1} {\fontsize{9.2}{10}\selectfont | #2}\hfill{\fontsize{9}{10}\selectfont #3}\vspace{1pt}}
+\setlist[itemize]{leftmargin=0.18in,itemsep=2pt,parsep=0pt,topsep=2pt,partopsep=1pt}
+\titleformat{\section}{\bfseries\fontsize{12}{14}\selectfont}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+\newcommand{\job}[3]{\textbf{#1}\hfill{\fontsize{10.4}{12}\selectfont #2}\\{\fontsize{8.6}{9.4}\selectfont #3}\vspace{3pt}}
+\newcommand{\proj}[3]{\textbf{#1} {\fontsize{8.6}{9.4}\selectfont | #2}\hfill{\fontsize{10}{12}\selectfont #3}\vspace{0.4pt}}
 \begin{document}
-\fontsize{10.5}{11.4}\selectfont
+\fontsize{11.1}{13.7}\selectfont
 \begin{center}
-{\fontsize{18}{20}\selectfont\textbf{POOJA KIRAN}}\\[-1pt]
-{\fontsize{10.5}{12}\selectfont\textbf{Security Engineer | AI \& Agent Security | Application Security | Cloud IAM}}\\[1pt]
-{\fontsize{9.5}{11}\selectfont Tempe, AZ | +1 480-776-7745 | \href{mailto:poojakiranbhardwaj@gmail.com}{poojakiranbhardwaj@gmail.com} | \href{https://www.linkedin.com/in/poojakiran}{LinkedIn} | \href{https://github.com/poojakira}{GitHub} | \href{https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/}{Portfolio}}
-\end{center}\vspace{-8pt}
+{\fontsize{23}{26}\selectfont\textbf{POOJA KIRAN}}\\[0pt]
+{\fontsize{11.3}{13.3}\selectfont\textbf{Security Engineer | Application Security | AI \& Agent Security | Cloud IAM}}\\[1pt]
+{\fontsize{9.5}{11.5}\selectfont Tempe, AZ | +1 480-776-7745 | \href{mailto:poojakiranbhardwaj@gmail.com}{poojakiranbhardwaj@gmail.com} | \href{https://www.linkedin.com/in/poojakiran}{LinkedIn} | \href{https://github.com/poojakira}{GitHub} | \href{https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/}{Portfolio}}
+\end{center}\vspace{-2pt}
 
-\section{Professional Experience}
-\job{Independent AI Security Researcher \& Engineer}{Aug 2024 -- Present}{Self-Directed Engineering | Tempe, AZ}
-\begin{itemize}
-\item Built Python security tooling for MCP tool authorization, IAM policy analysis, and model artifact inspection across independently developed security projects.
-\item Implemented fail-closed decisions, structured findings, audit trails, and CI-based regression testing with pytest, GitHub Actions, CodeQL, and Docker.
-\end{itemize}
-\job{Business \& Compliance Lead | AEROSEC}{Aug -- Dec 2025}{Technology Innovation Lab Externship | Arizona State University | Externally mentored aviation project}
-\begin{itemize}
-\item Defined third-party Passenger Service System and vendor API risks for a proposed airline security dashboard with compliance and incident-reporting workflows.
-\item Compared four commercial security solutions and developed a proposed \$120,000 first-year budget with a 12-month runway model.
-\end{itemize}
-\job{Graduate Teaching Assistant | IT Grader}{Jan -- Oct 2025}{Ira A. Fulton Schools of Engineering | Arizona State University}
-\begin{itemize}
-\item Assessed approximately 85 undergraduate Web Programming submissions per semester and 52 graduate cybersecurity assignments using instructor rubrics.
-\item Provided technical feedback on secure development, security compliance, risk analysis, and information-systems security coursework.
-\end{itemize}
+\section{Summary}
+Security engineer with an M.S. in Information Technology who finds flaws, fixes them, and tests the results. Reviewed 14 self-built security repositories; documented 1 P0 and 5 P1 findings in a dated code/CI audit. Built an MCP security gateway validated by 782 passing tests and 81.93\% statement coverage in a cited Python 3.12 CI run.
 
-\section{Security Engineering Projects}
-\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}}{Python | FastAPI | MCP/JSON-RPC | SIEM}{Oct 2025 -- Oct 2026}
+\section{Professional \& Applied Experience}
+\job{Independent AI Security Researcher \& Engineer}{Aug 2024 -- Present}{Self-Directed Security Engineering | Tempe, AZ}
 \begin{itemize}
-\item Engineered a default-deny agent-to-tool gateway with capability checks, request inspection, anti-SSRF egress rules, and rate limits.
-\item Implemented 69 named prompt-injection signatures, PII/exfiltration signals, hash-chained auditing, and nine Elastic Security rule records.
-\item Built automated regression coverage for gateway controls and SIEM integration; the Python 3.12 suite passed 782 tests with 81.93\% statement coverage.
+\item Reviewed source, tests, and CI across 14 owned security repositories; recorded 1 P0 and 5 P1 findings, remediation status, and remaining limits in a September 2026 audit.
+\item Corrected and regression-tested security defects involving gateway fail-closed authorization and other portfolio trust boundaries; assessed authentication, rate limits, audit trails, and workflow security.
+\item Used pytest, GitHub Actions, CodeQL, and dependency scans to check changes; kept fixture-only results separate from claims about real deployments.
 \end{itemize}
-\proj{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}}{Python | AWS IAM | SARIF 2.1.0}{Apr 2025 -- Oct 2026}
+\job{Business \& Compliance Lead | AEROSEC}{Aug -- Dec 2025}{Honeywell Aerospace \texttimes{} ASU | Technology Innovation Lab Externship | Tempe, AZ}
 \begin{itemize}
-\item Built a static workload-identity analyzer for dangerous grants, escalation paths, trust-policy weaknesses, and missing permission boundaries.
-\item Implemented 25 deterministic rules for wildcard access, iam:PassRole, sts:AssumeRole, and trust policies; emitted CI-readable SARIF findings.
-\item Tested IAM policy analysis through CI, with 244 passing tests; three live-AWS checks were skipped because they required credentials.
+\item Interviewed 4 of 12 industry participants over video calls to identify vendor-access, audit-record, service-disruption, and integration risks for a proposed airline security solution.
+\item Coordinated work across three remote peer project leads, tracked prototype, technical and market research in virtual meetings, and communicated progress to mentors.
+\item Outlined API authorization, encryption, logging and vendor-risk requirements; compared four security platforms and proposed a \$120,000 first-year budget with a 12-month cost plan.
 \end{itemize}
-\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner}{HF Model Provenance Scanner}}{Python | SafeTensors | GGUF | ONNX | Keras}{Nov 2024 -- Oct 2026}
+\job{Graduate Teaching Assistant | IT Grader}{Jan -- Oct 2025}{Ira A. Fulton Schools of Engineering | Arizona State University | Tempe, AZ}
 \begin{itemize}
-\item Built non-executing model artifact scanning for pickle-derived, SafeTensors, GGUF, ONNX, and Keras formats.
-\item Combined serialization, AST/taint, provenance, and dependency checks; flagged 33 of 33 adversarial fixtures.
-\item Tested model artifact inspection in CI: 260 tests passed with 75.67\% statement coverage.
+\item Graded approximately 85 undergraduate web-programming submissions per semester and 52 graduate cybersecurity assignments against instructor rubrics.
+\item Explained corrections for secure coding, risk assessment, compliance, and software configuration issues.
 \end{itemize}
 
-\proj{\href{https://github.com/poojakira/attack-detection-engine}{Attack Detection Engine | Firmware \& CAN Security}}{Python | Embedded C | ARM}{Aug 2026 -- Oct 2026}
+\section{Selected Security Engineering Projects}
+\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}}{Python, FastAPI, MCP/JSON-RPC, Elastic SIEM}{Oct 2025 -- Oct 2026}
 \begin{itemize}
-\item Extended offline CAN frame analysis, C/C++ firmware security checks, and ARM ELF32 inspection using controlled test fixtures.
-\item Cross-compiled Cortex-M3 firmware; reproduced and fixed an intentional C stack overflow using AddressSanitizer.
-\item Optimized ATT\&CK index test setup; full Python 3.12 regression suite passed 68/68 tests in 23.42 seconds.
+\item Implemented default-deny agent-to-tool authorization, anti-SSRF policies, 69 prompt-injection signatures, hash-chained audit records, and 9 Elastic detection rules.
+\item Reviewed HTTP/JSON-RPC, credential handling, rate limits and failure paths; cited Python 3.12 CI: 782 tests passed, 81.93\% statement coverage.
+\end{itemize}
+\proj{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}}{Python, AWS IAM, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
+\begin{itemize}
+\item Built 25 deterministic IAM rules for wildcard grants, iam:PassRole, sts:AssumeRole and trust-policy risks, with SARIF findings for CI review.
+\item Tested IAM policy analysis with 244 passing tests and 3 credential-dependent skips in a cited October 2026 CI run; no live AWS permissions claim.
+\end{itemize}
+\newpage\section{Security Engineering Projects (continued)}
+\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, ONNX, Keras}{Nov 2024 -- Oct 2026}
+\begin{itemize}
+\item Built non-executing checks for model serialization, embedded code, provenance and dependencies; flagged 33/33 curated adversarial fixtures.
+\item Tested model artifact inspection: 260 passing CI tests and 75.67\% statement coverage; fixture results are not real-world detection rates.
+\end{itemize}
+\proj{\href{https://github.com/poojakira/attack-detection-engine/pull/50}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, PostgreSQL, ARM/CAN}{Aug -- Oct 2026}
+\begin{itemize}
+\item Extended ATT\&CK-oriented detection and offline firmware/ARM/CAN analysis with clinical-access rules and a synthetic FHIR R4 AuditEvent connector on unmerged branches.
+\item Built authenticated ingest-to-investigation with correlation, incident persistence and audit history; Milestone E reports 296 passing local tests, hosted CI blocked.
 \end{itemize}
 
-\section{Technical Skills}
-{\fontsize{9.7}{10.7}\selectfont
-\textbf{Programming \& engineering:} Python, Bash, Rust, C++; FastAPI, pytest, Docker, GitHub Actions\\
-\textbf{Security engineering:} MCP/JSON-RPC, tool authorization, API security, anti-SSRF, prompt injection, threat modeling, IAM\\
-\textbf{DevSecOps \& analysis:} AWS IAM, SARIF 2.1.0, CodeQL, Trivy, Bandit, pip-audit, Elastic Security, SIEM, Prometheus}
+\section{Technical Skills \& Knowledge}
+{\fontsize{10.4}{13}\selectfont
+\textbf{Security / risk:} Security design review, threat modeling, risk analysis and assessment, web-services security, API authorization, software testing, CI security checks\\
+\textbf{Cloud / network / OS:} AWS IAM, DNS, HTTP, TLS, Zeek/Suricata-style telemetry, Linux /proc TCP, HMAC-SHA256, Ed25519\\
+\textbf{Engineering / leadership:} Python, C++, FastAPI, Docker, pytest, GitHub Actions, CodeQL, SARIF, Elastic SIEM, remote peer coordination, compliance research, budgeting\\
+\textbf{Video protection (conceptual):} DRM license flows, encrypted HLS/DASH, CloudFront signed URLs/cookies, AWS MediaPackage/SPEKE}
 
-\section{Education}
-{\fontsize{9.7}{10.7}\selectfont
-\textbf{Arizona State University} | M.S., Information Technology (Security) | May 2026 | Tempe, AZ\\
-\textbf{M. S. Ramaiah University of Applied Sciences} | B.Tech., Computer Science \& Engineering | Aug 2023 | Bengaluru, India}
-
-\section{Certifications}
-{\fontsize{9.7}{10.7}\selectfont
+\section{Education \& Credentials}
+{\fontsize{8.7}{9.5}\selectfont
+\textbf{Arizona State University} | M.S., Information Technology (Security) | May 2026 | GPA 3.87/4.00\\
+\textbf{M. S. Ramaiah University of Applied Sciences} | B.Tech., Computer Science \& Engineering | Aug 2023\\
 \textbf{AWS Academy Graduate:} Cloud Architecting (Apr 2025) | Cloud Security Foundations (Nov 2025)}
 \end{document}
