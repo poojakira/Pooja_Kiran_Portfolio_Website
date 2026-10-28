@@ -282,7 +282,7 @@ function WorkSection() {
 
 function InvestigationCaseStudy() {
   const phases = [
-    ["01 · Ingest", "Synthetic clinical access events enter the authenticated FastAPI service. FHIR R4 adapter work is reported locally but not yet published."],
+    ["01 · Ingest", "Synthetic clinical access events enter the authenticated FastAPI service. FHIR R4 AuditEvent adapter is available for source review in unmerged PR #50; test events are synthetic."],
     ["02 · Detect", "Existing deterministic clinical-access rules generate explainable findings; benign-control scenarios are checked."],
     ["03 · Correlate", "Related findings group by documented identity, organization, resource and time criteria rather than coincidental event proximity."],
     ["04 · Persist", "PostgreSQL retains events, findings, incidents and their relationships through controlled container restarts."],
@@ -310,6 +310,7 @@ function InvestigationCaseStudy() {
           <a href="https://github.com/poojakira/attack-detection-engine/pull/47" target="_blank" rel="noreferrer">Healthcare PR #47</a>
           <a href="https://github.com/poojakira/attack-detection-engine/pull/48" target="_blank" rel="noreferrer">Investigation PR #48</a>
           <a href="https://github.com/poojakira/attack-detection-engine/pull/49" target="_blank" rel="noreferrer">Hardening PR #49</a>
+          <a href="https://github.com/poojakira/attack-detection-engine/pull/50" target="_blank" rel="noreferrer">FHIR PR #50</a>
         </nav>
       </div>
     </section>
