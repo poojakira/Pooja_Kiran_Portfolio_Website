@@ -172,9 +172,9 @@ export const resume = {
         "Added clinical-access detection on a development branch; MIMIC-IV Demo supplies de-identified clinical context, while all access events are synthetic.",
         "Developed an authenticated investigation workflow that ingests events, correlates findings, persists incidents, and records analyst resolution and audit actions; demonstrated using real PostgreSQL and Docker in controlled tests."
       ],
-      metrics: ["212 local tests: Milestone C, Oct 27 2026", "280 local tests reported: Milestone D", "Hosted CI blocked; PRs unmerged", "FHIR connector reported locally; not yet published"],
+      metrics: ["212 local tests: Milestone C, Oct 27 2026", "280 local tests reported: Milestone D", "Hosted CI blocked; PRs unmerged", "FHIR R4 AuditEvent connector: PR #50 (unmerged) · 296 local tests reported"],
       testing: "Milestone C's October 27, 2026 report documents 212 passing Python 3.12.3 tests, PostgreSQL integration and a controlled Docker end-to-end scenario. Milestone D reports 280 local tests after hardening. These are separate historical snapshots, not additive totals; hosted CI is disabled.",
-      limitations: "The investigation platform and hardening are currently on unmerged development branches. Healthcare events and incidents in the demonstration are synthetic; MIMIC-IV Demo does not supply audit logs or access authorization. FHIR integration was reported locally but is not yet published for source verification. No hospital deployment, HIPAA certification, production readiness, or real-world detection-rate claim.",
+      limitations: "The investigation platform and hardening are currently on unmerged development branches. Healthcare events and incidents in the demonstration are synthetic; MIMIC-IV Demo does not supply audit logs or access authorization. FHIR R4 AuditEvent ingestion is published for review in unmerged PR #50, with 296 local tests reported for Milestone E; hosted CI remains blocked and live hospital ingestion is not claimed. No hospital deployment, HIPAA certification, production readiness, or real-world detection-rate claim.",
       history: "Initial ARM/CAN work was verified on main in October 2026 (68 local tests); the newer investigation and security-hardening evidence belongs to separate, unmerged October 27 development branches."
     }
   ] satisfies ProjectItem[],
