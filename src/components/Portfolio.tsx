@@ -139,6 +139,7 @@ function Hero() {
           <div><strong>Agent → Tool</strong><span>782 Python 3.12 CI tests · default-deny execution controls</span></div>
           <div><strong>Identity → Authority</strong><span>25 IAM rules · privilege and trust-policy analysis</span></div>
           <div><strong>Artifact → Runtime</strong><span>33/33 adversarial fixtures · non-executing inspection</span></div>
+          <div><strong>Telemetry → Investigation</strong><span>212 local Milestone C tests · incident workflow (unmerged)</span></div>
           <small>Repository-backed evidence with CI verification and explicit scope limitations.</small>
         </div>
       </div>
@@ -219,7 +220,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <div className="poster-frame">
             {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} evidence poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="Diagram of the evidence-scoped attack detection and investigation workflow"><strong>TELEMETRY → EVIDENCE</strong><span>DETECT · CORRELATE · INVESTIGATE</span><small>Development-branch platform · synthetic healthcare telemetry · local verification · hosted CI blocked</small></div>}
           </div>
-          <span className="poster-caption">Engineering evidence illustration · repository-linked, not a live SOC</span>
+          <span className="poster-caption">{project.id === "automotive" ? "Engineering evidence illustration · not a live SOC" : "Current verified evidence poster · repository-backed"}</span>
         </div>
 
         <div className="project-dual-proof">
@@ -528,7 +529,7 @@ export default function Portfolio() {
       </main>
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} Pooja Kiran</span>
-        <span>AI & Agent Security × Application Security × Cloud IAM Security × Model Supply-Chain Security</span>
+        <span>AI & Agent Security × Cloud IAM × Model Supply-Chain × Detection Engineering</span>
       </footer>
     </div>
   );
