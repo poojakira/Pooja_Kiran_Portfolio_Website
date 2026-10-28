@@ -28,7 +28,7 @@ export type ProjectItem = {
 };
 
 export const resume = {
-  sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
+  sourceFile: "Pooja_Kiran_Security_Engineer_Resume.pdf",
   name: "Pooja Kiran",
   headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM",
   positioning: "I secure the trust boundaries where AI systems gain authority and take action.",
@@ -73,11 +73,13 @@ export const resume = {
       role: "Business & Compliance Lead",
       detail: "AEROSEC (Technology Innovation Lab externship)",
       dates: "Aug 2025 - Dec 2025",
-      organization: "Honeywell Aerospace × ASU | Technology Innovation Lab Externship",
+      organization: "Honeywell Aerospace × ASU | Technology Innovation Lab (TIL) Externship",
       location: "Tempe, AZ",
       bullets: [
-        "Interviewed 4 of 12 industry participants remotely to define vendor-access, audit, service-disruption and airline integration risks.",
-        "Coordinated technical, prototype and market research across three remote peer project leads; outlined authorization, encryption, logging and vendor-risk requirements, compared four security platforms and proposed a $120,000 first-year budget."
+        "Interviewed 4 of 12 industry participants over Zoom, including a Microsoft cybersecurity specialist, former airline ticketing professional, founder, and former propulsion engineer; recorded vendor access, audit record, and service disruption risks.",
+        "Assigned work to three peer project leads working remotely from separate homes and reviewed technical, market research, and prototype progress with mentors.",
+        "Used interview findings to define API access, encryption, audit logging and vendor-risk requirements for airline connections; drafted a 2–4-week pilot with owners and success measures.",
+        "Compared four security platforms, identified three target customer segments, and prepared a proposed $120,000 first-year budget with a 12-month cost plan."
       ]
     },
     {
@@ -85,10 +87,10 @@ export const resume = {
       detail: "IT Grader",
       dates: "Jan 2025 - Oct 2025",
       organization: "Ira A. Fulton Schools of Engineering, Arizona State University",
-      location: "Mesa, AZ",
+      location: "Tempe, AZ",
       bullets: [
         "Assessed approximately 85 undergraduate Web Programming submissions per semester and 52 graduate cybersecurity assignments using instructor rubrics.",
-        "Provided technical feedback on secure development, security compliance, risk analysis, and information-systems security coursework."
+        "Wrote corrective feedback on secure coding, risk assessment, and compliance gaps, identifying what needed correction under instructor rubrics."
       ]
     }
   ] satisfies ExperienceItem[],
@@ -198,5 +200,5 @@ export const resume = {
 } as const;
 
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
-export const resumeHref = "./Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf";
+export const resumeHref = "./Pooja_Kiran_Security_Engineer_Resume.pdf";
 

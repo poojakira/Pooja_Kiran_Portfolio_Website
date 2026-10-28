@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
-tex = root / "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
+tex = root / "resume/Pooja_Kiran_Security_Engineer_Resume.tex"
 data = root / "src/data/resume.ts"
 sources = (tex.read_text(encoding="utf-8-sig"), data.read_text(encoding="utf-8-sig"))
 
