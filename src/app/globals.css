@@ -905,7 +905,7 @@ section[id],article[id]{scroll-margin-top:82px}
 .hero-proof-strip{
   margin-top:26px;
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:8px;
 }
 .hero-proof-strip>div{
