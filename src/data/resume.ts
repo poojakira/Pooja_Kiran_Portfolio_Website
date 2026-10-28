@@ -1,4 +1,4 @@
-// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
+// Recruiter-facing project links point to actual evidence; unmerged features use explicit branch or PR references.
 export type ExperienceItem = {
   role: string;
   detail?: string;
@@ -158,24 +158,24 @@ export const resume = {
     ,
     {
       id: "automotive",
-      label: "Embedded & Automotive Security",
-      name: "Attack Detection Engine | ARM Firmware & CAN Security",
-      stack: ["Python", "Embedded C", "ARM Cortex-M3", "CAN/CAN-FD", "pytest"],
+      label: "Telemetry → Investigation",
+      name: "Attack Detection Engine | Aegis HealthSec",
+      stack: ["Python", "FastAPI", "PostgreSQL", "React / TypeScript", "Docker", "MITRE ATT&CK v19"],
       dates: "Aug 2026 - Oct 2026",
       repository: "https://github.com/poojakira/attack-detection-engine",
-      caseStudy: "https://github.com/poojakira/attack-detection-engine/blob/main/AUTOMOTIVE_SECURITY.md",
-      problem: "Embedded C firmware and automotive CAN traces require reproducible security review that distinguishes measured lab evidence from real-vehicle validation.",
-      solution: "Extended a rule-based detection engine with offline CAN-frame policy analysis, conservative C/C++ source-audit checks and ARM ELF32 binary inspection.",
-      architecture: ["Timestamped CAN trace / lab firmware", "Frame and ELF structure validation", "ID/rate policy checks", "C/C++ CWE candidates", "ARM segment review", "Evidence-backed findings"],
+      caseStudy: "https://github.com/poojakira/attack-detection-engine/blob/feat/milestone-c-platform/MILESTONE_C_FINAL_REPORT.md",
+      problem: "Security teams need more than isolated alerts: related events must become explainable, durable incidents that authorized analysts can investigate and resolve.",
+      solution: "Extended an ATT&CK-oriented detection engine and offline CAN/firmware/ARM analysis with healthcare access rules, deterministic correlation, PostgreSQL persistence, a FastAPI investigation service and a React SOC console. These extensions remain on open, unmerged feature branches.",
+      architecture: ["Synthetic clinical access telemetry", "Normalize and validate", "Rule-based detection", "Evidence-based correlation", "PostgreSQL incident record", "Authenticated analyst review and audit"],
       bullets: [
-        "Built offline CAN/CAN-FD frame analysis and firmware inspection modules; validated abnormal message rates, unexpected arbitration IDs, and risky ARM ELF32 segment permissions.",
-        "Cross-compiled freestanding C firmware for ARM Cortex-M3 and analyzed the resulting ELF binary, while testing a deliberately vulnerable C fixture with AddressSanitizer.",
-        "Fixed test-suite setup by sharing the MITRE ATT&CK index; verified 68/68 Python 3.12 tests passing in 23.42 seconds on the merged main branch."
+        "Built offline automotive CAN/CAN-FD and firmware/ARM ELF32 lab analysis alongside the existing ATT&CK-oriented detection pipeline.",
+        "Added clinical-access detection on a development branch; MIMIC-IV Demo supplies de-identified clinical context, while all access events are synthetic.",
+        "Developed an authenticated investigation workflow that ingests events, correlates findings, persists incidents, and records analyst resolution and audit actions; demonstrated using real PostgreSQL and Docker in controlled tests."
       ],
-      metrics: ["68/68 tests passed on merged main", "23.42-second full local suite", "ARM Cortex-M3 ELF32 cross-compiled", "AddressSanitizer overflow reproduced and remediated", "Synthetic CAN traces only"],
-      testing: "On October 15, 2026, the full Python 3.12 regression suite passed 68 tests in 23.42 seconds after merging shared-index fixtures. ARM firmware was compiled with arm-none-eabi-gcc; controlled C fixtures were checked with AddressSanitizer.",
-      limitations: "No physical ECU, connected CAN adapter, live vehicle penetration test, production detection-rate benchmark, or comprehensive firmware reverse engineering was performed.",
-      history: "Lab extension verified in October 2026. Synthetic inputs and deliberately authored vulnerable code must not be represented as customer systems or real vehicle incidents."
+      metrics: ["212 local tests: Milestone C, Oct 27 2026", "280 local tests reported: Milestone D", "Hosted CI blocked; PRs unmerged", "FHIR R4 AuditEvent connector: PR #50 (unmerged) · 296 local tests reported"],
+      testing: "Milestone C's October 27, 2026 report documents 212 passing Python 3.12.3 tests, PostgreSQL integration and a controlled Docker end-to-end scenario. Milestone D reports 280 local tests after hardening. These are separate historical snapshots, not additive totals; hosted CI is disabled.",
+      limitations: "The investigation platform and hardening are currently on unmerged development branches. Healthcare events and incidents in the demonstration are synthetic; MIMIC-IV Demo does not supply audit logs or access authorization. FHIR R4 AuditEvent ingestion is published for review in unmerged PR #50, with 296 local tests reported for Milestone E; hosted CI remains blocked and live hospital ingestion is not claimed. No hospital deployment, HIPAA certification, production readiness, or real-world detection-rate claim.",
+      history: "Initial ARM/CAN work was verified on main in October 2026 (68 local tests); the newer investigation and security-hardening evidence belongs to separate, unmerged October 27 development branches."
     }
   ] satisfies ProjectItem[],
   education: [

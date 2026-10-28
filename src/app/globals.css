@@ -905,7 +905,7 @@ section[id],article[id]{scroll-margin-top:82px}
 .hero-proof-strip{
   margin-top:26px;
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:8px;
 }
 .hero-proof-strip>div{
@@ -1004,3 +1004,20 @@ section[id],article[id]{scroll-margin-top:82px}
   .hero-reference-actions{grid-template-columns:minmax(0,1fr)}
   .hero-reference-actions > a{min-width:0;max-width:100%;white-space:normal;text-align:center}
 }
+
+/* Aegis case study: accessible DOM-first walkthrough, not a simulated live SOC. */
+.investigation-case-study{padding:clamp(72px,9vw,130px) max(22px,calc((100vw - var(--max))/2));background:#161b1c;color:#f3f3ef}
+.investigation-case-study .section-intro{max-width:880px;margin-bottom:36px}
+.investigation-case-study .section-intro h2{font-size:clamp(32px,5vw,64px);line-height:1.07;letter-spacing:-.05em;margin:14px 0}
+.investigation-case-study .section-intro p:last-child{max-width:760px;color:#cad0ce}
+.investigation-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.investigation-flow article{border:1px solid rgba(228,235,231,.2);background:rgba(255,255,255,.035);padding:24px;min-height:185px}
+.investigation-flow h3{font-size:16px;margin:0 0 13px;color:#e5c6a6}
+.investigation-flow p{font-size:13px;line-height:1.68;color:#ccd2cf;margin:0}
+.investigation-verification{border-top:1px solid rgba(228,235,231,.22);margin-top:30px;padding-top:22px;color:#c9cfcd;max-width:1020px}
+.investigation-verification p{line-height:1.75;font-size:13px}
+.investigation-verification nav{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.investigation-verification nav a{border:1px solid rgba(228,235,231,.42);border-radius:30px;padding:11px 15px;font-size:12px;color:white;text-decoration:none}
+.investigation-verification nav a:hover,.investigation-verification nav a:focus-visible{background:rgba(255,255,255,.12)}
+@media(max-width:900px){.investigation-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.investigation-flow{grid-template-columns:1fr}.investigation-flow article{min-height:0}}
