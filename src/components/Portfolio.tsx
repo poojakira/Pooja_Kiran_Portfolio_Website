@@ -126,7 +126,7 @@ function Hero() {
         <h1>Security<br />Engineer</h1>
         <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM Security · Model Supply-Chain Security</p>
         <p className="hero-reference-subtitle">
-          I secure the trust boundaries where AI systems gain authority and take action: agent-to-tool execution, identity-to-permission, and model-artifact-to-runtime.
+          I build and test controls at security trust boundaries: agent-to-tool execution, identity-to-permission, model-artifact-to-runtime, and telemetry-to-investigation.
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
@@ -268,7 +268,7 @@ function WorkSection() {
   return (
     <section className="work-section" id="work">
       <div className="section-intro light" data-reveal>
-        <p className="eyebrow">Three security trust boundaries</p>
+        <p className="eyebrow">Four security trust boundaries</p>
         <h2>Agent → Tool. Identity → Authority. Artifact → Runtime. Telemetry → Investigation.</h2>
       </div>
       <div className="project-list">
