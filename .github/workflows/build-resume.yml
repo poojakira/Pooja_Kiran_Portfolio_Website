@@ -28,13 +28,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base texlive-latex-extra texlive-fonts-recommended poppler-utils
+            texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-xetex fonts-crosextra-carlito poppler-utils
 
       - name: Compile and validate two-page resume
         run: |
           rm -rf .resume-build
           mkdir -p .resume-build
-          pdflatex -interaction=nonstopmode -halt-on-error \
+          xelatex -interaction=nonstopmode -halt-on-error \
             -output-directory=.resume-build \
             resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex
           test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "2"
@@ -50,6 +50,8 @@ jobs:
           grep -Fq "Cloud Security Foundations" /tmp/generated-resume-content.txt
           grep -Fq "Certifications & Training" /tmp/generated-resume-content.txt
           grep -Fq "Education" /tmp/generated-resume-content.txt
+          grep -Fq "Microsoft cybersecurity specialist" /tmp/generated-resume-content.txt
+          grep -Fq "three target customer segments" /tmp/generated-resume-content.txt
           if grep -Fq "(continued)" /tmp/generated-resume-content.txt; then exit 1; fi
           if grep -Eiq "not realized funding or revenue|one test was skipped" /tmp/generated-resume-content.txt; then
             echo "Unwanted AEROSEC/HF text found in PDF"
