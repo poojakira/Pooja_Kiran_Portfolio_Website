@@ -1,5 +1,5 @@
 \documentclass[letterpaper,10pt]{article}
-\usepackage[margin=0.7in]{geometry}
+\usepackage[margin=0.68in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{helvet}
@@ -7,77 +7,90 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
+\usepackage{microtype}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=0.18in,itemsep=2pt,parsep=0pt,topsep=2pt,partopsep=1pt}
+\setlist[itemize]{leftmargin=0.18in,itemsep=2.1pt,parsep=0pt,topsep=2.4pt,partopsep=0pt}
 \titleformat{\section}{\bfseries\fontsize{12}{14}\selectfont}{}{0pt}{}[\titlerule]
-\titlespacing*{\section}{0pt}{9pt}{5pt}
-\newcommand{\job}[3]{\textbf{#1}\hfill{\fontsize{10.4}{12}\selectfont #2}\\{\fontsize{8.6}{9.4}\selectfont #3}\vspace{3pt}}
-\newcommand{\proj}[3]{\textbf{#1} {\fontsize{8.6}{9.4}\selectfont | #2}\hfill{\fontsize{10}{12}\selectfont #3}\vspace{0.4pt}}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\newcommand{\job}[3]{\textbf{#1}\hfill{\fontsize{10}{11.8}\selectfont #2}\\{\fontsize{9.9}{11.8}\selectfont #3}\vspace{2pt}}
+\newcommand{\proj}[3]{\textbf{#1} {\fontsize{9.8}{11.8}\selectfont | #2}\hfill{\fontsize{9.6}{11.5}\selectfont #3}\vspace{2pt}}
 \begin{document}
-\fontsize{11.1}{13.7}\selectfont
+\fontsize{10.8}{13.1}\selectfont
 \begin{center}
-{\fontsize{23}{26}\selectfont\textbf{POOJA KIRAN}}\\[0pt]
-{\fontsize{11.3}{13.3}\selectfont\textbf{Security Engineer | Application Security | AI \& Agent Security | Cloud IAM}}\\[1pt]
+{\fontsize{23}{26}\selectfont\textbf{POOJA KIRAN}}\\[1pt]
+{\fontsize{11.3}{13}\selectfont\textbf{Security Engineer | Application Security | AI \& Agent Security | Cloud IAM}}\\[2pt]
 {\fontsize{9.5}{11.5}\selectfont Tempe, AZ | +1 480-776-7745 | \href{mailto:poojakiranbhardwaj@gmail.com}{poojakiranbhardwaj@gmail.com} | \href{https://www.linkedin.com/in/poojakiran}{LinkedIn} | \href{https://github.com/poojakira}{GitHub} | \href{https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/}{Portfolio}}
-\end{center}\vspace{-2pt}
+\end{center}\vspace{-3pt}
 
-\section{Summary}
-Security engineer with an M.S. in Information Technology who finds flaws, fixes them, and tests the results. Reviewed 14 self-built security repositories; documented 1 P0 and 5 P1 findings in a dated code/CI audit. Built an MCP security gateway validated by 782 passing tests and 81.93\% statement coverage in a cited Python 3.12 CI run.
+\section{Professional Summary}
+Security engineer with an M.S. in Information Technology who identifies security flaws, fixes them, and tests the results. Reviewed \textbf{14 security repositories}, documented \textbf{1 P0 and 5 P1 findings} in a dated source/CI audit, and tested an \textbf{MCP security gateway} with \textbf{782 passing tests} and \textbf{81.93\% statement coverage} in a cited Python 3.12 CI run.
 
 \section{Professional \& Applied Experience}
 \job{Independent AI Security Researcher \& Engineer}{Aug 2024 -- Present}{Self-Directed Security Engineering | Tempe, AZ}
 \begin{itemize}
-\item Reviewed source, tests, and CI across 14 owned security repositories; recorded 1 P0 and 5 P1 findings, remediation status, and remaining limits in a September 2026 audit.
-\item Corrected and regression-tested security defects involving gateway fail-closed authorization and other portfolio trust boundaries; assessed authentication, rate limits, audit trails, and workflow security.
-\item Used pytest, GitHub Actions, CodeQL, and dependency scans to check changes; kept fixture-only results separate from claims about real deployments.
+\item \textbf{Reviewed} source code, tests, and \textbf{CI workflows} across 14 owned security repositories; recorded \textbf{1 P0 and 5 P1 findings}, fixes, and residual risks in a September 2026 security audit.
+\item \textbf{Fixed} unsafe \textbf{MCP gateway authorization} responses so explicit 4xx denials block tool execution; added regression checks for client authentication and failure handling.
+\item \textbf{Tested} security changes with \textbf{pytest}, \textbf{CodeQL}, dependency scans, and \textbf{GitHub Actions}; separated passing test evidence from unresolved design and deployment limits.
 \end{itemize}
-\job{Business \& Compliance Lead | AEROSEC}{Aug -- Dec 2025}{Honeywell Aerospace \texttimes{} ASU | Technology Innovation Lab Externship | Tempe, AZ}
+
+\job{Business \& Compliance Lead | AEROSEC}{Aug -- Dec 2025}{Honeywell Aerospace x ASU | Technology Innovation Lab Externship | Tempe, AZ}
 \begin{itemize}
-\item Interviewed 4 of 12 industry participants over video calls to identify vendor-access, audit-record, service-disruption, and integration risks for a proposed airline security solution.
-\item Coordinated work across three remote peer project leads, tracked prototype, technical and market research in virtual meetings, and communicated progress to mentors.
-\item Outlined API authorization, encryption, logging and vendor-risk requirements; compared four security platforms and proposed a \$120,000 first-year budget with a 12-month cost plan.
+\item \textbf{Interviewed} 4 of 12 industry participants over video calls; documented vendor-access, audit-record, and service-disruption concerns for a proposed airline security platform.
+\item \textbf{Coordinated} technical, prototype, and market-research tasks across \textbf{three remote peer project leads}; tracked deliverables in online meetings and reported progress to mentors.
+\item \textbf{Translated} interviews into \textbf{API authorization}, encryption, logging, and vendor-risk requirements; compared four security platforms and drafted a proposed \textbf{\$120,000 first-year budget} with a 12-month cost plan.
 \end{itemize}
+
 \job{Graduate Teaching Assistant | IT Grader}{Jan -- Oct 2025}{Ira A. Fulton Schools of Engineering | Arizona State University | Tempe, AZ}
 \begin{itemize}
-\item Graded approximately 85 undergraduate web-programming submissions per semester and 52 graduate cybersecurity assignments against instructor rubrics.
-\item Explained corrections for secure coding, risk assessment, compliance, and software configuration issues.
+\item \textbf{Graded} approximately 85 undergraduate web-programming submissions per semester and 52 graduate cybersecurity assignments using instructor rubrics.
+\item \textbf{Identified} \textbf{secure-coding}, risk-assessment, and compliance gaps in student work; wrote corrective feedback against the grading criteria.
 \end{itemize}
 
 \section{Selected Security Engineering Projects}
 \proj{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}}{Python, FastAPI, MCP/JSON-RPC, Elastic SIEM}{Oct 2025 -- Oct 2026}
 \begin{itemize}
-\item Implemented default-deny agent-to-tool authorization, anti-SSRF policies, 69 prompt-injection signatures, hash-chained audit records, and 9 Elastic detection rules.
-\item Reviewed HTTP/JSON-RPC, credential handling, rate limits and failure paths; cited Python 3.12 CI: 782 tests passed, 81.93\% statement coverage.
+\item \textbf{Built} a default-deny \textbf{MCP/JSON-RPC} gateway with capability checks, \textbf{anti-SSRF} rules, 69 named prompt-injection signatures, hash-chained audit records, and nine \textbf{Elastic Security} detection rules.
+\item \textbf{Verified} agent-to-tool enforcement and failure paths using \textbf{Python 3.12 CI}; recorded \textbf{782 passing tests} and \textbf{81.93\% statement coverage} in the cited run.
 \end{itemize}
+
 \proj{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}}{Python, AWS IAM, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
 \begin{itemize}
-\item Built 25 deterministic IAM rules for wildcard grants, iam:PassRole, sts:AssumeRole and trust-policy risks, with SARIF findings for CI review.
-\item Tested IAM policy analysis with 244 passing tests and 3 credential-dependent skips in a cited October 2026 CI run; no live AWS permissions claim.
+\item \textbf{Developed} 25 \textbf{AWS IAM} static-analysis rules for broad grants, \textbf{iam:PassRole}, \textbf{sts:AssumeRole}, and trust-policy risks; exported findings in \textbf{SARIF 2.1.0} for CI review.
+\item \textbf{Validated} the rule suite in cited CI: \textbf{244 tests passed} and three credential-dependent tests were skipped; did not claim live AWS effective-permission results.
 \end{itemize}
-\newpage\section{Security Engineering Projects (continued)}
+
+\newpage
+\section{Selected Security Engineering Projects}
 \proj{\href{https://github.com/poojakira/hf-model-provenance-scanner}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, ONNX, Keras}{Nov 2024 -- Oct 2026}
 \begin{itemize}
-\item Built non-executing checks for model serialization, embedded code, provenance and dependencies; flagged 33/33 curated adversarial fixtures.
-\item Tested model artifact inspection: 260 passing CI tests and 75.67\% statement coverage; fixture results are not real-world detection rates.
+\item \textbf{Built} non-executing checks for unsafe serialization, embedded code, \textbf{model provenance}, and dependencies across \textbf{SafeTensors}, \textbf{GGUF}, \textbf{ONNX}, and \textbf{Keras} inputs.
+\item \textbf{Detected} suspicious content in \textbf{33/33 curated adversarial fixtures}; confirmed \textbf{260 passing CI tests} and \textbf{75.67\% statement coverage} without describing fixtures as real-world detection rates.
 \end{itemize}
+
 \proj{\href{https://github.com/poojakira/attack-detection-engine/pull/50}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, PostgreSQL, ARM/CAN}{Aug -- Oct 2026}
 \begin{itemize}
-\item Extended ATT\&CK-oriented detection and offline firmware/ARM/CAN analysis with clinical-access rules and a synthetic FHIR R4 AuditEvent connector on unmerged branches.
-\item Built authenticated ingest-to-investigation with correlation, incident persistence and audit history; Milestone E reports 296 passing local tests, hosted CI blocked.
+\item \textbf{Extended} \textbf{MITRE ATT\&CK v19} detection with offline \textbf{CAN}, \textbf{C/C++ firmware}, and \textbf{ARM ELF32} analysis using synthetic lab inputs and reproducible tests.
+\item \textbf{Integrated} clinical-access detection and a \textbf{FHIR R4 AuditEvent} parser with event normalization, deterministic correlation, and \textbf{PostgreSQL} incident persistence on unmerged development branches.
+\item \textbf{Tested} an authenticated \textbf{FastAPI} investigation workflow with analyst actions and audit history; Milestone E reported \textbf{296 local tests passing} with real PostgreSQL, while hosted CI remained blocked.
 \end{itemize}
 
-\section{Technical Skills \& Knowledge}
-{\fontsize{10.4}{13}\selectfont
-\textbf{Security / risk:} Security design review, threat modeling, risk analysis and assessment, web-services security, API authorization, software testing, CI security checks\\
-\textbf{Cloud / network / OS:} AWS IAM, DNS, HTTP, TLS, Zeek/Suricata-style telemetry, Linux /proc TCP, HMAC-SHA256, Ed25519\\
-\textbf{Engineering / leadership:} Python, C++, FastAPI, Docker, pytest, GitHub Actions, CodeQL, SARIF, Elastic SIEM, remote peer coordination, compliance research, budgeting\\
-\textbf{Video protection (conceptual):} DRM license flows, encrypted HLS/DASH, CloudFront signed URLs/cookies, AWS MediaPackage/SPEKE}
+\section{Technical Skills}
+{\fontsize{10.6}{13}\selectfont
+\textbf{Security reviews and risk:} Security design review, \textbf{threat modeling}, risk analysis, risk assessment, \textbf{API authorization}, web-services security, software testing, CI security checks\\[3pt]
+\textbf{Cloud, network, operating systems:} \textbf{AWS IAM}, DNS, HTTP, TLS, Zeek/Suricata-style telemetry, Linux /proc TCP, \textbf{HMAC-SHA256}, \textbf{Ed25519}\\[3pt]
+\textbf{Engineering and leadership:} \textbf{Python}, \textbf{C++}, \textbf{FastAPI}, \textbf{Docker}, \textbf{pytest}, \textbf{GitHub Actions}, \textbf{CodeQL}, SARIF, \textbf{Elastic SIEM}, remote peer coordination, compliance research, budgeting\\[3pt]
+\textbf{Video content protection (concepts):} DRM license flows, encrypted HLS/DASH, CloudFront signed URLs, AWS MediaPackage/SPEKE}
 
-\section{Education \& Credentials}
-{\fontsize{8.7}{9.5}\selectfont
-\textbf{Arizona State University} | M.S., Information Technology (Security) | May 2026 | GPA 3.87/4.00\\
-\textbf{M. S. Ramaiah University of Applied Sciences} | B.Tech., Computer Science \& Engineering | Aug 2023\\
-\textbf{AWS Academy Graduate:} Cloud Architecting (Apr 2025) | Cloud Security Foundations (Nov 2025)}
+\section{Education}
+\textbf{Arizona State University} \hfill May 2026\\
+M.S., Information Technology (Security) | GPA: \textbf{3.87/4.00}\vspace{4pt}
+
+\textbf{M. S. Ramaiah University of Applied Sciences} \hfill Aug 2023\\
+B.Tech., Computer Science \& Engineering
+
+\section{Certifications \& Training}
+\textbf{AWS Academy Graduate - Cloud Architecting} \hfill Apr 2025\\[3pt]
+\textbf{AWS Academy Graduate - Cloud Security Foundations} \hfill Nov 2025
 \end{document}

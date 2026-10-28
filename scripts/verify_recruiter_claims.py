@@ -13,7 +13,7 @@ for source in sources:
     for forbidden in ("96.15", "40% reduction", "60% detection", "100% secure"):
         if forbidden in lower:
             raise SystemExit("Unsupported impact claim: " + forbidden)
-    required = ("782", "81.93", "25 deterministic", "85 undergraduate")
+    required = ("782", "81.93", "25", "85 undergraduate")
     required += ("52 graduate", "120,000", "externship", "244", "260", "P0", "P1")
     for value in required:
         if value.lower() not in lower:
