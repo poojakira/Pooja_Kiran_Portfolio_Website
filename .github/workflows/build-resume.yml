@@ -1,11 +1,11 @@
 # Canonical resume PDF must be generated from the tracked LaTeX source.
-name: Build Agentic AI Security Resume
+name: Build Security Engineer Resume
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - "resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex"
+      - "resume/Pooja_Kiran_Security_Engineer_Resume.tex"
       - ".github/workflows/build-resume.yml"
   workflow_dispatch:
 
@@ -36,11 +36,11 @@ jobs:
           mkdir -p .resume-build
           xelatex -interaction=nonstopmode -halt-on-error \
             -output-directory=.resume-build \
-            resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex
-          test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "2"
-          pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
+            resume/Pooja_Kiran_Security_Engineer_Resume.tex
+          test "$(pdfinfo .resume-build/Pooja_Kiran_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "2"
+          pdftotext .resume-build/Pooja_Kiran_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
-          pdftotext -layout .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf /tmp/generated-resume-content.txt
+          pdftotext -layout .resume-build/Pooja_Kiran_Security_Engineer_Resume.pdf /tmp/generated-resume-content.txt
           # Verify the printed artifact, not only the LaTeX source.
           test "$(grep -o 'Oct 2026' /tmp/generated-resume-content.txt | wc -l)" -ge 3
           grep -Fq "782 passing tests" /tmp/generated-resume-content.txt
@@ -69,8 +69,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_BRANCH: ${{ github.head_ref }}
         run: |
-          path="public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf"
-          generated=".resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf"
+          path="public/Pooja_Kiran_Security_Engineer_Resume.pdf"
+          generated=".resume-build/Pooja_Kiran_Security_Engineer_Resume.pdf"
           pdftotext "$generated" /tmp/generated-resume.txt
           pdftotext "$path" /tmp/current-resume.txt
           if cmp -s /tmp/generated-resume.txt /tmp/current-resume.txt; then
@@ -93,5 +93,5 @@ jobs:
       - name: Upload generated PDF
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
         with:
-          name: agentic-ai-security-resume
-          path: public/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf
+          name: security-engineer-resume
+          path: public/Pooja_Kiran_Security_Engineer_Resume.pdf
