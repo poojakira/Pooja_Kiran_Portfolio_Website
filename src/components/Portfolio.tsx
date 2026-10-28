@@ -135,7 +135,7 @@ function Hero() {
           </a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
-        <div className="hero-proof-strip" aria-label="Three security trust boundaries with repository-backed proof">
+        <div className="hero-proof-strip" aria-label="Four security trust boundaries with repository-backed proof">
           <div><strong>Agent → Tool</strong><span>782 Python 3.12 CI tests · default-deny execution controls</span></div>
           <div><strong>Identity → Authority</strong><span>25 IAM rules · privilege and trust-policy analysis</span></div>
           <div><strong>Artifact → Runtime</strong><span>33/33 adversarial fixtures · non-executing inspection</span></div>
@@ -217,9 +217,9 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
 
         <div className="poster-object" data-reveal>
           <div className="poster-frame">
-            {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} research poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="ARM Cortex-M3 firmware and CAN laboratory verification"><strong>ARM / CAN</strong><span>68/68 REGRESSION TESTS</span><small>Firmware inspection · Offline CAN trace analysis · CWE evidence</small></div>}
+            {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} evidence poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="Diagram of the evidence-scoped attack detection and investigation workflow"><strong>TELEMETRY → EVIDENCE</strong><span>DETECT · CORRELATE · INVESTIGATE</span><small>Development-branch platform · synthetic healthcare telemetry · local verification · hosted CI blocked</small></div>}
           </div>
-          <span className="poster-caption">Current verified evidence poster · repository-backed</span>
+          <span className="poster-caption">Engineering evidence illustration · repository-linked, not a live SOC</span>
         </div>
 
         <div className="project-dual-proof">
@@ -268,12 +268,48 @@ function WorkSection() {
     <section className="work-section" id="work">
       <div className="section-intro light" data-reveal>
         <p className="eyebrow">Three security trust boundaries</p>
-        <h2>Agent → Tool. Identity → Authority. Artifact → Runtime.</h2>
+        <h2>Agent → Tool. Identity → Authority. Artifact → Runtime. Telemetry → Investigation.</h2>
       </div>
       <div className="project-list">
         {resume.projects.map((project, index) => (
           <ProjectScene project={project} index={index} key={project.id} />
         ))}
+      </div>
+    </section>
+  );
+}
+
+function InvestigationCaseStudy() {
+  const phases = [
+    ["01 · Ingest", "Synthetic clinical access events enter the authenticated FastAPI service. FHIR R4 adapter work is reported locally but not yet published."],
+    ["02 · Detect", "Existing deterministic clinical-access rules generate explainable findings; benign-control scenarios are checked."],
+    ["03 · Correlate", "Related findings group by documented identity, organization, resource and time criteria rather than coincidental event proximity."],
+    ["04 · Persist", "PostgreSQL retains events, findings, incidents and their relationships through controlled container restarts."],
+    ["05 · Investigate", "Authorized analysts inspect evidence, add notes, assign cases, and make auditable status changes in the React console."],
+    ["06 · Resolve", "Incident disposition and history persist. No simulated incident is represented as a real hospital compromise."]
+  ] as const;
+  return (
+    <section className="investigation-case-study" id="investigation-case-study" aria-labelledby="investigation-heading">
+      <div className="section-intro" data-reveal>
+        <p className="eyebrow">Engineering case study · development branches</p>
+        <h2 id="investigation-heading">From telemetry to a defensible investigation.</h2>
+        <p>Attack Detection Engine / Aegis HealthSec extends the original ATT&amp;CK and automotive lab engine with a healthcare-focused, deterministic incident investigation workflow. This is a source-backed illustration of locally tested work, not a live SOC connection.</p>
+      </div>
+      <div className="investigation-flow" aria-label="Six stages in the security investigation pipeline" data-reveal>
+        {phases.map(([name,detail]) => (
+          <article key={name}>
+            <h3>{name}</h3><p>{detail}</p>
+          </article>
+        ))}
+      </div>
+      <div className="investigation-verification" data-reveal>
+        <p><strong>Validation boundary:</strong> Milestone C documented 212 passing local tests with real PostgreSQL and a Docker investigation scenario on October 27, 2026. Milestone D later reported 280 local tests. Neither count is hosted CI evidence; GitHub Actions remains disabled for this repository.</p>
+        <p><strong>Data boundary:</strong> MIMIC-IV Demo is de-identified clinical context, not an authorization source or a collection of actual cybersecurity incidents. CloudTrail, Sysmon, auditd and multi-language SAST are planned rather than implemented in these PRs.</p>
+        <nav aria-label="Investigation platform engineering evidence">
+          <a href="https://github.com/poojakira/attack-detection-engine/pull/47" target="_blank" rel="noreferrer">Healthcare PR #47</a>
+          <a href="https://github.com/poojakira/attack-detection-engine/pull/48" target="_blank" rel="noreferrer">Investigation PR #48</a>
+          <a href="https://github.com/poojakira/attack-detection-engine/pull/49" target="_blank" rel="noreferrer">Hardening PR #49</a>
+        </nav>
       </div>
     </section>
   );
@@ -481,6 +517,7 @@ export default function Portfolio() {
         <Hero />
         <DualPaths />
         <WorkSection />
+        <InvestigationCaseStudy />
         <SecurityReviewCaseStudy />
         <DecisionPath />
         <ExperienceSection />
