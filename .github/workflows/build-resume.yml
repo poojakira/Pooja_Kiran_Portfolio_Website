@@ -30,22 +30,22 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             texlive-latex-base texlive-latex-extra texlive-fonts-recommended poppler-utils
 
-      - name: Compile and validate one-page resume
+      - name: Compile and validate two-page resume
         run: |
           rm -rf .resume-build
           mkdir -p .resume-build
           pdflatex -interaction=nonstopmode -halt-on-error \
             -output-directory=.resume-build \
             resume/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.tex
-          test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
+          test "$(pdfinfo .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "2"
           pdftotext .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf - | \
             grep -q "MCP Agent Security Gateway"
           pdftotext -layout .resume-build/Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf /tmp/generated-resume-content.txt
           # Verify the printed artifact, not only the LaTeX source.
           test "$(grep -o 'Oct 2026' /tmp/generated-resume-content.txt | wc -l)" -ge 3
-          grep -Fq "Built automated regression coverage" /tmp/generated-resume-content.txt
-          grep -Fq "Tested IAM policy analysis" /tmp/generated-resume-content.txt
-          grep -Fq "Tested model artifact inspection" /tmp/generated-resume-content.txt
+          grep -Fq "782 tests passed" /tmp/generated-resume-content.txt
+          grep -Fq "244 passing tests" /tmp/generated-resume-content.txt
+          grep -Fq "260 passing" /tmp/generated-resume-content.txt
           grep -Fq "Cloud Architecting" /tmp/generated-resume-content.txt
           grep -Fq "Cloud Security Foundations" /tmp/generated-resume-content.txt
           if grep -Eiq "not realized funding or revenue|one test was skipped" /tmp/generated-resume-content.txt; then
