@@ -1,4 +1,4 @@
-// Recruiter-facing evidence links intentionally resolve to canonical main-branch artifacts.
+// Recruiter-facing project links point to actual evidence; unmerged features use explicit branch or PR references.
 export type ExperienceItem = {
   role: string;
   detail?: string;
