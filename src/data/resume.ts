@@ -65,19 +65,19 @@ export const resume = {
       organization: "Self-Directed Engineering",
       location: "Tempe, AZ",
       bullets: [
-        "Built Python security tooling for MCP tool authorization, IAM policy analysis, and model artifact inspection across three independently developed projects.",
-        "Implemented fail-closed decisions, structured findings, audit trails, and CI-based regression testing with pytest, GitHub Actions, CodeQL, and Docker."
+        "Reviewed source, tests, and CI across 14 owned security repositories; documented 1 P0 and 5 P1 findings with remediation status and remaining limits in a dated September 2026 audit.",
+        "Corrected and regression-tested security defects involving fail-closed gateway authorization; assessed API authentication, rate limits, audit trails, and CI workflows using pytest, CodeQL, GitHub Actions, and dependency scans."
       ]
     },
     {
       role: "Business & Compliance Lead",
-      detail: "AEROSEC (academic externship)",
+      detail: "AEROSEC (Technology Innovation Lab externship)",
       dates: "Aug 2025 - Dec 2025",
-      organization: "Technology Innovation Lab Externship, Arizona State University | Externally mentored aviation project",
+      organization: "Honeywell Aerospace × ASU | Technology Innovation Lab Externship",
       location: "Tempe, AZ",
       bullets: [
-        "Defined third-party Passenger Service System and vendor API risks for a proposed airline security dashboard with compliance and incident-reporting workflows.",
-        "Compared four commercial security solutions and developed a proposed $120,000 first-year budget with a 12-month runway model."
+        "Interviewed 4 of 12 industry participants remotely to define vendor-access, audit, service-disruption and airline integration risks.",
+        "Coordinated technical, prototype and market research across three remote peer project leads; outlined authorization, encryption, logging and vendor-risk requirements, compared four security platforms and proposed a $120,000 first-year budget."
       ]
     },
     {
