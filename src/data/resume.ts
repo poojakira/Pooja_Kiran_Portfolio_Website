@@ -28,7 +28,7 @@ export type ProjectItem = {
 };
 
 export const resume = {
-  sourceFile: "Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf",
+  sourceFile: "Pooja_Kiran_Security_Engineer_Resume.pdf",
   name: "Pooja Kiran",
   headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM",
   positioning: "I secure the trust boundaries where AI systems gain authority and take action.",
@@ -200,5 +200,5 @@ export const resume = {
 } as const;
 
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
-export const resumeHref = "./Pooja_Kiran_Agentic_AI_Security_Engineer_Resume.pdf";
+export const resumeHref = "./Pooja_Kiran_Security_Engineer_Resume.pdf";
 
