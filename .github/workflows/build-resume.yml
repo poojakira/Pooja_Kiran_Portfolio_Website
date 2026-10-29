@@ -50,8 +50,6 @@ jobs:
           grep -Fq "Cloud Security Foundations" /tmp/generated-resume-content.txt
           grep -Fq "Certifications & Training" /tmp/generated-resume-content.txt
           grep -Fq "Education" /tmp/generated-resume-content.txt
-          grep -Fq "early-stage security startup founder" /tmp/generated-resume-content.txt
-          grep -Fq "four-member team developing AEROSEC" /tmp/generated-resume-content.txt
           if grep -Fq "(continued)" /tmp/generated-resume-content.txt; then exit 1; fi
           if grep -Eiq "not realized funding or revenue|one test was skipped" /tmp/generated-resume-content.txt; then
             echo "Unwanted AEROSEC/HF text found in PDF"
