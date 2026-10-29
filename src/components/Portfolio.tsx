@@ -402,7 +402,7 @@ function ExperienceSection() {
             <div className="experience-main">
               <h3>{item.role}{item.detail && <small>{item.detail}</small>}</h3>
               <p className="experience-org">{item.organization}</p>
-              <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+              <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet.split(/(\*\*[^*]+\*\*)/g).map((segment, partIndex) => segment.startsWith("**") && segment.endsWith("**") ? <strong key={partIndex}>{segment.slice(2, -2)}</strong> : segment)}</li>)}</ul>
             </div>
           </article>
         ))}
