@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { resume, resumeHref, trustChain, type ProjectItem } from "@/data/resume";
+import { resume, resumeHref, managerResumeHref, trustChain, type ProjectItem } from "@/data/resume";
 
 const basePath = process.env.NODE_ENV === "production" ? "/Pooja_Kiran_Portfolio_Website" : "";
 const asset = (path: string) => `${basePath}/${path.replace(/^\//, "")}`;
@@ -124,15 +124,16 @@ function Hero() {
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
         <h1>Security<br />Engineer</h1>
-        <p className="hero-role-line">AI &amp; Agent Security · Application Security · Cloud IAM Security · Model Supply-Chain Security</p>
+        <p className="hero-role-line">Technical Leadership · AI &amp; Agent Security · Product Security · Cloud IAM</p>
         <p className="hero-reference-subtitle">
-          I build and test controls at security trust boundaries: agent-to-tool execution, identity-to-permission, model-artifact-to-runtime, and telemetry-to-investigation.
+          I build security controls, coordinate cross-functional project work, and turn technical risk into engineering and business decisions. My work spans AI-agent security, cloud identity, threat detection, and team delivery.
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
           <a className="hero-secondary" href={resumeHref} target="_blank" rel="noreferrer">
-            Download Resume
+            Security Engineer Resume
           </a>
+          <a className="hero-secondary" href={managerResumeHref} target="_blank" rel="noreferrer">Engineering Manager Resume</a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Four security trust boundaries with repository-backed proof">
@@ -163,7 +164,7 @@ function DualPaths() {
     <section className="dual-paths" id="paths">
       <div className="section-intro path-intro" data-reveal>
         <p className="eyebrow">How I work</p>
-        <h2>I design the control, test the failure modes, and make the evidence reviewable.</h2>
+        <h2>I build security controls, coordinate work, and make decisions reviewable.</h2>
       </div>
 
       <div className="path-grid">
@@ -183,11 +184,11 @@ function DualPaths() {
         </article>
 
         <article className="path-card builder-card" id="builder" data-reveal>
-          <h3>Turn technical findings into decisions people can act on.</h3>
+          <h3>Lead work across people, security requirements, and business decisions.</h3>
           <p>
-            I also think about the problem being solved, how the result is validated, how people will evaluate it, and
-            what makes the work practical to adopt. In AEROSEC, that included business and compliance analysis plus a
-            five-year financial model presented to ASU and Honeywell stakeholders.
+            In the Honeywell Aerospace × ASU AEROSEC externship, I assigned responsibilities to three remote
+            peer project leads, reviewed technical and research deliverables, and combined findings into cybersecurity
+            requirements, business planning, and presentations for industry evaluators.
           </p>
           <div className="path-evidence" aria-label="Practical focus areas">
             <span>Problem Framing</span>
@@ -195,7 +196,7 @@ function DualPaths() {
             <span>Adoption Thinking</span>
             <span>Business & Compliance</span>
           </div>
-          <a href="#work">Explore the projects <ArrowIcon /></a>
+          <a href={managerResumeHref} target="_blank" rel="noreferrer">View Engineering Manager resume <ArrowIcon /></a>
         </article>
       </div>
     </section>
@@ -389,7 +390,7 @@ function ExperienceSection() {
     <section className="experience-section" id="experience">
       <div className="section-intro" data-reveal>
         <p className="eyebrow">Professional & applied experience</p>
-        <h2>Security engineering backed by applied business and teaching experience.</h2>
+        <h2>Security engineering ownership, team delivery, and stakeholder decisions.</h2>
       </div>
       <div className="experience-list">
         {resume.experience.map((item, index) => (
@@ -487,15 +488,16 @@ function ContactSection() {
     <section className="contact-section" id="contact">
       <div className="contact-copy recruiter-contact" data-reveal>
         <p className="eyebrow">Recruiting &amp; collaboration</p>
-        <h2>Hiring for Security Engineering?</h2>
+        <h2>Hiring for Security Engineering or Technical Leadership?</h2>
         <p>
-          I&apos;m interested in U.S.-based Security Engineering roles spanning AI and agent security,
-          Application Security, Product Security, Cloud IAM Security, and Model Supply-Chain Security.
+          I&apos;m interested in U.S.-based security engineering and technical leadership roles spanning
+          AI and agent security, product security, cloud IAM, and engineering program delivery.
         </p>
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Resume</a>
+        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Security Resume</a>
+        <a className="button button-light" href={managerResumeHref} target="_blank" rel="noreferrer">Engineering Manager Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>
