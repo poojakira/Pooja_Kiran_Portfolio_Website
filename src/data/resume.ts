@@ -29,9 +29,10 @@ export type ProjectItem = {
 
 export const resume = {
   sourceFile: "Pooja_Kiran_Security_Engineer_Resume.pdf",
+  leadershipResumeFile: "Pooja_Kiran_Engineering_Manager_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Security Engineer | AI & Agent Security | Application Security | Cloud IAM",
-  positioning: "I secure the trust boundaries where AI systems gain authority and take action.",
+  headline: "Security Engineering | Technical Leadership | AI & Product Security",
+  positioning: "I build security controls, coordinate teams, and translate technical risks into decisions.",
   location: "Tempe, AZ, USA",
   phone: "+1 480-776-7745",
   email: "poojakiranbhardwaj@gmail.com",
@@ -77,9 +78,9 @@ export const resume = {
       "organization": "Honeywell Aerospace × Arizona State University | Technology Innovation Lab Externship",
       "location": "Tempe, AZ",
       "bullets": [
-        "Led project coordination for a **four-member team** developing AEROSEC, an aviation cybersecurity concept; organized responsibilities across **remote teammates**, tracked progress, and communicated requirements in **weekly mentor meetings** to keep **technical research, business planning, and compliance work** aligned.",
-        "Interviewed **4 of 12 industry participants** and consolidated findings with teammates; translated aviation cybersecurity concerns into requirements for **API authorization**, **encryption**, **audit logging**, and **vendor-risk management**.",
-        "Led **business and financial planning**, comparing **4 commercial security solutions** and developing a **$120,000 first-year budget** with a **12-month operating plan**; presented technical risks, market positioning, and financial assumptions to **industry evaluators** assessing the proposed business model."
+        "Assigned responsibilities to **three remote peer project leads** during designated AEROSEC lab phases; reviewed technical, customer-research, and prototype work, tracked deliverables, and reported to mentors to keep the **four-member team** aligned on project decisions.",
+        "Interviewed **4 of 12 industry participants** and coordinated findings with research and technical teammates; translated aviation security risks into proposed requirements for **API authorization**, **encryption**, **audit logging**, and **vendor-risk management**.",
+        "Led business and financial planning, **compared 4 commercial security solutions**, and developed a **proposed $120,000 first-year budget** with a **12-month operating plan**; presented market, security-risk, and financial assumptions across **3 pitches to Honeywell evaluators** to support feasibility decisions."
       ]
     },
     {
@@ -88,9 +89,9 @@ export const resume = {
       "organization": "Arizona State University | Ira A. Fulton Schools of Engineering",
       "location": "Tempe, AZ",
       "bullets": [
-        "Supported approximately **85 undergraduate students per semester** through **web application development**, reviewing code, project milestones, and final submissions; provided **actionable feedback** to help students identify defects, **improve implementation quality**, and meet project requirements.",
-        "Evaluated **52 graduate cybersecurity assignments** covering **risk assessment**, **security compliance**, **infrastructure security**, and **configuration management**; identified gaps in technical reasoning and documentation and provided feedback aligned with course requirements and established security frameworks.",
-        "Coordinated **grading and student communication** with faculty across undergraduate and graduate courses; applied **consistent evaluation criteria**, addressed **technical questions**, and escalated exceptions to support **timely feedback and fair assessment**."
+        "Reviewed code, milestones, and final projects for approximately **85 undergraduate students per semester**; provided **rubric-based technical feedback** to help students correct web application defects and meet project requirements.",
+        "Evaluated **52 graduate cybersecurity assignments** covering **risk assessment**, **security compliance**, **infrastructure security**, and **configuration management**; identified gaps in technical reasoning and explained corrections against course criteria.",
+        "Coordinated **grading and student communication** with instructors, addressed technical questions and grading disputes, and escalated exceptions to maintain **consistent assessment and timely feedback** across courses."
       ]
     }
   ] satisfies ExperienceItem[],
@@ -201,4 +202,5 @@ export const resume = {
 
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
 export const resumeHref = "./Pooja_Kiran_Security_Engineer_Resume.pdf";
+export const managerResumeHref = "./Pooja_Kiran_Engineering_Manager_Resume.pdf";
 

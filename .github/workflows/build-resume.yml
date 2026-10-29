@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "resume/Pooja_Kiran_Security_Engineer_Resume.tex"
+      - "resume/Pooja_Kiran_Engineering_Manager_Resume.tex"
       - ".github/workflows/build-resume.yml"
   workflow_dispatch:
 
@@ -61,6 +62,44 @@ jobs:
           fi
           python3 scripts/verify_recruiter_claims.py
 
+      - name: Compile and validate two-page Engineering Manager resume
+        run: |
+          xelatex -interaction=nonstopmode -halt-on-error \
+            -output-directory=.resume-build \
+            resume/Pooja_Kiran_Engineering_Manager_Resume.tex
+          test "$(pdfinfo .resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf | awk '/^Pages:/ {print $2}')" = "2"
+          pdftotext -layout .resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf /tmp/manager-resume-content.txt
+          grep -Fq "Compliance Lead" /tmp/manager-resume-content.txt
+          grep -Fq "peer leads" /tmp/manager-resume-content.txt
+          grep -Fq "782" /tmp/manager-resume-content.txt
+          grep -Fq "Cloud Architecting" /tmp/manager-resume-content.txt
+
+      - name: Sync generated Engineering Manager PDF to PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: ${{ github.head_ref }}
+        run: |
+          path="public/Pooja_Kiran_Engineering_Manager_Resume.pdf"
+          generated=".resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf"
+          base64 -w0 "$generated" > /tmp/manager-resume-pdf.b64
+          remote_blob="$(gh api "repos/$GITHUB_REPOSITORY/contents/$path?ref=$PR_BRANCH" --jq .sha 2>/dev/null || true)"
+          if [ -n "$remote_blob" ]; then
+            jq -n --arg message "build: regenerate Engineering Manager resume PDF" \
+              --rawfile content /tmp/manager-resume-pdf.b64 \
+              --arg sha "$remote_blob" --arg branch "$PR_BRANCH" \
+              '{message: $message, content: $content, sha: $sha, branch: $branch}' \
+              > /tmp/manager-resume-request.json
+          else
+            jq -n --arg message "build: create Engineering Manager resume PDF" \
+              --rawfile content /tmp/manager-resume-pdf.b64 \
+              --arg branch "$PR_BRANCH" \
+              '{message: $message, content: $content, branch: $branch}' \
+              > /tmp/manager-resume-request.json
+          fi
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/contents/$path" \
+            --input /tmp/manager-resume-request.json >/dev/null
+
       - name: Sync generated PDF to PR branch
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
@@ -92,4 +131,6 @@ jobs:
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
         with:
           name: security-engineer-resume
-          path: public/Pooja_Kiran_Security_Engineer_Resume.pdf
+          path: |
+            public/Pooja_Kiran_Security_Engineer_Resume.pdf
+            public/Pooja_Kiran_Engineering_Manager_Resume.pdf
