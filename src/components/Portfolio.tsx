@@ -124,7 +124,7 @@ function Hero() {
 
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
-        <h1>Security<br />Engineer</h1>
+        <h1 className="hero-dual-heading">Security Engineering<span>&amp; Technical Leadership</span></h1>
         <p className="hero-role-line">Technical Leadership · AI &amp; Agent Security · Product Security · Cloud IAM</p>
         <p className="hero-reference-subtitle">
           I build security controls, coordinate cross-functional project work, and turn technical risk into engineering and business decisions. My work spans AI-agent security, cloud identity, threat detection, and team delivery.
@@ -215,6 +215,35 @@ function ExploreExperience() {
         </article>
       </div>
       <p className="role-chooser-note">Both resumes reflect the same experience, tailored to different hiring priorities.</p>
+    </section>
+  );
+}
+
+function LeadershipHighlights() {
+  return (
+    <section className="leadership-highlights" aria-labelledby="leadership-highlights-heading">
+      <div className="leadership-highlights-intro" data-reveal>
+        <p className="eyebrow">Leadership highlights</p>
+        <h2 id="leadership-highlights-heading">Coordinating people, technical work, and business decisions.</h2>
+      </div>
+      <div className="leadership-highlights-grid">
+        <article data-reveal>
+          <span className="leadership-highlight-number">03</span>
+          <h3>Remote peer leads</h3>
+          <p>Assigned responsibilities and reviewed deliverables during designated AEROSEC lab phases within a four-member team.</p>
+        </article>
+        <article data-reveal>
+          <span className="leadership-highlight-number">03</span>
+          <h3>Industry pitches</h3>
+          <p>Presented aviation security risks, market positioning, and financial assumptions to Honeywell evaluators.</p>
+        </article>
+        <article data-reveal>
+          <span className="leadership-highlight-number">$120K</span>
+          <h3>Proposed first-year budget</h3>
+          <p>Developed a 12-month operating plan and compared four commercial security solutions; figures were proposals, not realized funding.</p>
+        </article>
+      </div>
+      <a className="leadership-highlights-link" href="#experience">Read the full experience <ArrowIcon /></a>
     </section>
   );
 }
@@ -536,6 +565,7 @@ export default function Portfolio() {
       <main id="main">
         <Hero />
         <ExploreExperience />
+        <LeadershipHighlights />
         <WorkSection />
         <InvestigationCaseStudy />
         <SecurityReviewCaseStudy />
