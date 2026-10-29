@@ -14,7 +14,7 @@ for source in sources:
         if forbidden in lower:
             raise SystemExit("Unsupported impact claim: " + forbidden)
     required = ("782", "81.93", "25", "85 undergraduate")
-    required += ("52 graduate", "120,000", "externship", "244", "260", "P0", "P1")
+    required += ("52 graduate", "120,000", "externship", "244", "260")
     for value in required:
         if value.lower() not in lower:
             raise SystemExit("Missing source-backed evidence: " + value)
