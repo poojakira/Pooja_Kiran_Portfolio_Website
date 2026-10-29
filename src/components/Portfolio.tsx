@@ -204,7 +204,7 @@ function ExploreExperience() {
             team coordination, deliverable reviews, stakeholder communication, and business planning.
           </p>
           <ul aria-label="Engineering leadership highlights">
-            <li>Coordinated assigned work across four AEROSEC teammates</li>
+            <li>Coordinated work within a four-member AEROSEC team</li>
             <li>Reviewed remote peer deliverables and reported to mentors</li>
             <li>Presented a proposed $120,000 first-year budget and security plan</li>
           </ul>
@@ -214,7 +214,7 @@ function ExploreExperience() {
           </a>
         </article>
       </div>
-      <p className="role-chooser-note">Both resumes describe the same experience, tailored to different hiring priorities. Neither implies undisclosed direct-report or hiring authority.</p>
+      <p className="role-chooser-note">Both resumes reflect the same experience, tailored to different hiring priorities.</p>
     </section>
   );
 }
