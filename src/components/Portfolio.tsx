@@ -93,6 +93,7 @@ function Header() {
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#home">About</a>
           <a href="#work">Projects</a>
+          <a href="#explore">Resumes</a>
           <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
           <a href="#education">Education</a>
@@ -130,10 +131,7 @@ function Hero() {
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
-          <a className="hero-secondary" href={resumeHref} target="_blank" rel="noreferrer">
-            Security Engineer Resume
-          </a>
-          <a className="hero-secondary" href={managerResumeHref} target="_blank" rel="noreferrer">Engineering Manager Resume</a>
+          <a className="hero-secondary" href="#explore">Choose a Resume <ArrowIcon /></a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Four security trust boundaries with repository-backed proof">
@@ -159,46 +157,64 @@ function Hero() {
   );
 }
 
-function DualPaths() {
+function ExploreExperience() {
   return (
-    <section className="dual-paths" id="paths">
-      <div className="section-intro path-intro" data-reveal>
-        <p className="eyebrow">How I work</p>
-        <h2>I build security controls, coordinate work, and make decisions reviewable.</h2>
+    <section className="role-chooser" id="explore" aria-labelledby="role-chooser-title">
+      <div className="role-chooser-intro" data-reveal>
+        <div>
+          <p className="eyebrow">For recruiters &amp; hiring teams</p>
+          <h2 id="role-chooser-title">Explore My Experience</h2>
+        </div>
+        <p>
+          One background, two ways to evaluate it. Choose the resume most relevant to the role you're hiring for.
+          My projects and full experience are available to everyone below.
+        </p>
       </div>
 
-      <div className="path-grid">
-        <article className="path-card career-card" data-reveal>
-          <h3>Build security controls that can stand up to inspection.</h3>
-          <p>
-            I work at the boundaries where AI agents, identities, APIs, and model artifacts become security decisions,
-            then back those decisions with tests, CI evidence, telemetry, and reproducible validation.
-          </p>
-          <div className="path-evidence" aria-label="Technical focus areas">
-            <span>Agent & AI Security</span>
-            <span>Application Security</span>
-            <span>Cloud IAM Security</span>
-            <span>Model Supply-Chain Security</span>
+      <div className="role-chooser-grid">
+        <article className="role-option role-option-engineering" data-reveal>
+          <div className="role-option-top">
+            <span className="role-option-index" aria-hidden="true">01</span>
+            <span className="role-option-category">Build &amp; Secure</span>
           </div>
-          <a href={resumeHref} target="_blank" rel="noreferrer">View resume <ArrowIcon /></a>
+          <h3>Security Engineering</h3>
+          <p>
+            For roles focused on designing, implementing, and validating security controls across
+            AI agents, applications, cloud identity, and detection systems.
+          </p>
+          <ul aria-label="Security engineering highlights">
+            <li>MCP gateway with 782 passing CI tests</li>
+            <li>25-rule AWS IAM static analyzer</li>
+            <li>AI model supply-chain and detection tooling</li>
+          </ul>
+          <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer"
+             aria-label="View Security Engineering resume PDF in a new tab">
+            View Security Engineering Resume <ArrowIcon />
+          </a>
         </article>
 
-        <article className="path-card builder-card" id="builder" data-reveal>
-          <h3>Lead work across people, security requirements, and business decisions.</h3>
-          <p>
-            In the Honeywell Aerospace × ASU AEROSEC externship, I assigned responsibilities to three remote
-            peer project leads, reviewed technical and research deliverables, and combined findings into cybersecurity
-            requirements, business planning, and presentations for industry evaluators.
-          </p>
-          <div className="path-evidence" aria-label="Practical focus areas">
-            <span>Problem Framing</span>
-            <span>Validation</span>
-            <span>Adoption Thinking</span>
-            <span>Business & Compliance</span>
+        <article className="role-option role-option-leadership" data-reveal>
+          <div className="role-option-top">
+            <span className="role-option-index" aria-hidden="true">02</span>
+            <span className="role-option-category">Lead &amp; Deliver</span>
           </div>
-          <a href={managerResumeHref} target="_blank" rel="noreferrer">View Engineering Manager resume <ArrowIcon /></a>
+          <h3>Engineering Leadership</h3>
+          <p>
+            For security-focused engineering management and technical leadership roles emphasizing
+            team coordination, deliverable reviews, stakeholder communication, and business planning.
+          </p>
+          <ul aria-label="Engineering leadership highlights">
+            <li>Coordinated assigned work across four AEROSEC teammates</li>
+            <li>Reviewed remote peer deliverables and reported to mentors</li>
+            <li>Presented a proposed $120,000 first-year budget and security plan</li>
+          </ul>
+          <a className="role-option-action" href={managerResumeHref} target="_blank" rel="noopener noreferrer"
+             aria-label="View Engineering Manager resume PDF in a new tab">
+            View Engineering Manager Resume <ArrowIcon />
+          </a>
         </article>
       </div>
+      <p className="role-chooser-note">Both resumes describe the same experience, tailored to different hiring priorities. Neither implies undisclosed direct-report or hiring authority.</p>
     </section>
   );
 }
@@ -519,7 +535,7 @@ export default function Portfolio() {
       <Header />
       <main id="main">
         <Hero />
-        <DualPaths />
+        <ExploreExperience />
         <WorkSection />
         <InvestigationCaseStudy />
         <SecurityReviewCaseStudy />
