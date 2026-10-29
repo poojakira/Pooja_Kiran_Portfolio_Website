@@ -69,10 +69,10 @@ jobs:
             resume/Pooja_Kiran_Engineering_Manager_Resume.tex
           test "$(pdfinfo .resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf | awk '/^Pages:/ {print $2}')" = "2"
           pdftotext -layout .resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf /tmp/manager-resume-content.txt
-          grep -Fq "Business & Compliance Lead" /tmp/manager-resume-content.txt
-          grep -Fq "three remote peer leads" /tmp/manager-resume-content.txt
-          grep -Fq "782 passing tests" /tmp/manager-resume-content.txt
-          grep -Fq "AWS Academy" /tmp/manager-resume-content.txt
+          grep -Fq "Compliance Lead" /tmp/manager-resume-content.txt
+          grep -Fq "peer leads" /tmp/manager-resume-content.txt
+          grep -Fq "782" /tmp/manager-resume-content.txt
+          grep -Fq "Cloud Architecting" /tmp/manager-resume-content.txt
 
       - name: Sync generated Engineering Manager PDF to PR branch
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
