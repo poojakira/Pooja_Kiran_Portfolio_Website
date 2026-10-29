@@ -1021,3 +1021,132 @@ section[id],article[id]{scroll-margin-top:82px}
 .investigation-verification nav a:hover,.investigation-verification nav a:focus-visible{background:rgba(255,255,255,.12)}
 @media(max-width:900px){.investigation-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.investigation-flow{grid-template-columns:1fr}.investigation-flow article{min-height:0}}
+
+
+/* Clear recruiter paths: one portfolio, two role-specific resumes. */
+.role-chooser{
+  width:min(var(--max),calc(100% - 48px));
+  margin:0 auto;
+  padding:108px 0 118px;
+  scroll-margin-top:88px;
+}
+.role-chooser-intro{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(290px,.85fr);
+  align-items:end;
+  gap:44px;
+  margin-bottom:32px;
+}
+.role-chooser-intro .eyebrow{margin:0 0 15px}
+.role-chooser-intro h2{
+  max-width:15ch;
+  margin:0;
+  font-size:clamp(42px,5.2vw,72px);
+  line-height:1;
+  letter-spacing:-.052em;
+  font-weight:540;
+}
+.role-chooser-intro>p{
+  max-width:46ch;
+  margin:0 0 5px;
+  color:#62574e;
+  font-size:14px;
+  line-height:1.7;
+}
+.role-chooser-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.role-option{
+  min-width:0;
+  min-height:440px;
+  padding:clamp(24px,3vw,40px);
+  display:flex;
+  flex-direction:column;
+  border:1px solid rgba(43,34,28,.25);
+}
+.role-option-engineering{background:#f1e7d8}
+.role-option-leadership{background:#d8c5ad}
+.role-option-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.role-option-index{
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  border:1px solid rgba(43,34,28,.38);
+  border-radius:50%;
+  font:700 12px/1 var(--mono);
+}
+.role-option-category{
+  font:750 10px/1.4 var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:#72533f;
+}
+.role-option h3{
+  margin:28px 0 12px;
+  font-size:clamp(30px,3.1vw,44px);
+  letter-spacing:-.045em;
+  line-height:1.08;
+  font-weight:570;
+}
+.role-option>p{
+  max-width:58ch;
+  margin:0;
+  font-size:14px;
+  line-height:1.7;
+  color:#4c443d;
+}
+.role-option ul{
+  margin:22px 0 28px;
+  padding:18px 0 0 18px;
+  display:grid;
+  gap:10px;
+  border-top:1px solid rgba(43,34,28,.2);
+  font-size:12px;
+  line-height:1.55;
+  color:#352f29;
+}
+.role-option-action{
+  margin-top:auto;
+  padding:13px 18px;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border:1px solid #26211d;
+  background:#26211d;
+  color:#fff;
+  border-radius:5px;
+  font-size:12px;
+  font-weight:750;
+  text-decoration:none;
+  transition:background .2s,transform .2s;
+}
+.role-option-action svg{
+  flex:0 0 auto;
+  width:16px;
+  fill:none;
+  stroke:currentColor;
+}
+.role-option-action:hover{background:#47392f;transform:translateY(-2px)}
+.role-option-action:focus-visible{outline:3px solid #2f6fea;outline-offset:3px}
+.role-chooser-note{
+  max-width:85ch;
+  margin:18px 0 0;
+  color:#6e655d;
+  font-size:11px;
+  line-height:1.7;
+}
+@media(max-width:900px){
+  .role-chooser{width:min(var(--max),calc(100% - 36px));padding:80px 0 90px}
+  .role-chooser-intro{grid-template-columns:1fr;gap:18px}
+}
+@media(max-width:660px){
+  .role-chooser-grid{grid-template-columns:minmax(0,1fr)}
+  .role-option{min-height:0;padding:26px}
+  .role-option h3{margin-top:22px}
+  .role-option-action{flex-wrap:wrap}
+}
