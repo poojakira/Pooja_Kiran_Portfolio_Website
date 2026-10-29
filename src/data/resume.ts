@@ -60,37 +60,37 @@ export const resume = {
   ],
   experience: [
     {
-      role: "Independent AI Security Researcher & Engineer",
-      dates: "Aug 2024 - Present",
-      organization: "Self-Directed Engineering",
-      location: "Tempe, AZ",
-      bullets: [
-        "Reviewed source, tests, and CI across 14 owned security repositories; documented 1 P0 and 5 P1 findings with remediation status and remaining limits in a dated September 2026 audit.",
-        "Corrected and regression-tested security defects involving fail-closed gateway authorization; assessed API authentication, rate limits, audit trails, and CI workflows using pytest, CodeQL, GitHub Actions, and dependency scans."
+      "role": "Independent AI Security Researcher & Engineer",
+      "dates": "Aug 2024 – Present",
+      "organization": "Self-Directed Research",
+      "location": "Tempe, AZ",
+      "bullets": [
+        "Built the MCP Agent Security Gateway with Python, FastAPI, and MCP/JSON-RPC to guard against unauthorized AI-agent actions, prompt injection, and sensitive-data exposure; implemented 69 detection signatures, default-deny authorization, and 9 Elastic Security rules, supported by 782 passing tests and 81.93% statement coverage in a documented CI run.",
+        "Worked directly with an early-stage security startup founder to integrate privacy-preserving identity telemetry into the MCP gateway; delivered authenticated client paths for 3 identities and secured independent verification of event attribution, helping clarify customer-onboarding requirements and deployment limitations.",
+        "Developed open-source security tools to identify excessive AWS IAM permissions, assess AI model supply-chain risks, and investigate security events; implemented 25 IAM analysis rules and validated 244 identity-security tests and 296 attack-detection tests, delivering reproducible findings and documented controls for developers and security teams."
       ]
     },
     {
-      role: "Business & Compliance Lead",
-      detail: "AEROSEC (Technology Innovation Lab externship)",
-      dates: "Aug 2025 - Dec 2025",
-      organization: "Honeywell Aerospace × ASU | Technology Innovation Lab (TIL) Externship",
-      location: "Tempe, AZ",
-      bullets: [
-        "Interviewed 4 of 12 industry participants over Zoom, including a Microsoft cybersecurity specialist, former airline ticketing professional, founder, and former propulsion engineer; recorded vendor access, audit record, and service disruption risks.",
-        "Assigned work to three peer project leads working remotely from separate homes and reviewed technical, market research, and prototype progress with mentors.",
-        "Used interview findings to define API access, encryption, audit logging and vendor-risk requirements for airline connections; drafted a 2–4-week pilot with owners and success measures.",
-        "Compared four security platforms, identified three target customer segments, and prepared a proposed $120,000 first-year budget with a 12-month cost plan."
+      "role": "Business & Compliance Lead",
+      "detail": "Technology Innovation Lab Externship",
+      "dates": "Aug 2025 – Dec 2025",
+      "organization": "Honeywell Aerospace × Arizona State University | Technology Innovation Lab Externship",
+      "location": "Tempe, AZ",
+      "bullets": [
+        "Led project coordination for a four-member team developing AEROSEC, an aviation cybersecurity concept; organized responsibilities across remote teammates, tracked progress, and communicated requirements in weekly mentor meetings to keep technical research, business planning, and compliance work aligned.",
+        "Interviewed 4 of 12 industry participants and consolidated findings with teammates; translated aviation cybersecurity concerns into requirements for API authorization, encryption, audit logging, and vendor-risk management.",
+        "Led business and financial planning, comparing 4 commercial security solutions and developing a $120,000 first-year budget with a 12-month operating plan; presented technical risks, market positioning, and financial assumptions to industry evaluators assessing the proposed business model."
       ]
     },
     {
-      role: "Graduate Teaching Assistant",
-      detail: "IT Grader",
-      dates: "Jan 2025 - Oct 2025",
-      organization: "Ira A. Fulton Schools of Engineering, Arizona State University",
-      location: "Tempe, AZ",
-      bullets: [
-        "Assessed approximately 85 undergraduate Web Programming submissions per semester and 52 graduate cybersecurity assignments using instructor rubrics.",
-        "Wrote corrective feedback on secure coding, risk assessment, and compliance gaps, identifying what needed correction under instructor rubrics."
+      "role": "Graduate Teaching Assistant | IT Grader",
+      "dates": "Jan 2025 – Oct 2025",
+      "organization": "Arizona State University | Ira A. Fulton Schools of Engineering",
+      "location": "Tempe, AZ",
+      "bullets": [
+        "Supported approximately 85 undergraduate students per semester through web application development, reviewing code, project milestones, and final submissions; provided actionable feedback to help students identify defects, improve implementation quality, and meet project requirements.",
+        "Evaluated 52 graduate cybersecurity assignments covering risk assessment, security compliance, infrastructure security, and configuration management; identified gaps in technical reasoning and documentation and provided feedback aligned with course requirements and established security frameworks.",
+        "Coordinated grading and student communication with faculty across undergraduate and graduate courses; applied consistent evaluation criteria, addressed technical questions, and escalated exceptions to support timely feedback and fair assessment."
       ]
     }
   ] satisfies ExperienceItem[],
