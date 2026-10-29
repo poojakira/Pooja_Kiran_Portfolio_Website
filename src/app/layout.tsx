@@ -7,8 +7,8 @@ const socialImage = `${siteUrl}/og-card.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}/`),
-  title: "Pooja Kiran | Security Engineer | AI & Agent Security",
-  description: "Pooja Kiran is a Security Engineer specializing in AI & Agent Security, Application Security, Cloud IAM Security, Model Supply-Chain Security, and Security Automation.",
+  title: "Pooja Kiran | Security Engineering & Technical Leadership",
+  description: "Security engineering and technical leadership portfolio featuring AI-agent security, cloud IAM, product security, AEROSEC team coordination, and stakeholder planning.",
   alternates: { canonical: `${siteUrl}/` },
   robots: {
     index: true,
@@ -17,17 +17,17 @@ export const metadata: Metadata = {
   },
   manifest: `${siteUrl}/site.webmanifest`,
   openGraph: {
-    title: "Pooja Kiran | Security Engineer | AI & Agent Security",
-    description: "Security Engineer specializing in AI & Agent Security, Application Security, Cloud IAM Security, Model Supply-Chain Security, and Security Automation.",
+    title: "Pooja Kiran | Security Engineering & Technical Leadership",
+    description: "Hands-on AI and product security engineering, cross-functional AEROSEC team leadership, technical reviews, and stakeholder planning.",
     url: `${siteUrl}/`,
-    siteName: "Pooja Kiran Security Engineering Portfolio",
+    siteName: "Pooja Kiran | Security Engineering & Technical Leadership",
     type: "website",
     images: [{ url: socialImage, width: 1200, height: 630, alt: "Pooja Kiran, Security Engineer" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pooja Kiran | Security Engineer | AI & Agent Security",
-    description: "AI & Agent Security · Application Security · Cloud IAM Security · Model Supply-Chain Security · Security Automation",
+    title: "Pooja Kiran | Security Engineering & Technical Leadership",
+    description: "Security Engineering · Technical Leadership · AI & Product Security · Cloud IAM",
     images: [socialImage]
   },
   icons: { icon: `${siteUrl}/favicon.svg` }
