@@ -83,6 +83,14 @@ jobs:
         run: |
           path="public/Pooja_Kiran_Engineering_Manager_Resume.pdf"
           generated=".resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf"
+          if [ -f "$path" ]; then
+            pdftotext "$generated" /tmp/generated-manager-resume.txt
+            pdftotext "$path" /tmp/current-manager-resume.txt
+            if cmp -s /tmp/generated-manager-resume.txt /tmp/current-manager-resume.txt; then
+              echo "Engineering Manager PDF text already matches the canonical LaTeX; ignore volatile PDF metadata."
+              exit 0
+            fi
+          fi
           base64 -w0 "$generated" > /tmp/manager-resume-pdf.b64
           remote_blob="$(gh api "repos/$GITHUB_REPOSITORY/contents/$path?ref=$PR_BRANCH" --jq .sha 2>/dev/null || true)"
           if [ -n "$remote_blob" ]; then
