@@ -5,10 +5,10 @@
     {
       "file": "mcp-poster.png",
       "repository": "mcp-agent-security-gateway",
-      "commit": "9bad1c2f06563e7fdf637b1f70dc75521d6c2e5e",
-      "git_blob_sha": "3becd4a461b8ec6569b6b7c2d8f05b70fd456232",
-      "run_id": 38502413461,
-      "summary": "782 tests, 81.93% statement coverage; 69 separately inventoried runtime signatures"
+      "commit": "861a80258bd91a8c1d84b9a9c4e4f8c533f6467e",
+      "git_blob_sha": "2a968a5912530dbc54edc026080e13b7cfa23106",
+      "run_id": 42748742036,
+      "summary": "Nov 10, 2026 draft PR-merge CI: 1,158 passed, 6 skipped, 83.10% Python 3.12 coverage; 69 named signatures, 9 Elastic rule records, 21 core SIEM tests, 7 scenario tests; production NO-GO"
     },
     {
       "file": "iam-poster.png",

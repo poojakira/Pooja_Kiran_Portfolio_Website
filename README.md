@@ -1,3 +1,7 @@
+# November 2026 MCP evidence update
+
+Both resume sources and the website's MCP project description are aligned to [PR #167 full CI run 42748742036](https://github.com/poojakira/mcp-agent-security-gateway/actions/runs/42748742036) from November 10, 2026: **1,158 passed, 6 skipped, 83.10% statement coverage on Linux/Python 3.12**, on the synthetic PR-merge commit. The gateway remains **draft/unmerged and production NO-GO**. October **782/81.93%** measurements are historical. Inventory counts (**69** named patterns, **9** Elastic rules, **21** core SIEM tests, **7** SIEM scenario tests) do not measure attack-detection efficacy. The active MCP poster is pinned to source gateway commit `861a8025` with exact blob identity in [poster sources](docs/poster_sources.json); existing older poster alignment paragraphs below describe historical decisions.
+
 > **READ THIS LICENSE BEFORE COPYING, USING, OR MODIFYING ANY MATERIAL.** This repository's owner-controlled original content is proprietary and **All Rights Reserved**. There is no permission to copy, modify, distribute, or reuse it without prior written authorization, subject to existing third-party rights, any prior valid licenses, GitHub's Terms, and applicable law. See [LICENSE](LICENSE).
 
 # Pooja Kiran Portfolio Website

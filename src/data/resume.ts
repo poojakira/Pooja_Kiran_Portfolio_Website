@@ -66,7 +66,7 @@ export const resume = {
       "organization": "Self-Directed Research",
       "location": "Tempe, AZ",
       "bullets": [
-        "Built the **MCP Agent Security Gateway** with **Python, FastAPI, and MCP/JSON-RPC** to guard against unauthorized AI-agent actions, prompt injection, and sensitive-data exposure; implemented **69 detection signatures**, **default-deny authorization**, and **9 Elastic Security rules**, supported by **782 passing tests** and **81.93% statement coverage** in a documented CI run.",
+        "Built the **MCP Agent Security Gateway** with **Python, FastAPI, and MCP/JSON-RPC** to guard against unauthorized AI-agent actions, prompt injection, and sensitive-data exposure; implemented **69 detection signatures**, **default-deny authorization**, and **9 Elastic Security rules**, validated by **1,158 passing tests, 6 skipped, and 83.10% statement coverage** in a November 2026 draft PR-merge CI (Python 3.12); **not production-approved**.",
         "Worked directly with an **early-stage security startup founder** to integrate **privacy-preserving identity telemetry** into the MCP gateway; delivered authenticated client paths for **3 identities** and secured **independent verification of event attribution**, helping clarify **customer-onboarding requirements and deployment limitations**.",
         "Developed **open-source security tools** to identify excessive **AWS IAM permissions**, assess **AI model supply-chain risks**, and investigate security events; implemented **25 IAM analysis rules** and validated **244 identity-security tests** and **296 attack-detection tests**, delivering reproducible findings and documented controls for developers and security teams."
       ]
@@ -101,7 +101,7 @@ export const resume = {
       label: "Agent → Tool Security",
       name: "MCP Agent Security Gateway",
       stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
-      dates: "Oct 2025 - Oct 2026",
+      dates: "Oct 2025 - Present",
       repository: "https://github.com/poojakira/mcp-agent-security-gateway",
       caseStudy: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_CASE_STUDY.md",
       demo: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/RECRUITER_DEMO_60S.md",
@@ -111,12 +111,12 @@ export const resume = {
       bullets: [
         "Engineered a default-deny agent-to-tool gateway with capability checks, request inspection, anti-SSRF egress rules, and rate limits.",
         "Implemented 69 named prompt-injection signatures, PII/exfiltration signals, hash-chained auditing, and nine Elastic Security rule records.",
-        "Built automated regression coverage for gateway controls and SIEM integration; the Python 3.12 suite passed 782 tests with 81.93% statement coverage."
+        "Built automated regression coverage for gateway controls and SIEM integration; November PR-merge CI recorded 1,158 passed, 6 skipped and 83.10% statement coverage on Python 3.12."
       ],
-      metrics: ["782 tests in cited Python 3.12 CI", "81.93% coverage, same CI run", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "The October 10, 2026 Python 3.12 CI run 38012954359 passed 782 tests at 81.93% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
-      limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
-      history: "Project work: Oct 2025 to Oct 2026. CI figures are from a specific October 2026 Python 3.12 run, not operational detection effectiveness."
+      metrics: ["1,158 passed / 6 skipped, PR-merge CI", "83.10% coverage, Python 3.12", "69 named source signatures", "9 Elastic rule records", "21 core + 7 scenario SIEM tests"],
+      testing: "November 10, 2026 PR #167, CI run 42748742036 at synthetic merge 2ab3380: Python 3.12 recorded 1,158 passed, 6 skipped and 83.10% statement coverage (7,327 statements, 1,238 missed); 69 named source signatures, 9 Elastic rules, 21 core and 7 scenario SIEM tests. Draft integration, production NO-GO.",
+      limitations: "Draft/unmerged research candidate; production NO-GO. Scoped tests do not establish non-bypassable deployment, independent detection accuracy, distributed revocation, full MCP interoperability or customer adoption.",
+      history: "Project work began Oct 2025 (maintainer-reported), ongoing. November 2026 figures come from PR-merge CI, not production security efficacy. October 782/81.93% evidence is historical."
     },
     {
       id: "iam",

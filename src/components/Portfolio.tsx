@@ -183,7 +183,7 @@ function ExploreExperience() {
             AI agents, applications, cloud identity, and detection systems.
           </p>
           <ul aria-label="Security engineering highlights">
-            <li>MCP gateway with 782 passing CI tests</li>
+            <li>MCP gateway: 1,158 passing PR-merge CI tests</li>
             <li>25-rule AWS IAM static analyzer</li>
             <li>AI model supply-chain and detection tooling</li>
           </ul>
@@ -266,7 +266,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <div className="poster-frame">
             {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} evidence poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="Diagram of the evidence-scoped attack detection and investigation workflow"><strong>TELEMETRY → EVIDENCE</strong><span>DETECT · CORRELATE · INVESTIGATE</span><small>Development-branch platform · synthetic healthcare telemetry · local verification · hosted CI blocked</small></div>}
           </div>
-          <span className="poster-caption">{project.id === "automotive" ? "Engineering evidence illustration · not a live SOC" : "Current verified evidence poster · repository-backed"}</span>
+          <span className="poster-caption">{project.id === "automotive" ? "Engineering evidence illustration · not a live SOC" : project.id === "mcp" ? "November 2026 integration evidence · draft research prototype · production NO-GO" : "Dated, repository-backed research evidence · not a live deployment"}</span>
         </div>
 
         <div className="project-dual-proof">
