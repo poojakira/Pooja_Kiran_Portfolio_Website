@@ -19,3 +19,7 @@ The October 14 MCP poster was tied to a different source commit and [run 3850241
 ## Artifact verification
 
 `docs/poster_sources.json` pins source commit and Git blob SHA; `scripts/sync_poster_assets.py --sync` fetches the corresponding source PNG and rejects mismatched bytes. GitHub Actions may commit the regenerated poster PNG to the review branch after the manifest commit. This equality check is **binary provenance**, not a guarantee of perfect visual layout. The source poster was reviewed visually before this update. Verify the final review-branch state and site deployment after artifact synchronization.
+
+## Generated asset audit — November 10, 2026
+
+The [poster sync run](https://github.com/poojakira/Pooja_Kiran_Portfolio_Website/actions/runs/42945891595) passed and committed `public/mcp-poster.png`: source and destination Git blob `2a968a5912530dbc54edc026080e13b7cfa23106` (672,096 bytes). The [two-resume build](https://github.com/poojakira/Pooja_Kiran_Portfolio_Website/actions/runs/42945891777) passed XeLaTeX, two-page layout, and extracted-text assertions, then committed both generated PDFs: Security Engineer blob `747d3a6748aa2a3eaa9d21effc1bc16abf31f2a9` and Engineering Manager blob `04aad7b9920ac9748842ddecc6014a90c1e35aa2`. The assets are review candidates until PR #158 is merged and site publication is verified.
