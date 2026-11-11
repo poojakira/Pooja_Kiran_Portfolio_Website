@@ -44,7 +44,8 @@ jobs:
           pdftotext -layout .resume-build/Pooja_Kiran_Security_Engineer_Resume.pdf /tmp/generated-resume-content.txt
           # Verify the printed artifact, not only the LaTeX source.
           test "$(grep -o 'Oct 2026' /tmp/generated-resume-content.txt | wc -l)" -ge 3
-          grep -Fq "782 passing tests" /tmp/generated-resume-content.txt
+          grep -Fq "1,158" /tmp/generated-resume-content.txt
+          grep -Fq "83.10%" /tmp/generated-resume-content.txt
           grep -Fq "244 tests passed" /tmp/generated-resume-content.txt
           grep -Fq "260 passing" /tmp/generated-resume-content.txt
           grep -Fq "Cloud Architecting" /tmp/generated-resume-content.txt
@@ -71,7 +72,7 @@ jobs:
           pdftotext -layout .resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf /tmp/manager-resume-content.txt
           grep -Fq "Compliance Lead" /tmp/manager-resume-content.txt
           grep -Fq "peer leads" /tmp/manager-resume-content.txt
-          grep -Fq "782" /tmp/manager-resume-content.txt
+          grep -Fq "1,158" /tmp/manager-resume-content.txt
           grep -Fq "Cloud Architecting" /tmp/manager-resume-content.txt
 
       - name: Sync generated Engineering Manager PDF to PR branch

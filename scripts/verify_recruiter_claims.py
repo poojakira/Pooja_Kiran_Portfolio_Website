@@ -13,7 +13,7 @@ for source in sources:
     for forbidden in ("96.15", "40% reduction", "60% detection", "100% secure"):
         if forbidden in lower:
             raise SystemExit("Unsupported impact claim: " + forbidden)
-    required = ("782", "81.93", "25", "85 undergraduate")
+    required = ("1,158", "83.10", "25", "85 undergraduate")
     required += ("52 graduate", "120,000", "externship", "244", "260")
     for value in required:
         if value.lower() not in lower:
@@ -31,10 +31,10 @@ ui = portfolio.read_text(encoding="utf-8-sig")
 if "60-second demo script (text)" not in ui:
     raise SystemExit("Portfolio must label the Markdown demo as text")
 
-for period in ("Oct 2025 -- Oct 2026", "Apr 2025 -- Oct 2026", "Nov 2024 -- Oct 2026"):
+for period in ("Oct 2025 -- Present", "Apr 2025 -- Oct 2026", "Nov 2024 -- Oct 2026"):
     if period not in sources[0]:
         raise SystemExit("Incorrect project period in LaTeX: " + period)
-for period in ("Oct 2025 - Oct 2026", "Apr 2025 - Oct 2026", "Nov 2024 - Oct 2026"):
+for period in ("Oct 2025 - Present", "Apr 2025 - Oct 2026", "Nov 2024 - Oct 2026"):
     if period not in sources[1]:
         raise SystemExit("Incorrect project period in website: " + period)
 if "candidate-reported" in sources[0].lower() + sources[1].lower():
