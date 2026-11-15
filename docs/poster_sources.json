@@ -5,10 +5,10 @@
     {
       "file": "mcp-poster.png",
       "repository": "mcp-agent-security-gateway",
-      "commit": "9bad1c2f06563e7fdf637b1f70dc75521d6c2e5e",
-      "git_blob_sha": "3becd4a461b8ec6569b6b7c2d8f05b70fd456232",
-      "run_id": 38502413461,
-      "summary": "782 tests, 81.93% statement coverage; 69 separately inventoried runtime signatures"
+      "commit": "ac2ea8b42684b6cc3da29fd40bdebb3ac4431eb7",
+      "git_blob_sha": "98f93d6ccbd89085c0369433ff61616d5394af05",
+      "run_id": 43749512207,
+      "summary": "Updated November 15 source and printed poster evidence; historical 1,245 and 1,246 test snapshots, nine-job integration; production NO-GO."
     },
     {
       "file": "iam-poster.png",

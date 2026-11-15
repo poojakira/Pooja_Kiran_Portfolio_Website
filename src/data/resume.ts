@@ -111,12 +111,12 @@ export const resume = {
       bullets: [
         "Engineered a default-deny agent-to-tool gateway with capability checks, request inspection, anti-SSRF egress rules, and rate limits.",
         "Implemented 69 named prompt-injection signatures, PII/exfiltration signals, hash-chained auditing, and nine Elastic Security rule records.",
-        "Built automated regression coverage for gateway controls and SIEM integration; the Python 3.12 suite passed 782 tests with 81.93% statement coverage."
+        "Expanded the gateway through Phase 1–16 integration with offline Docker isolation, identity and revocation controls, durable effect journaling, and real MCP filesystem integration; a November 15, 2026 nine-job CI run passed, while production release remains NO-GO."
       ],
-      metrics: ["782 tests in cited Python 3.12 CI", "81.93% coverage, same CI run", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "The October 10, 2026 Python 3.12 CI run 38012954359 passed 782 tests at 81.93% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
-      limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
-      history: "Project work: Oct 2025 to Oct 2026. CI figures are from a specific October 2026 Python 3.12 run, not operational detection effectiveness."
+      metrics: ["9/9 integrated CI jobs passed (Nov 15, 2026)", "782 tests / 81.93% coverage (Oct 10 historical run)", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
+      testing: "The October 10, 2026 Python 3.12 CI run 38012954359 passed 782 tests at 81.93% statement coverage. A separate November 15, 2026 Phase 1–16 integrated run 43744352348 passed all nine jobs, including Docker and official MCP filesystem integration. These results are historical, not production certification.",
+      limitations: "Production NO-GO. The evidence supports implemented controls and bounded CI/Docker tests, not complete non-bypassability, deployed Kubernetes network enforcement, issuer-side credential revocation, external exactly-once effects, customer deployment, or universal prevention.",
+      history: "Project work began Oct 2025; Phase 1–16 validation continued into November 2026. Historical CI results are not operational detection effectiveness or production approval."
     },
     {
       id: "iam",
