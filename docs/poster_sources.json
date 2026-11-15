@@ -5,10 +5,10 @@
     {
       "file": "mcp-poster.png",
       "repository": "mcp-agent-security-gateway",
-      "commit": "8049ec46e8337ee4eabff9cfa97ffe4663f4febc",
-      "git_blob_sha": "7a7360e6282d0c185134422c04cae35ab26083fa",
-      "run_id": 43748347212,
-      "summary": "November 2026 Phase 1–16 integrated CI evidence; historical 1,245/1,246 test snapshots; production NO-GO. Poster parity run 43748347212 passed."
+      "commit": "ac2ea8b42684b6cc3da29fd40bdebb3ac4431eb7",
+      "git_blob_sha": "98f93d6ccbd89085c0369433ff61616d5394af05",
+      "run_id": 43749512207,
+      "summary": "Updated November 15 source and printed poster evidence; historical 1,245 and 1,246 test snapshots, nine-job integration; production NO-GO."
     },
     {
       "file": "iam-poster.png",
