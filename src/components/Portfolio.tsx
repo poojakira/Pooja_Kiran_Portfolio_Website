@@ -434,8 +434,7 @@ function ExperienceSection() {
   return (
     <section className="experience-section" id="experience">
       <div className="section-intro" data-reveal>
-        <p className="eyebrow">Professional & applied experience</p>
-        <h2>Security engineering ownership, team delivery, and stakeholder decisions.</h2>
+        <h2>Experience</h2>
       </div>
       <div className="experience-list">
         {resume.experience.map((item, index) => (
