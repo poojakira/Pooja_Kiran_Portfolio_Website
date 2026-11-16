@@ -439,14 +439,15 @@ function ExperienceSection() {
       <div className="experience-list">
         {resume.experience.map((item, index) => (
           <article className="experience-row" key={item.role + item.dates} data-reveal>
-            <div className="experience-index">0{index + 1}</div>
             <div className="experience-time">
+              <span className="experience-index">{String(index + 1).padStart(2, "0")}</span>
               <time>{item.dates}</time>
               <span>{item.location}</span>
             </div>
             <div className="experience-main">
-              <h3>{item.role}{item.detail && <small>{item.detail}</small>}</h3>
+              <h3>{item.role}</h3>
               <p className="experience-org">{item.organization}</p>
+              {item.detail && <p className="experience-detail">{item.detail}</p>}
               <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet.split(/(\*\*[^*]+\*\*)/g).map((segment, partIndex) => segment.startsWith("**") && segment.endsWith("**") ? <strong key={partIndex}>{segment.slice(2, -2)}</strong> : segment)}</li>)}</ul>
             </div>
           </article>

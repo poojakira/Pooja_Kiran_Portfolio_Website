@@ -62,83 +62,81 @@ export const resume = {
   experience: [
       {
           "role": "Independent AI Security Researcher & Engineer",
-          "detail": "Self-directed engineering and research",
           "dates": "Aug 2024 – Present",
-          "organization": "Independent work | Not an employer appointment",
+          "organization": "Independent Security Engineering",
+          "detail": "Self-directed research and development",
           "location": "Tempe, AZ",
           "bullets": [
-              "Designed and developed the **MCP Agent Security Gateway**, focusing on agent-to-tool authorization, prompt-injection inspection, and audit trails. Implementation evidence and test results are documented in the linked project repository.",
-              "Created independent tools for reviewing **AWS IAM permission risks**, examining **AI model provenance**, and investigating security events.",
-              "Documented design decisions, security limitations, and reproducible test procedures for these independent projects."
+              "Built an **MCP Agent Security Gateway** that evaluates agent tool calls before execution, including authorization checks, prompt-injection inspection, and audit logging.",
+              "Developed security tooling for **AWS IAM policy analysis**, AI model provenance, and event investigation, with implementation and tests documented in the linked repositories."
           ]
       },
       {
           "role": "Technical Collaborator",
-          "detail": "Short-term technical collaboration",
           "dates": "Sep 29 – Oct 9, 2026",
-          "organization": "Cerberus | Verified by its founder",
+          "organization": "Cerberus",
+          "detail": "Security integration collaboration",
           "location": "Remote",
           "bullets": [
-              "Mapped MCP gateway telemetry to the Cerberus event schema, configured test-event delivery, and helped troubleshoot connectivity.",
-              "Tested attribution for **three authenticated gateway identities** and verified that resending a test batch did not create duplicate records. The work did not evaluate live detector effectiveness."
+              "Integrated gateway telemetry with the Cerberus event schema and configured delivery of test events.",
+              "Verified identity attribution for **three authenticated gateway identities** and checked that replaying the same event batch did not create duplicate records."
           ]
       },
       {
           "role": "IT Grader",
-          "detail": "ASU employment | HR-confirmed dates",
           "dates": "Jan 2025 – May 2026",
-          "organization": "Arizona State University | Ira A. Fulton Schools of Engineering",
+          "organization": "Arizona State University",
+          "detail": "Information technology and security coursework",
           "location": "Tempe, AZ",
           "bullets": [
-              "Reviewed coursework, code, and project submissions in information technology and security courses, providing rubric-based technical feedback.",
-              "Worked with course instructors on grading, student questions, and assignment issues."
+              "Reviewed code, technical assignments, and student projects, giving rubric-based feedback on implementation and reasoning.",
+              "Worked with instructors to resolve grading questions and provide consistent feedback across IT and security courses."
           ]
       },
       {
           "role": "Business & Compliance Lead",
-          "detail": "Technology Innovation Lab externship | Not direct Honeywell employment",
           "dates": "Aug 2025 – Dec 2025",
-          "organization": "Honeywell Aerospace × Arizona State University | AEROSEC",
+          "organization": "Honeywell Aerospace × ASU Technology Innovation Lab",
+          "detail": "AEROSEC industry externship",
           "location": "Tempe, AZ",
           "bullets": [
-              "Worked on the AEROSEC externship's business and compliance activities, including proposed requirements for **API authorization**, **encryption**, **audit logging**, and **vendor-risk assessment**.",
-              "Contributed to comparison of security solutions, project planning, and the preparation of recommendations for industry evaluators.",
-              "Coordinated assigned project tasks and communicated progress with peers and mentors during the externship."
+              "Developed proposed security and compliance requirements covering **API authorization, encryption, audit logging, and vendor risk**.",
+              "Compared security solution approaches, contributed to the business plan, and helped prepare recommendations for Honeywell evaluators.",
+              "Coordinated project tasks and communicated progress with teammates and mentors."
           ]
       },
       {
-          "role": "Technical Project Assistant",
-          "detail": "Project MAX | Faculty-supervised student work",
+          "role": "Technical Project Assistant | MAX",
           "dates": "Jan 2025 – Oct 2025",
-          "organization": "Supervised by Dr. Justin Shewell | Arizona State University",
+          "organization": "Project MAX · Faculty-supervised at Arizona State University",
+          "detail": "Supervised by Dr. Justin Shewell",
           "location": "Tempe, AZ",
           "bullets": [
-              "Designed and implemented the initial **database structure** for MAX, a personalized learning assistant using an LLM API and retrieval-augmented generation.",
-              "Translated project requirements into table relationships and indexes for storing course materials and student interactions.",
-              "Collaborated with other contributors on the application's **frontend user interface**."
+              "Designed and implemented the initial **database structure** for MAX, an AI-powered personalized learning assistant using an LLM and retrieval-augmented generation.",
+              "Defined table relationships and indexes for course content and student interaction records.",
+              "Collaborated with the team on frontend user-interface development."
           ]
       },
       {
           "role": "Volunteer Research & Publication Collaborator",
-          "detail": "Unpaid research under faculty supervision",
           "dates": "Sep 2023 – Dec 2023",
-          "organization": "Supervised by Dr. Jayahar Sivasubramanian | During MSRUAS studies",
+          "organization": "Research supervised by Dr. Jayahar Sivasubramanian",
+          "detail": "During undergraduate studies at M. S. Ramaiah University of Applied Sciences",
           "location": "Bengaluru, India",
           "bullets": [
               "Took a leading role in preparing the manuscript **“A Personalized E-Learning System Using Reinforcement Learning Through Satellite,”** associated with IEEE INDICON 2023.",
-              "Helped communicate the research's technical approach through scholarly writing and coordination with faculty."
+              "Helped communicate the project's technical approach through research writing and faculty collaboration."
           ]
       },
       {
-          "role": "Volunteer Undergraduate Research & Development Contributor - AI & Software Engineering",
-          "detail": "Unpaid research under faculty supervision",
+          "role": "Volunteer Undergraduate Research & Development Contributor – AI & Software Engineering",
           "dates": "Aug 2022 – Aug 2023",
-          "organization": "Supervised by Dr. Jayahar Sivasubramanian | During MSRUAS studies",
+          "organization": "Research supervised by Dr. Jayahar Sivasubramanian",
+          "detail": "During undergraduate studies at M. S. Ramaiah University of Applied Sciences",
           "location": "Bengaluru, India",
           "bullets": [
-              "Developed adaptive tutoring functionality for the KSCST 46th Series CubeSat e-learning project (46S_BE_5506).",
-              "Independently built a **mathematics-learning application** intended to support personalized education.",
-              "Contributed to application integration, documentation, and project milestone coordination; the CubeSat hardware model was a **collaborative team effort**."
+              "Built a **mathematics-learning application** and adaptive tutoring functionality for KSCST project **46S_BE_5506**, supporting personalized learning.",
+              "Contributed to software integration, research documentation, and milestone coordination; the CubeSat hardware model was a team effort."
           ]
       }
   ] satisfies ExperienceItem[],
