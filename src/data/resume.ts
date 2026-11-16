@@ -89,8 +89,9 @@ export const resume = {
           "detail": "Information technology and security coursework",
           "location": "Tempe, AZ",
           "bullets": [
-              "Reviewed code, technical assignments, and student projects, giving rubric-based feedback on implementation and reasoning.",
-              "Worked with instructors to resolve grading questions and provide consistent feedback across IT and security courses."
+              "Evaluated cybersecurity and security compliance coursework for 53 students in IFT 483/543: Security Compliance for IT (Summer 2025), assessing technical submissions against course requirements and providing rubric-based feedback.",
+              "Assessed systems configuration management coursework for 101 students in IFT 380: Advanced Systems Configuration Management, reviewing technical submissions and delivering feedback aligned with instructor-defined grading standards.",
+              "Reviewed web programming assignments and projects for 85 students in IFT 301: Web Programming for HCI (Spring 2025), evaluating technical implementation and providing structured feedback."
           ]
       },
       {
