@@ -136,6 +136,7 @@ export const resume = {
           "detail": "During undergraduate studies at M. S. Ramaiah University of Applied Sciences",
           "location": "Bengaluru, India",
           "bullets": [
+              "Contributed to a CubeSat-based AI e-learning research project selected for funding through **KSCST’s 46th Series Student Project Programme**, which sponsored **1,494 of 5,961 proposals statewide (25.1% selection rate)**.",
               "Built a **mathematics-learning application** and adaptive tutoring functionality for KSCST project **46S_BE_5506**, supporting personalized learning.",
               "Contributed to software integration, research documentation, and milestone coordination; the CubeSat hardware model was a team effort."
           ]
