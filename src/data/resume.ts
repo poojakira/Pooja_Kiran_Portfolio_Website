@@ -121,24 +121,25 @@ export const resume = {
       {
           "role": "Volunteer Research & Publication Collaborator",
           "dates": "Sep 2023 – Dec 2023",
-          "organization": "Research supervised by Dr. Jayahar Sivasubramanian",
-          "detail": "During undergraduate studies at M. S. Ramaiah University of Applied Sciences",
+          "organization": "M. S. Ramaiah University of Applied Sciences",
+          "detail": "Volunteer research | IEEE INDICON 2023 publication",
           "location": "Bengaluru, India",
           "bullets": [
-              "Took a leading role in preparing the manuscript **“A Personalized E-Learning System Using Reinforcement Learning Through Satellite,”** associated with IEEE INDICON 2023.",
-              "Helped communicate the project's technical approach through research writing and faculty collaboration."
+              "Led technical manuscript development as **first-listed author among 3 coauthors** for **A Personalized E-Learning System Using Reinforcement Learning Through Satellite**, published in the proceedings of **IEEE INDICON 2023**.",
+              "Documented a **Q-learning-based personalized mathematics approach** involving 3 difficulty levels, reward-based feedback, adaptive question selection, and performance-driven progression.",
+              "Analyzed **3 learner scenarios across 10 episodes each**, communicating reward patterns, Q-value updates, and learner progression through research writing and conference materials."
           ]
       },
       {
           "role": "Volunteer Undergraduate Research & Development Contributor – AI & Software Engineering",
           "dates": "Aug 2022 – Aug 2023",
-          "organization": "Research supervised by Dr. Jayahar Sivasubramanian",
-          "detail": "During undergraduate studies at M. S. Ramaiah University of Applied Sciences",
+          "organization": "M. S. Ramaiah University of Applied Sciences",
+          "detail": "Supervised by Dr. Jayahar Sivasubramanian | Volunteer research",
           "location": "Bengaluru, India",
           "bullets": [
-              "Contributed to a CubeSat-based AI e-learning research project selected for funding through **KSCST’s 46th Series Student Project Programme**, which sponsored **1,494 of 5,961 proposals statewide (25.1% selection rate)**.",
-              "Built a **mathematics-learning application** and adaptive tutoring functionality for KSCST project **46S_BE_5506**, supporting personalized learning.",
-              "Contributed to software integration, research documentation, and milestone coordination; the CubeSat hardware model was a team effort."
+              "Independently developed a **mathematics-learning application and adaptive AI tutoring functionality** for research on satellite-supported personalized education in remote communities.",
+              "Contributed educational software and application integration to **KSCST-funded project 46S_BE_5506**, supported through the **46th Series Student Project Programme**.",
+              "Supported technical documentation and research milestones within a collaborative student team; the CubeSat hardware model was a team effort."
           ]
       }
   ] satisfies ExperienceItem[],
