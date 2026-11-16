@@ -66,7 +66,8 @@ for source in sources:
             raise SystemExit("Missing verified Experience detail: " + phrase)
     for unsupported in ("85 undergraduate", "52 graduate", "$120,000", "120,000"):
         # These figures are not documented in the supplied verification letters.
-        exp = source.split("Experience", 1)[-1].split("Selected Security Engineering", 1)[0]
+        exp = source.split("Experience", 1)[-1]
+        exp = exp.split("Selected Security Engineering", 1)[0]
         if unsupported.lower() in exp.lower():
             raise SystemExit("Unsupported number in Experience: " + unsupported)
 
