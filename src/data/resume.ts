@@ -60,40 +60,82 @@ export const resume = {
     }
   ],
   experience: [
-    {
-      "role": "Independent AI Security Researcher & Engineer",
-      "dates": "Aug 2024 – Present",
-      "organization": "Self-Directed Research",
-      "location": "Tempe, AZ",
-      "bullets": [
-        "Built the **MCP Agent Security Gateway** with **Python, FastAPI, and MCP/JSON-RPC** to guard against unauthorized AI-agent actions, prompt injection, and sensitive-data exposure; implemented **69 detection signatures**, **default-deny authorization**, and **9 Elastic Security rules**, supported by **782 passing tests** and **81.93% statement coverage** in a documented CI run.",
-        "Worked directly with an **early-stage security startup founder** to integrate **privacy-preserving identity telemetry** into the MCP gateway; delivered authenticated client paths for **3 identities** and secured **independent verification of event attribution**, helping clarify **customer-onboarding requirements and deployment limitations**.",
-        "Developed **open-source security tools** to identify excessive **AWS IAM permissions**, assess **AI model supply-chain risks**, and investigate security events; implemented **25 IAM analysis rules** and validated **244 identity-security tests** and **296 attack-detection tests**, delivering reproducible findings and documented controls for developers and security teams."
-      ]
-    },
-    {
-      "role": "Business & Compliance Lead",
-      "detail": "Technology Innovation Lab Externship",
-      "dates": "Aug 2025 – Dec 2025",
-      "organization": "Honeywell Aerospace × Arizona State University | Technology Innovation Lab Externship",
-      "location": "Tempe, AZ",
-      "bullets": [
-        "Assigned responsibilities to **three remote peer project leads** during designated AEROSEC lab phases; reviewed technical, customer-research, and prototype work, tracked deliverables, and reported to mentors to keep the **four-member team** aligned on project decisions.",
-        "Interviewed **4 of 12 industry participants** and coordinated findings with research and technical teammates; translated aviation security risks into proposed requirements for **API authorization**, **encryption**, **audit logging**, and **vendor-risk management**.",
-        "Led business and financial planning, **compared 4 commercial security solutions**, and developed a **proposed $120,000 first-year budget** with a **12-month operating plan**; presented market, security-risk, and financial assumptions across **3 pitches to Honeywell evaluators** to support feasibility decisions."
-      ]
-    },
-    {
-      "role": "Graduate Teaching Assistant | IT Grader",
-      "dates": "Jan 2025 – Oct 2025",
-      "organization": "Arizona State University | Ira A. Fulton Schools of Engineering",
-      "location": "Tempe, AZ",
-      "bullets": [
-        "Reviewed code, milestones, and final projects for approximately **85 undergraduate students per semester**; provided **rubric-based technical feedback** to help students correct web application defects and meet project requirements.",
-        "Evaluated **52 graduate cybersecurity assignments** covering **risk assessment**, **security compliance**, **infrastructure security**, and **configuration management**; identified gaps in technical reasoning and explained corrections against course criteria.",
-        "Coordinated **grading and student communication** with instructors, addressed technical questions and grading disputes, and escalated exceptions to maintain **consistent assessment and timely feedback** across courses."
-      ]
-    }
+      {
+          "role": "Independent AI Security Researcher & Engineer",
+          "detail": "Self-directed engineering and research",
+          "dates": "Aug 2024 – Present",
+          "organization": "Independent | Self-directed",
+          "location": "Tempe, AZ",
+          "bullets": [
+              "Designed and built the **MCP Agent Security Gateway** to inspect and control AI-agent tool calls, with capability checks, prompt-injection signatures, audit logging, and SIEM integration. A documented Python 3.12 CI run recorded **782 passing tests** and **81.93% statement coverage**; these are test results, not evidence of production deployment.",
+              "Built tools for **AWS IAM risk analysis**, **AI model provenance scanning**, and security-event investigation. The IAM analyzer implements **25 rules** and its cited CI run recorded **244 tests passed**; related model-scanner tests included **260 passing tests**."
+          ]
+      },
+      {
+          "role": "Technical Collaborator",
+          "detail": "Short-term security integration collaboration",
+          "dates": "Sep 29 – Oct 9, 2026",
+          "organization": "Cerberus",
+          "location": "Remote",
+          "bullets": [
+              "Mapped gateway telemetry to the Cerberus event schema and helped troubleshoot event delivery. Tested **identity attribution for three authenticated gateway identities** and confirmed repeated test batches did not create duplicate records.",
+              "Work was limited to integration and test-event delivery; **live detection effectiveness was not evaluated**."
+          ]
+      },
+      {
+          "role": "IT Grader",
+          "detail": "University student employment",
+          "dates": "Jan 2025 – May 2026",
+          "organization": "Arizona State University | Ira A. Fulton Schools of Engineering",
+          "location": "Tempe, AZ",
+          "bullets": [
+              "Reviewed code, coursework, and project submissions for approximately **85 undergraduate students**, providing rubric-based feedback on web development and related technical work.",
+              "Evaluated **52 graduate cybersecurity assignments** covering risk, security compliance, and systems configuration; explained findings to students and coordinated grading issues with faculty."
+          ]
+      },
+      {
+          "role": "Business & Compliance Lead",
+          "detail": "Technology Innovation Lab externship — not direct Honeywell employment",
+          "dates": "Aug 2025 – Dec 2025",
+          "organization": "Honeywell Aerospace × Arizona State University | AEROSEC",
+          "location": "Tempe, AZ",
+          "bullets": [
+              "Coordinated assignments and reviewed deliverables with **three peer leads** during designated project phases; translated industry interviews into proposed API authorization, encryption, logging, and vendor-risk requirements.",
+              "Compared **four commercial solutions**, prepared a proposed **$120,000 first-year budget** and 12-month operating plan, and presented findings across **three pitches** to Honeywell evaluators."
+          ]
+      },
+      {
+          "role": "Technical Project Assistant — MAX",
+          "detail": "University student employment",
+          "dates": "Jan 2025 – Oct 2025",
+          "organization": "Arizona State University | Information Technology Program",
+          "location": "Tempe, AZ",
+          "bullets": [
+              "Designed and implemented the initial **database structure** for MAX, an AI-powered student learning assistant using LLM and retrieval-augmented generation (RAG) capabilities.",
+              "Defined table relationships and indexes for course information and student interaction records, and collaborated on the application's frontend interface."
+          ]
+      },
+      {
+          "role": "Volunteer Research & Publication Collaborator",
+          "detail": "Unpaid academic research",
+          "dates": "Sep 2023 – Dec 2023",
+          "organization": "M. S. Ramaiah University of Applied Sciences",
+          "location": "Bengaluru, India",
+          "bullets": [
+              "Took a leading role in preparing the manuscript for **“A Personalized E-Learning System Using Reinforcement Learning Through Satellite,”** presented in connection with IEEE INDICON 2023."
+          ]
+      },
+      {
+          "role": "Volunteer Undergraduate Research & Development Contributor – AI & Software Engineering",
+          "detail": "Unpaid academic research",
+          "dates": "Aug 2022 – Aug 2023",
+          "organization": "M. S. Ramaiah University of Applied Sciences | KSCST 46th Series",
+          "location": "Bengaluru, India",
+          "bullets": [
+              "Developed **adaptive tutoring functionality** and independently built a **mathematics-learning application** for the KSCST-backed CubeSat e-learning project (46S_BE_5506).",
+              "Contributed to application integration, documentation, and project coordination. The CubeSat hardware model was a **team effort**."
+          ]
+      }
   ] satisfies ExperienceItem[],
   projects: [
     {
