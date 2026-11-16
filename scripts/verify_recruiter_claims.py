@@ -13,8 +13,7 @@ for source in sources:
     for forbidden in ("96.15", "40% reduction", "60% detection", "100% secure"):
         if forbidden in lower:
             raise SystemExit("Unsupported impact claim: " + forbidden)
-    required = ("782", "81.93", "25", "85 undergraduate")
-    required += ("52 graduate", "120,000", "externship", "244", "260")
+    required = ("782", "81.93", "25", "externship", "244", "260")
     for value in required:
         if value.lower() not in lower:
             raise SystemExit("Missing source-backed evidence: " + value)
@@ -49,5 +48,27 @@ for source in sources:
 for cert in ("Cloud Architecting", "Cloud Security Foundations"):
     if cert not in sources[0] or cert not in sources[1]:
         raise SystemExit("Missing AWS Academy certification: " + cert)
+
+# Keep the seven Experience entries aligned with the faculty and collaboration letters.
+for source in sources:
+    for phrase in (
+        "Dr. Justin Shewell",
+        "Dr. Jayahar Sivasubramanian",
+        "Sep 2023",
+        "Dec 2023",
+        "Aug 2022",
+        "Aug 2023",
+        "Jan 2025",
+        "May 2026",
+        "Cerberus",
+    ):
+        if phrase not in source:
+            raise SystemExit("Missing verified Experience detail: " + phrase)
+    for unsupported in ("85 undergraduate", "52 graduate", "$120,000", "120,000"):
+        # These figures are not documented in the supplied verification letters.
+        exp = source.split("Experience", 1)[-1]
+        exp = exp.split("Selected Security Engineering", 1)[0]
+        if unsupported.lower() in exp.lower():
+            raise SystemExit("Unsupported number in Experience: " + unsupported)
 
 print("Resume evidence check passed")

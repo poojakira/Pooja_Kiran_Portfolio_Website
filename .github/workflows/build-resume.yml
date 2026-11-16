@@ -51,6 +51,8 @@ jobs:
           grep -Fq "Cloud Security Foundations" /tmp/generated-resume-content.txt
           grep -Fq "Certifications & Training" /tmp/generated-resume-content.txt
           grep -Fq "Education" /tmp/generated-resume-content.txt
+          grep -Fq "Justin Shewell" /tmp/generated-resume-content.txt
+          grep -Fq "Jayahar Sivasubramanian" /tmp/generated-resume-content.txt
           if grep -Fq "(continued)" /tmp/generated-resume-content.txt; then exit 1; fi
           if grep -Eiq "not realized funding or revenue|one test was skipped" /tmp/generated-resume-content.txt; then
             echo "Unwanted AEROSEC/HF text found in PDF"
@@ -70,7 +72,8 @@ jobs:
           test "$(pdfinfo .resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf | awk '/^Pages:/ {print $2}')" = "2"
           pdftotext -layout .resume-build/Pooja_Kiran_Engineering_Manager_Resume.pdf /tmp/manager-resume-content.txt
           grep -Fq "Compliance Lead" /tmp/manager-resume-content.txt
-          grep -Fq "peer leads" /tmp/manager-resume-content.txt
+          grep -Fq "Justin Shewell" /tmp/manager-resume-content.txt
+          grep -Fq "Jayahar Sivasubramanian" /tmp/manager-resume-content.txt
           grep -Fq "782" /tmp/manager-resume-content.txt
           grep -Fq "Cloud Architecting" /tmp/manager-resume-content.txt
 
