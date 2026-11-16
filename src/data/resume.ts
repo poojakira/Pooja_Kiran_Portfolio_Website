@@ -134,7 +134,7 @@ export const resume = {
           "role": "Volunteer Undergraduate Research & Development Contributor – AI & Software Engineering",
           "dates": "Aug 2022 – Aug 2023",
           "organization": "M. S. Ramaiah University of Applied Sciences",
-          "detail": "Volunteer research | Supervised by Dr. Jayahar Sivasubramanian",
+          "detail": "Supervised by Dr. Jayahar Sivasubramanian | Volunteer research",
           "location": "Bengaluru, India",
           "bullets": [
               "Independently developed a **mathematics-learning application and adaptive AI tutoring functionality** for research on satellite-supported personalized education in remote communities.",
