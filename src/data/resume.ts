@@ -61,25 +61,15 @@ export const resume = {
   ],
   experience: [
       {
-          "role": "Independent AI Security Researcher & Engineer",
-          "dates": "Aug 2024 – Present",
-          "organization": "Independent Security Engineering",
-          "detail": "Self-directed research and development",
-          "location": "Tempe, AZ",
-          "bullets": [
-              "Built an **MCP Agent Security Gateway** that evaluates agent tool calls before execution, including authorization checks, prompt-injection inspection, and audit logging.",
-              "Developed security tooling for **AWS IAM policy analysis**, AI model provenance, and event investigation, with implementation and tests documented in the linked repositories."
-          ]
-      },
-      {
           "role": "Technical Collaborator",
           "dates": "Sep 29 – Oct 9, 2026",
           "organization": "Cerberus",
           "detail": "Security integration collaboration",
           "location": "Remote",
           "bullets": [
-              "Integrated gateway telemetry with the Cerberus event schema and configured delivery of test events.",
-              "Verified identity attribution for **three authenticated gateway identities** and checked that replaying the same event batch did not create duplicate records."
+              "Integrated **MCP gateway telemetry** with the Cerberus event schema, configured delivery of test events, and troubleshot connectivity.",
+              "Validated test-event delivery and correct identity attribution for **three authenticated gateway identities**.",
+              "Verified setup for **three persistent gateway identities** and confirmed that replaying the same test-event batch did not create duplicate records."
           ]
       },
       {
