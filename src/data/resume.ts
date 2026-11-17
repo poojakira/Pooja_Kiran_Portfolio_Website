@@ -67,9 +67,9 @@ export const resume = {
           "detail": "Security integration collaboration",
           "location": "Remote",
           "bullets": [
-              "Integrated **MCP gateway telemetry** with the Cerberus event schema, configured delivery of test events, and troubleshot connectivity.",
-              "Validated test-event delivery and correct identity attribution for **three authenticated gateway identities**.",
-              "Verified setup for **three persistent gateway identities** and confirmed that replaying the same test-event batch did not create duplicate records."
+              "**Integrated MCP gateway telemetry** with the Cerberus event schema, configuring test-event delivery and troubleshooting connectivity to complete successful transfers.",
+              "**Validated test-event delivery for 3 authenticated gateway identities**, confirming accurate attribution to their registered identities.",
+              "**Verified 3 persistent identity configurations** and duplicate-batch safety, confirming that replaying the same test batch created **no duplicate records**."
           ]
       },
       {
@@ -79,9 +79,9 @@ export const resume = {
           "detail": "Information technology and security coursework",
           "location": "Tempe, AZ",
           "bullets": [
-              "Evaluated cybersecurity and security compliance coursework for 53 students in IFT 483/543: Security Compliance for IT (Summer 2025), assessing technical submissions against course requirements and providing rubric-based feedback.",
-              "Assessed systems configuration management coursework for 101 students in IFT 380: Advanced Systems Configuration Management, reviewing technical submissions and delivering feedback aligned with instructor-defined grading standards.",
-              "Reviewed web programming assignments and projects for 85 students in IFT 301: Web Programming for HCI (Spring 2025), evaluating technical implementation and providing structured feedback."
+              "**Reviewed security-compliance submissions for 53 students** in IFT 483/543, documenting risk and evidence gaps through rubric-based feedback.",
+              "**Evaluated configuration-management coursework for 101 students** in IFT 380, identifying technical issues against instructor-defined criteria.",
+              "**Assessed web-programming assignments for 85 students** in IFT 301, reviewing code and project milestones and providing corrective feedback."
           ]
       },
       {
@@ -91,9 +91,9 @@ export const resume = {
           "detail": "AEROSEC industry externship",
           "location": "Tempe, AZ",
           "bullets": [
-              "Developed proposed security and compliance requirements covering **API authorization, encryption, audit logging, and vendor risk**.",
-              "Compared security solution approaches, contributed to the business plan, and helped prepare recommendations for Honeywell evaluators.",
-              "Coordinated project tasks and communicated progress with teammates and mentors."
+              "**Converted findings from 4 of 12 industry interviews** into proposed API authorization, encryption, audit-logging, and vendor-risk requirements for AEROSEC.",
+              "**Coordinated 3 remote peer leads** across technical, market, and prototype work during a leadership rotation, tracking deliverables and communicating progress to mentors.",
+              "**Compared 4 security platforms and delivered 3 evaluator pitches**, informing a proposed 12-month implementation plan."
           ]
       },
       {
@@ -103,9 +103,9 @@ export const resume = {
           "detail": "Supervised by Dr. Justin Shewell",
           "location": "Tempe, AZ",
           "bullets": [
-              "Designed and implemented the initial **database structure** for MAX, an AI-powered personalized learning assistant using an LLM and retrieval-augmented generation.",
-              "Defined table relationships and indexes for course content and student interaction records.",
-              "Collaborated with the team on frontend user-interface development."
+              "**Designed and implemented the initial database** for ASU's deployed MAX LLM/RAG learning assistant, translating course-support needs into data structures.",
+              "**Defined table relationships and indexes across 2 data domains**, course/RAG materials and student-interaction records, supporting organized storage.",
+              "**Collaborated on the student-facing interface**, relating database design decisions to retrieval and learning-assistant workflows."
           ]
       },
       {
@@ -115,9 +115,9 @@ export const resume = {
           "detail": "Volunteer research | IEEE INDICON 2023 publication",
           "location": "Bengaluru, India",
           "bullets": [
-              "Led technical manuscript development as **first-listed author among 3 coauthors** for **A Personalized E-Learning System Using Reinforcement Learning Through Satellite**, published in the proceedings of **IEEE INDICON 2023**.",
-              "Documented a **Q-learning-based personalized mathematics approach** involving 3 difficulty levels, reward-based feedback, adaptive question selection, and performance-driven progression.",
-              "Analyzed **3 learner scenarios across 10 episodes each**, communicating reward patterns, Q-value updates, and learner progression through research writing and conference materials."
+              "**Led manuscript preparation as first-listed of 3 authors** for a Q-learning research paper published in the proceedings of **IEEE INDICON 2023**.",
+              "**Documented personalized mathematics quizzes with 3 difficulty levels**, incorporating adaptive question selection and reward-based feedback.",
+              "**Analyzed 3 learner scenarios across 10 episodes each**, communicating Q-value changes and reward trends in conference research materials."
           ]
       },
       {
@@ -127,9 +127,9 @@ export const resume = {
           "detail": "Supervised by Dr. Jayahar Sivasubramanian | Volunteer research",
           "location": "Bengaluru, India",
           "bullets": [
-              "Independently developed a **mathematics-learning application and adaptive AI tutoring functionality** for research on satellite-supported personalized education in remote communities.",
-              "Contributed educational software and application integration to **KSCST-funded project 46S_BE_5506**, supported through the **46th Series Student Project Programme**.",
-              "Supported technical documentation and research milestones within a collaborative student team; the CubeSat hardware model was a team effort."
+              "**Independently developed a mathematics-learning application and adaptive AI tutoring functionality** for satellite-supported education research.",
+              "**Contributed educational software to KSCST-funded project 46S_BE_5506**, one of **1,494 funded proposals from 5,961** statewide submissions.",
+              "**Integrated learning software and coordinated research documentation and milestones** within a **3-student team**; CubeSat hardware development was collaborative."
           ]
       }
   ] satisfies ExperienceItem[],
