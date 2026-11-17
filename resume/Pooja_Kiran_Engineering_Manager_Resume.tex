@@ -1,5 +1,5 @@
 \documentclass[letterpaper,10pt]{article}
-\usepackage[margin=0.42in]{geometry}
+\usepackage[margin=0.60in]{geometry}
 \usepackage{fontspec}
 % Use Calibri when available, otherwise the metric-compatible Carlito.
 \IfFontExistsTF{Calibri}{\setmainfont{Calibri}}{\setmainfont{Carlito}}
@@ -10,18 +10,18 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=0.16in,itemsep=0pt,parsep=0pt,topsep=0.25pt,partopsep=0pt}
-\titleformat{\section}{\bfseries\fontsize{11.8}{13.5}\selectfont}{}{0pt}{}[\titlerule]
-\titlespacing*{\section}{0pt}{2pt}{1pt}
-\newcommand{\job}[3]{\textbf{#1}\hfill{\fontsize{9.8}{11.5}\selectfont #2}\\{\fontsize{9.5}{11.2}\selectfont #3}\vspace{1pt}}
-\newcommand{\proj}[3]{\textbf{#1} {\fontsize{9.4}{11.2}\selectfont | #2}\hfill{\fontsize{9.4}{11.2}\selectfont #3}\vspace{1pt}}
+\setlist[itemize]{leftmargin=0.19in,itemsep=0.3pt,parsep=0pt,topsep=0.6pt,partopsep=0pt}
+\titleformat{\section}{\bfseries\fontsize{11.8}{13.2}\selectfont}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+\newcommand{\job}[3]{\noindent\textbf{#1}\hfill{\fontsize{10}{12}\selectfont #2}\\{\fontsize{10}{12}\selectfont #3}\vspace{1.5pt}}
+\newcommand{\proj}[3]{\noindent\textbf{#1}\hfill{\fontsize{10}{12}\selectfont #3}\\{\fontsize{10}{12}\selectfont #2}\vspace{1.5pt}}
 \begin{document}
-\fontsize{9.8}{11.3}\selectfont
+\fontsize{10.2}{12.0}\selectfont
 \begin{center}
-{\fontsize{20}{23}\selectfont\textbf{POOJA KIRAN}}\\[1pt]
-{\fontsize{11.3}{13}\selectfont\textbf{Security Engineering Leadership | Product Security | AI \& Agent Security}}\\[2pt]
-{\fontsize{10.1}{12.1}\selectfont Tempe, AZ | +1 480-776-7745 | \href{mailto:poojakiranbhardwaj@gmail.com}{poojakiranbhardwaj@gmail.com} | \href{https://www.linkedin.com/in/poojakiran}{LinkedIn} | \href{https://github.com/poojakira}{GitHub} | \href{https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/}{Portfolio}}
-\end{center}\vspace{-3pt}
+{\fontsize{19}{22}\selectfont\textbf{POOJA KIRAN}}\\[1pt]
+{\fontsize{10.8}{12.8}\selectfont\textbf{Security Engineering Leadership | Product Security | AI \& Agent Security}}\\[2pt]
+{\fontsize{10}{12}\selectfont Tempe, AZ | +1 480-776-7745 | \href{mailto:poojakiranbhardwaj@gmail.com}{poojakiranbhardwaj@gmail.com} | \href{https://www.linkedin.com/in/poojakiran}{LinkedIn} | \href{https://github.com/poojakira}{GitHub} | \href{https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/}{Portfolio}}
+\end{center}\vspace{-2pt}
 
 \section{Professional Summary}
 Security engineer with an M.S. in Information Technology (Security), industry-facing externship experience, and demonstrated technical project delivery. Contributed to Honeywell Aerospace $\times$ ASU Technology Innovation Lab security and compliance planning, developed independent security tools, and worked on faculty-supervised AI application development.
@@ -62,12 +62,17 @@ Security engineer with an M.S. in Information Technology (Security), industry-fa
 \item \textbf{Analyzed} \textbf{3 learner scenarios across 10 episodes each}, communicating Q-value changes and reward trends in conference materials.
 \end{itemize}
 
-\job{{\fontsize{8.6}{10}\selectfont Volunteer Undergraduate Research \& Development Contributor -- AI \& Software Engineering}}{Aug 2022 -- Aug 2023}{Supervised by Dr. Jayahar Sivasubramanian | Unpaid academic research}
+\noindent\textbf{Volunteer Undergraduate Research \& Development Contributor}\\
+\noindent\textbf{-- AI \& Software Engineering}\hfill{\fontsize{10}{12}\selectfont Aug 2022 -- Aug 2023}\\
+{\fontsize{10}{12}\selectfont Supervised by Dr. Jayahar Sivasubramanian | Unpaid academic research}\vspace{1.5pt}
 \begin{itemize}
 \item \textbf{Independently developed} a mathematics-learning application and adaptive AI tutoring functionality for satellite-supported education research.
 \item \textbf{Contributed} educational software to \textbf{KSCST-funded project 46S\_BE\_5506}, part of \textbf{1,494 funded proposals from 5,961} statewide submissions.
 \item \textbf{Integrated} learning software and coordinated research documentation and milestones in a \textbf{3-student team}; CubeSat hardware was collaborative.
 \end{itemize}
+
+\newpage
+\noindent{\fontsize{10}{12}\selectfont\textbf{POOJA KIRAN} \hfill Resume | Page 2 of 2}\vspace{1pt}
 
 \section{Selected Security Engineering Results}
 \proj{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}}{Python, FastAPI, MCP/JSON-RPC, Elastic SIEM}{Oct 2025 -- Oct 2026}
@@ -76,7 +81,6 @@ Security engineer with an M.S. in Information Technology (Security), industry-fa
 \item \textbf{Verified} agent-to-tool enforcement and failure paths using \textbf{Python 3.12 CI}; recorded \textbf{782 passing tests} and \textbf{81.93\% statement coverage} in the cited run.
 \end{itemize}
 
-\newpage
 \proj{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}}{Python, AWS IAM, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
 \begin{itemize}
 \item \textbf{Developed} 25 \textbf{AWS IAM} static-analysis rules for broad grants, \textbf{iam:PassRole}, \textbf{sts:AssumeRole}, and trust-policy risks; exported findings in \textbf{SARIF 2.1.0} for CI review.
@@ -98,10 +102,10 @@ Security engineer with an M.S. in Information Technology (Security), industry-fa
 \end{itemize}
 
 \section{Technical Skills}
-{\fontsize{11.3}{13.8}\selectfont
-\textbf{Security reviews and risk:} Security design review, \textbf{threat modeling}, risk analysis, risk assessment, \textbf{API authorization}, web-services security, software testing, CI security checks\\[3pt]
-\textbf{Cloud, network, operating systems:} \textbf{AWS IAM}, DNS, HTTP, TLS, Zeek/Suricata-style telemetry, Linux /proc TCP, \textbf{HMAC-SHA256}, \textbf{Ed25519}\\[3pt]
-\textbf{Delivery and leadership:} \textbf{Python}, \textbf{C++}, \textbf{FastAPI}, \textbf{Docker}, \textbf{pytest}, \textbf{GitHub Actions}, \textbf{CodeQL}, SARIF, \textbf{Elastic SIEM}, remote peer task assignment, deliverable reviews, stakeholder presentations, compliance research, budgeting\\[3pt]
+{\fontsize{10.2}{12}\selectfont
+\textbf{Security reviews and risk:} Security design review, \textbf{threat modeling}, risk analysis, risk assessment, \textbf{API authorization}, web-services security, software testing, CI security checks\\[2pt]
+\textbf{Cloud, network, operating systems:} \textbf{AWS IAM}, DNS, HTTP, TLS, Zeek/Suricata-style telemetry, Linux /proc TCP, \textbf{HMAC-SHA256}, \textbf{Ed25519}\\[2pt]
+\textbf{Delivery and leadership:} \textbf{Python}, \textbf{C++}, \textbf{FastAPI}, \textbf{Docker}, \textbf{pytest}, \textbf{GitHub Actions}, \textbf{CodeQL}, SARIF, \textbf{Elastic SIEM}, remote peer task assignment, deliverable reviews, stakeholder presentations, compliance research, budgeting\\[2pt]
 \textbf{Video content protection (concepts):} DRM license flows, encrypted HLS/DASH, CloudFront signed URLs, AWS MediaPackage/SPEKE}
 
 \section{Education}
@@ -112,6 +116,6 @@ M.S., Information Technology (Security) | GPA: \textbf{3.87/4.00}\vspace{4pt}
 B.Tech., Computer Science \& Engineering
 
 \section{Certifications \& Training}
-\textbf{AWS Academy Graduate - Cloud Architecting} \hfill Apr 2025\\[3pt]
+\textbf{AWS Academy Graduate - Cloud Architecting} \hfill Apr 2025\\[2pt]
 \textbf{AWS Academy Graduate - Cloud Security Foundations} \hfill Nov 2025
 \end{document}
