@@ -109,10 +109,18 @@ for stale in (
     if stale in sources[0] or stale in ui:
         raise SystemExit("Stale current-result claim: " + stale)
 
-for period in ("Oct 2025 -- Oct 2026", "Apr 2025 -- Oct 2026", "Nov 2024 -- Oct 2026"):
+for period in (
+    "Oct 2025 -- Oct 2026",
+    "Apr 2025 -- Oct 2026",
+    "Nov 2024 -- Oct 2026",
+):
     if period not in sources[0]:
         raise SystemExit("Incorrect project period in LaTeX: " + period)
-for period in ("Oct 2025 - Oct 2026", "Apr 2025 - Oct 2026", "Nov 2024 - Oct 2026"):
+for period in (
+    "Oct 2025 - Oct 2026",
+    "Apr 2025 - Oct 2026",
+    "Nov 2024 - Oct 2026",
+):
     if period not in sources[1]:
         raise SystemExit("Incorrect project period in website: " + period)
 if "candidate-reported" in sources[0].lower() + sources[1].lower():
