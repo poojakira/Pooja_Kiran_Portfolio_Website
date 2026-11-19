@@ -33,18 +33,17 @@ export type ProjectItem = {
 };
 
 export const resume = {
-  sourceFile: "Pooja_Kiran_Software_Developer_Resume.pdf",
-  leadershipResumeFile: "Pooja_Kiran_Software_Developer_Experience_Resume.pdf",
+  sourceFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Software Developer | Python, AI & Security Projects",
-  positioning: "I build software, review technical work, and help teams turn requirements into clear next steps.",
+  headline: "Software Engineer | AI Agents & Application Security",
+  positioning: "I build inspectable AI-agent and application-security software, from authorization controls and IAM analysis to reproducible investigation workflows.",
   about: {
     "title": "I make technical work inspectable.",
     "paragraphs": [
-      "I like being able to show the request, the rule, the result, and the limits. That is the thread connecting my software projects with the way I review technical work and coordinate delivery.",
-      "I hold an M.S. in Information Technology from Arizona State University. My experience spans IT grading at ASU, a short technical collaboration with Cerberus, the Honeywell Aerospace × ASU AEROSEC externship, and volunteer research.",
-      "In my independent projects, I build Python tools and local interfaces for agent permissions, IAM policy reviews, model-artifact inspection, and synthetic event investigations. I publish the test evidence and make the remaining gaps explicit.",
-      "I am interested in software development and Python or AI tooling roles that value careful implementation, useful feedback, and clear ownership."
+      "I build security software where an engineering claim can be traced to an actual request, policy decision, execution receipt, test result, and documented limitation. My projects span MCP agent-tool authorization, AWS IAM policy analysis, model-artifact inspection, and investigation APIs.",
+      "I hold an M.S. in Information Technology from Arizona State University. My professional and research experience includes a part-time IT Grader appointment at ASU, a short Cerberus telemetry integration collaboration, the Honeywell Aerospace × ASU academic externship, and supervised undergraduate research.",
+      "I use Python, FastAPI, React, PostgreSQL, Docker, and test automation where relevant. Four reviewed project candidates have published regression results and immutable evidence; all remain partial and are not represented as production deployments.",
+      "I am targeting software engineering roles involving AI agents, application security, authorization, and security-focused developer tooling."
     ]
   },
   location: "Tempe, AZ, USA",
@@ -78,36 +77,36 @@ export const resume = {
           "role": "Technical Collaborator",
           "dates": "Sep 29 – Oct 9, 2026",
           "organization": "Cerberus",
-          "detail": "Security integration collaboration",
+          "detail": "Short-term technical collaboration",
           "location": "Remote",
           "bullets": [
-              "**Integrated MCP gateway telemetry** with the Cerberus event schema, configuring test-event delivery and troubleshooting connectivity to complete successful transfers.",
-              "**Validated test-event delivery for 3 authenticated gateway identities**, confirming accurate attribution to their registered identities.",
-              "**Verified 3 persistent identity configurations** and duplicate-batch safety, confirming that replaying the same test batch created **no duplicate records**."
+              "**Connected MCP gateway telemetry** to the Cerberus event schema, configuring delivery and resolving connectivity issues until test events transferred successfully.",
+              "**Verified event attribution for 3 authenticated gateway identities** across persistent configurations, making test records traceable to their source.",
+              "**Replayed identical event batches** and observed **no duplicate records** in the tested Cerberus ingestion path; exactly-once execution was not established."
           ]
       },
       {
           "role": "IT Grader",
           "dates": "Jan 2025 – May 2026",
           "organization": "Arizona State University",
-          "detail": "Information technology and security coursework",
+          "detail": "Paid part-time appointment | Student Worker III – IT Grader",
           "location": "Tempe, AZ",
           "bullets": [
-              "**Reviewed security-compliance submissions for 53 students** in IFT 483/543, documenting risk and evidence gaps through rubric-based feedback.",
-              "**Evaluated configuration-management coursework for 101 students** in IFT 380, identifying technical issues against instructor-defined criteria.",
-              "**Assessed web-programming assignments for 85 students** in IFT 301, reviewing code and project milestones and providing corrective feedback."
+              "**Evaluated security-compliance work for 53 students** in IFT 483/543, identifying unsupported risk assertions and missing evidence through rubric-based technical feedback.",
+              "**Reviewed configuration-management submissions for 101 students** in IFT 380, pinpointing configuration errors and explaining corrections against instructor-defined criteria.",
+              "**Inspected web-programming code and milestones for 85 students** in IFT 301, documenting implementation gaps and actionable feedback."
           ]
       },
       {
           "role": "Business & Compliance Lead",
           "dates": "Aug 2025 – Dec 2025",
           "organization": "Honeywell Aerospace × ASU Technology Innovation Lab",
-          "detail": "AEROSEC industry externship",
+          "detail": "AEROSEC academic externship",
           "location": "Tempe, AZ",
           "bullets": [
-              "**Converted findings from 4 of 12 industry interviews** into proposed API authorization, encryption, audit-logging, and vendor-risk requirements for AEROSEC.",
-              "**Coordinated 3 remote peer leads** across technical, market, and prototype work during a leadership rotation, tracking deliverables and communicating progress to mentors.",
-              "**Compared 4 security platforms and delivered 3 evaluator pitches**, informing a proposed 12-month implementation plan."
+              "**Translated findings from 4 industry interviews** into proposed API authorization, encryption, audit-logging, and vendor-risk requirements for AEROSEC.",
+              "**Coordinated 3 peer leads** across technical, market, and prototype workstreams during a leadership rotation, tracking dependencies and briefing mentors on deliverables.",
+              "**Compared 4 security platforms** against proposed controls and presented **3 evaluator pitches**, informing a staged **12-month implementation proposal**."
           ]
       },
       {
@@ -117,9 +116,9 @@ export const resume = {
           "detail": "Volunteer research | IEEE INDICON 2023 publication",
           "location": "Bengaluru, India",
           "bullets": [
-              "**Led manuscript preparation as first-listed of 3 authors** for a Q-learning research paper published in the proceedings of **IEEE INDICON 2023**.",
-              "**Documented personalized mathematics quizzes with 3 difficulty levels**, incorporating adaptive question selection and reward-based feedback.",
-              "**Analyzed 3 learner scenarios across 10 episodes each**, communicating Q-value changes and reward trends in conference research materials."
+              "**Authored the Q-learning research manuscript** published at **IEEE INDICON 2023**, documenting an adaptive mathematics-learning approach with faculty coauthors.",
+              "**Explained the adaptive-learning design across 3 quiz difficulty levels**, detailing Q-learning question selection and reward feedback.",
+              "**Analyzed Q-value updates and reward trends across 3 learner scenarios and 10 episodes each**, translating experimental behavior into conference findings."
           ]
       },
       {
@@ -129,9 +128,9 @@ export const resume = {
           "detail": "Supervised by Dr. Jayahar Sivasubramanian | Volunteer research",
           "location": "Bengaluru, India",
           "bullets": [
-              "**Independently developed a mathematics-learning application and adaptive AI tutoring functionality** for satellite-supported education research.",
-              "**Contributed educational software to KSCST-funded project 46S_BE_5506**, one of **1,494 funded proposals from 5,961** statewide submissions.",
-              "**Integrated learning software and coordinated research documentation and milestones** within a **3-student team**; CubeSat hardware development was collaborative."
+              "**Independently built the mathematics-learning application and adaptive tutoring functionality**, turning personalized-learning requirements into working educational software.",
+              "**Integrated question-selection and learning-feedback functionality** into educational software for **KSCST-funded project 46S_BE_5506**.",
+              "**Coordinated software integration, research documentation, and milestones** within a **3-student team**, collaborating separately on the CubeSat hardware model."
           ]
       }
   ] satisfies ExperienceItem[],
@@ -158,8 +157,8 @@ export const resume = {
               "Execution report with provenance"
           ],
           "bullets": [
-              "Enabled inspectable tool-permission reviews, verified by 834 passing candidate regression tests and 81.80% statement coverage, by connecting a local request editor to the actual policy engine, proxy and disposable tool server.",
-              "Made permission changes observable by rerunning the same write request with the guard enabled and disabled, comparing actual receipts and tool-side state instead of relying on a decision badge.",
+              "Engineered an MCP authorization workbench routing local requests through the actual policy engine and stdio proxy to a disposable first-party server, making execution receipts and tool-side state inspectable.",
+              "Compared guarded and unguarded write requests against actual tool-side outcomes; the reviewed candidate recorded 834 passing tests and 81.80% statement coverage.",
               "Preserved uncertainty in exported evidence with NOT_INVOKED, confirmed success/failure and UNKNOWN outcomes; documented remaining protocol, identity and containment gaps."
           ],
           "metrics": [
@@ -202,8 +201,8 @@ export const resume = {
               "SARIF and human review export"
           ],
           "bullets": [
-              "Made proposed IAM changes reviewable, verified by 272 passing candidate tests and 77.15% statement coverage, by connecting a browser editor to the actual identity/trust scanners and statement-level evidence.",
-              "Enabled a bounded before/after review by rescanning edited policies and exporting SARIF 2.1.0 results validated against the official schema in acceptance tests.",
+              "Implemented a credential-free IAM review workflow parsing supplied identity and trust-policy JSON, mapping 24 static checks to statements, and rescanning edited policies.",
+              "Exported schema-validated SARIF 2.1.0 evidence for before/after reviews; the reviewed candidate recorded 272 passing tests and 77.15% statement coverage.",
               "Separated 24 static checks from the additional live-context boundary check; retained 3 absent legacy rules-module skips and explicit UNKNOWN effective-permission conclusions."
           ],
           "metrics": [
@@ -334,5 +333,4 @@ export const resume = {
 
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
 export const resumeHref = `./${resume.sourceFile}`;
-export const managerResumeHref = `./${resume.leadershipResumeFile}`;
 

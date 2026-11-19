@@ -29,6 +29,18 @@ jobs:
         run: npm ci
       - name: Type-check
         run: npm run typecheck
+      - name: Generate and verify single resume PDF
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base texlive-latex-extra texlive-fonts-recommended \
+            texlive-xetex fonts-crosextra-carlito poppler-utils
+          mkdir -p .resume-build
+          xelatex -interaction=nonstopmode -halt-on-error \
+            -output-directory=.resume-build resume/Pooja_Kiran_Security_Engineer_Resume.tex
+          cp .resume-build/Pooja_Kiran_Security_Engineer_Resume.pdf public/Pooja_Kiran_Software_Engineer_Resume.pdf
+          python3 scripts/verify_recruiter_claims.py
+          python3 scripts/verify_resume_pdfs.py --generated-directory .resume-build
       - name: Build static site
         run: npm run build
       - name: Upload Pages artifact

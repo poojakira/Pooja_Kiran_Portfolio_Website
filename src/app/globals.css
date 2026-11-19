@@ -1026,7 +1026,7 @@ section[id],article[id]{scroll-margin-top:82px}
 @media(max-width:600px){.investigation-flow{grid-template-columns:1fr}.investigation-flow article{min-height:0}}
 
 
-/* Clear recruiter paths: two software developer resumes with different emphasis. */
+/* One canonical recruiter resume download. */
 .role-chooser{
   width:min(var(--max),calc(100% - 48px));
   margin:0 auto;
@@ -1059,7 +1059,8 @@ section[id],article[id]{scroll-margin-top:82px}
 }
 .role-chooser-grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:minmax(0,1fr);
+  max-width:860px;
   gap:16px;
 }
 .role-option{

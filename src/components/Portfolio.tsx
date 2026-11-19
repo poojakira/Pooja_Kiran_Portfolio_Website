@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { resume, resumeHref, managerResumeHref, trustChain, type ProjectItem } from "@/data/resume";
+import { resume, resumeHref, trustChain, type ProjectItem } from "@/data/resume";
 
 const basePath = process.env.NODE_ENV === "production" ? "/Pooja_Kiran_Portfolio_Website" : "";
 const asset = (path: string) => `${basePath}/${path.replace(/^\//, "")}`;
@@ -93,7 +93,7 @@ function Header() {
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#about">About</a>
           <a href="#work">Projects</a>
-          <a href="#explore">Resumes</a>
+          <a href="#explore">Resume</a>
           <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
           <a href="#education">Education</a>
@@ -124,14 +124,14 @@ function Hero() {
 
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
-        <h1 className="hero-dual-heading">Software Developer<span>Python, AI &amp; Security Projects</span></h1>
+        <h1 className="hero-dual-heading">Software Engineer<span>| AI Agents &amp; Application Security</span></h1>
         <p className="hero-role-line">Python &amp; AI Projects · Security Tooling · Technical Collaboration</p>
         <p className="hero-reference-subtitle">
           {resume.positioning}
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
-          <a className="hero-secondary" href="#explore">Choose a Resume <ArrowIcon /></a>
+          <a className="hero-secondary" href="#explore">View Resume <ArrowIcon /></a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Four security trust boundaries with repository-backed proof">
@@ -177,58 +177,29 @@ function ExploreExperience() {
       <div className="role-chooser-intro" data-reveal>
         <div>
           <p className="eyebrow">For recruiters &amp; hiring teams</p>
-          <h2 id="role-chooser-title">Explore My Experience</h2>
+          <h2 id="role-chooser-title">My Resume</h2>
         </div>
-        <p>
-          Two software developer resumes with different emphasis: technical projects or experience and collaboration.
-          My projects and full experience are available to everyone below.
-        </p>
+        <p>One two-page resume leading with engineering projects, followed by verified professional and research experience. Detailed technical evidence and limitations appear below.</p>
       </div>
-
       <div className="role-chooser-grid">
         <article className="role-option role-option-engineering" data-reveal>
           <div className="role-option-top">
             <span className="role-option-index" aria-hidden="true">01</span>
             <span className="role-option-category">Build &amp; Validate</span>
           </div>
-          <h3>Software Developer: Technical Projects</h3>
-          <p>
-            For roles focused on Python development, AI tooling, application interfaces,
-            software testing, and projects involving security.
-          </p>
-          <ul aria-label="Software development highlights">
+          <h3>Software Engineer | AI Agents &amp; Application Security</h3>
+          <p>Python-based agent authorization, IAM analysis, application security, reproducible testing, and documented engineering evidence.</p>
+          <ul aria-label="Software engineering highlights">
             <li>MCP execution workbench with 834 passing tests</li>
             <li>IAM change review with 24 static checks</li>
             <li>Model-artifact comparison and persisted investigation workflows</li>
           </ul>
           <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View Software Developer technical resume PDF in a new tab">
-            View Technical Resume <ArrowIcon />
-          </a>
-        </article>
-
-        <article className="role-option role-option-leadership" data-reveal>
-          <div className="role-option-top">
-            <span className="role-option-index" aria-hidden="true">02</span>
-            <span className="role-option-category">Experience &amp; Collaboration</span>
-          </div>
-          <h3>Software Developer: Experience &amp; Collaboration</h3>
-          <p>
-            A software developer profile emphasizing technical collaboration, IT assessment,
-            academic research, and the AEROSEC externship alongside independent projects.
-          </p>
-          <ul aria-label="Software developer experience highlights">
-            <li>Telemetry integration and test-event validation with Cerberus</li>
-            <li>IT grading at ASU and adaptive-learning software research</li>
-            <li>Peer collaboration and requirements work during the AEROSEC externship</li>
-          </ul>
-          <a className="role-option-action" href={managerResumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View Software Developer experience resume PDF in a new tab">
-            View Experience Resume <ArrowIcon />
+             aria-label="View Software Engineer resume PDF in a new tab">
+            View Resume <ArrowIcon />
           </a>
         </article>
       </div>
-      <p className="role-chooser-note">Both resumes reflect the same experience, tailored to different hiring priorities.</p>
     </section>
   );
 }
@@ -532,16 +503,15 @@ function ContactSection() {
     <section className="contact-section" id="contact">
       <div className="contact-copy recruiter-contact" data-reveal>
         <p className="eyebrow">Recruiting &amp; collaboration</p>
-        <h2>Hiring a Software Developer?</h2>
+        <h2>Hiring a Software Engineer?</h2>
         <p>
-          I&apos;m interested in U.S.-based software development and Python or AI tooling roles
+          I&apos;m interested in U.S.-based software engineering, AI-agent and application-security roles
           that bring careful implementation, testing, and clear communication together.
         </p>
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Software Developer: Technical Resume</a>
-        <a className="button button-light" href={managerResumeHref} target="_blank" rel="noreferrer">Software Developer: Experience Resume</a>
+        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">View Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>

@@ -39,18 +39,15 @@ projects = json.JSONDecoder().raw_decode(sources[1].split("projects: ", 1)[1])[0
 evidence = json.loads((root / "docs/project_evidence.json").read_text())
 if len(projects) != len(evidence["projects"]) or len(projects) != 4:
     raise SystemExit("Expected exactly four source-scoped project records")
-manager = (root / "resume/Pooja_Kiran_Engineering_Manager_Resume.tex").read_text()
-for source in (*sources, manager):
+for source in sources:
     if re.search(r"Information Technology\s*\(Security\)", source, re.IGNORECASE):
         raise SystemExit(
             "The master's degree is Information Technology, without a specialization"
         )
     if "M.S." not in source or "Information Technology" not in source:
         raise SystemExit("Missing corrected Information Technology master's degree")
-if "Software Developer | Python, AI \\& Security Projects" not in sources[0]:
+if "Software Engineer | AI Agents \\& Application Security" not in sources[0]:
     raise SystemExit("Missing documented software-development positioning")
-if "Software Developer | Python, AI \\& Technical Collaboration" not in manager:
-    raise SystemExit("Missing software-developer positioning in experience resume")
 if 'id="about"' not in ui or "resume.about.paragraphs.map" not in ui:
     raise SystemExit("Missing dedicated About section")
 layout = (root / "src/app/layout.tsx").read_text(encoding="utf-8-sig")
@@ -73,13 +70,15 @@ for project, pin in zip(projects, evidence["projects"], strict=True):
         raise SystemExit("Unverified release status: " + project["name"])
     passed = str(pin["passed"])
     coverage = f"{pin['coverage_percent']:.2f}"
-    for source in (sources[0], sources[1], manager):
-        if (
-            passed not in source
-            or coverage not in source
-            or pin["archive_commit"] not in source
-        ):
-            raise SystemExit("Resume/site missing pinned results: " + project["name"])
+    for source in sources:
+        if passed not in source or coverage not in source:
+            raise SystemExit(
+                "Resume/site missing pinned results: " + project["name"]
+            )
+    if pin["archive_commit"] not in sources[1]:
+        raise SystemExit(
+            "Website missing evidence archive reference: " + project["name"]
+        )
     if project["verificationDate"] != evidence["verification_date"]:
         raise SystemExit("Verification date drift")
 if (
@@ -92,9 +91,10 @@ if (
     or "BLOCKED" not in projects[2]["limitations"]
 ):
     raise SystemExit("HF closing-review blocker must remain visible")
-if "hosted CI remains unverified" not in sources[
-    0
-] or "hosted CI NOT VERIFIED" not in " ".join(projects[3]["metrics"]):
+if (
+    "hosted CI remains unverified" not in sources[0]
+    or "hosted CI NOT VERIFIED" not in " ".join(projects[3]["metrics"])
+):
     raise SystemExit("Aegis hosted verification limitation must remain visible")
 for stale in (
     "782",
@@ -109,10 +109,18 @@ for stale in (
     if stale in sources[0] or stale in ui:
         raise SystemExit("Stale current-result claim: " + stale)
 
-for period in ("Oct 2025 -- Oct 2026", "Apr 2025 -- Oct 2026", "Nov 2024 -- Oct 2026"):
+for period in (
+    "Oct 2025 -- Oct 2026",
+    "Apr 2025 -- Oct 2026",
+    "Nov 2024 -- Oct 2026",
+):
     if period not in sources[0]:
         raise SystemExit("Incorrect project period in LaTeX: " + period)
-for period in ("Oct 2025 - Oct 2026", "Apr 2025 - Oct 2026", "Nov 2024 - Oct 2026"):
+for period in (
+    "Oct 2025 - Oct 2026",
+    "Apr 2025 - Oct 2026",
+    "Nov 2024 - Oct 2026",
+):
     if period not in sources[1]:
         raise SystemExit("Incorrect project period in website: " + period)
 if "candidate-reported" in sources[0].lower() + sources[1].lower():
@@ -130,7 +138,7 @@ for cert in ("Cloud Architecting", "Cloud Security Foundations"):
 
 # Keep the retained experience details aligned with the supplied letters.
 # The owner requested removal of the MAX role from both resumes and the website.
-for source in (*sources, manager):
+for source in sources:
     for removed in (
         "Project MAX",
         "Technical Project Assistant | MAX",

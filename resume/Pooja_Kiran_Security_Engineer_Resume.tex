@@ -19,88 +19,87 @@
 \fontsize{10.2}{12.0}\selectfont
 \begin{center}
 {\fontsize{19}{22}\selectfont\textbf{POOJA KIRAN}}\\[1pt]
-{\fontsize{10.8}{12.8}\selectfont\textbf{Software Developer | Python, AI \& Security Projects}}\\[2pt]
+{\fontsize{10.8}{12.8}\selectfont\textbf{Software Engineer | AI Agents \& Application Security}}\\[2pt]
 {\fontsize{10}{12}\selectfont Tempe, AZ | +1 480-776-7745 | \href{mailto:poojakiranbhardwaj@gmail.com}{poojakiranbhardwaj@gmail.com} | \href{https://www.linkedin.com/in/poojakiran}{LinkedIn} | \href{https://github.com/poojakira}{GitHub} | \href{https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/}{Portfolio}}
 \end{center}\vspace{-2pt}
 
 \section{Professional Summary}
-M.S. in Information Technology graduate from Arizona State University with experience in software projects, academic assessment, and technical collaboration. Builds Python tools and local interfaces for AI-agent permissions, cloud policy review, and model-artifact inspection. Experience includes ASU IT grading, an aerospace externship, Cerberus telemetry integration, and volunteer research.
+Software engineer building Python services and developer tools for AI-agent authorization, cloud IAM analysis and application security. Implemented policy-enforced tool execution, bounded artifact inspection and authenticated FastAPI workflows with PostgreSQL persistence. M.S. in Information Technology, Arizona State University.
+
+\section{Independent Engineering Projects}
+\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md}{MCP Agent Security Gateway}}{Python, MCP/JSON-RPC, policy enforcement, audit evidence}{Oct 2025 -- Oct 2026}
+\begin{itemize}
+\item \textbf{Built} a local MCP execution workbench that routes tool requests through a policy engine and stdio proxy before invoking a disposable first-party server; checked write receipts against actual tool-side state.
+\item \textbf{Designed} execution evidence to distinguish policy decisions from confirmed effects and unknown outcomes after failed acknowledgments; validated with \textbf{834 passing tests} and \textbf{81.80\% statement coverage}.
+\end{itemize}
+
+\proj{\href{https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md}{AWS Agent Identity Guard}}{Python, AWS IAM, browser policy review, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
+\begin{itemize}
+\item \textbf{Implemented} a credential-free IAM policy editor and scanner that parses supplied identity/trust JSON, maps \textbf{24 static checks} to source statements and rescans changes; exports schema-validated \textbf{SARIF 2.1.0} findings.
+\item \textbf{Enabled} reproducible before/after IAM policy comparisons without AWS credentials, retaining statement-level findings for review; validated with \textbf{272 passing tests}, \textbf{77.15\% coverage} and \textbf{3 legacy rules-module skips}.
+\end{itemize}
+
+
+\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, bounded static inspection}{Nov 2024 -- Oct 2026}
+\begin{itemize}
+\item \textbf{Built} a browser-to-isolated-worker workflow for bounded static inspection of model-file hashes, metadata and structure, allowing comparisons of changed SafeTensors and checksummed exports.
+\item \textbf{Produced} checksummed inspection exports and change comparisons without executing untrusted model code; validated with \textbf{317 passing tests}, \textbf{76.08\% statement coverage}, \textbf{3 skips} and \textbf{6 native-format subtests}.
+\end{itemize}
+
+\proj{\href{https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, React, PostgreSQL, FHIR AuditEvent}{Aug -- Oct 2026}
+\begin{itemize}
+\item \textbf{Developed} a synthetic clinical-access investigation workflow connecting React to authenticated FastAPI endpoints, canonical event detectors and PostgreSQL-backed case/report persistence.
+\item \textbf{Implemented} repeatable threshold-adjusted investigations and retrieval of saved reports after API restart, tested on synthetic FHIR AuditEvents; recorded \textbf{332 passing tests} and \textbf{82.47\% line coverage}.
+\end{itemize}
+
+\noindent{\fontsize{8.8}{10.4}\selectfont\textit{Independent projects; titles link to November 2026 source-pinned evidence. All four candidates remain PARTIAL; HF independent security closure blocked; Aegis hosted CI remains unverified. No production claims.}}\vspace{1pt}
+
+\section{Technical Skills}
+{\fontsize{10}{11.8}\selectfont
+\textbf{Languages \& applications:} Python, C++, FastAPI, React, PostgreSQL, REST APIs, pytest\\[2pt]
+\textbf{Agent \& application security:} MCP/JSON-RPC, tool authorization, AWS IAM, API authorization, threat modeling, static policy analysis, prompt-injection testing\\[2pt]
+\textbf{Engineering tools:} Docker, GitHub Actions, CodeQL, SARIF 2.1.0, Elastic SIEM, audit logging, test coverage}
+
+\newpage
+\noindent{\fontsize{10}{12}\selectfont\textbf{POOJA KIRAN} \hfill Resume | Page 2 of 2}\vspace{1pt}
 
 \section{Experience}
 \job{Technical Collaborator}{Sep 29 -- Oct 9, 2026}{Cerberus | Short-term technical collaboration}
 \begin{itemize}
-\item \textbf{Integrated} MCP gateway telemetry with the Cerberus event schema, configuring event delivery and troubleshooting connectivity for successful test transfers.
-\item \textbf{Validated} end-to-end test-event delivery for \textbf{3 authenticated gateway identities}, confirming accurate attribution to registered identities.
-\item \textbf{Verified} \textbf{3 persistent identity configurations} and replay safety; resending the same test batch created \textbf{no duplicate records}.
+\item \textbf{Connected} MCP gateway telemetry to the Cerberus event schema, configuring delivery and resolving connectivity issues until test events transferred successfully.
+\item \textbf{Verified} identity-to-event attribution for \textbf{3 authenticated gateway identities} across persistent configurations, making test records traceable to their source.
+\item \textbf{Replayed} identical event batches to check duplicate handling; observed \textbf{no duplicate records} in the tested Cerberus ingestion path, without claiming exactly-once execution.
 \end{itemize}
 
-\job{IT Grader}{Jan 2025 -- May 2026}{Arizona State University | Tempe, AZ}
+\job{IT Grader}{Jan 2025 -- May 2026}{Arizona State University | Paid, part-time Student Worker III -- IT Grader | Tempe, AZ}
 \begin{itemize}
-\item \textbf{Reviewed} security-compliance submissions for \textbf{53 students} in IFT 483/543, identifying risk and evidence gaps through rubric-based feedback.
-\item \textbf{Evaluated} configuration-management work for \textbf{101 students} in IFT 380, documenting technical issues against instructor-defined criteria.
-\item \textbf{Assessed} web-programming assignments for \textbf{85 students} in IFT 301, reviewing code and project milestones and providing corrective feedback.
+\item \textbf{Evaluated} security-compliance work for \textbf{53 students} in IFT 483/543, identifying unsupported risk assertions and missing evidence through rubric-based technical feedback.
+\item \textbf{Reviewed} configuration-management submissions for \textbf{101 students} in IFT 380, pinpointing configuration errors and explaining corrections against instructor-defined criteria.
+\item \textbf{Inspected} web-programming code and milestones for \textbf{85 students} in IFT 301, documenting implementation gaps and actionable feedback.
 \end{itemize}
 
-\job{Business \& Compliance Lead}{Aug 2025 -- Dec 2025}{Honeywell Aerospace $\times$ ASU | Technology Innovation Lab Externship}
+\job{Business \& Compliance Lead}{Aug 2025 -- Dec 2025}{Honeywell Aerospace $\times$ ASU | Academic Technology Innovation Lab externship}
 \begin{itemize}
-\item \textbf{Converted} findings from \textbf{4 of 12} industry interviews into proposed API access, encryption, audit-logging, and vendor-risk requirements for AEROSEC.
-\item \textbf{Coordinated} \textbf{3 remote peer leads} across technical, market, and prototype work, tracking deliverables and briefing mentors during a leadership rotation.
-\item \textbf{Compared} \textbf{4 security platforms} and presented \textbf{3 evaluator pitches}, informing a proposed \textbf{12-month} implementation plan.
+\item \textbf{Translated} findings from \textbf{4 industry interviews} into proposed API authorization, encryption, audit logging and vendor-risk requirements for the AEROSEC concept.
+\item \textbf{Coordinated} \textbf{3 peer leads} across technical, market and prototype workstreams during a leadership rotation, tracking dependencies and briefing mentors on deliverables.
+\item \textbf{Compared} \textbf{4 security platforms} against the proposed controls and presented \textbf{3 evaluator pitches}, informing a staged \textbf{12-month} implementation proposal.
 \end{itemize}
 
-\job{Volunteer Research \& Publication Collaborator}{Sep 2023 -- Dec 2023}{M. S. Ramaiah University of Applied Sciences | Volunteer research}
+\job{Volunteer Research \& Publication Collaborator}{Sep 2023 -- Dec 2023}{M. S. Ramaiah University of Applied Sciences | Unpaid volunteer research}
 \begin{itemize}
-\item \textbf{Led} manuscript preparation as \textbf{first-listed of 3 authors} for a Q-learning research paper published at \textbf{IEEE INDICON 2023}.
-\item \textbf{Documented} personalized mathematics quizzes across \textbf{3 difficulty levels}, using adaptive question selection and reward-based feedback.
-\item \textbf{Analyzed} \textbf{3 learner scenarios across 10 episodes each}, communicating Q-value changes and reward trends in conference materials.
+\item \textbf{Authored} the Q-learning research manuscript published at \textbf{IEEE INDICON 2023}, documenting an adaptive mathematics-learning approach with faculty coauthors.
+\item \textbf{Explained} the adaptive-learning design across \textbf{3 quiz difficulty levels}, detailing how Q-learning selected questions and incorporated reward feedback.
+\item \textbf{Analyzed} Q-value updates and reward trends across \textbf{3 learner scenarios and 10 episodes per scenario}, translating experimental behavior into conference findings.
 \end{itemize}
 
 \noindent\textbf{Volunteer Undergraduate Research \& Development Contributor}\\
 \noindent\textbf{-- AI \& Software Engineering}\hfill{\fontsize{10}{12}\selectfont Aug 2022 -- Aug 2023}\\
 {\fontsize{10}{12}\selectfont Supervised by Dr. Jayahar Sivasubramanian | Unpaid academic research}\vspace{1.5pt}
 \begin{itemize}
-\item \textbf{Independently developed} a mathematics-learning application and adaptive AI tutoring functionality for satellite-supported education research.
-\item \textbf{Contributed} educational software to \textbf{KSCST-funded project 46S\_BE\_5506}, part of \textbf{1,494 funded proposals from 5,961} statewide submissions.
-\item \textbf{Integrated} learning software and coordinated research documentation and milestones in a \textbf{3-student team}; CubeSat hardware was collaborative.
+\item \textbf{Independently built} the mathematics-learning application and adaptive tutoring functionality, turning personalized-learning requirements into working educational software.
+\item \textbf{Integrated} question-selection and learning-feedback functionality into the educational software for \textbf{KSCST-funded project 46S\_BE\_5506}.
+\item \textbf{Coordinated} software integration, research documentation and milestones within a \textbf{3-student team}, while collaborating on the separate CubeSat hardware model.
 \end{itemize}
-
-\newpage
-\noindent{\fontsize{10}{12}\selectfont\textbf{POOJA KIRAN} \hfill Resume | Page 2 of 2}\vspace{1pt}
-
-\section{Selected Security Engineering Projects}
-\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md}{MCP Agent Security Gateway}}{Python, MCP/JSON-RPC, policy enforcement, audit evidence}{Oct 2025 -- Oct 2026}
-\begin{itemize}
-\item \textbf{Enabled} inspectable agent-to-tool reviews, verified by \textbf{834 passing repository tests} and \textbf{81.80\% statement coverage}, by connecting a local browser workbench to the actual policy engine, MCP proxy, and disposable first-party server.
-\item \textbf{Compared} the same write with permissions changed, showing receipts and tool-side outcomes; documented incomplete protocol conformance, arbitrary-server isolation, and external-effect reconciliation.
-\end{itemize}
-
-\proj{\href{https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md}{AWS Agent Identity Guard}}{Python, AWS IAM, browser policy review, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
-\begin{itemize}
-\item \textbf{Delivered} credential-free IAM change reviews, verified by \textbf{272 passing repository tests} and \textbf{77.15\% statement coverage}, by connecting browser policy editing to static scanners and \textbf{SARIF 2.1.0} exports.
-\item \textbf{Added} statement-linked findings, supplied-context graphs, and before/after rescans; retained \textbf{3 legacy rules-module skips} and distinguished static findings from effective permissions.
-\end{itemize}
-
-
-\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, bounded static inspection}{Nov 2024 -- Oct 2026}
-\begin{itemize}
-\item \textbf{Enabled} bounded model-artifact comparisons, verified by \textbf{317 passing repository tests} and \textbf{76.08\% statement coverage}, by connecting a browser UI to an isolated static worker for hash, metadata, and structure inspection.
-\item \textbf{Tested} changed SafeTensors and checksummed exports; reported \textbf{3 skips} and \textbf{6 separate passing subtests}, with independent security closure blocked and model safety unproven.
-\end{itemize}
-
-\proj{\href{https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, React, PostgreSQL, FHIR AuditEvent}{Aug -- Oct 2026}
-\begin{itemize}
-\item \textbf{Delivered} reproducible clinical-access investigations, verified by \textbf{332 passing repository tests} and \textbf{82.47\% line coverage}, by joining React, authenticated FastAPI, canonical detectors, and \textbf{PostgreSQL} persistence.
-\item \textbf{Reran} synthetic FHIR AuditEvents after changing a case threshold, comparing findings and verifying saved reports after API restart; hosted CI remains unverified.
-\end{itemize}
-
-\noindent{\fontsize{9.2}{10.8}\selectfont\textit{Titles link to immutable November 2026 verification reports; development dates are retained. All four local candidates remain PARTIAL; no production-deployment or field-effectiveness claim.}}\vspace{1pt}
-
-\section{Technical Skills}
-{\fontsize{10.2}{12}\selectfont
-\textbf{Security reviews and risk:} Security design review, \textbf{threat modeling}, risk analysis, risk assessment, \textbf{API authorization}, web-services security, software testing, CI security checks\\[2pt]
-\textbf{Cloud, network, operating systems:} \textbf{AWS IAM}, DNS, HTTP, TLS, Zeek/Suricata-style telemetry, Linux /proc TCP, \textbf{HMAC-SHA256}, \textbf{Ed25519}\\[2pt]
-\textbf{Engineering and leadership:} \textbf{Python}, \textbf{C++}, \textbf{FastAPI}, \textbf{Docker}, \textbf{pytest}, \textbf{GitHub Actions}, \textbf{CodeQL}, SARIF, \textbf{Elastic SIEM}, remote peer coordination, compliance research, budgeting\\[2pt]
-\textbf{Video content protection (concepts):} DRM license flows, encrypted HLS/DASH, CloudFront signed URLs, AWS MediaPackage/SPEKE}
 
 \section{Education}
 \textbf{Arizona State University} \hfill May 2026\\
