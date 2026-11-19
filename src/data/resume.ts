@@ -34,9 +34,9 @@ export type ProjectItem = {
 
 export const resume = {
   sourceFile: "Pooja_Kiran_Software_Developer_Resume.pdf",
-  leadershipResumeFile: "Pooja_Kiran_Technical_Project_Coordination_Resume.pdf",
+  leadershipResumeFile: "Pooja_Kiran_Software_Developer_Experience_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Software Development | AI & Security Projects | Technical Project Coordination",
+  headline: "Software Developer | Python, AI & Security Projects",
   positioning: "I build software, review technical work, and help teams turn requirements into clear next steps.",
   about: {
     "title": "I make technical work inspectable.",
@@ -44,7 +44,7 @@ export const resume = {
       "I like being able to show the request, the rule, the result, and the limits. That is the thread connecting my software projects with the way I review technical work and coordinate delivery.",
       "I hold an M.S. in Information Technology from Arizona State University. My experience spans IT grading at ASU, a short technical collaboration with Cerberus, the Honeywell Aerospace × ASU AEROSEC externship, and volunteer research.",
       "In my independent projects, I build Python tools and local interfaces for agent permissions, IAM policy reviews, model-artifact inspection, and synthetic event investigations. I publish the test evidence and make the remaining gaps explicit.",
-      "I am interested in software development and technical project coordination roles that value careful implementation, useful feedback, and clear ownership."
+      "I am interested in software development and Python or AI tooling roles that value careful implementation, useful feedback, and clear ownership."
     ]
   },
   location: "Tempe, AZ, USA",

@@ -7,7 +7,7 @@ const socialImage = `${siteUrl}/pooja-portrait.webp`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}/`),
-  title: "Pooja Kiran | Software Development & Project Coordination",
+  title: "Pooja Kiran | Software Developer | Python & AI Projects",
   description: "M.S. in Information Technology graduate with Python and AI projects, ASU IT grading, technical collaboration, and AEROSEC project coordination experience.",
   alternates: { canonical: `${siteUrl}/` },
   robots: {
@@ -17,16 +17,16 @@ export const metadata: Metadata = {
   },
   manifest: `${siteUrl}/site.webmanifest`,
   openGraph: {
-    title: "Pooja Kiran | Software Development & Project Coordination",
+    title: "Pooja Kiran | Software Developer | Python & AI Projects",
     description: "Python and AI projects, technical assessment, software collaboration, and peer coordination. M.S. in Information Technology, Arizona State University.",
     url: `${siteUrl}/`,
-    siteName: "Pooja Kiran | Software Development & Project Coordination",
+    siteName: "Pooja Kiran | Software Developer | Python & AI Projects",
     type: "website",
     images: [{ url: socialImage, alt: "Pooja Kiran" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pooja Kiran | Software Development & Project Coordination",
+    title: "Pooja Kiran | Software Developer | Python & AI Projects",
     description: "Python & AI projects · Technical collaboration · M.S. in Information Technology",
     images: [socialImage]
   },

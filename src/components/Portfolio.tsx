@@ -124,7 +124,7 @@ function Hero() {
 
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
-        <h1 className="hero-dual-heading">Software Development<span>&amp; Project Coordination</span></h1>
+        <h1 className="hero-dual-heading">Software Developer<span>Python, AI &amp; Security Projects</span></h1>
         <p className="hero-role-line">Python &amp; AI Projects · Security Tooling · Technical Collaboration</p>
         <p className="hero-reference-subtitle">
           {resume.positioning}
@@ -180,7 +180,7 @@ function ExploreExperience() {
           <h2 id="role-chooser-title">Explore My Experience</h2>
         </div>
         <p>
-          One background, two ways to evaluate it. Choose the resume most relevant to the role you're hiring for.
+          Two software developer resumes with different emphasis: technical projects or experience and collaboration.
           My projects and full experience are available to everyone below.
         </p>
       </div>
@@ -191,7 +191,7 @@ function ExploreExperience() {
             <span className="role-option-index" aria-hidden="true">01</span>
             <span className="role-option-category">Build &amp; Validate</span>
           </div>
-          <h3>Software Development</h3>
+          <h3>Software Developer: Technical Projects</h3>
           <p>
             For roles focused on Python development, AI tooling, application interfaces,
             software testing, and projects involving security.
@@ -202,29 +202,29 @@ function ExploreExperience() {
             <li>Model-artifact comparison and persisted investigation workflows</li>
           </ul>
           <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View Software Developer resume PDF in a new tab">
-            View Software Developer Resume <ArrowIcon />
+             aria-label="View Software Developer technical resume PDF in a new tab">
+            View Technical Resume <ArrowIcon />
           </a>
         </article>
 
         <article className="role-option role-option-leadership" data-reveal>
           <div className="role-option-top">
             <span className="role-option-index" aria-hidden="true">02</span>
-            <span className="role-option-category">Coordinate &amp; Deliver</span>
+            <span className="role-option-category">Experience &amp; Collaboration</span>
           </div>
-          <h3>Technical Project Coordination</h3>
+          <h3>Software Developer: Experience &amp; Collaboration</h3>
           <p>
-            For roles focused on coordinating peer work, tracking deliverables,
-            documenting requirements, and communicating technical findings.
+            A software developer profile emphasizing technical collaboration, IT assessment,
+            academic research, and the AEROSEC externship alongside independent projects.
           </p>
-          <ul aria-label="Technical project coordination highlights">
-            <li>Coordinated work within a four-member AEROSEC team</li>
-            <li>Reviewed remote peer deliverables and reported to mentors</li>
-            <li>Compared four security platforms and presented three evaluator pitches</li>
+          <ul aria-label="Software developer experience highlights">
+            <li>Telemetry integration and test-event validation with Cerberus</li>
+            <li>IT grading at ASU and adaptive-learning software research</li>
+            <li>Peer collaboration and requirements work during the AEROSEC externship</li>
           </ul>
           <a className="role-option-action" href={managerResumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View Technical Project Coordination resume PDF in a new tab">
-            View Project Coordination Resume <ArrowIcon />
+             aria-label="View Software Developer experience resume PDF in a new tab">
+            View Experience Resume <ArrowIcon />
           </a>
         </article>
       </div>
@@ -532,16 +532,16 @@ function ContactSection() {
     <section className="contact-section" id="contact">
       <div className="contact-copy recruiter-contact" data-reveal>
         <p className="eyebrow">Recruiting &amp; collaboration</p>
-        <h2>Hiring for Software Development or Project Coordination?</h2>
+        <h2>Hiring a Software Developer?</h2>
         <p>
-          I&apos;m interested in U.S.-based software development, Python and AI tooling,
-          and technical project coordination roles that bring implementation and clear communication together.
+          I&apos;m interested in U.S.-based software development and Python or AI tooling roles
+          that bring careful implementation, testing, and clear communication together.
         </p>
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Software Developer Resume</a>
-        <a className="button button-light" href={managerResumeHref} target="_blank" rel="noreferrer">Project Coordination Resume</a>
+        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Software Developer: Technical Resume</a>
+        <a className="button button-light" href={managerResumeHref} target="_blank" rel="noreferrer">Software Developer: Experience Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>

@@ -13,11 +13,11 @@ NAMES = (
 )
 DOWNLOAD_NAMES = {
     NAMES[0]: "Pooja_Kiran_Software_Developer_Resume",
-    NAMES[1]: "Pooja_Kiran_Technical_Project_Coordination_Resume",
+    NAMES[1]: "Pooja_Kiran_Software_Developer_Experience_Resume",
 }
 HEADLINES = {
     NAMES[0]: "Software Developer | Python, AI & Security Projects",
-    NAMES[1]: "Technical Project Coordination | Software & AI Projects",
+    NAMES[1]: "Software Developer | Python, AI & Technical Collaboration",
 }
 
 

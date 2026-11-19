@@ -49,8 +49,8 @@ for source in (*sources, manager):
         raise SystemExit("Missing corrected Information Technology master's degree")
 if "Software Developer | Python, AI \\& Security Projects" not in sources[0]:
     raise SystemExit("Missing documented software-development positioning")
-if "Technical Project Coordination | Software \\& AI Projects" not in manager:
-    raise SystemExit("Missing documented project-coordination positioning")
+if "Software Developer | Python, AI \\& Technical Collaboration" not in manager:
+    raise SystemExit("Missing software-developer positioning in experience resume")
 if 'id="about"' not in ui or "resume.about.paragraphs.map" not in ui:
     raise SystemExit("Missing dedicated About section")
 layout = (root / "src/app/layout.tsx").read_text(encoding="utf-8-sig")
