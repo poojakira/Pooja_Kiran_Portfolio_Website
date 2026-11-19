@@ -1171,3 +1171,28 @@ section[id],article[id]{scroll-margin-top:82px}
 .leadership-highlights-link svg{width:14px}
 @media(max-width:900px){.leadership-highlights{width:min(var(--max),calc(100% - 36px));padding-bottom:88px}.leadership-highlights-intro{grid-template-columns:1fr;gap:14px}}
 @media(max-width:660px){.hero-copy-reference .hero-dual-heading{font-size:clamp(36px,9vw,54px)}.leadership-highlights-grid{grid-template-columns:1fr}.leadership-highlights-grid article{padding:22px;border-right:0;border-bottom:1px solid rgba(43,34,28,.22)}.leadership-highlights-grid article:last-child{border-bottom:0}}
+
+/* Keep the refreshed project evidence readable at normal browser zoom. */
+#work .proof-career p,
+#work .proof-career li,
+#work .scope-line p {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+#work .panel-label,
+#work .eyebrow,
+#work .builder-sequence strong,
+#work .metrics-strip strong,
+#work .scope-actions a {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+#work .project-history,
+#work .poster-caption,
+#work .project-stack span {
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+#work .scope-actions {
+  flex-wrap: wrap;
+}
