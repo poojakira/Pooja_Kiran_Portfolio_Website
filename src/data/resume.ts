@@ -146,7 +146,7 @@ export const resume = {
               "PolicyEngine and StdioMCPProxy",
               "Fixed first-party tool child",
               "Tool receipts and state comparison",
-              "Redacted execution report"
+              "Execution report with provenance"
           ],
           "bullets": [
               "Enabled inspectable tool-permission reviews, verified by 834 passing candidate regression tests and 81.80% statement coverage, by connecting a local request editor to the actual policy engine, proxy and disposable tool server.",
