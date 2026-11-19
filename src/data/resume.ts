@@ -36,14 +36,14 @@ export const resume = {
   sourceFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   name: "Pooja Kiran",
   headline: "Software Engineer | AI Agents & Application Security",
-  positioning: "I build software, review technical work, and help teams turn requirements into clear next steps.",
+  positioning: "I build inspectable AI-agent and application-security software, from authorization controls and IAM analysis to reproducible investigation workflows.",
   about: {
     "title": "I make technical work inspectable.",
     "paragraphs": [
-      "I like being able to show the request, the rule, the result, and the limits. That is the thread connecting my software projects with the way I review technical work and coordinate delivery.",
-      "I hold an M.S. in Information Technology from Arizona State University. My experience spans IT grading at ASU, a short technical collaboration with Cerberus, the Honeywell Aerospace × ASU AEROSEC externship, and volunteer research.",
-      "In my independent projects, I build Python tools and local interfaces for agent permissions, IAM policy reviews, model-artifact inspection, and synthetic event investigations. I publish the test evidence and make the remaining gaps explicit.",
-      "I am interested in software development and Python or AI tooling roles that value careful implementation, useful feedback, and clear ownership."
+      "I build security software where an engineering claim can be traced to an actual request, policy decision, execution receipt, test result, and documented limitation. My projects span MCP agent-tool authorization, AWS IAM policy analysis, model-artifact inspection, and investigation APIs.",
+      "I hold an M.S. in Information Technology from Arizona State University. My professional and research experience includes a part-time IT Grader appointment at ASU, a short Cerberus telemetry integration collaboration, the Honeywell Aerospace × ASU academic externship, and supervised undergraduate research.",
+      "I use Python, FastAPI, React, PostgreSQL, Docker, and test automation where relevant. Four reviewed project candidates have published regression results and immutable evidence; all remain partial and are not represented as production deployments.",
+      "I am targeting software engineering roles involving AI agents, application security, authorization, and security-focused developer tooling."
     ]
   },
   location: "Tempe, AZ, USA",
