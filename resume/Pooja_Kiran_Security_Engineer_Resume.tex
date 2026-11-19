@@ -24,32 +24,32 @@
 \end{center}\vspace{-2pt}
 
 \section{Professional Summary}
-Software engineer developing Python-based AI-agent authorization, cloud IAM review and application-security tools. Built request-to-policy execution flows, bounded file inspection and authenticated investigation APIs with persisted results. Combines implementation with reproducible tests and source-linked evidence; M.S. in Information Technology, Arizona State University.
+Software engineer building Python services and developer tools for AI-agent authorization, cloud IAM analysis and application security. Implemented policy-enforced tool execution, bounded artifact inspection and authenticated FastAPI workflows with PostgreSQL persistence. M.S. in Information Technology, Arizona State University.
 
 \section{Independent Engineering Projects}
 \proj{\href{https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md}{MCP Agent Security Gateway}}{Python, MCP/JSON-RPC, policy enforcement, audit evidence}{Oct 2025 -- Oct 2026}
 \begin{itemize}
-\item \textbf{Engineered} a local MCP tool-execution workbench to test authorization before tool invocation, routing requests through the policy engine and stdio proxy to a disposable first-party server; compared actual write receipts and tool-side state.
-\item \textbf{Separated} policy decisions from confirmed execution, rejection and unknown outcomes in review evidence; verified the candidate with \textbf{834 passing tests} and \textbf{81.80\% statement coverage}.
+\item \textbf{Built} a local MCP execution workbench that routes tool requests through a policy engine and stdio proxy before invoking a disposable first-party server; checked write receipts against actual tool-side state.
+\item \textbf{Designed} execution evidence to distinguish policy decisions from confirmed effects and unknown outcomes after failed acknowledgments; validated with \textbf{834 passing tests} and \textbf{81.80\% statement coverage}.
 \end{itemize}
 
 \proj{\href{https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md}{AWS Agent Identity Guard}}{Python, AWS IAM, browser policy review, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
 \begin{itemize}
 \item \textbf{Implemented} a credential-free IAM policy editor and scanner that parses supplied identity/trust JSON, maps \textbf{24 static checks} to source statements and rescans changes; exports schema-validated \textbf{SARIF 2.1.0} findings.
-\item \textbf{Enabled} before/after policy comparisons without live AWS credentials; validated with \textbf{272 passing tests} and \textbf{77.15\% statement coverage}, while retaining \textbf{3 legacy rules-module skips}.
+\item \textbf{Enabled} reproducible before/after IAM policy comparisons without AWS credentials, retaining statement-level findings for review; validated with \textbf{272 passing tests}, \textbf{77.15\% coverage} and \textbf{3 legacy rules-module skips}.
 \end{itemize}
 
 
 \proj{\href{https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, bounded static inspection}{Nov 2024 -- Oct 2026}
 \begin{itemize}
 \item \textbf{Built} a browser-to-isolated-worker workflow for bounded static inspection of model-file hashes, metadata and structure, allowing comparisons of changed SafeTensors and checksummed exports.
-\item \textbf{Verified} the inspection candidate with \textbf{317 passing tests} and \textbf{76.08\% statement coverage}; recorded \textbf{3 skips} and \textbf{6 separately passing native-format subtests}.
+\item \textbf{Produced} checksummed inspection exports and change comparisons without executing untrusted model code; validated with \textbf{317 passing tests}, \textbf{76.08\% statement coverage}, \textbf{3 skips} and \textbf{6 native-format subtests}.
 \end{itemize}
 
 \proj{\href{https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, React, PostgreSQL, FHIR AuditEvent}{Aug -- Oct 2026}
 \begin{itemize}
 \item \textbf{Developed} a synthetic clinical-access investigation workflow connecting React to authenticated FastAPI endpoints, canonical event detectors and PostgreSQL-backed case/report persistence.
-\item \textbf{Verified} threshold-change reruns on synthetic FHIR AuditEvents and saved-report recovery after API restart; recorded \textbf{332 passing tests} and \textbf{82.47\% line coverage}.
+\item \textbf{Implemented} repeatable threshold-adjusted investigations and retrieval of saved reports after API restart, tested on synthetic FHIR AuditEvents; recorded \textbf{332 passing tests} and \textbf{82.47\% line coverage}.
 \end{itemize}
 
 \noindent{\fontsize{8.8}{10.4}\selectfont\textit{Independent projects; titles link to November 2026 source-pinned evidence. All four candidates remain PARTIAL; HF independent security closure blocked; Aegis hosted CI remains unverified. No production claims.}}\vspace{1pt}
