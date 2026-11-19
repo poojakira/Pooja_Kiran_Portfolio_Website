@@ -24,17 +24,54 @@
 \end{center}\vspace{-2pt}
 
 \section{Professional Summary}
-M.S. in Information Technology graduate from Arizona State University with experience in software projects, academic assessment, and technical collaboration. Builds Python tools and local interfaces for AI-agent permissions, cloud policy review, and model-artifact inspection. Experience includes ASU IT grading, an aerospace externship, Cerberus telemetry integration, and volunteer research.
+Software engineer building Python-based AI-agent authorization, application-security and cloud-policy review tools. Implemented local browser workflows connected to policy engines, MCP proxies, static scanners and persisted investigation APIs. Publishes reproducible tests, coverage, source-linked findings and explicit release limitations; M.S. in Information Technology, Arizona State University.
 
-\section{Experience}
+\section{Selected Security Engineering Projects}
+\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md}{MCP Agent Security Gateway}}{Python, MCP/JSON-RPC, policy enforcement, audit evidence}{Oct 2025 -- Oct 2026}
+\begin{itemize}
+\item \textbf{Built} a local agent-to-tool authorization workbench connecting a request editor, policy engine, MCP proxy and disposable first-party tool server; demonstrated guarded and unguarded writes with receipts and tool-side state.
+\item \textbf{Validated} \textbf{834 passing tests} and \textbf{81.80\% statement coverage}; distinguished execution outcomes from policy decisions and documented incomplete protocol conformance and external-effect reconciliation.
+\end{itemize}
+
+\proj{\href{https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md}{AWS Agent Identity Guard}}{Python, AWS IAM, browser policy review, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
+\begin{itemize}
+\item \textbf{Developed} credential-free IAM policy reviews using \textbf{24 static checks}, statement-linked findings, before/after rescans and schema-validated \textbf{SARIF 2.1.0} exports.
+\item \textbf{Verified} \textbf{272 passing tests} and \textbf{77.15\% statement coverage}; retained \textbf{3 legacy rules-module skips} and distinguished static signals from effective AWS permissions.
+\end{itemize}
+
+
+\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, bounded static inspection}{Nov 2024 -- Oct 2026}
+\begin{itemize}
+\item \textbf{Built} a bounded browser-to-worker model-artifact inspection flow for hashes, metadata and structure; validated with \textbf{317 passing tests} and \textbf{76.08\% statement coverage}.
+\item \textbf{Tested} changed SafeTensors and checksummed exports; reported \textbf{3 skips} and \textbf{6 separate passing subtests}, with independent security closure blocked and model safety unproven.
+\end{itemize}
+
+\proj{\href{https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, React, PostgreSQL, FHIR AuditEvent}{Aug -- Oct 2026}
+\begin{itemize}
+\item \textbf{Integrated} React, authenticated FastAPI, canonical detectors and PostgreSQL for synthetic clinical-access investigations; verified with \textbf{332 passing tests} and \textbf{82.47\% line coverage}.
+\item \textbf{Reran} synthetic FHIR AuditEvents after changing a case threshold, comparing findings and verifying saved reports after API restart; hosted CI remains unverified.
+\end{itemize}
+
+\noindent{\fontsize{8.8}{10.4}\selectfont\textit{Titles link to immutable November 2026 verification reports; development dates are retained. All four local candidates remain PARTIAL; no production-deployment or field-effectiveness claim.}}\vspace{1pt}
+
+\section{Technical Skills}
+{\fontsize{10}{11.8}\selectfont
+\textbf{Languages \& applications:} Python, C++, FastAPI, React, PostgreSQL, REST APIs, pytest\\[2pt]
+\textbf{Agent \& application security:} MCP/JSON-RPC, tool authorization, AWS IAM, API authorization, threat modeling, static policy analysis, prompt-injection testing\\[2pt]
+\textbf{Engineering tools:} Docker, GitHub Actions, CodeQL, SARIF 2.1.0, Elastic SIEM, audit logging, test coverage}
+
+\newpage
+\noindent{\fontsize{10}{12}\selectfont\textbf{POOJA KIRAN} \hfill Resume | Page 2 of 2}\vspace{1pt}
+
+\section{Professional \& Research Experience}
 \job{Technical Collaborator}{Sep 29 -- Oct 9, 2026}{Cerberus | Short-term technical collaboration}
 \begin{itemize}
 \item \textbf{Integrated} MCP gateway telemetry with the Cerberus event schema, configuring event delivery and troubleshooting connectivity for successful test transfers.
-\item \textbf{Validated} end-to-end test-event delivery for \textbf{3 authenticated gateway identities}, confirming accurate attribution to registered identities.
-\item \textbf{Verified} \textbf{3 persistent identity configurations} and replay safety; resending the same test batch created \textbf{no duplicate records}.
+\item \textbf{Validated} event attribution for \textbf{3 authenticated gateway identities} across persistent identity configurations.
+\item \textbf{Replayed} the same test batch and observed \textbf{no duplicate records} in the tested workflow; this does not establish exactly-once external execution.
 \end{itemize}
 
-\job{IT Grader}{Jan 2025 -- May 2026}{Arizona State University | Tempe, AZ}
+\job{IT Grader}{Jan 2025 -- May 2026}{Arizona State University | Part-time Student Worker III -- IT Grader | Tempe, AZ}
 \begin{itemize}
 \item \textbf{Reviewed} security-compliance submissions for \textbf{53 students} in IFT 483/543, identifying risk and evidence gaps through rubric-based feedback.
 \item \textbf{Evaluated} configuration-management work for \textbf{101 students} in IFT 380, documenting technical issues against instructor-defined criteria.
@@ -63,44 +100,6 @@ M.S. in Information Technology graduate from Arizona State University with exper
 \item \textbf{Contributed} educational software to \textbf{KSCST-funded project 46S\_BE\_5506}, part of \textbf{1,494 funded proposals from 5,961} statewide submissions.
 \item \textbf{Integrated} learning software and coordinated research documentation and milestones in a \textbf{3-student team}; CubeSat hardware was collaborative.
 \end{itemize}
-
-\newpage
-\noindent{\fontsize{10}{12}\selectfont\textbf{POOJA KIRAN} \hfill Resume | Page 2 of 2}\vspace{1pt}
-
-\section{Selected Security Engineering Projects}
-\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md}{MCP Agent Security Gateway}}{Python, MCP/JSON-RPC, policy enforcement, audit evidence}{Oct 2025 -- Oct 2026}
-\begin{itemize}
-\item \textbf{Enabled} inspectable agent-to-tool reviews, verified by \textbf{834 passing repository tests} and \textbf{81.80\% statement coverage}, by connecting a local browser workbench to the actual policy engine, MCP proxy, and disposable first-party server.
-\item \textbf{Compared} the same write with permissions changed, showing receipts and tool-side outcomes; documented incomplete protocol conformance, arbitrary-server isolation, and external-effect reconciliation.
-\end{itemize}
-
-\proj{\href{https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md}{AWS Agent Identity Guard}}{Python, AWS IAM, browser policy review, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
-\begin{itemize}
-\item \textbf{Delivered} credential-free IAM change reviews, verified by \textbf{272 passing repository tests} and \textbf{77.15\% statement coverage}, by connecting browser policy editing to static scanners and \textbf{SARIF 2.1.0} exports.
-\item \textbf{Added} statement-linked findings, supplied-context graphs, and before/after rescans; retained \textbf{3 legacy rules-module skips} and distinguished static findings from effective permissions.
-\end{itemize}
-
-
-\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, bounded static inspection}{Nov 2024 -- Oct 2026}
-\begin{itemize}
-\item \textbf{Enabled} bounded model-artifact comparisons, verified by \textbf{317 passing repository tests} and \textbf{76.08\% statement coverage}, by connecting a browser UI to an isolated static worker for hash, metadata, and structure inspection.
-\item \textbf{Tested} changed SafeTensors and checksummed exports; reported \textbf{3 skips} and \textbf{6 separate passing subtests}, with independent security closure blocked and model safety unproven.
-\end{itemize}
-
-\proj{\href{https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, React, PostgreSQL, FHIR AuditEvent}{Aug -- Oct 2026}
-\begin{itemize}
-\item \textbf{Delivered} reproducible clinical-access investigations, verified by \textbf{332 passing repository tests} and \textbf{82.47\% line coverage}, by joining React, authenticated FastAPI, canonical detectors, and \textbf{PostgreSQL} persistence.
-\item \textbf{Reran} synthetic FHIR AuditEvents after changing a case threshold, comparing findings and verifying saved reports after API restart; hosted CI remains unverified.
-\end{itemize}
-
-\noindent{\fontsize{9.2}{10.8}\selectfont\textit{Titles link to immutable November 2026 verification reports; development dates are retained. All four local candidates remain PARTIAL; no production-deployment or field-effectiveness claim.}}\vspace{1pt}
-
-\section{Technical Skills}
-{\fontsize{10.2}{12}\selectfont
-\textbf{Security reviews and risk:} Security design review, \textbf{threat modeling}, risk analysis, risk assessment, \textbf{API authorization}, web-services security, software testing, CI security checks\\[2pt]
-\textbf{Cloud, network, operating systems:} \textbf{AWS IAM}, DNS, HTTP, TLS, Zeek/Suricata-style telemetry, Linux /proc TCP, \textbf{HMAC-SHA256}, \textbf{Ed25519}\\[2pt]
-\textbf{Engineering and leadership:} \textbf{Python}, \textbf{C++}, \textbf{FastAPI}, \textbf{Docker}, \textbf{pytest}, \textbf{GitHub Actions}, \textbf{CodeQL}, SARIF, \textbf{Elastic SIEM}, remote peer coordination, compliance research, budgeting\\[2pt]
-\textbf{Video content protection (concepts):} DRM license flows, encrypted HLS/DASH, CloudFront signed URLs, AWS MediaPackage/SPEKE}
 
 \section{Education}
 \textbf{Arizona State University} \hfill May 2026\\
