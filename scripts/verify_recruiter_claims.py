@@ -91,9 +91,10 @@ if (
     or "BLOCKED" not in projects[2]["limitations"]
 ):
     raise SystemExit("HF closing-review blocker must remain visible")
-if "hosted CI remains unverified" not in sources[
-    0
-] or "hosted CI NOT VERIFIED" not in " ".join(projects[3]["metrics"]):
+if (
+    "hosted CI remains unverified" not in sources[0]
+    or "hosted CI NOT VERIFIED" not in " ".join(projects[3]["metrics"])
+):
     raise SystemExit("Aegis hosted verification limitation must remain visible")
 for stale in (
     "782",
