@@ -75,31 +75,32 @@ Security engineer with an M.S. in Information Technology (Security), industry-fa
 \noindent{\fontsize{10}{12}\selectfont\textbf{POOJA KIRAN} \hfill Resume | Page 2 of 2}\vspace{1pt}
 
 \section{Selected Security Engineering Results}
-\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}}{Python, FastAPI, MCP/JSON-RPC, Elastic SIEM}{Oct 2025 -- Oct 2026}
+\proj{\href{https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md}{MCP Agent Security Gateway}}{Python, MCP/JSON-RPC, policy enforcement, audit evidence}{Oct 2025 -- Oct 2026}
 \begin{itemize}
-\item \textbf{Built} a default-deny \textbf{MCP/JSON-RPC} gateway with capability checks, \textbf{anti-SSRF} rules, 69 named prompt-injection signatures, hash-chained audit records, and nine \textbf{Elastic Security} detection rules.
-\item \textbf{Verified} agent-to-tool enforcement and failure paths using \textbf{Python 3.12 CI}; recorded \textbf{782 passing tests} and \textbf{81.93\% statement coverage} in the cited run.
+\item \textbf{Enabled} inspectable agent-to-tool reviews, verified by \textbf{834 passing repository tests} and \textbf{81.80\% statement coverage}, by connecting a local browser workbench to the actual policy engine, MCP proxy, and disposable first-party server.
+\item \textbf{Compared} the same write with permissions changed, showing receipts and tool-side outcomes; documented incomplete protocol conformance, arbitrary-server isolation, and external-effect reconciliation.
 \end{itemize}
 
-\proj{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}}{Python, AWS IAM, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
+\proj{\href{https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md}{AWS Agent Identity Guard}}{Python, AWS IAM, browser policy review, SARIF 2.1.0}{Apr 2025 -- Oct 2026}
 \begin{itemize}
-\item \textbf{Developed} 25 \textbf{AWS IAM} static-analysis rules for broad grants, \textbf{iam:PassRole}, \textbf{sts:AssumeRole}, and trust-policy risks; exported findings in \textbf{SARIF 2.1.0} for CI review.
-\item \textbf{Validated} the rule suite in cited CI: \textbf{244 tests passed} and three credential-dependent tests were skipped; did not claim live AWS effective-permission results.
+\item \textbf{Delivered} credential-free IAM change reviews, verified by \textbf{272 passing repository tests} and \textbf{77.15\% statement coverage}, by connecting browser policy editing to static scanners and \textbf{SARIF 2.1.0} exports.
+\item \textbf{Added} statement-linked findings, supplied-context graphs, and before/after rescans; retained \textbf{3 legacy rules-module skips} and distinguished static findings from effective permissions.
 \end{itemize}
 
 
-\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, ONNX, Keras}{Nov 2024 -- Oct 2026}
+\proj{\href{https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md}{HF Model Provenance Scanner}}{Python, SafeTensors, GGUF, bounded static inspection}{Nov 2024 -- Oct 2026}
 \begin{itemize}
-\item \textbf{Built} non-executing checks for unsafe serialization, embedded code, \textbf{model provenance}, and dependencies across \textbf{SafeTensors}, \textbf{GGUF}, \textbf{ONNX}, and \textbf{Keras} inputs.
-\item \textbf{Detected} suspicious content in \textbf{33/33 curated adversarial fixtures}; confirmed \textbf{260 passing CI tests} and \textbf{75.67\% statement coverage} without describing fixtures as real-world detection rates.
+\item \textbf{Enabled} bounded model-artifact comparisons, verified by \textbf{317 passing repository tests} and \textbf{76.08\% statement coverage}, by connecting a browser UI to an isolated static worker for hash, metadata, and structure inspection.
+\item \textbf{Tested} changed SafeTensors and checksummed exports; reported \textbf{3 skips} and \textbf{6 separate passing subtests}, with independent security closure blocked and model safety unproven.
 \end{itemize}
 
-\proj{\href{https://github.com/poojakira/attack-detection-engine/pull/50}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, PostgreSQL, ARM/CAN}{Aug -- Oct 2026}
+\proj{\href{https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md}{Attack Detection Engine / Aegis HealthSec}}{Python, FastAPI, React, PostgreSQL, FHIR AuditEvent}{Aug -- Oct 2026}
 \begin{itemize}
-\item \textbf{Extended} \textbf{MITRE ATT\&CK v19} detection with offline \textbf{CAN}, \textbf{C/C++ firmware}, and \textbf{ARM ELF32} analysis using synthetic lab inputs and reproducible tests.
-\item \textbf{Integrated} clinical-access detection and a \textbf{FHIR R4 AuditEvent} parser with event normalization, deterministic correlation, and \textbf{PostgreSQL} incident persistence on unmerged development branches.
-\item \textbf{Tested} an authenticated \textbf{FastAPI} investigation workflow with analyst actions and audit history; Milestone E reported \textbf{296 local tests passing} with real PostgreSQL, while hosted CI remained blocked.
+\item \textbf{Delivered} reproducible clinical-access investigations, verified by \textbf{332 passing repository tests} and \textbf{82.47\% line coverage}, by joining React, authenticated FastAPI, canonical detectors, and \textbf{PostgreSQL} persistence.
+\item \textbf{Reran} synthetic FHIR AuditEvents after changing a case threshold, comparing findings and verifying saved reports after API restart; hosted CI remains unverified.
 \end{itemize}
+
+\noindent{\fontsize{9.2}{10.8}\selectfont\textit{Titles link to immutable November 2026 verification reports; development dates are retained. All four local candidates remain PARTIAL; no production-deployment or field-effectiveness claim.}}\vspace{1pt}
 
 \section{Technical Skills}
 {\fontsize{10.2}{12}\selectfont

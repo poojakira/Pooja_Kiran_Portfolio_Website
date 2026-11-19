@@ -52,7 +52,7 @@ function IdentityInspector() {
 
 const inspections = [
   { title: "Artifact", detail: "Start with an untrusted repository or model artifact. Inspection happens without importing or running its code.", label: "Do not execute", formats: "Repository · model files" },
-  { title: "Serialization", detail: "Inspect serialization and binary formats, including pickle opcodes and supported model formats. A format name alone does not establish trust.", label: "Inspect structure", formats: "SafeTensors · GGUF · ONNX · Keras · pickle-derived artifacts" },
+  { title: "Serialization", detail: "Inspect serialization and binary formats, including pickle opcodes and supported model formats. A format name alone does not establish trust.", label: "Inspect structure", formats: "Python · pickle opcodes · SafeTensors · GGUF" },
   { title: "Code & origin", detail: "Combine AST/taint analysis with dependency, provenance, and obfuscation checks to surface risky behavior.", label: "Review signals", formats: "AST/taint · dependencies · provenance · obfuscation" },
   { title: "Evidence", detail: "Review findings together with the scanner’s test scope. A clean result is not proof that every possible threat is absent.", label: "Bound the conclusion", formats: "Findings · committed adversarial fixtures · benign samples" },
 ] as const;
@@ -70,7 +70,7 @@ export default function WorldInspector({ project }: { project: ProjectItem }) {
   return <section className={`world-inspector inspector-${project.id}`} aria-label={`${project.name} interactive explanation`}>
     <div className="inspector-heading"><h4>Inspect the system</h4><span>Illustrative walkthrough</span></div>
     <p className="inspector-intro">Explore the control logic. These examples explain the design; they do not run the project or report live results.</p>
-    {project.id === "mcp" ? <GatewayInspector /> : project.id === "iam" ? <IdentityInspector /> : project.id === "automotive" ? <div className="automotive-lab-explainer"><strong>Evidence-backed embedded security</strong><p>ARM Cortex-M3 firmware was cross-compiled for offline binary review. Synthetic CAN traces test arbitration-ID and message-rate policies; a deliberately vulnerable C fixture demonstrated an AddressSanitizer finding and fix. No vehicle hardware was used.</p><a href={project.repository} target="_blank" rel="noreferrer">Inspect source and tests →</a></div> : <ArtifactInspector />}
+    {project.id === "mcp" ? <GatewayInspector /> : project.id === "iam" ? <IdentityInspector /> : project.id === "automotive" ? <div className="automotive-lab-explainer"><strong>Challenge a synthetic investigation</strong><p>The local workbench imports bounded FHIR AuditEvent JSON, stores actual detector evidence in PostgreSQL and reruns the same dataset after a threshold change. The 30-event synthetic example changes from one bulk-access finding to none when the threshold changes from 25 to 40. This portfolio illustration performs no scan.</p><a href={project.caseStudy} target="_blank" rel="noreferrer">Inspect the actual execution evidence</a></div> : <ArtifactInspector />}
   </section>;
 }
 

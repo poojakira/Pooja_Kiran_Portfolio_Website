@@ -5,26 +5,26 @@
     {
       "file": "mcp-poster.png",
       "repository": "mcp-agent-security-gateway",
-      "commit": "9bad1c2f06563e7fdf637b1f70dc75521d6c2e5e",
-      "git_blob_sha": "3becd4a461b8ec6569b6b7c2d8f05b70fd456232",
-      "run_id": 38502413461,
-      "summary": "782 tests, 81.93% statement coverage; 69 separately inventoried runtime signatures"
+      "commit": "d2e7b6ea7c1a1f9cb0fb71f73d0a692d8fa0410c",
+      "git_blob_sha": "f780ceb11687a78fb516e3e1d39c0d0b987d4377",
+      "run_id": 44429942328,
+      "summary": "Historical October 14, 2026 poster; 782 tests, 81.93% statement coverage; 69 separately inventoried runtime signatures; November asset parity is distinct from current project results"
     },
     {
       "file": "iam-poster.png",
       "repository": "aws-agent-identity-guard",
-      "commit": "da0b9f1e453ae0e640af9734dc88a3bed14ea7b2",
-      "git_blob_sha": "8aa9bb09a48c6aebcbc34a84e10623796595876d",
-      "run_id": 38497940763,
-      "summary": "247 collected, 244 passed, 3 skipped; 25 rule IDs"
+      "commit": "abe1c0a1e5953b18eae762a5c41f400ff677adb2",
+      "git_blob_sha": "9bcaf5fc774ea31e2a2e26700f6dfd994d7165fa",
+      "run_id": 44428284756,
+      "summary": "Historical October 14, 2026 poster; 247 collected, 244 passed, 3 skipped; 25 rule IDs; November asset parity is distinct from current project results"
     },
     {
       "file": "provenance-poster.png",
       "repository": "hf-model-provenance-scanner",
-      "commit": "595b33ba8b1af4c2d4ed6ce1ab4b95bc5034cef4",
-      "git_blob_sha": "ebc57344ac1d7dde878fdba42c5d6108be744790",
-      "run_id": 38498005353,
-      "summary": "260 passed, 1 skipped, 6 subtests, 75.67% statement coverage"
+      "commit": "ab26ad5cd6fe28ae1b0986e20da46be9ebb2f27a",
+      "git_blob_sha": "87a7e003c96cc75ca1c19d05af2a9c8d1af9eb70",
+      "run_id": 44428485746,
+      "summary": "Historical October 14, 2026 poster; 260 passed, 1 skipped, 6 subtests, 75.67% statement coverage; November asset parity is distinct from current project results"
     }
   ]
 }

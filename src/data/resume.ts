@@ -1,4 +1,4 @@
-// Recruiter-facing project links point to actual evidence; unmerged features use explicit branch or PR references.
+// Project outcomes cite exact reviewed candidates and immutable test evidence; all four release decisions remain PARTIAL.
 export type ExperienceItem = {
   role: string;
   detail?: string;
@@ -23,8 +23,13 @@ export type ProjectItem = {
   testing: string;
   limitations: string;
   history: string;
-  caseStudy?: string;
-  demo?: string;
+  caseStudy: string;
+  review: string;
+  architectureUrl: string;
+  notebook: string;
+  sourceCommit: string;
+  verificationDate: string;
+  releaseStatus: "PARTIAL";
 };
 
 export const resume = {
@@ -134,90 +139,182 @@ export const resume = {
       }
   ] satisfies ExperienceItem[],
   projects: [
-    {
-      id: "mcp",
-      label: "Agent → Tool Security",
-      name: "MCP Agent Security Gateway",
-      stack: ["Python", "FastAPI", "MCP/JSON-RPC 2.0", "Elastic Security"],
-      dates: "Oct 2025 - Oct 2026",
-      repository: "https://github.com/poojakira/mcp-agent-security-gateway",
-      caseStudy: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_CASE_STUDY.md",
-      demo: "https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/RECRUITER_DEMO_60S.md",
-      problem: "Agent tool calls cross an execution boundary where authorization, content risk, egress policy, rate limits, and audit evidence need to be enforced before downstream execution.",
-      solution: "A default-deny MCP/JSON-RPC gateway that validates capabilities, inspects prompt-injection and PII/exfiltration signals, applies anti-SSRF controls and rate limiting, and records tamper-evident audit evidence.",
-      architecture: ["Agent tool call", "Capability authorization", "PII and exfiltration checks", "Anti-SSRF and rate limits", "Fail-closed enforcement", "Audit and telemetry"],
-      bullets: [
-        "Engineered a default-deny agent-to-tool gateway with capability checks, request inspection, anti-SSRF egress rules, and rate limits.",
-        "Implemented 69 named prompt-injection signatures, PII/exfiltration signals, hash-chained auditing, and nine Elastic Security rule records.",
-        "Built automated regression coverage for gateway controls and SIEM integration; the Python 3.12 suite passed 782 tests with 81.93% statement coverage."
-      ],
-      metrics: ["782 tests in cited Python 3.12 CI", "81.93% coverage, same CI run", "69 prompt-injection patterns", "9 Elastic rules", "21 core SIEM tests"],
-      testing: "The October 10, 2026 Python 3.12 CI run 38012954359 passed 782 tests at 81.93% statement coverage, with 9 Elastic rules and 21 core SIEM tests.",
-      limitations: "The evidence supports implemented controls and bounded test results. It does not claim customer deployment, enterprise adoption, or universal prevention.",
-      history: "Project work: Oct 2025 to Oct 2026. CI figures are from a specific October 2026 Python 3.12 run, not operational detection effectiveness."
-    },
-    {
-      id: "iam",
-      label: "Identity → Authority Security",
-      name: "AWS Agent Identity Guard",
-      stack: ["Python", "AWS IAM", "SARIF 2.1.0"],
-      dates: "Apr 2025 - Oct 2026",
-      repository: "https://github.com/poojakira/aws-agent-identity-guard",
-      problem: "Agent and workload identities can become over-privileged through wildcard grants, iam:PassRole, sts:AssumeRole, weak trust policies, privilege-escalation paths, and missing permission boundaries.",
-      solution: "A static IAM analyzer with 25 deterministic rules and text, JSON, and SARIF 2.1.0 outputs for CI and GitHub Code Scanning.",
-      architecture: ["IAM policy", "25 deterministic rules", "Finding evidence", "Text / JSON / SARIF", "GitHub Code Scanning", "Code review"],
-      bullets: [
-        "Built a static workload-identity analyzer for dangerous grants, escalation paths, trust-policy weaknesses, and missing permission boundaries.",
-        "Implemented 25 deterministic rules for wildcard access, iam:PassRole, sts:AssumeRole, and trust policies; emitted CI-readable SARIF findings.",
-        "Tested IAM policy analysis through CI, with 244 passing tests; three live-AWS checks were skipped because they required credentials."
-      ],
-      metrics: ["25 deterministic rules", "244 passed / 3 skipped", "SARIF 2.1.0", "GitHub Code Scanning"],
-      testing: "The cited 2026 repository verification snapshot reports 247 collected, 244 passed, and 3 credential-dependent live-scan tests skipped.",
-      limitations: "The evidence supports deterministic static-policy analysis. It does not claim complete effective-permission evaluation, production latency, or runtime authorization guarantees.",
-      history: "Project work: Apr 2025 to Oct 2026. Static policy analysis does not establish live AWS authorization outcomes."
-    },
-    {
-      id: "supply",
-      label: "Artifact → Runtime Security",
-      name: "HF Model Provenance Scanner",
-      stack: ["Python", "SafeTensors", "GGUF", "ONNX", "Keras"],
-      dates: "Nov 2024 - Oct 2026",
-      repository: "https://github.com/poojakira/hf-model-provenance-scanner",
-      problem: "Untrusted model repositories and artifacts can carry serialization, loader, dependency, provenance, and obfuscation risk before a model is loaded.",
-      solution: "A non-executing scanner that inspects untrusted repositories and artifacts without importing or running their code.",
-      architecture: ["Repository or artifact", "Non-executing inspection", "Pickle and AST/taint checks", "Dependency and provenance checks", "Obfuscation and format checks", "Findings"],
-      bullets: [
-        "Built non-executing model artifact scanning for pickle-derived, SafeTensors, GGUF, ONNX, and Keras formats.",
-        "Combined serialization, AST/taint, provenance, and dependency checks; flagged 33 of 33 committed adversarial test fixtures.",
-        "Tested model artifact inspection in CI: 260 tests passed with 75.67% statement coverage."
-      ],
-      metrics: ["260 passed / 1 skipped", "75.67% coverage", "33/33 committed adversarial fixtures", "0 actionable / 4 committed benign samples", "Non-executing inspection"],
-      testing: "The cited 2026 repository verification snapshot reports 260 passed, 1 skipped at 75.67% statement coverage, 33/33 committed adversarial fixtures detected, and 0 actionable findings across 4 committed benign samples.",
-      limitations: "The fixture results are bounded regression evidence; the benign result covers only four committed samples. Neither is a universal detection or false-positive rate.",
-      history: "Project work: Nov 2024 to Oct 2026. Committed regression fixtures are bounded tests, not population-level malware detection evidence."
-    }
-    ,
-    {
-      id: "automotive",
-      label: "Telemetry → Investigation",
-      name: "Attack Detection Engine | Aegis HealthSec",
-      stack: ["Python", "FastAPI", "PostgreSQL", "React / TypeScript", "Docker", "MITRE ATT&CK v19"],
-      dates: "Aug 2026 - Oct 2026",
-      repository: "https://github.com/poojakira/attack-detection-engine",
-      caseStudy: "https://github.com/poojakira/attack-detection-engine/blob/feat/milestone-c-platform/MILESTONE_C_FINAL_REPORT.md",
-      problem: "Security teams need more than isolated alerts: related events must become explainable, durable incidents that authorized analysts can investigate and resolve.",
-      solution: "Extended an ATT&CK-oriented detection engine and offline CAN/firmware/ARM analysis with healthcare access rules, deterministic correlation, PostgreSQL persistence, a FastAPI investigation service and a React SOC console. These extensions remain on open, unmerged feature branches.",
-      architecture: ["Synthetic clinical access telemetry", "Normalize and validate", "Rule-based detection", "Evidence-based correlation", "PostgreSQL incident record", "Authenticated analyst review and audit"],
-      bullets: [
-        "Built offline automotive CAN/CAN-FD and firmware/ARM ELF32 lab analysis alongside the existing ATT&CK-oriented detection pipeline.",
-        "Added clinical-access detection on a development branch; MIMIC-IV Demo supplies de-identified clinical context, while all access events are synthetic.",
-        "Developed an authenticated investigation workflow that ingests events, correlates findings, persists incidents, and records analyst resolution and audit actions; demonstrated using real PostgreSQL and Docker in controlled tests."
-      ],
-      metrics: ["212 local tests: Milestone C, Oct 27 2026", "280 local tests reported: Milestone D", "Hosted CI blocked; PRs unmerged", "FHIR R4 AuditEvent connector: PR #50 (unmerged) · 296 local tests reported"],
-      testing: "Milestone C's October 27, 2026 report documents 212 passing Python 3.12.3 tests, PostgreSQL integration and a controlled Docker end-to-end scenario. Milestone D reports 280 local tests after hardening. These are separate historical snapshots, not additive totals; hosted CI is disabled.",
-      limitations: "The investigation platform and hardening are currently on unmerged development branches. Healthcare events and incidents in the demonstration are synthetic; MIMIC-IV Demo does not supply audit logs or access authorization. FHIR R4 AuditEvent ingestion is published for review in unmerged PR #50, with 296 local tests reported for Milestone E; hosted CI remains blocked and live hospital ingestion is not claimed. No hospital deployment, HIPAA certification, production readiness, or real-world detection-rate claim.",
-      history: "Initial ARM/CAN work was verified on main in October 2026 (68 local tests); the newer investigation and security-hardening evidence belongs to separate, unmerged October 27 development branches."
-    }
+      {
+          "id": "mcp",
+          "label": "Agent → Tool Security",
+          "name": "MCP Agent Security Gateway",
+          "stack": [
+              "Python",
+              "MCP/JSON-RPC 2.0",
+              "Policy engine",
+              "Browser workbench"
+          ],
+          "dates": "Oct 2025 - Oct 2026",
+          "problem": "Agent developers need to distinguish a policy decision from an action that actually ran when reviewing tool permissions.",
+          "solution": "A local browser workbench sends bounded requests through the canonical policy engine and stdio proxy to a fixed first-party server in a disposable workspace, then exposes receipts, state and execution outcomes.",
+          "architecture": [
+              "Local request editor",
+              "Loopback input boundary",
+              "PolicyEngine and StdioMCPProxy",
+              "Fixed first-party tool child",
+              "Tool receipts and state comparison",
+              "Redacted execution report"
+          ],
+          "bullets": [
+              "Enabled inspectable tool-permission reviews, verified by 834 passing candidate regression tests and 81.80% statement coverage, by connecting a local request editor to the actual policy engine, proxy and disposable tool server.",
+              "Made permission changes observable by rerunning the same write request with the guard enabled and disabled, comparing actual receipts and tool-side state instead of relying on a decision badge.",
+              "Preserved uncertainty in exported evidence with NOT_INVOKED, confirmed success/failure and UNKNOWN outcomes; documented remaining protocol, identity and containment gaps."
+          ],
+          "metrics": [
+              "834 passed · 0 skipped",
+              "81.80% statement coverage",
+              "Actual guarded/unguarded execution",
+              "PARTIAL · reviewed candidate"
+          ],
+          "testing": "November 18, 2026 verification: 834 passed, 0 skipped, 0 failures/errors; 81.80446084185813% local statement coverage at the unchanged 77% gate. Actual browser, installed-wheel and current hosted acceptance checks passed for the linked candidate.",
+          "limitations": "Fixed first-party fixture execution is not OS isolation for arbitrary servers. Complete MCP conformance, credential lifecycle, response PII filtering and durable external-effect reconciliation remain missing or unverified. No production or public-service approval.",
+          "repository": "https://github.com/poojakira/mcp-agent-security-gateway",
+          "caseStudy": "https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md",
+          "review": "https://github.com/poojakira/mcp-agent-security-gateway/pull/194",
+          "architectureUrl": "https://github.com/poojakira/mcp-agent-security-gateway/blob/d2e7b6ea7c1a1f9cb0fb71f73d0a692d8fa0410c/docs/ARCHITECTURE.md",
+          "notebook": "https://colab.research.google.com/github/poojakira/mcp-agent-security-gateway/blob/codex/local-workbench-20261116/notebooks/try_product.ipynb",
+          "sourceCommit": "d2e7b6ea7c1a1f9cb0fb71f73d0a692d8fa0410c",
+          "verificationDate": "2026-11-18",
+          "releaseStatus": "PARTIAL",
+          "history": "Original project period: Oct 2025 - Oct 2026. Verification snapshot: November 18, 2026, reviewed candidate d2e7b6ea7c1a; main is unchanged."
+      },
+      {
+          "id": "iam",
+          "label": "Identity → Authority Security",
+          "name": "AWS Agent Identity Guard",
+          "stack": [
+              "Python",
+              "IAM policy analysis",
+              "SARIF 2.1.0",
+              "Browser studio"
+          ],
+          "dates": "Apr 2025 - Oct 2026",
+          "problem": "Cloud reviewers need evidence for a proposed IAM change without treating a static pattern match as proof of effective access or exploitability.",
+          "solution": "A local permission-review studio analyzes supplied identity and optional trust-policy JSON, links findings to exact statements, shows a before/after delta and exports a schema-validated SARIF review without AWS credentials.",
+          "architecture": [
+              "Supplied identity/trust JSON",
+              "Strict bounded parsing",
+              "24 static checks",
+              "Exact statement evidence",
+              "Edit and compare findings",
+              "SARIF and human review export"
+          ],
+          "bullets": [
+              "Made proposed IAM changes reviewable, verified by 272 passing candidate tests and 77.15% statement coverage, by connecting a browser editor to the actual identity/trust scanners and statement-level evidence.",
+              "Enabled a bounded before/after review by rescanning edited policies and exporting SARIF 2.1.0 results validated against the official schema in acceptance tests.",
+              "Separated 24 static checks from the additional live-context boundary check; retained 3 absent legacy rules-module skips and explicit UNKNOWN effective-permission conclusions."
+          ],
+          "metrics": [
+              "272 passed · 3 legacy-module skips",
+              "77.15% statement coverage",
+              "24 static checks · SARIF 2.1.0",
+              "PARTIAL · no AWS credentials"
+          ],
+          "testing": "November 18, 2026 verification: 272 passed, 3 skipped, 0 failures/errors; 77.14791851195749% local statement coverage. The skips concern the absent legacy TestRulesModule, not credential-dependent AWS checks. Browser review, official SARIF validation and current hosted acceptance passed for the linked candidate.",
+          "limitations": "Static findings are review signals, not proven exploit paths or effective-permission decisions. Complete Deny/SCP/boundary/session/resource-policy evaluation, live AWS context and authenticated public hosting remain missing or unverified.",
+          "repository": "https://github.com/poojakira/aws-agent-identity-guard",
+          "caseStudy": "https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md",
+          "review": "https://github.com/poojakira/aws-agent-identity-guard/pull/75",
+          "architectureUrl": "https://github.com/poojakira/aws-agent-identity-guard/blob/abe1c0a1e5953b18eae762a5c41f400ff677adb2/docs/ARCHITECTURE.md",
+          "notebook": "https://colab.research.google.com/github/poojakira/aws-agent-identity-guard/blob/codex/local-workbench-20261116/notebooks/try_product.ipynb",
+          "sourceCommit": "abe1c0a1e5953b18eae762a5c41f400ff677adb2",
+          "verificationDate": "2026-11-18",
+          "releaseStatus": "PARTIAL",
+          "history": "Original project period: Apr 2025 - Oct 2026. Verification snapshot: November 18, 2026, reviewed candidate abe1c0a1e595; main is unchanged."
+      },
+      {
+          "id": "supply",
+          "label": "Artifact → Runtime Security",
+          "name": "HF Model Provenance Scanner | AI Model Trust Inspector",
+          "stack": [
+              "Python",
+              "SafeTensors / GGUF",
+              "Static artifact inspection",
+              "Bounded Linux worker"
+          ],
+          "dates": "Nov 2024 - Oct 2026",
+          "problem": "ML reviewers need to compare supported artifacts and inspect suspicious structures before loading a model, while keeping unknown publisher and behavioral properties visible.",
+          "solution": "A local browser inspector passes one or two bounded artifacts to the actual sealed static worker, compares file, metadata and structure hashes, and exports findings without executing or deserializing model code.",
+          "architecture": [
+              "One or two local artifacts",
+              "Upload and format bounds",
+              "Sealed static worker",
+              "Hashes, metadata and structures",
+              "Side-by-side comparison",
+              "Checksummed findings and limits"
+          ],
+          "bullets": [
+              "Made supported model artifacts comparable without model loading, verified by 317 passing candidate tests and 76.08% statement coverage, by connecting a local browser inspector to the sealed static worker.",
+              "Demonstrated actual SafeTensors comparison with identical files, changed weights and changed metadata, verifying real hashes, structure differences and downloaded report checksums.",
+              "Reported 3 skips and 6 passing native subtests separately from the 317-test total; kept independent closing security review BLOCKED and avoided model-safety or field-detection claims."
+          ],
+          "metrics": [
+              "317 passed · 3 skipped",
+              "6 separate native subtests passed",
+              "76.08% statement coverage",
+              "PARTIAL · independent closure BLOCKED"
+          ],
+          "testing": "November 18, 2026 verification: 317 individual tests passed, 3 skipped, 0 failures/errors; 6 native subtests passed separately; 76.08318890814559% local statement coverage at the unchanged 75% gate. Actual binary-file browser comparison and current hosted acceptance passed. Independent closing security review remains BLOCKED.",
+          "limitations": "Static inspection does not establish publisher identity, training lineage, semantic equivalence, behavioral safety or absence of backdoors. Large artifacts, full GGUF payload validation and hostile public hosting remain unsupported or unverified. Independent closing security review is BLOCKED.",
+          "repository": "https://github.com/poojakira/hf-model-provenance-scanner",
+          "caseStudy": "https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md",
+          "review": "https://github.com/poojakira/hf-model-provenance-scanner/pull/103",
+          "architectureUrl": "https://github.com/poojakira/hf-model-provenance-scanner/blob/ab26ad5cd6fe28ae1b0986e20da46be9ebb2f27a/docs/ARCHITECTURE.md",
+          "notebook": "https://colab.research.google.com/github/poojakira/hf-model-provenance-scanner/blob/codex/local-workbench-20261116/notebooks/try_product.ipynb",
+          "sourceCommit": "ab26ad5cd6fe28ae1b0986e20da46be9ebb2f27a",
+          "verificationDate": "2026-11-18",
+          "releaseStatus": "PARTIAL",
+          "history": "Original project period: Nov 2024 - Oct 2026. Verification snapshot: November 18, 2026, reviewed candidate ab26ad5cd6fe; main is unchanged."
+      },
+      {
+          "id": "automotive",
+          "label": "Telemetry → Investigation",
+          "name": "Attack Detection Engine | Aegis HealthSec",
+          "stack": [
+              "Python / FastAPI",
+              "FHIR AuditEvent subset",
+              "PostgreSQL",
+              "React / TypeScript"
+          ],
+          "dates": "Aug 2026 - Oct 2026",
+          "problem": "Analysts need to inspect why a rule fired, challenge its threshold and retain reproducible evidence for the same clinical-access dataset.",
+          "solution": "A local React/FastAPI workbench ingests bounded synthetic FHIR AuditEvent data, runs the actual detector and correlation engine, persists cases and run evidence in PostgreSQL, then supports threshold changes, reruns and report export.",
+          "architecture": [
+              "Synthetic FHIR AuditEvent JSON",
+              "Bounded normalization",
+              "Clinical detector and correlation",
+              "PostgreSQL cases and run evidence",
+              "Same-dataset threshold challenge",
+              "Reload and checksummed export"
+          ],
+          "bullets": [
+              "Delivered a reproducible investigation workflow, verified by 332 passing candidate tests and 82.47% line coverage, by connecting React and authenticated FastAPI to the canonical clinical detector, correlation engine and PostgreSQL.",
+              "Made rule decisions challengeable by rerunning the same 30-event synthetic dataset: a threshold change from 25 to 40 removed the observed bulk-access finding, with retained run evidence and checksum-verified export.",
+              "Verified saved-case reload and actual API restart through an installed wheel; kept hosted CI unverified and distinguished batch investigation from continuous monitoring or real hospital validation."
+          ],
+          "metrics": [
+              "332 passed · 0 skipped",
+              "82.47% line coverage",
+              "Persisted same-dataset rerun evidence",
+              "PARTIAL · hosted CI NOT VERIFIED"
+          ],
+          "testing": "November 18, 2026 verification: 332 passed, 0 skipped, 0 failures/errors; 82.47183565275017% local line coverage at the unchanged 53% gate. Nine browser observations and seven installed-wheel/restart checks passed separately. The recorded current hosted CI run is queued/NOT VERIFIED.",
+          "limitations": "Synthetic inputs only. This is offline batch investigation, not continuous monitoring, complete FHIR conformance, proof of malicious access or HIPAA approval. Hard parser/detector process isolation, production privacy/recovery/load approval and current hosted acceptance remain incomplete.",
+          "repository": "https://github.com/poojakira/attack-detection-engine",
+          "caseStudy": "https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md",
+          "review": "https://github.com/poojakira/attack-detection-engine/pull/58",
+          "architectureUrl": "https://github.com/poojakira/attack-detection-engine/blob/aa45efd2f9f7e229a0ae7b7f8d77adac18d96e83/docs/ARCHITECTURE.md",
+          "notebook": "https://colab.research.google.com/github/poojakira/attack-detection-engine/blob/codex/local-workbench-20261116/notebooks/try_product.ipynb",
+          "sourceCommit": "aa45efd2f9f7e229a0ae7b7f8d77adac18d96e83",
+          "verificationDate": "2026-11-18",
+          "releaseStatus": "PARTIAL",
+          "history": "Original project period: Aug 2026 - Oct 2026. Verification snapshot: November 18, 2026, reviewed candidate aa45efd2f9f7; main is unchanged."
+      }
   ] satisfies ProjectItem[],
   education: [
     { school: "Arizona State University", location: "Tempe, AZ, USA", degree: "M.S., Information Technology (Security)", score: "GPA: 3.87/4.00", dates: "Aug. 2024 - May 2026" },

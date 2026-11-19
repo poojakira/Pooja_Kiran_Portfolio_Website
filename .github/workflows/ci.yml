@@ -20,12 +20,15 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: "22"
       - name: Install dependencies
         run: npm ci
+      - name: Audit locked dependencies
+        run: npm audit --audit-level=moderate
       - name: Lint Python verification scripts
         run: |
           python3 -m pip install ruff==0.8.4
@@ -37,3 +40,17 @@ jobs:
         run: npm run typecheck
       - name: Production build
         run: npm run build
+      - name: Record exact static preview source
+        run: |
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          Path("out/build-provenance.json").write_text(json.dumps({"source_commit": sha}))
+          PY
+      - name: Upload static preview for browser verification
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
+        with:
+          name: portfolio-static-${{ github.event.pull_request.head.sha || github.sha }}
+          path: out/
+          if-no-files-found: error

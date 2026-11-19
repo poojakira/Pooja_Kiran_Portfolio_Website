@@ -1,0 +1,59 @@
+{
+  "verification_date": "2026-11-18",
+  "timezone": "America/Phoenix",
+  "scope": "Exact reviewed candidates; existing project periods preserved; local test metrics do not establish production effectiveness",
+  "projects": [
+    {
+      "repository": "mcp-agent-security-gateway",
+      "source_commit": "d2e7b6ea7c1a1f9cb0fb71f73d0a692d8fa0410c",
+      "archive_commit": "4f83f01a3ed8aca5639143fe2179afb0f864f46e",
+      "manifest_url": "https://raw.githubusercontent.com/poojakira/mcp-agent-security-gateway/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/manifest.json",
+      "assessment_url": "https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md",
+      "passed": 834,
+      "skipped": 0,
+      "coverage_percent": 81.80446084185813,
+      "subtests_passed": 0,
+      "release_decision": "PARTIAL",
+      "pr": "https://github.com/poojakira/mcp-agent-security-gateway/pull/194"
+    },
+    {
+      "repository": "aws-agent-identity-guard",
+      "source_commit": "abe1c0a1e5953b18eae762a5c41f400ff677adb2",
+      "archive_commit": "a396433a4070a0ddc68aa83f9b1093e87fc3224f",
+      "manifest_url": "https://raw.githubusercontent.com/poojakira/aws-agent-identity-guard/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/manifest.json",
+      "assessment_url": "https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md",
+      "passed": 272,
+      "skipped": 3,
+      "coverage_percent": 77.14791851195749,
+      "subtests_passed": 0,
+      "release_decision": "PARTIAL",
+      "pr": "https://github.com/poojakira/aws-agent-identity-guard/pull/75"
+    },
+    {
+      "repository": "hf-model-provenance-scanner",
+      "source_commit": "ab26ad5cd6fe28ae1b0986e20da46be9ebb2f27a",
+      "archive_commit": "ed25d66b72e374f86e2975930b0ed83b9acf3c09",
+      "manifest_url": "https://raw.githubusercontent.com/poojakira/hf-model-provenance-scanner/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/manifest.json",
+      "assessment_url": "https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md",
+      "passed": 317,
+      "skipped": 3,
+      "coverage_percent": 76.08318890814559,
+      "subtests_passed": 6,
+      "release_decision": "PARTIAL",
+      "pr": "https://github.com/poojakira/hf-model-provenance-scanner/pull/103"
+    },
+    {
+      "repository": "attack-detection-engine",
+      "source_commit": "aa45efd2f9f7e229a0ae7b7f8d77adac18d96e83",
+      "archive_commit": "875299dd6a7ed061df792d1150371c688383fc05",
+      "manifest_url": "https://raw.githubusercontent.com/poojakira/attack-detection-engine/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/manifest.json",
+      "assessment_url": "https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md",
+      "passed": 332,
+      "skipped": 0,
+      "coverage_percent": 82.47183565275017,
+      "subtests_passed": 0,
+      "release_decision": "PARTIAL",
+      "pr": "https://github.com/poojakira/attack-detection-engine/pull/58"
+    }
+  ]
+}
