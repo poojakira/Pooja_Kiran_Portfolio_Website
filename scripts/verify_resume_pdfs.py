@@ -31,6 +31,8 @@ def main() -> None:
         if not re.search(r"^Pages:\s+2$", info, re.MULTILINE):
             raise SystemExit(f"Expected two pages: {name}")
         body = text(published)
+        if re.search(r"\bMAX\b|Justin Shewell", body):
+            raise SystemExit(f"Removed experience entry is still present: {name}")
         for pin in pins:
             for value in (str(pin["passed"]), f"{pin['coverage_percent']:.2f}%"):
                 if value not in body:
@@ -43,7 +45,6 @@ def main() -> None:
             "Cloud Architecting",
             "Cloud Security Foundations",
             "Education",
-            "Justin Shewell",
             "Jayahar Sivasubramanian",
         ):
             if phrase not in body:
