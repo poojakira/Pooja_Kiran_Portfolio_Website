@@ -481,7 +481,7 @@ function EducationSection() {
     <section className="education-section" id="education">
       <div className="section-intro" data-reveal>
         <p className="eyebrow">Education & credentials</p>
-        <h2>Formal security education, computer science foundations, and cloud training.</h2>
+        <h2>Information technology, computer science foundations, and cloud training.</h2>
       </div>
       <div className="education-grid">
         {resume.education.map((item) => (
