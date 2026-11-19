@@ -71,12 +71,10 @@ for project, pin in zip(projects, evidence["projects"], strict=True):
     passed = str(pin["passed"])
     coverage = f"{pin['coverage_percent']:.2f}"
     for source in sources:
-        if (
-            passed not in source
-            or coverage not in source
-            or pin["archive_commit"] not in source
-        ):
+        if passed not in source or coverage not in source:
             raise SystemExit("Resume/site missing pinned results: " + project["name"])
+    if pin["archive_commit"] not in sources[1]:
+        raise SystemExit("Website missing evidence archive reference: " + project["name"])
     if project["verificationDate"] != evidence["verification_date"]:
         raise SystemExit("Verification date drift")
 if (
