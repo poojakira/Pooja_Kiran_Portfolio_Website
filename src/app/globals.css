@@ -1026,7 +1026,7 @@ section[id],article[id]{scroll-margin-top:82px}
 @media(max-width:600px){.investigation-flow{grid-template-columns:1fr}.investigation-flow article{min-height:0}}
 
 
-/* Clear recruiter paths: one portfolio, two role-specific resumes. */
+/* Clear recruiter paths: two software developer resumes with different emphasis. */
 .role-chooser{
   width:min(var(--max),calc(100% - 48px));
   margin:0 auto;
@@ -1040,8 +1040,9 @@ section[id],article[id]{scroll-margin-top:82px}
   gap:44px;
   margin-bottom:32px;
 }
-.role-chooser-intro .eyebrow{margin:0 0 15px}
+.role-chooser-intro .eyebrow{margin:0 0 15px;color:#d1a37c;font-size:.875rem}
 .role-chooser-intro h2{
+  color:var(--cream);
   max-width:15ch;
   margin:0;
   font-size:clamp(42px,5.2vw,72px);
@@ -1052,8 +1053,8 @@ section[id],article[id]{scroll-margin-top:82px}
 .role-chooser-intro>p{
   max-width:46ch;
   margin:0 0 5px;
-  color:#62574e;
-  font-size:14px;
+  color:#d4c8bc;
+  font-size:1rem;
   line-height:1.7;
 }
 .role-chooser-grid{
@@ -1082,7 +1083,7 @@ section[id],article[id]{scroll-margin-top:82px}
   font:700 12px/1 var(--mono);
 }
 .role-option-category{
-  font:750 10px/1.4 var(--mono);
+  font:750 .875rem/1.4 var(--mono);
   text-transform:uppercase;
   letter-spacing:.14em;
   color:#72533f;
@@ -1097,7 +1098,7 @@ section[id],article[id]{scroll-margin-top:82px}
 .role-option>p{
   max-width:58ch;
   margin:0;
-  font-size:14px;
+  font-size:1rem;
   line-height:1.7;
   color:#4c443d;
 }
@@ -1107,7 +1108,7 @@ section[id],article[id]{scroll-margin-top:82px}
   display:grid;
   gap:10px;
   border-top:1px solid rgba(43,34,28,.2);
-  font-size:12px;
+  font-size:1rem;
   line-height:1.55;
   color:#352f29;
 }
@@ -1123,7 +1124,7 @@ section[id],article[id]{scroll-margin-top:82px}
   background:#26211d;
   color:#fff;
   border-radius:5px;
-  font-size:12px;
+  font-size:.875rem;
   font-weight:750;
   text-decoration:none;
   transition:background .2s,transform .2s;
@@ -1139,8 +1140,8 @@ section[id],article[id]{scroll-margin-top:82px}
 .role-chooser-note{
   max-width:85ch;
   margin:18px 0 0;
-  color:#6e655d;
-  font-size:11px;
+  color:#d4c8bc;
+  font-size:.875rem;
   line-height:1.7;
 }
 @media(max-width:900px){
