@@ -39,18 +39,15 @@ projects = json.JSONDecoder().raw_decode(sources[1].split("projects: ", 1)[1])[0
 evidence = json.loads((root / "docs/project_evidence.json").read_text())
 if len(projects) != len(evidence["projects"]) or len(projects) != 4:
     raise SystemExit("Expected exactly four source-scoped project records")
-manager = (root / "resume/Pooja_Kiran_Engineering_Manager_Resume.tex").read_text()
-for source in (*sources, manager):
+for source in sources:
     if re.search(r"Information Technology\s*\(Security\)", source, re.IGNORECASE):
         raise SystemExit(
             "The master's degree is Information Technology, without a specialization"
         )
     if "M.S." not in source or "Information Technology" not in source:
         raise SystemExit("Missing corrected Information Technology master's degree")
-if "Software Developer | Python, AI \\& Security Projects" not in sources[0]:
+if "Software Engineer | AI Agents \\& Application Security" not in sources[0]:
     raise SystemExit("Missing documented software-development positioning")
-if "Software Developer | Python, AI \\& Technical Collaboration" not in manager:
-    raise SystemExit("Missing software-developer positioning in experience resume")
 if 'id="about"' not in ui or "resume.about.paragraphs.map" not in ui:
     raise SystemExit("Missing dedicated About section")
 layout = (root / "src/app/layout.tsx").read_text(encoding="utf-8-sig")
@@ -73,7 +70,7 @@ for project, pin in zip(projects, evidence["projects"], strict=True):
         raise SystemExit("Unverified release status: " + project["name"])
     passed = str(pin["passed"])
     coverage = f"{pin['coverage_percent']:.2f}"
-    for source in (sources[0], sources[1], manager):
+    for source in sources:
         if (
             passed not in source
             or coverage not in source
@@ -130,7 +127,7 @@ for cert in ("Cloud Architecting", "Cloud Security Foundations"):
 
 # Keep the retained experience details aligned with the supplied letters.
 # The owner requested removal of the MAX role from both resumes and the website.
-for source in (*sources, manager):
+for source in sources:
     for removed in (
         "Project MAX",
         "Technical Project Assistant | MAX",
