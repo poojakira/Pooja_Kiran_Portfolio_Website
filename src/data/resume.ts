@@ -77,7 +77,7 @@ export const resume = {
           "role": "Technical Collaborator",
           "dates": "Sep 29 – Oct 9, 2026",
           "organization": "Cerberus",
-          "detail": "Security integration collaboration",
+          "detail": "Short-term technical collaboration",
           "location": "Remote",
           "bullets": [
               "**Integrated MCP gateway telemetry** with the Cerberus event schema, configuring test-event delivery and troubleshooting connectivity to complete successful transfers.",
@@ -89,7 +89,7 @@ export const resume = {
           "role": "IT Grader",
           "dates": "Jan 2025 – May 2026",
           "organization": "Arizona State University",
-          "detail": "Information technology and security coursework",
+          "detail": "Paid part-time appointment | Student Worker III – IT Grader",
           "location": "Tempe, AZ",
           "bullets": [
               "**Reviewed security-compliance submissions for 53 students** in IFT 483/543, documenting risk and evidence gaps through rubric-based feedback.",
@@ -101,7 +101,7 @@ export const resume = {
           "role": "Business & Compliance Lead",
           "dates": "Aug 2025 – Dec 2025",
           "organization": "Honeywell Aerospace × ASU Technology Innovation Lab",
-          "detail": "AEROSEC industry externship",
+          "detail": "AEROSEC academic externship",
           "location": "Tempe, AZ",
           "bullets": [
               "**Converted findings from 4 of 12 industry interviews** into proposed API authorization, encryption, audit-logging, and vendor-risk requirements for AEROSEC.",
@@ -157,8 +157,8 @@ export const resume = {
               "Execution report with provenance"
           ],
           "bullets": [
-              "Enabled inspectable tool-permission reviews, verified by 834 passing candidate regression tests and 81.80% statement coverage, by connecting a local request editor to the actual policy engine, proxy and disposable tool server.",
-              "Made permission changes observable by rerunning the same write request with the guard enabled and disabled, comparing actual receipts and tool-side state instead of relying on a decision badge.",
+              "Engineered an MCP authorization workbench routing local requests through the actual policy engine and stdio proxy to a disposable first-party server, making execution receipts and tool-side state inspectable.",
+              "Compared guarded and unguarded write requests against actual tool-side outcomes; the reviewed candidate recorded 834 passing tests and 81.80% statement coverage.",
               "Preserved uncertainty in exported evidence with NOT_INVOKED, confirmed success/failure and UNKNOWN outcomes; documented remaining protocol, identity and containment gaps."
           ],
           "metrics": [
@@ -201,8 +201,8 @@ export const resume = {
               "SARIF and human review export"
           ],
           "bullets": [
-              "Made proposed IAM changes reviewable, verified by 272 passing candidate tests and 77.15% statement coverage, by connecting a browser editor to the actual identity/trust scanners and statement-level evidence.",
-              "Enabled a bounded before/after review by rescanning edited policies and exporting SARIF 2.1.0 results validated against the official schema in acceptance tests.",
+              "Implemented a credential-free IAM review workflow parsing supplied identity and trust-policy JSON, mapping 24 static checks to statements, and rescanning edited policies.",
+              "Exported schema-validated SARIF 2.1.0 evidence for before/after reviews; the reviewed candidate recorded 272 passing tests and 77.15% statement coverage.",
               "Separated 24 static checks from the additional live-context boundary check; retained 3 absent legacy rules-module skips and explicit UNKNOWN effective-permission conclusions."
           ],
           "metrics": [
