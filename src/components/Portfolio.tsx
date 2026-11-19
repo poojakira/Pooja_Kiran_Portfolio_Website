@@ -503,7 +503,7 @@ function ContactSection() {
     <section className="contact-section" id="contact">
       <div className="contact-copy recruiter-contact" data-reveal>
         <p className="eyebrow">Recruiting &amp; collaboration</p>
-        <h2>Hiring a Software Developer?</h2>
+        <h2>Hiring a Software Engineer?</h2>
         <p>
           I&apos;m interested in U.S.-based software development and Python or AI tooling roles
           that bring careful implementation, testing, and clear communication together.
@@ -511,8 +511,7 @@ function ContactSection() {
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Software Developer: Technical Resume</a>
-        <a className="button button-light" href={managerResumeHref} target="_blank" rel="noreferrer">Software Developer: Experience Resume</a>
+        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">View Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>
