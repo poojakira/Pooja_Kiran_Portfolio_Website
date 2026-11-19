@@ -179,7 +179,7 @@ function ExploreExperience() {
           <p className="eyebrow">For recruiters &amp; hiring teams</p>
           <h2 id="role-chooser-title">My Resume</h2>
         </div>
-        <p>One resume covering software engineering, AI-agent security, technical projects, and professional experience. Full project evidence and experience appear below.</p>
+        <p>One two-page resume leading with engineering projects, followed by verified professional and research experience. Detailed technical evidence and limitations appear below.</p>
       </div>
       <div className="role-chooser-grid">
         <article className="role-option role-option-engineering" data-reveal>
@@ -188,7 +188,7 @@ function ExploreExperience() {
             <span className="role-option-category">Build &amp; Validate</span>
           </div>
           <h3>Software Engineer | AI Agents &amp; Application Security</h3>
-          <p>Python development, AI-agent permissions, application security, software testing, and technical collaboration.</p>
+          <p>Python-based agent authorization, IAM analysis, application security, reproducible testing, and documented engineering evidence.</p>
           <ul aria-label="Software engineering highlights">
             <li>MCP execution workbench with 834 passing tests</li>
             <li>IAM change review with 24 static checks</li>
@@ -505,7 +505,7 @@ function ContactSection() {
         <p className="eyebrow">Recruiting &amp; collaboration</p>
         <h2>Hiring a Software Engineer?</h2>
         <p>
-          I&apos;m interested in U.S.-based software development and Python or AI tooling roles
+          I&apos;m interested in U.S.-based software engineering, AI-agent and application-security roles
           that bring careful implementation, testing, and clear communication together.
         </p>
       </div>
