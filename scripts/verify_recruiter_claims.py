@@ -107,10 +107,19 @@ for cert in ("Cloud Architecting", "Cloud Security Foundations"):
     if cert not in sources[0] or cert not in sources[1]:
         raise SystemExit("Missing AWS Academy certification: " + cert)
 
-# Keep the seven Experience entries aligned with the faculty and collaboration letters.
+# Keep the retained experience details aligned with the supplied letters.
+# The owner requested removal of the MAX role from both resumes and the website.
+for source in (*sources, manager):
+    for removed in (
+        "Project MAX",
+        "Technical Project Assistant | MAX",
+        "Justin Shewell",
+    ):
+        if removed in source:
+            raise SystemExit("Removed experience entry is still present: " + removed)
+
 for source in sources:
     for phrase in (
-        "Dr. Justin Shewell",
         "Dr. Jayahar Sivasubramanian",
         "Sep 2023",
         "Dec 2023",

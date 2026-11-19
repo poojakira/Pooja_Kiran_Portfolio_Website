@@ -102,18 +102,6 @@ export const resume = {
           ]
       },
       {
-          "role": "Technical Project Assistant | MAX",
-          "dates": "Jan 2025 – Oct 2025",
-          "organization": "Project MAX · Faculty-supervised at Arizona State University",
-          "detail": "Supervised by Dr. Justin Shewell",
-          "location": "Tempe, AZ",
-          "bullets": [
-              "**Designed and implemented the initial database** for ASU's deployed MAX LLM/RAG learning assistant, translating course-support needs into data structures.",
-              "**Defined table relationships and indexes across 2 data domains**, course/RAG materials and student-interaction records, supporting organized storage.",
-              "**Collaborated on the student-facing interface**, relating database design decisions to retrieval and learning-assistant workflows."
-          ]
-      },
-      {
           "role": "Volunteer Research & Publication Collaborator",
           "dates": "Sep 2023 – Dec 2023",
           "organization": "M. S. Ramaiah University of Applied Sciences",
