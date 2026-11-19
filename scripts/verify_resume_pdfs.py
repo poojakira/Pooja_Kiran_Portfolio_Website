@@ -39,6 +39,8 @@ def main() -> None:
         raise SystemExit("Incorrect master's degree")
     if re.search(r"\bMAX\b|Justin Shewell", body):
         raise SystemExit("Removed experience entry is still present")
+    if "Software Developer | Python, AI & Security Projects" in body:
+        raise SystemExit("Obsolete headline in canonical resume")
     for pin in pins:
         for value in (str(pin["passed"]), f"{pin['coverage_percent']:.2f}%"):
             if value not in body:
