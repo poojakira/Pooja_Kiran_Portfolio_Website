@@ -80,9 +80,9 @@ export const resume = {
           "detail": "Short-term technical collaboration",
           "location": "Remote",
           "bullets": [
-              "**Integrated MCP gateway telemetry** with the Cerberus event schema, configuring test-event delivery and troubleshooting connectivity to complete successful transfers.",
-              "**Validated test-event delivery for 3 authenticated gateway identities**, confirming accurate attribution to their registered identities.",
-              "**Verified 3 persistent identity configurations** and duplicate-batch safety, confirming that replaying the same test batch created **no duplicate records**."
+              "**Connected MCP gateway telemetry** to the Cerberus event schema, configuring delivery and resolving connectivity issues until test events transferred successfully.",
+              "**Verified event attribution for 3 authenticated gateway identities** across persistent configurations, making test records traceable to their source.",
+              "**Replayed identical event batches** and observed **no duplicate records** in the tested Cerberus ingestion path; exactly-once execution was not established."
           ]
       },
       {
@@ -92,9 +92,9 @@ export const resume = {
           "detail": "Paid part-time appointment | Student Worker III – IT Grader",
           "location": "Tempe, AZ",
           "bullets": [
-              "**Reviewed security-compliance submissions for 53 students** in IFT 483/543, documenting risk and evidence gaps through rubric-based feedback.",
-              "**Evaluated configuration-management coursework for 101 students** in IFT 380, identifying technical issues against instructor-defined criteria.",
-              "**Assessed web-programming assignments for 85 students** in IFT 301, reviewing code and project milestones and providing corrective feedback."
+              "**Evaluated security-compliance work for 53 students** in IFT 483/543, identifying unsupported risk assertions and missing evidence through rubric-based technical feedback.",
+              "**Reviewed configuration-management submissions for 101 students** in IFT 380, pinpointing configuration errors and explaining corrections against instructor-defined criteria.",
+              "**Inspected web-programming code and milestones for 85 students** in IFT 301, documenting implementation gaps and actionable feedback."
           ]
       },
       {
@@ -104,9 +104,9 @@ export const resume = {
           "detail": "AEROSEC academic externship",
           "location": "Tempe, AZ",
           "bullets": [
-              "**Converted findings from 4 of 12 industry interviews** into proposed API authorization, encryption, audit-logging, and vendor-risk requirements for AEROSEC.",
-              "**Coordinated 3 remote peer leads** across technical, market, and prototype work during a leadership rotation, tracking deliverables and communicating progress to mentors.",
-              "**Compared 4 security platforms and delivered 3 evaluator pitches**, informing a proposed 12-month implementation plan."
+              "**Translated findings from 4 industry interviews** into proposed API authorization, encryption, audit-logging, and vendor-risk requirements for AEROSEC.",
+              "**Coordinated 3 peer leads** across technical, market, and prototype workstreams during a leadership rotation, tracking dependencies and briefing mentors on deliverables.",
+              "**Compared 4 security platforms** against proposed controls and presented **3 evaluator pitches**, informing a staged **12-month implementation proposal**."
           ]
       },
       {
@@ -116,9 +116,9 @@ export const resume = {
           "detail": "Volunteer research | IEEE INDICON 2023 publication",
           "location": "Bengaluru, India",
           "bullets": [
-              "**Led manuscript preparation as first-listed of 3 authors** for a Q-learning research paper published in the proceedings of **IEEE INDICON 2023**.",
-              "**Documented personalized mathematics quizzes with 3 difficulty levels**, incorporating adaptive question selection and reward-based feedback.",
-              "**Analyzed 3 learner scenarios across 10 episodes each**, communicating Q-value changes and reward trends in conference research materials."
+              "**Authored the Q-learning research manuscript** published at **IEEE INDICON 2023**, documenting an adaptive mathematics-learning approach with faculty coauthors.",
+              "**Explained the adaptive-learning design across 3 quiz difficulty levels**, detailing Q-learning question selection and reward feedback.",
+              "**Analyzed Q-value updates and reward trends across 3 learner scenarios and 10 episodes each**, translating experimental behavior into conference findings."
           ]
       },
       {
@@ -128,9 +128,9 @@ export const resume = {
           "detail": "Supervised by Dr. Jayahar Sivasubramanian | Volunteer research",
           "location": "Bengaluru, India",
           "bullets": [
-              "**Independently developed a mathematics-learning application and adaptive AI tutoring functionality** for satellite-supported education research.",
-              "**Contributed educational software to KSCST-funded project 46S_BE_5506**, one of **1,494 funded proposals from 5,961** statewide submissions.",
-              "**Integrated learning software and coordinated research documentation and milestones** within a **3-student team**; CubeSat hardware development was collaborative."
+              "**Independently built the mathematics-learning application and adaptive tutoring functionality**, turning personalized-learning requirements into working educational software.",
+              "**Integrated question-selection and learning-feedback functionality** into educational software for **KSCST-funded project 46S_BE_5506**.",
+              "**Coordinated software integration, research documentation, and milestones** within a **3-student team**, collaborating separately on the CubeSat hardware model."
           ]
       }
   ] satisfies ExperienceItem[],
