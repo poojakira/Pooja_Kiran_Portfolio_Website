@@ -1196,3 +1196,40 @@ section[id],article[id]{scroll-margin-top:82px}
 #work .scope-actions {
   flex-wrap: wrap;
 }
+
+/* A readable introduction grounded in the same experience as the resumes. */
+.about-section {
+  width: min(var(--max), calc(100% - 48px));
+  margin: 0 auto;
+  padding: 96px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 88px);
+  border-top: 1px solid var(--line);
+  color: #2b221b;
+  background: var(--cream);
+  scroll-margin-top: 96px;
+}
+.about-intro h2 {
+  max-width: 20ch;
+  margin: 16px 0 0;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 540;
+}
+.about-copy p {
+  max-width: 70ch;
+  margin: 0 0 20px;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+.about-copy p:last-child { margin-bottom: 0; }
+@media (max-width: 900px) {
+  .about-section {
+    width: min(var(--max), calc(100% - 36px));
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 64px 0;
+  }
+}

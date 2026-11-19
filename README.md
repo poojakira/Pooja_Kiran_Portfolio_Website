@@ -2,17 +2,19 @@
 
 # Pooja Kiran Portfolio Website
 
-Pooja Kiran's canonical security-engineering portfolio, built with Next.js, React, TypeScript, and an on-demand Three.js environment. The canonical public URL is [GitHub Pages](https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/); other dashboard or preview sites are supporting evidence surfaces, not alternate professional homepages.
+Pooja Kiran's canonical software developer portfolio, built with Next.js, React, TypeScript, and an on-demand Three.js environment. The canonical public URL is [GitHub Pages](https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/); other dashboard or preview sites are supporting evidence surfaces, not alternate professional homepages.
 
 ## Content and identity
 
-The editable résumé sources are `resume/Pooja_Kiran_Security_Engineer_Resume.tex` and `resume/Pooja_Kiran_Engineering_Manager_Resume.tex`. Each has a generated, two-page public PDF. `src/data/resume.ts` supplies the website project descriptions and evidence links. Keep both sources, both PDFs and website records synchronized. The résumé workflow rebuilds both documents and compares their text with the tracked downloads; PDF metadata need not be byte-identical.
+The master's degree is **M.S. in Information Technology**, without a security specialization. Both résumé tracks use **Software Developer** as the main role: one emphasizes **Python, AI & Security Projects**, the other **Python, AI & Technical Collaboration**. The title is grounded in independent application development, engine-connected interfaces, testing, telemetry integration and academic AI software research. Coordination remains an accurately scoped externship responsibility. The dedicated About section connects software projects, IT grading, technical collaboration, an academic externship and volunteer research.
+
+Download the two-page Software Developer [technical résumé](https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/Pooja_Kiran_Software_Developer_Resume.pdf) or [experience résumé](https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/Pooja_Kiran_Software_Developer_Experience_Resume.pdf). The editable sources retain the internal filenames `resume/Pooja_Kiran_Security_Engineer_Resume.tex` and `resume/Pooja_Kiran_Engineering_Manager_Resume.tex`. The old public PDF URLs remain byte-identical aliases to the corrected documents so existing links keep working. `src/data/resume.ts` supplies website content and evidence links. Keep both sources, downloads and website records synchronized. The résumé workflow rebuilds both documents and compares their text with the tracked downloads; PDF metadata need not be byte-identical.
 
 The four independent featured projects cover **Agent → Tool**, **Identity → Authority**, **Artifact → Runtime**, and **Telemetry → Investigation**. Their November 18, 2026 verification records identify exact reviewed candidates, immutable manifests and limitations in [the evidence pins](docs/project_evidence.json). Current full-suite results are MCP834 passed, IAM272 passed/3 skipped, HF317 passed/3 skipped plus6 separate native subtests, and Aegis332 passed. Each candidate remains **PARTIAL**; none is represented as merged main, a production release or a public hosted full application. HF independent security closure remains blocked; Aegis hosted CI remains unverified in the linked record.
 
 Project descriptions combine Google XYZ's concrete outcome/measurement/action structure with STAR's engineering challenge and action context. Tests and coverage measure repository verification scope, not field effectiveness, customer adoption or business impact. Existing development dates and nonproject experience are preserved. October2026 poster images are labeled historical; current results appear separately below them. Free-CPU notebooks run constrained actual-engine fixtures; committed cells executed locally, while hosted Colab execution remains unverified.
 
-`public/pooja-portrait.webp` is the supplied portrait. The scene does not replace Pooja's identity with an invented character.
+`public/pooja-portrait.webp` is the supplied portrait and the current social-share image. The obsolete role-labelled share cards and their automatic rendering workflow have been retired. The scene does not replace Pooja's identity with an invented character.
 
 ## Two ways to explore
 
@@ -61,9 +63,9 @@ Never commit tokens, cloud access keys, private keys, or populated credential fi
 External links opened in a new tab use restrictive relationship attributes. A meta Content Security Policy provides the restrictions supported by this static host; response headers and platform-level controls are governed by GitHub Pages. Dependabot checks npm and GitHub Actions dependencies. Dependency advisories and workflow results should be reviewed for the current commit, rather than inferred from historical audit notes.
 
 
-## Dated evidence — current poster sources refreshed October 14, 2026 UTC
+## Historical evidence — poster sources refreshed October 14, 2026 UTC
 
-The updated resume/portfolio source cites the MCP Gateway **782 passing Python 3.12 CI tests at 81.93% coverage from the same October 10, 2026 UTC run**, AWS Agent Identity Guard **247 collected / 244 passed / 3 skipped**, and HF Model Provenance Scanner **260 passed / 1 skipped at 75.67% coverage**. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
+The October resume/portfolio source cited MCP Gateway **782 passing Python 3.12 CI tests at 81.93% coverage from the same October 10, 2026 UTC run**, AWS Agent Identity Guard **247 collected / 244 passed / 3 skipped**, and HF Model Provenance Scanner **260 passed / 1 skipped at 75.67% coverage**. Those results are historical; the active résumé and project descriptions use the November 18 evidence pins above. These are bounded repository verification results, not customer-deployment or universal security-effectiveness claims.
 
 The three displayed poster images are synchronized byte-for-byte against immutable source poster PNGs from the October 14 reconciliation: MCP Gateway `9bad1c2f06563e7fdf637b1f70dc75521d6c2e5e`, AWS Agent Identity Guard `da0b9f1e453ae0e640af9734dc88a3bed14ea7b2`, and HF Model Provenance Scanner `595b33ba8b1af4c2d4ed6ce1ab4b95bc5034cef4`. See [the active evidence alignment](docs/POSTER_EVIDENCE_ALIGNMENT_2026-10-14.md), [source manifest](docs/poster_sources.json), and `Poster Source Sync` CI for exact Git blob checks; verify final binary sync commits and deployment before treating images as published.
 

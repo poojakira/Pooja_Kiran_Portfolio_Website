@@ -3,12 +3,12 @@ import "./globals.css";
 import { resume } from "@/data/resume";
 
 const siteUrl = "https://poojakira.github.io/Pooja_Kiran_Portfolio_Website";
-const socialImage = `${siteUrl}/og-card.png`;
+const socialImage = `${siteUrl}/pooja-portrait.webp`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}/`),
-  title: "Pooja Kiran | Security Engineering & Technical Leadership",
-  description: "Security engineering and technical leadership portfolio featuring AI-agent security, cloud IAM, product security, AEROSEC team coordination, and stakeholder planning.",
+  title: "Pooja Kiran | Software Developer | Python & AI Projects",
+  description: "M.S. in Information Technology graduate with Python and AI projects, ASU IT grading, technical collaboration, and AEROSEC project coordination experience.",
   alternates: { canonical: `${siteUrl}/` },
   robots: {
     index: true,
@@ -17,17 +17,17 @@ export const metadata: Metadata = {
   },
   manifest: `${siteUrl}/site.webmanifest`,
   openGraph: {
-    title: "Pooja Kiran | Security Engineering & Technical Leadership",
-    description: "Hands-on AI and product security engineering, cross-functional AEROSEC team leadership, technical reviews, and stakeholder planning.",
+    title: "Pooja Kiran | Software Developer | Python & AI Projects",
+    description: "Python and AI projects, technical assessment, software collaboration, and peer coordination. M.S. in Information Technology, Arizona State University.",
     url: `${siteUrl}/`,
-    siteName: "Pooja Kiran | Security Engineering & Technical Leadership",
+    siteName: "Pooja Kiran | Software Developer | Python & AI Projects",
     type: "website",
-    images: [{ url: socialImage, width: 1200, height: 630, alt: "Pooja Kiran, Security Engineer" }]
+    images: [{ url: socialImage, alt: "Pooja Kiran" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pooja Kiran | Security Engineering & Technical Leadership",
-    description: "Security Engineering · Technical Leadership · AI & Product Security · Cloud IAM",
+    title: "Pooja Kiran | Software Developer | Python & AI Projects",
+    description: "Python & AI projects · Technical collaboration · M.S. in Information Technology",
     images: [socialImage]
   },
   icons: { icon: `${siteUrl}/favicon.svg` }
@@ -43,7 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@context": "https://schema.org",
     "@type": "Person",
     name: resume.name,
-    jobTitle: "Security Engineer",
+    description: resume.positioning,
     email: `mailto:${resume.email}`,
     url: resume.links.portfolio,
     sameAs: [resume.links.linkedin, resume.links.github],
