@@ -1,6 +1,6 @@
 """Verify resume and website against bounded engineering evidence."""
 
-import re
+import json
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
@@ -13,12 +13,6 @@ for source in sources:
     for forbidden in ("96.15", "40% reduction", "60% detection", "100% secure"):
         if forbidden in lower:
             raise SystemExit("Unsupported impact claim: " + forbidden)
-    required = ("782", "81.93", "25", "externship", "244", "260")
-    for value in required:
-        if value.lower() not in lower:
-            raise SystemExit("Missing source-backed evidence: " + value)
-    if not re.search(r"\b33\s*(?:/|of)\s*33\b", source):
-        raise SystemExit("Missing bounded 33/33 model-scanner fixture result")
 
 if "externship" not in sources[1].lower():
     raise SystemExit("Academic externship labeling missing in website data")
@@ -27,8 +21,72 @@ if "â†’" in sources[1] or "â·" in sources[1]:
 
 portfolio = root / "src/components/Portfolio.tsx"
 ui = portfolio.read_text(encoding="utf-8-sig")
-if "60-second demo script (text)" not in ui:
-    raise SystemExit("Portfolio must label the Markdown demo as text")
+for phrase in (
+    "Historical October 2026 poster",
+    "834 passing tests",
+    "272 passing tests",
+    "317 passing tests",
+    "332 passing tests",
+    "hosted Colab execution remains unverified",
+):
+    if phrase not in ui:
+        raise SystemExit("Missing current project context: " + phrase)
+
+# Parse the JSON project array without executing TypeScript. Pins come from
+# actual immutable out-of-tree verification manifests.
+projects = json.JSONDecoder().raw_decode(sources[1].split("projects: ", 1)[1])[0]
+evidence = json.loads((root / "docs/project_evidence.json").read_text())
+if len(projects) != len(evidence["projects"]) or len(projects) != 4:
+    raise SystemExit("Expected exactly four source-scoped project records")
+manager = (root / "resume/Pooja_Kiran_Engineering_Manager_Resume.tex").read_text()
+for project, pin in zip(projects, evidence["projects"], strict=True):
+    if (
+        project["sourceCommit"] != pin["source_commit"]
+        or project["caseStudy"] != pin["assessment_url"]
+    ):
+        raise SystemExit("Project source/report drift: " + project["name"])
+    if (
+        project["releaseStatus"] != pin["release_decision"]
+        or project["releaseStatus"] != "PARTIAL"
+    ):
+        raise SystemExit("Unverified release status: " + project["name"])
+    passed = str(pin["passed"])
+    coverage = f"{pin['coverage_percent']:.2f}"
+    for source in (sources[0], sources[1], manager):
+        if (
+            passed not in source
+            or coverage not in source
+            or pin["archive_commit"] not in source
+        ):
+            raise SystemExit("Resume/site missing pinned results: " + project["name"])
+    if project["verificationDate"] != evidence["verification_date"]:
+        raise SystemExit("Verification date drift")
+if (
+    "legacy rules-module" not in sources[0]
+    or "absent legacy TestRulesModule" not in sources[1]
+):
+    raise SystemExit("IAM skip reasons must identify the missing legacy module")
+if (
+    "independent security closure blocked" not in sources[0]
+    or "BLOCKED" not in projects[2]["limitations"]
+):
+    raise SystemExit("HF closing-review blocker must remain visible")
+if "hosted CI remains unverified" not in sources[
+    0
+] or "hosted CI NOT VERIFIED" not in " ".join(projects[3]["metrics"]):
+    raise SystemExit("Aegis hosted verification limitation must remain visible")
+for stale in (
+    "782",
+    "81.93",
+    "244",
+    "260",
+    "75.67",
+    "296 local",
+    "GitHub Actions remains disabled",
+    "Current verified evidence poster",
+):
+    if stale in sources[0] or stale in ui:
+        raise SystemExit("Stale current-result claim: " + stale)
 
 for period in ("Oct 2025 -- Oct 2026", "Apr 2025 -- Oct 2026", "Nov 2024 -- Oct 2026"):
     if period not in sources[0]:

@@ -135,11 +135,11 @@ function Hero() {
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Four security trust boundaries with repository-backed proof">
-          <div><strong>Agent → Tool</strong><span>782 Python 3.12 CI tests · default-deny execution controls</span></div>
-          <div><strong>Identity → Authority</strong><span>25 IAM rules · privilege and trust-policy analysis</span></div>
-          <div><strong>Artifact → Runtime</strong><span>33/33 adversarial fixtures · non-executing inspection</span></div>
-          <div><strong>Telemetry → Investigation</strong><span>212 local Milestone C tests · incident workflow (unmerged)</span></div>
-          <small>Repository-backed evidence with CI verification and explicit scope limitations.</small>
+          <div><strong>Agent → Tool</strong><span>834 passing tests · actual tool-side evidence</span></div>
+          <div><strong>Identity → Authority</strong><span>272 passing tests · static IAM change review</span></div>
+          <div><strong>Artifact → Runtime</strong><span>317 passing tests · bounded artifact comparison</span></div>
+          <div><strong>Telemetry → Investigation</strong><span>332 passing tests · persisted synthetic investigations</span></div>
+          <small>November 2026 reviewed-candidate test evidence. All four release decisions remain PARTIAL.</small>
         </div>
       </div>
 
@@ -183,9 +183,9 @@ function ExploreExperience() {
             AI agents, applications, cloud identity, and detection systems.
           </p>
           <ul aria-label="Security engineering highlights">
-            <li>MCP gateway with 782 passing CI tests</li>
-            <li>25-rule AWS IAM static analyzer</li>
-            <li>AI model supply-chain and detection tooling</li>
+            <li>MCP execution workbench with 834 passing tests</li>
+            <li>IAM change review with 24 static checks</li>
+            <li>Model-artifact comparison and persisted investigation workflows</li>
           </ul>
           <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer"
              aria-label="View Security Engineering resume PDF in a new tab">
@@ -264,15 +264,16 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
 
         <div className="poster-object" data-reveal>
           <div className="poster-frame">
-            {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} evidence poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="Diagram of the evidence-scoped attack detection and investigation workflow"><strong>TELEMETRY → EVIDENCE</strong><span>DETECT · CORRELATE · INVESTIGATE</span><small>Development-branch platform · synthetic healthcare telemetry · local verification · hosted CI blocked</small></div>}
+            {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} historical October 2026 evidence poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="Diagram of the local synthetic investigation workflow"><strong>TELEMETRY → EVIDENCE</strong><span>IMPORT · INSPECT · CHALLENGE · RERUN</span><small>Reviewed local candidate · synthetic FHIR subset · PostgreSQL evidence · hosted CI unverified</small></div>}
           </div>
-          <span className="poster-caption">{project.id === "automotive" ? "Engineering evidence illustration · not a live SOC" : "Current verified evidence poster · repository-backed"}</span>
+          <span className="poster-caption">{project.id === "automotive" ? "Local investigation illustration · synthetic inputs" : "Historical October 2026 poster · current results below"}</span>
         </div>
 
         <div className="project-dual-proof">
           <section className="proof-panel proof-career" data-reveal>
-            <span className="panel-label">Security outcome</span>
-            <h4>What the control protects and how it is verified</h4>
+            <span className="panel-label">Engineering challenge, action and result</span>
+            <h4>What I built and what the evidence establishes</h4>
+            <p>{project.solution}</p>
             <ul>
               {project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
             </ul>
@@ -280,7 +281,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
 
           <section className="proof-panel proof-builder" data-reveal>
             <span className="panel-label">Architecture & verification</span>
-            <h4>How the security decision is enforced end to end</h4>
+            <h4>How the local workflow produces evidence</h4>
             <div className="builder-sequence">
               {project.architecture.map((step, stepIndex) => (
                 <div key={step}>
@@ -298,12 +299,16 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
 
         <div className="scope-line" data-reveal>
           <span>Evidence boundary</span>
+          <p>{project.testing}</p>
           <p>{project.limitations}</p>
           <div className="scope-actions">
             <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
             {project.caseStudy && <a href={project.caseStudy} target="_blank" rel="noreferrer">Read technical evidence <ArrowIcon /></a>}
-            {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">60-second demo script (text) <ArrowIcon /></a>}
+            <a href={project.review} target="_blank" rel="noreferrer">Reviewed candidate</a>
+            <a href={project.architectureUrl} target="_blank" rel="noreferrer">Detailed architecture</a>
+            <a href={project.notebook} target="_blank" rel="noreferrer">Try the guided notebook</a>
           </div>
+          <p>Notebook cells ran locally from fresh public checkouts; hosted Colab execution remains unverified. Choose the free CPU runtime. The portfolio itself presents illustrations and evidence links.</p>
         </div>
       </div>
     </article>
@@ -327,36 +332,32 @@ function WorkSection() {
 }
 
 function InvestigationCaseStudy() {
+  const project = resume.projects.find(project => project.id === "automotive")!;
   const phases = [
-    ["01 · Ingest", "Synthetic clinical access events enter the authenticated FastAPI service. FHIR R4 AuditEvent adapter is available for source review in unmerged PR #50; test events are synthetic."],
-    ["02 · Detect", "Existing deterministic clinical-access rules generate explainable findings; benign-control scenarios are checked."],
-    ["03 · Correlate", "Related findings group by documented identity, organization, resource and time criteria rather than coincidental event proximity."],
-    ["04 · Persist", "PostgreSQL retains events, findings, incidents and their relationships through controlled container restarts."],
-    ["05 · Investigate", "Authorized analysts inspect evidence, add notes, assign cases, and make auditable status changes in the React console."],
-    ["06 · Resolve", "Incident disposition and history persist. No simulated incident is represented as a real hospital compromise."]
+    ["01 · Import", "Supply bounded synthetic FHIR AuditEvent JSON to the authenticated local API; unsupported or missing semantics stay explicit."],
+    ["02 · Detect", "The canonical clinical detector evaluates the imported events using the case's allowed threshold."],
+    ["03 · Correlate", "Findings group by organization, identity or resource fallback, and a fixed time bucket; grouping is not proof of malicious intent."],
+    ["04 · Persist", "PostgreSQL retains the case, dataset and immutable run reports for later inspection."],
+    ["05 · Challenge", "Review source and normalized evidence, change the threshold and rerun the same retained dataset."],
+    ["06 · Compare", "Inspect the findings delta, reload the saved case and export a checksummed report with explicit uncertainty."]
   ] as const;
   return (
     <section className="investigation-case-study" id="investigation-case-study" aria-labelledby="investigation-heading">
       <div className="section-intro" data-reveal>
-        <p className="eyebrow">Engineering case study · development branches</p>
-        <h2 id="investigation-heading">From telemetry to a defensible investigation.</h2>
-        <p>Attack Detection Engine / Aegis HealthSec extends the original ATT&amp;CK and automotive lab engine with a healthcare-focused, deterministic incident investigation workflow. This is a source-backed illustration of locally tested work, not a live SOC connection.</p>
+        <p className="eyebrow">Engineering case study · reviewed local candidate</p>
+        <h2 id="investigation-heading">Investigate, challenge the rule, and reinvestigate.</h2>
+        <p>To make a rule's conclusion reviewable, I connected synthetic event import, canonical detection and correlation, persisted run evidence, and a same-dataset threshold comparison. This illustration explains the actual local workflow.</p>
       </div>
       <div className="investigation-flow" aria-label="Six stages in the security investigation pipeline" data-reveal>
-        {phases.map(([name,detail]) => (
-          <article key={name}>
-            <h3>{name}</h3><p>{detail}</p>
-          </article>
-        ))}
+        {phases.map(([name, detail]) => <article key={name}><h3>{name}</h3><p>{detail}</p></article>)}
       </div>
       <div className="investigation-verification" data-reveal>
-        <p><strong>Validation boundary:</strong> Milestone C documented 212 passing local tests with real PostgreSQL and a Docker investigation scenario on October 27, 2026. Milestone D later reported 280 local tests. Neither count is hosted CI evidence; GitHub Actions remains disabled for this repository.</p>
-        <p><strong>Data boundary:</strong> MIMIC-IV Demo is de-identified clinical context, not an authorization source or a collection of actual cybersecurity incidents. CloudTrail, Sysmon, auditd and multi-language SAST are planned rather than implemented in these PRs.</p>
+        <p><strong>Measured result:</strong> {project.testing}</p>
+        <p><strong>Data and release boundary:</strong> {project.limitations}</p>
         <nav aria-label="Investigation platform engineering evidence">
-          <a href="https://github.com/poojakira/attack-detection-engine/pull/47" target="_blank" rel="noreferrer">Healthcare PR #47</a>
-          <a href="https://github.com/poojakira/attack-detection-engine/pull/48" target="_blank" rel="noreferrer">Investigation PR #48</a>
-          <a href="https://github.com/poojakira/attack-detection-engine/pull/49" target="_blank" rel="noreferrer">Hardening PR #49</a>
-          <a href="https://github.com/poojakira/attack-detection-engine/pull/50" target="_blank" rel="noreferrer">FHIR PR #50</a>
+          <a href={project.review} target="_blank" rel="noreferrer">Review PR #58</a>
+          <a href={project.caseStudy} target="_blank" rel="noreferrer">Exact-source verification report</a>
+          <a href={project.architectureUrl} target="_blank" rel="noreferrer">Detailed architecture</a>
         </nav>
       </div>
     </section>
@@ -364,44 +365,28 @@ function InvestigationCaseStudy() {
 }
 
 function SecurityReviewCaseStudy() {
+  const project = resume.projects.find(project => project.id === "mcp")!;
   const controls = [
-    ["Authentication", "Protected inspection and metrics endpoints require configured API credentials; health/readiness remain orchestration-safe."],
-    ["Authorization", "Default-deny capability and server policy gates agent tool calls before downstream execution."],
-    ["Input & protocol abuse", "Strict JSON-RPC and HTTP parsing rejects malformed requests, duplicate JSON keys, ambiguous framing, oversized headers, and unsupported methods."],
-    ["SSRF & egress", "Policy checks deny private, loopback, and link-local destinations unless explicitly allowlisted."],
-    ["Abuse resistance", "Payload limits, rate limiting, circuit breaking, and fail-closed error handling constrain abusive or degraded paths."],
-    ["Detection & evidence", "Tamper-evident audit records, ECS telemetry, Elastic rules, and SIEM tests make blocked activity reviewable."]
+    ["Local operator boundary", "Loopback binding and exact Host/Origin checks constrain the browser workbench to its documented local operator."],
+    ["Authorization", "PolicyEngine and StdioMCPProxy evaluate permitted tools before invoking the fixed first-party fixture."],
+    ["Constrained target", "Each run uses a disposable workspace; an operator cannot select a server executable, host path or outbound destination."],
+    ["Failure visibility", "Timeout, crash and denied-operation checks preserve explicit non-invocation, failure and UNKNOWN outcomes."],
+    ["Execution evidence", "Receipts and tool-side state distinguish a local decision from an action observed at the first-party target."],
+    ["Remaining controls", "Arbitrary-server OS containment, complete MCP conformance, credential lifecycle and external-effect reconciliation remain incomplete."]
   ] as const;
-
   return (
     <section className="security-review-section" id="security-review">
       <div className="section-intro" data-reveal>
         <p className="eyebrow">Application security case study</p>
-        <h2>MCP agent-to-tool boundary: threat model → control → verification.</h2>
-        <p>
-          A white-box security review of the gateway&apos;s public attack surface, focused on authentication,
-          authorization, parser abuse, SSRF/egress, availability controls, and evidence generation.
-        </p>
+        <h2>Reviewing a bounded agent-to-tool execution path.</h2>
+        <p>To make authorization claims inspectable, I connected the actual policy and proxy code to a fixed test server and checked receipts, state changes, negative paths and exported uncertainty.</p>
       </div>
       <div className="security-review-grid" data-reveal>
-        {controls.map(([title, detail]) => (
-          <article key={title}>
-            <h3>{title}</h3>
-            <p>{detail}</p>
-          </article>
-        ))}
+        {controls.map(([title, detail]) => <article key={title}><h3>{title}</h3><p>{detail}</p></article>)}
       </div>
       <div className="security-review-outcome" data-reveal>
-        <div>
-          <span className="panel-label">Assessment boundary</span>
-          <p>
-            Authorized review of my own application using source inspection and automated repository tests.
-            This is not presented as an independent third-party penetration test or production deployment assessment.
-          </p>
-        </div>
-        <a className="button button-dark" href="https://github.com/poojakira/mcp-agent-security-gateway/blob/main/docs/APPSEC_CASE_STUDY.md" target="_blank" rel="noreferrer">
-          Read the security review <ArrowIcon />
-        </a>
+        <div><span className="panel-label">Assessment boundary</span><p>{project.testing} These are bounded repository checks; current-source independent adversarial closure and production deployment approval are not established.</p></div>
+        <a className="button button-dark" href={project.caseStudy} target="_blank" rel="noreferrer">Read the source-scoped review</a>
       </div>
     </section>
   );
