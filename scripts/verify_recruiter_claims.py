@@ -1,6 +1,7 @@
 """Verify resume and website against bounded engineering evidence."""
 
 import json
+import re
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
@@ -39,6 +40,26 @@ evidence = json.loads((root / "docs/project_evidence.json").read_text())
 if len(projects) != len(evidence["projects"]) or len(projects) != 4:
     raise SystemExit("Expected exactly four source-scoped project records")
 manager = (root / "resume/Pooja_Kiran_Engineering_Manager_Resume.tex").read_text()
+for source in (*sources, manager):
+    if re.search(r"Information Technology\s*\(Security\)", source, re.IGNORECASE):
+        raise SystemExit(
+            "The master's degree is Information Technology, without a specialization"
+        )
+    if "M.S." not in source or "Information Technology" not in source:
+        raise SystemExit("Missing corrected Information Technology master's degree")
+if "Software Developer | Python, AI \\& Security Projects" not in sources[0]:
+    raise SystemExit("Missing documented software-development positioning")
+if "Technical Project Coordination | Software \\& AI Projects" not in manager:
+    raise SystemExit("Missing documented project-coordination positioning")
+if 'id="about"' not in ui or "resume.about.paragraphs.map" not in ui:
+    raise SystemExit("Missing dedicated About section")
+layout = (root / "src/app/layout.tsx").read_text(encoding="utf-8-sig")
+if 'jobTitle: "Security Engineer"' in layout or "Security Engineer" in ui:
+    raise SystemExit("Obsolete personal role positioning is still published")
+if "$120,000" in ui or "$120K" in ui:
+    raise SystemExit(
+        "Use documented coordination outcomes instead of unsupported budget figures"
+    )
 for project, pin in zip(projects, evidence["projects"], strict=True):
     if (
         project["sourceCommit"] != pin["source_commit"]

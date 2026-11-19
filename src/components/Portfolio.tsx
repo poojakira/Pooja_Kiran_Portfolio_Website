@@ -87,11 +87,11 @@ function Header() {
         <a className="brand" href="#home" aria-label="Pooja Kiran home">
           <span className="brand-mark">PK</span>
           <span>
-            <strong>SECURITY ENGINEERING</strong>
+            <strong>SOFTWARE &amp; PROJECTS</strong>
           </span>
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
-          <a href="#home">About</a>
+          <a href="#about">About</a>
           <a href="#work">Projects</a>
           <a href="#explore">Resumes</a>
           <a href="#experience">Experience</a>
@@ -124,10 +124,10 @@ function Hero() {
 
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
-        <h1 className="hero-dual-heading">Security Engineering<span>&amp; Technical Leadership</span></h1>
-        <p className="hero-role-line">Technical Leadership · AI &amp; Agent Security · Product Security · Cloud IAM</p>
+        <h1 className="hero-dual-heading">Software Development<span>&amp; Project Coordination</span></h1>
+        <p className="hero-role-line">Python &amp; AI Projects · Security Tooling · Technical Collaboration</p>
         <p className="hero-reference-subtitle">
-          I build security controls, coordinate cross-functional project work, and turn technical risk into engineering and business decisions. My work spans AI-agent security, cloud identity, threat detection, and team delivery.
+          {resume.positioning}
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
@@ -157,6 +157,20 @@ function Hero() {
   );
 }
 
+function AboutSection() {
+  return (
+    <section className="about-section" id="about" aria-labelledby="about-heading">
+      <div className="about-intro" data-reveal>
+        <p className="eyebrow">About me</p>
+        <h2 id="about-heading">{resume.about.title}</h2>
+      </div>
+      <div className="about-copy" data-reveal>
+        {resume.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+      </div>
+    </section>
+  );
+}
+
 function ExploreExperience() {
   return (
     <section className="role-chooser" id="explore" aria-labelledby="role-chooser-title">
@@ -175,42 +189,42 @@ function ExploreExperience() {
         <article className="role-option role-option-engineering" data-reveal>
           <div className="role-option-top">
             <span className="role-option-index" aria-hidden="true">01</span>
-            <span className="role-option-category">Build &amp; Secure</span>
+            <span className="role-option-category">Build &amp; Validate</span>
           </div>
-          <h3>Security Engineering</h3>
+          <h3>Software Development</h3>
           <p>
-            For roles focused on designing, implementing, and validating security controls across
-            AI agents, applications, cloud identity, and detection systems.
+            For roles focused on Python development, AI tooling, application interfaces,
+            software testing, and projects involving security.
           </p>
-          <ul aria-label="Security engineering highlights">
+          <ul aria-label="Software development highlights">
             <li>MCP execution workbench with 834 passing tests</li>
             <li>IAM change review with 24 static checks</li>
             <li>Model-artifact comparison and persisted investigation workflows</li>
           </ul>
           <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View Security Engineering resume PDF in a new tab">
-            View Security Engineering Resume <ArrowIcon />
+             aria-label="View Software Developer resume PDF in a new tab">
+            View Software Developer Resume <ArrowIcon />
           </a>
         </article>
 
         <article className="role-option role-option-leadership" data-reveal>
           <div className="role-option-top">
             <span className="role-option-index" aria-hidden="true">02</span>
-            <span className="role-option-category">Lead &amp; Deliver</span>
+            <span className="role-option-category">Coordinate &amp; Deliver</span>
           </div>
-          <h3>Engineering Leadership</h3>
+          <h3>Technical Project Coordination</h3>
           <p>
-            For security-focused engineering management and technical leadership roles emphasizing
-            team coordination, deliverable reviews, stakeholder communication, and business planning.
+            For roles focused on coordinating peer work, tracking deliverables,
+            documenting requirements, and communicating technical findings.
           </p>
-          <ul aria-label="Engineering leadership highlights">
+          <ul aria-label="Technical project coordination highlights">
             <li>Coordinated work within a four-member AEROSEC team</li>
             <li>Reviewed remote peer deliverables and reported to mentors</li>
-            <li>Presented a proposed $120,000 first-year budget and security plan</li>
+            <li>Compared four security platforms and presented three evaluator pitches</li>
           </ul>
           <a className="role-option-action" href={managerResumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View Engineering Manager resume PDF in a new tab">
-            View Engineering Manager Resume <ArrowIcon />
+             aria-label="View Technical Project Coordination resume PDF in a new tab">
+            View Project Coordination Resume <ArrowIcon />
           </a>
         </article>
       </div>
@@ -223,24 +237,24 @@ function LeadershipHighlights() {
   return (
     <section className="leadership-highlights" aria-labelledby="leadership-highlights-heading">
       <div className="leadership-highlights-intro" data-reveal>
-        <p className="eyebrow">Leadership highlights</p>
-        <h2 id="leadership-highlights-heading">Coordinating people, technical work, and business decisions.</h2>
+        <p className="eyebrow">AEROSEC externship</p>
+        <h2 id="leadership-highlights-heading">Coordinating work and explaining decisions.</h2>
       </div>
       <div className="leadership-highlights-grid">
         <article data-reveal>
           <span className="leadership-highlight-number">03</span>
           <h3>Remote peer leads</h3>
-          <p>Assigned responsibilities and reviewed deliverables during designated AEROSEC lab phases within a four-member team.</p>
+          <p>Coordinated three remote peer leads during an AEROSEC leadership rotation, reviewing deliverables and reporting progress to mentors.</p>
         </article>
         <article data-reveal>
           <span className="leadership-highlight-number">03</span>
-          <h3>Industry pitches</h3>
-          <p>Presented aviation security risks, market positioning, and financial assumptions to Honeywell evaluators.</p>
+          <h3>Evaluator pitches</h3>
+          <p>Presented proposed AEROSEC work in three evaluator pitches, communicating security requirements and planning assumptions.</p>
         </article>
         <article data-reveal>
-          <span className="leadership-highlight-number">$120K</span>
-          <h3>Proposed first-year budget</h3>
-          <p>Developed a 12-month operating plan and compared four commercial security solutions; figures were proposals, not realized funding.</p>
+          <span className="leadership-highlight-number">04</span>
+          <h3>Platforms compared</h3>
+          <p>Compared four security platforms and contributed to a proposed 12-month implementation plan.</p>
         </article>
       </div>
       <a className="leadership-highlights-link" href="#experience">Read the full experience <ArrowIcon /></a>
@@ -518,16 +532,16 @@ function ContactSection() {
     <section className="contact-section" id="contact">
       <div className="contact-copy recruiter-contact" data-reveal>
         <p className="eyebrow">Recruiting &amp; collaboration</p>
-        <h2>Hiring for Security Engineering or Technical Leadership?</h2>
+        <h2>Hiring for Software Development or Project Coordination?</h2>
         <p>
-          I&apos;m interested in U.S.-based security engineering and technical leadership roles spanning
-          AI and agent security, product security, cloud IAM, and engineering program delivery.
+          I&apos;m interested in U.S.-based software development, Python and AI tooling,
+          and technical project coordination roles that bring implementation and clear communication together.
         </p>
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Security Resume</a>
-        <a className="button button-light" href={managerResumeHref} target="_blank" rel="noreferrer">Engineering Manager Resume</a>
+        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Software Developer Resume</a>
+        <a className="button button-light" href={managerResumeHref} target="_blank" rel="noreferrer">Project Coordination Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>
@@ -549,6 +563,7 @@ export default function Portfolio() {
       <Header />
       <main id="main">
         <Hero />
+        <AboutSection />
         <ExploreExperience />
         <LeadershipHighlights />
         <WorkSection />
@@ -563,7 +578,7 @@ export default function Portfolio() {
       </main>
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} Pooja Kiran</span>
-        <span>AI & Agent Security × Cloud IAM × Model Supply-Chain × Detection Engineering</span>
+        <span>Software Development × AI Projects × Technical Collaboration</span>
       </footer>
     </div>
   );

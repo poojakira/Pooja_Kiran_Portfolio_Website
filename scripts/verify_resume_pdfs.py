@@ -11,6 +11,14 @@ NAMES = (
     "Pooja_Kiran_Security_Engineer_Resume",
     "Pooja_Kiran_Engineering_Manager_Resume",
 )
+DOWNLOAD_NAMES = {
+    NAMES[0]: "Pooja_Kiran_Software_Developer_Resume",
+    NAMES[1]: "Pooja_Kiran_Technical_Project_Coordination_Resume",
+}
+HEADLINES = {
+    NAMES[0]: "Software Developer | Python, AI & Security Projects",
+    NAMES[1]: "Technical Project Coordination | Software & AI Projects",
+}
 
 
 def text(path: Path) -> str:
@@ -26,11 +34,22 @@ def main() -> None:
     args = parser.parse_args()
     pins = json.loads((ROOT / "docs/project_evidence.json").read_text())["projects"]
     for name in NAMES:
-        published = ROOT / "public" / (name + ".pdf")
+        published = ROOT / "public" / (DOWNLOAD_NAMES[name] + ".pdf")
+        legacy_url = ROOT / "public" / (name + ".pdf")
+        if legacy_url.read_bytes() != published.read_bytes():
+            raise SystemExit(
+                f"Existing download URL differs from corrected resume: {name}"
+            )
         info = subprocess.check_output(["pdfinfo", str(published)], text=True)
         if not re.search(r"^Pages:\s+2$", info, re.MULTILINE):
             raise SystemExit(f"Expected two pages: {name}")
         body = text(published)
+        if "M.S., Information Technology" not in body or re.search(
+            r"Information Technology\s*\(Security\)", body, re.IGNORECASE
+        ):
+            raise SystemExit(f"Incorrect master's degree: {name}")
+        if HEADLINES[name] not in body:
+            raise SystemExit(f"Incorrect career positioning: {name}")
         if re.search(r"\bMAX\b|Justin Shewell", body):
             raise SystemExit(f"Removed experience entry is still present: {name}")
         for pin in pins:

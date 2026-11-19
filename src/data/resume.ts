@@ -33,11 +33,20 @@ export type ProjectItem = {
 };
 
 export const resume = {
-  sourceFile: "Pooja_Kiran_Security_Engineer_Resume.pdf",
-  leadershipResumeFile: "Pooja_Kiran_Engineering_Manager_Resume.pdf",
+  sourceFile: "Pooja_Kiran_Software_Developer_Resume.pdf",
+  leadershipResumeFile: "Pooja_Kiran_Technical_Project_Coordination_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Security Engineering | Technical Leadership | AI & Product Security",
-  positioning: "I build security controls, coordinate teams, and translate technical risks into decisions.",
+  headline: "Software Development | AI & Security Projects | Technical Project Coordination",
+  positioning: "I build software, review technical work, and help teams turn requirements into clear next steps.",
+  about: {
+    "title": "I make technical work inspectable.",
+    "paragraphs": [
+      "I like being able to show the request, the rule, the result, and the limits. That is the thread connecting my software projects with the way I review technical work and coordinate delivery.",
+      "I hold an M.S. in Information Technology from Arizona State University. My experience spans IT grading at ASU, a short technical collaboration with Cerberus, the Honeywell Aerospace × ASU AEROSEC externship, and volunteer research.",
+      "In my independent projects, I build Python tools and local interfaces for agent permissions, IAM policy reviews, model-artifact inspection, and synthetic event investigations. I publish the test evidence and make the remaining gaps explicit.",
+      "I am interested in software development and technical project coordination roles that value careful implementation, useful feedback, and clear ownership."
+    ]
+  },
   location: "Tempe, AZ, USA",
   phone: "+1 480-776-7745",
   email: "poojakiranbhardwaj@gmail.com",
@@ -305,7 +314,7 @@ export const resume = {
       }
   ] satisfies ProjectItem[],
   education: [
-    { school: "Arizona State University", location: "Tempe, AZ, USA", degree: "M.S., Information Technology (Security)", score: "GPA: 3.87/4.00", dates: "Aug. 2024 - May 2026" },
+    { school: "Arizona State University", location: "Tempe, AZ, USA", degree: "M.S., Information Technology", score: "GPA: 3.87/4.00", dates: "Aug. 2024 - May 2026" },
     { school: "M. S. Ramaiah University of Applied Sciences", location: "Bengaluru, KA, India", degree: "B.Tech., Computer Science & Engineering", score: "CGPA: 8.44/10", dates: "Aug. 2019 - Aug. 2023" }
   ],
   academicParticipation: {
@@ -324,6 +333,6 @@ export const resume = {
 } as const;
 
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
-export const resumeHref = "./Pooja_Kiran_Security_Engineer_Resume.pdf";
-export const managerResumeHref = "./Pooja_Kiran_Engineering_Manager_Resume.pdf";
+export const resumeHref = `./${resume.sourceFile}`;
+export const managerResumeHref = `./${resume.leadershipResumeFile}`;
 

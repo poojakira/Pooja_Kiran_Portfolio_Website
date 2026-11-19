@@ -1,5 +1,5 @@
 # Canonical resume PDF must be generated from the tracked LaTeX source.
-name: Build Security Engineer Resume
+name: Build Software and Project Coordination Resumes
 
 on:
   pull_request:
