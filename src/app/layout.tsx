@@ -8,7 +8,7 @@ const socialImage = `${siteUrl}/pooja-portrait.webp`;
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}/`),
   title: "Pooja Kiran | Software Engineer | AI Agents & Application Security",
-  description: "M.S. in Information Technology graduate with Python and AI projects, ASU IT grading, technical collaboration, and AEROSEC project coordination experience.",
+  description: "Software engineer building Python-based AI-agent authorization, application-security and cloud IAM review tools, with source-linked tests and documented limitations.",
   alternates: { canonical: `${siteUrl}/` },
   robots: {
     index: true,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   manifest: `${siteUrl}/site.webmanifest`,
   openGraph: {
     title: "Pooja Kiran | Software Engineer | AI Agents & Application Security",
-    description: "Python and AI projects, technical assessment, software collaboration, and peer coordination. M.S. in Information Technology, Arizona State University.",
+    description: "Python engineering projects spanning MCP authorization, AWS IAM analysis, model-artifact inspection, and FastAPI investigations.",
     url: `${siteUrl}/`,
     siteName: "Pooja Kiran | Software Engineer | AI Agents & Application Security",
     type: "website",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Pooja Kiran | Software Engineer | AI Agents & Application Security",
-    description: "Python & AI projects · Technical collaboration · M.S. in Information Technology",
+    description: "AI-agent authorization · Application security · Python engineering",
     images: [socialImage]
   },
   icons: { icon: `${siteUrl}/favicon.svg` }
