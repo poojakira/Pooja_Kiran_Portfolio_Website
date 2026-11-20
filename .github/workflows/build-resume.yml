@@ -13,6 +13,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pull-requests: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,14 +28,21 @@ jobs:
           xelatex -interaction=nonstopmode -halt-on-error -output-directory=.resume-build resume/Pooja_Kiran_Software_Engineer_Resume.tex
           test "$(pdfinfo .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
           pdftotext .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf - | grep -q "Technical Skills"
-      - name: Publish verified resume
+      - name: Prepare PDF publication branch
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           cp .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf public/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c automation/resume-pdf-${{ github.sha }}
           git add public/Pooja_Kiran_Software_Engineer_Resume.pdf
-          git diff --cached --quiet || (git commit -m "Publish verified one-page resume PDF" && git push)
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish verified one-page resume PDF"
+            git push -u origin HEAD
+            gh pr create --base main --head automation/resume-pdf-${{ github.sha }} --title "Publish verified one-page resume PDF" --body "Generated from the one-page resume source. PDF page count and text extraction checked."
+          fi
       - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
         with:
           name: one-page-software-engineer-resume
