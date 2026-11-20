@@ -36,8 +36,8 @@ export const resume = {
   sourceFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   leadershipResumeFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Software Engineer with 2+ Years | AI Agents & Application Security | Published AI Research at IEEE INDICON",
-  positioning: "I build software, review technical work, and help teams turn requirements into clear next steps.",
+  headline: "Software Engineer | Python Backend & API Integration | AI Agent Security",
+  positioning: "I engineer Python APIs and software integrations, with a focus on authorization, reliable execution, and inspectable results.",
   about: {
     "title": "I make technical work inspectable.",
     "paragraphs": [
