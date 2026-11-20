@@ -38,6 +38,12 @@ jobs:
         run: python3 scripts/verify_recruiter_claims.py
       - name: Type check
         run: npm run typecheck
+      - name: Generate and verify approved resume PDF
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends fonts-crosextra-carlito
+          python3 -m pip install --break-system-packages PyMuPDF==1.26.7
+          python3 scripts/build_uploaded_resume.py
       - name: Production build
         run: npm run build
       - name: Record exact static preview source
