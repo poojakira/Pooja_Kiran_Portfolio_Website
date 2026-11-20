@@ -16,14 +16,14 @@ import fitz
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "resume" / "uploaded_resume_layout.b85"
 OUTPUT = ROOT / "public" / "Pooja_Kiran_Software_Engineer_Resume.pdf"
-EXPECTED_SHA = "c7fee1e1e7aec54447e6449a1b18991a657ccc3d39447303b671b02ca1911f56"
+EXPECTED_SHA = "50cace76fa3563085ded2c6ef0d3bc408442e82b645190f0a906c12ccf7ee5d8"
 FONT_ROOT = Path("/usr/share/fonts/truetype/crosextra")
 
 raw = zlib.decompress(base64.b85decode(SOURCE.read_text().strip().encode("ascii")))
 if hashlib.sha256(raw).hexdigest() != EXPECTED_SHA:
     raise SystemExit("Resume layout integrity mismatch")
 data = json.loads(raw.decode("utf-8"))
-if len(data["spans"]) != 83 or len(data["links"]) != 9:
+if len(data["spans"]) != 107 or len(data["links"]) != 9:
     raise SystemExit("Unexpected resume source dimensions")
 
 doc = fitz.open()
@@ -43,7 +43,7 @@ for x, y, font_size, bold, value, rgb in data["spans"]:
         overlay=True,
     )
 for x1, y1, x2, y2 in data["lines"]:
-    page.draw_line((x1, y1), (x2, y2), color=(0.73, 0.78, 0.82), width=0.55)
+    page.draw_line((x1, y1), (x2, y2), color=(0, 0, 0), width=0.5)
 for rectangle, target in data["links"]:
     page.insert_link(
         {"kind": fitz.LINK_URI, "from": fitz.Rect(rectangle), "uri": target}
@@ -57,6 +57,6 @@ assert len(check) == 1
 assert "configuration-management submissions for 101 students" in content
 assert "834 passing tests" in content
 assert "Software Engineer with 2+ Years" not in content
-assert "PYTHON BACKEND & API INTEGRATION" in content
+assert "Python Backend & API Integration" in content
 assert len(check[0].get_links()) == 9
 print(f"Validated one-page corrected resume: {OUTPUT}")
