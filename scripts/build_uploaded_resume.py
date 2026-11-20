@@ -7,7 +7,6 @@ No personal data or resume claims are synthesized by this generator.
 import base64
 import hashlib
 import json
-import os
 from pathlib import Path
 import zlib
 
