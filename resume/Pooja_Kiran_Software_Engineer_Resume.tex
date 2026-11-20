@@ -1,0 +1,60 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[margin=0.67in]{geometry}
+\usepackage{fontspec}
+\IfFontExistsTF{Calibri}{\setmainfont{Calibri}}{\setmainfont{Carlito}}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem,titlesec,microtype}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=0.17in,itemsep=1pt,topsep=2pt,parsep=0pt}
+\titleformat{\section}{\bfseries\fontsize{11}{12}\selectfont}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{7pt}{3pt}
+\newcommand{\entry}[3]{\textbf{#1}\hfill #2\\[-1pt]\textit{#3}\vspace{-2pt}}
+\begin{document}
+\fontsize{10}{11.6}\selectfont
+\begin{center}
+{\fontsize{17}{19}\selectfont\textbf{POOJA KIRAN}}\\[2pt]
+Tempe, AZ \quad | \quad +1 480-776-7745 \quad | \quad \href{mailto:poojakiranbhardwaj@gmail.com}{poojakiranbhardwaj@gmail.com}\\[1pt]
+\href{https://www.linkedin.com/in/poojakiran}{LinkedIn} \quad | \quad \href{https://github.com/poojakira}{GitHub} \quad | \quad \href{https://poojakira.github.io/Pooja_Kiran_Portfolio_Website/}{Portfolio}
+\end{center}
+\vspace{-8pt}
+\section{Technical Skills}
+\textbf{Languages:} Python, C++ \quad
+\textbf{Backend:} FastAPI, REST APIs, MCP/JSON-RPC, PostgreSQL\\
+\textbf{Tools:} Git, Docker, pytest, GitHub Actions, CodeQL, SARIF \quad
+\textbf{Cloud:} AWS IAM
+\section{Experience}
+\entry{Technical Collaborator, Cerberus}{Sep 2026 -- Oct 2026}{Short-term technical collaboration}
+\begin{itemize}
+\item Integrated MCP gateway telemetry with Cerberus event schemas and tested delivery for 3 authenticated identities.
+\item Verified persistent identity configurations and replay handling; repeated test batches created no duplicate records.
+\end{itemize}
+\entry{IT Grader, Arizona State University}{Jan 2025 -- May 2026}{Tempe, AZ}
+\begin{itemize}
+\item Reviewed web programming assignments for 85 students, assessing code and project milestones.
+\item Evaluated configuration management work for 101 students and security compliance submissions for 53 students.
+\end{itemize}
+\entry{Business and Compliance Lead, Honeywell Aerospace x ASU}{Aug 2025 -- Dec 2025}{Technology Innovation Lab externship}
+\begin{itemize}
+\item Coordinated 3 peer leads and compared 4 security platforms for the proposed AEROSEC solution.
+\item Presented 3 evaluator pitches and contributed API access, logging, encryption, and vendor risk requirements.
+\end{itemize}
+\section{Selected Projects}
+\textbf{\href{https://github.com/poojakira/mcp-agent-security-gateway}{MCP Agent Security Gateway}} \hfill Python, FastAPI, MCP/JSON-RPC
+\begin{itemize}
+\item Built a local interface to test agent tool permissions, policy decisions, and audit records; recorded 834 passing tests and 81.80\% statement coverage in the cited verification run.
+\end{itemize}
+\textbf{\href{https://github.com/poojakira/aws-agent-identity-guard}{AWS Agent Identity Guard}} \hfill Python, AWS IAM, SARIF
+\begin{itemize}
+\item Built static IAM policy reviews with statement-linked findings and SARIF exports; recorded 272 passing tests and 77.15\% statement coverage in the cited run.
+\end{itemize}
+\textbf{\href{https://github.com/poojakira/attack-detection-engine}{Attack Detection Engine}} \hfill Python, FastAPI, React, PostgreSQL
+\begin{itemize}
+\item Developed authenticated APIs and persisted security investigations with FHIR AuditEvent support; recorded 332 passing tests and 82.47\% line coverage in the cited run.
+\end{itemize}
+\section{Education}
+\textbf{Arizona State University} \hfill May 2026\\
+M.S. Information Technology \quad | \quad GPA: 3.87/4.00\\[2pt]
+\textbf{M. S. Ramaiah University of Applied Sciences} \hfill Aug 2023\\
+B.Tech. Computer Science and Engineering
+\end{document}
