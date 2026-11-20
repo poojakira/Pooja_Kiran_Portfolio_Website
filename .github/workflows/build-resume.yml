@@ -1,36 +1,58 @@
-name: Build One-Page Software Engineer Resume
+# Canonical resume PDF must be generated from the tracked LaTeX source.
+name: Build Software Developer Resumes
+
 on:
   pull_request:
     branches: [main]
     paths:
-      - "resume/**"
+      - "resume/Pooja_Kiran_Security_Engineer_Resume.tex"
+      - "resume/Pooja_Kiran_Engineering_Manager_Resume.tex"
+      - "public/*Resume.pdf"
+      - "docs/project_evidence.json"
+      - "scripts/verify_resume_pdfs.py"
+      - "scripts/verify_recruiter_claims.py"
       - ".github/workflows/build-resume.yml"
   push:
     branches: [main]
     paths:
       - "resume/**"
+      - "public/*Resume.pdf"
+      - "docs/project_evidence.json"
+      - "scripts/verify_resume_pdfs.py"
       - ".github/workflows/build-resume.yml"
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
-  build:
+  build-resume:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Checkout exact reviewed source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          persist-credentials: true
-      - run: |
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Install free document build tools
+        run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-xetex fonts-crosextra-carlito poppler-utils
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base texlive-latex-extra texlive-fonts-recommended \
+            texlive-xetex fonts-crosextra-carlito poppler-utils
+      - name: Rebuild and verify both two-page resume downloads
+        run: |
           mkdir -p .resume-build
-          xelatex -interaction=nonstopmode -halt-on-error -output-directory=.resume-build resume/Pooja_Kiran_Software_Engineer_Resume.tex
-          test "$(pdfinfo .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
-          pdftotext .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf .resume-build/resume.txt
-          for phrase in "Education" "Experience" "Technical Projects" "Technical Skills" "Cerberus" "Honeywell" "MCP Agent Security Gateway" "AWS Agent Identity Guard" "Attack Detection Engine"; do
-            grep -q "$phrase" .resume-build/resume.txt
+          for name in Pooja_Kiran_Security_Engineer_Resume Pooja_Kiran_Engineering_Manager_Resume; do
+            xelatex -interaction=nonstopmode -halt-on-error \
+              -output-directory=.resume-build "resume/$name.tex"
           done
-      - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
+          python3 scripts/verify_recruiter_claims.py
+          python3 scripts/verify_resume_pdfs.py --generated-directory .resume-build
+      - name: Upload verified generated PDFs
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
         with:
-          name: one-page-software-engineer-resume
-          path: .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf
+          name: verified-resumes-${{ github.event.pull_request.head.sha || github.sha }}
+          path: .resume-build/*.pdf
+          if-no-files-found: error
