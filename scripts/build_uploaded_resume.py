@@ -27,7 +27,10 @@ if len(data["spans"]) != 111 or len(data["links"]) != 8:
 
 doc = fitz.open()
 page = doc.new_page(width=612, height=792)
-for name, filename in (("carlitoRegular", "Carlito-Regular.ttf"), ("carlitoBold", "Carlito-Bold.ttf")):
+for name, filename in (
+    ("carlitoRegular", "Carlito-Regular.ttf"),
+    ("carlitoBold", "Carlito-Bold.ttf"),
+):
     page.insert_font(fontname=name, fontfile=str(FONT_ROOT / filename))
 for x, y, font_size, bold, value in data["spans"]:
     page.insert_text(
@@ -41,7 +44,9 @@ for x, y, font_size, bold, value in data["spans"]:
 for y in data["lines"]:
     page.draw_line((42.5, y), (569.45, y), color=(0, 0, 0), width=0.5)
 for rectangle, target in data["links"]:
-    page.insert_link({"kind": fitz.LINK_URI, "from": fitz.Rect(rectangle), "uri": target})
+    page.insert_link(
+        {"kind": fitz.LINK_URI, "from": fitz.Rect(rectangle), "uri": target}
+    )
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 doc.save(OUTPUT, garbage=4, deflate=True)
 doc.close()
