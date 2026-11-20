@@ -29,18 +29,6 @@ jobs:
         run: npm ci
       - name: Type-check
         run: npm run typecheck
-      - name: Generate complete resume PDF for Pages
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-xetex fonts-crosextra-carlito poppler-utils
-          mkdir -p .resume-build
-          xelatex -interaction=nonstopmode -halt-on-error -output-directory=.resume-build resume/Pooja_Kiran_Software_Engineer_Resume.tex
-          test "$(pdfinfo .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')" = "1"
-          pdftotext .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf .resume-build/resume.txt
-          for phrase in "Education" "Experience" "Technical Projects" "Technical Skills" "Cerberus" "Honeywell" "MCP Agent Security Gateway" "AWS Agent Identity Guard" "Attack Detection Engine"; do
-            grep -q "$phrase" .resume-build/resume.txt
-          done
-          cp .resume-build/Pooja_Kiran_Software_Engineer_Resume.pdf public/Pooja_Kiran_Software_Engineer_Resume.pdf
       - name: Build static site
         run: npm run build
       - name: Upload Pages artifact
