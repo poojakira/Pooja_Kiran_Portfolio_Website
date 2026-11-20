@@ -29,6 +29,12 @@ jobs:
         run: npm ci
       - name: Type-check
         run: npm run typecheck
+      - name: Generate approved resume PDF
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends fonts-crosextra-carlito
+          python3 -m pip install --break-system-packages PyMuPDF==1.26.7
+          python3 scripts/build_uploaded_resume.py
       - name: Build static site
         run: npm run build
       - name: Upload Pages artifact
