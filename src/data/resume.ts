@@ -33,8 +33,7 @@ export type ProjectItem = {
 };
 
 export const resume = {
-  sourceFile: "Pooja_Kiran_Software_Developer_Resume.pdf",
-  leadershipResumeFile: "Pooja_Kiran_Software_Developer_Experience_Resume.pdf",
+  sourceFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   name: "Pooja Kiran",
   headline: "Software Developer | Python, AI & Security Projects",
   positioning: "I build software, review technical work, and help teams turn requirements into clear next steps.",
@@ -334,5 +333,4 @@ export const resume = {
 
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
 export const resumeHref = `./${resume.sourceFile}`;
-export const managerResumeHref = `./${resume.leadershipResumeFile}`;
 
