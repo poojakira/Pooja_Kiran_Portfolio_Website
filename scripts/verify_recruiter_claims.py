@@ -18,3 +18,8 @@ assert "—" not in tex and "–" not in tex
 for bad in ("100% secure", "40% reduction", "60% detection"):
     assert bad.lower() not in (tex + data).lower()
 print("Single-resume source and portfolio references verified")
+
+assert tex.count(r"\\end{document}") == 1
+assert tex.rstrip().endswith(r"\\end{document}")
+assert tex.index(r"\\section{Experience}") < tex.index(r"\\end{document}")
+assert tex.index(r"\\section{Technical Projects}") < tex.index(r"\\end{document}")
