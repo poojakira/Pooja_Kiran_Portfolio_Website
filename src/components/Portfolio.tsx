@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { resume, resumeHref, managerResumeHref, trustChain, type ProjectItem } from "@/data/resume";
+import { resume, resumeHref, trustChain, type ProjectItem } from "@/data/resume";
 
 const basePath = process.env.NODE_ENV === "production" ? "/Pooja_Kiran_Portfolio_Website" : "";
 const asset = (path: string) => `${basePath}/${path.replace(/^\//, "")}`;
@@ -93,7 +93,7 @@ function Header() {
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#about">About</a>
           <a href="#work">Projects</a>
-          <a href="#explore">Resumes</a>
+          <a href="#explore">Resume</a>
           <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
           <a href="#education">Education</a>
@@ -131,7 +131,7 @@ function Hero() {
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
-          <a className="hero-secondary" href="#explore">Choose a Resume <ArrowIcon /></a>
+          <a className="hero-secondary" href="#explore">View Resume <ArrowIcon /></a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Four security trust boundaries with repository-backed proof">
@@ -180,8 +180,7 @@ function ExploreExperience() {
           <h2 id="role-chooser-title">Explore My Experience</h2>
         </div>
         <p>
-          Two software developer resumes with different emphasis: technical projects or experience and collaboration.
-          My projects and full experience are available to everyone below.
+          One verified, single-page Software Engineer resume covering experience, independent projects, skills, education, and certifications.
         </p>
       </div>
 
@@ -191,7 +190,7 @@ function ExploreExperience() {
             <span className="role-option-index" aria-hidden="true">01</span>
             <span className="role-option-category">Build &amp; Validate</span>
           </div>
-          <h3>Software Developer: Technical Projects</h3>
+          <h3>Software Engineer | AI Agents &amp; Application Security</h3>
           <p>
             For roles focused on Python development, AI tooling, application interfaces,
             software testing, and projects involving security.
@@ -202,33 +201,13 @@ function ExploreExperience() {
             <li>Model-artifact comparison and persisted investigation workflows</li>
           </ul>
           <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View Software Developer technical resume PDF in a new tab">
-            View Technical Resume <ArrowIcon />
+             aria-label="View the current one-page Software Engineer resume PDF in a new tab">
+            View Current Resume <ArrowIcon />
           </a>
         </article>
 
-        <article className="role-option role-option-leadership" data-reveal>
-          <div className="role-option-top">
-            <span className="role-option-index" aria-hidden="true">02</span>
-            <span className="role-option-category">Experience &amp; Collaboration</span>
-          </div>
-          <h3>Software Developer: Experience &amp; Collaboration</h3>
-          <p>
-            A software developer profile emphasizing technical collaboration, IT assessment,
-            academic research, and the AEROSEC externship alongside independent projects.
-          </p>
-          <ul aria-label="Software developer experience highlights">
-            <li>Telemetry integration and test-event validation with Cerberus</li>
-            <li>IT grading at ASU and adaptive-learning software research</li>
-            <li>Peer collaboration and requirements work during the AEROSEC externship</li>
-          </ul>
-          <a className="role-option-action" href={managerResumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View Software Developer experience resume PDF in a new tab">
-            View Experience Resume <ArrowIcon />
-          </a>
-        </article>
       </div>
-      <p className="role-chooser-note">Both resumes reflect the same experience, tailored to different hiring priorities.</p>
+      <p className="role-chooser-note">Current one-page resume, including the corrected 101-student configuration-management experience.</p>
     </section>
   );
 }
@@ -540,8 +519,7 @@ function ContactSection() {
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Software Developer: Technical Resume</a>
-        <a className="button button-light" href={managerResumeHref} target="_blank" rel="noreferrer">Software Developer: Experience Resume</a>
+        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Download Software Engineer Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>
