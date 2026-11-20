@@ -4,6 +4,7 @@ The source is a zlib-compressed ASCII85 JSON recording of the uploaded PDF's
 text spans, positions, horizontal rules, and clickable link destinations.
 No personal data or resume claims are synthesized by this generator.
 """
+
 import base64
 import hashlib
 import json
