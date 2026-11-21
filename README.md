@@ -49,7 +49,7 @@ On Windows, `py scripts/security_scan.py` is an alternative if Python is install
 
 ## Deployment
 
-`npm run build` produces `out/` with the production base path `/Pooja_Kiran_Portfolio_Website`. Preview the exported files at that path when checking production URLs; serving them only at `/` will not reproduce the deployed asset paths.
+The Pages upload gate checks the exported résumé and poster files and writes their SHA-256 digests and the source commit to `out/build-provenance.json`. `npm run build` produces `out/` with the production base path `/Pooja_Kiran_Portfolio_Website`. Preview the exported files at that path when checking production URLs; serving them only at `/` will not reproduce the deployed asset paths.
 
 `.github/workflows/deploy-pages.yml` builds and deploys pushes to `main` through GitHub Pages. CI, Security Hygiene, and Documentation Integrity run independently. The deployment workflow does not wait for every independent workflow, so check the actual run results for the commit before describing a release as verified. Repository Actions and the published URL provide the current deployment state.
 

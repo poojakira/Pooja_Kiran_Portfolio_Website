@@ -28,21 +28,23 @@ function useImmersiveScroll() {
     const revealNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const scenes = Array.from(document.querySelectorAll<HTMLElement>("[data-scene]"));
 
-    if (!reduced) root.classList.add("motion-ready");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
+    const canReveal = !reduced && typeof IntersectionObserver !== "undefined";
+    const observer = canReveal ? new IntersectionObserver(
+      (entries, activeObserver) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             (entry.target as HTMLElement).classList.add("is-visible");
-            observer.unobserve(entry.target);
+            activeObserver.unobserve(entry.target);
           }
         }
       },
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-    );
+    ) : null;
 
-    revealNodes.forEach((node) => observer.observe(node));
+    if (observer) {
+      revealNodes.forEach((node) => observer.observe(node));
+      root.classList.add("motion-ready");
+    }
 
     let raf = 0;
     const update = () => {
@@ -70,7 +72,7 @@ function useImmersiveScroll() {
     window.addEventListener("resize", onScroll);
 
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) window.cancelAnimationFrame(raf);
@@ -539,7 +541,7 @@ export default function Portfolio() {
     <div className="portfolio-shell">
       <a className="skip-link" href="#main">Skip to content</a>
       <Header />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Hero />
         <AboutSection />
         <ExploreExperience />
