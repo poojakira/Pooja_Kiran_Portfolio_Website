@@ -191,7 +191,7 @@ function ExploreExperience() {
           <h3>Security Engineering</h3>
           <p>Application security, agent authorization, AWS IAM analysis, model artifact inspection, and detection evidence.</p>
           <ul><li>Tool-call authorization and policy enforcement</li><li>IAM policy analysis and SARIF reporting</li><li>Audit trails and detection workflows</li></ul>
-          <a className="role-option-action" href={asset("Pooja_Kiran_Security_Engineer_Associate_Resume_Revised.pdf")} target="_blank" rel="noopener noreferrer">Security Engineer Resume <ArrowIcon /></a>
+          <a className="role-option-action" href={`mailto:${resume.email}?subject=Security%20Engineer%20Resume%20Request`} target="_blank" rel="noopener noreferrer">Request Security Engineer Resume <ArrowIcon /></a>
         </article>
       </div>
     </section>
@@ -506,7 +506,7 @@ function ContactSection() {
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
         <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Software Engineer Resume</a>
-        <a className="button button-light" href={asset("Pooja_Kiran_Security_Engineer_Associate_Resume_Revised.pdf")} target="_blank" rel="noreferrer">Security Engineer Resume</a>
+        <a className="button button-light" href={`mailto:${resume.email}?subject=Security%20Engineer%20Resume%20Request`} target="_blank" rel="noreferrer">Request Security Engineer Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>
