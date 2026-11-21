@@ -1,6 +1,6 @@
-# Active flagship poster alignment (October 14, 2026 UTC)
+# Published historical poster source alignment (October 14, 2026 UTC)
 
-The three public portfolio poster images are copied **byte-for-byte** from pinned source repository commits by `scripts/sync_poster_assets.py`; the source object's Git blob SHA is checked before synchronization. Their content is dated test evidence, **not** a live counter, production-deployment claim, or detector-population accuracy claim.
+The three public portfolio poster images are copied **byte-for-byte** from pinned source repository commits by `scripts/sync_poster_assets.py`; the source object's Git blob SHA is checked before synchronization. Use the table below to interpret the dated images. Each project card has a separate [November candidate evidence pin](project_evidence.json).
 
 | Public portfolio poster | Source project and pinned commit | CI / source boundaries |
 |---|---|---|
@@ -8,7 +8,7 @@ The three public portfolio poster images are copied **byte-for-byte** from pinne
 | `public/iam-poster.png` | [aws-agent-identity-guard](https://github.com/poojakira/aws-agent-identity-guard/blob/da0b9f1e453ae0e640af9734dc88a3bed14ea7b2/poster/poster.png), `da0b9f1e453a` | [CI 38497940763](https://github.com/poojakira/aws-agent-identity-guard/actions/runs/38497940763): 247 collected, 244 passed, 3 skipped; 25 rule IDs |
 | `public/provenance-poster.png` | [hf-model-provenance-scanner](https://github.com/poojakira/hf-model-provenance-scanner/blob/595b33ba8b1af4c2d4ed6ce1ab4b95bc5034cef4/poster/poster.png), `595b33ba8b1a` | [CI 38498005353](https://github.com/poojakira/hf-model-provenance-scanner/actions/runs/38498005353): 260 passed, 1 skipped, 6 subtests, 75.67% statement coverage |
 
-The [machine-readable poster manifest](poster_sources.json) specifies the exact source commit and Git blob SHA for each image. The `Poster Source Sync` workflow fetches only those immutable URLs, rejects mismatched bytes, and commits synchronized files to an internal review branch. The portfolio CI and Pages deployment should be checked again **after** the binary sync commits.
+The [machine-readable poster manifest](poster_sources.json) now pins the copies published after the November parity runs. The October source commits in the table remain the historical artifact references. The `Poster Source Sync` workflow fetches only those immutable URLs, rejects mismatched bytes, and commits synchronized files to an internal review branch. The portfolio CI and Pages deployment should be checked again **after** the binary sync commits.
 
 Historical numbers remain valid **only for their earlier anchored snapshots**:
 - MCP Gateway October 4: 723 tests, 81.91% coverage, 55 signatures.

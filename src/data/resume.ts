@@ -168,7 +168,7 @@ export const resume = {
               "Actual guarded/unguarded execution",
               "PARTIAL · reviewed candidate"
           ],
-          "testing": "November 18, 2026 verification: 834 passed, 0 skipped, 0 failures/errors; 81.80446084185813% local statement coverage at the unchanged 77% gate. Actual browser, installed-wheel and current hosted acceptance checks passed for the linked candidate.",
+          "testing": "November 18, 2026 verification: 834 passed, 0 skipped, 0 failures/errors; 81.80446084185813% local statement coverage at the unchanged 77% gate. Actual browser, installed-wheel and hosted workbench acceptance checks passed at the linked candidate SHA.",
           "limitations": "Fixed first-party fixture execution is not OS isolation for arbitrary servers. Complete MCP conformance, credential lifecycle, response PII filtering and durable external-effect reconciliation remain missing or unverified. No production or public-service approval.",
           "repository": "https://github.com/poojakira/mcp-agent-security-gateway",
           "caseStudy": "https://github.com/poojakira/mcp-agent-security-gateway/blob/4f83f01a3ed8aca5639143fe2179afb0f864f46e/release-evidence/RELEASE_ASSESSMENT.md",
@@ -212,7 +212,7 @@ export const resume = {
               "24 static checks · SARIF 2.1.0",
               "PARTIAL · no AWS credentials"
           ],
-          "testing": "November 18, 2026 verification: 272 passed, 3 skipped, 0 failures/errors; 77.14791851195749% local statement coverage. The skips concern the absent legacy TestRulesModule, not credential-dependent AWS checks. Browser review, official SARIF validation and current hosted acceptance passed for the linked candidate.",
+          "testing": "November 18, 2026 verification: 272 passed, 3 skipped, 0 failures/errors; 77.14791851195749% local statement coverage. The skips concern the absent legacy TestRulesModule, not credential-dependent AWS checks. Browser review, official SARIF validation and hosted studio acceptance passed at the linked candidate SHA.",
           "limitations": "Static findings are review signals, not proven exploit paths or effective-permission decisions. Complete Deny/SCP/boundary/session/resource-policy evaluation, live AWS context and authenticated public hosting remain missing or unverified.",
           "repository": "https://github.com/poojakira/aws-agent-identity-guard",
           "caseStudy": "https://github.com/poojakira/aws-agent-identity-guard/blob/a396433a4070a0ddc68aa83f9b1093e87fc3224f/release-evidence/RELEASE_ASSESSMENT.md",
@@ -256,7 +256,7 @@ export const resume = {
               "76.08% statement coverage",
               "PARTIAL · independent closure BLOCKED"
           ],
-          "testing": "November 18, 2026 verification: 317 individual tests passed, 3 skipped, 0 failures/errors; 6 native subtests passed separately; 76.08318890814559% local statement coverage at the unchanged 75% gate. Actual binary-file browser comparison and current hosted acceptance passed. Independent closing security review remains BLOCKED.",
+          "testing": "November 18, 2026 verification: 317 individual tests passed, 3 skipped, 0 failures/errors; 6 native subtests passed separately; 76.08318890814559% local statement coverage at the unchanged 75% gate. The archive records actual binary-file browser comparison. GitHub reports successful CI and Production Gate runs at the linked candidate SHA. Independent closing security review remains BLOCKED.",
           "limitations": "Static inspection does not establish publisher identity, training lineage, semantic equivalence, behavioral safety or absence of backdoors. Large artifacts, full GGUF payload validation and hostile public hosting remain unsupported or unverified. Independent closing security review is BLOCKED.",
           "repository": "https://github.com/poojakira/hf-model-provenance-scanner",
           "caseStudy": "https://github.com/poojakira/hf-model-provenance-scanner/blob/ed25d66b72e374f86e2975930b0ed83b9acf3c09/release-evidence/RELEASE_ASSESSMENT.md",
@@ -300,7 +300,7 @@ export const resume = {
               "Persisted same-dataset rerun evidence",
               "PARTIAL · hosted CI NOT VERIFIED"
           ],
-          "testing": "November 18, 2026 verification: 332 passed, 0 skipped, 0 failures/errors; 82.47183565275017% local line coverage at the unchanged 53% gate. Nine browser observations and seven installed-wheel/restart checks passed separately. The recorded current hosted CI run is queued/NOT VERIFIED.",
+          "testing": "November 18, 2026 verification: 332 passed, 0 skipped, 0 failures/errors; 82.47183565275017% local line coverage at the unchanged 53% gate. Nine browser observations and seven installed-wheel/restart checks passed separately. The archived hosted CI run is queued/NOT VERIFIED.",
           "limitations": "Synthetic inputs only. This is offline batch investigation, not continuous monitoring, complete FHIR conformance, proof of malicious access or HIPAA approval. Hard parser/detector process isolation, production privacy/recovery/load approval and current hosted acceptance remain incomplete.",
           "repository": "https://github.com/poojakira/attack-detection-engine",
           "caseStudy": "https://github.com/poojakira/attack-detection-engine/blob/875299dd6a7ed061df792d1150371c688383fc05/release-evidence/RELEASE_ASSESSMENT.md",
@@ -310,7 +310,7 @@ export const resume = {
           "sourceCommit": "aa45efd2f9f7e229a0ae7b7f8d77adac18d96e83",
           "verificationDate": "2026-11-18",
           "releaseStatus": "PARTIAL",
-          "history": "Original project period: Aug 2026 - Oct 2026. Verification snapshot: November 18, 2026, reviewed candidate aa45efd2f9f7; main is unchanged."
+          "history": "Original project period: Aug 2026 - Oct 2026. Verification snapshot: November 18, 2026, archived candidate aa45efd2f9f7. See the draft PR for the current review head."
       }
   ] satisfies ProjectItem[],
   education: [

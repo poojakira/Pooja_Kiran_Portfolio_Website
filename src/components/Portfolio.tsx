@@ -139,7 +139,7 @@ function Hero() {
           <div><strong>Identity → Authority</strong><span>272 passing tests · static IAM change review</span></div>
           <div><strong>Artifact → Runtime</strong><span>317 passing tests · bounded artifact comparison</span></div>
           <div><strong>Telemetry → Investigation</strong><span>332 passing tests · persisted synthetic investigations</span></div>
-          <small>November 2026 reviewed-candidate test evidence. All four release decisions remain PARTIAL.</small>
+          <small>Archived November 2026 results for four exact draft-candidate commits. All four assessments record PARTIAL.</small>
         </div>
       </div>
 
@@ -259,7 +259,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <div className="poster-frame">
             {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} historical October 2026 evidence poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="Diagram of the local synthetic investigation workflow"><strong>TELEMETRY → EVIDENCE</strong><span>IMPORT · INSPECT · CHALLENGE · RERUN</span><small>Reviewed local candidate · synthetic FHIR subset · PostgreSQL evidence · hosted CI unverified</small></div>}
           </div>
-          <span className="poster-caption">{project.id === "automotive" ? "Local investigation illustration · synthetic inputs" : "Historical October 2026 poster · current results below"}</span>
+          <span className="poster-caption">{project.id === "automotive" ? "Local investigation illustration · synthetic inputs" : "Historical October 2026 poster · November candidate results below"}</span>
         </div>
 
         <div className="project-dual-proof">

@@ -1,6 +1,6 @@
 # Security poster evidence alignment — October 9, 2026
 
-> **Archived October 9–11 poster evidence.** This page preserves the earlier graphical snapshots. The current active source-pinned portfolio posters are recorded in [the October 14 alignment](POSTER_EVIDENCE_ALIGNMENT_2026-10-14.md). Do not mistake this historical page for the current published image inventory.
+> **Archived October 9–11 poster evidence.** This page preserves the earlier graphical snapshots. The [October 14 alignment](POSTER_EVIDENCE_ALIGNMENT_2026-10-14.md) records the graphics displayed on the portfolio, and the [November candidate pins](project_evidence.json) specify the later local verification.
 
 
 The three portfolio PNGs are generated artifacts tied to historical, explicitly bounded repository evidence. They are not assertions about the latest commit, deployed traffic, or detector effectiveness.
@@ -17,7 +17,7 @@ The IAM throughput and latency numbers are synthetic benchmark measurements, not
 
 The authoritative source remains each project's research brief, verified metrics, CI evidence and committed generator source. Changes to claims should update those sources and regenerate artifacts before synchronizing the portfolio.
 
-## Current merged detector update
+## Detector update at the October source
 
 The gateway detector at commit `c30075d` now has **69** runtime signatures, versus **55** at the historical snapshot. It detected 15/15 development attacks and flagged 3/15 benign examples. Those results are not independent population-level recall, a detection improvement percentage on unseen cases, or a real-world unauthorized-execution reduction. No Cerberus settings were changed.
 
