@@ -36,15 +36,15 @@ export const resume = {
   sourceFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   leadershipResumeFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   name: "Pooja Kiran",
-  headline: "Software Engineer | Python Backend & API Integration | AI Agent Security",
-  positioning: "I engineer Python APIs and software integrations, with a focus on authorization, reliable execution, and inspectable results.",
+  headline: "Software Engineering | AI Systems | Application Security",
+  positioning: "I build backend systems, AI-agent infrastructure, and security tools that make authorization, execution, and operational evidence easier to inspect.",
   about: {
     "title": "I make technical work inspectable.",
     "paragraphs": [
       "I like being able to show the request, the rule, the result, and the limits. That is the thread connecting my software projects with the way I review technical work and coordinate delivery.",
       "I hold an M.S. in Information Technology from Arizona State University. My experience spans IT grading at ASU, a short technical collaboration with Cerberus, the Honeywell Aerospace × ASU AEROSEC externship, and volunteer research.",
       "In my independent projects, I build Python tools and local interfaces for agent permissions, IAM policy reviews, model-artifact inspection, and synthetic event investigations. I publish the test evidence and make the remaining gaps explicit.",
-      "I am interested in software development and Python or AI tooling roles that value careful implementation, useful feedback, and clear ownership."
+      "I am interested in software engineering and security engineering roles where backend implementation, security decisions, and reliable systems matter."
     ]
   },
   location: "Tempe, AZ, USA",
@@ -56,22 +56,11 @@ export const resume = {
     portfolio: "https://poojakira.github.io/Pooja_Kiran_Portfolio_Website"
   },
   skillGroups: [
-    {
-      label: "AI & Agent Security",
-      items: ["MCP/JSON-RPC 2.0", "Tool/Function-Call Security", "Prompt Injection", "LLM Red Teaming", "Model Supply-Chain Security"]
-    },
-    {
-      label: "Identity & Application Security",
-      items: ["Cloud IAM Security", "AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Capability-Based Authorization", "Threat Modeling", "API Security"]
-    },
-    {
-      label: "Security Engineering & DevSecOps",
-      items: ["Python", "FastAPI", "pytest", "GitHub Actions", "CI/CD Security", "SARIF 2.1.0", "GitHub Code Scanning", "Docker"]
-    },
-    {
-      label: "Detection & Observability",
-      items: ["Elastic Security", "ECS", "SIEM", "Prometheus", "Tamper-Evident Audit Logging", "MITRE ATLAS"]
-    }
+    { label: "Programming & Backend", items: ["Python", "Java", "C++", "JavaScript (ES6+)", "TypeScript", "SQL", "FastAPI", "REST APIs"] },
+    { label: "Frontend, Data & Testing", items: ["React", "Node.js", "PostgreSQL", "MySQL", "SQLite", "Scikit-learn", "Unit & Integration Testing"] },
+    { label: "Application & AI Security", items: ["Threat Modeling", "Secure Code Review", "Vulnerability Assessment", "Prompt Injection Defense", "OWASP Top 10 for LLMs", "Model Context Protocol (MCP)"] },
+    { label: "Identity & Security Operations", items: ["IAM", "AWS IAM", "RBAC", "JWT", "SIEM", "Elasticsearch"] },
+    { label: "Cloud & DevSecOps", items: ["AWS", "Docker", "Kubernetes", "Git", "GitHub Actions", "Linux/Unix", "CI/CD Security"] }
   ],
   experience: [
       {
