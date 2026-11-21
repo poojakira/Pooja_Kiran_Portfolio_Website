@@ -46,14 +46,10 @@ jobs:
           python3 scripts/build_uploaded_resume.py
       - name: Production build
         run: npm run build
-      - name: Record exact static preview source
+      - name: Verify exported assets and record provenance
         run: |
-          python3 - <<'PY'
-          import json, subprocess
-          from pathlib import Path
-          sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-          Path("out/build-provenance.json").write_text(json.dumps({"source_commit": sha}))
-          PY
+          python3 -m unittest discover -s tests -p test_pages_export.py
+          python3 scripts/verify_pages_export.py
       - name: Upload static preview for browser verification
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808
         with:

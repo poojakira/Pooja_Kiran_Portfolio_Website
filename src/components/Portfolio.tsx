@@ -28,21 +28,23 @@ function useImmersiveScroll() {
     const revealNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const scenes = Array.from(document.querySelectorAll<HTMLElement>("[data-scene]"));
 
-    if (!reduced) root.classList.add("motion-ready");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
+    const canReveal = !reduced && typeof IntersectionObserver !== "undefined";
+    const observer = canReveal ? new IntersectionObserver(
+      (entries, activeObserver) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             (entry.target as HTMLElement).classList.add("is-visible");
-            observer.unobserve(entry.target);
+            activeObserver.unobserve(entry.target);
           }
         }
       },
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-    );
+    ) : null;
 
-    revealNodes.forEach((node) => observer.observe(node));
+    if (observer) {
+      revealNodes.forEach((node) => observer.observe(node));
+      root.classList.add("motion-ready");
+    }
 
     let raf = 0;
     const update = () => {
@@ -70,7 +72,7 @@ function useImmersiveScroll() {
     window.addEventListener("resize", onScroll);
 
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) window.cancelAnimationFrame(raf);
@@ -139,7 +141,7 @@ function Hero() {
           <div><strong>Identity → Authority</strong><span>272 passing tests · static IAM change review</span></div>
           <div><strong>Artifact → Runtime</strong><span>317 passing tests · bounded artifact comparison</span></div>
           <div><strong>Telemetry → Investigation</strong><span>332 passing tests · persisted synthetic investigations</span></div>
-          <small>November 2026 reviewed-candidate test evidence. All four release decisions remain PARTIAL.</small>
+          <small>Archived November 2026 results for four exact draft-candidate commits. All four assessments record PARTIAL.</small>
         </div>
       </div>
 
@@ -259,7 +261,7 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <div className="poster-frame">
             {projectPosters[project.id] ? <img src={projectPosters[project.id]} alt={`${project.name} historical October 2026 evidence poster`} /> : <div className="automotive-evidence-poster" role="img" aria-label="Diagram of the local synthetic investigation workflow"><strong>TELEMETRY → EVIDENCE</strong><span>IMPORT · INSPECT · CHALLENGE · RERUN</span><small>Reviewed local candidate · synthetic FHIR subset · PostgreSQL evidence · hosted CI unverified</small></div>}
           </div>
-          <span className="poster-caption">{project.id === "automotive" ? "Local investigation illustration · synthetic inputs" : "Historical October 2026 poster · current results below"}</span>
+          <span className="poster-caption">{project.id === "automotive" ? "Local investigation illustration · synthetic inputs" : "Historical October 2026 poster · November candidate results below"}</span>
         </div>
 
         <div className="project-dual-proof">
@@ -539,7 +541,7 @@ export default function Portfolio() {
     <div className="portfolio-shell">
       <a className="skip-link" href="#main">Skip to content</a>
       <Header />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Hero />
         <AboutSection />
         <ExploreExperience />
