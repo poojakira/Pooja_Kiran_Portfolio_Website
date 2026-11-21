@@ -87,7 +87,7 @@ function Header() {
         <a className="brand" href="#home" aria-label="Pooja Kiran home">
           <span className="brand-mark">PK</span>
           <span>
-            <strong>SOFTWARE &amp; PROJECTS</strong>
+            <strong>ENGINEERING &amp; SECURITY</strong>
           </span>
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
@@ -124,14 +124,14 @@ function Hero() {
 
       <div className="hero-copy-reference" data-reveal>
         <p className="hero-overline">PORTFOLIO</p>
-        <h1 className="hero-dual-heading">Software Developer<span>Python, AI &amp; Security Projects</span></h1>
-        <p className="hero-role-line">Python &amp; AI Projects · Security Tooling · Technical Collaboration</p>
+        <h1 className="hero-dual-heading">Building Reliable Software<span>Securing AI Systems</span></h1>
+        <p className="hero-role-line">Backend Engineering · AI Agents · Application Security · Cloud IAM</p>
         <p className="hero-reference-subtitle">
           {resume.positioning}
         </p>
         <div className="hero-reference-actions">
-          <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
-          <a className="hero-secondary" href="#explore">View Resume <ArrowIcon /></a>
+          <a className="hero-primary" href="#work">Explore Engineering Work <ArrowIcon /></a>
+          <a className="hero-secondary" href="#explore">Choose a Resume <ArrowIcon /></a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Four security trust boundaries with repository-backed proof">
@@ -175,39 +175,25 @@ function ExploreExperience() {
   return (
     <section className="role-chooser" id="explore" aria-labelledby="role-chooser-title">
       <div className="role-chooser-intro" data-reveal>
-        <div>
-          <p className="eyebrow">For recruiters &amp; hiring teams</p>
-          <h2 id="role-chooser-title">Explore My Experience</h2>
-        </div>
-        <p>
-          One verified, single-page Software Engineer resume covering experience, independent projects, skills, education, and certifications.
-        </p>
+        <div><p className="eyebrow">For recruiters &amp; hiring teams</p><h2 id="role-chooser-title">Two paths. One engineering foundation.</h2></div>
+        <p>Explore verified work from two perspectives: building reliable software and securing the systems that run it.</p>
       </div>
-
       <div className="role-chooser-grid">
         <article className="role-option role-option-engineering" data-reveal>
-          <div className="role-option-top">
-            <span className="role-option-index" aria-hidden="true">01</span>
-            <span className="role-option-category">Build &amp; Validate</span>
-          </div>
-          <h3>Software Engineer | AI Agents &amp; Application Security</h3>
-          <p>
-            For roles focused on Python development, AI tooling, application interfaces,
-            software testing, and projects involving security.
-          </p>
-          <ul aria-label="Software development highlights">
-            <li>MCP execution workbench with 834 passing tests</li>
-            <li>IAM change review with 24 static checks</li>
-            <li>Model-artifact comparison and persisted investigation workflows</li>
-          </ul>
-          <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View the current one-page Software Engineer resume PDF in a new tab">
-            View Current Resume <ArrowIcon />
-          </a>
+          <div className="role-option-top"><span className="role-option-index">01</span><span className="role-option-category">Build &amp; Integrate</span></div>
+          <h3>Software Engineering</h3>
+          <p>Python and FastAPI backends, API integration, React interfaces, persistence, and automated testing.</p>
+          <ul><li>React, FastAPI and PostgreSQL investigation workflow</li><li>MCP tool integration and execution evidence</li><li>Reproducible tests and failure handling</li></ul>
+          <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer">Software Engineer Resume <ArrowIcon /></a>
         </article>
-
+        <article className="role-option role-option-engineering" data-reveal>
+          <div className="role-option-top"><span className="role-option-index">02</span><span className="role-option-category">Protect &amp; Investigate</span></div>
+          <h3>Security Engineering</h3>
+          <p>Application security, agent authorization, AWS IAM analysis, model artifact inspection, and detection evidence.</p>
+          <ul><li>Tool-call authorization and policy enforcement</li><li>IAM policy analysis and SARIF reporting</li><li>Audit trails and detection workflows</li></ul>
+          <a className="role-option-action" href={asset("Pooja_Kiran_Security_Engineer_Associate_Resume_Revised.pdf")} target="_blank" rel="noopener noreferrer">Security Engineer Resume <ArrowIcon /></a>
+        </article>
       </div>
-      <p className="role-chooser-note">Current one-page resume, including the corrected 101-student configuration-management experience.</p>
     </section>
   );
 }
@@ -511,15 +497,16 @@ function ContactSection() {
     <section className="contact-section" id="contact">
       <div className="contact-copy recruiter-contact" data-reveal>
         <p className="eyebrow">Recruiting &amp; collaboration</p>
-        <h2>Hiring a Software Developer?</h2>
+        <h2>Building a software or security engineering team?</h2>
         <p>
-          I&apos;m interested in U.S.-based software development and Python or AI tooling roles
+          I&apos;m interested in U.S.-based software engineering and application security roles
           that bring careful implementation, testing, and clear communication together.
         </p>
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Download Software Engineer Resume</a>
+        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Software Engineer Resume</a>
+        <a className="button button-light" href={asset("Pooja_Kiran_Security_Engineer_Associate_Resume_Revised.pdf")} target="_blank" rel="noreferrer">Security Engineer Resume</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>
@@ -556,7 +543,7 @@ export default function Portfolio() {
       </main>
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} Pooja Kiran</span>
-        <span>Software Development × AI Projects × Technical Collaboration</span>
+        <span>Software Engineering × AI Systems × Application Security</span>
       </footer>
     </div>
   );
