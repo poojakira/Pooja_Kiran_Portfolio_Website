@@ -33,8 +33,6 @@ export type ProjectItem = {
 };
 
 export const resume = {
-  sourceFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
-  leadershipResumeFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   name: "Pooja Kiran",
   headline: "Software Engineer | Python Backend & API Integration | AI Agent Security",
   positioning: "I engineer Python APIs and software integrations, with a focus on authorization, reliable execution, and inspectable results.",
@@ -333,6 +331,15 @@ export const resume = {
 } as const;
 
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
-export const resumeHref = `./${resume.sourceFile}`;
-export const managerResumeHref = `./${resume.leadershipResumeFile}`;
-
+export const resumeDownloads = [
+  {
+    title: "Software Engineer",
+    filename: "Pooja_Kiran_Software_Engineer_Resume.pdf",
+    className: "role-option-engineering",
+  },
+  {
+    title: "Security Engineer",
+    filename: "Pooja_Kiran_Security_Engineer_Resume.pdf",
+    className: "role-option-security",
+  },
+] as const;

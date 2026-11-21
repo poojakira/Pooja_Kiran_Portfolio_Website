@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { resume, resumeHref, trustChain, type ProjectItem } from "@/data/resume";
+import { resume, resumeDownloads, trustChain, type ProjectItem } from "@/data/resume";
 
 const basePath = process.env.NODE_ENV === "production" ? "/Pooja_Kiran_Portfolio_Website" : "";
 const asset = (path: string) => `${basePath}/${path.replace(/^\//, "")}`;
@@ -93,7 +93,7 @@ function Header() {
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#about">About</a>
           <a href="#work">Projects</a>
-          <a href="#explore">Resume</a>
+          <a href="#explore">Resumes</a>
           <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
           <a href="#education">Education</a>
@@ -131,7 +131,7 @@ function Hero() {
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
-          <a className="hero-secondary" href="#explore">View Resume <ArrowIcon /></a>
+          <a className="hero-secondary" href="#explore">View Resumes <ArrowIcon /></a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Four security trust boundaries with repository-backed proof">
@@ -171,43 +171,25 @@ function AboutSection() {
   );
 }
 
-function ExploreExperience() {
+function ResumeSection() {
   return (
     <section className="role-chooser" id="explore" aria-labelledby="role-chooser-title">
       <div className="role-chooser-intro" data-reveal>
-        <div>
-          <p className="eyebrow">For recruiters &amp; hiring teams</p>
-          <h2 id="role-chooser-title">Explore My Experience</h2>
-        </div>
-        <p>
-          One verified, single-page Software Engineer resume covering experience, independent projects, skills, education, and certifications.
-        </p>
+        <p className="eyebrow">For recruiters &amp; hiring teams</p>
+        <h2 id="role-chooser-title">Resumes</h2>
       </div>
 
       <div className="role-chooser-grid">
-        <article className="role-option role-option-engineering" data-reveal>
-          <div className="role-option-top">
-            <span className="role-option-index" aria-hidden="true">01</span>
-            <span className="role-option-category">Build &amp; Validate</span>
-          </div>
-          <h3>Software Engineer | AI Agents &amp; Application Security</h3>
-          <p>
-            For roles focused on Python development, AI tooling, application interfaces,
-            software testing, and projects involving security.
-          </p>
-          <ul aria-label="Software development highlights">
-            <li>MCP execution workbench with 834 passing tests</li>
-            <li>IAM change review with 24 static checks</li>
-            <li>Model-artifact comparison and persisted investigation workflows</li>
-          </ul>
-          <a className="role-option-action" href={resumeHref} target="_blank" rel="noopener noreferrer"
-             aria-label="View the current one-page Software Engineer resume PDF in a new tab">
-            View Current Resume <ArrowIcon />
-          </a>
-        </article>
-
+        {resumeDownloads.map(({ title, filename, className }) => (
+          <article key={filename} className={`role-option ${className}`} data-reveal>
+            <h3>{title}</h3>
+            <a className="role-option-action" href={asset(filename)} target="_blank" rel="noopener noreferrer"
+               aria-label={`View the ${title} resume PDF in a new tab`}>
+              View Resume PDF <ArrowIcon />
+            </a>
+          </article>
+        ))}
       </div>
-      <p className="role-chooser-note">Current one-page resume, including the corrected 101-student configuration-management experience.</p>
     </section>
   );
 }
@@ -519,7 +501,7 @@ function ContactSection() {
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href={resumeHref} target="_blank" rel="noreferrer">Download Software Engineer Resume</a>
+        <a className="button button-light" href="#explore">View Resumes</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>
@@ -542,7 +524,7 @@ export default function Portfolio() {
       <main id="main">
         <Hero />
         <AboutSection />
-        <ExploreExperience />
+        <ResumeSection />
         <LeadershipHighlights />
         <WorkSection />
         <InvestigationCaseStudy />
