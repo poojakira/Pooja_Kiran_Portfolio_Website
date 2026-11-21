@@ -56,22 +56,11 @@ export const resume = {
     portfolio: "https://poojakira.github.io/Pooja_Kiran_Portfolio_Website"
   },
   skillGroups: [
-    {
-      label: "AI & Agent Security",
-      items: ["MCP/JSON-RPC 2.0", "Tool/Function-Call Security", "Prompt Injection", "LLM Red Teaming", "Model Supply-Chain Security"]
-    },
-    {
-      label: "Identity & Application Security",
-      items: ["Cloud IAM Security", "AWS IAM", "Least Privilege", "Trust Policies", "Permission Boundaries", "Capability-Based Authorization", "Threat Modeling", "API Security"]
-    },
-    {
-      label: "Security Engineering & DevSecOps",
-      items: ["Python", "FastAPI", "pytest", "GitHub Actions", "CI/CD Security", "SARIF 2.1.0", "GitHub Code Scanning", "Docker"]
-    },
-    {
-      label: "Detection & Observability",
-      items: ["Elastic Security", "ECS", "SIEM", "Prometheus", "Tamper-Evident Audit Logging", "MITRE ATLAS"]
-    }
+    { label: "Programming & Backend", items: ["Python", "Java", "C++", "JavaScript (ES6+)", "TypeScript", "SQL", "FastAPI", "REST APIs"] },
+    { label: "Frontend, Data & Testing", items: ["React", "Node.js", "PostgreSQL", "MySQL", "SQLite", "Scikit-learn", "Unit & Integration Testing"] },
+    { label: "Application & AI Security", items: ["Threat Modeling", "Secure Code Review", "Vulnerability Assessment", "Prompt Injection Defense", "OWASP Top 10 for LLMs", "Model Context Protocol (MCP)"] },
+    { label: "Identity & Security Operations", items: ["IAM", "AWS IAM", "RBAC", "JWT", "SIEM", "Elasticsearch"] },
+    { label: "Cloud & DevSecOps", items: ["AWS", "Docker", "Kubernetes", "Git", "GitHub Actions", "Linux/Unix", "CI/CD Security"] }
   ],
   experience: [
       {
