@@ -33,7 +33,7 @@ export type ProjectItem = {
 };
 
 export const resume = {
-  sourceFile: "Pooja_Kiran_Software_Engineer_Associate_Resume_Revised.pdf",
+  sourceFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   leadershipResumeFile: "Pooja_Kiran_Software_Engineer_Resume.pdf",
   name: "Pooja Kiran",
   headline: "Software Engineering | AI Systems | Application Security",
