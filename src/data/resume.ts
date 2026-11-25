@@ -42,47 +42,6 @@ export const resume = {
     "Technical Program Manager with 3+ years of full-time software engineering and technical program delivery experience, including 1 year as a TPM, and 1+ year of part-time technical experience. Led 3 cross-functional teams (12+ professionals) across software, cloud and API programs. M.S. in Information Technology (GPA 3.87/4.00), with hands-on security engineering and AI-agent security experience."
   ]
 },
-  location: string;
-  bullets: string[];
-};
-
-export type ProjectItem = {
-  id: "mcp" | "iam" | "supply" | "automotive";
-  name: string;
-  label: string;
-  stack: string[];
-  dates: string;
-  repository: string;
-  problem: string;
-  solution: string;
-  architecture: string[];
-  bullets: string[];
-  metrics: string[];
-  testing: string;
-  limitations: string;
-  history: string;
-  caseStudy: string;
-  review: string;
-  architectureUrl: string;
-  notebook: string;
-  sourceCommit: string;
-  verificationDate: string;
-  releaseStatus: "PARTIAL";
-};
-
-export const resume = {
-  name: "Pooja Kiran",
-  headline: "Software Engineer | Python Backend & API Integration | AI Agent Security",
-  positioning: "I engineer Python APIs and software integrations, with a focus on authorization, reliable execution, and inspectable results.",
-  about: {
-    "title": "I make technical work inspectable.",
-    "paragraphs": [
-      "I like being able to show the request, the rule, the result, and the limits. That is the thread connecting my software projects with the way I review technical work and coordinate delivery.",
-      "I hold an M.S. in Information Technology from Arizona State University. My experience spans IT grading at ASU, a short technical collaboration with Cerberus, the Honeywell Aerospace × ASU AEROSEC externship, and volunteer research.",
-      "In my independent projects, I build Python tools and local interfaces for agent permissions, IAM policy reviews, model-artifact inspection, and synthetic event investigations. I publish the test evidence and make the remaining gaps explicit.",
-      "I am interested in software development and Python or AI tooling roles that value careful implementation, useful feedback, and clear ownership."
-    ]
-  },
   location: "Tempe, AZ | Open to relocation / hybrid",
   phone: "+1 480-776-7745",
   email: "poojakiranbhardwaj@gmail.com",
