@@ -86,7 +86,7 @@ function Header() {
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#about">About</a>
           <a href="#work">Projects</a>
-          <a href="#explore">Resume</a>
+          <a href="#explore">Resumes</a>
           <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
           <a href="#education">Education</a>
@@ -124,7 +124,7 @@ function Hero() {
         </p>
         <div className="hero-reference-actions">
           <a className="hero-primary" href="#work">View Security Projects <ArrowIcon /></a>
-          <a className="hero-secondary" href="#explore">View Resume <ArrowIcon /></a>
+          <a className="hero-secondary" href="#explore">View Resumes <ArrowIcon /></a>
           <a className="hero-secondary" href="#contact">Contact Me</a>
         </div>
         <div className="hero-proof-strip" aria-label="Professional experience highlights">
@@ -165,7 +165,7 @@ function ResumeSection() {
     <section className="role-chooser" id="explore" aria-labelledby="role-chooser-title">
       <div className="role-chooser-intro" data-reveal>
         <p className="eyebrow">For recruiters &amp; hiring teams</p>
-        <h2 id="role-chooser-title">Resume</h2>
+        <h2 id="role-chooser-title">Role-specific resumes</h2>
       </div>
 
       <div className="role-chooser-grid">
@@ -349,7 +349,7 @@ function ContactSection() {
       </div>
       <div className="contact-actions" data-reveal>
         <a className="button button-dark" href={`mailto:${resume.email}`}>Contact Pooja <ArrowIcon /></a>
-        <a className="button button-light" href="#explore">View Resume</a>
+        <a className="button button-light" href="#explore">View Resumes</a>
         <a href={resume.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a href={resume.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <div>

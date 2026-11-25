@@ -263,4 +263,20 @@ export const resume = {
 } as const;
 
 export const trustChain = ["IDENTITY", "CAPABILITY", "AUTHORIZATION", "EXECUTION", "TELEMETRY", "EVIDENCE"] as const;
-export const resumeDownloads = [{ title: "Technical Program Manager | Security & AI Systems", filename: "Pooja_Kiran_TPM_Resume.pdf", className: "role-option-engineering" }] as const;
+export const resumeDownloads = [
+  {
+    "title": "Technical Program Manager | Security & AI Systems",
+    "filename": "Pooja_Kiran_TPM_Resume.pdf",
+    "className": "role-option-engineering"
+  },
+  {
+    "title": "Software Engineer",
+    "filename": "Pooja_Kiran_Software_Engineer_Resume.pdf",
+    "className": "role-option-engineering"
+  },
+  {
+    "title": "Security Engineer",
+    "filename": "Pooja_Kiran_Security_Engineer_Resume.pdf",
+    "className": "role-option-security"
+  }
+] as const;
