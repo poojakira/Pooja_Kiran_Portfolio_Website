@@ -1,17 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { resume, resumeDownloads, trustChain, type ProjectItem } from "@/data/resume";
+import { resume, resumeDownloads, type ProjectItem } from "@/data/resume";
 
 const basePath = process.env.NODE_ENV === "production" ? "/Pooja_Kiran_Portfolio_Website" : "";
 const asset = (path: string) => `${basePath}/${path.replace(/^\//, "")}`;
-
-const projectPosters: Record<ProjectItem["id"], string> = {
-  mcp: asset("mcp-poster.png"),
-  iam: asset("iam-poster.png"),
-  supply: asset("provenance-poster.png"),
-  automotive: "",
-};
 
 function ArrowIcon() {
   return (
@@ -146,7 +139,7 @@ function Hero() {
         <div className="hero-photo-frame">
           <img src={asset("pooja-portrait.webp")} alt="Pooja Kiran" width="900" height="1100" />
         </div>
-        
+
       </figure>
 
     </section>
@@ -204,8 +197,6 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <p className="project-history">{project.history}</p>
         </div>
 
-        
-
         <div className="project-dual-proof">
           <section className="proof-panel proof-career" data-reveal>
             <span className="panel-label">Engineering challenge, action and result</span>
@@ -240,12 +231,9 @@ function ProjectScene({ project, index }: { project: ProjectItem; index: number 
           <p>{project.limitations}</p>
           <div className="scope-actions">
             <a href={project.repository} target="_blank" rel="noreferrer">Inspect repository <ArrowIcon /></a>
-            
-            
-            
-            
+
           </div>
-          
+
         </div>
       </div>
     </article>
@@ -262,29 +250,6 @@ function WorkSection() {
       <div className="project-list">
         {resume.projects.map((project, index) => (
           <ProjectScene project={project} index={index} key={project.id} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function DecisionPath() {
-  return (
-    <section className="decision-section">
-      <div className="decision-copy" data-reveal>
-        <p className="eyebrow">How I think</p>
-        <h2>Security is a chain of decisions, not a decorative layer.</h2>
-        <p>
-          Whether I am thinking as an engineer or as a builder, I keep the same spine: identity, authority, execution,
-          telemetry, and evidence.
-        </p>
-      </div>
-      <div className="decision-track" data-reveal>
-        {trustChain.map((item, index) => (
-          <div key={item}>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <strong>{item}</strong>
-          </div>
         ))}
       </div>
     </section>
