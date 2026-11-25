@@ -7,8 +7,8 @@ const socialImage = `${siteUrl}/pooja-portrait.webp`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}/`),
-  title: "Pooja Kiran | Software Developer | Python & AI Projects",
-  description: "M.S. in Information Technology graduate with Python and AI projects, ASU IT grading, technical collaboration, and AEROSEC project coordination experience.",
+  title: "Pooja Kiran | Technical Program Manager | Security & AI Systems",
+  description: "Technical Program Manager with software, cloud, API delivery, security engineering and AI-agent security experience.",
   alternates: { canonical: `${siteUrl}/` },
   robots: {
     index: true,
@@ -17,17 +17,17 @@ export const metadata: Metadata = {
   },
   manifest: `${siteUrl}/site.webmanifest`,
   openGraph: {
-    title: "Pooja Kiran | Software Developer | Python & AI Projects",
-    description: "Python and AI projects, technical assessment, software collaboration, and peer coordination. M.S. in Information Technology, Arizona State University.",
+    title: "Pooja Kiran | Technical Program Manager | Security & AI Systems",
+    description: "Technical Program Manager with software, cloud, API delivery, security engineering and AI-agent security experience.",
     url: `${siteUrl}/`,
-    siteName: "Pooja Kiran | Software Developer | Python & AI Projects",
+    siteName: "Pooja Kiran | Technical Program Manager | Security & AI Systems",
     type: "website",
     images: [{ url: socialImage, alt: "Pooja Kiran" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pooja Kiran | Software Developer | Python & AI Projects",
-    description: "Python & AI projects · Technical collaboration · M.S. in Information Technology",
+    title: "Pooja Kiran | Technical Program Manager | Security & AI Systems",
+    description: "Technical Program Manager with software, cloud, API delivery, security engineering and AI-agent security experience.",
     images: [socialImage]
   },
   icons: { icon: `${siteUrl}/favicon.svg` }
@@ -43,11 +43,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@context": "https://schema.org",
     "@type": "Person",
     name: resume.name,
+    jobTitle: resume.headline,
     description: resume.positioning,
     email: `mailto:${resume.email}`,
     url: resume.links.portfolio,
     sameAs: [resume.links.linkedin, resume.links.github],
-    knowsAbout: ["AI Security", "Agent Security", "Application Security", "Cloud IAM Security", "Model Supply-Chain Security", "Security Automation"],
+    knowsAbout: ["Technical Program Management", "Agile", "API Security", "Threat Modeling", "AI Agent Security"],
     alumniOf: resume.education.map(item => ({ "@type": "CollegeOrUniversity", name: item.school }))
   };
 
